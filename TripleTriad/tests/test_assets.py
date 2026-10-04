@@ -112,6 +112,25 @@ class TestAudio(unittest.TestCase):
                 faltan.append(nombre)
         self.assertEqual(faltan, [])
 
+    def test_las_pistas_de_tema_existen(self):
+        """El duelo tiene su propia musica: no reutiliza la del rival."""
+        import diagnostico
+
+        for tema in diagnostico.TEMAS:
+            nombre = f"musica_{tema}"
+            ruta = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
+            self.assertTrue(os.path.exists(ruta), f"falta {nombre}")
+            self.assertGreater(os.path.getsize(ruta), 50000, f"{nombre} demasiado corta")
+
+    def test_el_duelo_no_usa_la_musica_del_rival(self):
+        self.assertNotEqual(audio.musica_de_duelo(), audio.musica_de_faccion("humano"))
+        for f in facciones.orden_facciones():
+            self.assertNotEqual(audio.musica_de_duelo(), audio.musica_de_faccion(f))
+
+    def test_los_nombres_de_tema_son_distintos_de_las_facciones(self):
+        self.assertNotIn("duelo", facciones.orden_facciones())
+        self.assertNotIn("explora", facciones.orden_facciones())
+
     def test_los_controles_de_volumen_no_revientan(self):
         """El deslizador de Ajustes llama a esto: si falla, se cae la pantalla."""
         try:
@@ -141,7 +160,8 @@ class TestAudio(unittest.TestCase):
         if pygame.mixer.get_init() is None:
             self.skipTest("sin dispositivo de audio")
         audio.musica(audio.musica_de_faccion("humano"))
-        audio.musica(audio.musica_de_faccion("dragon"))
+        audio.musica(audio.musica_de_duelo())
+        audio.musica(audio.musica_de_menu())
         audio.pausar_musica()
         audio.reanudar_musica()
         audio.detener_musica()

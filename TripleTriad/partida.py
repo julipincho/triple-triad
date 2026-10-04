@@ -602,6 +602,8 @@ def now_clickable(ahora, t0):
 # --------------------------------------------------------------------- bucle
 def partida(screen, clock, juego, test_mode=False):
     """Bucle bloqueante del duelo. Devuelve Resultado."""
+    # El enfrentamiento tiene su propia musica: no la del rival
+    audio.musica(audio.musica_de_duelo())
     audio.sfx(audio.MENU)
 
     frames = 0

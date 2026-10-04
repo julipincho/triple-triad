@@ -15,6 +15,9 @@ from paths import recurso
 
 FONDOS = ["ceniza", "camino", "aldea", "ruinas", "fortaleza", "trono", "campamento", "asalto"]
 
+# Pistas que no son de faccion (duelo y menu)
+TEMAS = ["duelo", "explora"]
+
 SONIDOS = [
     "place.wav", "capture.wav", "chain.wav", "win.wav", "lose.wav",
     "menu.wav", "menu_move.wav", "menu_ok.wav", "menu_back.wav",
@@ -56,6 +59,11 @@ def verificar_recursos():
         if falta:
             problemas.append(f"falta la música de {facciones.nombre(f)} ({falta})")
 
+    for tema in TEMAS:
+        falta = _falta(os.path.join("assets", "musica", f"musica_{tema}.wav"))
+        if falta:
+            problemas.append(f"falta la música de tema '{tema}' ({falta})")
+
     for basico in (os.path.join("assets", "fondo.png"),
                    os.path.join("assets", "PressStart2P.ttf")):
         falta = _falta(basico)
@@ -75,7 +83,7 @@ def informe():
         f"Cartas: {sum(len(c) for c in _m.TODOS.values())}",
         f"Fondos de cinemática: {len(FONDOS)}",
         "Efectos de sonido: " + str(len(SONIDOS)),
-        f"Pistas de música: {len(_m.TODOS)}",
+        f"Pistas de música: {len(_m.TODOS)} de facción + {len(TEMAS)} de tema",
     ]
     if problemas:
         lineas.append("")

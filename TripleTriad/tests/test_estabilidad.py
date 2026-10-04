@@ -26,7 +26,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import pygame  # noqa: E402
 
+import audio  # noqa: E402
 import cinematicas  # noqa: E402
+import facciones  # noqa: E402
 import mazos  # noqa: E402
 import ui  # noqa: E402
 from reglas import CPU, USUARIO  # noqa: E402
@@ -244,36 +246,48 @@ class TestDueloRapidoYErrores(unittest.TestCase):
 
 # ---------------------------------------------------- 3. reencuadre de cartas
 class TestEncuadreDeCartas(unittest.TestCase):
-    def test_los_valores_estan_en_las_esquinas(self):
-        import cartas as crt
+    """Los valores van en el punto medio de cada lado (como siempre) y el
+    retrato se dibuja en una ventana que ningun orbe toca."""
 
-        # los cuatro centros de los orbes deben estar en las esquinas
+    def test_los_valores_estan_en_el_punto_medio_de_cada_lado(self):
+        from cartas import RADIO_ORBE, posiciones_valor
+
         w, h = ui.CARD_W, ui.CARD_H
-        esperado = {
-            "N": (0, 0),      # arriba-izquierda
-            "E": (1, 0),      # arriba-derecha
-            "O": (0, 1),      # abajo-izquierda
-            "S": (1, 1),      # abajo-derecha
-        }
-        from cartas import _esquinas_valor
+        p = posiciones_valor(w, h)
+        # arriba-centro, abajo-centro, izquierda-centro, derecha-centro
+        self.assertAlmostEqual(p["N"][0], w // 2, delta=2)
+        self.assertLess(p["N"][1], h * 0.25, "N deberia estar arriba")
+        self.assertAlmostEqual(p["S"][0], w // 2, delta=2)
+        self.assertGreater(p["S"][1], h * 0.70, "S deberia estar abajo")
+        self.assertAlmostEqual(p["O"][1], h // 2, delta=12)
+        self.assertLess(p["O"][0], w * 0.25, "O deberia estar a la izquierda")
+        self.assertGreater(p["E"][0], w * 0.75, "E deberia estar a la derecha")
+        for lado, (cx, cy) in p.items():
+            dentro = RADIO_ORBE <= cx <= w - RADIO_ORBE
+            dentro_y = RADIO_ORBE <= cy <= h - RADIO_ORBE
+            self.assertTrue(dentro and dentro_y, f"{lado} se sale de la carta")
 
-        for lado, (col, fila) in esperado.items():
-            x, y, _dx, _dy = _esquinas_valor(w, h)[lado]
-            en_izq = x < w / 2 if col == 0 else x > w / 2
-            en_arriba = y < h / 2 if fila == 0 else y > h / 2
-            self.assertTrue(en_izq, f"{lado} deberia estar en la columna {col}")
-            self.assertTrue(en_arriba, f"{lado} deberia estar en la fila {fila}")
+    def test_ningun_orbe_pisa_el_retrato(self):
+        """El requisito clave: los numeros no pueden tocar la imagen."""
+        from cartas import RADIO_ORBE, posiciones_valor, rect_arte
+
+        w, h = ui.CARD_W, ui.CARD_H
+        ax, ay, aw, ah = rect_arte(w, h)
+        r = RADIO_ORBE
+        for lado, (cx, cy) in posiciones_valor(w, h).items():
+            solapa = not (
+                cx + r <= ax or cx - r >= ax + aw
+                or cy + r <= ay or cy - r >= ay + ah
+            )
+            self.assertFalse(solapa, f"el orbe {lado} pisa el retrato")
 
     def test_el_retrato_no_cubre_el_centro_de_la_carta(self):
-        """Los orbes no pueden caer en la zona central (donde esta la cara)."""
-        from cartas import _esquinas_valor
+        """El retrato debe seguir siendo la mayor parte visible."""
+        from cartas import rect_arte
 
         w, h = ui.CARD_W, ui.CARD_H
-        for lado, (x, y, _dx, _dy) in _esquinas_valor(w, h).items():
-            zona_ancha = abs(x - w / 2) < w * 0.22
-            zona_alta = abs(y - h / 2) < h * 0.22
-            self.assertFalse(zona_ancha and zona_alta,
-                             f"el valor {lado} cae sobre el centro de la carta")
+        ax, ay, aw, ah = rect_arte(w, h)
+        self.assertGreaterEqual(aw * ah, w * h * 0.28, "el retrato se ha quedado pequeno")
 
     def test_todas_las_cartas_se_dibujan_sin_error(self):
         import cartas as crt
@@ -282,6 +296,53 @@ class TestEncuadreDeCartas(unittest.TestCase):
             for carta in cartas:
                 sup = crt.crear(carta, USUARIO)
                 self.assertEqual(sup.get_size(), (ui.CARD_W, ui.CARD_H), carta.nombre)
+
+    def test_el_nombre_y_el_bando_no_quedan_tapados(self):
+        """El orbe norte no debe caer sobre la placa del nombre ni el sur
+        sobre la franja del bando."""
+        from cartas import RADIO_ORBE, posiciones_valor
+
+        w, h = ui.CARD_W, ui.CARD_H
+        p = posiciones_valor(w, h)
+        r = RADIO_ORBE
+        self.assertLessEqual(p["N"][1] + r, 26, "el orbe norte pisa el nombre")
+        # la franja del bando empieza en h-16: el orbe sur debe acabar antes
+        self.assertLessEqual(p["S"][1] + r, h - 16,
+                             "el orbe sur pisa la franja del bando")
+
+
+# ---------------------------------------------------------- 4. fps y memoria
+class TestMusicaDelDuelo(unittest.TestCase):
+    def test_el_duelo_tiene_musica_propia(self):
+        self.assertEqual(audio.musica_de_duelo(), "musica_duelo")
+        self.assertEqual(audio.musica_de_menu(), "musica_explora")
+
+    def test_el_duelo_no_reutiliza_la_pista_del_rival(self):
+        for f in facciones.orden_facciones():
+            self.assertNotEqual(audio.musica_de_duelo(), audio.musica_de_faccion(f))
+
+    def test_arrancar_un_duelo_pone_la_musica_de_combate(self):
+        """partida() debe pedir la pista de duelo, no la de la faccion rival."""
+        import partida as modulo_partida
+
+        pedidos = []
+        original = audio.musica
+
+        def espia(nombre, bucle=True):
+            pedidos.append(nombre)
+        audio.musica = espia
+        modulo_partida.audio.musica = espia
+        try:
+            juego = modulo_partida.Juego("humano", bando_rival="orco")
+            resultado = modulo_partida.partida(
+                _superficie(), RelojFalso(), juego, test_mode=True
+            )
+        finally:
+            audio.musica = original
+            modulo_partida.audio.musica = original
+        self.assertIn("musica_duelo", pedidos)
+        self.assertNotIn("musica_orco", pedidos)
+        self.assertTrue(resultado)
 
 
 # ---------------------------------------------------------- 4. fps y memoria

@@ -177,12 +177,15 @@ def main():
         return
 
     try:
+        audio.musica(audio.musica_de_menu())
         pantallas.portada(pantalla, reloj)
         while True:
             estado = campana.cargar()
             accion = pantallas.menu(pantalla, reloj, estado)
             if accion == "salir":
                 return
+            # de vuelta al menu: musica tranquila (el duelo pone la suya)
+            audio.musica(audio.musica_de_menu())
             if accion == "rapida":
                 _duelo_rapido(pantalla, reloj)
             elif accion == "nueva":

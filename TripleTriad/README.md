@@ -4,6 +4,14 @@ Juego de cartas estilo Triple Triad (Final Fantasy 8) en Python + pygame.
 Siete facciones, modo campana con historia, cinematicas, musica por faccion
 y un final distinto segun la faccion que elijas.
 
+## Audio
+
+- Siete pistas por facción, generadas con `assets/crear_sonidos.py`.
+- **El duelo tiene su propia banda sonora** (`musica_duelo`): no se reutiliza la
+  pista del rival, así que cualquier enfrentamiento suena igual de tenso.
+- Los menús usan `musica_explora`, más tranquila. Las cinemáticas cambian a la
+  pista de la facción que aparece en escena.
+
 ## Estabilidad
 
 - **Tope de 60 FPS** en todo el juego. La constante vive en `ui.LIMIT_FPS` y

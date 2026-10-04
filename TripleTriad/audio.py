@@ -164,6 +164,19 @@ def musica_de_faccion(faccion):
     return f"musica_{faccion}"
 
 
+def musica_de_duelo():
+    """Banda sonora propia del enfrentamiento.
+
+    No se usa la pista del rival a proposito: todos los duelos suenan igual de
+    tensos, sea contra quien sea.
+    """
+    return "musica_duelo"
+
+
+def musica_de_menu():
+    return "musica_explora"
+
+
 # ------------------------------------------------------- atajos de nombres
 COLOCAR = "place.wav"
 CAPTURAR = "capture.wav"

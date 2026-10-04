@@ -111,6 +111,14 @@ def repetir(parte, veces):
     return out
 
 
+def _sumar(lista, inicio, muestras):
+    """Suma `muestras` en `lista` desde la posicion `inicio`."""
+    for i, v in enumerate(muestras):
+        if inicio + i < len(lista):
+            lista[inicio + i] += v
+    return lista
+
+
 # ------------------------------------------------------------------- efectos
 def efectos():
     """Efectos de interfaz y de juego."""
@@ -222,6 +230,34 @@ OLAS = {  # instrumentos por faccion (una letra por capa)
 }
 FORMA = {"T": "triangular", "S": "seno", "M": "cuadrada", "H": "saw"}
 
+# Pistas que no son de faccion: combate y(menu).
+# El duelo NO reutiliza la pista del rival: cada enfrentamiento suena igual de
+# tenso, sin importar contra quien juegues.
+TEMAS = {
+    "duelo": {
+        "tonica": 146.83,          # re menor
+        "escala": [0, 2, 3, 5, 7, 8, 11],
+        "tempo": 152,
+        "capas": "MTHH",
+        "progresion": [0, 5, 3, 7],
+        "raiz_bajo": True,
+        "reps": 12,                # ~19 s de combate
+    },
+    "explora": {
+        "tonica": 196.0,           # sol mayor
+        "escala": [0, 2, 4, 7, 9, 11, 14],   # lidia: limpia, luminosa
+        "tempo": 76,
+        "capas": "TSS",
+        "progresion": [0, 5, 7, 2],
+        "raiz_bajo": False,
+        "reps": 6,                 # ~19 s tranquila
+    },
+}
+
+
+def _nota(base, semitonos):
+    return base * (2 ** (semitonos / 12.0))
+
 
 def _nota(base, semitonos):
     return base * (2 ** (semitonos / 12.0))
@@ -267,6 +303,69 @@ def _compas(faccion, pulsos, raiz):
 PROGRESION = [0, 5, 3, 7, 8, 3, 7, 0]
 
 
+def _tema(nombre, reps=None):
+    """Genera una pista que no pertenece a ninguna faccion (duelo, menu)."""
+    cfg = TEMAS[nombre]
+    reps = reps if reps is not None else cfg.get("reps", 4)
+    t0 = cfg["tonica"]
+    escala = cfg["escala"]
+    capas = cfg["capas"]
+    largo_pulso = 60.0 / cfg["tempo"]
+    largo = int(SR * largo_pulso)
+    pulsos = 4
+    pista = []
+    rnd = random.Random(sum(ord(c) for c in nombre) * 31)
+    for _ in range(reps):
+        for raiz in cfg["progresion"]:
+            bloque = [0.0] * largo
+            for i, capa in enumerate(capas):
+                for k in range(pulsos):
+                    dur = largo_pulso / pulsos
+                    ini = int(k * dur * SR)
+                    if capa == "M":
+                        octava = -12 if cfg["raiz_bajo"] else 0
+                        semi = raiz + (4 if k % 2 else 0) + octava
+                        bloque = _sumar(bloque, ini, pulso(
+                            _nota(t0, semi), dur * 0.85, 0.17, "cuadrada",
+                            caida=0.25, detune=0.008))
+                    elif capa == "T":
+                        semi = raiz + escala[(k + i * 2) % len(escala)] + 12
+                        bloque = _sumar(bloque, ini, pulso(
+                            _nota(t0, semi), dur * 0.9, 0.07, "triangular", caida=0.3))
+                    elif capa == "S":
+                        for j, off in enumerate((0, 4, 7)):
+                            bloque = _sumar(bloque, ini, pulso(
+                                _nota(t0, raiz + off + 12), dur * 2.0,
+                                0.035 - j * 0.008, "seno", ataque=0.35, caida=0.9))
+                    else:  # percusion
+                        if k % 2 == 0:  # bombo en el tiempo fuerte
+                            bloque = _sumar(bloque, ini, pulso(
+                                62, dur * 0.5, 0.14, "seno", ataque=0.005, caida=0.18))
+                        bloque = _sumar(bloque, ini, ruido(
+                            dur * 0.25, 0.05 if k % 2 else 0.085,
+                            caida=0.16, filtro=0.55 if k % 2 else 0.22))
+            for x in range(largo):
+                bloque[x] *= 0.94 + rnd.random() * 0.12
+            pista.extend(bloque)
+    maximo = max(abs(v) for v in pista) or 1.0
+    pista = [v / maximo * 0.5 for v in pista]
+    n = int(SR * 0.08)
+    for i in range(n):
+        pista[i] *= i / n
+        pista[-1 - i] *= i / n
+    return pista
+
+
+def musica_temas():
+    """Pistas de duelo y de menu."""
+    print("Temas...")
+    os.makedirs(MUSICA, exist_ok=True)
+    for nombre in TEMAS:
+        muestras = _tema(nombre)
+        _escribir(f"musica_{nombre}.wav", muestras, MUSICA)
+        print(f"  musica_{nombre}.wav  ({len(muestras) / SR:.1f}s)")
+
+
 def musica():
     """Una pista corta por faccion (en bucle)."""
     print("Musica...")
@@ -298,6 +397,7 @@ def musica():
 def main():
     efectos()
     musica()
+    musica_temas()
     print("Listo.")
 
 
