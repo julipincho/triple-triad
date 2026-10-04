@@ -65,7 +65,7 @@ def nueva_campana():
         "etapa": 0,
         "mazo_jugador": "goblin",
         "cartas": [
-            {"nombre": c.nombre, "n": c.valores["N"], "s": c.valores["S"], "e": c.valores["E"], "o": c.valores["O"]}
+            {"nombre": c.nombre, "n": c.valores["N"], "s": c.valores["S"], "e": c.valores["E"], "o": c.valores["O"], "bando": c.bando, "habilidad": c.habilidad}
             for c in mazos.GOBLINS
         ],
         "completada": False,
@@ -88,7 +88,7 @@ def cargar():
 def cartas_jugador(estado):
     cartas = []
     for d in estado["cartas"]:
-        c = Carta(d["nombre"], d["n"], d["s"], d["e"], d["o"], bando=estado["mazo_jugador"])
+        c = Carta(d["nombre"], d["n"], d["s"], d["e"], d["o"], bando=d.get("bando", estado["mazo_jugador"]), habilidad=d.get("habilidad"))
         cartas.append(c)
     return cartas
 

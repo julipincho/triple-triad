@@ -69,6 +69,20 @@ def main():
     poner(j, "Dama Hoja", 5, 8, 4, 9, CPU, 2, 2)
     render(j, "04_mitad_partida.png")
 
+    # 5) Same
+    j = Juego("goblin")
+    poner(j, "A", 5, 5, 1, 1, CPU, 0, 1)
+    poner(j, "B", 1, 1, 5, 1, CPU, 1, 0)
+    poner(j, "Mago", 5, 1, 1, 5, USUARIO, 1, 1, resolver=True)
+    render(j, "05_same.png")
+
+    # 6) Plus
+    j = Juego("goblin")
+    poner(j, "A", 1, 3, 1, 1, CPU, 0, 1)
+    poner(j, "B", 1, 1, 1, 2, CPU, 1, 2)
+    poner(j, "Mago", 5, 1, 6, 1, USUARIO, 1, 1, resolver=True)
+    render(j, "06_plus.png")
+
     print(f"Screenshots en {SALIDA}")
 
 

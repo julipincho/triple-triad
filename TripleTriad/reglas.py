@@ -15,17 +15,60 @@ def val(n):
 
 
 class Carta:
-    def __init__(self, nombre, n, s, e, o, dueno=None, bando=None):
+    def __init__(self, nombre, n, s, e, o, dueno=None, bando=None, habilidad=None):
         self.nombre = nombre
         self.valores = {"N": n, "S": s, "E": e, "O": o}
         self.dueno = dueno
         self.bando = bando
+        self.habilidad = habilidad
 
     def lado(self, d):
         return self.valores[d]
 
     def copia(self):
         return copy.deepcopy(self)
+
+
+def valor_efectivo(carta, r, c, lado):
+    v = carta.valores[lado]
+    # Casilla elemental central: bonus +2 a dragones y hombres lobo
+    if (r, c) == (1, 1) and carta.bando in ("dragon", "hombre_lobo"):
+        v += 2
+    return v
+
+
+def flips_por_carta(board, r, c):
+    """Reglas básica + Same + Plus + habilidad quema. Devuelve set de posiciones."""
+    carta = board[r][c]
+    basico = set()
+    iguales = []
+    sumas = {}
+    for lado, (dr, dc) in DELTA.items():
+        nr, nc = r + dr, c + dc
+        if not (0 <= nr < 3 and 0 <= nc < 3):
+            continue
+        vecina = board[nr][nc]
+        if vecina is None or vecina.dueno == carta.dueno:
+            continue
+        m = valor_efectivo(carta, r, c, lado)
+        e = valor_efectivo(vecina, nr, nc, OPUESTO[lado])
+        if m > e:
+            basico.add((nr, nc))
+        if m == e:
+            iguales.append((nr, nc))
+        sumas.setdefault(m + e, []).append((nr, nc))
+    flips = set(basico)
+    if len(iguales) >= 2:  # Same
+        flips.update(iguales)
+    for grupo in sumas.values():  # Plus
+        if len(grupo) >= 2:
+            flips.update(grupo)
+    if getattr(carta, "habilidad", None) == "quema":
+        for lado, (dr, dc) in DELTA.items():
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < 3 and 0 <= nc < 3 and board[nr][nc] and board[nr][nc].dueno != carta.dueno:
+                flips.add((nr, nc))
+    return flips
 
 
 def capturas(board, r, c):
@@ -37,18 +80,13 @@ def capturas(board, r, c):
     cola = [(r, c)]
     while cola:
         cr, cc = cola.pop(0)
-        carta = board[cr][cc]
-        for lado, (dr, dc) in DELTA.items():
-            nr, nc = cr + dr, cc + dc
-            if not (0 <= nr < 3 and 0 <= nc < 3):
-                continue
+        for (nr, nc) in flips_por_carta(board, cr, cc):
             vecina = board[nr][nc]
-            if vecina is None or vecina.dueno == carta.dueno:
+            if vecina is None or vecina.dueno == board[cr][cc].dueno:
                 continue
-            if carta.lado(lado) > vecina.lado(OPUESTO[lado]):
-                vecina.dueno = carta.dueno
-                capturadas.append((nr, nc))
-                cola.append((nr, nc))
+            vecina.dueno = board[cr][cc].dueno
+            capturadas.append((nr, nc))
+            cola.append((nr, nc))
     return capturadas
 
 

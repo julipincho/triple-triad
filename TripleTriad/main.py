@@ -155,6 +155,10 @@ def crear_superficie_carta(carta):
         img = f_big.render(letra, True, (245, 245, 245))
         s.blit(img, (CARD_W // 2 - img.get_width() // 2, CARD_H // 2 - img.get_height() // 2))
 
+    if carta.habilidad == "quema":
+        # indicador de habilidad: llama roja en la esquina
+        pygame.draw.polygon(s, (255, 90, 20), [(CARD_W - 14, CARD_H - 8), (CARD_W - 8, CARD_H - 22), (CARD_W - 4, CARD_H - 8)])
+
     v = carta.valores
     for texto, pos in [
         (val(v["N"]), (CARD_W // 2, 27)),
@@ -193,6 +197,8 @@ def jugada_cpu(board, mano):
     for i, carta in enumerate(mano):
         for r, c in celdas_vacias(board):
             puntos = simular(board, carta, r, c, CPU)
+            if carta.bando == "dragon" and (r, c) == (1, 1):
+                puntos += 2  # los dragones ambicionan la casilla central
             if puntos > mejor_puntos:
                 mejor_puntos, mejor = puntos, (i, r, c)
     return mejor
@@ -359,6 +365,9 @@ class Juego:
                         screen.blit(self.sup(carta), rect.topleft)
                     borde = AZUL_BORDE if carta.dueno == USUARIO else ROJO_BORDE
                     pygame.draw.rect(screen, borde, rect, 4, border_radius=6)
+                # casilla elemental central marcada en fuego
+                if (r, c) == (1, 1):
+                    pygame.draw.circle(screen, (255, 140, 40), (rect.right - 10, rect.bottom - 10), 4)
 
         for (r, c, t0, dueno) in self.flash:
             alpha = max(0, int(170 * (1 - (ahora - t0) / 0.7)))
@@ -583,6 +592,102 @@ def pantalla_mejora(screen, estado):
             )
 
 
+def pantalla_post_victoria(screen, estado):
+    import campana as _c
+    while True:
+        screen.blit(fondo(), (0, 0))
+        t = fuente(16).render(clean("Victoria! Elige tu recompensa"), True, DORADO)
+        screen.blit(t, (ANCHO // 2 - t.get_width() // 2, 140))
+        botones = [
+            ("MEJORAR CARTA", pygame.Rect(ANCHO // 2 - 170, 260, 340, 50)),
+            ("ROBAR CARTA", pygame.Rect(ANCHO // 2 - 170, 330, 340, 50)),
+        ]
+        mouse = pygame.mouse.get_pos()
+        for texto, rect in botones:
+            panel(screen, rect)
+            if rect.collidepoint(mouse):
+                pygame.draw.rect(screen, DORADO, rect, 4, border_radius=6)
+            img = fuente(13).render(clean(texto), True, TEXTO)
+            screen.blit(img, (rect.centerx - img.get_width() // 2, rect.centery - 8))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                for texto, rect in botones:
+                    if rect.collidepoint(ev.pos):
+                        if "MEJORAR" in texto:
+                            pantalla_mejora(screen, estado)
+                        else:
+                            pantalla_draft(screen, estado)
+                        return
+
+
+def pantalla_draft(screen, estado):
+    import campana as _c
+    import mazos as _m
+    pool = []
+    for bando, cartas in _m.TODOS.items():
+        for c in cartas:
+            pool.append(c)
+    ofertas = random.sample(pool, 3)
+    elegida = None
+    while elegida is None:
+        screen.blit(fondo(), (0, 0))
+        t = fuente(14).render(clean("Elige una carta del pool"), True, DORADO)
+        screen.blit(t, (ANCHO // 2 - t.get_width() // 2, 90))
+        rects = []
+        n = len(ofertas)
+        for i, carta in enumerate(ofertas):
+            w, h = CARD_W, CARD_H
+            x = ANCHO // 2 - (n * (w + 16) - 16) // 2 + i * (w + 16)
+            screen.blit(crear_superficie_carta(carta), (x, 200))
+            rects.append(pygame.Rect(x, 200, w, h))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                for i, rect in enumerate(rects):
+                    if rect.collidepoint(ev.pos):
+                        elegida = ofertas[i]
+    # elegir cuál reemplazar
+    while True:
+        screen.blit(fondo(), (0, 0))
+        t = fuente(14).render(clean(f"{elegida.nombre}! Que carta reemplaza?"), True, DORADO)
+        screen.blit(t, (ANCHO // 2 - t.get_width() // 2, 90))
+        cartas = _c.cartas_jugador(estado)
+        rects = []
+        n = len(cartas)
+        for i, carta in enumerate(cartas):
+            w, h = CARD_W, CARD_H
+            x = ANCHO // 2 - (n * (w + 12) - 12) // 2 + i * (w + 12)
+            screen.blit(crear_superficie_carta(carta), (x, 220))
+            rects.append(pygame.Rect(x, 220, w, h))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                for i, rect in enumerate(rects):
+                    if rect.collidepoint(ev.pos):
+                        estado["cartas"][i] = {
+                            "nombre": elegida.nombre,
+                            "n": elegida.valores["N"],
+                            "s": elegida.valores["S"],
+                            "e": elegida.valores["E"],
+                            "o": elegida.valores["O"],
+                            "bando": elegida.bando,
+                            "habilidad": elegida.habilidad,
+                        }
+                        _c.guardar(estado)
+                        esperar_click(screen, [f"{cartas[i].nombre} fue reemplazada."], titulo="Draft")
+                        return
+
+
 def partida(screen, clock, juego):
     """Loop de juego. Devuelve True si ganaste."""
     frames = 0
@@ -679,7 +784,7 @@ def main():
                 esperar_click(screen, ["FELICIDADES! Derrotaste al Rey Dragon.", "Campana completada!"], titulo="Victoria")
             else:
                 _c.guardar(estado)
-                pantalla_mejora(screen, estado)
+                pantalla_post_victoria(screen, estado)
         else:
             salir = derrota_menu(screen)
             if salir:

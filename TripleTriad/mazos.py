@@ -4,7 +4,7 @@ from reglas import Carta
 
 GOBLINS = [
     Carta("Mordedor", 8, 4, 6, 5, bando="goblin"),
-    Carta("Brujo Verde", 3, 9, 4, 7, bando="goblin"),
+    Carta("Brujo Verde", 3, 9, 4, 7, bando="goblin", habilidad="quema"),
     Carta("Lanzasalgo", 6, 5, 9, 4, bando="goblin"),
     Carta("Saqueador", 7, 6, 3, 8, bando="goblin"),
     Carta("Rey Goblin", 10, 7, 8, 6, bando="goblin"),
@@ -36,7 +36,7 @@ VAMPIROS = [
 
 DRAGONES = [
     Carta("Drake", 7, 6, 8, 5, bando="dragon"),
-    Carta("Fuego", 5, 8, 4, 9, bando="dragon"),
+    Carta("Fuego", 5, 8, 4, 9, bando="dragon", habilidad="quema"),
     Carta("Guerrero Rojo", 8, 5, 7, 6, bando="dragon"),
     Carta("Segador Alado", 6, 7, 9, 4, bando="dragon"),
     Carta("Rey Dragon", 10, 9, 8, 8, bando="dragon"),
