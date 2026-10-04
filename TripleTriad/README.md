@@ -4,6 +4,22 @@ Juego de cartas estilo Triple Triad (Final Fantasy 8) en Python + pygame.
 Siete facciones, modo campana con historia, cinematicas, musica por faccion
 y un final distinto segun la faccion que elijas.
 
+## Estabilidad
+
+- **Tope de 60 FPS** en todo el juego. La constante vive en `ui.LIMIT_FPS` y
+  ningun bucle puede usar otro valor: lo verifica `tests/test_estabilidad.py`,
+  que tambien comprueba que todo `while True` limita los fps (directamente o
+  delegando en una pantalla que ya lo hace).
+- **Memoria**: los fondos, las capas de oscurecido y las vinetas se escalan y
+  cachean una sola vez (`ui.REC.fondo_pantalla`, `capa_oscurita`, `vineta`).
+  Antes se reescalaban a pantalla completa en cada frame, que reservaba ~4 MB por
+  imagen y cada frame.
+- **Ninguna pantalla deja encerrado al jugador**: las cinematicallyas se
+  cierran con clic, ENTER o ESC (tambien el epilogo, que antes no admitia ESC).
+- **Los errores se enseñan**: si algo falla, aparece un cartel en la ventana
+  con el motivo y donde estaba el jugador, en vez de cerrar el proceso. El
+  detalle tecnico va a `crash.log`.
+
 ## Correr
 
 - Ejecutable: `TripleTriad.exe` (doble click).

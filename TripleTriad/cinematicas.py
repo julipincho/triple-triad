@@ -18,6 +18,7 @@ from ui import (
     ALTO,
     ANCHO,
     DORADO,
+    LIMIT_FPS,
     TEXTO,
     TEXTO_ON,
     TEXTO_TENUE,
@@ -68,10 +69,22 @@ class Cinematica:
     def escena(self):
         return self.escenas[self.i] if self.i < len(self.escenas) else None
 
+    @property
+    def ultima(self):
+        return self.i >= len(self.escenas) - 1
+
     def _avanzar(self):
-        if self.i < len(self.escenas) - 1:
-            self.i += 1
-            self._t_escena = time.time()
+        """Avanza a la escena siguiente. Devuelve False si ya no habia mas.
+
+        El final del recorrido se decide con este retorno y NO con
+        `escena() is None`, que nunca se cumple en la ultima escena: ese era
+        el bug que dejaba el dialogo sin poder cerrarse.
+        """
+        if self.ultima:
+            return False
+        self.i += 1
+        self._t_escena = time.time()
+        return True
 
     def ejecutar(self, screen, clock):
         if not self.escenas:
@@ -83,7 +96,7 @@ class Cinematica:
         audio.musica(self.escenas[0].musica or self.musica)
 
         while True:
-            clock.tick(60)
+            clock.tick(LIMIT_FPS)
             escena = self.escena()
             if escena is None:
                 break
@@ -101,22 +114,28 @@ class Cinematica:
             pygame.display.flip()
 
             avanzar = False
+            saltar = False
             for ev in pygame.event.get():
                 if ev.type == pygame.QUIT:
                     pygame.quit()
                     raise SystemExit
-                if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE and self.permitir_saltar:
-                    self._terminar()
-                    return
-                if ev.type in (pygame.MOUSEBUTTONDOWN, pygame.KEYDOWN):
+                if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                    # ESC siempre cierra la cinematica, incluso en el epilogo:
+                    # el jugador no debe quedarse nunca encerrado en una escena.
+                    if self.permitir_saltar or escena.completa:
+                        saltar = True
+                if ev.type == pygame.KEYDOWN and ev.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    avanzar = True
+                if ev.type == pygame.MOUSEBUTTONDOWN:
                     if not escena.completa:
                         escena.mostrado = len(escena.texto)
                     else:
                         avanzar = True
-            if avanzar:
-                self._avanzar()
-                if self.escena() is None:
-                    break
+            if saltar:
+                self._terminar()
+                return
+            if avanzar and not self._avanzar():
+                break
         self._terminar()
 
     def ejecutar_un_frame(self, screen):
@@ -141,15 +160,10 @@ class Cinematica:
 
     # ---------------------------------------------------------------- dibujo
     def _dibujar(self, screen, escena, t):
-        fondo = REC.imagen(f"assets/fondos/{escena.fondo}.png")
-        screen.blit(pygame.transform.smoothscale(fondo, (ANCHO, ALTO)), (0, 0))
-        overlay = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-        overlay.fill((6, 7, 14, 168))
-        screen.blit(overlay, (0, 0))
-        vineta = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-        for i in range(0, 50):
-            vineta.fill((0, 0, 0, 80), (i, i, ANCHO - 2 * i, ALTO - 2 * i), 1)
-        screen.blit(vineta, (0, 0))
+        # fondo, oscurecido y vineta cacheados (sin reservas por frame)
+        screen.blit(REC.fondo_pantalla(f"assets/fondos/{escena.fondo}.png"), (0, 0))
+        screen.blit(REC.capa_oscurita((6, 7, 14, 168)), (0, 0))
+        screen.blit(REC.vineta(50, 80), (0, 0))
 
         if escena.efecto == "titulo":
             self._titulo(screen, escena, t)

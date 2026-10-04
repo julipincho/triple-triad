@@ -25,6 +25,10 @@ from ui import ALTO, ANCHO  # noqa: E402,F401
 TEST = "--test" in sys.argv
 CHECK = "--check" in sys.argv
 
+# Donde estaba el jugador cuando algo falla. Se escribe en el crash.log para
+# poder saber que pantalla Rompio sin reproducing el fallo.
+_CONTEXTO = ["menú principal"]
+
 
 def comprobar_recursos():
     """`main.py --check`: verifica assets y datos, util en el exe empaquetado."""
@@ -36,8 +40,10 @@ def comprobar_recursos():
 
 def _duelo_rapido(screen, clock):
     """Partida rapida: faccion contra faccion, sin progresion."""
-    faccion = pantallas.elegir_faccion(screen, clock)
+    _CONTEXTO[0] = "duelo rápido: eligiendo facción"
+    faccion = pantallas.elegir_faccion(screen, clock, modo="rapida")
     if faccion is None:
+        _CONTEXTO[0] = "menú principal"
         return
     import campana as _c
 
@@ -48,6 +54,10 @@ def _duelo_rapido(screen, clock):
                  "dificultad": 1, "titulo": "Duelo rapido", "escena": "campamento",
                  "previa": [], "tipo": "rapida", "nodo": "rapida"})
     audio.musica(audio.musica_de_faccion(rival))
+    _CONTEXTO[0] = (
+        f"duelo rápido: {facciones.nombre(faccion)} contra "
+        f"{facciones.nombre(rival)}"
+    )
     juego = Juego(faccion, bando_rival=rival, info=info, dificultad=1)
     resultado = partida(screen, clock, juego)
     campana.registrar_duelo_perfil(bool(resultado), faccion)
@@ -57,6 +67,7 @@ def _duelo_rapido(screen, clock):
         f"Marcador {resultado.marcador[0]} - {resultado.marcador[1]}  -  "
         f"{resultado.capturas} capturas  -  {resultado.jugadas} cartas colocadas",
     )
+    _CONTEXTO[0] = "menú principal"
 
 
 def _nueva_campana(screen, clock):
@@ -71,10 +82,15 @@ def _nueva_campana(screen, clock):
 
 def _campana(screen, clock, estado, nuevo=False):
     """Bucle de campana: mapa -> duelo -> recompensa -> encuentro -> final."""
+    _CONTEXTO[0] = (
+        f"campaña {facciones.nombre(estado['faccion'])}: "
+        f"nodo {campana.nodo_actual(estado)}"
+    )
     if nuevo:
         escenas, musica = cinematicas.apertura(estado["faccion"])
         campana.marcar_cinematica(f"apertura_{estado['faccion']}")
         audio.musica(musica)
+        _CONTEXTO[0] = f"cinemática de apertura {estado['faccion']}"
         cinematicas.reproducir(screen, clock, escenas, musica=musica)
 
     while True:
@@ -97,6 +113,9 @@ def _campana(screen, clock, estado, nuevo=False):
         # cartel de escenario antes del duelo
         escenas, musica = cinematicas.escenas_nodo(info)
         audio.musica(musica)
+        _CONTEXTO[0] = (
+            f"cartel de duelo {info['nodo']} contra {info['nombre_faccion']}"
+        )
         cinematicas.reproducir(screen, clock, escenas, musica=musica,
                                permitir_saltar=True)
 
@@ -105,6 +124,10 @@ def _campana(screen, clock, estado, nuevo=False):
         juego = Juego(estado["faccion"], bando_rival=info["bando"],
                       mano_u_inicial=mano, mano_c_inicial=mazo_c,
                       info=info, en_campana=True, dificultad=info["dificultad"])
+        _CONTEXTO[0] = (
+            f"duelo de campaña: {facciones.nombre(estado['faccion'])} contra "
+            f"{info['nombre']} ({info['nombre_faccion']}) en {info['nodo']}"
+        )
         resultado = partida(screen, clock, juego)
 
         if resultado.victoria:
@@ -153,22 +176,43 @@ def main():
         partida(pantalla, reloj, juego, test_mode=True)
         return
 
-    pantallas.portada(pantalla, reloj)
-    while True:
-        estado = campana.cargar()
-        accion = pantallas.menu(pantalla, reloj, estado)
-        if accion == "salir":
-            return
-        if accion == "rapida":
-            _duelo_rapido(pantalla, reloj)
-        elif accion == "nueva":
-            _nueva_campana(pantalla, reloj)
-        elif accion == "campana" and estado and not estado.get("completada"):
-            _campana(pantalla, reloj, estado)
-        elif accion == "coleccion":
-            pantallas.coleccion(pantalla, reloj, estado)
-        elif accion == "ajustes":
-            pantalla = _aplicar_ajustes(pantalla, pantallas.ajustes(pantalla, reloj))
+    try:
+        pantallas.portada(pantalla, reloj)
+        while True:
+            estado = campana.cargar()
+            accion = pantallas.menu(pantalla, reloj, estado)
+            if accion == "salir":
+                return
+            if accion == "rapida":
+                _duelo_rapido(pantalla, reloj)
+            elif accion == "nueva":
+                _nueva_campana(pantalla, reloj)
+            elif accion == "campana" and estado and not estado.get("completada"):
+                _campana(pantalla, reloj, estado)
+            elif accion == "coleccion":
+                pantallas.coleccion(pantalla, reloj, estado)
+            elif accion == "ajustes":
+                pantalla = _aplicar_ajustes(pantalla, pantallas.ajustes(pantalla, reloj))
+    except SystemExit:
+        raise
+    except Exception as exc:  # noqa: BLE001 - preferimos mostrarlo a morir
+        # Antes esto cerraba la ventana en silencio; ahora se explica que paso.
+        import traceback
+
+        traza = traceback.format_exc()
+        try:
+            pantallas.pantalla_error(pantalla, reloj, exc, traza, contexto())
+        except Exception:  # noqa: BLE001 - si ni el error se dibuja, queda el log
+            traceback.print_exc()
+
+
+def contexto():
+    """Donde estaba el jugador cuando algo fallo (va al crash.log)."""
+    return _CONTEXTO[0]
+
+
+def marcar(texto):
+    _CONTEXTO[0] = texto
 
 
 if __name__ == "__main__":

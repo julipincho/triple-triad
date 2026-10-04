@@ -30,6 +30,7 @@ from ui import (
     TEXTO_TENUE,
     VERDE,
     Boton,
+    LIMIT_FPS,
     con_alpha,
     fundido_entrada,
     panel,
@@ -47,8 +48,11 @@ class Fondo:
 
     def __init__(self, faccion="dragon"):
         self.faccion = faccion
+        # FondoAnimado escala y cachea el fondo: no reserva memoria por frame
         self.animado = FondoAnimado(
-            crt.REC.imagen("assets/fondo.png"), facciones.acento(faccion)
+            crt.REC.imagen("assets/fondo.png"),
+            facciones.acento(faccion),
+            ruta="assets/fondo.png",
         )
         self.t0 = time.time()
 
@@ -90,7 +94,7 @@ def portada(screen, clock):
     mouse = pygame.mouse.get_pos()
     boton = Boton(pygame.Rect(ANCHO // 2 - 170, ALTO - 120, 340, 52), "PULSA PARA EMPEZAR", 12)
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         t = time.time() - t0
         fondo.dibujar(screen, dt)
 
@@ -153,7 +157,7 @@ def menu(screen, clock, estado=None):
     t0 = time.time()
 
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
@@ -238,25 +242,36 @@ def perfil_racha(faccion):
     return campana.cargar_perfil().get("mejor_racha", {}).get(faccion, 0)
 
 
-def elegir_faccion(screen, clock, facciones_disponibles=None):
-    """Selector de faccion con ficha de estilo y vista previa del mazo."""
+def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campana"):
+    """Selector de faccion con ficha de estilo y vista previa del mazo.
+
+    `modo`:
+      - "campana": explica que la faccion decide rivales y final
+      - "rapida" : solo elige bando para un duelo suelto (sincampaigna)
+    """
     orden = facciones.orden_facciones()
     if facciones_disponibles:
         orden = [f for f in orden if f in facciones_disponibles]
+    rapida = modo == "rapida"
     fondo = Fondo("humano")
     seleccion = 0
     t0 = time.time()
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
 
-        texto(screen, "ELIGE TU FACCION", 22, DORADO, centro=(ANCHO // 2, 74))
-        texto(screen, "Tu faccion decide tus rivales y tu final", 10, TEXTO_TENUE,
-              centro=(ANCHO // 2, 104))
-        texto(screen, "nunca te enfrentaras a tu propia faccion", 8, VERDE,
-              centro=(ANCHO // 2, 124))
+        texto(screen, "ELIGE TU FACCION" if not rapida else "DUELO RAPIDO", 22, DORADO,
+              centro=(ANCHO // 2, 74))
+        if rapida:
+            texto(screen, "Elige con quien quieres pelear", 10, TEXTO_TENUE,
+                  centro=(ANCHO // 2, 104))
+        else:
+            texto(screen, "Tu faccion decide tus rivales y tu final", 10, TEXTO_TENUE,
+                  centro=(ANCHO // 2, 104))
+            texto(screen, "nunca te enfrentaras a tu propia faccion", 8, VERDE,
+                  centro=(ANCHO // 2, 124))
 
         rects = []
         cols = 3
@@ -282,12 +297,13 @@ def elegir_faccion(screen, clock, facciones_disponibles=None):
                   x=rect.x + 106, y=rect.y + 22)
             parrafo(screen, mazos.DESCRIPCION_BANDO.get(faccion, ""), 7, TEXTO_TENUE,
                     rect.x + 106, rect.y + 48, rect.w - 116, interlinea=12)
-            texto(screen, f"jefe: {facciones.nombre(facciones.rival_final(faccion))}",
-                  7, (206, 146, 146), x=rect.x + 106, y=rect.bottom - 34)
-            mejor = perfil_racha(faccion)
-            if mejor:
-                texto(screen, f"mejor racha: {mejor}", 7, TEXTO_TENUE,
-                      x=rect.x + 106, y=rect.bottom - 18)
+            if not rapida:
+                texto(screen, f"jefe: {facciones.nombre(facciones.rival_final(faccion))}",
+                      7, (206, 146, 146), x=rect.x + 106, y=rect.bottom - 34)
+                mejor = perfil_racha(faccion)
+                if mejor:
+                    texto(screen, f"mejor racha: {mejor}", 7, TEXTO_TENUE,
+                          x=rect.x + 106, y=rect.bottom - 18)
 
         # ficha de la faccion seleccionada
         faccion = orden[seleccion]
@@ -325,19 +341,33 @@ def elegir_faccion(screen, clock, facciones_disponibles=None):
             texto(screen, "sin habilidades especiales", 7, TEXTO_TENUE,
                   centro=(ficha.centerx, y + 16))
             y += 30
-        texto(screen, "TUS RIVALES EN CAMPANA", 8, DORADO, centro=(ficha.centerx, y))
-        y += 18
-        for rival in campana.escalera_de(faccion) + [facciones.rival_final(faccion)]:
-            texto(screen, facciones.nombre(rival), 7, TEXTO, centro=(ficha.centerx, y))
-            y += 16
+        if rapida:
+            texto(screen, "EN TU MANO", 8, DORADO, centro=(ficha.centerx, y))
+            y += 18
+            texto(screen, "Tu rival sera una de las otras seis facciones.", 7, TEXTO,
+                  x=ficha.x + 18, y=y)
+        else:
+            texto(screen, "TUS RIVALES EN CAMPANA", 8, DORADO, centro=(ficha.centerx, y))
+            y += 18
+            for rival in campana.escalera_de(faccion) + [facciones.rival_final(faccion)]:
+                texto(screen, facciones.nombre(rival), 7, TEXTO, centro=(ficha.centerx, y))
+                y += 16
 
         # botones
+        # "ELEGIR Y EMPEZAR" queda siempre a la vista: el unico flujo que quedaba
+        # ambiguo era como confirmar la faccion.
         aceptar = Boton(pygame.Rect(ANCHO - 330, 650, 280, 46), "ELEGIR Y EMPEZAR", 12,
                         acento=facciones.acento(faccion))
         atras = Boton(pygame.Rect(ANCHO - 330, 706, 280, 38), "VOLVER", 10)
+        if rapida:
+            # en duelo rapido el boton late para que quede claro como confirmar
+            aceptar.pulsar()
         _botones(screen, [aceptar, atras], mouse, dt)
-        texto(screen, "clic en una faccion   flechas + ENTER", 8, TEXTO_TENUE,
-              centro=(ANCHO // 2, ALTO - 26))
+        if rapida:
+            texto(screen, "Pulsa ELEGIR Y EMPEZAR para confirmar", 8, DORADO,
+                  centro=(ANCHO - 190, 622))
+        texto(screen, "clic en una faccion para elegirla   ENTER para confirmar", 8,
+              TEXTO_TENUE, centro=(ANCHO // 2, ALTO - 26))
         pygame.display.flip()
 
         for ev in pygame.event.get():
@@ -418,7 +448,7 @@ def mapa_campana(screen, clock, estado):
     actual = campana.nodo_actual(estado)
 
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo.dibujar(screen, dt)
         fundido_entrada(screen, t0)
         mouse = pygame.mouse.get_pos()
@@ -559,7 +589,7 @@ def _ficha_nodo(screen, clock, estado, nombre):
     info = campana.info_duelo(estado, nombre)
     cerrar = Boton(pygame.Rect(ANCHO // 2 - 90, ALTO - 130, 180, 44), "VOLVER", 11)
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         mouse = pygame.mouse.get_pos()
         capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
         capa.fill((0, 0, 0, 190))
@@ -594,7 +624,7 @@ def elegir_rama(screen, clock, estado):
     opciones = campana.opciones_bifurcacion()
     t0 = time.time()
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo.dibujar(screen, dt)
         fundido_entrada(screen, t0)
         mouse = pygame.mouse.get_pos()
@@ -701,7 +731,7 @@ def recompensa(screen, clock, estado, nodo_id):
     fondo = Fondo(estado["faccion"])
     t0 = time.time()
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo.dibujar(screen, dt)
         fundido_entrada(screen, t0)
         mouse = pygame.mouse.get_pos()
@@ -765,7 +795,7 @@ def elegir_carta_para_mejorar(screen, clock, estado):
     seleccion = None
     while True:
         mouse = pygame.mouse.get_pos()
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         texto(screen, "ENTRENAMIENTO", 20, DORADO, centro=(ANCHO // 2, 140))
         texto(screen, "Elige la carta que quieres mas fuerte (+1)", 10, TEXTO_TENUE,
               centro=(ANCHO // 2, 176))
@@ -799,7 +829,7 @@ def draft(screen, clock, estado, ofertas=None):
     ofertas = ofertas or campana.draft_aleatorio(estado, 3)
     fondo = Fondo(estado["faccion"])
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         texto(screen, "RECLUTA", 22, DORADO, centro=(ANCHO // 2, 110))
@@ -838,7 +868,7 @@ def draft_reemplazo(screen, clock, estado, carta):
     cartas = campana.cartas_jugador(estado)
     while True:
         mouse = pygame.mouse.get_pos()
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         texto(screen, "RECLUTA", 20, DORADO, centro=(ANCHO // 2, 96))
         texto(screen, f"{carta.nombre} entra en el mazo. A quien sustituye?", 10, TEXTO_TENUE,
               centro=(ANCHO // 2, 132))
@@ -901,7 +931,7 @@ def cartel(screen, clock, titulo, mensaje):
     """Pantalla corta de confirmacion."""
     fondo = Fondo("dragon")
     while True:
-        clock.tick(60)
+        clock.tick(LIMIT_FPS)
         fondo.dibujar(screen)
         texto(screen, titulo, 20, DORADO, centro=(ANCHO // 2, ALTO // 2 - 40))
         parrafo(screen, mensaje, 11, TEXTO, ANCHO // 2 - 320, ALTO // 2 + 10, 640,
@@ -919,17 +949,16 @@ def cartel(screen, clock, titulo, mensaje):
 
 # ---------------------------------------------------------------- encuentro
 def _fondo_escena(screen, nombre):
-    """Fondo de cinemática (oscurecido), para momentos narrativos."""
-    fondo = crt.REC.imagen(f"assets/fondos/{nombre}.png")
-    if fondo.get_width() > 32:
-        screen.blit(pygame.transform.smoothscale(fondo, (ANCHO, ALTO)), (0, 0))
-        capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-        capa.fill((6, 7, 14, 186))
-        screen.blit(capa, (0, 0))
-        vineta = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-        for i in range(0, 46):
-            vineta.fill((0, 0, 0, 80), (i, i, ANCHO - 2 * i, ALTO - 2 * i), 1)
-        screen.blit(vineta, (0, 0))
+    """Fondo de cinemática (oscurecido), para momentos narrativos.
+
+    Usa el fondo y las capas cacheadas: escalar a pantalla completa en cada
+    frame era lo que mas memoria consumia.
+    """
+    ruta = f"assets/fondos/{nombre}.png"
+    if crt.REC.imagen(ruta).get_width() > 32:
+        screen.blit(REC.fondo_pantalla(ruta), (0, 0))
+        screen.blit(REC.capa_oscurita((6, 7, 14, 186)), (0, 0))
+        screen.blit(REC.vineta(), (0, 0))
         return
     Fondo("dragon").dibujar(screen)
 
@@ -940,7 +969,7 @@ def encuentro(screen, clock, estado, nodo_id):
     opciones = enc["opciones"]
     t0 = time.time()
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         _fondo_escena(screen, enc.get("escena", "campamento"))
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
@@ -988,7 +1017,7 @@ def coleccion(screen, clock, estado=None):
     t0 = time.time()
     fondos = {f: Fondo(f) for f in orden}
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondos[faccion].dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
@@ -1099,7 +1128,7 @@ def ajustes(screen, clock):
     fullscreen = bool(pygame.display.get_surface().get_flags() & pygame.FULLSCREEN)
     fondo = Fondo("elfo")
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
 
@@ -1178,7 +1207,7 @@ def _pantalla_ayuda(screen, clock):
     ]
     indice = 0
     while True:
-        clock.tick(60)
+        clock.tick(LIMIT_FPS)
         fondo = Fondo("elfo")
         fondo.dibujar(screen)
         titulo, lineas = paginas[indice]
@@ -1206,11 +1235,70 @@ def _pantalla_ayuda(screen, clock):
                     return
 
 
-# ------------------------------------------------------------------ derrota
+def pantalla_error(screen, clock, exc, traza, contexto=""):
+    """Muestra un error inesperado en la ventana en vez de cerrar el proceso.
+
+    Antes el juego escribia crash.log y se cerraba de golpe: si algo fallaba,
+    el jugador solo veía la ventana desaparecer sin saber por que.
+    """
+    from paths import log_errores
+
+    detalle = f"{type(exc).__name__}: {exc}"
+    try:
+        with open(log_errores(), "a", encoding="utf-8") as f:
+            f.write("\n" + "=" * 70 + "\n")
+            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')}  {detalle}\n")
+            if contexto:
+                f.write(f"contexto: {contexto}\n")
+            f.write(traza + "\n")
+    except OSError:
+        pass
+
+    clock = clock or type("R", (), {"tick": staticmethod(lambda f=60: 16)})()
+    while True:
+        clock.tick(LIMIT_FPS)
+        screen.fill((24, 14, 16))
+        # marco
+        marco = pygame.Rect(120, 120, ANCHO - 240, ALTO - 240)
+        panel(screen, marco, (34, 20, 24, 250), ROJO, radio=10, grosor=3)
+        texto(screen, "ALGO HA FALLADO", 22, ROJO, centro=(ANCHO // 2, marco.y + 44))
+        parrafo(screen,
+                "El juego se ha detenido por un error inesperado. No se ha perdido "
+                "tu partida: esta guardada y podras continuar al salir.",
+                9, TEXTO, marco.x + 40, marco.y + 90, marco.w - 80, interlinea=20,
+                centrado=True)
+        parrafo(screen, detalle, 10, DORADO, marco.x + 40, marco.y + 170, marco.w - 80,
+                interlinea=20, centrado=True)
+        if contexto:
+            parrafo(screen, f"Cosa: {contexto}", 8, TEXTO_TENUE, marco.x + 40,
+                    marco.y + 230, marco.w - 80, interlinea=16, centrado=True)
+        parrafo(screen, "La informacion tecnica esta en crash.log", 8, TEXTO_TENUE,
+                marco.x + 40, marco.bottom - 130, marco.w - 80, interlinea=16,
+                centrado=True)
+        # ultimas lineas de la traza
+        lineas = [l for l in traza.strip().splitlines() if l.strip()][-3:]
+        y = marco.bottom - 104
+        for linea in lineas:
+            texto(screen, linea.strip()[:88], 7, (150, 130, 130), centro=(ANCHO // 2, y))
+            y += 14
+        texto(screen, "clic o ENTER para volver al menu", 10, DORADO,
+              centro=(ANCHO // 2, marco.bottom - 34))
+        pygame.display.flip()
+
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN):
+                audio.sfx(audio.MENU_OK)
+                return
+
+
+# ------------------------------------------------------------------- derrota
 def derrota(screen, clock, estado):
     """Opciones tras perder un duelo de campana."""
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         fondo = Fondo(estado.get("faccion", "goblin"))
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
@@ -1263,7 +1351,7 @@ def epilogo(screen, clock, estado):
     nuevo = (estado.get("final") or {}).get("nuevo")
     # volver al menu tras el final
     while True:
-        clock.tick(60)
+        clock.tick(LIMIT_FPS)
         fondo = Fondo(faccion)
         fondo.dibujar(screen)
         texto(screen, "FIN DE LA CAMPAÑA", 22, DORADO, centro=(ANCHO // 2, 200))

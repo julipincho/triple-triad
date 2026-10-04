@@ -77,6 +77,39 @@ def _lineas_nombre(nombre, ancho_max):
     return mejor[1] if mejor else [limpio_nombre]
 
 
+def _chevron(surface, cx, cy, dx, dy, color):
+    """Pequeña flecha que indica hacia que lado mira el valor de la carta.
+
+    dx/dy valen -1, 0 o 1 y apuntan hacia el exterior de la esquina.
+    """
+    largo = 4
+    if dx == 0 and dy < 0:      # hacia arriba
+        puntos = [(cx, cy - largo), (cx - largo, cy + largo), (cx + largo, cy + largo)]
+    elif dx == 0 and dy > 0:    # hacia abajo
+        puntos = [(cx, cy + largo), (cx - largo, cy - largo), (cx + largo, cy - largo)]
+    elif dx < 0:                # hacia la izquierda
+        puntos = [(cx - largo, cy), (cx + largo, cy - largo), (cx + largo, cy + largo)]
+    else:                       # hacia la derecha
+        puntos = [(cx + largo, cy), (cx - largo, cy - largo), (cx - largo, cy + largo)]
+    pygame.draw.polygon(surface, color, puntos)
+
+
+def _esquinas_valor(w, h):
+    """Centro y direccion de cada orbe de valor.
+
+    Los valores van en las esquinas (N arriba-izq, E arriba-der, O abajo-izq,
+    S abajo-der) para no tapar el rostro del retrato, que esta en el centro.
+    `dx`/`dy` apuntan hacia fuera y se usan para colocar el chevron.
+    """
+    r = 11
+    return {
+        "N": (r + 4, 40, -1, 0),
+        "E": (w - r - 4, 40, 0, -1),
+        "O": (r + 4, h - 38, -1, 1),
+        "S": (w - r - 4, h - 38, 1, 1),
+    }
+
+
 def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
     """Superficie de una carta. `dueno`: 'T', 'C' o None."""
     clave = (
@@ -99,19 +132,20 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
     pygame.draw.rect(s, oscuro, (2, 2, w - 4, h - 4), border_radius=7)
     pygame.draw.rect(s, claro, (4, 4, w - 8, h - 8), border_radius=5)
 
-    # arte
+    # arte: ocupa casi toda la carta; los valores van en las esquinas
     arte = imagen_carta(carta)
+    alto_arte = h - 26
     if arte is not None:
-        img = pygame.transform.smoothscale(arte, (w - 10, 104))
-        mascara = pygame.Surface((w - 10, 104), pygame.SRCALPHA)
+        img = pygame.transform.smoothscale(arte, (w - 8, alto_arte))
+        mascara = pygame.Surface((w - 8, alto_arte), pygame.SRCALPHA)
         for i in range(5):
-            mascara.fill((0, 0, 0, 10 * i), (0, 0, w - 10, 104 - 5 - i))
+            mascara.fill((0, 0, 0, 10 * i), (0, 0, w - 8, alto_arte - 5 - i))
         img.blit(mascara, (0, 0))
-        s.blit(img, (5, 5))
+        s.blit(img, (4, 4))
     else:
         inicial = facciones.FACCIONES.get(carta.bando, {}).get("inicial", "?")
-        pygame.draw.circle(s, oscuro, (w // 2, 56), 30)
-        pygame.draw.circle(s, claro, (w // 2, 56), 30, 2)
+        pygame.draw.circle(s, oscuro, (w // 2, 58), 32)
+        pygame.draw.circle(s, claro, (w // 2, 58), 32, 2)
         texto(s, inicial, 30, (245, 245, 245), x=w // 2 - 12, y=36)
 
     # placa de nombre: una linea si cabe, dos si el nombre es largo
@@ -128,31 +162,29 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
             img = REC.fuente(6).render(linea, True, (245, 245, 245))
             s.blit(img, (w // 2 - img.get_width() // 2, 7 + i * 11))
 
-    # franja inferior con rareza / bando
-    franja = pygame.Surface((w - 10, 14), pygame.SRCALPHA)
-    franja.fill(oscuro + (215,))
-    s.blit(franja, (5, h - 20))
+    # franja inferior con el bando
+    franja = pygame.Surface((w - 8, 13), pygame.SRCALPHA)
+    franja.fill(oscuro + (225,))
+    s.blit(franja, (4, h - 17))
     etiqueta = facciones.nombre(carta.bando).upper()
-    img = _texto_ajustado(etiqueta, 6, w - 18, claro)
-    s.blit(img, (w // 2 - img.get_width() // 2, h - 17))
+    img = _texto_ajustado(etiqueta, 6, w - 16, claro)
+    s.blit(img, (w // 2 - img.get_width() // 2, h - 14))
 
-    # orbes de valor
+    # Valores en las esquinas: el retrato queda libre de numeros.
+    # N arriba-izq, E arriba-der, O abajo-izq, S abajo-der.
     color_borde = {"T": AZUL, "C": ROJO}.get(dueno, DORADO)
-    posiciones = {
-        "N": (w // 2, 42),
-        "S": (w // 2, h - 42),
-        "O": (17, h // 2),
-        "E": (w - 17, h // 2),
-    }
+    radio = 11
+    esquinas = _esquinas_valor(w, h)
     for lado in LADOS:
-        cx, cy = posiciones[lado]
-        pygame.draw.circle(s, (8, 8, 12), (cx, cy), 11)
-        pygame.draw.circle(s, color_borde, (cx, cy), 11, 2)
-        pygame.draw.circle(s, con_alpha(color_borde, 60), (cx, cy), 11)
-        img = REC.fuente(12).render(val(carta.valores[lado]), True, (255, 255, 255))
+        cx, cy, dx, dy = esquinas[lado]
+        pygame.draw.circle(s, (8, 8, 12), (cx, cy), radio)
+        pygame.draw.circle(s, color_borde, (cx, cy), radio, 2)
+        pygame.draw.circle(s, con_alpha(color_borde, 70), (cx, cy), radio)
+        img = REC.fuente(11).render(val(carta.valores[lado]), True, (255, 255, 255))
         s.blit(img, (cx - img.get_width() // 2, cy - img.get_height() // 2))
+        _chevron(s, cx + dx * 8, cy + dy * 8, dx, dy, con_alpha(color_borde, 235))
 
-    # marca de habilidad
+    # marca de habilidad: entre los dos orbes de abajo, sin pisarlos
     if carta.habilidad and habilidad:
         etiqueta_h = ICONO_HABILIDAD.get(carta.habilidad, carta.habilidad.upper())
         color_h = {
@@ -161,18 +193,18 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
             "furia": (230, 90, 90),
             "embestida": (240, 180, 60),
         }.get(carta.habilidad, DORADO)
-        ancho, alto = 62, 14
-        bx, by = w - ancho - 4, h - 34
+        ancho, alto = 46, 13
+        bx, by = w // 2 - ancho // 2, h - 44
         placa_h = pygame.Surface((ancho, alto), pygame.SRCALPHA)
-        placa_h.fill(con_alpha(color_h, 210))
+        placa_h.fill(con_alpha(color_h, 225))
         s.blit(placa_h, (bx, by))
-        img = _texto_ajustado(etiqueta_h, 6, ancho - 6, (14, 12, 10))
-        s.blit(img, (bx + (ancho - img.get_width()) // 2, by + 4))
+        img = _texto_ajustado(etiqueta_h, 6, ancho - 4, (14, 12, 10))
+        s.blit(img, (bx + (ancho - img.get_width()) // 2, by + 3))
 
     # marca de sinergia activa
     if synergy:
-        pygame.draw.circle(s, (255, 240, 160), (12, h - 30), 5)
-        pygame.draw.circle(s, (12, 12, 18), (12, h - 30), 5, 1)
+        pygame.draw.circle(s, (255, 240, 160), (w // 2, h - 52), 5)
+        pygame.draw.circle(s, (12, 12, 18), (w // 2, h - 52), 5, 1)
 
     if escala == 1:
         _cache[clave] = s

@@ -31,6 +31,7 @@ from ui import (
     CARD_H,
     CARD_W,
     DORADO,
+    LIMIT_FPS,
     REC,
     ROJO,
     TABLERO_H,
@@ -355,21 +356,18 @@ class Juego:
             screen.blit(lienzo, (dx, dy))
 
     def _dibujar_fondo(self, screen):
-        fondo = crt.REC.imagen("assets/fondo.png")
-        if fondo.get_width():
-            img = pygame.transform.smoothscale(fondo, (ANCHO, ALTO))
-            overlay = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-            overlay.fill((8, 9, 18, 168))
-            screen.blit(img, (0, 0))
-            screen.blit(overlay, (0, 0))
-        else:
-            screen.fill((20, 21, 30))
+        # fondo y capas cacheados: nada de reservar 4 MB por frame
+        screen.blit(REC.fondo_pantalla("assets/fondo.png"), (0, 0))
+        screen.blit(REC.capa_oscurita((8, 9, 18, 168)), (0, 0))
         # resplandor del color de faccion en el borde inferior
-        s = pygame.Surface((ANCHO, 90), pygame.SRCALPHA)
-        for i in range(90):
-            s.fill(con_alpha(facciones.acento(self.bando), int(40 * (1 - i / 90))),
-                   (0, i, ANCHO, 1))
-        screen.blit(s, (0, ALTO - 90))
+        clave = ("__brillo__", self.bando)
+        if clave not in REC.imagenes:
+            s = pygame.Surface((ANCHO, 90), pygame.SRCALPHA)
+            for i in range(90):
+                s.fill(con_alpha(facciones.acento(self.bando), int(40 * (1 - i / 90))),
+                       (0, i, ANCHO, 1))
+            REC.imagenes[clave] = s
+        screen.blit(REC.imagenes[clave], (0, ALTO - 90))
 
     def _dibujar_hud(self, screen, ahora):
         # barra superior: fase, marcador y manos
@@ -609,7 +607,7 @@ def partida(screen, clock, juego, test_mode=False):
     frames = 0
     resultado = None
     while True:
-        dt = clock.tick(60) / 1000.0
+        dt = clock.tick(LIMIT_FPS) / 1000.0
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
                 pygame.quit()

@@ -49,6 +49,11 @@ PASO_Y = CARD_H + CARD_GAP
 ANIM_SEGUNDO = 0.18
 TRANSICION = 0.45
 
+# Tope de fotogramas por segundo de TODO el juego. Unico lugar donde se decide:
+# ningun bucle debe llamar a clock.tick() con otro valor (lo verifica
+# tests/test_estabilidad.py). Evita que el consumo de CPU y memoria se dispare.
+LIMIT_FPS = 60
+
 
 # ------------------------------------------------------------------ recursos
 class Recursos:
@@ -76,6 +81,40 @@ class Recursos:
             if escala:
                 img = pygame.transform.smoothscale(img, escala)
             self.imagenes[clave] = img
+        return self.imagenes[clave]
+
+    def fondo_pantalla(self, ruta):
+        """Imagen reescalada a pantalla completa, cacheada.
+
+        Escala una sola vez: hacerlo por frame reserva ~4 MB por imagen y cada
+        frame (del orden de 240 MB/s), que es la causa del consumo de memoria.
+        """
+        clave = ("__fondo__", ruta)
+        if clave not in self.imagenes:
+            base = self.imagen(ruta)
+            if (base.get_width(), base.get_height()) == (ANCHO, ALTO):
+                self.imagenes[clave] = base
+            else:
+                self.imagenes[clave] = pygame.transform.smoothscale(base, (ANCHO, ALTO))
+        return self.imagenes[clave]
+
+    def capa_oscurita(self, alpha=(6, 7, 14, 168)):
+        """Capa de oscurecido reutilizable (no se reasigna cada frame)."""
+        clave = ("__capa__", alpha)
+        if clave not in self.imagenes:
+            capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+            capa.fill(alpha)
+            self.imagenes[clave] = capa
+        return self.imagenes[clave]
+
+    def vineta(self, pasos=46, fuerza=80):
+        """Vineta reutilizable para dar profundidad al fondo."""
+        clave = ("__vineta__", pasos, fuerza)
+        if clave not in self.imagenes:
+            v = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+            for i in range(pasos):
+                v.fill((0, 0, 0, fuerza), (i, i, ANCHO - 2 * i, ALTO - 2 * i), 1)
+            self.imagenes[clave] = v
         return self.imagenes[clave]
 
     def fuente(self, tam):
@@ -392,9 +431,11 @@ def fundido_entrada(screen, t0, duracion=0.45, color=(0, 0, 0)):
 class FondoAnimado:
     """Capa de fondo con estelas de ceniza y un resplandor lento."""
 
-    def __init__(self, imagen=None, color_primario=(60, 60, 80)):
+    def __init__(self, imagen=None, color_primario=(60, 60, 80), ruta="assets/fondo.png"):
         self.imagen = imagen
+        self.ruta = ruta
         self.color = color_primario
+        self._capa = None
         self.particulas = [
             {
                 "x": random.uniform(0, ANCHO),
@@ -418,11 +459,9 @@ class FondoAnimado:
 
     def dibujar(self, screen):
         if self.imagen is not None:
-            img = pygame.transform.smoothscale(self.imagen, (ANCHO, ALTO))
-            overlay = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-            overlay.fill((8, 9, 16, 120))
-            screen.blit(img, (0, 0))
-            screen.blit(overlay, (0, 0))
+            # fondo y capas cacheados: cero reservas por frame
+            screen.blit(REC.fondo_pantalla(self.ruta), (0, 0))
+            screen.blit(REC.capa_oscurita((8, 9, 16, 120)), (0, 0))
         else:
             screen.fill(FONDO)
             for i in range(0, ALTO, 4):
@@ -432,12 +471,20 @@ class FondoAnimado:
                     (0, i), (ANCHO, i),
                 )
         ahora = time.time()
-        s = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+        s = self._capa_particulas()
         pulso = 0.5 + 0.5 * math.sin(ahora * 0.4)
         for p in self.particulas:
             pygame.draw.circle(s, con_alpha((220, 210, 190), 255 * p["a"] * (0.6 + 0.4 * pulso)),
                                (int(p["x"]), int(p["y"])), p["r"])
         screen.blit(s, (0, 0))
+
+    def _capa_particulas(self):
+        """Capa de estelas reutilizada entre frames (se limpia al pintar)."""
+        if self._capa is None:
+            self._capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+        else:
+            self._capa.fill((0, 0, 0, 0))
+        return self._capa
 
 
 # ------------------------------------------------------------------ tooltip

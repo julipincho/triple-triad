@@ -215,6 +215,14 @@ def main():
         ("22c_reemplazo", lambda: pantallas.draft_reemplazo(SCREEN, RelojFalso(), estado,
                                                              mazos.HUMANOS[2])),
         ("22d_ficha_nodo", lambda: pantallas._ficha_nodo(SCREEN, RelojFalso(), estado, "fortaleza")),
+        ("25_error", lambda: pantallas.pantalla_error(
+            SCREEN, RelojFalso(), ValueError("no se pudo cargar la carta"),
+            "Traceback (most recent call last):\n"
+            '  File "main.py", line 51, in _duelo_rapido\n'
+            "    juego = Juego(faccion, bando_rival=rival, info=info)\n"
+            "ValueError: no se pudo cargar la carta\n",
+            contexto="duelo rápido: Humanos contra Orcos")),
+        ("26_elegir_rapida", lambda: pantallas.elegir_faccion(SCREEN, RelojFalso(), modo="rapida")),
     ]
     for nombre, fn in pasos + pantallas_prueba:
         try:
