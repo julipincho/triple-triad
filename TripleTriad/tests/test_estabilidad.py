@@ -2,11 +2,13 @@
 
     python -m unittest tests.test_estabilidad
 
-Cubre los cuatro puntos del plan:
+Cubre los puntos del plan:
   1. las cinematicallyas se pueden cerrar siempre (el bug del dialogo colgado)
   2. el flujo de duelo rapido devuelve la faccion y hay pantallon de error
   3. las cartas colocan los valores en las esquinas, sin tapar el retrato
-  4. todos los bucles respetan LIMIT_FPS y los fondos se cachean
+  4. los tooltips se encolan y se pintan al final del frame, nunca tapados
+  5. el duelo tiene musica propia
+  6. todos los bucles respetan LIMIT_FPS y los fondos se cachean
 """
 
 import io
@@ -311,7 +313,114 @@ class TestEncuadreDeCartas(unittest.TestCase):
                              "el orbe sur pisa la franja del bando")
 
 
-# ---------------------------------------------------------- 4. fps y memoria
+# ------------------------------------------------ 4. tooltips al final del frame
+class TestTooltipsSePintanAlFinal(unittest.TestCase):
+    """El bug: tooltip() pintaba en el momento y las cartas siguientes lo
+    tapaban. Ahora solo encola y dibujar_tooltips() lo pinta al final."""
+
+    def setUp(self):
+        ui._PENDIENTES.clear()
+
+    def tearDown(self):
+        ui._PENDIENTES.clear()
+
+    def test_tooltip_no_dibuja_al_instantaneo_solo_encola(self):
+        pantalla = _superficie()
+        pantalla.fill((0, 0, 0))
+        antes = pygame.image.tostring(pantalla, "RGB")
+
+        ui.tooltip(pantalla, "Golpe furiouso\nN: 5   S: 3   E: 6   O: 2",
+                   (400, 400), ancho=300, arriba=True)
+        ui.tooltip(pantalla, "Segunda ficha\ncon dos lineas", (700, 300),
+                   ancho=300, arriba=True)
+
+        self.assertEqual(len(ui._PENDIENTES), 2, "tooltip() debe encolar, no pintar")
+        despues = pygame.image.tostring(pantalla, "RGB")
+        self.assertEqual(antes, despues,
+                         "tooltip() toco la pantalla: se sigue pintando al instante")
+
+    def test_dibujar_tooltips_pinta_y_vacia_la_cola(self):
+        pantalla = _superficie()
+        pantalla.fill((0, 0, 0))
+        antes = pygame.image.tostring(pantalla, "RGB")
+        ui.tooltip(pantalla, "Se encola y se pinta al final", (500, 500),
+                   ancho=300, arriba=True)
+        self.assertEqual(len(ui._PENDIENTES), 1)
+        self.assertEqual(antes, pygame.image.tostring(pantalla, "RGB"))
+
+        ui.dibujar_tooltips(pantalla)
+
+        self.assertEqual(ui._PENDIENTES, [], "dibujar_tooltips() debe vaciar la cola")
+        self.assertNotEqual(antes, pygame.image.tostring(pantalla, "RGB"),
+                            "no se pinto nada en la pantalla")
+
+    def test_el_tooltip_siempre_cae_dentro_de_la_pantalla(self):
+        """Ni en las esquinas ni pegado al borde puede salirse."""
+        ancho, tam = 300, 8
+        alto = 6 * (tam + 9) + 16
+        for px in (0, 10, 400, ui.ANCHO - 10, ui.ANCHO - 1):
+            for py in (0, 10, 400, ui.ALTO - 10, ui.ALTO - 1):
+                for lado in ("auto", "izq", "der"):
+                    for arriba in (False, True):
+                        x, y = ui._sitiar_tooltip((px, py), ancho, alto, lado, arriba)
+                        self.assertGreaterEqual(x, 8, f"se sale por la izquierda en {px},{py}")
+                        self.assertGreaterEqual(y, 8, f"se sale por arriba en {px},{py}")
+                        self.assertLessEqual(x + ancho, ui.ANCHO - 8,
+                                             f"se sale por la derecha en {px},{py}")
+                        self.assertLessEqual(y + alto, ui.ALTO - 8,
+                                             f"se sale por abajo en {px},{py}")
+
+    def test_un_tooltip_alto_tambien_cabe_en_pantalla(self):
+        """Con muchas lineas el alto crece: aun asi no puede salirse."""
+        lineas = 30
+        alto = lineas * (8 + 9) + 16
+        for py in (0, 20, ui.ALTO - 1):
+            x, y = ui._sitiar_tooltip((30, py), 300, alto, "der", False)
+            self.assertGreaterEqual(y, 8)
+            self.assertLessEqual(y + alto, ui.ALTO - 8)
+
+    def test_todo_modulo_que_encola_tiene_que_pintar(self):
+        """Si un modulo llama a tooltip() debe llamar tambien a
+        dibujar_tooltips(): si no, la cola crece frame a frame y el tooltip
+        aparece tarde o en otra pantalla."""
+        for nombre in ("pantallas.py", "partida.py", "ui.py", "cartas.py",
+                       "cinematicas.py", "main.py"):
+            with io.open(os.path.join(RAIZ, nombre), encoding="utf-8") as f:
+                codigo = f.read()
+            if "tooltip(" not in codigo or nombre == "ui.py":
+                continue  # ui.py es quien define y pinta
+            self.assertIn("dibujar_tooltips(", codigo,
+                          f"{nombre} encola tooltips pero nunca los pinta")
+
+    def test_el_duelo_pinta_el_tooltip_al_final_del_frame(self):
+        """Con el raton sobre una carta de la mano, el tooltip se encola
+        durante _dibujar_mano y se pinta en dibujar(), sin quedar colgado."""
+        import partida as modulo_partida
+
+        pantalla = _superficie()
+        juego = modulo_partida.Juego("humano", bando_rival="orco")
+        juego.t_entrada = 0
+        raton = ui.mano_rect(0, len(juego.cartas_en_mano())).center
+
+        pintadas = []
+        original_raton = pygame.mouse.get_pos
+        original_pintar = modulo_partida.dibujar_tooltips
+        pygame.mouse.get_pos = lambda: raton
+        modulo_partida.dibujar_tooltips = lambda sup: (
+            pintadas.append(sup), original_pintar(sup))[1]
+        try:
+            self.assertFalse(juego.fin)
+            juego.dibujar(pantalla)
+        finally:
+            pygame.mouse.get_pos = original_raton
+            modulo_partida.dibujar_tooltips = original_pintar
+
+        self.assertTrue(pintadas, "el duelo no llamo a dibujar_tooltips()")
+        self.assertEqual(ui._PENDIENTES, [],
+                         "quedo un tooltip sin pintar tras dibujar el frame")
+
+
+# ---------------------------------------------------------- 5. musica del duelo
 class TestMusicaDelDuelo(unittest.TestCase):
     def test_el_duelo_tiene_musica_propia(self):
         self.assertEqual(audio.musica_de_duelo(), "musica_duelo")
@@ -345,7 +454,7 @@ class TestMusicaDelDuelo(unittest.TestCase):
         self.assertTrue(resultado)
 
 
-# ---------------------------------------------------------- 4. fps y memoria
+# ---------------------------------------------------------- 6. fps y memoria
 class TestFpsYMemoria(unittest.TestCase):
     def test_la_constante_de_fps_existe_y_vale_60(self):
         self.assertEqual(ui.LIMIT_FPS, 60)

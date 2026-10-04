@@ -77,23 +77,6 @@ def _lineas_nombre(nombre, ancho_max):
     return mejor[1] if mejor else [limpio_nombre]
 
 
-def _chevron(surface, cx, cy, dx, dy, color):
-    """Pequeña flecha que indica hacia que lado mira el valor de la carta.
-
-    dx/dy valen -1, 0 o 1 y apuntan hacia el exterior de la esquina.
-    """
-    largo = 4
-    if dx == 0 and dy < 0:      # hacia arriba
-        puntos = [(cx, cy - largo), (cx - largo, cy + largo), (cx + largo, cy + largo)]
-    elif dx == 0 and dy > 0:    # hacia abajo
-        puntos = [(cx, cy + largo), (cx - largo, cy - largo), (cx + largo, cy - largo)]
-    elif dx < 0:                # hacia la izquierda
-        puntos = [(cx - largo, cy), (cx + largo, cy - largo), (cx + largo, cy + largo)]
-    else:                       # hacia la derecha
-        puntos = [(cx + largo, cy), (cx - largo, cy - largo), (cx - largo, cy + largo)]
-    pygame.draw.polygon(surface, color, puntos)
-
-
 RADIO_ORBE = 10
 
 

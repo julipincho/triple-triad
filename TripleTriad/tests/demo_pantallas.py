@@ -31,7 +31,7 @@ import mazos  # noqa: E402
 import pantallas  # noqa: E402
 from partida import Juego  # noqa: E402
 from reglas import CPU, USUARIO, Carta  # noqa: E402
-from ui import ALTO, ANCHO  # noqa: E402
+from ui import ALTO, ANCHO, mano_rect  # noqa: E402
 
 SALIDA = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "auditoria"
@@ -115,7 +115,15 @@ def duel():
     carta = juego.mano_u[-1]
     juego.colocar(carta, juego.mano_u, USUARIO, 1, 1)
     juego.ultima_jugada = None
-    juego.dibujar(SCREEN)
+    # raton sobre la primera carta de la mano: la descripcion tiene que verse
+    # entera y por encima de las demas cartas, nunca debajo
+    raton = mano_rect(0, len(juego.mano_u)).center
+    original_raton = pygame.mouse.get_pos
+    pygame.mouse.get_pos = lambda: raton
+    try:
+        juego.dibujar(SCREEN)
+    finally:
+        pygame.mouse.get_pos = original_raton
     guardar(SCREEN, "10_duelo.png")
 
     for (r, c) in [(1, 2), (2, 1), (2, 2), (0, 2), (1, 0)]:

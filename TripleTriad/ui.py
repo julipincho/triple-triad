@@ -488,17 +488,54 @@ class FondoAnimado:
 
 
 # ------------------------------------------------------------------ tooltip
-def tooltip(screen, cadena, pos, tam=8, ancho=260):
-    lineas = envolver(cadena, tam, ancho - 20)
-    alto = len(lineas) * (tam + 8) + 14
-    x = min(pos[0] + 16, ANCHO - ancho - 8)
-    y = min(pos[1] + 16, ALTO - alto - 8)
-    rect = pygame.Rect(x, y, ancho, alto)
-    panel(screen, rect, (12, 12, 20, 244), DORADO, radio=6, grosor=1)
-    ly = y + 7
-    for linea in lineas:
-        texto(screen, linea, tam, TEXTO, x=x + 10, y=ly)
-        ly += tam + 8
+# Los tooltips se apilan y se pintan al final del frame (dibujar_tooltips):
+# si se dibujaran en el momento, las cartas siguientes o los botones los
+# taparian y el texto quedaba ilegible.
+_PENDIENTES = []
+
+
+def tooltip(screen, cadena, pos, tam=8, ancho=280, lado="auto", arriba=False):
+    """Encola un tooltip. Se pinta con dibujar_tooltips() al final del frame.
+
+    `lado` fija la columna ("izq"/"der") y `arriba` lo coloca por encima del
+    punto, para no caer sobre la propia carta ni sobre el tablero.
+    """
+    _PENDIENTES.append((cadena, pos, tam, ancho, lado, arriba))
+
+
+def dibujar_tooltips(screen):
+    """Pinta los tooltips pendientes por encima de todo lo demas."""
+    for cadena, pos, tam, ancho, lado, arriba in _PENDIENTES:
+        lineas = []
+        for trozo in str(cadena).split("\n"):
+            lineas.extend(envolver(trozo, tam, ancho - 24) or [""])
+        alto = len(lineas) * (tam + 9) + 16
+        x, y = _sitiar_tooltip(pos, ancho, alto, lado, arriba)
+        rect = pygame.Rect(x, y, ancho, alto)
+        sombra_panel(screen, rect, 6)
+        panel(screen, rect, (10, 11, 18, 252), DORADO, radio=6, grosor=1, sombra=False)
+        ly = y + 8
+        for linea in lineas:
+            texto(screen, linea, tam, TEXTO, x=x + 12, y=ly)
+            ly += tam + 9
+    _PENDIENTES.clear()
+
+
+def _sitiar_tooltip(pos, ancho, alto, lado, arriba):
+    """Coloca el tooltip lejos del raton y siempre dentro de la pantalla."""
+    px, py = pos
+    margen = 18
+    if lado == "auto":
+        lado = "der" if px < ANCHO * 0.55 else "izq"
+    if arriba:
+        x, y = px - ancho // 2, py - alto - margen
+    elif lado == "der":
+        x, y = px + margen, py - alto // 2
+    else:
+        x, y = px - ancho - margen, py - alto // 2
+    x = max(8, min(x, ANCHO - ancho - 8))
+    y = max(8, min(y, ALTO - alto - 8))
+    return x, y
 
 
 # ----------------------------------------------------------------- cartitas

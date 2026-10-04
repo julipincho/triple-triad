@@ -32,6 +32,7 @@ from ui import (
     Boton,
     LIMIT_FPS,
     con_alpha,
+    dibujar_tooltips,
     fundido_entrada,
     panel,
     parrafo,
@@ -538,12 +539,14 @@ def mapa_campana(screen, clock, estado):
                 screen.blit(pantalla_carta, (x, y))
                 if pygame.Rect(x, y, 56, 78).collidepoint(mouse):
                     crt.resplandor_carta(screen, pygame.Rect(x, y, 56, 78), carta, None, 110)
-                    tooltip(screen, _descripcion_carta(carta), (x + 60, y))
+                    tooltip(screen, _descripcion_carta(carta), (x + 28, y),
+                            ancho=300, arriba=True)
 
         seguir = Boton(pygame.Rect(ANCHO - 300, 660, 260, 50), "SEGUIR", 12,
                        acento=facciones.acento(faccion))
         menu = Boton(pygame.Rect(ANCHO - 300, 722, 260, 38), "GUARDAR Y SALIR", 10)
         _botones(screen, [seguir, menu], mouse, dt)
+        dibujar_tooltips(screen)
         pygame.display.flip()
 
         for ev in pygame.event.get():
@@ -842,10 +845,12 @@ def draft(screen, clock, estado, ofertas=None):
             rects.append(rect)
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, carta, None, 110)
-                tooltip(screen, _descripcion_carta(carta), (rect.right, rect.y))
+                tooltip(screen, _descripcion_carta(carta), (rect.centerx, rect.y),
+                        ancho=300, arriba=True)
             screen.blit(sup, (rect.x, rect.y))
             etiqueta, color = rareza(carta)
             texto(screen, etiqueta, 8, color, centro=(rect.centerx, rect.bottom + 20))
+        dibujar_tooltips(screen)
         pygame.display.flip()
         elegida = None
         for ev in pygame.event.get():
@@ -1047,7 +1052,8 @@ def coleccion(screen, clock, estado=None):
             rect = pygame.Rect(x, 210, sup.get_width(), sup.get_height())
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, carta, None, 120)
-                tooltip(screen, _descripcion_carta(carta), (rect.right, rect.y))
+                tooltip(screen, _descripcion_carta(carta), (rect.centerx, rect.y),
+                        ancho=300, arriba=True)
             screen.blit(sup, (rect.x, rect.y))
             etiqueta, color = rareza(carta)
             texto(screen, etiqueta, 8, color, centro=(rect.centerx, rect.bottom + 18))
@@ -1095,6 +1101,7 @@ def coleccion(screen, clock, estado=None):
 
         cerrar = Boton(pygame.Rect(ANCHO - 300, ALTO - 70, 260, 46), "VOLVER", 11)
         _botones(screen, [cerrar], mouse, dt)
+        dibujar_tooltips(screen)
         pygame.display.flip()
 
         for ev in pygame.event.get():

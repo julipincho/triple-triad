@@ -16,12 +16,14 @@ import cartas as crt
 import facciones
 from reglas import (
     CPU,
+    LADOS,
     USUARIO,
     celdas_vacias,
     capturas,
     contar,
     puntaje_final,
     simular,
+    val,
 )
 from ui import (
     ALTO,
@@ -42,6 +44,7 @@ from ui import (
     VERDE,
     celda_rect,
     con_alpha,
+    dibujar_tooltips,
     ease,
     envolver,
     fundido_entrada,
@@ -350,6 +353,8 @@ class Juego:
         if self.fin:
             self._dibujar_resultado(lienzo, ahora)
 
+        # los tooltips van los ultimos: por encima de cartas, tablero y cartel
+        dibujar_tooltips(lienzo)
         fundido_entrada(lienzo, self.t_entrada, 0.35)
 
         if dx or dy:
@@ -515,9 +520,21 @@ class Juego:
                 sombra.fill((0, 0, 0, 130))
                 screen.blit(sombra, (gx + 5, gy + 5))
                 screen.blit(grande, (gx, gy))
-                if carta.habilidad:
-                    tooltip(screen, crt.descripcion_habilidad(carta.habilidad), (gx, gy + grande.get_height()))
             screen.blit(sup, (destino.x, destino.y))
+            # descripciones: se encolan y se pintan al final del frame, para
+            # que ni las cartas siguientes ni el tablero las tapen
+            if hover:
+                lineas = [f"{carta.nombre}  ({facciones.nombre(carta.bando)})"]
+                lineas += [f"{l}: {val(carta.valores[l])}" for l in LADOS]
+                if carta.habilidad:
+                    lineas.append(
+                        f"{crt.ICONO_HABILIDAD.get(carta.habilidad, carta.habilidad)}: "
+                        f"{crt.descripcion_habilidad(carta.habilidad)}"
+                    )
+                else:
+                    lineas.append("Sin habilidad especial")
+                tooltip(screen, "\n".join(lineas), (destino.centerx, destino.y),
+                        ancho=300, arriba=True)
 
         if self.arrastrando:
             carta, _ = self.arrastrando
