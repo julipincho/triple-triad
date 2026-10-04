@@ -206,17 +206,26 @@ class Juego:
     # ---------------------------------------------------------------- actualizacion
     def actualizar(self, dt):
         ahora = time.time()
-        if self.fin or self.pausa:
-            return
 
-        # marcador animado
+        # El marcador y los efectos se apagan siempre, incluso con el duel
+        # terminado o en pausa: si no, el ultimo flash de captura se queda
+        # en la lista para siempre y se redibuja en cada frame del cartel
+        # de resultado.
         t, c = contar(self.board)
         for i, objetivo in enumerate((t, c)):
             actual = self.marcador_mostrado[i]
-            if actual != objetivo:
-                self.marcador_mostrado[i] = int(actual + (objetivo - actual) * min(1.0, dt * 9))
-                if abs(self.marcador_mostrado[i] - objetivo) < 1:
-                    self.marcador_mostrado[i] = objetivo
+            if actual == objetivo:
+                continue
+            # con int() el valor se truncaba y se quedaba corto para siempre
+            # (7 -> 7.9 -> 7): el marcador nunca llegaba al total real
+            nuevo = actual + (objetivo - actual) * min(1.0, dt * 9)
+            if abs(nuevo - objetivo) < 1.0:
+                nuevo = objetivo
+            self.marcador_mostrado[i] = int(round(nuevo))
+        self.flash = [f for f in self.flash if ahora - f[2] < 0.6]
+
+        if self.fin or self.pausa:
+            return
 
         # turno del rival
         if self.turno_cpu and not self.cpu_en_curso:
@@ -224,8 +233,6 @@ class Juego:
             if self.cpu_en_cola <= 0:
                 self._jugar_cpu()
 
-        # efectos
-        self.flash = [f for f in self.flash if ahora - f[2] < 0.6]
         novas = []
         for p in self.particulas:
             p["t"] += dt
@@ -647,7 +654,10 @@ def partida(screen, clock, juego, test_mode=False):
                 raise SystemExit
             if ev.type == pygame.KEYDOWN:
                 if ev.key == pygame.K_ESCAPE:
-                    juego.pausa = not juego.pausa
+                    # con el duel ya terminado pausar no sirve de nada: ESC
+                    # (como el clic) continua y el jugador nunca se queda atrapado
+                    if not (juego.fin and now_clickable(time.time(), juego.tiempo_fin)):
+                        juego.pausa = not juego.pausa
                     audio.sfx(audio.MENU_BACK if juego.pausa else audio.MENU)
             if ev.type == pygame.KEYDOWN and ev.key == pygame.K_h and not juego.turno_cpu:
                 juego.mensaje = "Consejo: Same y Plus voltean al vuelo"
@@ -656,14 +666,21 @@ def partida(screen, clock, juego, test_mode=False):
                     if _pausa_clic(screen, ev.pos):
                         return Resultado(False, juego.capturas, juego.jugadas, (0, 0))
                 continue
+            # continuar el duel terminado: clic, ESC, Intro o espacio
+            continuar = (
+                ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1
+            ) or (
+                ev.type == pygame.KEYDOWN
+                and ev.key in (pygame.K_RETURN, pygame.K_SPACE, pygame.K_KP_ENTER)
+            )
+            if continuar and juego.fin and now_clickable(time.time(), juego.tiempo_fin):
+                resultado = Resultado(
+                    juego.ganador in (USUARIO, None),
+                    juego.capturas, juego.jugadas,
+                    contar(juego.board), juego.ganador is None, juego.racha,
+                )
+                break
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
-                if juego.fin and now_clickable(time.time(), juego.tiempo_fin):
-                    resultado = Resultado(
-                        juego.ganador in (USUARIO, None),
-                        juego.capturas, juego.jugadas,
-                        contar(juego.board), juego.ganador is None, juego.racha,
-                    )
-                    break
                 if not juego.fin and not juego.turno_cpu:
                     mouse = pygame.mouse.get_pos()
                     for i, carta in enumerate(juego.mano_u):
@@ -695,7 +712,10 @@ def partida(screen, clock, juego, test_mode=False):
                 else:
                     audio.sfx(audio.INVALIDO, 0.5)
                 juego.comprobar_fin()
-        if resultado:
+        # OJO: Resultado.__bool__ devuelve `victoria`. Si el duelo se ha
+        # perdido, `if resultado:` es False y el bucle no se rompia nunca:
+        # el jugador se quedaba en el cartel de DERROTA sin poder continuar.
+        if resultado is not None:
             break
 
         if juego.fin and juego._sfx_fin:
@@ -712,7 +732,7 @@ def partida(screen, clock, juego, test_mode=False):
         frames += 1
         if test_mode and frames > 40:
             return Resultado(True, 0, 0, (0, 0))
-        if resultado:
+        if resultado is not None:
             break
     audio.sfx(audio.MENU_BACK)
     return resultado

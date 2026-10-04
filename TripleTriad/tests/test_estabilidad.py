@@ -421,6 +421,182 @@ class TestTooltipsSePintanAlFinal(unittest.TestCase):
                          "quedo un tooltip sin pintar tras dibujar el frame")
 
 
+# --------------------------------- 4c. el duelo terminado siempre se continua
+class TestContinuarTrasElDuelo(unittest.TestCase):
+    """El bug: Resultado.__bool__ devuelve `victoria`, asi que al perder el
+    duelo `if resultado:` era False y el bucle no se rompia. El jugador se
+    quedaba en el cartel de DERROTA y el clic no hacia nada."""
+
+    def _llenar(self, juego, dueno):
+        from reglas import Carta
+
+        for i in range(3):
+            for j in range(3):
+                carta = Carta(f"C{i}{j}", 9, 9, 9, 9,
+                              bando="humano" if dueno == USUARIO else "orco")
+                carta.dueno = dueno
+                juego.board[i][j] = carta
+        juego.comprobar_fin()
+
+    def _clic_y_salir(self, preparar, tecla=False, intentos=120):
+        """Devuelve el Resultado; falla si el bucle no sale."""
+        import partida as modulo_partida
+
+        juego = modulo_partida.Juego("humano", bando_rival="orco")
+        preparar(juego)
+        self.assertTrue(juego.fin, "el duelo deberia haber terminado")
+        # fuera del umbral de now_clickable para no pelear con el retardo
+        juego.tiempo_fin = time.time() - 5
+
+        tipo = (pygame.KEYDOWN if tecla else pygame.MOUSEBUTTONDOWN)
+        extra = {"key": pygame.K_RETURN} if tecla else {"button": 1, "pos": (640, 400)}
+        original = pygame.event.get
+        estado = {"n": 0, "enviados": 0}
+
+        class _Colgado(Exception):
+            pass
+
+        def eventos():
+            estado["n"] += 1
+            # hay que cortar: si el bucle no sale, el test se quedaria colgado
+            # en vez de fallar (que es justo lo que le pasaba al jugador)
+            if estado["n"] > intentos:
+                raise _Colgado("el bucle no sale con el clic repetido")
+            # el jugador insiste: cada 5 frames, como en el juego real
+            if estado["n"] % 5 == 0:
+                estado["enviados"] += 1
+                return [pygame.event.Event(tipo, **extra)]
+            return []
+
+        class RelojConTope(RelojFalso):
+            def tick(self, fps=0):
+                if estado["n"] > intentos:
+                    raise _Colgado("el bucle no sale con el clic repetido")
+                return 16
+
+        pygame.event.get = eventos
+        try:
+            return modulo_partida.partida(_superficie(), RelojConTope(), juego)
+        except _Colgado as e:
+            self.fail(str(e))
+        finally:
+            pygame.event.get = original
+
+    def test_se_continua_tras_ganar(self):
+        resultado = self._clic_y_salir(lambda j: self._llenar(j, USUARIO))
+        self.assertIsNotNone(resultado, "el clic no salio del bucle tras ganar")
+        self.assertTrue(resultado.victoria)
+        self.assertEqual(resultado.marcador, (9, 0))
+
+    def test_se_continua_tras_perder(self):
+        """Este es el caso que se colgaba: victoria False hacia falsy el
+        Resultado y el bucle no se rompia."""
+        resultado = self._clic_y_salir(lambda j: self._llenar(j, CPU))
+        self.assertIsNotNone(
+            resultado,
+            "tras perder, el clic no continua: el jugador se queda atrapado",
+        )
+        self.assertFalse(resultado.victoria)
+        self.assertEqual(resultado.marcador, (0, 9))
+
+    def test_tambien_se_continua_con_intro(self):
+        resultado = self._clic_y_salir(lambda j: self._llenar(j, CPU), tecla=True)
+        self.assertIsNotNone(resultado, "Intro no continua tras el duelo")
+
+    def test_escape_no_trapa_al_ganador(self):
+        """Con el duel ya terminado, ESC pausaba el juego y el cartel se
+        quedaba ahí: el clic ya no salia porque todo iba a la pausa."""
+        import partida as modulo_partida
+
+        juego = modulo_partida.Juego("humano", bando_rival="orco")
+        self._llenar(juego, USUARIO)
+        juego.tiempo_fin = time.time() - 5
+
+        original = pygame.event.get
+        cola = [pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE,
+                                   unicode="")]
+        cola += [pygame.event.Event(pygame.MOUSEBUTTONDOWN, button=1,
+                                    pos=(640, 400))] * 30
+        n = [0]
+
+        def eventos():
+            n[0] += 1
+            if n[0] > 150:
+                raise AssertionError("el clic no salio: el duel quedo en pausa")
+            return [cola.pop(0)] if cola else []
+
+        class RelojConTope(RelojFalso):
+            def tick(self, fps=0):
+                if n[0] > 150:
+                    raise AssertionError("el clic no salio: el duel quedo en pausa")
+                return 16
+
+        pygame.event.get = eventos
+        try:
+            resultado = modulo_partida.partida(_superficie(), RelojConTope(), juego)
+        finally:
+            pygame.event.get = original
+        self.assertTrue(resultado.victoria)
+        self.assertFalse(juego.pausa, "ESC no debe pausar un duel ya terminado")
+
+    def test_el_flash_de_captura_se_limpia_al_terminar(self):
+        """Con fin=True actualizar() no hacia nada y el ultimo flash se
+        quedaba en la lista, redibujandose en cada frame del cartel."""
+        import partida as modulo_partida
+
+        juego = modulo_partida.Juego("humano", bando_rival="orco")
+        juego.fin = True
+        juego.flash = [(2, 1, time.time() - 3, USUARIO)]
+        juego.actualizar(0.016)
+        self.assertEqual(juego.flash, [],
+                         "el flash de captura sobrevive al final del duel")
+
+    def test_el_marcador_llega_a_su_total_aunque_el_duel_haya_acabado(self):
+        """Dos cosas a la vez: actualizar() hacia nada con fin=True, y el
+        int() truncaba el ascenso (7 -> 7.9 -> 7) y se quedaba corto."""
+        import partida as modulo_partida
+
+        juego = modulo_partida.Juego("humano", bando_rival="orco")
+        from reglas import Carta
+
+        for i in range(3):
+            for j in range(3):
+                carta = Carta(f"C{i}{j}", 9, 9, 9, 9, bando="humano")
+                carta.dueno = USUARIO
+                juego.board[i][j] = carta
+        juego.fin = True
+        juego.marcador_mostrado = [0, 0]
+        for _ in range(60):
+            juego.actualizar(0.05)
+        self.assertEqual(juego.marcador_mostrado, [9, 0],
+                         "el marcador deberia llegar al total real")
+
+    def test_el_marcador_tambien_baja_cuando_el_rival_captura(self):
+        import partida as modulo_partida
+
+        juego = modulo_partida.Juego("humano", bando_rival="orco")
+        from reglas import Carta
+
+        for i in range(3):
+            for j in range(3):
+                carta = Carta(f"C{i}{j}", 9, 9, 9, 9, bando="humano")
+                carta.dueno = USUARIO
+                juego.board[i][j] = carta
+        juego.marcador_mostrado = [9, 0]
+        juego.board[2][2].dueno = CPU
+        for _ in range(60):
+            juego.actualizar(0.05)
+        self.assertEqual(juego.marcador_mostrado, [8, 1])
+
+    def test_resultado_perdido_es_verdadero_para_booleano(self):
+        """Documenta la trampa: por eso el bucle no puede usar `if resultado`."""
+        from partida import Resultado
+
+        perdido = Resultado(False, 3, 9, (0, 9))
+        self.assertFalse(bool(perdido), "Resultado debe seguir siendo falsy al perder")
+        self.assertIsNotNone(perdido, "pero existe: se comprueba con is not None")
+
+
 # ------------------------------------- 4b. el preview de la mano no se tapa
 class TestPreviewDeLaMano(unittest.TestCase):
     """El bug: la carta ampliada de la carta señalada se pintaba dentro del
