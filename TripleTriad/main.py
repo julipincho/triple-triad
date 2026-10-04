@@ -277,7 +277,18 @@ class Juego:
             return
         if self.turno_cpu and self.cpu_lista and time.time() >= self.cpu_lista:
             self.cpu_lista = False
+            self.turno_cpu_n = getattr(self, "turno_cpu_n", 0) + 1
             jugada = jugada_cpu(self.board, self.mano_c)
+            if self.bando_cpu == "dragon" and self.turno_cpu_n % 2 == 0:
+                # el jefe prefiere una carta con quema si la tiene
+                cands = [i for i, c in enumerate(self.mano_c) if c.habilidad == "quema"]
+                if cands:
+                    idx = cands[0]
+                    carta = self.mano_c[idx]
+                    vacias = celdas_vacias(self.board)
+                    if vacias:
+                        best = max(vacias, key=lambda xy: simular(self.board, carta, xy[0], xy[1], CPU))
+                        jugada = (idx, best[0], best[1])
             if jugada is None:
                 self.turno_cpu = False
                 self.comprobar_fin()
@@ -624,6 +635,15 @@ def pantalla_post_victoria(screen, estado):
                         return
 
 
+def rareza(carta):
+    total = sum(carta.valores.values())
+    if total >= 33:
+        return ("LEGENDARIA", (240, 200, 90))
+    if total >= 26:
+        return ("RARA", (180, 190, 220))
+    return ("COMUN", (160, 160, 150))
+
+
 def pantalla_draft(screen, estado):
     import campana as _c
     import mazos as _m
@@ -631,19 +651,29 @@ def pantalla_draft(screen, estado):
     for bando, cartas in _m.TODOS.items():
         for c in cartas:
             pool.append(c)
-    ofertas = random.sample(pool, 3)
+    pesos = [2 if rareza(c)[0] == "LEGENDARIA" else (5 if rareza(c)[0] == "RARA" else 10) for c in pool]
+    ofertas = random.choices(pool, weights=pesos, k=3)
+    # evitar duplicados exactos
+    while len({id(c) for c in ofertas}) < 3:
+        ofertas = random.choices(pool, weights=pesos, k=3)
     elegida = None
     while elegida is None:
         screen.blit(fondo(), (0, 0))
         t = fuente(14).render(clean("Elige una carta del pool"), True, DORADO)
-        screen.blit(t, (ANCHO // 2 - t.get_width() // 2, 90))
+        screen.blit(t, (ANCHO // 2 - t.get_width() // 2, 70))
         rects = []
         n = len(ofertas)
         for i, carta in enumerate(ofertas):
             w, h = CARD_W, CARD_H
             x = ANCHO // 2 - (n * (w + 16) - 16) // 2 + i * (w + 16)
-            screen.blit(crear_superficie_carta(carta), (x, 200))
-            rects.append(pygame.Rect(x, 200, w, h))
+            screen.blit(crear_superficie_carta(carta), (x, 180))
+            rects.append(pygame.Rect(x, 180, w, h))
+            r, color = rareza(carta)
+            label = fuente(9).render(clean(r), True, color)
+            screen.blit(label, (x + w // 2 - label.get_width() // 2, 180 + h + 6))
+            if carta.habilidad:
+                hab = fuente(8).render(clean(carta.habilidad), True, (255, 150, 60))
+                screen.blit(hab, (x + w // 2 - hab.get_width() // 2, 180 + h + 22))
         pygame.display.flip()
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
@@ -782,6 +812,7 @@ def main():
         victoria = partida(screen, clock, juego)
         if victoria:
             estado["etapa"] += 1
+            estado["racha"] = estado.get("racha", 0) + 1
             if estado["etapa"] >= len(_c.ORDEN):
                 estado["completada"] = True
                 _c.guardar(estado)
@@ -789,7 +820,14 @@ def main():
             else:
                 _c.guardar(estado)
                 pantalla_post_victoria(screen, estado)
+                # evento aleatorio entre duelos
+                if random.random() < 0.6:
+                    titulo, desc = _c.aplicar_evento(estado)
+                    _c.guardar(estado)
+                    esperar_click(screen, [desc, f"Racha: x{estado.get('racha', 0)}"], titulo=titulo)
         else:
+            estado["racha"] = 0
+            _c.guardar(estado)
             salir = derrota_menu(screen)
             if salir:
                 return

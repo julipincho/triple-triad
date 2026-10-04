@@ -29,11 +29,21 @@ class Carta:
         return copy.deepcopy(self)
 
 
-def valor_efectivo(carta, r, c, lado):
+def valor_efectivo(carta, r, c, lado, board=None):
     v = carta.valores[lado]
     # Casilla elemental central: bonus +2 a dragones y hombres lobo
     if (r, c) == (1, 1) and carta.bando in ("dragon", "hombre_lobo"):
         v += 2
+    # Sinergia de bando: 3+ cartas amistosas del mismo bando en el tablero => +1 a todos tus lados
+    if board is not None and carta.bando:
+        aliadas = sum(
+            1
+            for fila in board
+            for x in fila
+            if x and x.dueno == carta.dueno and x.bando == carta.bando
+        )
+        if aliadas >= 3:
+            v += 1
     return v
 
 
@@ -50,8 +60,8 @@ def flips_por_carta(board, r, c):
         vecina = board[nr][nc]
         if vecina is None or vecina.dueno == carta.dueno:
             continue
-        m = valor_efectivo(carta, r, c, lado)
-        e = valor_efectivo(vecina, nr, nc, OPUESTO[lado])
+        m = valor_efectivo(carta, r, c, lado, board)
+        e = valor_efectivo(vecina, nr, nc, OPUESTO[lado], board)
         if m > e:
             basico.add((nr, nc))
         if m == e:

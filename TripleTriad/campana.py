@@ -69,6 +69,7 @@ def nueva_campana():
             for c in mazos.GOBLINS
         ],
         "completada": False,
+        "racha": 0,
     }
 
 
@@ -109,3 +110,28 @@ def rival_actual(estado):
     if estado["etapa"] >= len(ORDEN):
         return None
     return ORDEN[estado["etapa"]]
+
+
+def aplicar_evento(estado):
+    """Devuelve (titulo, descripcion). Aplica el evento al estado."""
+    r = random.random()
+    if r < 0.3:
+        idx = random.randrange(len(estado["cartas"]))
+        d = estado["cartas"][idx]
+        lado = random.choice(["n", "s", "e", "o"])
+        d[lado] = min(10, d[lado] + 1)
+        return ("Mercader", f"{d['nombre']} subio su lado {lado.upper()}!")
+    if r < 0.5:
+        # la carta con mayor suma pierde 1
+        idx = max(range(len(estado["cartas"])), key=lambda i: sum(estado["cartas"][i][l] for l in ["n", "s", "e", "o"]))
+        d = estado["cartas"][idx]
+        lado = random.choice(["n", "s", "e", "o"])
+        d[lado] = max(1, d[lado] - 1)
+        return ("Maldicion", f"{d['nombre']} fue maldecida (-1 en {lado.upper()})")
+    if r < 0.7:
+        idx = random.randrange(len(estado["cartas"]))
+        d = estado["cartas"][idx]
+        lado = random.choice(["n", "s", "e", "o"])
+        d[lado] = min(10, d[lado] + 1)
+        return ("Bendicion", f"{d['nombre']} bendecida (+1 en {lado.upper()})")
+    return ("Descanso", "Nada pasa. La racha se mantiene.")

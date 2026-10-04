@@ -125,5 +125,20 @@ class TestCapturas(unittest.TestCase):
         self.assertIn((0, 1), caps)
 
 
+    def test_sinergia_bando(self):
+        # 3+ cartas amigas del mismo bando => +1 a los lados y captura
+        b = tablero_vacio()
+        for (r, c) in [(0, 0), (0, 1), (0, 2)]:
+            card = Carta("G", 5, 5, 5, 5, bando="goblin")
+            card.dueno = USUARIO
+            b[r][c] = card
+        colocada = Carta("M", 1, 1, 1, 1, bando="goblin")
+        colocada.dueno = USUARIO
+        b[1][1] = colocada
+        b[2][1] = carta(1, 2, 1, 1, CPU)  # N=1; colocada S=1+1=2 (sinergia) > 1 => captura
+        caps = capturas(b, 1, 1)
+        self.assertIn((2, 1), caps)
+
+
 if __name__ == "__main__":
     unittest.main()
