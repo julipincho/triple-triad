@@ -1,9 +1,12 @@
 .env
 campana.json
+perfil.json
+crash.log
 build/
 dist/
 __pycache__/
 *.pyc
+*_log.txt
 
 TripleTriad.exe
 TripleTriad/*.spec

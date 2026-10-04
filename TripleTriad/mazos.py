@@ -1,4 +1,11 @@
-"""Mazos iniciales: Goblins contra Elfos."""
+"""Mazos por faccion.
+
+Habilidades disponibles (ver reglas.py):
+  - "quema"     captura a cualquier enemigo adyacente, sin importar el valor
+  - "muro"      su lado mas alto no puede ser capturado
+  - "furia"     +1 a todos sus lados si toca otra carta amiga en el tablero
+  - "embestida" +2 a todos sus lados si se coloca en la casilla central
+"""
 
 from reglas import Carta
 
@@ -42,7 +49,25 @@ DRAGONES = [
     Carta("Rey Dragon", 10, 9, 8, 8, bando="dragon"),
 ]
 
+HUMANOS = [
+    Carta("Sargento Ferrum", 5, 7, 6, 4, bando="humano", habilidad="muro"),
+    Carta("Espadachin", 8, 6, 5, 7, bando="humano"),
+    Carta("Arquera de Torre", 6, 5, 9, 5, bando="humano"),
+    Carta("Clerigo de la Luz", 4, 6, 5, 9, bando="humano"),
+    Carta("Rey Aldric", 10, 8, 7, 8, bando="humano", habilidad="muro"),
+]
+
+ORCOS = [
+    Carta("Bruto Rasgador", 8, 5, 7, 4, bando="orco", habilidad="furia"),
+    Carta("Chaman Karzh", 4, 9, 5, 7, bando="orco", habilidad="quema"),
+    Carta("Lancero Gruano", 6, 7, 8, 5, bando="orco"),
+    Carta("Trol de Ceniza", 9, 8, 6, 6, bando="orco", habilidad="embestida"),
+    Carta("Senor de la Guerra Vorg", 10, 9, 8, 7, bando="orco", habilidad="furia"),
+]
+
 TODOS = {
+    "humano": HUMANOS,
+    "orco": ORCOS,
     "goblin": GOBLINS,
     "elfo": ELFOS,
     "hombre_lobo": HOMBRES_LOBO,
@@ -51,9 +76,21 @@ TODOS = {
 }
 
 NOMBRES_BANDO = {
+    "humano": "Humanos",
+    "orco": "Orcos",
     "goblin": "Goblins",
     "elfo": "Elfos",
     "hombre_lobo": "Hombres Lobo",
     "vampiro": "Vampiros",
     "dragon": "Dragones",
+}
+
+DESCRIPCION_BANDO = {
+    "humano": "Muro, guardia y rey. Pierde duelos largos, gana los cortos.",
+    "orco": "Furia por acumulacion: cada vecino aliado la hace mas fuerte.",
+    "goblin": "Barato y veloz, con un brujo que quema sin mirar valores.",
+    "elfo": "Valores altos en cruz: el Same hace mas dano que la fuerza.",
+    "hombre_lobo": "Domina la casilla central y las cadenas de captura.",
+    "vampiro": "Equilibrio agresivo, bueno para romper la guardia del rival.",
+    "dragon": "Rey de la fuerza bruta: el Quemador rompe el tablero entero.",
 }

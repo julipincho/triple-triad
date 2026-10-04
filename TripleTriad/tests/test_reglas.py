@@ -5,7 +5,7 @@ import unittest
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from reglas import CPU, USUARIO, Carta, capturas, celdas_vacias, contar, simular
+from reglas import CPU, USUARIO, Carta, capturas, simular
 
 
 def carta(n, s, e, o, dueno):
