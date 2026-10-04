@@ -480,8 +480,9 @@ class Juego:
         nombre = self.rival.get("nombre") if self.rival else facciones.nombre(self.bando_cpu)
         if nombre:
             texto(screen, nombre, 8, TEXTO, centro=(x + 48, y + 106))
-        # bocadillo: encima del avatar, para no taparlo
-        if self.comentario and ahora - self.comentario_t0 < 3.6:
+        # bocadillo: encima del avatar, para no taparlo.
+        # Al terminar el duelo lo muestra el cartel de resultado, no aqui.
+        if self.comentario and not self.fin and ahora - self.comentario_t0 < 3.6:
             lineas = envolver(self.comentario, 8, 230)[:3]
             ancho = max(70, max(REC.fuente(8).render(l, True, TEXTO).get_width() for l in lineas) + 20)
             alto = len(lineas) * 16 + 14

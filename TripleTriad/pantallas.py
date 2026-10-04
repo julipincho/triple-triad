@@ -165,7 +165,7 @@ def menu(screen, clock, estado=None):
             Boton(pygame.Rect(ANCHO // 2 - 340, 230, 300, 54), "NUEVA CAMPAÑA",
                   12, sub="Elige faccion y_forja tu final"),
             Boton(pygame.Rect(ANCHO // 2 - 340, 296, 300, 54), "PARTIDA RAPIDA",
-                  12, sub="Un duelito sin compromiso"),
+                  12, sub="Un duelo suelto, sin campana"),
             Boton(pygame.Rect(ANCHO // 2 - 340, 362, 300, 54), "COLECCION",
                   12, sub="Cartas, mazos y finales"),
         ]
@@ -202,7 +202,7 @@ def menu(screen, clock, estado=None):
                 x = ANCHO // 2 - len(cartas) * 34 + i * 68
                 screen.blit(pygame.transform.scale(sup, (52, 72)), (x, 566))
 
-        texto(screen, "1-6 facciones   ENTER confirmar   ESC salir", 8, TEXTO_TENUE,
+        texto(screen, "ENTER para continuar   ESC para salir", 8, TEXTO_TENUE,
               centro=(ANCHO // 2, ALTO - 30))
         pygame.display.flip()
 
