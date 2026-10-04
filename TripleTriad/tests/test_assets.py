@@ -6,6 +6,7 @@ Evita el error clasico de produccion: una carta sin arte, un sonido que no
 existe o una pista de musica que pygame no puede abrir.
 """
 
+import io
 import os
 import sys
 import tempfile
@@ -27,6 +28,7 @@ import cartas as crt  # noqa: E402
 import cinematicas  # noqa: E402
 import facciones  # noqa: E402
 import mazos  # noqa: E402
+import ui  # noqa: E402
 from paths import recurso  # noqa: E402
 from reglas import HABILIDADES  # noqa: E402
 
@@ -35,7 +37,7 @@ FONDOS_ESPERADOS = ["ceniza", "camino", "aldea", "ruinas", "fortaleza", "trono",
 
 SFX = [
     audio.COLOCAR, audio.CAPTURAR, audio.CADENA, audio.VICTORIA, audio.DERROTA,
-    audio.MENU, audio.MENU_MOV, audio.MENU_OK, audio.MENU_BACK, audio.CARD,
+    audio.MENU, audio.MENU_MOVE, audio.MENU_OK, audio.MENU_BACK, audio.CARD,
     audio.DRAG, audio.INVALIDO, audio.CINEMA, audio.RECOMPENSA, audio.TORNEO,
 ]
 
@@ -262,6 +264,79 @@ class TestAudio(unittest.TestCase):
 
 
 class TestReferencias(unittest.TestCase):
+    def test_el_selector_de_faccion_sobrevive_al_raton(self):
+        """ Reproduce el crash exacto: mover el raton por las facciones.
+
+        elegir_faccion llama a audio.sfx(audio.MENU_MOVE) en cada cambio de
+        seleccion. Con el nombre mal escrito, AttributeError y pantalla
+        muerte: no se podia empezar una partida nueva.
+        """
+        import pantallas
+
+        pantalla = pygame.display.set_mode((ui.ANCHO, ui.ALTO))
+        original = pygame.event.get
+
+        class Reloj:
+            def tick(self, fps=0):
+                return 16
+
+        orden = facciones.orden_facciones()
+        # pasar el raton por varias casillas: cada una cambia la seleccion
+        secuencia = []
+        for i in range(1, min(4, len(orden))):
+            x = 160 + i * 190
+            secuencia.append(pygame.event.Event(
+                pygame.MOUSEMOTION, pos=(x, 250), rel=(1, 0), buttons=(0, 0, 0)))
+        secuencia.append(pygame.event.Event(
+            pygame.KEYDOWN, key=pygame.K_RIGHT, unicode="", mod=0))
+        secuencia.append(pygame.event.Event(
+            pygame.KEYDOWN, key=pygame.K_DOWN, unicode="", mod=0))
+        # y al final ENTER para confirmar y salir
+        secuencia.append(pygame.event.Event(
+            pygame.KEYDOWN, key=pygame.K_RETURN, unicode="", mod=0))
+        # el raton sigue moviendose despues, por si el bucle pide otro frame
+        for _ in range(20):
+            secuencia.append(pygame.event.Event(
+                pygame.MOUSEMOTION, pos=(900, 250), rel=(1, 0), buttons=(0, 0, 0)))
+
+        cola = list(secuencia)
+
+        def eventos():
+            return [cola.pop(0)] if cola else []
+
+        pygame.event.get = eventos
+        try:
+            faccion = pantallas.elegir_faccion(pantalla, Reloj())
+            self.assertIn(faccion, orden)
+        finally:
+            pygame.event.get = original
+
+    def test_todo_audio_X_del_juego_existe(self):
+        """El bug: pantallas.py usaba audio.MENU_MOVE en 8 sitios pero
+        audio.py defines MENU_MOV. Al mover el raton por el selector de
+        faccion saltaba un AttributeError y no se podia empezar partida.
+
+        El crash.log lo enseño tres veces (03:45, 11:09 y 16:54) y ni el
+        smoke test ni los tests lo detectaban.
+        """
+        import re
+
+        faltan = {}
+        raiz = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        for nombre in sorted(os.listdir(raiz)):
+            if not nombre.endswith(".py"):
+                continue
+            with io.open(os.path.join(raiz, nombre), encoding="utf-8") as f:
+                texto = f.read()
+            for m in re.finditer(r"\baudio\.([A-Z][A-Z_0-9]*)", texto):
+                attr = m.group(1)
+                if not hasattr(audio, attr):
+                    linea = texto[:m.start()].count("\n") + 1
+                    faltan.setdefault(attr, []).append(f"{nombre}:{linea}")
+        self.assertEqual(faltan, {},
+                         "estos audio.X no existen en audio.py: "
+                         f"{ {k: v for k, v in faltan.items()} }")
+
     def test_las_abilidades_usadas_estan_documentadas(self):
         usadas = {c.habilidad for cartas in mazos.TODOS.values() for c in cartas if c.habilidad}
         self.assertTrue(usadas)
