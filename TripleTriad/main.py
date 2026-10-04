@@ -764,6 +764,10 @@ def main():
     # Campaña
     import campana as _c
     estado = _c.cargar() or _c.nueva_campana()
+    if estado["completada"]:
+        esperar_click(screen, ["Ya completaste la campana! Se reinicio el perfil."], titulo="Victoria")
+        estado = _c.nueva_campana()
+        _c.guardar(estado)
     while not estado["completada"]:
         rival = _c.rival_actual(estado)
         if rival is None:
@@ -819,4 +823,10 @@ def derrota_menu(screen):
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception:
+        import traceback
+        with open("crash.log", "w", encoding="utf-8") as f:
+            traceback.print_exc(file=f)
+        raise
