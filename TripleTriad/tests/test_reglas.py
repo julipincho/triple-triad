@@ -106,14 +106,28 @@ class TestCapturas(unittest.TestCase):
         self.assertIn((1, 2), caps)
 
     def test_quema(self):
+        """La quema gana o empata cada comparacion (y el muro protege).
+
+        Antes daba vueltas a todo lo que la rodeaba sin comparar nada, con
+        lo que guardarla para el final garantia la partida.
+        """
         b = tablero_vacio()
-        b[0][1] = carta(9, 9, 9, 9, CPU)
-        c = carta(1, 1, 1, 1, USUARIO)
+        b[0][1] = carta(4, 4, 4, 4, CPU)      # su S=4 contra el N=5 de la quema
+        c = carta(5, 5, 5, 5, USUARIO)
         c.habilidad = "quema"
         b[1][1] = c
         caps = capturas(b, 1, 1)
         self.assertIn((0, 1), caps)
         self.assertEqual(b[0][1].dueno, USUARIO)
+
+    def test_quema_no_captura_a_una_vecina_mas_fuerte(self):
+        b = tablero_vacio()
+        b[0][1] = carta(9, 9, 9, 9, CPU)      # su S=9 contra el N=5 de la quema
+        c = carta(5, 5, 5, 5, USUARIO)
+        c.habilidad = "quema"
+        b[1][1] = c
+        self.assertEqual(capturas(b, 1, 1), [])
+        self.assertEqual(b[0][1].dueno, CPU)
 
     def test_elemental_centro(self):
         # Dragón en el centro tiene +2

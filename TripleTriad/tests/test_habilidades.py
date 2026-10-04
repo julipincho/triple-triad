@@ -14,6 +14,7 @@ from reglas import (
     USUARIO,
     Carta,
     capturas,
+    flips_por_carta,
     puntaje_final,
     rareza,
     simular,
@@ -82,6 +83,102 @@ class TestHabilidades(unittest.TestCase):
         self.assertEqual(valor_efectivo(fuera, 0, 0, "N", b), 5)
         centro = poner(b, "Trol2", 5, 5, 5, 5, USUARIO, 1, 1, bando="orco", habilidad="embestida")
         self.assertEqual(valor_efectivo(centro, 1, 1, "N", b), 7)
+
+    def test_quema_prende_a_las_vecinas_debiles(self):
+        b = tablero_vacio()
+        # cada vecina vale 1 en la cara que mira al centro:
+        # N->S=1, S->N=1, O->E=1, E->O=1
+        poner(b, "N", 9, 1, 9, 9, CPU, 0, 1)
+        poner(b, "S", 1, 9, 9, 9, CPU, 2, 1)
+        poner(b, "O", 9, 9, 1, 9, CPU, 1, 0)
+        poner(b, "E", 9, 9, 9, 1, CPU, 1, 2)
+        poner(b, "Quemada", 5, 5, 5, 5, USUARIO, 1, 1, habilidad="quema")
+        caps = set(capturas(b, 1, 1))
+        self.assertEqual(caps, {(0, 1), (2, 1), (1, 0), (1, 2)})
+
+    def test_quema_no_barre_el_tablero(self):
+        """El bug: la quema daba vueltas a todo lo que la rodeaba sin
+        comparar nada. Guardada para el final, en el centro con ocho
+        enemigas alrededor, garantia la victoria."""
+        b = tablero_vacio()
+        # valores distintos para no disparar Plus por casualidad
+        poner(b, "FuerteN", 9, 9, 1, 1, CPU, 0, 1)
+        poner(b, "FuerteS", 8, 8, 1, 1, CPU, 2, 1)
+        poner(b, "FuerteO", 7, 1, 7, 1, CPU, 1, 0)
+        poner(b, "FuerteE", 6, 1, 1, 6, CPU, 1, 2)
+        poner(b, "Quemada", 5, 5, 5, 5, USUARIO, 1, 1, habilidad="quema")
+        self.assertEqual(capturas(b, 1, 1), [],
+                         "la quema no puede con vecinas mas fuertes")
+
+    def test_quema_no_aporta_ningun_volteo_extra(self):
+        """La prueba de fuego: la quema no puede girar ni una carta mas que
+        una carta normal con los mismos valores.
+
+        Con ocho vecinas de 9 alrededor, una carta normal de 5 ya dispara
+        Plus (5+9=14 en las cuatro direcciones) y la cadena se lleva el
+        resto. Eso es otra regla y debe seguir igual: lo que no debe pasar es
+        que la habilidad queme las.cartas que la basica no puede.
+        """
+        def montar(habilidad):
+            b = tablero_vacio()
+            vecinas = {
+                (0, 1): (9, 9, 1, 2),
+                (2, 1): (9, 9, 1, 3),
+                (1, 0): (9, 2, 9, 1),
+                (1, 2): (9, 3, 1, 9),
+                (0, 0): (1, 4, 2, 1),
+                (0, 2): (2, 5, 1, 1),
+                (2, 0): (3, 1, 1, 2),
+                (2, 2): (4, 1, 1, 3),
+            }
+            for (r, c), (n, s, e, o) in vecinas.items():
+                poner(b, "R%d%d" % (r, c), n, s, e, o, CPU, r, c)
+            poner(b, "Centro", 5, 5, 5, 5, USUARIO, 1, 1, habilidad=habilidad)
+            return b
+
+        con_quema = flips_por_carta(montar("quema"), 1, 1)
+        sin_quema = flips_por_carta(montar(None), 1, 1)
+        self.assertEqual(con_quema, sin_quema,
+                         "la quema girando cartas que la basica no puede es el bug")
+
+    def test_quema_no_puede_con_vecinas_de_nueve(self):
+        """Sin Plus ni cadena que la Newly: la quema de 5 no toca un 9."""
+        b = tablero_vacio()
+        # las cuatro vecinas miran al centro con 9, 8, 7 y 6: todas por encima
+        # de la quema (5) y con sumas distintas, para que no salte Plus
+        poner(b, "N", 9, 9, 1, 2, CPU, 0, 1)   # S=9
+        poner(b, "S", 8, 8, 1, 3, CPU, 2, 1)   # N=8
+        poner(b, "O", 7, 2, 7, 1, CPU, 1, 0)   # E=7
+        poner(b, "E", 6, 3, 1, 6, CPU, 1, 2)   # O=6
+        poner(b, "Quemada", 5, 5, 5, 5, USUARIO, 1, 1, habilidad="quema")
+        self.assertEqual(capturas(b, 1, 1), [])
+        mias = sum(1 for f in b for x in f if x and x.dueno == USUARIO)
+        self.assertEqual(mias, 1, "la quema no barre el tablero entero")
+
+    def test_quema_gana_los_empates(self):
+        """Sigue siendo especial: gana tambien las comparaciones igualadas."""
+        b = tablero_vacio()
+        poner(b, "N", 9, 5, 9, 9, CPU, 0, 1)   # S=5 contra N=5 de la quema
+        poner(b, "S", 5, 9, 9, 9, CPU, 2, 1)   # N=5 contra S=5
+        poner(b, "Quemada", 5, 5, 5, 5, USUARIO, 1, 1, habilidad="quema")
+        caps = set(capturas(b, 1, 1))
+        self.assertIn((0, 1), caps)
+        self.assertIn((2, 1), caps)
+
+    def test_quema_no_toca_el_muro_de_la_vecina(self):
+        b = tablero_vacio()
+        # la cara maxima de la vecina (S=9) queda protegida por su muro
+        poner(b, "Muro", 1, 9, 1, 1, CPU, 0, 1, habilidad="muro")
+        poner(b, "Quemada", 9, 9, 9, 9, USUARIO, 1, 1, habilidad="quema")
+        self.assertEqual(capturas(b, 1, 1), [])
+
+    def test_quema_no_necesita_same_ni_plus(self):
+        """Con una sola igualdad no hay Same, y sin sumas repetidas no hay
+        Plus: la quema prende igual."""
+        b = tablero_vacio()
+        poner(b, "N", 9, 4, 9, 9, CPU, 0, 1)   # S=4 contra N=4: empate
+        poner(b, "Quemada", 4, 9, 9, 9, USUARIO, 1, 1, habilidad="quema")
+        self.assertIn((0, 1), capturas(b, 1, 1))
 
     def test_todas_las_habilidades_documentadas(self):
         for c in mazos.HUMANOS + mazos.ORCOS:

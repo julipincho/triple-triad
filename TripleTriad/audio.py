@@ -103,24 +103,35 @@ def parar_canal(canal):
 
 
 def musica(nombre, bucle=True):
-    """Carga y reproduce una pista. `nombre` sin extension, p.ej. 'musica_humano'."""
+    """Carga y reproduce una pista. `nombre` sin extension, p.ej. 'musica_humano'.
+
+    Pedir la pista que ya suena no la reinicia (evita recargar el WAV en
+    cada frame), pero si reanuda si estaba en pausa: si no, el silencio
+    duraba hasta que se pidiera una pista distinta.
+    """
     global _musica_actual, _musica_pausada
-    if not disponible() or _musica_actual == nombre:
+    if not disponible():
+        return
+    if _musica_actual == nombre:
+        if _musica_pausada:
+            reanudar_musica()
         return
     _musica_actual = nombre
-    pista = _cache_musica.get(nombre)
-    if pista is None:
-        ruta = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
-        if not os.path.exists(ruta):
-            _cache_musica[nombre] = False
-            return
-        try:
-            pista = pygame.mixer.music.load(ruta)
-        except Exception:
-            _cache_musica[nombre] = False
-            return
-        _cache_musica[nombre] = pista
-    if pista is False:
+    # OJO: pygame.mixer.music tiene un UNICO canal, asi que no se puede
+    # cachear el WAV: si se pidiera A, luego B y otra vez A, la segunda vez
+    # no habria que hacer load() pero el canal seguiria teniendo B, y
+    # play() sonaria B. Solo se cachea el fallo (pista ausente), para no
+    # reintentar la carga en cada frame.
+    if nombre in _cache_musica:
+        return  # ya se sabe que esta ausente
+    ruta = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
+    if not os.path.exists(ruta):
+        _cache_musica[nombre] = False
+        return
+    try:
+        pygame.mixer.music.load(ruta)
+    except Exception:
+        _cache_musica[nombre] = False
         return
     try:
         pygame.mixer.music.set_volume(_volumen_musica)
@@ -151,13 +162,14 @@ def reanudar_musica():
 
 
 def detener_musica():
-    global _musica_actual
+    global _musica_actual, _musica_pausada
     if disponible():
         try:
             pygame.mixer.music.stop()
         except Exception:
             pass
     _musica_actual = None
+    _musica_pausada = False
 
 
 def musica_de_faccion(faccion):
@@ -168,7 +180,8 @@ def musica_de_duelo():
     """Banda sonora propia del enfrentamiento.
 
     No se usa la pista del rival a proposito: todos los duelos suenan igual de
-    tensos, sea contra quien sea.
+    tensos, sea contra quien sea. Se pide al empezar la partida, asi que
+    sustituye a la pista del cartel de escenario sin cortes.
     """
     return "musica_duelo"
 

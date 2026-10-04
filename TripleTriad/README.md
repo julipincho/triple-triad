@@ -64,7 +64,7 @@ consigues**: nunca te juegas contra tu propia faccion en campana.
 
 ### Habilidades de carta
 
-- `quema`: captura a cualquier carta enemiga adyacente, sin comparar valores.
+- `quema`: gana o empata la comparación contra cada vecina (sin Same ni Plus), y el muro de la vecina la protege.
 - `muro`: su lado mas alto no puede ser capturado.
 - `furia`: +1 a todos sus lados si toca una carta amiga en el tablero.
 - `embestida`: +2 a todos sus lados en la casilla central.

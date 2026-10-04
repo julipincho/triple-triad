@@ -5,7 +5,8 @@ Reglas implementadas:
   - Same:   dos vecinos enemigos con valor opuesto IGUAL
   - Plus:   dos comparaciones distintas con la misma suma
   - cadena: una carta capturada sigue capturando (efecto domino)
-  - habilidad "quema"     : captura a cualquier enemigo adyacente
+  - habilidad "quema"     : gana o empata la comparacion basica contra sus vecinas
+                             (ignora Same y Plus), pero el muro las protege
   - habilidad "muro"      : el lado mas alto de la carta no puede ser capturado
   - habilidad "furia"     : +1 a todos sus lados si toca una carta amiga
   - habilidad "embestida" : +2 a todos sus lados en la casilla central
@@ -25,7 +26,7 @@ DELTA = {"N": (-1, 0), "S": (1, 0), "E": (0, 1), "O": (0, -1)}
 LADOS = ("N", "S", "E", "O")
 
 HABILIDADES = {
-    "quema": "Captura a cualquier carta enemiga adyacente, sin comparar valores.",
+    "quema": "Gana o empata la comparacion contra cada vecina (sin Same ni Plus).",
     "muro": "Su lado mas alto no puede ser capturado.",
     "furia": "+1 a todos sus lados si toca una carta amiga en el tablero.",
     "embestida": "+2 a todos sus lados si se coloca en la casilla central.",
@@ -152,9 +153,25 @@ def flips_por_carta(board, r, c):
         if len(grupo) >= 2:
             flips.update(grupo)
     if carta.habilidad == "quema":
+        # La quema no barre el tablero entero: solo prende a las vecinas que
+        # puede overcome. Antes daba vueltas a TODO lo que la rodeaba sin
+        # comparar un solo valor, asi que guardarla para el final (en el
+        # centro, con ocho enemigas alrededor) garantia la victoria.
+        # Ahora gana la comparacion basica o la empata, y el muro de la
+        # vecina la protege: sigue siendo la mejor carta contra una ringa
+        # debil, pero ya no es una jugada ganadora garantizada.
         for lado, (dr, dc) in DELTA.items():
             nr, nc = r + dr, c + dc
-            if 0 <= nr < 3 and 0 <= nc < 3 and board[nr][nc] and board[nr][nc].dueno != carta.dueno:
+            if not (0 <= nr < 3 and 0 <= nc < 3):
+                continue
+            vecina = board[nr][nc]
+            if vecina is None or vecina.dueno == carta.dueno:
+                continue
+            if OPUESTO[lado] in vecina.lados_muro():
+                continue  # el muro sigue bloqueando la quema
+            m = valor_efectivo(carta, r, c, lado, board)
+            e = valor_efectivo(vecina, nr, nc, OPUESTO[lado], board)
+            if m >= e:
                 flips.add((nr, nc))
     return flips
 

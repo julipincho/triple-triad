@@ -166,6 +166,100 @@ class TestAudio(unittest.TestCase):
         audio.reanudar_musica()
         audio.detener_musica()
 
+    def test_cada_cambio_de_pista_recarga_el_canal(self):
+        """pygame.mixer.music tiene un solo canal.
+
+        El flujo real lo usa asi: cartel de escenario con la pista del rival,
+        combate con musica_duelo, y al siguiente duelo otra vez el mismo
+        rival. Volver a una pista ya vista tiene que recargar el canal: si se
+        cacheara el WAV, al pedirla otra vez el canal seguiria teniendo la
+        anterior y sonaria la pista equivocada.
+
+        Ojo: mixer.music.load() devuelve None, asi que un cache de "WAV
+        cargados" nunca funcionaba (None se leia como "no cacheado") y
+        recarga de mas. El cache solo guarda los fallos.
+        """
+        if pygame.mixer.get_init() is None:
+            self.skipTest("sin dispositivo de audio")
+
+        cargadas = []
+        original = pygame.mixer.music.load
+
+        def espia(ruta):
+            cargadas.append(os.path.basename(ruta))
+            return original(ruta)
+
+        pygame.mixer.music.load = espia
+        try:
+            audio.musica(audio.musica_de_faccion("humano"))
+            audio.musica(audio.musica_de_duelo())
+            audio.musica(audio.musica_de_faccion("humano"))
+        finally:
+            pygame.mixer.music.load = original
+            audio.detener_musica()
+
+        self.assertEqual(cargadas, ["musica_humano.wav", "musica_duelo.wav",
+                                    "musica_humano.wav"],
+                         "cada cambio de pista debe recargar el canal")
+        # y el cache solo guarda fallos, no WAV
+        self.assertNotIn("musica_humano", audio._cache_musica,
+                         "no se cachean los WAV: el canal de musica es unico")
+
+    def test_pedir_la_misma_pista_la_reanuda(self):
+        """El bug de la musica trabada: pausar_musica() no borra el nombre de
+        la pista actual, asi que pedirla otra vez era un no-op y el silencio
+        duraba hasta que se pidiera una pista DISTINTA."""
+        audio.musica(audio.musica_de_faccion("humano"))
+        audio.pausar_musica()
+        self.assertTrue(audio._musica_pausada)
+        # el juego pide la misma pista (nada cambio): deberia reanudar
+        audio.musica(audio.musica_de_faccion("humano"))
+        self.assertFalse(audio._musica_pausada,
+                         "pedir la pista en pausa la deja en pausa: musica trabada")
+
+    def test_detener_limpia_el_estado(self):
+        """Si no, la siguiente peticion de la misma pista se ignoraba."""
+        audio.musica(audio.musica_de_faccion("humano"))
+        audio.detener_musica()
+        self.assertIsNone(audio._musica_actual)
+        self.assertFalse(audio._musica_pausada)
+        audio.musica(audio.musica_de_faccion("humano"))
+        self.assertEqual(audio._musica_actual, "musica_humano",
+                         "tras detener, la pista debe volver a sonar")
+
+    def test_el_bucle_de_la_musica_no_tiene_corte(self):
+        """Las pistas se reproducen con play(-1). Con un fundido en los
+        extremos, al repetir se oia un hueco de ~160 ms: eso era la musica
+        trabada al terminar el dialogo."""
+        import struct
+        import wave
+
+        def silencio(muestras, sr, umbral=300):
+            mejor = actual = 0
+            for v in muestras:
+                if abs(v) < umbral:
+                    actual += 1
+                    mejor = max(mejor, actual)
+                else:
+                    actual = 0
+            return mejor / sr * 1000
+
+        for nombre in ("musica_duelo", "musica_explora",
+                       "musica_humano", "musica_orco"):
+            ruta = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
+            with wave.open(ruta) as w:
+                n = w.getnframes()
+                sr = w.getframerate()
+                muestras = struct.unpack(f"<{n}h", w.readframes(n))
+            # la costura son los ultimos 100 ms: si estan mudos, se oye un corte
+            corte = silencio(muestras[-int(sr * 0.1):], sr)
+            # ...salvo que la pista ya tenga silencios de esa longitud dentro
+            interior = silencio(muestras[int(n * 0.2):int(n * 0.8)], sr)
+            self.assertLessEqual(
+                corte, max(interior * 1.4, 40),
+                f"{nombre}.wav se corta al repetir: {corte:.0f} ms de silencio "
+                f"en la costura frente a {interior:.0f} ms dentro de la pista")
+
 
 class TestReferencias(unittest.TestCase):
     def test_las_abilidades_usadas_estan_documentadas(self):

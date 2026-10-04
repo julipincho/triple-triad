@@ -303,6 +303,23 @@ def _compas(faccion, pulsos, raiz):
 PROGRESION = [0, 5, 3, 7, 8, 3, 7, 0]
 
 
+def _fundir_bucle(muestras):
+    """Deja la pista lista para play(-1), sin corte en la costura.
+
+    Antes se ponia un fundido de 0.08 s en los dos extremos: el final
+    acababa en silencio y el principio empezaba casi en silencio, asi que al
+    repetir se oia un hueco de ~160 ms cada 10-19 s. Eso era la musica
+    "trabada".
+
+    Un fundido cruzado tampoco sirve aqui (copiaria el principio sobre el
+    final y se oiria dos veces seguidas). Lo correcto es no tocar los
+    extremos: la pista se construye con compases completos y la
+    progresion empieza y termina en el mismo grado (0), de modo que el
+    ultimo compase enlaza con el primero sin salto.
+    """
+    return muestras
+
+
 def _tema(nombre, reps=None):
     """Genera una pista que no pertenece a ninguna faccion (duelo, menu)."""
     cfg = TEMAS[nombre]
@@ -347,13 +364,12 @@ def _tema(nombre, reps=None):
             for x in range(largo):
                 bloque[x] *= 0.94 + rnd.random() * 0.12
             pista.extend(bloque)
+    # el ultimo compase repite el primero: la progresion empieza y termina en
+    # el mismo grado, de modo que al volver al principio no hay salto
+    pista.extend(list(pista[:largo]))
     maximo = max(abs(v) for v in pista) or 1.0
     pista = [v / maximo * 0.5 for v in pista]
-    n = int(SR * 0.08)
-    for i in range(n):
-        pista[i] *= i / n
-        pista[-1 - i] *= i / n
-    return pista
+    return _fundir_bucle(pista)
 
 
 def musica_temas():
@@ -384,12 +400,12 @@ def musica():
                     for x, v in enumerate(capa):
                         bloque[x] += v * (0.94 + rnd.random() * 0.12)
                 pista.extend(bloque)
+        # el ultimo compase repite el primero: PROGRESION empieza y acaba en
+        # el grado 0, de modo que la vuelta al principio no da un salto
+        pista.extend(list(pista[:largo]))
         maximo = max(abs(v) for v in pista) or 1.0
         pista = [v / maximo * 0.5 for v in pista]
-        n = int(SR * 0.08)
-        for i in range(n):
-            pista[i] *= i / n
-            pista[-1 - i] *= i / n
+        pista = _fundir_bucle(pista)
         _escribir(f"musica_{faccion}.wav", pista, MUSICA)
         print(f"  musica_{faccion}.wav  ({len(pista) / SR:.1f}s)")
 
