@@ -500,6 +500,7 @@ class Juego:
         mouse = pygame.mouse.get_pos()
         total = max(1, len(self.mano_u))
         self._hover_mano = None
+        preview = None
         for i, carta in enumerate(self.mano_u):
             if self.arrastrando and self.arrastrando[0] is carta:
                 continue
@@ -507,19 +508,12 @@ class Juego:
             hover = rect.collidepoint(mouse) and not self.turno_cpu and not self.fin
             if hover:
                 self._hover_mano = carta
+                preview = carta
             y = rect.y - (18 if hover else 0)
             destino = pygame.Rect(rect.x, y, rect.w, rect.h)
             sup = self.super_cartas(carta, synergy=False)
             if hover:
                 crt.resplandor_carta(screen, destino, carta, USUARIO, 110)
-                # preview ampliado
-                grande = crt.crear(carta, USUARIO, synergy=False, escala=1.35)
-                gx = min(ANCHO - grande.get_width() - 10, mouse[0] + 18)
-                gy = max(80, min(ALTO - grande.get_height() - 10, mouse[1] - 40))
-                sombra = pygame.Surface((grande.get_width(), grande.get_height()), pygame.SRCALPHA)
-                sombra.fill((0, 0, 0, 130))
-                screen.blit(sombra, (gx + 5, gy + 5))
-                screen.blit(grande, (gx, gy))
             screen.blit(sup, (destino.x, destino.y))
             # descripciones: se encolan y se pintan al final del frame, para
             # que ni las cartas siguientes ni el tablero las tapen
@@ -536,6 +530,11 @@ class Juego:
                 tooltip(screen, "\n".join(lineas), (destino.centerx, destino.y),
                         ancho=300, arriba=True)
 
+        # el preview ampliado va despues del bucle, no dentro: si se pintara
+        # aqui, las cartas siguientes de la mano lo taparian
+        if preview is not None:
+            self._dibujar_preview(screen, mouse, preview)
+
         if self.arrastrando:
             carta, _ = self.arrastrando
             x, y = self.pos_arrastre
@@ -544,6 +543,21 @@ class Juego:
             screen.blit(sombra, (x - CARD_W // 2 + 6, y - CARD_H // 2 + 6))
             screen.blit(self.super_cartas(carta, synergy=False),
                         (x - CARD_W // 2, y - CARD_H // 2))
+
+    def _dibujar_preview(self, screen, mouse, carta):
+        """Carta ampliada de la carta señalada.
+
+        Se pinta fuera del bucle de la mano y antes de la carta que se esta
+        arrastrando, para que se vea entera y la arrastrada quede encima.
+        """
+        grande = crt.crear(carta, USUARIO, synergy=False, escala=1.35)
+        gx = min(ANCHO - grande.get_width() - 10, mouse[0] + 18)
+        gy = max(80, min(ALTO - grande.get_height() - 10, mouse[1] - 40))
+        sombra = pygame.Surface(grande.get_size(), pygame.SRCALPHA)
+        sombra.fill((0, 0, 0, 130))
+        screen.blit(sombra, (gx + 5, gy + 5))
+        screen.blit(grande, (gx, gy))
+        return pygame.Rect(gx, gy, grande.get_width(), grande.get_height())
 
     def _dibujar_particulas(self, screen):
         if not self.particulas:

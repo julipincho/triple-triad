@@ -16,6 +16,7 @@ import os
 import re
 import sys
 import tempfile
+import time
 import unittest
 
 os.environ.setdefault(
@@ -418,6 +419,89 @@ class TestTooltipsSePintanAlFinal(unittest.TestCase):
         self.assertTrue(pintadas, "el duelo no llamo a dibujar_tooltips()")
         self.assertEqual(ui._PENDIENTES, [],
                          "quedo un tooltip sin pintar tras dibujar el frame")
+
+
+# ------------------------------------- 4b. el preview de la mano no se tapa
+class TestPreviewDeLaMano(unittest.TestCase):
+    """El bug: la carta ampliada de la carta señalada se pintaba dentro del
+    bucle de la mano, asi que las cartas siguientes la tapaban."""
+
+    MARCA = (255, 0, 255)
+
+    def setUp(self):
+        ui._PENDIENTES.clear()
+
+    def tearDown(self):
+        ui._PENDIENTES.clear()
+
+    def _pintar_con_preview_marcado(self, raton):
+        """Dibuja un frame y devuelve (pantalla, rect_del_preview, juego).
+
+        El preview se pinta de magenta para reconocerlo en la captura.
+        """
+        import partida as modulo_partida
+
+        pantalla = _superficie()
+        juego = modulo_partida.Juego("humano", bando_rival="orco")
+        # sin fundido ni banner: solo la mano, para que el color se vea puro
+        juego.t_entrada = time.time() - 10
+        juego.banner = None
+        rects = []
+
+        original_preview = modulo_partida.Juego._dibujar_preview
+        original_crear = modulo_partida.crt.crear
+
+        def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
+            if escala != 1:
+                s = pygame.Surface((int(ui.CARD_W * escala),
+                                    int(ui.CARD_H * escala)))
+                s.fill(self.MARCA)
+                return s
+            return original_crear(carta, dueno, habilidad=habilidad,
+                                 synergy=synergy, escala=escala)
+
+        def preview(juego_, screen, mouse, carta):
+            rects.append(original_preview(juego_, screen, mouse, carta))
+            return rects[-1]
+
+        original_raton = pygame.mouse.get_pos
+        pygame.mouse.get_pos = lambda: raton
+        modulo_partida.crt.crear = crear
+        modulo_partida.Juego._dibujar_preview = preview
+        try:
+            juego.dibujar(pantalla)
+        finally:
+            pygame.mouse.get_pos = original_raton
+            modulo_partida.crt.crear = original_crear
+            modulo_partida.Juego._dibujar_preview = original_preview
+        return pantalla, (rects[0] if rects else None), juego
+
+    def test_el_preview_va_encima_de_las_cartas_siguientes(self):
+        raton = ui.mano_rect(0, 5).center
+        pantalla, rect_preview, juego = self._pintar_con_preview_marcado(raton)
+        self.assertIsNotNone(rect_preview, "no se dibujo ningun preview")
+        self.assertIsNotNone(juego._hover_mano)
+
+        # la zona del preview que queda encima de la carta siguiente de la mano
+        vecina = ui.mano_rect(1, 5)
+        solapa = pygame.Rect(rect_preview).clip(vecina)
+        self.assertGreater(solapa.w, 0, "el preview no pisa a la vecina: el test no comprueba nada")
+        self.assertGreater(solapa.h, 0, "el preview no pisa a la vecina: el test no comprueba nada")
+        # un punto dentro del preview y dentro de la vecina, sin el borde redondeado
+        punto = (solapa.centerx, solapa.y + 6)
+        self.assertEqual(pantalla.get_at(punto)[:3], self.MARCA,
+                         "la carta siguiente de la mano tapa el preview ampliado")
+
+    def test_sin_hover_no_se_pinta_preview(self):
+        pantalla, rect_preview, juego = self._pintar_con_preview_marcado((5, 5))
+        self.assertIsNone(rect_preview, "sin raton sobre la mano no hay preview")
+        self.assertIsNone(juego._hover_mano)
+        # el magenta solo puede venir del preview: no debe quedar ninguno
+        zona = ui.mano_rect(0, 5)
+        for y in range(zona.top + 120, zona.bottom, 3):
+            for x in range(zona.left, zona.right, 3):
+                self.assertNotEqual(pantalla.get_at((x, y))[:3], self.MARCA,
+                                    "se pintaron previews sin hover")
 
 
 # ---------------------------------------------------------- 5. musica del duelo
