@@ -5,6 +5,7 @@ que el enrutado de la campana (nodos, ramas, recompensas, encuentros y final)
 funciona de principio a fin y que nunca te juegas contra tu faccion.
 """
 
+import asyncio
 import os
 import sys
 import tempfile
@@ -53,8 +54,9 @@ class TestFlujoDeCampana(unittest.TestCase):
         registro = {"rivales": [], "pantallas": [], "duelos": 0, "epilogue": 0}
         originales = {}
 
-        def ara(*args, **kwargs):
+        async def ara(*args, **kwargs):
             """Sustituto de las pantallas que no queremos exerts de verdad."""
+            return None
 
         # espia sobre el mazo rival: es lo que ve el jugador en cada duelo
         def mazo_rival(estado, nodo_id=None, dificultad_extra=0):
@@ -62,7 +64,7 @@ class TestFlujoDeCampana(unittest.TestCase):
             registro["rivales"].append((campana.nodo_actual(estado), rival))
             return mazos.TODOS[rival]
 
-        def duelo_falso(screen, clock, juego, test_mode=False):
+        async def duelo_falso(screen, clock, juego, test_mode=False):
             registro["duelos"] += 1
             if registro["duelos"] > 14:
                 raise AssertionError("bucle infinito de duelos")
@@ -70,25 +72,25 @@ class TestFlujoDeCampana(unittest.TestCase):
             gana = victorias and registro["duelos"] > perdidas
             return Resultado(gana, 2, 5, (5, 4), False, 1)
 
-        def derrota_falsa(screen, clock, estado):
+        async def derrota_falsa(screen, clock, estado):
             registro["pantallas"].append(("derrota", estado["nodo"]))
             return "reintentar"
 
-        def mapa_falso(screen, clock, estado):
+        async def mapa_falso(screen, clock, estado):
             registro["pantallas"].append(("mapa", estado["nodo"]))
             return "seguir"
 
-        def rama_falsa(screen, clock, estado):
+        async def rama_falsa(screen, clock, estado):
             return rama
 
-        def recompensa_falsa(screen, clock, estado, nodo_id):
+        async def recompensa_falsa(screen, clock, estado, nodo_id):
             registro["pantallas"].append(("recompensa", nodo_id, recompensa))
             return recompensa
 
-        def encuentro_falso(screen, clock, estado, nodo_id):
+        async def encuentro_falso(screen, clock, estado, nodo_id):
             registro["pantallas"].append(("encuentro", nodo_id))
 
-        def epilogo_falso(screen, clock, estado):
+        async def epilogo_falso(screen, clock, estado):
             registro["epilogue"] += 1
             # el epilogo real cierra la campana y registra el final
             campana.completar(estado)
@@ -113,7 +115,8 @@ class TestFlujoDeCampana(unittest.TestCase):
             setattr(sys.modules[modulo], nombre, fn)
         try:
             estado = campana.nueva_campana(faccion)
-            main._campana(pygame.display.get_surface(), RelojFalso(), estado, nuevo=True)
+            asyncio.run(main._campana(pygame.display.get_surface(), RelojFalso(),
+                                      estado, nuevo=True))
             return estado, registro
         finally:
             for ruta, fn in originales.items():

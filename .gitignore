@@ -10,3 +10,13 @@ __pycache__/
 
 TripleTriad.exe
 TripleTriad/*.spec
+
+# Scratch de la sesion web y de las grabaciones: >60 MB y no es codigo
+TripleTriad/gravedad/
+TripleTriad/gravedad_fg/
+TripleTriad/recorrido/
+TripleTriad/build_pygbag*.log
+TripleTriad/tripletriad-web.zip
+TripleTriad/screenshot_fase1.png
+TripleTriad/test_capture.png
+.playwright-mcp/

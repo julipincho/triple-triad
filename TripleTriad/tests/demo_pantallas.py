@@ -6,6 +6,8 @@ Genera PNGs en auditoria/ para revision visual y devuelve codigo 1 si alguna
 pantalla lanza una excepcion.
 """
 
+import asyncio
+import inspect
 import os
 import sys
 import tempfile
@@ -80,7 +82,11 @@ def correr(nombre, fn, *args, max_eventos=25):
 
     pygame.event.get = get_eventos
     try:
-        return fn(*args)
+        resultado = fn(*args)
+        if inspect.iscoroutine(resultado):
+            # las pantallas ahora son async (requisito de pygbag en web)
+            resultado = asyncio.run(resultado)
+        return resultado
     except _FinDemo:
         return "interrumpido"
     finally:

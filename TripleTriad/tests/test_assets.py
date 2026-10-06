@@ -6,6 +6,7 @@ Evita el error clasico de produccion: una carta sin arte, un sonido que no
 existe o una pista de musica que pygame no puede abrir.
 """
 
+import asyncio
 import io
 import os
 import sys
@@ -306,7 +307,7 @@ class TestReferencias(unittest.TestCase):
 
         pygame.event.get = eventos
         try:
-            faccion = pantallas.elegir_faccion(pantalla, Reloj())
+            faccion = asyncio.run(pantallas.elegir_faccion(pantalla, Reloj()))
             self.assertIn(faccion, orden)
         finally:
             pygame.event.get = original

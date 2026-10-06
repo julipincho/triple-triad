@@ -107,6 +107,23 @@ class Recursos:
             self.imagenes[clave] = capa
         return self.imagenes[clave]
 
+    def fondo_tocado(self, ruta, alpha=(8, 9, 16, 120)):
+        """Fondo a pantalla completa con la capa de oscurecido YA pegada.
+
+        Evita el blit SRCALPHA a pantalla completa de cada frame: se compone
+        una sola vez y de aqui en adelante es un blit opaco, que es lo mas
+        barato que hay. En wasm la diferencia se nota mucho.
+        """
+        clave = ("__fondo_tocado__", ruta, alpha)
+        if clave not in self.imagenes:
+            velo = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+            velo.fill(alpha)
+            base = pygame.Surface((ANCHO, ALTO))
+            base.blit(self.fondo_pantalla(ruta), (0, 0))
+            base.blit(velo, (0, 0))
+            self.imagenes[clave] = base
+        return self.imagenes[clave]
+
     def vineta(self, pasos=46, fuerza=80):
         """Vineta reutilizable para dar profundidad al fondo."""
         clave = ("__vineta__", pasos, fuerza)
@@ -138,40 +155,152 @@ class Recursos:
 REC = Recursos()
 
 
+# ------------------------------------------------- cache de superficies/texto
+# En la web (WASM/Asyncify) crear una Surface o renderizar una fuente por
+# frame cuesta varias veces mas que en nativo. Todo lo que sea repetido
+# frame a frame se cachea aqui. `_limpio` es un dict a proposito (no
+# functools.lru_cache) para poder limpiarlo al cambiar el modo de video.
+_CACHE_SUP = {}
+_CACHE_TXT = {}
+_LIMPIO = {}
+
+# Techo de entradas por cache. Si se supera se limpia entero: es mejor tirar
+# la cache de vez en cuando que degradarse hasta la excepcion.
+MAX_CACHE = 600
+
+# Paso de cuantizacion de los colores que se usan como clave de cache. Los
+# colores animados (hover de boton, banner que se apaga) darian una clave
+# distinta por frame si no se agrupan: la cache crecia sin fin y ademas
+# nunca volveria a acertar.
+PASO_COLOR = 8
+
+
+def _cache_put(cache, clave, valor, tope=MAX_CACHE):
+    if len(cache) >= tope:
+        cache.clear()
+    cache[clave] = valor
+    return valor
+
+
+_COLORES = {}
+
+
+def color_cache(color):
+    """Color apto para usarse de clave: canales en multiplos de PASO_COLOR.
+
+    Se memoriza porque se llama un par de veces por texto y por panel (unas
+    200 por frame en las pantallas con muchas fichas) y el calculo es mas
+    caro que la propia busqueda en el diccionario.
+    """
+    if type(color) is tuple:
+        clave = color
+    else:
+        clave = tuple(color)
+    valor = _COLORES.get(clave)
+    if valor is None:
+        canales = tuple((int(c) // PASO_COLOR) * PASO_COLOR for c in clave[:3])
+        if len(clave) > 3:
+            canales += ((int(clave[3]) // PASO_COLOR) * PASO_COLOR,)
+        valor = _cache_put(_COLORES, clave, canales, 512)
+    return valor
+
+
+def superficie(clave, factory, tope=MAX_CACHE):
+    """Devuelve (y cachea) la Surface descrita por `clave`.
+
+    `factory` solo se ejecuta la primera vez que aparece esa clave. Sirve para
+    halos, sombras y viñetas, que antes se creaban de cero en cada frame.
+    """
+    sup = _CACHE_SUP.get(clave)
+    if sup is None:
+        sup = _cache_put(_CACHE_SUP, clave, factory(), tope)
+    return sup
+
+
+def limpiar_cache():
+    """Vacia las caches de superficies y texto (cambio de pantalla de video)."""
+    _CACHE_SUP.clear()
+    _CACHE_TXT.clear()
+    _LIMPIO.clear()
+    _COLORES.clear()
+
+
 # ----------------------------------------------------------------- tipografia
+_REEMPLAZOS = {
+    "¡": "!", "¿": "?", "—": "-", "–": "-", "“": '"', "”": '"',
+    "‘": "'", "’": "'", "…": "...", "·": "-", "•": "*",
+}
+
+
 def limpio(texto):
-    """La fuente pixel no tiene tildes ni signos raros: los limpiamos."""
-    reemplazos = {
-        "¡": "!", "¿": "?", "—": "-", "–": "-", "“": '"', "”": '"',
-        "‘": "'", "’": "'", "…": "...", "·": "-", "•": "*",
-    }
-    for a, b in reemplazos.items():
+    """La fuente pixel no tiene tildes ni signos raros: los limpiamos.
+
+    El resultado se cachea: `normalize` de unicodedata es de las cosas mas
+    caras del frame si se repite, y los textos del juego son pocos y fijos.
+    """
+    original = texto
+    largo = _LIMPIO.get(original)
+    if largo is not None:
+        return largo
+    for a, b in _REEMPLAZOS.items():
         texto = texto.replace(a, b)
     import unicodedata
 
     nfkd = unicodedata.normalize("NFKD", texto)
-    return "".join(c for c in nfkd if not unicodedata.combining(c))
+    largo = "".join(c for c in nfkd if not unicodedata.combining(c))
+    return _cache_put(_LIMPIO, original, largo, 4000)
+
+
+def _superficie_texto(cadena, tam, color, sombra):
+    """Surface del texto, con su sombra ya pegada, cacheada por contenido.
+
+    Devuelve (superficie, desplazamiento_x, desplazamiento_y): cuando hay
+    sombra la surface es 2 px mayor y el texto va dentro, para poder blitear
+    una sola vez en vez de dos.
+
+    El color se agrupa en `PASO_COLOR` para que un texto con alpha que se
+    apaga (el banner del duelo) no genere una entrada por frame. Los textos
+    translucidos no se cachean: agruparles el alpha se veria a saltos.
+    """
+    if len(color) > 3 and color[3] < 255:
+        return _pinta_texto(REC.fuente(tam), limpio(cadena), color, sombra)
+    color = color_cache(color)
+    clave = (cadena, tam, color, sombra)
+    par = _CACHE_TXT.get(clave)
+    if par is not None:
+        return par
+    return _cache_put(_CACHE_TXT, clave,
+                      _pinta_texto(REC.fuente(tam), limpio(cadena), color, sombra))
+
+
+def _pinta_texto(fuente, cadena, color, sombra):
+    img = fuente.render(cadena, True, color)
+    if not sombra:
+        return (img, 0, 0)
+    neg = fuente.render(cadena, True, (8, 8, 14))
+    s = pygame.Surface((img.get_width() + 2, img.get_height() + 2), pygame.SRCALPHA)
+    s.blit(neg, (0, 0))
+    s.blit(img, (2, 2))
+    return (s, 2, 2)
 
 
 def texto(screen, cadena, tam, color=TEXTO, centro=None, y=None, x=None, sombra=True):
     """Dibuja texto ya limpio. `centro` = (x, y) para centrar."""
-    img = REC.fuente(tam).render(limpio(cadena), True, color)
+    img, dx, dy = _superficie_texto(str(cadena), tam, color, sombra)
+    ancho, alto = img.get_width() - dx, img.get_height() - dy
     if centro:
-        x = centro[0] - img.get_width() // 2
-        y = centro[1] - img.get_height() // 2
+        x = centro[0] - ancho // 2
+        y = centro[1] - alto // 2
     elif x is None:
-        x = (ANCHO - img.get_width()) // 2
+        x = (ANCHO - ancho) // 2
     if y is None:
         y = 0
-    if sombra:
-        neg = REC.fuente(tam).render(limpio(cadena), True, (8, 8, 14))
-        screen.blit(neg, (x + 2, y + 2))
-    screen.blit(img, (x, y))
+    screen.blit(img, (x - dx, y - dy))
     return img
 
 
 def ancho_texto(cadena, tam):
-    return REC.fuente(tam).render(limpio(cadena), True, TEXTO).get_width()
+    return _superficie_texto(str(cadena), tam, TEXTO, False)[0].get_width()
 
 
 def envolver(cadena, tam, ancho_max):
@@ -234,16 +363,29 @@ def con_alpha(color, a):
 
 
 def sombra_panel(screen, rect, radio=10, desfase=6):
-    s = pygame.Surface((rect.w, rect.h), pygame.SRCALPHA)
-    pygame.draw.rect(s, SOMBRA, s.get_rect(), border_radius=radio)
+    s = superficie(("sombra_panel", rect.w, rect.h, radio),
+                   lambda: _sombra_panel(rect.w, rect.h, radio))
     screen.blit(s, (rect.x + desfase, rect.y + desfase))
+
+
+def _sombra_panel(w, h, radio):
+    s = pygame.Surface((w, h), pygame.SRCALPHA)
+    pygame.draw.rect(s, SOMBRA, s.get_rect(), border_radius=radio)
+    return s
+
+
+def _panel_roto(relleno, w, h):
+    s = pygame.Surface((w, h), pygame.SRCALPHA)
+    s.fill(relleno)
+    return s
 
 
 def panel(screen, rect, relleno=PANEL, borde=DORADO, radio=10, grosor=2, sombra=True):
     if sombra:
         sombra_panel(screen, rect, radio)
-    s = pygame.Surface((rect.w, rect.h), pygame.SRCALPHA)
-    s.fill(relleno)
+    clave = color_cache(relleno)
+    s = superficie(("panel", rect.w, rect.h) + clave,
+                   lambda: _panel_roto(clave, rect.w, rect.h))
     screen.blit(s, rect.topleft)
     if borde:
         pygame.draw.rect(screen, borde, rect, grosor, border_radius=radio)
@@ -251,19 +393,43 @@ def panel(screen, rect, relleno=PANEL, borde=DORADO, radio=10, grosor=2, sombra=
 
 
 def panel_vineta(screen, alpha=0):
+    """Vineta perimetral. Cacheada por nivel de alpha.
+
+    Antes creaba una Surface de 1280x800 y pintaba 40 rectangulos en cada
+    frame; ahora son 8 niveles precalculados y un solo blit.
+    """
     if alpha <= 0:
         return
+    nivel = min(15, int(alpha * 16 / 255) + 1)
+    v = superficie(
+        ("vineta", nivel),
+        lambda: _panel_vineta(nivel * 255 // 16),
+    )
+    screen.blit(v, (0, 0))
+
+
+def _panel_vineta(alpha):
     v = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
     for i in range(0, 40):
         a = int(alpha * (i / 40) * 0.5)
         pygame.draw.rect(v, (0, 0, 0, a), (i, i, ANCHO - 2 * i, ALTO - 2 * i), 1)
-    screen.blit(v, (0, 0))
+    return v
 
 
 def linea_horizontal(screen, y, x0=60, x1=ANCHO - 60, color=BORDE, grosor=1, alpha=255):
-    s = pygame.Surface((x1 - x0, grosor), pygame.SRCALPHA)
-    s.fill(con_alpha(color, alpha))
+    clave = color_cache(con_alpha(color, alpha))
+    rgb, a = clave[:3], clave[3]
+    s = superficie(
+        ("linea", x0, x1 - x0, grosor) + clave,
+        lambda: _linea_horizontal(x1 - x0, grosor, rgb, a),
+    )
     screen.blit(s, (x0, y))
+
+
+def _linea_horizontal(ancho, grosor, color, alpha):
+    s = pygame.Surface((ancho, grosor), pygame.SRCALPHA)
+    s.fill(con_alpha(color, alpha))
+    return s
 
 
 # ------------------------------------------------------------------ botones
@@ -392,8 +558,7 @@ class Transicion:
     def dibujar(self, screen):
         a = self.alpha
         if a > 0:
-            s = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-            s.fill((0, 0, 0, a))
+            s = _capa_negra(a)
             screen.blit(s, (0, 0))
 
 
@@ -410,6 +575,29 @@ class FundidoTexto:
         return alpha_t(ahora, self.t0, self.duracion)
 
 
+# Capa auxiliar reutilizable. El fundido de entrada y el de transicion la
+# pintan cada frame durante medio segundo; con `fill` no se reserva nada
+# (crear una Surface SRCALPHA de 1280x800 son ~4 MB de basura por frame).
+_CAPA = None
+
+
+def _capa_color(color, alpha):
+    """Capa de un color plano a pantalla completa, lista para blitear.
+
+    Devuelve la MISMA Surface en todas las llamadas: hay que blitearla antes
+    de volver a pedirla (el unico caso son fundidos, uno detras de otro).
+    """
+    global _CAPA
+    if _CAPA is None:
+        _CAPA = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+    _CAPA.fill((color[0], color[1], color[2], min(255, max(0, int(alpha)))))
+    return _CAPA
+
+
+def _capa_negra(alpha):
+    return _capa_color((0, 0, 0), alpha)
+
+
 def fundido_entrada(screen, t0, duracion=0.45, color=(0, 0, 0)):
     """Capa negra que se desvanece al entrar en una pantalla.
 
@@ -422,12 +610,40 @@ def fundido_entrada(screen, t0, duracion=0.45, color=(0, 0, 0)):
     if k >= 1.0:
         return
     a = int(255 * (1 - ease(k)))
-    capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-    capa.fill((color[0], color[1], color[2], a))
+    capa = _capa_color(color, a)
     screen.blit(capa, (0, 0))
 
 
 # ------------------------------------------------------------- fondo animado
+# Las chispas se pintan con sprites pre-renderizados y BLEND_RGBA_ADD en vez
+# de con `draw.circle` sobre una capa SRCALPHA de 1280x800. La capa obligaba
+# a limpiar 4 MB y a pegarla entera con alfa en cada frame: en la web eso solo
+# eran ~10 ms. Con los sprites son 70 blits diminutos.
+_CHISPA_R = 7
+_CHISPA_NIVELES = 8
+_CHISPA_COLOR = (220, 210, 190)
+
+
+def _chispa(nivel, tam):
+    """Sprite de una particula: `nivel` de brillo (0..7) y lado `tam`.
+
+    El RGB va premultiplicado porque se suma (BLEND_RGBA_ADD): si solo
+    bajáramos el alfa, al sumar se veria el cuadrado entero de la particula.
+    """
+    brillo = 0.30 + 0.70 * nivel / (_CHISPA_NIVELES - 1)
+    s = pygame.Surface((tam, tam), pygame.SRCALPHA)
+    r = tam / 2.0
+    for y in range(tam):
+        for x in range(tam):
+            d = math.hypot(x - r + 0.5, y - r + 0.5) / r
+            if d >= 1.0:
+                continue
+            v = int(255 * (1.0 - d) ** 2.2 * brillo)
+            s.set_at((x, y), (_CHISPA_COLOR[0] * v // 255, _CHISPA_COLOR[1] * v // 255,
+                             _CHISPA_COLOR[2] * v // 255, v))
+    return s
+
+
 class FondoAnimado:
     """Capa de fondo con estelas de ceniza y un resplandor lento."""
 
@@ -435,7 +651,6 @@ class FondoAnimado:
         self.imagen = imagen
         self.ruta = ruta
         self.color = color_primario
-        self._capa = None
         self.particulas = [
             {
                 "x": random.uniform(0, ANCHO),
@@ -459,9 +674,8 @@ class FondoAnimado:
 
     def dibujar(self, screen):
         if self.imagen is not None:
-            # fondo y capas cacheados: cero reservas por frame
-            screen.blit(REC.fondo_pantalla(self.ruta), (0, 0))
-            screen.blit(REC.capa_oscurita((8, 9, 16, 120)), (0, 0))
+            # fondo + velo ya compuestos: un solo blit opaco por frame
+            screen.blit(REC.fondo_tocado(self.ruta, (8, 9, 16, 120)), (0, 0))
         else:
             screen.fill(FONDO)
             for i in range(0, ALTO, 4):
@@ -471,20 +685,19 @@ class FondoAnimado:
                     (0, i), (ANCHO, i),
                 )
         ahora = time.time()
-        s = self._capa_particulas()
         pulso = 0.5 + 0.5 * math.sin(ahora * 0.4)
+        base = _CHISPA_R * 2 + 1
         for p in self.particulas:
-            pygame.draw.circle(s, con_alpha((220, 210, 190), 255 * p["a"] * (0.6 + 0.4 * pulso)),
-                               (int(p["x"]), int(p["y"])), p["r"])
-        screen.blit(s, (0, 0))
-
-    def _capa_particulas(self):
-        """Capa de estelas reutilizada entre frames (se limpia al pintar)."""
-        if self._capa is None:
-            self._capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-        else:
-            self._capa.fill((0, 0, 0, 0))
-        return self._capa
+            # el brillo late en 8 escalones y el radio en 3: hay 24 sprites
+            # pre-renderizados. Con el pulso entero se pediria una Surface
+            # nueva por particula y por frame.
+            k = p["a"] * (0.6 + 0.4 * pulso)
+            nivel = min(_CHISPA_NIVELES - 1, int(k * _CHISPA_NIVELES * 2))
+            tam = max(3, int(base * (1 + (p["r"] - 2) * 0.22)))
+            chispa = superficie(("chispa", nivel, tam),
+                                 lambda n=nivel, t=tam: _chispa(n, t), 32)
+            screen.blit(chispa, (int(p["x"]) - tam // 2, int(p["y"]) - tam // 2),
+                        special_flags=pygame.BLEND_RGBA_ADD)
 
 
 # ------------------------------------------------------------------ tooltip
@@ -551,8 +764,24 @@ def mano_rect(i, total=5):
 
 
 def resplandor(screen, rect, color=DORADO, alpha=120, grosor=3, radio=10):
+    """Marco brillante.
+
+    Color y alpha se agrupan (PASO_COLOR y 16 respectivamente) para poder
+    cachear la Surface: el halo late continuamente y sin agrupar serian
+    ~256 entradas distintas que nunca vuelven a acertar.
+    """
     if alpha <= 0:
         return
-    s = pygame.Surface((rect.w + grosor * 2, rect.h + grosor * 2), pygame.SRCALPHA)
-    pygame.draw.rect(s, con_alpha(color, alpha), s.get_rect(), grosor, border_radius=radio)
+    nivel = min(255, max(1, int(alpha) // 16 * 16))
+    clave = color_cache(color)
+    s = superficie(
+        ("resplandor", rect.w, rect.h) + clave + (nivel, grosor, radio),
+        lambda: _resplandor(rect.w, rect.h, clave, nivel, grosor, radio),
+    )
     screen.blit(s, (rect.x - grosor, rect.y - grosor))
+
+
+def _resplandor(w, h, color, alpha, grosor, radio):
+    s = pygame.Surface((w + grosor * 2, h + grosor * 2), pygame.SRCALPHA)
+    pygame.draw.rect(s, con_alpha(color, alpha), s.get_rect(), grosor, border_radius=radio)
+    return s

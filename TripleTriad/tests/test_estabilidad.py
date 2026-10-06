@@ -11,6 +11,7 @@ Cubre los puntos del plan:
   6. todos los bucles respetan LIMIT_FPS y los fondos se cachean
 """
 
+import asyncio
 import io
 import os
 import re
@@ -131,7 +132,7 @@ class TestCineticasSeCierran(unittest.TestCase):
             pygame.event.get = eventos
             try:
                 # no debe colgarse: si vuelve, la pantalla se puede cerrar
-                cin.ejecutar(pantalla, RelojFalso())
+                asyncio.run(cin.ejecutar(pantalla, RelojFalso()))
             finally:
                 pygame.event.get = original
             self.assertGreater(enviados[0], 3, f"ESC no funciono con permitir_saltar={permitir}")
@@ -163,7 +164,7 @@ class TestDueloRapidoYErrores(unittest.TestCase):
         original = pantallas.elegir_faccion
         llamadas = {}
 
-        def espia(screen, clock, facciones_disponibles=None, modo="campana"):
+        async def espia(screen, clock, facciones_disponibles=None, modo="campana"):
             llamadas["modo"] = modo
             return None
 
@@ -171,7 +172,7 @@ class TestDueloRapidoYErrores(unittest.TestCase):
 
         pantallas.elegir_faccion = espia
         try:
-            main._duelo_rapido(_superficie(), RelojFalso())
+            asyncio.run(main._duelo_rapido(_superficie(), RelojFalso()))
         finally:
             pantallas.elegir_faccion = original
         self.assertEqual(llamadas.get("modo"), "rapida")
@@ -180,10 +181,14 @@ class TestDueloRapidoYErrores(unittest.TestCase):
         import main
 
         original = main.pantallas.elegir_faccion
-        main.pantallas.elegir_faccion = lambda *a, **k: None
+
+        async def cancelar(*args, **kw):
+            return None
+
+        main.pantallas.elegir_faccion = cancelar
         try:
             # no debe lanzar ni quedarse colgado
-            main._duelo_rapido(_superficie(), RelojFalso())
+            asyncio.run(main._duelo_rapido(_superficie(), RelojFalso()))
         finally:
             main.pantallas.elegir_faccion = original
 
@@ -201,7 +206,7 @@ class TestDueloRapidoYErrores(unittest.TestCase):
             return [secuencia.pop(0)] if len(secuencia) > 1 else []
         pygame.event.get = eventos
         try:
-            faccion = pantallas.elegir_faccion(pantalla, RelojFalso())
+            faccion = asyncio.run(pantallas.elegir_faccion(pantalla, RelojFalso()))
         finally:
             pygame.event.get = original
         self.assertEqual(faccion, "humano")
@@ -228,11 +233,13 @@ class TestDueloRapidoYErrores(unittest.TestCase):
             return []
         pygame.event.get = eventos
         try:
-            pantallas.pantalla_error(
-                pantalla, RelojFalso(),
-                ValueError("fallo de prueba"),
-                "Traceback (most recent call last):\n  ValueError: fallo de prueba\n",
-                contexto="duelo de prueba",
+            asyncio.run(
+                pantallas.pantalla_error(
+                    pantalla, RelojFalso(),
+                    ValueError("fallo de prueba"),
+                    "Traceback (most recent call last):\n  ValueError: fallo de prueba\n",
+                    contexto="duelo de prueba",
+                )
             )
         finally:
             pygame.event.get = original
@@ -476,7 +483,7 @@ class TestContinuarTrasElDuelo(unittest.TestCase):
 
         pygame.event.get = eventos
         try:
-            return modulo_partida.partida(_superficie(), RelojConTope(), juego)
+            return asyncio.run(modulo_partida.partida(_superficie(), RelojConTope(), juego))
         except _Colgado as e:
             self.fail(str(e))
         finally:
@@ -533,7 +540,7 @@ class TestContinuarTrasElDuelo(unittest.TestCase):
 
         pygame.event.get = eventos
         try:
-            resultado = modulo_partida.partida(_superficie(), RelojConTope(), juego)
+            resultado = asyncio.run(modulo_partida.partida(_superficie(), RelojConTope(), juego))
         finally:
             pygame.event.get = original
         self.assertTrue(resultado.victoria)
@@ -627,14 +634,16 @@ class TestPreviewDeLaMano(unittest.TestCase):
         original_preview = modulo_partida.Juego._dibujar_preview
         original_crear = modulo_partida.crt.crear
 
-        def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
+        def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1,
+                  bando_dueno=None):
             if escala != 1:
                 s = pygame.Surface((int(ui.CARD_W * escala),
                                     int(ui.CARD_H * escala)))
                 s.fill(self.MARCA)
                 return s
             return original_crear(carta, dueno, habilidad=habilidad,
-                                 synergy=synergy, escala=escala)
+                                 synergy=synergy, escala=escala,
+                                  bando_dueno=bando_dueno)
 
         def preview(juego_, screen, mouse, carta):
             rects.append(original_preview(juego_, screen, mouse, carta))
@@ -703,9 +712,9 @@ class TestMusicaDelDuelo(unittest.TestCase):
         modulo_partida.audio.musica = espia
         try:
             juego = modulo_partida.Juego("humano", bando_rival="orco")
-            resultado = modulo_partida.partida(
+            resultado = asyncio.run(modulo_partida.partida(
                 _superficie(), RelojFalso(), juego, test_mode=True
-            )
+            ))
         finally:
             audio.musica = original
             modulo_partida.audio.musica = original
@@ -776,6 +785,210 @@ class TestFpsYMemoria(unittest.TestCase):
         a = ui.REC.capa_oscurita((6, 7, 14, 168))
         b = ui.REC.capa_oscurita((6, 7, 14, 168))
         self.assertIs(a, b)
+
+    def test_el_fondo_tocado_devuelve_siempre_la_misma_superficie(self):
+        a = ui.REC.fondo_tocado("assets/fondo.png", (8, 9, 16, 120))
+        b = ui.REC.fondo_tocado("assets/fondo.png", (8, 9, 16, 120))
+        self.assertIs(a, b, "el fondo con velo deberia estar cacheado")
+        self.assertEqual(a.get_size(), (ui.ANCHO, ui.ALTO))
+
+    def test_el_fondo_tocado_esta_mas_oscurecido_que_el_fondo(self):
+        """Componer el velo no puede ser un no-op (bug silencioso)."""
+        fondo = ui.REC.fondo_pantalla("assets/fondo.png")
+        tocado = ui.REC.fondo_tocado("assets/fondo.png", (8, 9, 16, 200))
+        claro = sum(fondo.get_at((100, 100))[:3])
+        oscuro = sum(tocado.get_at((100, 100))[:3])
+        self.assertLess(oscuro, claro)
+
+    def test_el_cache_de_superficies_no_crece_sin_parada(self):
+        """Si una cache crece frame a frame, en la web eso es memoria
+        quemando hasta que el navegador mata la pestana."""
+        import partida
+        import reglas
+
+        ui.limpiar_cache()
+        screen = _superficie()
+        juego = partida.Juego("humano", bando_rival="orco")
+        for carta in list(juego.mano_u)[:4]:
+            vacias = reglas.celdas_vacias(juego.board)
+            if not vacias:
+                break
+            r, c = vacias[0]
+            juego.colocar(carta, juego.mano_u, USUARIO, r, c)
+        juego.t_entrada = 0.0
+        for _ in range(20):
+            juego.dibujar(screen)
+        # los niveles de alpha quantized tardan unos cuantos frames en
+        # llenarse; lo que no puede pasar es que la cache siga creciendo
+        for _ in range(200):
+            juego.dibujar(screen)
+        primera = len(ui._CACHE_SUP)
+        self.assertLess(primera, 200, "la cache deberia ser pequena de entrada")
+        for _ in range(400):
+            juego.dibujar(screen)
+        segunda = len(ui._CACHE_SUP)
+        self.assertLess(segunda, 200,
+                        f"la cache deberia ser pequena (hay {segunda} entradas)")
+        self.assertLessEqual(segunda, ui.MAX_CACHE,
+                             "la cache no puede pasar de su tope sin limpiarse")
+        # lo que mantiene acotada la cache de halos es agrupar el alpha: si
+        # alguien cachea un alpha continuo, aqui se ve enseguida
+        for clave in ui._CACHE_SUP:
+            if isinstance(clave, tuple) and clave[:1] == ("resplandor",):
+                self.assertEqual(clave[4] % 16, 0,
+                                 f"alpha sin cuantizar en la cache: {clave}")
+
+
+class TestCachesDeRender(unittest.TestCase):
+    """Las cachés de ui.py no pueden cambiar ni un pixel de lo que se ve."""
+
+    def setUp(self):
+        ui.limpiar_cache()
+        self.screen = pygame.Surface((ui.ANCHO, ui.ALTO))
+
+    def _pinta(self, dibujar):
+        self.screen.fill((30, 40, 60))
+        dibujar(self.screen)
+        return pygame.image.tostring(self.screen, "RGB")
+
+    def test_el_texto_cacheado_es_identico_al_sin_cache(self):
+        def con_cache(s):
+            ui.texto(s, "Prueba 123", 10, ui.DORADO, centro=(400, 300))
+        ui.limpiar_cache()
+        primero = self._pinta(con_cache)
+        segundo = self._pinta(con_cache)
+        ui.limpiar_cache()
+        sin_cache = self._pinta(con_cache)
+        self.assertEqual(primero, segundo, "el texto cacheado debe ser identico")
+        self.assertEqual(primero, sin_cache)
+
+    def test_el_texto_con_sombra_va_dos_pixels_mas_arriba_izquierda(self):
+        """La sombra debe quedar exactamente como antes: (x+2, y+2)."""
+        ui.limpiar_cache()
+        con = pygame.Surface((80, 30))
+        con.fill((0, 0, 0))
+        ui.texto(con, "AB", 10, ui.TEXTO, x=10, y=5, sombra=True)
+        ui.limpiar_cache()
+        sin = pygame.Surface((80, 30))
+        sin.fill((0, 0, 0))
+        ui.texto(sin, "AB", 10, ui.TEXTO, x=10, y=5, sombra=False)
+        # la version con sombra debe tener todo lo que tiene la sin sombra
+        for y in range(sin.get_height()):
+            for x in range(sin.get_width()):
+                if sin.get_at((x, y))[3] > 0:
+                    self.assertGreaterEqual(
+                        con.get_at((x, y))[3], sin.get_at((x, y))[3],
+                        f"el texto sin sombra tiene algo que la sombra no cubre en {x},{y}",
+                    )
+
+    def test_ancho_texto_no_cambia_al_limpiar_cache(self):
+        for cadena in ("Hola", "Cadena larga de prueba", "1234567890"):
+            ui.limpiar_cache()
+            a = ui.ancho_texto(cadena, 9)
+            b = ui.ancho_texto(cadena, 9)
+            ui.limpiar_cache()
+            c = ui.ancho_texto(cadena, 9)
+            self.assertEqual(a, c, f"ancho_texto('{cadena}') no es estable")
+            self.assertEqual(a, b)
+
+    def test_limpio_se_puede_llamar_ANTES_y_despues_de_cachear(self):
+        """`limpio` cachea por el texto original: llamarlo dos veces con el
+        texto ya limpio tiene que devolver lo mismo."""
+        self.assertEqual(ui.limpio("Árbol"), ui.limpio("Arbol"))
+        self.assertEqual(ui.limpio("¿Qué?"), ui.limpio("¿Qué?"))
+
+    def test_panel_y_resplandor_devuelven_el_mismo_pixel(self):
+        def dibujar(s):
+            ui.panel(s, pygame.Rect(50, 50, 200, 120), ui.PANEL, ui.DORADO)
+            ui.resplandor(s, pygame.Rect(300, 300, 120, 60), ui.VERDE, 120, 3, 8)
+            ui.panel_vineta(s, 120)
+            ui.linea_horizontal(s, 700)
+        ui.limpiar_cache()
+        primero = self._pinta(dibujar)
+        ui.limpiar_cache()
+        segundo = self._pinta(dibujar)
+        self.assertEqual(primero, segundo,
+                         "las superficies cacheadas difieren del dibujado limpio")
+
+    def test_la_capa_reutilizable_se_recarga_en_cada_llamada(self):
+        """`_capa_color` devuelve la MISMA Surface siempre: si no la
+        rellenara, el fundido se quedaria pegado al ultimo alpha."""
+        a = ui._capa_color((0, 0, 0), 255)
+        pixel_a = a.get_at((10, 10))
+        b = ui._capa_color((255, 0, 0), 10)
+        pixel_b = b.get_at((10, 10))
+        self.assertIs(a, b, "deberia reutilizarse la misma Surface")
+        self.assertEqual(pixel_a[0], 0)
+        self.assertEqual(pixel_b[0], 255)
+        self.assertGreater(pixel_b[3], 0)
+
+    def test_superficie_no_recrea_la_misma_clave(self):
+        llamadas = []
+
+        def factory():
+            llamadas.append(1)
+            return pygame.Surface((4, 4))
+
+        clave = ("test", "superficie")
+        a = ui.superficie(clave, factory)
+        b = ui.superficie(clave, factory)
+        self.assertIs(a, b)
+        self.assertEqual(len(llamadas), 1)
+        ui.limpiar_cache()
+        c = ui.superficie(clave, factory)
+        self.assertIsNot(a, c, "limpiar_cache debe vaciar las superficies")
+
+    def test_color_cache_agrupa_los_canales(self):
+        self.assertEqual(ui.color_cache((250, 251, 3)), (248, 248, 0))
+        self.assertEqual(ui.color_cache((250, 251, 3, 129)), (248, 248, 0, 128))
+
+    def test_un_hover_continuo_no_hace_crecer_las_caches(self):
+        """El boton que late el hover es el peor caso para una cache: si el
+        color no se agrupa, cada frame deja una entrada y la cache crece sin
+        parar (y encima nunca acierta)."""
+        ui.limpiar_cache()
+        boton = ui.Boton(pygame.Rect(100, 100, 200, 50), "JUGAR", 12, sub="Enter",
+                         atajo="1")
+        for i in range(240):
+            boton.hover = min(1.0, i / 120.0)
+            boton.dibujar(self.screen)
+        self.assertLessEqual(len(ui._CACHE_TXT), 24,
+                             f"cache de texto: {len(ui._CACHE_TXT)} entradas")
+        self.assertLessEqual(len(ui._CACHE_SUP), 24,
+                             f"cache de superficies: {len(ui._CACHE_SUP)} entradas")
+
+    def test_el_banner_apagandose_no_hace_crecer_la_cache_de_texto(self):
+        """Un texto con alpha decreciente no se cachea (se veria a saltos),
+        pero tampoco puede llenar la cache."""
+        ui.limpiar_cache()
+        for i in range(1, 60):
+            a = 255 - i * 4
+            ui.texto(self.screen, "VICTORIA", 30, ui.con_alpha(ui.VERDE, a),
+                     centro=(400, 300))
+        self.assertEqual(len(ui._CACHE_TXT), 0,
+                         "los textos translucidos no deben cachearse")
+
+
+class TestMedidorDeFps(unittest.TestCase):
+    """`depurar.activar()` no puede romper el bucle ni el dibujado."""
+
+    def test_el_medidor_pinta_y_se_puede_desactivar(self):
+        import depurar
+
+        pantalla = _superficie()
+        antes = pygame.display.flip
+        try:
+            depurar.activar()
+            self.assertIsNot(pygame.display.flip, antes)
+            for _ in range(12):
+                pygame.event.pump()
+                pantalla.fill((0, 0, 0))
+                pygame.display.flip()
+            self.assertTrue(depurar._cuadros, "el medidor deberia haber medido frames")
+            self.assertTrue(any(t > 0 for t in depurar._cuadros))
+        finally:
+            depurar.desactivar()
+        self.assertIs(pygame.display.flip, antes, "hay que devolver display.flip")
 
 
 if __name__ == "__main__":

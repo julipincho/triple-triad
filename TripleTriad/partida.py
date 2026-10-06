@@ -14,6 +14,7 @@ import pygame
 import audio
 import cartas as crt
 import facciones
+import ui
 from reglas import (
     CPU,
     LADOS,
@@ -42,6 +43,7 @@ from ui import (
     TEXTO_ON,
     TEXTO_TENUE,
     VERDE,
+    ancho_texto,
     celda_rect,
     con_alpha,
     dibujar_tooltips,
@@ -56,8 +58,59 @@ from ui import (
     tooltip,
 )
 
+import asyncio
+
 SLOT_BG = (28, 30, 40)
 SLOT_BORDE = (92, 84, 62)
+
+
+def _sombra_carta(screen, rect, off=(3, 5), big=False):
+    """Sombra oscura y redondeada tras una carta: la misma firma visual
+    en tablero, mano, arrastre y preview.
+
+    Solo hay tres tamaños en juego (carta, preview grande, tablero), asi que
+    la cache se queda en tres entradas: antes se pintaba una Surface nueva
+    por carta y por frame."""
+    sombra = ui.superficie(
+        ("sombra_carta", rect.w, rect.h, big),
+        lambda: _sombra_carta_superficie(rect.w, rect.h, big),
+    )
+    screen.blit(sombra, (rect.x + off[0], rect.y + off[1]))
+
+
+def _sombra_carta_superficie(w, h, big):
+    s = pygame.Surface((w, h), pygame.SRCALPHA)
+    pygame.draw.rect(s, (0, 0, 0, 140 if big else 110), s.get_rect(), border_radius=8)
+    return s
+
+
+def _tinte_casilla(w, h, halo):
+    """Halo del dominio sobre una casilla: relleno tintado + borde."""
+    s = pygame.Surface((w + 10, h + 10), pygame.SRCALPHA)
+    s.fill(con_alpha(halo, 30))
+    pygame.draw.rect(s, con_alpha(halo, 150), (2, 2, w + 6, h + 6), 3, border_radius=9)
+    return s
+
+
+def _overlay_captura(alpha_nivel, color):
+    """Velillo de color de una captura, cacheado por nivel de alpha."""
+    clave = ui.color_cache(color)
+    return ui.superficie(
+        ("overlay_captura", alpha_nivel) + clave,
+        lambda: _overlay_captura_lento(alpha_nivel, clave),
+    )
+
+
+def _overlay_captura_lento(alpha_nivel, color):
+    s = pygame.Surface((CARD_W, CARD_H), pygame.SRCALPHA)
+    s.fill(con_alpha(color, alpha_nivel * 8))
+    return s
+
+
+def _caja_llena(w, h, color):
+    s = pygame.Surface((w, h), pygame.SRCALPHA)
+    pygame.draw.rect(s, color, s.get_rect(), border_radius=10)
+    return s
 
 
 class Resultado:
@@ -123,6 +176,7 @@ class Juego:
         self.ganador = None      # USUARIO, CPU o None (empate)
         self._hover_mano = None
         self._arrastre_valido = False
+        self._capa_part = None
 
         self.rival = self.info or None
         self.comentario = self.rival.get("entrada") if self.rival else None
@@ -138,7 +192,24 @@ class Juego:
     def super_cartas(self, carta, synergy=None):
         if synergy is None:
             synergy = crt.tiene_sinergia(carta, self.board)
-        return crt.crear(carta, carta.dueno, synergy=synergy)
+        # El dominio se ve en el color: la carta toma el color de la baraja
+        # de quien la posee ahora (aunque sea una carta de otro bando).
+        if carta.dueno == USUARIO:
+            bando_dueno = self.bando
+        elif carta.dueno == CPU:
+            bando_dueno = self.bando_cpu
+        else:
+            bando_dueno = None
+        return crt.crear(carta, carta.dueno, synergy=synergy, bando_dueno=bando_dueno)
+
+    def _color_dueno(self, dueno):
+        """Color de la baraja que domina cada bando: el duelo habla en
+        los colores de los dos mazos, no en azul/rojo fijos."""
+        if dueno == USUARIO:
+            return facciones.acento(self.bando)
+        if dueno == CPU:
+            return facciones.acento(self.bando_cpu)
+        return DORADO
 
     def celdas_libres(self):
         return celdas_vacias(self.board)
@@ -179,7 +250,7 @@ class Juego:
             if len(caps) >= 3:
                 self.sacudida = min(0.55, 0.18 + len(caps) * 0.06)
             self.banner = (
-                f"CADENA DE {len(caps)}", ahora, VERDE if dueno == USUARIO else ROJO,
+                f"CADENA DE {len(caps)}", ahora, self._color_dueno(dueno),
                 f"{len(caps)} cartas cambiaron de bando",
             )
             clave = "captura_cpu" if dueno == CPU else "captura_player"
@@ -190,7 +261,7 @@ class Juego:
 
     def _explosion(self, r, c, dueno):
         rect = celda_rect(r, c)
-        color = AZUL if dueno == USUARIO else ROJO
+        color = self._color_dueno(dueno)
         for _ in range(14):
             ang = random.uniform(0, math.tau)
             vel = random.uniform(30, 130)
@@ -368,23 +439,26 @@ class Juego:
             screen.blit(lienzo, (dx, dy))
 
     def _dibujar_fondo(self, screen):
-        # fondo y capas cacheados: nada de reservar 4 MB por frame
-        screen.blit(REC.fondo_pantalla("assets/fondo.png"), (0, 0))
-        screen.blit(REC.capa_oscurita((8, 9, 18, 168)), (0, 0))
+        # fondo + velo ya compuestos: un solo blit opaco, nada de 4 MB/frame
+        screen.blit(REC.fondo_tocado("assets/fondo.png", (8, 9, 18, 168)), (0, 0))
         # resplandor del color de faccion en el borde inferior
-        clave = ("__brillo__", self.bando)
-        if clave not in REC.imagenes:
-            s = pygame.Surface((ANCHO, 90), pygame.SRCALPHA)
+        clave = ("brillo_bando", self.bando)
+        brillo = REC.imagenes.get(clave)
+        if brillo is None:
+            brillo = pygame.Surface((ANCHO, 90), pygame.SRCALPHA)
             for i in range(90):
-                s.fill(con_alpha(facciones.acento(self.bando), int(40 * (1 - i / 90))),
-                       (0, i, ANCHO, 1))
-            REC.imagenes[clave] = s
-        screen.blit(REC.imagenes[clave], (0, ALTO - 90))
+                brillo.fill(con_alpha(facciones.acento(self.bando), int(40 * (1 - i / 90))),
+                             (0, i, ANCHO, 1))
+            REC.imagenes[clave] = brillo
+        screen.blit(brillo, (0, ALTO - 90))
 
     def _dibujar_hud(self, screen, ahora):
         # barra superior: fase, marcador y manos
-        s = pygame.Surface((ANCHO, 74), pygame.SRCALPHA)
-        s.fill((12, 13, 20, 210))
+        s = REC.imagenes.get("hud_barra")
+        if s is None:
+            s = pygame.Surface((ANCHO, 74), pygame.SRCALPHA)
+            s.fill((12, 13, 20, 210))
+            REC.imagenes["hud_barra"] = s
         screen.blit(s, (0, 0))
         pygame.draw.line(screen, BORDE, (0, 74), (ANCHO, 74), 1)
         t, c = self.marcador_mostrado
@@ -398,17 +472,29 @@ class Juego:
             texto(screen, f"{facciones.nombre(self.bando)} vs {facciones.nombre(self.bando_cpu)}",
                   8, TEXTO_TENUE, x=24, y=36)
 
-        # marcador central con separador
+        # marcador central con escudos del color de cada baraja
         panel(screen, pygame.Rect(ANCHO // 2 - 84, 12, 168, 48), (18, 19, 28, 230), BORDE, radio=8, grosor=1)
-        texto(screen, f"{t}", 20, mezcla(AZUL, (255, 255, 255), 0.3), centro=(ANCHO // 2 - 42, 36))
+        badge_t = pygame.Rect(ANCHO // 2 - 74, 18, 56, 36)
+        badge_c = pygame.Rect(ANCHO // 2 + 18, 18, 56, 36)
+        for badge, acc in ((badge_t, facciones.acento(self.bando)),
+                           (badge_c, facciones.acento(self.bando_cpu))):
+            clave = ("badge", acc)
+            capa = REC.imagenes.get(clave)
+            if capa is None:
+                capa = pygame.Surface((badge.w, badge.h), pygame.SRCALPHA)
+                pygame.draw.rect(capa, con_alpha(acc, 35), capa.get_rect(), border_radius=6)
+                pygame.draw.rect(capa, con_alpha(acc, 120), capa.get_rect(), 1, border_radius=6)
+                REC.imagenes[clave] = capa
+            screen.blit(capa, badge.topleft)
+        texto(screen, f"{t}", 20, mezcla(facciones.acento(self.bando), (255, 255, 255), 0.3), centro=(ANCHO // 2 - 42, 36))
         texto(screen, "-", 14, TEXTO_TENUE, centro=(ANCHO // 2, 36))
-        texto(screen, f"{c}", 20, mezcla(ROJO, (255, 255, 255), 0.3), centro=(ANCHO // 2 + 42, 36))
+        texto(screen, f"{c}", 20, mezcla(facciones.acento(self.bando_cpu), (255, 255, 255), 0.3), centro=(ANCHO // 2 + 42, 36))
 
         # manos a los lados del marcador
         texto(screen, f"TU MANO: {len(self.mano_u)}", 8, TEXTO, centro=(ANCHO // 2 - 150, 30))
         texto(screen, f"SU MANO: {len(self.mano_c)}", 8, TEXTO, centro=(ANCHO // 2 + 150, 30))
-        texto(screen, "TÚ", 8, mezcla(AZUL, TEXTO_ON, 0.4), centro=(ANCHO // 2 - 150, 52))
-        texto(screen, "RIVAL", 8, mezcla(ROJO, TEXTO_ON, 0.4), centro=(ANCHO // 2 + 150, 52))
+        texto(screen, "TÚ", 8, mezcla(facciones.acento(self.bando), TEXTO_ON, 0.4), centro=(ANCHO // 2 - 150, 52))
+        texto(screen, "RIVAL", 8, mezcla(facciones.acento(self.bando_cpu), TEXTO_ON, 0.4), centro=(ANCHO // 2 + 150, 52))
 
         # racha
         if self.racha >= 2:
@@ -433,11 +519,18 @@ class Juego:
                 rect = celda_rect(r, c)
                 pygame.draw.rect(screen, SLOT_BG, rect, border_radius=7)
                 pygame.draw.rect(screen, SLOT_BORDE, rect, 2, border_radius=7)
+                carta = self.board[r][c]
+                if carta and carta.dueno in (USUARIO, CPU):
+                    # halo del dominio: el color de la baraja dueña tintéa
+                    # su casilla, misma pista que el marco de la carta
+                    halo = self._color_dueno(carta.dueno)
+                    key = ("tinte_casilla", rect.w, rect.h, halo)
+                    tinte = ui.superficie(key, lambda: _tinte_casilla(rect.w, rect.h, halo))
+                    screen.blit(tinte, (rect.x - 5, rect.y - 5))
                 if (r, c) in caps_preview:
                     pygame.draw.rect(screen, VERDE, rect, 4, border_radius=7)
                 elif objetivo == (r, c):
                     pygame.draw.rect(screen, DORADO, rect, 4, border_radius=7)
-                carta = self.board[r][c]
                 if carta:
                     sup = self.super_cartas(carta)
                     if self.ultima_jugada and self.ultima_jugada[0] == r and \
@@ -445,10 +538,23 @@ class Juego:
                         k = (ahora - self.ultima_jugada[2]) / 0.2
                         esc = 0.9 + 0.1 * ease(k)
                         sup = pygame.transform.smoothscale(sup, (int(CARD_W * esc), int(CARD_H * esc)))
+                        _sombra_carta(screen, pygame.Rect(rect.centerx - sup.get_width() // 2,
+                                                          rect.centery - sup.get_height() // 2,
+                                                          sup.get_width(), sup.get_height()))
                         screen.blit(sup, (rect.centerx - sup.get_width() // 2,
                                            rect.centery - sup.get_height() // 2))
                     else:
-                        screen.blit(sup, rect.topleft)
+                        _sombra_carta(screen, rect)
+                        if self.ultima_jugada and self.ultima_jugada[0] == r and \
+                                self.ultima_jugada[1] == c:
+                            sup_p = crt._pulsar(sup, self.ultima_jugada[2])
+                            if sup_p is not sup:
+                                screen.blit(sup_p, (rect.centerx - sup_p.get_width() // 2,
+                                                    rect.centery - sup_p.get_height() // 2))
+                            else:
+                                screen.blit(sup, rect.topleft)
+                        else:
+                            screen.blit(sup, rect.topleft)
                 # casilla elemental central
                 if (r, c) == (1, 1):
                     pygame.draw.circle(screen, (255, 150, 60), (rect.right - 12, rect.bottom - 12), 5)
@@ -463,11 +569,9 @@ class Juego:
         # flashes de captura
         for (r, c, t0, dueno) in self.flash:
             k = (ahora - t0) / 0.6
-            alpha = int(150 * (1 - k))
-            overlay = pygame.Surface((CARD_W, CARD_H), pygame.SRCALPHA)
-            color = AZUL if dueno == USUARIO else ROJO
-            overlay.fill(con_alpha(color, alpha))
-            screen.blit(overlay, celda_rect(r, c).topleft)
+            alpha = min(18, int(150 * (1 - k)) // 8)
+            color = self._color_dueno(dueno)
+            screen.blit(_overlay_captura(alpha, color), celda_rect(r, c).topleft)
 
         # consejo: mejor casilla para la carta resaltada
         if objetivo is None and not self.turno_cpu and not self.fin:
@@ -494,7 +598,7 @@ class Juego:
         # Al terminar el duelo lo muestra el cartel de resultado, no aqui.
         if self.comentario and not self.fin and ahora - self.comentario_t0 < 3.6:
             lineas = envolver(self.comentario, 8, 230)[:3]
-            ancho = max(70, max(REC.fuente(8).render(l, True, TEXTO).get_width() for l in lineas) + 20)
+            ancho = max(70, max(ancho_texto(l, 8) for l in lineas) + 20)
             alto = len(lineas) * 16 + 14
             caja = pygame.Rect(min(x + 96 - ancho, ANCHO - ancho - 10), y - alto - 10, ancho, alto)
             panel(screen, caja, (12, 12, 20, 230), DORADO, radio=6, grosor=1)
@@ -520,7 +624,8 @@ class Juego:
             destino = pygame.Rect(rect.x, y, rect.w, rect.h)
             sup = self.super_cartas(carta, synergy=False)
             if hover:
-                crt.resplandor_carta(screen, destino, carta, USUARIO, 110)
+                crt.resplandor_carta(screen, destino, carta, USUARIO, 110, bando_dueno=self.bando)
+            _sombra_carta(screen, destino)
             screen.blit(sup, (destino.x, destino.y))
             # descripciones: se encolan y se pintan al final del frame, para
             # que ni las cartas siguientes ni el tablero las tapen
@@ -545,9 +650,7 @@ class Juego:
         if self.arrastrando:
             carta, _ = self.arrastrando
             x, y = self.pos_arrastre
-            sombra = pygame.Surface((CARD_W, CARD_H), pygame.SRCALPHA)
-            pygame.draw.rect(sombra, (0, 0, 0, 110), sombra.get_rect(), border_radius=7)
-            screen.blit(sombra, (x - CARD_W // 2 + 6, y - CARD_H // 2 + 6))
+            _sombra_carta(screen, pygame.Rect(x - CARD_W // 2, y - CARD_H // 2, CARD_W, CARD_H), off=(6, 6))
             screen.blit(self.super_cartas(carta, synergy=False),
                         (x - CARD_W // 2, y - CARD_H // 2))
 
@@ -557,19 +660,26 @@ class Juego:
         Se pinta fuera del bucle de la mano y antes de la carta que se esta
         arrastrando, para que se vea entera y la arrastrada quede encima.
         """
-        grande = crt.crear(carta, USUARIO, synergy=False, escala=1.35)
+        grande = crt.crear(carta, USUARIO, synergy=False, escala=1.35,
+                           bando_dueno=self.bando)
         gx = min(ANCHO - grande.get_width() - 10, mouse[0] + 18)
         gy = max(80, min(ALTO - grande.get_height() - 10, mouse[1] - 40))
-        sombra = pygame.Surface(grande.get_size(), pygame.SRCALPHA)
-        sombra.fill((0, 0, 0, 130))
-        screen.blit(sombra, (gx + 5, gy + 5))
+        _sombra_carta(screen, pygame.Rect(gx, gy, grande.get_width(), grande.get_height()), big=True)
         screen.blit(grande, (gx, gy))
         return pygame.Rect(gx, gy, grande.get_width(), grande.get_height())
 
     def _dibujar_particulas(self, screen):
+        """Las particulas viven en una capa propia que se reutiliza.
+
+        Antes se creaba una Surface SRCALPHA de 1280x800 por frame (4 MB de
+        basura) para pintar unas pocas docenas de circulos."""
         if not self.particulas:
+            self._capa_part = None
             return
-        s = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+        if self._capa_part is None:
+            self._capa_part = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+        s = self._capa_part
+        s.fill((0, 0, 0, 0))
         for p in self.particulas:
             k = 1 - p["t"] / p["vida"]
             pygame.draw.circle(s, con_alpha(p["color"], int(220 * k)), (int(p["x"]), int(p["y"])),
@@ -585,27 +695,25 @@ class Juego:
             self.banner = None
             return
         a = int(255 * (1 - k))
-        # fondo para que el cartel se lea sobre el tablero
-        ancho_texto = REC.fuente(30).render(cadena, True, color).get_width()
-        fondo = pygame.Surface((ancho_texto + 80, 96), pygame.SRCALPHA)
-        pygame.draw.rect(fondo, (8, 8, 14, int(170 * (1 - k))), fondo.get_rect(), border_radius=10)
-        screen.blit(fondo, (ANCHO // 2 - fondo.get_width() // 2, ALTO // 2 - 96))
+        # cartel flotante: sin caja oscura gigante, solo japon/halo suave
         texto(screen, cadena, 30, con_alpha(color, a), centro=(ANCHO // 2, ALTO // 2 - 60))
         if sub:
             texto(screen, sub, 10, con_alpha(TEXTO, a), centro=(ANCHO // 2, ALTO // 2 - 24))
 
     def _dibujar_resultado(self, screen, ahora):
         k = min(1.0, (ahora - self.tiempo_fin) / 0.5)
-        capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
-        capa.fill((0, 0, 0, int(170 * k)))
-        screen.blit(capa, (0, 0))
+        screen.blit(ui._capa_negra(int(170 * k)), (0, 0))
         caja = pygame.Rect(ANCHO // 2 - 230, ALTO // 2 - 140, 460, 280)
-        sombra = pygame.Surface(caja.size, pygame.SRCALPHA)
-        pygame.draw.rect(sombra, (0, 0, 0, 150), sombra.get_rect(), border_radius=10)
+        sombra = ui.superficie(
+            ("caja_sombra", caja.w, caja.h),
+            lambda: _caja_llena(caja.w, caja.h, (0, 0, 0, 150)),
+        )
         screen.blit(sombra, (caja.x + 6, caja.y + 6))
-        s = pygame.Surface(caja.size, pygame.SRCALPHA)
-        s.fill((20, 20, 30, 240))
-        screen.blit(s, caja.topleft)
+        relleno = ui.superficie(
+            ("caja_relleno", caja.w, caja.h),
+            lambda: _caja_llena(caja.w, caja.h, (20, 20, 30, 240)),
+        )
+        screen.blit(relleno, caja.topleft)
         pygame.draw.rect(screen, DORADO, caja, 3, border_radius=10)
 
         if self.ganador == USUARIO:
@@ -638,7 +746,7 @@ def now_clickable(ahora, t0):
 
 
 # --------------------------------------------------------------------- bucle
-def partida(screen, clock, juego, test_mode=False):
+async def partida(screen, clock, juego, test_mode=False):
     """Bucle bloqueante del duelo. Devuelve Resultado."""
     # El enfrentamiento tiene su propia musica: no la del rival
     audio.musica(audio.musica_de_duelo())
@@ -648,6 +756,7 @@ def partida(screen, clock, juego, test_mode=False):
     resultado = None
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
                 pygame.quit()

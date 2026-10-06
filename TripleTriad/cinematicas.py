@@ -31,6 +31,8 @@ from ui import (
     texto,
 )
 
+import asyncio
+
 VELOCIDAD_ESCRITURA = 44.0  # caracteres por segundo
 LINEA_BARRA = 46
 
@@ -86,7 +88,7 @@ class Cinematica:
         self._t_escena = time.time()
         return True
 
-    def ejecutar(self, screen, clock):
+    async def ejecutar(self, screen, clock):
         if not self.escenas:
             if self.al_terminar:
                 self.al_terminar()
@@ -97,6 +99,7 @@ class Cinematica:
 
         while True:
             clock.tick(LIMIT_FPS)
+            await asyncio.sleep(0)
             escena = self.escena()
             if escena is None:
                 break
@@ -357,6 +360,6 @@ def escenas_final(titulo, lineas, faccion, extra=None):
     return escenas, audio.musica_de_faccion(faccion)
 
 
-def reproducir(screen, clock, escenas, musica=None, al_terminar=None, permitir_saltar=True):
-    Cinematica(escenas, al_terminar=al_terminar, musica=musica,
-              permitir_saltar=permitir_saltar).ejecutar(screen, clock)
+async def reproducir(screen, clock, escenas, musica=None, al_terminar=None, permitir_saltar=True):
+    await Cinematica(escenas, al_terminar=al_terminar, musica=musica,
+                     permitir_saltar=permitir_saltar).ejecutar(screen, clock)

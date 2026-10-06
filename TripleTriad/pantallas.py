@@ -33,6 +33,7 @@ from ui import (
     LIMIT_FPS,
     con_alpha,
     dibujar_tooltips,
+    envolver,
     fundido_entrada,
     panel,
     parrafo,
@@ -40,6 +41,8 @@ from ui import (
     texto,
     tooltip,
 )
+
+import asyncio
 
 VERSION_JUEGO = "1.0"
 
@@ -88,7 +91,7 @@ def _tecla_navegacion(botones, evento, seleccion):
 
 
 # ------------------------------------------------------------------- portada
-def portada(screen, clock):
+async def portada(screen, clock):
     """Pantalla de titulo con la marca animada."""
     fondo = Fondo("dragon")
     t0 = time.time()
@@ -96,6 +99,7 @@ def portada(screen, clock):
     boton = Boton(pygame.Rect(ANCHO // 2 - 170, ALTO - 120, 340, 52), "PULSA PARA EMPEZAR", 12)
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         t = time.time() - t0
         fondo.dibujar(screen, dt)
 
@@ -113,16 +117,16 @@ def portada(screen, clock):
             panel(screen, pygame.Rect(x - 90, 250, 180, 40), (16, 17, 26, 200), BORDE, radio=8, grosor=1)
             texto(screen, f, 9, TEXTO_TENUE, centro=(x, 270))
 
-        # cartas flotando de fondo
+        # cartas flotando de fondo (giro y sombra cacheados: antes eran cinco
+        # Surface nuevas por frame y eso solo en la portada ya costaba caro)
         for i, f in enumerate(["humano", "orco", "elfo", "goblin", "dragon"]):
             carta = mazos.TODOS[f][-1]
-            esc = 1.0
+            clave = crt._slug(carta.nombre)
             sup = crt.crear(carta, None)
             x = 120 + i * 240 + math_seno(t * 0.8 + i) * 8
             y = 380 + math_seno(t * 1.1 + i * 1.7) * 12
-            sombra = pygame.Surface(sup.get_size(), pygame.SRCALPHA)
-            sombra.fill((0, 0, 0, 90))
-            rot = pygame.transform.rotate(sup, math_seno(t * 0.5 + i) * 2)
+            sombra = crt.sombra(sup, clave)
+            rot = crt.rotar(sup, clave, math_seno(t * 0.5 + i) * 2)
             screen.blit(sombra, (x - sup.get_width() // 2 + 4, y - sup.get_height() // 2 + 6))
             screen.blit(rot, (x - rot.get_width() // 2, y - rot.get_height() // 2))
 
@@ -150,7 +154,7 @@ def math_seno(x):
 
 
 # ---------------------------------------------------------------------- menu
-def menu(screen, clock, estado=None):
+async def menu(screen, clock, estado=None):
     """Menu principal. Devuelve 'rapida', 'campana', 'coleccion', 'ajustes'."""
     fondo = Fondo("dragon")
     hay = bool(estado) and not estado.get("completada")
@@ -159,6 +163,7 @@ def menu(screen, clock, estado=None):
 
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
@@ -203,9 +208,9 @@ def menu(screen, clock, estado=None):
             # mini mazo
             cartas = campana.cartas_jugador(estado)
             for i, carta in enumerate(cartas):
-                sup = crt.crear(carta, None)
+                sup = crt.miniatura(carta, (52, 72))
                 x = ANCHO // 2 - len(cartas) * 34 + i * 68
-                screen.blit(pygame.transform.scale(sup, (52, 72)), (x, 566))
+                screen.blit(sup, (x, 566))
 
         texto(screen, "ENTER para continuar   ESC para salir", 8, TEXTO_TENUE,
               centro=(ANCHO // 2, ALTO - 30))
@@ -238,12 +243,19 @@ def menu(screen, clock, estado=None):
 
 
 # ----------------------------------------------------------- elegir faccion
-def perfil_racha(faccion):
-    """Mejor racha guardada para una faccion (0 si no hay ninguna)."""
-    return campana.cargar_perfil().get("mejor_racha", {}).get(faccion, 0)
+def perfil_racha(faccion, perfil=None):
+    """Mejor racha guardada para una faccion (0 si no hay ninguna).
+
+    `perfil` se puede pasar ya cargado: leer el JSON del disco por faccion y
+    por frame era, solo en esta pantalla, 7 lecturas + 7 parseos en cada
+    frame (y en la web el fichero esta en MEMFS, no es gratis).
+    """
+    if perfil is None:
+        perfil = campana.cargar_perfil()
+    return perfil.get("mejor_racha", {}).get(faccion, 0)
 
 
-def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campana"):
+async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campana"):
     """Selector de faccion con ficha de estilo y vista previa del mazo.
 
     `modo`:
@@ -257,8 +269,11 @@ def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campana"):
     fondo = Fondo("humano")
     seleccion = 0
     t0 = time.time()
+    # el perfil no cambia mientras esta pantalla abierta: se lee una vez
+    perfil = campana.cargar_perfil()
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
@@ -301,7 +316,7 @@ def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campana"):
             if not rapida:
                 texto(screen, f"jefe: {facciones.nombre(facciones.rival_final(faccion))}",
                       7, (206, 146, 146), x=rect.x + 106, y=rect.bottom - 34)
-                mejor = perfil_racha(faccion)
+                mejor = perfil_racha(faccion, perfil)
                 if mejor:
                     texto(screen, f"mejor racha: {mejor}", 7, TEXTO_TENUE,
                           x=rect.x + 106, y=rect.bottom - 18)
@@ -314,21 +329,21 @@ def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campana"):
         texto(screen, facciones.nombre(faccion), 14, facciones.acento(faccion),
               centro=(ficha.centerx, ficha.y + 26))
         parrafo(screen, facciones.FACCIONES[faccion]["lema"], 8, TEXTO_ON,
-                ficha.x + 18, ficha.y + 46, ficha.w - 36, interlinea=14, centrado=True)
-        y = ficha.y + 88
+                ficha.x + 18, ficha.y + 46, ficha.w - 36, interlinea=13, centrado=True)
+        y = ficha.y + 84
         y = parrafo(screen, facciones.FACCIONES[faccion]["arco"], 8, TEXTO,
-                    ficha.x + 18, y, ficha.w - 36, interlinea=16)
+                    ficha.x + 18, y, ficha.w - 36, interlinea=15)
         y += 8
         texto(screen, "TU MAZO", 10, DORADO, centro=(ficha.centerx, y))
         y += 12
         for i, carta in enumerate(cartas):
-            sup = crt.crear(carta, None)
+            sup = crt.miniatura(carta)
             x = ficha.centerx - len(cartas) * 26 + i * 52
-            screen.blit(pygame.transform.scale(sup, (48, 66)), (x, y))
+            screen.blit(sup, (x, y))
             if carta.habilidad:
                 texto(screen, crt.ICONO_HABILIDAD.get(carta.habilidad, ""), 6,
                       TEXTO_TENUE, centro=(x + 24, y + 72))
-        y += 84
+        y += 80
         habilidades = sorted({c.habilidad for c in cartas if c.habilidad})
         if habilidades:
             texto(screen, "HABILIDADES", 8, DORADO, centro=(ficha.centerx, y))
@@ -350,9 +365,12 @@ def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campana"):
         else:
             texto(screen, "TUS RIVALES EN CAMPANA", 8, DORADO, centro=(ficha.centerx, y))
             y += 18
-            for rival in campana.escalera_de(faccion) + [facciones.rival_final(faccion)]:
-                texto(screen, facciones.nombre(rival), 7, TEXTO, centro=(ficha.centerx, y))
-                y += 16
+            # la lista cabe mejor en dos o tres lineas que una por rival:
+            # esas 7 lineas se salian de la ficha
+            rivales = [facciones.nombre(r) for r in campana.escalera_de(faccion)]
+            rivales.append(facciones.nombre(facciones.rival_final(faccion)))
+            y = parrafo(screen, " › ".join(rivales), 7, TEXTO,
+                        ficha.x + 18, y, ficha.w - 36, interlinea=12, centrado=True)
 
         # botones
         # "ELEGIR Y EMPEZAR" queda siempre a la vista: el unico flujo que quedaba
@@ -441,7 +459,7 @@ CONEXIONES = [
 ]
 
 
-def mapa_campana(screen, clock, estado):
+async def mapa_campana(screen, clock, estado):
     """Mapa con los nodos visitados, el actual y las ramas."""
     fondo = Fondo(estado["faccion"])
     t0 = time.time()
@@ -450,6 +468,7 @@ def mapa_campana(screen, clock, estado):
 
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo.dibujar(screen, dt)
         fundido_entrada(screen, t0)
         mouse = pygame.mouse.get_pos()
@@ -472,7 +491,7 @@ def mapa_campana(screen, clock, estado):
             x2, y2 = POSICIONES[b]
             activo = a in ruta and (b in ruta or b == actual)
             color = facciones.acento(faccion) if activo else (60, 58, 52)
-            pygame.draw.line(screen, color, (x1, y1), (x2, y2), 4 if activo else 2)
+            pygame.draw.line(screen, color, (x1, y1), (x2, y2), 5 if activo else 3)
             if activo:
                 p = (t * 0.35) % 1.0
                 px = int(x1 + (x2 - x1) * p)
@@ -574,7 +593,7 @@ def mapa_campana(screen, clock, estado):
                             return "seguir"
                         if nombre in ruta:
                             audio.sfx(audio.CARD)
-                            _ficha_nodo(screen, clock, estado, nombre)
+                            await _ficha_nodo(screen, clock, estado, nombre)
 
 
 def _descripcion_carta(carta):
@@ -586,13 +605,14 @@ def _descripcion_carta(carta):
     return "\n".join(partes)
 
 
-def _ficha_nodo(screen, clock, estado, nombre):
+async def _ficha_nodo(screen, clock, estado, nombre):
     """Panel informativo de un nodo ya superado."""
     datos = campana.nodo(nombre)
     info = campana.info_duelo(estado, nombre)
     cerrar = Boton(pygame.Rect(ANCHO // 2 - 90, ALTO - 130, 180, 44), "VOLVER", 11)
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         mouse = pygame.mouse.get_pos()
         capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
         capa.fill((0, 0, 0, 190))
@@ -621,13 +641,14 @@ def _ficha_nodo(screen, clock, estado, nombre):
                 return
 
 
-def elegir_rama(screen, clock, estado):
+async def elegir_rama(screen, clock, estado):
     """La bifurcacion de la campana:Aldea (segura) o Ruinas (riesgosa)."""
     fondo = Fondo(estado["faccion"])
     opciones = campana.opciones_bifurcacion()
     t0 = time.time()
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo.dibujar(screen, dt)
         fundido_entrada(screen, t0)
         mouse = pygame.mouse.get_pos()
@@ -728,13 +749,14 @@ def _icono_recompensa(screen, clave, centro, color):
         pygame.draw.circle(screen, color, centro, 16, 3)
 
 
-def recompensa(screen, clock, estado, nodo_id):
+async def recompensa(screen, clock, estado, nodo_id):
     """Elige una recompensa tras ganar el duelo."""
     opciones = campana.recompensas_de(nodo_id)
     fondo = Fondo(estado["faccion"])
     t0 = time.time()
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo.dibujar(screen, dt)
         fundido_entrada(screen, t0)
         mouse = pygame.mouse.get_pos()
@@ -793,12 +815,17 @@ def recompensa(screen, clock, estado, nodo_id):
                 return opciones[0]
 
 
-def elegir_carta_para_mejorar(screen, clock, estado):
+async def elegir_carta_para_mejorar(screen, clock, estado):
     cartas = campana.cartas_jugador(estado)
     seleccion = None
     while True:
         mouse = pygame.mouse.get_pos()
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        # overlay oscuro: el modal no tapa lo de abajo sin congelar el fondo
+        capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+        capa.fill((0, 0, 0, 190))
+        screen.blit(capa, (0, 0))
         texto(screen, "ENTRENAMIENTO", 20, DORADO, centro=(ANCHO // 2, 140))
         texto(screen, "Elige la carta que quieres mas fuerte (+1)", 10, TEXTO_TENUE,
               centro=(ANCHO // 2, 176))
@@ -827,12 +854,13 @@ def elegir_carta_para_mejorar(screen, clock, estado):
                         return i
 
 
-def draft(screen, clock, estado, ofertas=None):
+async def draft(screen, clock, estado, ofertas=None):
     """Elige una de las cartas ofrecidas y a quien sustituye."""
     ofertas = ofertas or campana.draft_aleatorio(estado, 3)
     fondo = Fondo(estado["faccion"])
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         texto(screen, "RECLUTA", 22, DORADO, centro=(ANCHO // 2, 110))
@@ -868,12 +896,16 @@ def draft(screen, clock, estado, ofertas=None):
             return elegida
 
 
-def draft_reemplazo(screen, clock, estado, carta):
+async def draft_reemplazo(screen, clock, estado, carta):
     """Segunda fase del draft: a quien sustituye la carta nueva."""
     cartas = campana.cartas_jugador(estado)
     while True:
         mouse = pygame.mouse.get_pos()
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+        capa.fill((0, 0, 0, 190))
+        screen.blit(capa, (0, 0))
         texto(screen, "RECLUTA", 20, DORADO, centro=(ANCHO // 2, 96))
         texto(screen, f"{carta.nombre} entra en el mazo. A quien sustituye?", 10, TEXTO_TENUE,
               centro=(ANCHO // 2, 132))
@@ -904,15 +936,15 @@ def draft_reemplazo(screen, clock, estado, carta):
                         return i
 
 
-def aplicar_recompensa(screen, clock, estado, clave, nodo_id):
+async def aplicar_recompensa(screen, clock, estado, clave, nodo_id):
     """Aplica la recompensa elegida y muestra su resultado."""
     if clave == "entrenamiento":
-        idx = elegir_carta_para_mejorar(screen, clock, estado)
+        idx = await elegir_carta_para_mejorar(screen, clock, estado)
         lado = campana.mejorar_carta(estado, idx)
         mensaje = f"{estado['cartas'][idx]['nombre']} sube su {lado.upper()} a {estado['cartas'][idx][lado]}"
     elif clave == "recluta":
-        carta = draft(screen, clock, estado)
-        idx = draft_reemplazo(screen, clock, estado, carta)
+        carta = await draft(screen, clock, estado)
+        idx = await draft_reemplazo(screen, clock, estado, carta)
         campana.draft_reemplazo(estado, carta, idx)
         mensaje = f"{carta.nombre} entra en el mazo en lugar de otra carta"
     elif clave == "sigilo":
@@ -928,15 +960,16 @@ def aplicar_recompensa(screen, clock, estado, clave, nodo_id):
     else:
         mensaje = "Nada que aplicar"
     campana.guardar(estado)
-    cartel(screen, clock, "RECOMPENSA", mensaje)
+    await cartel(screen, clock, "RECOMPENSA", mensaje)
     return mensaje
 
 
-def cartel(screen, clock, titulo, mensaje):
+async def cartel(screen, clock, titulo, mensaje):
     """Pantalla corta de confirmacion."""
     fondo = Fondo("dragon")
     while True:
         clock.tick(LIMIT_FPS)
+        await asyncio.sleep(0)
         fondo.dibujar(screen)
         texto(screen, titulo, 20, DORADO, centro=(ANCHO // 2, ALTO // 2 - 40))
         parrafo(screen, mensaje, 11, TEXTO, ANCHO // 2 - 320, ALTO // 2 + 10, 640,
@@ -968,13 +1001,14 @@ def _fondo_escena(screen, nombre):
     Fondo("dragon").dibujar(screen)
 
 
-def encuentro(screen, clock, estado, nodo_id):
+async def encuentro(screen, clock, estado, nodo_id):
     """Encuentro narrativo con dos opciones y consecuencias reales."""
     enc = campana.encuentro_para(nodo_id)
     opciones = enc["opciones"]
     t0 = time.time()
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         _fondo_escena(screen, enc.get("escena", "campamento"))
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
@@ -1009,12 +1043,12 @@ def encuentro(screen, clock, estado, nodo_id):
                         audio.sfx(audio.MENU_OK)
                         titulo, texto_efecto = campana.aplicar_encuentro(estado, opciones[i]["efecto"])
                         campana.guardar(estado)
-                        cartel(screen, clock, titulo, texto_efecto)
+                        await cartel(screen, clock, titulo, texto_efecto)
                         return
 
 
 # ---------------------------------------------------------------- coleccion
-def coleccion(screen, clock, estado=None):
+async def coleccion(screen, clock, estado=None):
     """Mazos, cartas y finales desbloqueados."""
     perfil = campana.cargar_perfil()
     orden = facciones.orden_facciones()
@@ -1023,6 +1057,7 @@ def coleccion(screen, clock, estado=None):
     fondos = {f: Fondo(f) for f in orden}
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondos[faccion].dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
         t = time.time() - t0
@@ -1058,30 +1093,41 @@ def coleccion(screen, clock, estado=None):
             etiqueta, color = rareza(carta)
             texto(screen, etiqueta, 8, color, centro=(rect.centerx, rect.bottom + 18))
 
-        # panel de finales
-        panel(screen, pygame.Rect(ANCHO - 380, 200, 340, 400), PANEL, BORDE, radio=10)
-        texto(screen, "FINALES", 12, DORADO, centro=(ANCHO - 210, 226))
-        y = 250
+        # panel de finales: altura y posicion calculadas segun el contenido
+        entradas_f = []
+        altura = 0
         for f in orden:
             conseguidos = perfil.get("finales", {}).get(f, [])
+            titulos = [
+                campana.FINALES[f][v]["titulo"]
+                for v in ("dominio", "equilibrio", "caos")
+                if v in conseguidos
+            ]
+            h = 22 + 8
+            if titulos:
+                lineas_t = envolver(" / ".join(titulos), 7, 300)
+                h += 14 * max(1, len(lineas_t))
+            entradas_f.append((f, conseguidos, titulos))
+            altura += h
+        alto_panel = max(120, altura + 60)
+        alto_panel = min(alto_panel, ALTO - 200 - 96)
+        panel(screen, pygame.Rect(ANCHO - 380, 200, 340, alto_panel), PANEL, BORDE, radio=10)
+        texto(screen, "FINALES", 12, DORADO, centro=(ANCHO - 210, 226))
+        y = 250
+        for f, conseguidos, titulos in entradas_f:
             color = facciones.acento(f) if conseguidos else (90, 90, 96)
             texto(screen, facciones.nombre(f), 9, color, x=ANCHO - 360, y=y)
             marcas = []
             for variante in ("dominio", "equilibrio", "caos"):
                 marcas.append("[X]" if variante in conseguidos else "[ ]")
-            # marcas alineadas a la derecha del panel para no pisar el nombre
+            # marcas alineadas al margen derecho interior del panel
             ancho_marcas = REC.fuente(8).render("  ".join(marcas), True, TEXTO_TENUE).get_width()
             texto(screen, "  ".join(marcas), 8, TEXTO_TENUE,
-                  x=ANCHO - 30 - ancho_marcas, y=y)
+                  x=ANCHO - 380 + 340 - 20 - ancho_marcas, y=y)
             y += 22
-            if conseguidos:
-                titulos = [
-                    campana.FINALES[f][v]["titulo"]
-                    for v in ("dominio", "equilibrio", "caos")
-                    if v in conseguidos
-                ]
-                parrafo(screen, " / ".join(titulos), 7, TEXTO_TENUE, ANCHO - 360, y, 300, interlinea=14)
-                y += 14 * (len(titulos) + 1)
+            if titulos:
+                y = parrafo(screen, " / ".join(titulos), 7, TEXTO_TENUE,
+                            ANCHO - 360, y, 300, interlinea=14)
             y += 8
 
         # estadisticas
@@ -1125,7 +1171,7 @@ def coleccion(screen, clock, estado=None):
 
 
 # ----------------------------------------------------------------- ajustes
-def ajustes(screen, clock):
+async def ajustes(screen, clock):
     """Volumen de efectos y musica, pantalla completa y una mano de ayuda.
 
     Devuelve un dict con los ajustes cambiados para que main los aplique.
@@ -1136,6 +1182,7 @@ def ajustes(screen, clock):
     fondo = Fondo("elfo")
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
 
@@ -1183,13 +1230,13 @@ def ajustes(screen, clock):
                     audio.sfx(audio.MENU_OK)
                 elif ayuda.clic(ev.pos):
                     audio.sfx(audio.MENU_OK)
-                    _pantalla_ayuda(screen, clock)
+                    await _pantalla_ayuda(screen, clock)
                 elif cerrar.clic(ev.pos):
                     audio.sfx(audio.MENU_BACK)
                     return {"fullscreen": fullscreen, "sfx": sfx, "musica": musica}
 
 
-def _pantalla_ayuda(screen, clock):
+async def _pantalla_ayuda(screen, clock):
     """Resumen de controles y reglas, para no obligar al manual."""
     paginas = [
         ("CONTROLES", [
@@ -1215,6 +1262,7 @@ def _pantalla_ayuda(screen, clock):
     indice = 0
     while True:
         clock.tick(LIMIT_FPS)
+        await asyncio.sleep(0)
         fondo = Fondo("elfo")
         fondo.dibujar(screen)
         titulo, lineas = paginas[indice]
@@ -1242,7 +1290,7 @@ def _pantalla_ayuda(screen, clock):
                     return
 
 
-def pantalla_error(screen, clock, exc, traza, contexto=""):
+async def pantalla_error(screen, clock, exc, traza, contexto=""):
     """Muestra un error inesperado en la ventana en vez de cerrar el proceso.
 
     Antes el juego escribia crash.log y se cerraba de golpe: si algo fallaba,
@@ -1264,6 +1312,7 @@ def pantalla_error(screen, clock, exc, traza, contexto=""):
     clock = clock or type("R", (), {"tick": staticmethod(lambda f=60: 16)})()
     while True:
         clock.tick(LIMIT_FPS)
+        await asyncio.sleep(0)
         screen.fill((24, 14, 16))
         # marco
         marco = pygame.Rect(120, 120, ANCHO - 240, ALTO - 240)
@@ -1302,10 +1351,11 @@ def pantalla_error(screen, clock, exc, traza, contexto=""):
 
 
 # ------------------------------------------------------------------- derrota
-def derrota(screen, clock, estado):
+async def derrota(screen, clock, estado):
     """Opciones tras perder un duelo de campana."""
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
         fondo = Fondo(estado.get("faccion", "goblin"))
         fondo.dibujar(screen, dt)
         mouse = pygame.mouse.get_pos()
@@ -1339,7 +1389,7 @@ def derrota(screen, clock, estado):
 
 
 # ------------------------------------------------------------------- final
-def epilogo(screen, clock, estado):
+async def epilogo(screen, clock, estado):
     """Carta de final + cinematica + resumen de la partida."""
     campana.completar(estado)
     variante, titulo, lineas = campana.final_de(estado)
@@ -1353,12 +1403,13 @@ def epilogo(screen, clock, estado):
     ]
     escenas, musica = cinematicas.escenas_final(titulo, lineas, faccion, resumen)
     audio.musica(musica)
-    cinematicas.reproducir(screen, clock, escenas, musica=musica, permitir_saltar=False)
+    await cinematicas.reproducir(screen, clock, escenas, musica=musica, permitir_saltar=False)
 
     nuevo = (estado.get("final") or {}).get("nuevo")
     # volver al menu tras el final
     while True:
         clock.tick(LIMIT_FPS)
+        await asyncio.sleep(0)
         fondo = Fondo(faccion)
         fondo.dibujar(screen)
         texto(screen, "FIN DE LA CAMPAÑA", 22, DORADO, centro=(ANCHO // 2, 200))

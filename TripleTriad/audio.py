@@ -6,10 +6,16 @@ de sonido externos. Aqui solo se mezclan, con volumen y afinacion por pantalla.
 """
 
 import os
+import sys
 
 import pygame
 
 from paths import recurso
+
+# En la web (pygbag) los WAV no suenan bien y ocupan 10x mas que los OGG:
+# `es_web()` hace que se cargue el OGG cuando existe. En nativo se sigue
+# usando el WAV, que es lo que usan los tests y el ejecutable de escritorio.
+_WEB = sys.platform == "emscripten"
 
 _ACTIVO = True
 _volumen_sfx = 0.55
@@ -19,6 +25,29 @@ _cache_musica = {}
 _musica_actual = None
 _sfx_actuales = {}
 _musica_pausada = False
+
+
+def es_web():
+    """True bajo pygbag/emscripten (la version de itch.io)."""
+    return _WEB
+
+
+def _ruta(nombre):
+    """Ruta de un sonido, prefiriendo el OGG en la web si esta disponible."""
+    completa = recurso(os.path.join("assets", nombre))
+    if not _WEB:
+        return completa
+    ogg = recurso(os.path.join("assets", os.path.splitext(nombre)[0] + ".ogg"))
+    return ogg if os.path.exists(ogg) else completa
+
+
+def _ruta_musica(nombre):
+    """Igual que `_ruta` pero para las pistas de `assets/musica/`."""
+    completa = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
+    if not _WEB:
+        return completa
+    ogg = recurso(os.path.join("assets", "musica", f"{nombre}.ogg"))
+    return ogg if os.path.exists(ogg) else completa
 
 
 def disponible():
@@ -69,7 +98,7 @@ def sfx(nombre, volumen=1.0, canal=None):
         return
     sonido = _cache_sfx.get(nombre)
     if sonido is None:
-        ruta = recurso(os.path.join("assets", nombre))
+        ruta = _ruta(nombre)
         if not os.path.exists(ruta):
             _cache_sfx[nombre] = False
             return
@@ -124,7 +153,7 @@ def musica(nombre, bucle=True):
     # reintentar la carga en cada frame.
     if nombre in _cache_musica:
         return  # ya se sabe que esta ausente
-    ruta = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
+    ruta = _ruta_musica(nombre)
     if not os.path.exists(ruta):
         _cache_musica[nombre] = False
         return

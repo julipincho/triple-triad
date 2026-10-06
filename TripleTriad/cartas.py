@@ -8,6 +8,7 @@ import os
 import pygame
 
 import facciones
+import ui
 from paths import recurso
 from reglas import HABILIDADES, LADOS, val
 from ui import (
@@ -33,6 +34,11 @@ ICONO_HABILIDAD = {
 }
 
 _cache = {}
+
+# Techo de la cache de cartas. Hay 35 cartas y como mucho 4 combinaciones
+# (dueno x sinergia) x 3 escalas, asi que 400 es holgado; si se supera (porque
+# el tablero escala en plein juego) se tira entera y se vuelve a pintar.
+MAX_CACHE_CARTAS = 400
 
 
 def _slug(nombre):
@@ -103,8 +109,14 @@ def rect_arte(w, h):
     return (r + 14, 25, w - 2 * (r + 14), 79)
 
 
-def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
-    """Superficie de una carta. `dueno`: 'T', 'C' o None."""
+def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_dueno=None):
+    """Superficie de una carta. `dueno`: 'T', 'C' o None.
+
+    `bando_dueno`: faccion de la baraja que domina la carta ahora mismo.
+    Si se pasa, el marco y los orbes toman el color de esa baraja (es el
+    feedback visual de quien tiene el dominio); si no, se usa el mapa
+    estandar T=AZUL, C=ROJO, None=DORADO.
+    """
     clave = (
         carta.nombre,
         tuple(carta.valores[d] for d in LADOS),
@@ -112,13 +124,29 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
         carta.habilidad,
         dueno,
         synergy,
+        bando_dueno,
     )
-    if clave in _cache and escala == 1:
+    if escala != 1:
+        # Las miniaturas de la pantalla de faccion y del menu se piden a
+        # escala 0.8 cada frame. `transform.smoothscale` es de las operaciones
+        # mas caras que hay, asi que la version escalada tambien se cachea
+        # (con su tope: son 35 cartas x 2Dueños, no una cache infinita).
+        clave = clave + (escala,)
+    if clave in _cache:
         return _cache[clave]
 
     w, h = CARD_W, CARD_H
     s = pygame.Surface((w, h), pygame.SRCALPHA)
-    claro, oscuro = facciones.FACCIONES.get(carta.bando, {"paleta": ((150, 150, 160), (50, 50, 60))})["paleta"]
+    # Color del marco: el dominio manda (color de la baraja que posee la
+    # carta), no el bando original de la carta ni el azul/rojo fijo.
+    if bando_dueno and bando_dueno in facciones.FACCIONES:
+        claro, oscuro = facciones.FACCIONES[bando_dueno]["paleta"]
+    elif dueno == "T":
+        claro, oscuro = AZUL, (30, 50, 100)
+    elif dueno == "C":
+        claro, oscuro = ROJO, (100, 30, 30)
+    else:
+        claro, oscuro = DORADO, (80, 80, 90)
 
     # sombra y marco exterior
     pygame.draw.rect(s, (12, 12, 18), (0, 0, w, h), border_radius=8)
@@ -146,7 +174,7 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
     lineas = _lineas_nombre(carta.nombre, w - 14)
     alto_placa = 16 if len(lineas) == 1 else 30
     placa = pygame.Surface((w - 8, alto_placa), pygame.SRCALPHA)
-    placa.fill((0, 0, 0, 200))
+    pygame.draw.rect(placa, (0, 0, 0, 200), placa.get_rect(), border_radius=5)
     s.blit(placa, (4, 26))
     if len(lineas) == 1:
         img = REC.fuente(8).render(lineas[0], True, (245, 245, 245))
@@ -158,15 +186,24 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
 
     # franja del bando: bajo el orbe sur, para que no lo tape
     franja = pygame.Surface((w - 8, 13), pygame.SRCALPHA)
-    franja.fill(oscuro + (235,))
+    pygame.draw.rect(franja, oscuro + (235,), franja.get_rect(), border_radius=5)
     s.blit(franja, (4, h - 16))
     etiqueta = facciones.nombre(carta.bando).upper()
     img = _texto_ajustado(etiqueta, 6, w - 16, claro)
     s.blit(img, (w // 2 - img.get_width() // 2, h - 13))
 
+    # indicador de quien capturó la carta: punto de color en la esquina
+    # inferior derecha, con el color de la baraja que la domina
+    color_dueno = (
+        facciones.acento(bando_dueno)
+        if bando_dueno in facciones.FACCIONES
+        else {"T": AZUL, "C": ROJO}.get(dueno, DORADO)
+    )
+    pygame.draw.circle(s, color_dueno, (w - 12, h - 12), 6)
+
     # Valores en el punto medio de cada lado: se leen sin esfuerzo.
     # El panel de arte esta hecho para no solaparlos.
-    color_borde = {"T": AZUL, "C": ROJO}.get(dueno, DORADO)
+    color_borde = color_dueno
     radio = RADIO_ORBE
     for lado in LADOS:
         cx, cy = posiciones_valor(w, h)[lado]
@@ -188,7 +225,7 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
         ancho, alto = 46, 13
         bx, by = w // 2 - ancho // 2, ay + ah - alto - 3
         placa_h = pygame.Surface((ancho, alto), pygame.SRCALPHA)
-        placa_h.fill(con_alpha(color_h, 225))
+        pygame.draw.rect(placa_h, con_alpha(color_h, 225), placa_h.get_rect(), border_radius=5)
         s.blit(placa_h, (bx, by))
         img = _texto_ajustado(etiqueta_h, 6, ancho - 4, (14, 12, 10))
         s.blit(img, (bx + (ancho - img.get_width()) // 2, by + 3))
@@ -201,7 +238,11 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1):
     if escala == 1:
         _cache[clave] = s
         return s
-    return pygame.transform.smoothscale(s, (int(w * escala), int(h * escala)))
+    escalada = pygame.transform.smoothscale(s, (int(w * escala), int(h * escala)))
+    if len(_cache) >= MAX_CACHE_CARTAS:
+        _cache.clear()
+    _cache[clave] = escalada
+    return escalada
 
 
 def dorso(escala=1):
@@ -217,19 +258,86 @@ def dorso(escala=1):
     return pygame.transform.smoothscale(s, (int(CARD_W * escala), int(CARD_H * escala))) if escala != 1 else s
 
 
-def resplandor_carta(screen, rect, carta, dueno, alpha):
-    """Halo de color de faccion alrededor de una carta (seleccion, hover)."""
+def miniatura(carta, tam=(48, 66)):
+    """Carta reducida a `tam`, cacheada.
+
+    La ficha de faccion y el mini mazo del menu pintan cinco miniaturas por
+    frame; antes cada una era un `transform.scale` con Surface nueva.
+    """
+    clave = ("miniatura", carta.nombre, tuple(carta.valores[d] for d in LADOS),
+             carta.bando, carta.habilidad, tam)
+    if clave in _cache:
+        return _cache[clave]
+    if len(_cache) >= MAX_CACHE_CARTAS:
+        _cache.clear()
+    _cache[clave] = pygame.transform.smoothscale(crear(carta, None), tam)
+    return _cache[clave]
+
+
+def rotar(sup, clave, grados):
+    """Gira una Superficie `grados` cacheando por grado entero.
+
+    La portada hace flotar cinco cartas girando +-2 grados. `transform.rotate`
+    es de las operaciones mas caras que hay (crea una Surface nueva y
+    remuestrea), y el giro continuo jamas repite el mismo angulo exacto: sin
+    agrupar a grado entero, cada frame serian cinco Surface nuevas. Cinco
+    grados por carta y listo: el salto es de 1 grado y no se ve.
+    """
+    paso = int(round(grados))
+    if paso == 0:
+        return sup
+    return ui.superficie(
+        ("rotar",) + tuple(clave) + (paso,),
+        lambda: pygame.transform.rotate(sup, paso),
+        80,
+    )
+
+
+def sombra(sup, clave, alpha=90):
+    """Silueta oscura de una carta, cacheada (la de la portada)."""
+    return ui.superficie(
+        ("sombra_flota",) + tuple(clave),
+        lambda: _sombra_flota(sup.get_size(), alpha),
+        40,
+    )
+
+
+def _sombra_flota(tam, alpha):
+    s = pygame.Surface(tam, pygame.SRCALPHA)
+    s.fill((0, 0, 0, alpha))
+    return s
+
+
+def resplandor_carta(screen, rect, carta, dueno, alpha, bando_dueno=None):
+    """Halo de color alrededor de una carta (seleccion, hover).
+
+    Si se pasa `bando_dueno` pinta con la baraja que domina la carta;
+    si no, con la propia (comportamiento historico, mazos/coleccion).
+
+    El alpha se agrupa en 16 niveles para poder cachear el halo: se llama en
+    cada frame y sin agrupar crearia una Surface nueva cada vez.
+    """
     if alpha <= 0:
         return
-    _, oscuro = facciones.FACCIONES.get(carta.bando, {"paleta": ((200, 200, 200), (0, 0, 0))})["paleta"]
-    color = facciones.acento(carta.bando) if carta.bando else DORADO
-    halo = pygame.Surface((rect.w + 16, rect.h + 16), pygame.SRCALPHA)
+    color = facciones.acento(bando_dueno) if bando_dueno else (
+        facciones.acento(carta.bando) if carta.bando else DORADO
+    )
+    nivel = min(255, max(1, int(alpha) // 16 * 16))
+    halo = ui.superficie(
+        ("halo_carta", rect.w, rect.h) + ui.color_cache(color) + (nivel,),
+        lambda: _halo_carta(rect.w, rect.h, color, nivel),
+    )
+    screen.blit(halo, (rect.x - 8, rect.y - 8))
+
+
+def _halo_carta(w, h, color, alpha):
+    halo = pygame.Surface((w + 16, h + 16), pygame.SRCALPHA)
     for i in range(4):
         pygame.draw.rect(
             halo, con_alpha(color, int(alpha * (0.9 - i * 0.2))),
-            (i * 4, i * 4, rect.w + 16 - i * 8, rect.h + 16 - i * 8), 2, border_radius=10,
+            (i * 4, i * 4, w + 16 - i * 8, h + 16 - i * 8), 2, border_radius=10,
         )
-    screen.blit(halo, (rect.x - 8, rect.y - 8))
+    return halo
 
 
 def tiene_sinergia(carta, board):
@@ -249,7 +357,9 @@ def descripcion_habilidad(habilidad):
 
 def _pulsar(surface, t0, duracion=0.35):
     """Efecto de brillo al colocar: escala 1.08 -> 1.0."""
-    k = min(1.0, (t0 and (pygame.time.get_ticks() / 1000 - t0)) / duracion)
+    import time as _time
+
+    k = min(1.0, ((_time.time() - t0) if t0 else 1.0) / duracion)
     if k >= 1:
         return surface
     e = 1 + 0.08 * (1 - ease(k))
