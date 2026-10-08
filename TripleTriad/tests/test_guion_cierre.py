@@ -65,7 +65,7 @@ class TestLaExplicacionInicial(unittest.TestCase):
     def test_no_contradice_el_rival_por_faccion(self):
         """La escena no puede nombrar rival: el rival sale de la escalera del
         bando y depende de la faccion elegida."""
-        # La palabra "dragon" SI tiene que estar: es la que legitimó el trono y
+        # La palabra "dragon" SI tiene que estar: es la que legitimo el trono y
         # la que sostiene la frase popular. Lo que no puede aparecer es un
         # NOMBRE PROPIO de rival, porque ese si ata el guion a una faccion.
         import facciones
@@ -181,3 +181,118 @@ class TestNaraSeVuelveAmiga(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class TestLosTresFinalesVuelvenACasa(unittest.TestCase):
+    """Punto 8 de la biblia: se regresa a nuestro mundo.
+
+    El epilogo de caos decia "el mundo parece exactamente igual" sin decir de
+    donde venias: se podia leer como que el duelista nunca habia vuelto, y
+    contradecia a `UMBRAL["caos"]`, que ya cuenta que el salon quedo del otro
+    lado de la grieta. Ademas rompia la promesa que hace el prologo.
+
+    Aqui se fija que los TRES finales digan el regreso. El MECANISMO no se toca:
+    lo que decide sigue siendo la variante, y el texto es el mismo para las diez
+    facciones.
+    """
+
+    #: Con que palabras dice un epilogo que el duelista volvio.
+    SENALES_DE_REGRESO = ("volviste", "vuelve", "regres", "salon", "torneo",
+                          "atras", "cruza", "cruzaste", "de vuelta")
+
+    def _lineas(self, variante):
+        """Solo las LINEAS, sin el titulo.
+
+        El titulo no cuenta: un epilogo puede llamarse "VOLVISTE" y no decir
+        nunca que volvio, que es exactamente el defecto que se corrigio. Si el
+        test mirase el titulo, daria verde con el texto viejo.
+        """
+        return " ".join(finales.EPILOGO[variante]["lineas"]).lower()
+
+    def _texto(self, variante):
+        return (self._lineas(variante) + " "
+                + finales.EPILOGO[variante]["titulo"].lower())
+
+    def test_los_tres_finales_dicen_el_regreso(self):
+        for variante in ("dominio", "equilibrio", "caos"):
+            texto = self._lineas(variante)
+            self.assertTrue(any(s in texto for s in self.SENALES_DE_REGRESO),
+                            "el final %s no dice en sus lineas que el duelista "
+                            "volvio a nuestro mundo" % variante)
+
+    def test_el_final_de_caos_ya_no_deja_duda(self):
+        texto = self._lineas("caos")
+        # El que fallaba: ahora tiene que decir explicitamente que volvio, y
+        # en las LINEAS, no en el titulo.
+        self.assertIn("volviste", texto)
+
+    def test_el_caos_dice_el_regreso_al_principio(self):
+        """El regreso se dice de entrada, no como un afterthought al final: si
+        recien lo aclara en la ultima linea, el jugador pasa el epilogo entero
+        creyendo que no volvio."""
+        primera = finales.EPILOGO["caos"]["lineas"][0].lower()
+        self.assertTrue(any(s in primera for s in self.SENALES_DE_REGRESO),
+                        "el final de caos no anuncia el regreso en la primera "
+                        "linea: %r" % primera)
+
+    def test_caos_sigue_siendo_caos(self):
+        """Que vuelva a casa no lo vuelve un final amable. Tiene que seguir
+        siendo el final en el que algo vino con el."""
+        texto = self._texto("caos")
+        self.assertTrue("se mueve" in texto or "vino con vos" in texto)
+        self.assertIn("coleccion", texto)
+
+    def test_los_tres_finales_siguen_siendo_distintos(self):
+        titulos = {finales.EPILOGO[v]["titulo"] for v in finales.EPILOGO}
+        self.assertEqual(3, len(titulos), "los tres finales se volvieron "
+                                         "indistinguibles: %s" % titulos)
+
+    def test_el_final_lo_elige_la_variante_y_no_el_jefe(self):
+        """Lo que decide el epilogo es como termino la campana, no que bando
+        se juega. Si esto fallara, la vuelta a casa dependeria de quien sea el
+        jefe, que es justo lo prohibido.
+
+        `variante_final` mira `derrotas` y `mejor_racha`: dominio pide 0 o 1
+        derrota Y una racha de 4 o mas; equilibrio, hasta 3 derrotas; caos, de
+        4 para arriba.
+        """
+        import facciones
+        for variante, derrotas, racha in (("dominio", 0, 5),
+                                          ("equilibrio", 2, 3),
+                                          ("caos", 5, 1)):
+            for fac in facciones.orden_facciones():
+                estado = campana.nueva_campana(fac)
+                estado["derrotas"] = derrotas
+                estado["mejor_racha"] = racha
+                self.assertEqual(
+                    variante, campana.variante_final(estado),
+                    "con %d derrotas, racha %d y bando %s la variante cambio: "
+                    "el epilogo no puede depender del bando"
+                    % (derrotas, racha, fac))
+
+    def test_el_rival_del_trono_sigue_siendo_el_de_la_faccion(self):
+        """La decision cerrada: cada faccion conserva su rival_final."""
+        import facciones
+        esperado = {
+            "humano": "dragon", "orco": "elfo", "elfo": "dragon",
+            "goblin": "dragon", "hombre_lobo": "vampiro",
+            "vampiro": "hombre_lobo", "dragon": "humano",
+            "elfo_nocturno": "dragon", "hombre_pantera": "hombre_lobo",
+            "hombre_lagarto": "orco",
+        }
+        for fac, rival in esperado.items():
+            self.assertEqual(rival, facciones.rival_final(fac),
+                             "rival_final de %s cambio" % fac)
+
+    def test_el_umbral_y_el_epilogo_siguen_diciendo_al_mismo_lado(self):
+        """`UMBRAL[caos]` cuenta que el salon quedo del otro lado, asi que el
+        epilogo no puede terminar en el mundo del juego."""
+        for variante in ("dominio", "equilibrio", "caos"):
+            umbral = " ".join(finales.UMBRAL[variante]["lineas"]).lower()
+            if variante == "caos":
+                self.assertIn("salon", umbral,
+                              "el Umbral de caos ya no menciona el salon")
+            epi = finales.escenas_epilogo(variante)
+            for escena in epi:
+                self.assertEqual("real", escena["mundo"],
+                                 "el epilogo %s se pinta en el mundo del juego"
+                                 % variante)

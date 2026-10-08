@@ -105,10 +105,21 @@ EPILOGO = {
         ],
     },
     "caos": {
-        "titulo": "UNA CARTA QUE SE MUEVE",
+        # Antes este epilogo no decia que el duelista volvia: describia su
+        # mundo y lo dejaba al jugador. Eso rompia el punto 8 de la biblia
+        # ("regresas a tu mundo") y contradecia a `UMBRAL["caos"]`, que ya
+        # cuenta que el salon quedo del otro lado de la grieta. No cambia el
+        # MECANISMO: sigue siendo la variante la que decide y es el mismo
+        # texto para las diez facciones. Lo que cambia es que el regreso queda
+        # dicho, y el caos sigue siendo caos: volviste, y algo vino con vos.
+        "titulo": "VOLVISTE. Y ALGO VINO CON VOS.",
         "fondo": "campamento",
         "musica": "musica_duelo",
         "lineas": [
+            "Volviste. El salon, las luces, el ruido de siempre. Todo esta donde "
+            "lo dejaste.",
+            "Saliste por la misma grieta por la que entraste y se cerro sola. Eso "
+            "fue lo ultimo que sentiste del otro lado.",
             "El mundo parece exactamente igual. Por eso nadie te cree.",
             "Las cosas de siempre son las mismas. Casi todas.",
             "En tu coleccion hay una carta nueva. No recuerdas comprarla.",
