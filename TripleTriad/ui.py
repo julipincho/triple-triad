@@ -262,6 +262,12 @@ def _superficie_texto(cadena, tam, color, sombra):
     apaga (el banner del duelo) no genere una entrada por frame. Los textos
     translucidos no se cachean: agruparles el alpha se veria a saltos.
     """
+    # Un color ausente no puede tumbar la pantalla. Hay tres constructores de
+    # escena con defaults distintos y dos de ellos devuelven None; cuando eso
+    # llego hasta aca, `len(None)` reventaba y el juego se cerraba entero. La
+    # UI no es el lugar donde un dato incompleto se convierte en un crash.
+    if color is None:
+        color = TEXTO
     if len(color) > 3 and color[3] < 255:
         return _pinta_texto(REC.fuente(tam), limpio(cadena), color, sombra)
     color = color_cache(color)

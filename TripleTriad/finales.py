@@ -25,9 +25,18 @@ Los tres finales que pedia la biblia:
 Este modulo no importa campana: lo usa.
 """
 
+from ui import TEXTO
 
-def esc(linea, hablante=None, fondo="trono", efecto="dialogo", color=None,
+
+def esc(linea, hablante=None, fondo="trono", efecto="dialogo", color=TEXTO,
         mundo="juego"):
+    """Constructor de escena.
+
+    `color` arranca en TEXTO y no en None: con None, TODOS los finales
+    reventaban al pintarse (`'NoneType' object is not subscriptable`), o sea
+    que la campana no se podia terminar. Es el mismo defecto que tenia
+    `duelistas._esc`, que tumbaba el cartel de duelo.
+    """
     return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": None,
             "efecto": efecto, "musica": None, "color": color, "mundo": mundo}
 

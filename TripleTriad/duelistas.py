@@ -22,13 +22,19 @@ Texto visible en ASCII, como todo el juego. Este modulo no importa campana:
 campana lo importa a el.
 """
 
+from ui import TEXTO
+
 
 def _esc(linea, hablante=None, fondo="ceniza", retrato=None, efecto="dialogo",
-         musica=None, color=None, mundo="juego"):
+         musica=None, color=TEXTO, mundo="juego"):
     """Constructor de escena.
 
     Copia de `cinematicas.esc`: este modulo lo usa `cinematicas`, e
     importarlo seria un ciclo. Las claves son las mismas.
+
+    `color` arranca en TEXTO y no en None: con None, cada linea de rival sin
+    color explicito tumbaba la pantalla del duelo con
+    `len(None) has no len()`. Ver `finales.esc`, que tenia el mismo defecto.
     """
     return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": retrato,
             "efecto": efecto, "musica": musica, "color": color, "mundo": mundo}

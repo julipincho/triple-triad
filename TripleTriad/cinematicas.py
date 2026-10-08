@@ -48,7 +48,14 @@ class Escena:
         self.texto = datos.get("texto", "")
         self.retrato = datos.get("retrato")
         self.efecto = datos.get("efecto", "dialogo")
-        self.color = datos.get("color", TEXTO)
+        # `or TEXTO` y no `datos.get("color", TEXTO)`: varios productores de
+        # escenas pasan la clave CON valor None (`duelistas._esc` y
+        # `finales.esc` tienen `color=None` por defecto), y `get` con defecto
+        # no cubre ese caso porque la clave existe. Con None colado,
+        # `ui._superficie_texto` revienta en `len(None)` y tumba la pantalla.
+        # Toda escena pasa por aca, asi que normalizar aqui cierra el
+        # problema para todos los productores, viejos y futuros.
+        self.color = datos.get("color") or TEXTO
         self.musica = datos.get("musica")
         self.mundo = datos.get("mundo", MUNDO_JUEGO)
         self.duracion = datos.get("duracion")
