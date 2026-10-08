@@ -1,0 +1,21 @@
+[
+  {
+    "nombre": "Conde Nocturno",
+    "faccion": "vampiro",
+    "raza": "vampiro",
+    "clase": "nigromante",
+    "rareza": "LEGENDARIA",
+    "descripcion": "de pie en la cripta, caliz de sangre en la mano",
+    "estilo": "carta"
+  },
+  {
+    "nombre": "Rey Goblin",
+    "faccion": "goblin",
+    "raza": "goblin",
+    "clase": "rey",
+    "rareza": "RARA",
+    "descripcion": "coronado con chatarra, sobre un trono de botin",
+    "estilo": "carta",
+    "seed": 424242
+  }
+]

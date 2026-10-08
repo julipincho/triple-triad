@@ -20,3 +20,10 @@ TripleTriad/tripletriad-web.zip
 TripleTriad/screenshot_fase1.png
 TripleTriad/test_capture.png
 .playwright-mcp/
+
+# Arte temporal de generacion (no es el que usa el juego)
+TripleTriad/cartas_raw_pixel/
+TripleTriad/auditoria/raw_*/
+TripleTriad/auditoria/var_*/
+TripleTriad/auditoria/test_gen*/
+TripleTriad/auditoria/lote_*.json

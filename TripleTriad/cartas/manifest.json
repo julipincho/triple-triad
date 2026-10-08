@@ -1,0 +1,36 @@
+{
+  "grid": [
+    56,
+    79
+  ],
+  "escala": 2,
+  "dither": "bayer",
+  "brillo_obj": 90.0,
+  "sat_obj": 40.0,
+  "scanlines": 0.15,
+  "amplitud": 14.0,
+  "max_colores": 32,
+  "paleta": [
+    "#101114",
+    "#3a393b",
+    "#725b4d",
+    "#8b7561",
+    "#794131",
+    "#4b2422",
+    "#141a21",
+    "#ad9883",
+    "#967f71",
+    "#baa395",
+    "#d2bbad",
+    "#af9985",
+    "#d3bda9",
+    "#ebd5c1",
+    "#d1bca7",
+    "#f5e0cb",
+    "#fff8e3"
+  ],
+  "acento_por_faccion": true,
+  "fuente": "cartas_raw_ret3",
+  "gamma_media": 1.015,
+  "factor_saturacion_media": 0.777
+}

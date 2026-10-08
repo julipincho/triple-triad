@@ -1,0 +1,2252 @@
+[
+ {
+  "nombre": "Sargento Ferrum",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 633924963,
+  "clase": "capitan",
+  "descripcion": "Sosteniendo una espada mellada bajo la luz mortecina de un farol de hierro"
+ },
+ {
+  "nombre": "Espadachin",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "RARA",
+  "seed": 2515779638,
+  "clase": "guerrero",
+  "descripcion": "Empuñando un acero desgastado mientras la lluvia limpia la sangre de su mejilla"
+ },
+ {
+  "nombre": "Arquera de Torre",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 3948327830,
+  "clase": "arquero",
+  "descripcion": "Apuntando con el arco tenso desde una almena envuelta en densa niebla gris"
+ },
+ {
+  "nombre": "Clerigo de la Luz",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 3426890017,
+  "clase": "clerigo",
+  "descripcion": "Sosteniendo un relicario de plata que emite un debil destello entre las sombras"
+ },
+ {
+  "nombre": "Rey Aldric",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "LEGENDARIA",
+  "seed": 793654828,
+  "clase": "rey",
+  "descripcion": "Apoyando las manos enguantadas sobre el pomo de una espada rota en su trono"
+ },
+ {
+  "nombre": "Escudero",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 1557251391,
+  "clase": "caballero",
+  "descripcion": "Ajustando una hombrera de metal oxidado bajo el reflejo de una luna moribunda"
+ },
+ {
+  "nombre": "Ballestero",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 1971446818,
+  "clase": "arquero",
+  "descripcion": "Cargando un virote de hierro con la mirada fija en la penumbra del bosque"
+ },
+ {
+  "nombre": "Capellan de Batalla",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 877701620,
+  "clase": "clerigo",
+  "descripcion": "Alzando un tomo sagrado de bordes quemados mientras el humo cubre su rostro"
+ },
+ {
+  "nombre": "Caballero Andante",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "RARA",
+  "seed": 2962937381,
+  "clase": "caballero",
+  "descripcion": "Ajustando su yelmo de visera rota mientras una luz cenicienta resalta sus cicatrices"
+ },
+ {
+  "nombre": "Reina Isolde",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "LEGENDARIA",
+  "seed": 1750989677,
+  "clase": "reina",
+  "descripcion": "Observando el horizonte sombrío con una corona de espinas de plata sobre el velo"
+ },
+ {
+  "nombre": "Ariete del Alba",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "RARA",
+  "seed": 1363282691,
+  "clase": "guardian",
+  "descripcion": "Sosteniendo un enorme escudo agrietado que refleja la primera luz de un dia gris"
+ },
+ {
+  "nombre": "Pica Corta",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 2228398128,
+  "clase": "guerrero",
+  "descripcion": "Manteniendo la lanza firme en guardia baja mientras el viento agita su capa rota"
+ },
+ {
+  "nombre": "Hondero",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 259301089,
+  "clase": "arquero",
+  "descripcion": "Haciendo girar una correa de cuero gastado bajo un cielo cubierto de nubes negras"
+ },
+ {
+  "nombre": "Mozo de Fragua",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 3869406518,
+  "clase": "guerrero",
+  "descripcion": "Sosteniendo un martillo pesado sobre el yunque iluminado por las brasas agonizantes"
+ },
+ {
+  "nombre": "Alabardero",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 1378609859,
+  "clase": "guerrero",
+  "descripcion": "Apoyado en su larga arma de asta con la mirada perdida en un campo desolado"
+ },
+ {
+  "nombre": "Broquel",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 3460769963,
+  "clase": "guardian",
+  "descripcion": "Alzando un pequeño escudo de hierro abollado para cubrirse de una lluvia de ceniza"
+ },
+ {
+  "nombre": "Antorcha Viva",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 279600427,
+  "clase": "heraldo",
+  "descripcion": "Sosteniendo una tea encendida que proyecta sombras alargadas sobre su rostro tiznado"
+ },
+ {
+  "nombre": "Tamborilero",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 4076409350,
+  "clase": "heraldo",
+  "descripcion": "Golpeando un tambor de cuero curtido con expresión severa bajo la llovizna fría"
+ },
+ {
+  "nombre": "Vigía del Muro",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "COMUN",
+  "seed": 1126494154,
+  "clase": "guardian",
+  "descripcion": "Atento a la oscuridad del abismo con una mano sobre la empuñadura de su daga"
+ },
+ {
+  "nombre": "Lanza del Alba",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "RARA",
+  "seed": 879443101,
+  "clase": "paladin",
+  "descripcion": "Alzando una pica dorada pero desgastada que brilla debilmente en la niebla matutina"
+ },
+ {
+  "nombre": "Jinete Pardo",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "RARA",
+  "seed": 2509900172,
+  "clase": "caballero",
+  "descripcion": "Sujetando las riendas de cuero mientras el viento helado agita su capucha de lana"
+ },
+ {
+  "nombre": "Arcabucero",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "RARA",
+  "seed": 3968334023,
+  "clase": "arquero",
+  "descripcion": "Soplando la mecha encendida de su arma de fuego en medio de la niebla invernal"
+ },
+ {
+  "nombre": "Estandarte Dorado",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "RARA",
+  "seed": 2517730668,
+  "clase": "heraldo",
+  "descripcion": "Sosteniendo un estandarte deshilachado que ondea debilmente bajo un sol pálido"
+ },
+ {
+  "nombre": "Amanecer Blindado",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "LEGENDARIA",
+  "seed": 2378402089,
+  "clase": "paladin",
+  "descripcion": "Ajustando las placas de una armadura pesada que refleja destellos de luz dorada"
+ },
+ {
+  "nombre": "Sol Naciente",
+  "faccion": "humano",
+  "raza": "humano",
+  "rareza": "LEGENDARIA",
+  "seed": 2308472136,
+  "clase": "profeta",
+  "descripcion": "Alzando las manos hacia un cielo gris donde un tenue rayo de sol cruza las nubes"
+ },
+ {
+  "nombre": "Bruto Rasgador",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 4152851109,
+  "clase": "berserker",
+  "descripcion": "Mostrando los colmillos afilados mientras la sangre gotea de su hacha de combate"
+ },
+ {
+  "nombre": "Chaman Karzh",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 3894899218,
+  "clase": "chaman",
+  "descripcion": "Sosteniendo un báculo de huesos que emite un fulgor verde entre la niebla espesa"
+ },
+ {
+  "nombre": "Lancero Gruano",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 3974282785,
+  "clase": "guerrero",
+  "descripcion": "Apuntando con una lanza de punta de piedra tosca bajo la llovizna constante"
+ },
+ {
+  "nombre": "Trol de Ceniza",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 2270984161,
+  "clase": "berserker",
+  "descripcion": "Rugiendo al cielo con el torso cubierto de marcas rituales pintadas con carbón"
+ },
+ {
+  "nombre": "Senor de la Guerra Vorg",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "LEGENDARIA",
+  "seed": 278329049,
+  "clase": "senor",
+  "descripcion": "Apoyando el puño sobre un hacha de doble filo mientras observa el campo quemado"
+ },
+ {
+  "nombre": "Muerdehuesos",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 2590704634,
+  "clase": "berserker",
+  "descripcion": "Sosteniendo una mandíbula rota entre las manos manchadas de hollín y barro"
+ },
+ {
+  "nombre": "Tambor de Guerra",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 3828103540,
+  "clase": "heraldo",
+  "descripcion": "Golpeando un enorme parche de cuero con un mazo de madera bajo la tormenta"
+ },
+ {
+  "nombre": "Jabalina Veloz",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 3097964450,
+  "clase": "cazador",
+  "descripcion": "Preparando el lanzamiento de una pica corta con la mirada fija en su presa"
+ },
+ {
+  "nombre": "Matriarca Gra",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 3044731124,
+  "clase": "dama",
+  "descripcion": "Sosteniendo un collar de calaveras pequeñas mientras murmura un conjuro en la penumbra"
+ },
+ {
+  "nombre": "Rey Roto",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "LEGENDARIA",
+  "seed": 4069699730,
+  "clase": "rey",
+  "descripcion": "Sentado en un trono de piedra agrietada con una corona de hierro torcida sobre la frente"
+ },
+ {
+  "nombre": "Porton de Hierro",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 4005048134,
+  "clase": "guardian",
+  "descripcion": "Sosteniendo un escudo de madera reforzado con clavos oxidados ante el enemigo invisible"
+ },
+ {
+  "nombre": "Mazo Quebrado",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 807071075,
+  "clase": "guerrero",
+  "descripcion": "Sopesando un enorme martillo de piedra con el mango astillado por el uso constante"
+ },
+ {
+  "nombre": "Colmillo Roto",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 2617409215,
+  "clase": "cazador",
+  "descripcion": "Mostrando una sonrisa torcida que revela cicatrices de batalla bajo una luz tenue"
+ },
+ {
+  "nombre": "Gruñido",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 4135833820,
+  "clase": "berserker",
+  "descripcion": "Tensando los músculos del cuello mientras emite un rugido sordo en la oscuridad"
+ },
+ {
+  "nombre": "Piel Cortada",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 2179457913,
+  "clase": "guerrero",
+  "descripcion": "Observando sus propias manos vendadas con tiras de cuero manchadas de sangre seca"
+ },
+ {
+  "nombre": "Hacha Sucia",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 2465035244,
+  "clase": "guerrero",
+  "descripcion": "Limpiando la hoja de un hacha mellada con un trozo de tela rota y grasienta"
+ },
+ {
+  "nombre": "Foso",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 95355420,
+  "clase": "guardian",
+  "descripcion": "Asomando la mirada desconfiada tras un parapeto de tierra húmeda y estacas afiladas"
+ },
+ {
+  "nombre": "Tizón",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "COMUN",
+  "seed": 1081485243,
+  "clase": "mago",
+  "descripcion": "Sosteniendo una brasa ardiente en la palma de la mano sin mostrar dolor alguno"
+ },
+ {
+  "nombre": "Aplastador",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 3642398746,
+  "clase": "berserker",
+  "descripcion": "Alzando un enorme garrote erizado de púas de hierro bajo un cielo tormentoso"
+ },
+ {
+  "nombre": "Cuernos de Guerra",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 2543705282,
+  "clase": "heraldo",
+  "descripcion": "Sosteniendo un cuerno de batalla tallado en hueso listo para dar la alarma"
+ },
+ {
+  "nombre": "Espalda Ancha",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 2616500420,
+  "clase": "guardian",
+  "descripcion": "Cargando un enorme fardo de armas recuperadas sobre sus hombros cubiertos de cicatrices"
+ },
+ {
+  "nombre": "Grito de Sangre",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 1639103234,
+  "clase": "berserker",
+  "descripcion": "Abriendo las fauces en un grito de furia mientras la lluvia limpia su rostro pintado"
+ },
+ {
+  "nombre": "Machacador",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "RARA",
+  "seed": 2835059163,
+  "clase": "guerrero",
+  "descripcion": "Sosteniendo una maza de hierro macizo que descansa sobre su hombro blindado"
+ },
+ {
+  "nombre": "Terremoto Verde",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "LEGENDARIA",
+  "seed": 3440267993,
+  "clase": "chaman",
+  "descripcion": "Golpeando el suelo con un bastón de madera nudosa que despierta un brillo esmeralda"
+ },
+ {
+  "nombre": "Puño del Cráter",
+  "faccion": "orco",
+  "raza": "orco",
+  "rareza": "LEGENDARIA",
+  "seed": 1043220068,
+  "clase": "guerrero",
+  "descripcion": "Cerrando un guantelete de hierro cubierto de ceniza volcánica con gesto desafiante"
+ },
+ {
+  "nombre": "Mordedor",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 2673101483,
+  "clase": "asesino",
+  "descripcion": "Ocultando una daga afilada tras su espalda mientras sonríe con malicia en la sombra"
+ },
+ {
+  "nombre": "Brujo Verde",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 1187380644,
+  "clase": "brujo",
+  "descripcion": "Sosteniendo un frasco de veneno burbujeante que ilumina su rostro de color verdoso"
+ },
+ {
+  "nombre": "Lanzasalgo",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 3914416696,
+  "clase": "arquero",
+  "descripcion": "Apuntando con un arco rudimentario hecho de raíces trenzadas bajo la niebla"
+ },
+ {
+  "nombre": "Saqueador",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 1637868042,
+  "clase": "asesino",
+  "descripcion": "Rebuscando en una bolsa de cuero vieja mientras vigila los alrededores con desconfianza"
+ },
+ {
+  "nombre": "Rey Goblin",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "RARA",
+  "seed": 4090823418,
+  "clase": "rey",
+  "descripcion": "Sentado sobre un montón de chatarra dorada con una corona de hojalata oxidada"
+ },
+ {
+  "nombre": "Pinchacubos",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 1840674290,
+  "clase": "asesino",
+  "descripcion": "Sosteniendo una aguja de metal oxidado impregnada en un líquido espeso y oscuro"
+ },
+ {
+  "nombre": "Corretejas",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 677783054,
+  "clase": "asesino",
+  "descripcion": "Agazapado en el borde de un tejado de pizarra bajo la luz de una luna pálida"
+ },
+ {
+  "nombre": "Chamana Gris",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 2886898971,
+  "clase": "chaman",
+  "descripcion": "Sosteniendo un cuenco de barro del que brota un humo ceniciento de olor rancio"
+ },
+ {
+  "nombre": "Jefe de Tropa",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "RARA",
+  "seed": 3845052151,
+  "clase": "capitan",
+  "descripcion": "Señalando hacia adelante con una espada corta mellada mientras grita órdenes"
+ },
+ {
+  "nombre": "Madre Rata",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "LEGENDARIA",
+  "seed": 747578413,
+  "clase": "invocador",
+  "descripcion": "Sosteniendo una jaula de mimbre de la que asoman ojos rojos y hambrientos"
+ },
+ {
+  "nombre": "Rascaollas",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 3505346323,
+  "clase": "asesino",
+  "descripcion": "Escondiendo un cuchillo de cocina afilado bajo sus harapos mugrientos"
+ },
+ {
+  "nombre": "Mocos",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 1694281255,
+  "clase": "guerrero",
+  "descripcion": "Sosteniendo una porra de madera astillada con expresión de desconcierto en la penumbra"
+ },
+ {
+  "nombre": "Tirachinas",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 4138651068,
+  "clase": "arquero",
+  "descripcion": "Tensando una banda de cuero con una piedra afilada apuntando al espectador"
+ },
+ {
+  "nombre": "Robaqueso",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 1672972444,
+  "clase": "asesino",
+  "descripcion": "Deslizándose entre las sombras de una despensa abandonada con la mirada alerta"
+ },
+ {
+  "nombre": "Piojo",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 3112956838,
+  "clase": "asesino",
+  "descripcion": "Rascándose la cabeza calva mientras sostiene una navaja oxidada entre los dientes"
+ },
+ {
+  "nombre": "Lamecharcos",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 3870446228,
+  "clase": "brujo",
+  "descripcion": "Observando un charco de agua estancada que refleja un destello mágico verdoso"
+ },
+ {
+  "nombre": "Chivato",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 152418045,
+  "clase": "heraldo",
+  "descripcion": "Señalando con el dedo huesudo hacia la oscuridad con una mueca de terror"
+ },
+ {
+  "nombre": "Trampero",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "COMUN",
+  "seed": 2291417790,
+  "clase": "cazador",
+  "descripcion": "Ajustando los dientes de metal de una trampa para osos oxidada en el fango"
+ },
+ {
+  "nombre": "Apestoso",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "RARA",
+  "seed": 4110361837,
+  "clase": "brujo",
+  "descripcion": "Sosteniendo un saco de cuero que gotea un líquido negro de olor nauseabundo"
+ },
+ {
+  "nombre": "Revuelcabolsas",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "RARA",
+  "seed": 1926181517,
+  "clase": "asesino",
+  "descripcion": "Vaciando el contenido de un monedero de cuero robado bajo la luz de una vela"
+ },
+ {
+  "nombre": "Muerdeorejas",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "RARA",
+  "seed": 3090831907,
+  "clase": "berserker",
+  "descripcion": "Mostrando los dientes afilados y sucios listos para atacar en un callejón oscuro"
+ },
+ {
+  "nombre": "Saltatechos",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "RARA",
+  "seed": 2385374589,
+  "clase": "asesino",
+  "descripcion": "Equilibrándose sobre una viga de madera podrida bajo el cielo nocturno gris"
+ },
+ {
+  "nombre": "Granuja",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "RARA",
+  "seed": 3525091030,
+  "clase": "asesino",
+  "descripcion": "Guiñando un ojo mientras oculta una moneda de plata robada en su manga rota"
+ },
+ {
+  "nombre": "Plaga Verde",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "LEGENDARIA",
+  "seed": 3006155780,
+  "clase": "invocador",
+  "descripcion": "Alzando las manos para guiar a una horda de insectos que brotan de las sombras"
+ },
+ {
+  "nombre": "Desguace",
+  "faccion": "goblin",
+  "raza": "goblin",
+  "rareza": "LEGENDARIA",
+  "seed": 3508795396,
+  "clase": "guardian",
+  "descripcion": "Sosteniendo una puerta de hierro oxidada a modo de escudo improvisado"
+ },
+ {
+  "nombre": "Arquero",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 800193246,
+  "clase": "arquero",
+  "descripcion": "Tensando una cuerda de arco plateada con la mirada fija en la espesura del bosque"
+ },
+ {
+  "nombre": "Dama Hoja",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 699537010,
+  "clase": "dama",
+  "descripcion": "Sosteniendo una rosa marchita cuyas espinas gotean una savia oscura y brillante"
+ },
+ {
+  "nombre": "Centinela",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 538776702,
+  "clase": "guardian",
+  "descripcion": "Apoyado en un arco largo de madera blanca mientras vigila desde una rama alta"
+ },
+ {
+  "nombre": "Sabio del Bosque",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 1387986007,
+  "clase": "druida",
+  "descripcion": "Sosteniendo un báculo de madera viva que gotea agua clara bajo la penumbra forestal"
+ },
+ {
+  "nombre": "Elfo Real",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 850900273,
+  "clase": "senor",
+  "descripcion": "Observando con desdén desde su trono de raíces entrelazadas bajo una luz cenicienta"
+ },
+ {
+  "nombre": "Exploradora",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 299163588,
+  "clase": "cazador",
+  "descripcion": "Agachada entre los helechos húmedos mientras aparta las hojas con una mano enguantada"
+ },
+ {
+  "nombre": "Hoja Gemela",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 175314337,
+  "clase": "asesino",
+  "descripcion": "Cruzando dos dagas delgadas que reflejan la luz de la luna entre las ramas"
+ },
+ {
+  "nombre": "Archivista",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 2458681888,
+  "clase": "mago",
+  "descripcion": "Hojeando un pergamino antiguo que se deshace en polvo bajo la luz de un candil"
+ },
+ {
+  "nombre": "Vengador Silvano",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 638539636,
+  "clase": "guerrero",
+  "descripcion": "Empuñando una espada de hoja curva grabada con runas que brillan debilmente"
+ },
+ {
+  "nombre": "Corazon del Bosque",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "LEGENDARIA",
+  "seed": 3951749778,
+  "clase": "druida",
+  "descripcion": "Sosteniendo un brote de árbol marchito que emite un pulso de luz esmeralda"
+ },
+ {
+  "nombre": "Broteluz",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 791675039,
+  "clase": "clerigo",
+  "descripcion": "Alzando una gema brillante que disipa la niebla oscura a su alrededor"
+ },
+ {
+  "nombre": "Ciervo Blanco",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 1617211583,
+  "clase": "druida",
+  "descripcion": "Observando solemnemente desde la linde de un bosque cubierto por la bruma"
+ },
+ {
+  "nombre": "Flautista",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 3620128071,
+  "clase": "hechicero",
+  "descripcion": "Tocando una flauta de hueso que atrae sombras danzantes en la penumbra"
+ },
+ {
+  "nombre": "Musgo Viejo",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 4061638813,
+  "clase": "druida",
+  "descripcion": "Sosteniendo un puñado de tierra húmeda de la que brotan pequeñas raíces negras"
+ },
+ {
+  "nombre": "Arco Corto",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 3584870416,
+  "clase": "arquero",
+  "descripcion": "Preparando una flecha de punta de obsidiana con movimientos rápidos y precisos"
+ },
+ {
+  "nombre": "Lechuza",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 3684820706,
+  "clase": "oraculo",
+  "descripcion": "Posada sobre una rama seca con sus grandes ojos amarillos fijos en la oscuridad"
+ },
+ {
+  "nombre": "Seta Cantora",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 1281109473,
+  "clase": "druida",
+  "descripcion": "Sosteniendo un hongo de sombrero azul que brilla con una luz tenue y mortecina"
+ },
+ {
+  "nombre": "Refugio Verde",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "COMUN",
+  "seed": 590420432,
+  "clase": "guardian",
+  "descripcion": "Cruzando los brazos cubiertos de corteza ante un portal de piedra antiguo"
+ },
+ {
+  "nombre": "Cazador de Niebla",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 505144764,
+  "clase": "cazador",
+  "descripcion": "Avanzando sigilosamente con una lanza de madera oscura entre la bruma espesa"
+ },
+ {
+  "nombre": "Danza de Hojas",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 1243501060,
+  "clase": "asesino",
+  "descripcion": "Girando sobre sí mismo con dos hojas cortas que cortan el aire frío de la noche"
+ },
+ {
+  "nombre": "Arpa de Guerra",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 613387878,
+  "clase": "heraldo",
+  "descripcion": "Tocando un arpa de madera oscura cuyas cuerdas emiten un sonido melancólico"
+ },
+ {
+  "nombre": "Tiro Largo",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 2312097493,
+  "clase": "arquero",
+  "descripcion": "Apuntando al cielo gris con un arco de madera reforzada de gran tamaño"
+ },
+ {
+  "nombre": "Bosque Antiguo",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "RARA",
+  "seed": 2471932184,
+  "clase": "druida",
+  "descripcion": "Sosteniendo una rama cubierta de liquen que parece moverse por voluntad propia"
+ },
+ {
+  "nombre": "Copa Eterna",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "LEGENDARIA",
+  "seed": 3995056811,
+  "clase": "hechicero",
+  "descripcion": "Alzando un cáliz de madera tallada lleno de un líquido plateado y brillante"
+ },
+ {
+  "nombre": "Raíz del Mundo",
+  "faccion": "elfo",
+  "raza": "elfo",
+  "rareza": "LEGENDARIA",
+  "seed": 1171519998,
+  "clase": "druida",
+  "descripcion": "Tocando una enorme raíz que late con una luz pálida bajo la tierra húmeda"
+ },
+ {
+  "nombre": "Garras de Luna",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 3805979326,
+  "clase": "berserker",
+  "descripcion": "Mostrando garras afiladas que reflejan el brillo plateado de la luna llena"
+ },
+ {
+  "nombre": "Mordedor Lunar",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 613428050,
+  "clase": "asesino",
+  "descripcion": "Acechando desde la copa de un pino con los ojos fijos en el camino sombrío"
+ },
+ {
+  "nombre": "Aullador",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 2375754521,
+  "clase": "heraldo",
+  "descripcion": "Alzando la cabeza hacia el cielo nocturno con las fauces abiertas en un aullido"
+ },
+ {
+  "nombre": "Piel Gris",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 268648957,
+  "clase": "guerrero",
+  "descripcion": "Sosteniendo un hacha de cazador con el torso cubierto de pelaje espeso y ceniciento"
+ },
+ {
+  "nombre": "Alfa del Bosque",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "RARA",
+  "seed": 89957702,
+  "clase": "senor",
+  "descripcion": "Observando su territorio desde una roca alta con expresión severa y dominante"
+ },
+ {
+  "nombre": "Cachorro",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 1021780120,
+  "clase": "cazador",
+  "descripcion": "Gruñendo debilmente tras un arbusto espinoso con los ojos brillantes de furia"
+ },
+ {
+  "nombre": "Rastreadora",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 3282795992,
+  "clase": "cazador",
+  "descripcion": "Olfateando el suelo húmedo buscando un rastro de sangre fresca bajo la niebla"
+ },
+ {
+  "nombre": "Aullido",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 2455227891,
+  "clase": "heraldo",
+  "descripcion": "Abriendo las fauces entre la maleza mientras el viento esparce su lamento helado"
+ },
+ {
+  "nombre": "Colmillo Blanco",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "RARA",
+  "seed": 613913037,
+  "clase": "berserker",
+  "descripcion": "Mostrando colmillos afilados manchados de sangre bajo la luz de la luna"
+ },
+ {
+  "nombre": "Madre Luna",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "LEGENDARIA",
+  "seed": 927725046,
+  "clase": "dama",
+  "descripcion": "Sosteniendo un amuleto de plata con forma de luna crescent en sus manos peludas"
+ },
+ {
+  "nombre": "Hocico",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 3034785233,
+  "clase": "cazador",
+  "descripcion": "Asomando la nariz húmeda entre las hojas secas de un bosque invernal"
+ },
+ {
+  "nombre": "Pata Veloz",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 3139585664,
+  "clase": "asesino",
+  "descripcion": "Corriendo a cuatro patas sobre el suelo cubierto de hojas muertas y escarcha"
+ },
+ {
+  "nombre": "Pelaje Sucio",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 2031497708,
+  "clase": "guerrero",
+  "descripcion": "Sacudiendo su cuerpo cubierto de barro y sangre seca tras una dura batalla"
+ },
+ {
+  "nombre": "Lobezno",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 2004519302,
+  "clase": "berserker",
+  "descripcion": "Mostrando los dientes en un gesto desafiante con las garras clavadas en la tierra"
+ },
+ {
+  "nombre": "Gañido",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 1334432071,
+  "clase": "heraldo",
+  "descripcion": "Retrocediendo con las orejas gachas ante una presencia amenazante en la penumbra"
+ },
+ {
+  "nombre": "Senda de Huellas",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 259281923,
+  "clase": "druida",
+  "descripcion": "Señalando una serie de marcas profundas en el fango que brillan con luz plateada"
+ },
+ {
+  "nombre": "Diente de Leche",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 1571925088,
+  "clase": "cazador",
+  "descripcion": "Sosteniendo un colmillo afilado tallado como amuleto bajo la luz del crepúsculo"
+ },
+ {
+  "nombre": "Guarida",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "COMUN",
+  "seed": 1583952339,
+  "clase": "guardian",
+  "descripcion": "Vigilando la entrada de una cueva oscura protegida por zarzas espinosas"
+ },
+ {
+  "nombre": "Lomo Plateado",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "RARA",
+  "seed": 73637921,
+  "clase": "guardian",
+  "descripcion": "Mostrando su espalda cubierto de pelaje canoso mientras sostiene un enorme garrote"
+ },
+ {
+  "nombre": "Caza Nocturna",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "RARA",
+  "seed": 353980485,
+  "clase": "cazador",
+  "descripcion": "Avanzando en grupo bajo la sombra de los árboles con los ojos fijos en la presa"
+ },
+ {
+  "nombre": "Fauces Abiertas",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "RARA",
+  "seed": 3356024561,
+  "clase": "berserker",
+  "descripcion": "Lanzándose hacia adelante con las mandíbulas listas para morder en la oscuridad"
+ },
+ {
+  "nombre": "Manada Unida",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "RARA",
+  "seed": 3918642114,
+  "clase": "capitan",
+  "descripcion": "Alzando una garra ensangrentada para guiar a sus compañeros bajo el cielo gris"
+ },
+ {
+  "nombre": "Luna Llena",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "RARA",
+  "seed": 1360009971,
+  "clase": "hechicero",
+  "descripcion": "Observando el disco plateado del satélite que brilla con un fulgor espectral"
+ },
+ {
+  "nombre": "Terror del Valle",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "LEGENDARIA",
+  "seed": 2965169543,
+  "clase": "berserker",
+  "descripcion": "De pie sobre un montón de huesos rotos con los ojos inyectados en sangre"
+ },
+ {
+  "nombre": "Eclipse de Sangre",
+  "faccion": "hombre_lobo",
+  "raza": "hombre_lobo",
+  "rareza": "LEGENDARIA",
+  "seed": 485587853,
+  "clase": "profeta",
+  "descripcion": "Alzando las manos hacia una luna teñida de rojo oscuro que cubre el cielo"
+ },
+ {
+  "nombre": "Conde Nocturno",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 3213734629,
+  "clase": "senor",
+  "descripcion": "Sosteniendo una copa de cristal con un líquido espeso bajo una luz carmesí"
+ },
+ {
+  "nombre": "Dama Carmin",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 4285645167,
+  "clase": "dama",
+  "descripcion": "Ajustando su corsé de seda roja mientras una gota de sangre resbala por su cuello"
+ },
+ {
+  "nombre": "Murcielago",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 3618401475,
+  "clase": "invocador",
+  "descripcion": "Sosteniendo un pequeño mamífero alado que susurra secretos en su oído pálido"
+ },
+ {
+  "nombre": "Cazadora de Sangre",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 1996915551,
+  "clase": "cazador",
+  "descripcion": "Apuntando con una ballesta ligera de ébano desde la sombra de una columna"
+ },
+ {
+  "nombre": "Vastago",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 4199174758,
+  "clase": "caballero",
+  "descripcion": "Empuñando un florete de plata con elegancia bajo la luz de un candelabro gótico"
+ },
+ {
+  "nombre": "Doncella Palida",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 3224988366,
+  "clase": "dama",
+  "descripcion": "Observando su reflejo en un espejo roto con la piel blanca como el mármol"
+ },
+ {
+  "nombre": "Esgrimidor",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 3895026241,
+  "clase": "asesino",
+  "descripcion": "Adoptando una pose de combate con su espada delgada apuntando al frente"
+ },
+ {
+  "nombre": "Oraculo de Sangre",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 3383179862,
+  "clase": "oraculo",
+  "descripcion": "Observando las formas que dibuja la sangre al caer en un cuenco de plata"
+ },
+ {
+  "nombre": "Alas Negras",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 823014384,
+  "clase": "hechicero",
+  "descripcion": "Abriendo una capa de plumas oscuras que parece fundirse con la noche"
+ },
+ {
+  "nombre": "Principe Rojo",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "LEGENDARIA",
+  "seed": 2507284737,
+  "clase": "senor",
+  "descripcion": "Sosteniendo una espada enjoyada con la hoja manchada de un rojo brillante"
+ },
+ {
+  "nombre": "Siervo Pálido",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 2272737044,
+  "clase": "guardian",
+  "descripcion": "Sosteniendo una bandeja de plata con la mirada baja y expresión sumisa"
+ },
+ {
+  "nombre": "Rata de Cripta",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 36582636,
+  "clase": "asesino",
+  "descripcion": "Escondido tras una tumba de piedra con una daga de hoja dentada en la mano"
+ },
+ {
+  "nombre": "Novia de Niebla",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 417378313,
+  "clase": "dama",
+  "descripcion": "Vistiendo un velo de novia desgarrado que flota en el aire frío del cementerio"
+ },
+ {
+  "nombre": "Mayordomo",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 742674025,
+  "clase": "heraldo",
+  "descripcion": "Sosteniendo un candelabro de bronce con tres velas encendidas en un pasillo oscuro"
+ },
+ {
+  "nombre": "Candil Rojo",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 440469752,
+  "clase": "mago",
+  "descripcion": "Alzando una linterna de cristal carmesí que revela sombras danzantes en la pared"
+ },
+ {
+  "nombre": "Jardín de Espinas",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 3807162506,
+  "clase": "druida",
+  "descripcion": "Sosteniendo una rosa negra cuyas raíces se enredan en sus dedos pálidos"
+ },
+ {
+  "nombre": "Sangre Joven",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 4125839294,
+  "clase": "guerrero",
+  "descripcion": "Limpiándose la boca con el dorso de la mano tras saciar su sed en la penumbra"
+ },
+ {
+  "nombre": "Ataúd Reforzado",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "COMUN",
+  "seed": 2810835302,
+  "clase": "guardian",
+  "descripcion": "Apoyando la mano sobre una tapa de madera negra con herrajes de hierro oxidado"
+ },
+ {
+  "nombre": "Vals Eterno",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 3164948645,
+  "clase": "hechicero",
+  "descripcion": "Danzando en la penumbra de un salón abandonado con una pareja invisible"
+ },
+ {
+  "nombre": "Capa Carmesí",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 1096168215,
+  "clase": "caballero",
+  "descripcion": "Dejando que el viento agite su larga capa roja sobre una colina desolada"
+ },
+ {
+  "nombre": "Ansia Nocturna",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 872776613,
+  "clase": "berserker",
+  "descripcion": "Apretando los puños con los colmillos expuestos y la mirada perdida en el delirio"
+ },
+ {
+  "nombre": "Beso Frío",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 1953793987,
+  "clase": "asesino",
+  "descripcion": "Acercando sus labios pálidos al cuello de una víctima sumida en un sueño profundo"
+ },
+ {
+  "nombre": "Ópera Sangrienta",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "RARA",
+  "seed": 1889067957,
+  "clase": "hechicero",
+  "descripcion": "Alzando los brazos ante un escenario vacío iluminado por velas rojas"
+ },
+ {
+  "nombre": "Medianoche Eterna",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "LEGENDARIA",
+  "seed": 3182465956,
+  "clase": "nigromante",
+  "descripcion": "Sosteniendo un reloj de arena donde la arena negra fluye eternamente"
+ },
+ {
+  "nombre": "Latido Final",
+  "faccion": "vampiro",
+  "raza": "vampiro",
+  "rareza": "LEGENDARIA",
+  "seed": 356611167,
+  "clase": "nigromante",
+  "descripcion": "Colocando la mano sobre el pecho de un caído para absorber su último aliento"
+ },
+ {
+  "nombre": "Drake",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 1487136559,
+  "clase": "guerrero",
+  "descripcion": "Mostrando sus escamas endurecidas por el fuego bajo una lluvia de ceniza gris"
+ },
+ {
+  "nombre": "Fuego",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 4108157496,
+  "clase": "hechicero",
+  "descripcion": "Sosteniendo una llama azulada que baila entre sus dedos cubiertos de hollín"
+ },
+ {
+  "nombre": "Guerrero Rojo",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 3305564831,
+  "clase": "guerrero",
+  "descripcion": "Empuñando un espadón de hierro ardiente que ilumina su rostro escamoso"
+ },
+ {
+  "nombre": "Segador Alado",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 3120170596,
+  "clase": "cazador",
+  "descripcion": "Abriendo sus alas membranosas mientras desciende desde un cielo encapotado"
+ },
+ {
+  "nombre": "Rey Dragon",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "LEGENDARIA",
+  "seed": 2777400558,
+  "clase": "rey",
+  "descripcion": "Observando su tesoro de oro viejo desde un trono de roca volcánica negra"
+ },
+ {
+  "nombre": "Cria",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 1897534929,
+  "clase": "invocador",
+  "descripcion": "Saliendo de un cascarón de piedra con los ojos brillantes de un color ámbar"
+ },
+ {
+  "nombre": "Escupellamas",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 342105694,
+  "clase": "mago",
+  "descripcion": "Abriendo las fauces para liberar una bocanada de fuego que ilumina la cueva"
+ },
+ {
+  "nombre": "Cola Ferrea",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 1371894207,
+  "clase": "guardian",
+  "descripcion": "Golpeando el suelo de piedra con su cola acorazada levantando una nube de polvo"
+ },
+ {
+  "nombre": "Vuelo Rasante",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 4107160442,
+  "clase": "cazador",
+  "descripcion": "Planeando a ras de suelo sobre un bosque quemado bajo un cielo plomizo"
+ },
+ {
+  "nombre": "Reina Ceniza",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "LEGENDARIA",
+  "seed": 1262347361,
+  "clase": "reina",
+  "descripcion": "Sosteniendo una corona de carbón ardiente sobre su cabeza escamosa"
+ },
+ {
+  "nombre": "Guijarro",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 280531338,
+  "clase": "guerrero",
+  "descripcion": "Sosteniendo una pequeña piedra volcánica que emite un calor constante en su garra"
+ },
+ {
+  "nombre": "Cola Corta",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 3799120381,
+  "clase": "cazador",
+  "descripcion": "Agazapado sobre una roca afilada listo para saltar sobre su presa"
+ },
+ {
+  "nombre": "Nido de Ceniza",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 2288470624,
+  "clase": "guardian",
+  "descripcion": "Protegiendo un montón de huevos oscuros rodeados de brasas moribundas"
+ },
+ {
+  "nombre": "Escama Suelta",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 4063926956,
+  "clase": "guardian",
+  "descripcion": "Examinando una brecha en su armadura natural de placas de obsidiana"
+ },
+ {
+  "nombre": "Ala Rota",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 2634247800,
+  "clase": "guerrero",
+  "descripcion": "Arrastrando un ala herida por el suelo de piedra con expresión de furia contenida"
+ },
+ {
+  "nombre": "Bostezo Ígneo",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 784394483,
+  "clase": "hechicero",
+  "descripcion": "Exhalando un humo denso y rojizo que cubre la estancia en penumbra"
+ },
+ {
+  "nombre": "Charca de Lava",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 412234110,
+  "clase": "mago",
+  "descripcion": "Observando el fluir lento de la roca fundida que emite un brillo anaranjado"
+ },
+ {
+  "nombre": "Diente Curvo",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "COMUN",
+  "seed": 2261902065,
+  "clase": "asesino",
+  "descripcion": "Mostrando un colmillo afilado como una daga bajo la luz de las brasas"
+ },
+ {
+  "nombre": "Vuelo en Círculo",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 404173413,
+  "clase": "cazador",
+  "descripcion": "Silueteado contra un sol poniente cubierto por nubes de tormenta"
+ },
+ {
+  "nombre": "Garganta Ardiente",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 625760686,
+  "clase": "hechicero",
+  "descripcion": "Mostrando un brillo anaranjado que asciende por su cuello antes de exhalar"
+ },
+ {
+  "nombre": "Tormenta de Escamas",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 2166550128,
+  "clase": "hechicero",
+  "descripcion": "Sacudiendo su cuerpo para liberar una lluvia de fragmentos afilados y brillantes"
+ },
+ {
+  "nombre": "Sombra Alada",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 131774781,
+  "clase": "asesino",
+  "descripcion": "Ocultando su silueta gigante tras las nubes oscuras de una noche sin estrellas"
+ },
+ {
+  "nombre": "Fauces del Volcán",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "RARA",
+  "seed": 273646755,
+  "clase": "guardian",
+  "descripcion": "Abriendo la boca de par en par revelando un abismo de fuego en su interior"
+ },
+ {
+  "nombre": "Corazón de Magma",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "LEGENDARIA",
+  "seed": 3987981208,
+  "clase": "profeta",
+  "descripcion": "Sosteniendo una piedra incandescente que late al ritmo de su propio pecho"
+ },
+ {
+  "nombre": "Fin del Cielo",
+  "faccion": "dragon",
+  "raza": "dragon",
+  "rareza": "LEGENDARIA",
+  "seed": 990017258,
+  "clase": "heraldo",
+  "descripcion": "Rugiendo hacia las nubes que se tiñen de un rojo apocalíptico en el horizonte"
+ },
+ {
+  "nombre": "Espia Umbria",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 345059725,
+  "clase": "asesino",
+  "descripcion": "Ocultando su rostro tras un velo de seda negra mientras observa desde la sombra"
+ },
+ {
+  "nombre": "Hoja Lunar",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 3342718585,
+  "clase": "asesino",
+  "descripcion": "Sosteniendo una espada de hoja curva que brilla con un pálido reflejo azul"
+ },
+ {
+  "nombre": "Tejedora de Sombras",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 1593907654,
+  "clase": "brujo",
+  "descripcion": "Moviendo los dedos para entrelazar hilos de oscuridad que flotan en el aire"
+ },
+ {
+  "nombre": "Centinela Nocturno",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 1274104059,
+  "clase": "guardian",
+  "descripcion": "Apoyado en una lanza de plata mientras vigila las ruinas bajo la luna"
+ },
+ {
+  "nombre": "Reina de la Noche",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "LEGENDARIA",
+  "seed": 175293094,
+  "clase": "reina",
+  "descripcion": "Sentada en un trono de obsidiana con una tiara de gemas oscuras sobre la frente"
+ },
+ {
+  "nombre": "Acechante",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 946919905,
+  "clase": "asesino",
+  "descripcion": "Deslizándose silenciosamente entre las columnas de un templo en ruinas"
+ },
+ {
+  "nombre": "Daga Eclipse",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 3074111997,
+  "clase": "asesino",
+  "descripcion": "Sosteniendo un puñal de hoja negra que parece absorber la luz a su alrededor"
+ },
+ {
+  "nombre": "Oraculo Ciego",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 1367405530,
+  "clase": "oraculo",
+  "descripcion": "Con los ojos vendados con seda gris alzando las manos hacia el vacío"
+ },
+ {
+  "nombre": "Lanza Penumbra",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 577744759,
+  "clase": "guerrero",
+  "descripcion": "Manteniendo una pica de metal oscuro en posición de defensa en un callejón"
+ },
+ {
+  "nombre": "Principe del Eclipse",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "LEGENDARIA",
+  "seed": 1169803872,
+  "clase": "senor",
+  "descripcion": "Observando el cielo con una capa de terciopelo negro que arrastra por el suelo"
+ },
+ {
+  "nombre": "Hermana Umbria",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 4026513910,
+  "clase": "dama",
+  "descripcion": "Sosteniendo un espejo de mano que solo refleja la oscuridad de la habitación"
+ },
+ {
+  "nombre": "Polilla Negra",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 3177536234,
+  "clase": "brujo",
+  "descripcion": "Sosteniendo un insecto de alas oscuras que emite un polvo brillante y frío"
+ },
+ {
+  "nombre": "Susurro",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 2707202324,
+  "clase": "hechicero",
+  "descripcion": "Acercando sus labios a la oreja de una estatua de piedra en la penumbra"
+ },
+ {
+  "nombre": "Tinta Viva",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 2519393182,
+  "clase": "mago",
+  "descripcion": "Trazando runas oscuras en el aire con los dedos manchados de una sustancia negra"
+ },
+ {
+  "nombre": "Paso Felpado",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 1823494180,
+  "clase": "asesino",
+  "descripcion": "Caminando sin hacer ruido sobre una alfombra de hojas secas en el bosque"
+ },
+ {
+  "nombre": "Beso de Sombra",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 3757553400,
+  "clase": "asesino",
+  "descripcion": "Sosteniendo una rosa de pétalos negros que se deshace al tacto de sus dedos"
+ },
+ {
+  "nombre": "Nido de Búhos",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 3500417110,
+  "clase": "invocador",
+  "descripcion": "Rodeado de aves rapaces de ojos brillantes que descansan sobre sus hombros"
+ },
+ {
+  "nombre": "Velo Gris",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 666507845,
+  "clase": "guardian",
+  "descripcion": "Cubriendo su rostro con una capucha de tela desgastada bajo la llovizna"
+ },
+ {
+  "nombre": "Mirada Hueca",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "COMUN",
+  "seed": 938727407,
+  "clase": "profeta",
+  "descripcion": "Observando el infinito con pupilas dilatadas que no reflejan luz alguna"
+ },
+ {
+  "nombre": "Puñal de Niebla",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 812431610,
+  "clase": "asesino",
+  "descripcion": "Sosteniendo una hoja tan delgada que parece desvanecerse en el aire frío"
+ },
+ {
+  "nombre": "Eclipse Parcial",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 3328690746,
+  "clase": "hechicero",
+  "descripcion": "Alzando una esfera de cristal oscuro que bloquea la luz de una vela"
+ },
+ {
+  "nombre": "Canto de Grillo",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 2524933576,
+  "clase": "heraldo",
+  "descripcion": "Sosteniendo un amuleto de bronce que emite un zumbido constante"
+ },
+ {
+  "nombre": "Manto de Estrellas",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "RARA",
+  "seed": 1597130484,
+  "clase": "mago",
+  "descripcion": "Abriendo una capa azul oscuro salpicada de pequeños puntos brillantes"
+ },
+ {
+  "nombre": "Noche Cerrada",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "LEGENDARIA",
+  "seed": 3952234031,
+  "clase": "nigromante",
+  "descripcion": "Sosteniendo un cráneo humano del que brota una densa niebla oscura"
+ },
+ {
+  "nombre": "Vacío Brillante",
+  "faccion": "elfo_nocturno",
+  "raza": "elfo_nocturno",
+  "rareza": "LEGENDARIA",
+  "seed": 580676824,
+  "clase": "profeta",
+  "descripcion": "Alzando los brazos hacia un portal de energía oscura que late en el techo"
+ },
+ {
+  "nombre": "Acechador",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 520229482,
+  "clase": "cazador",
+  "descripcion": "Agazapado sobre una rama gruesa con los ojos fijos en el suelo del bosque"
+ },
+ {
+  "nombre": "Garra Veloz",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 407833923,
+  "clase": "asesino",
+  "descripcion": "Mostrando sus garras afiladas listas para desgarrar en un movimiento rápido"
+ },
+ {
+  "nombre": "Saltador",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 1879339473,
+  "clase": "guerrero",
+  "descripcion": "En el aire con las garras extendidas descendiendo sobre su objetivo"
+ },
+ {
+  "nombre": "Cazadora Silente",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 174167300,
+  "clase": "cazador",
+  "descripcion": "Tensando un arco de madera oscura sin hacer el menor ruido entre las hojas"
+ },
+ {
+  "nombre": "Pantera Alfa",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "LEGENDARIA",
+  "seed": 1048018772,
+  "clase": "capitan",
+  "descripcion": "Rugiendo con autoridad mientras el viento agita su pelaje negro y brillante"
+ },
+ {
+  "nombre": "Zarpazo",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 1887759081,
+  "clase": "berserker",
+  "descripcion": "Lanzando un golpe con la garra ensangrentada que corta el aire de la noche"
+ },
+ {
+  "nombre": "Cola Sigilosa",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 4217882908,
+  "clase": "asesino",
+  "descripcion": "Moviendo su cola larga y delgada para mantener el equilibrio sobre una viga"
+ },
+ {
+  "nombre": "Ojos Ambar",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 3018869097,
+  "clase": "oraculo",
+  "descripcion": "Brillando en la oscuridad absoluta de una cueva con una intensidad felina"
+ },
+ {
+  "nombre": "Salto Mortal",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 50388199,
+  "clase": "asesino",
+  "descripcion": "Girando en el aire con una daja entre los dientes bajo la luz de la luna"
+ },
+ {
+  "nombre": "Rey de la Noche",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "LEGENDARIA",
+  "seed": 2048017750,
+  "clase": "rey",
+  "descripcion": "Sentado sobre un trono de huesos con una corona de colmillos de marfil"
+ },
+ {
+  "nombre": "Garra Nocturna",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 4257551046,
+  "clase": "asesino",
+  "descripcion": "Ocultando su mano armada tras una capa de piel de pantera negra"
+ },
+ {
+  "nombre": "Bigote",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 4102124922,
+  "clase": "cazador",
+  "descripcion": "Mostrando sus vibrisas tensas mientras detecta el menor movimiento en el aire"
+ },
+ {
+  "nombre": "Rastro Fresco",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 3331676764,
+  "clase": "cazador",
+  "descripcion": "Tocando una huella de sangre húmeda en el suelo con la punta del dedo"
+ },
+ {
+  "nombre": "Ronda Gris",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 1237677344,
+  "clase": "guardian",
+  "descripcion": "Caminando con paso firme por el perímetro de un campamento en ruinas"
+ },
+ {
+  "nombre": "Colmillo Chico",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 743556739,
+  "clase": "asesino",
+  "descripcion": "Mostrando una sonrisa felina que revela un pequeño diente afilado de plata"
+ },
+ {
+  "nombre": "Selva Espesa",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 1884184733,
+  "clase": "druida",
+  "descripcion": "Apartando las lianas colgantes con un báculo de madera de ébano"
+ },
+ {
+  "nombre": "Juego de Sombras",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 1779049584,
+  "clase": "hechicero",
+  "descripcion": "Haciendo gestos con las manos para proyectar siluetas felinas en la pared"
+ },
+ {
+  "nombre": "Huella Húmeda",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "COMUN",
+  "seed": 2442251766,
+  "clase": "cazador",
+  "descripcion": "Observando una marca de garra en el barro que se llena lentamente de agua"
+ },
+ {
+  "nombre": "Garra Dividida",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 3330764750,
+  "clase": "guerrero",
+  "descripcion": "Sosteniendo un guantelete de tres hojas afiladas cubiertas de veneno"
+ },
+ {
+  "nombre": "Emboscada",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 968465223,
+  "clase": "asesino",
+  "descripcion": "Oculto tras un tronco caído esperando el momento preciso para atacar"
+ },
+ {
+  "nombre": "Caza del Alba",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 543032523,
+  "clase": "cazador",
+  "descripcion": "Corriendo silueteado contra un cielo gris que empieza a aclararse"
+ },
+ {
+  "nombre": "Brinco Letal",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 1715989180,
+  "clase": "berserker",
+  "descripcion": "Lanzándose de cabeza con las fauces abiertas hacia su presa indefensa"
+ },
+ {
+  "nombre": "Depredador",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "RARA",
+  "seed": 287932499,
+  "clase": "cazador",
+  "descripcion": "Acechando desde la penumbra con la respiración contenida y la mirada fija"
+ },
+ {
+  "nombre": "Noche de Caza",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "LEGENDARIA",
+  "seed": 1066235277,
+  "clase": "druida",
+  "descripcion": "Alzando un amuleto de hueso que brilla con una luz verde pálida"
+ },
+ {
+  "nombre": "Luna del Jaguar",
+  "faccion": "hombre_pantera",
+  "raza": "hombre_pantera",
+  "rareza": "LEGENDARIA",
+  "seed": 1306116481,
+  "clase": "profeta",
+  "descripcion": "Observando una luna dorada que se filtra entre las hojas de la selva"
+ },
+ {
+  "nombre": "Escamado",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 2938676988,
+  "clase": "guerrero",
+  "descripcion": "Sosteniendo una maza de piedra con sus manos cubiertas de escamas verdosas"
+ },
+ {
+  "nombre": "Mordisco Fangoso",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 1948323672,
+  "clase": "berserker",
+  "descripcion": "Surgiendo del agua estancada con las fauces cubiertas de lodo y algas"
+ },
+ {
+  "nombre": "Chaman del Pantano",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 2947307615,
+  "clase": "chaman",
+  "descripcion": "Sosteniendo un báculo adornado con plumas de garza y huesos de pez"
+ },
+ {
+  "nombre": "Cola Acorazada",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 1221046146,
+  "clase": "guardian",
+  "descripcion": "Manteniendo una postura defensiva con su cola cubierta de placas óseas"
+ },
+ {
+  "nombre": "Senor del Pantano",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "LEGENDARIA",
+  "seed": 4248901743,
+  "clase": "senor",
+  "descripcion": "Apoyado en un trono de raíces húmedas con una corona de juncos secos"
+ },
+ {
+  "nombre": "Cria Fangosa",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 475463066,
+  "clase": "cazador",
+  "descripcion": "Asomando la cabeza del fango con ojos grandes y curiosos en la penumbra"
+ },
+ {
+  "nombre": "Lanza Juncos",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 2202629573,
+  "clase": "guerrero",
+  "descripcion": "Apuntando con una lanza delgada de punta de hueso desde el agua"
+ },
+ {
+  "nombre": "Curandero Viejo",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 2932154534,
+  "clase": "chaman",
+  "descripcion": "Sosteniendo un cuenco de barro con un ungüento de hierbas machacadas"
+ },
+ {
+  "nombre": "Mandibula",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 968089413,
+  "clase": "berserker",
+  "descripcion": "Abriendo sus enormes mandíbulas mostrando hileras de dientes afilados"
+ },
+ {
+  "nombre": "Cocodrilo Anciano",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "LEGENDARIA",
+  "seed": 1109377266,
+  "clase": "guardian",
+  "descripcion": "Flotando inmóvil en el agua oscura con solo los ojos y la espalda visibles"
+ },
+ {
+  "nombre": "Guardian del Fango",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 1151445324,
+  "clase": "guardian",
+  "descripcion": "Sosteniendo un escudo de caparazón de tortuga gigante ante el peligro"
+ },
+ {
+  "nombre": "Renacuajo",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 3019782918,
+  "clase": "cazador",
+  "descripcion": "Deslizándose rápidamente bajo la superficie de un charco cubierto de algas"
+ },
+ {
+  "nombre": "Barro Tibio",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 942168291,
+  "clase": "druida",
+  "descripcion": "Sumergiendo las manos en el fango caliente para sentir las vibraciones de la tierra"
+ },
+ {
+  "nombre": "Junco Verde",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 788578335,
+  "clase": "cazador",
+  "descripcion": "Ocultándose tras una cortina de cañas altas con la mirada atenta"
+ },
+ {
+  "nombre": "Charco Hondo",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 2271874800,
+  "clase": "druida",
+  "descripcion": "Observando las ondas en el agua estancada que revelan visiones oscuras"
+ },
+ {
+  "nombre": "Lengua Rápida",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 3401940586,
+  "clase": "asesino",
+  "descripcion": "Atrapando un insecto en el aire con un movimiento veloz de su lengua bífida"
+ },
+ {
+  "nombre": "Nido de Barro",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 61816093,
+  "clase": "guardian",
+  "descripcion": "Protegiendo un montón de huevos cubiertos de hojas podridas y fango"
+ },
+ {
+  "nombre": "Piel Húmeda",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 507737541,
+  "clase": "guerrero",
+  "descripcion": "Dejando que el agua del pantano resbale por sus escamas oscuras y brillantes"
+ },
+ {
+  "nombre": "Dentellada",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "COMUN",
+  "seed": 3092471698,
+  "clase": "berserker",
+  "descripcion": "Lanzando un mordisco rápido al aire con expresión de furia incontrolable"
+ },
+ {
+  "nombre": "Cola del Río",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 3028213239,
+  "clase": "cazador",
+  "descripcion": "Usando su cola para impulsarse silenciosamente a través de la corriente"
+ },
+ {
+  "nombre": "Ciénaga Viva",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 4192654072,
+  "clase": "druida",
+  "descripcion": "Alzando las manos mientras las plantas del pantano se retuercen a su voluntad"
+ },
+ {
+  "nombre": "Ojos de Pantano",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 2437640162,
+  "clase": "oraculo",
+  "descripcion": "Brillando con una luz amarillenta a ras del agua en una noche sin luna"
+ },
+ {
+  "nombre": "Triturador",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "RARA",
+  "seed": 309612928,
+  "clase": "berserker",
+  "descripcion": "Sosteniendo un enorme garrote hecho con el fémur de una bestia gigante"
+ },
+ {
+  "nombre": "Pantano Eterno",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "LEGENDARIA",
+  "seed": 3901148458,
+  "clase": "druida",
+  "descripcion": "Sosteniendo una flor de loto negra que emite un aroma dulce y venenoso"
+ },
+ {
+  "nombre": "Fauces Ancestrales",
+  "faccion": "hombre_lagarto",
+  "raza": "hombre_lagarto",
+  "rareza": "LEGENDARIA",
+  "seed": 1046036060,
+  "clase": "guardian",
+  "descripcion": "Abriendo una boca enorme capaz de tragar por completo a un enemigo"
+ }
+]

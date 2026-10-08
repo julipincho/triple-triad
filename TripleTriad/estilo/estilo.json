@@ -1,0 +1,122 @@
+{
+  "resumen": "Retratos de fantasía oscura en pixel art de alta densidad con estética retro de monitor CRT y marcadas líneas de escaneo horizontales.",
+  "medio": "Pixel art detallado de estilo retro de 16/32 bits, simulando la pantalla de un monitor CRT analógico. Presenta un patrón alterno de scanlines horizontales muy definido y sombreado mediante dithering (tramado de píxeles).",
+  "paleta": [
+    {
+      "hex": "#101114",
+      "nombre": "Negro Abisal",
+      "uso": "Sombras más profundas, contornos de personajes y marcos de interfaz."
+    },
+    {
+      "hex": "#3a393b",
+      "nombre": "Gris Ceniza",
+      "uso": "Tonos medios neutros, texturas metálicas y fondos de piedra."
+    },
+    {
+      "hex": "#725b4d",
+      "nombre": "Marrón Tierra Quemada",
+      "uso": "Pelajes, cuero, sombras de piel cálidas y detalles de vestimenta."
+    },
+    {
+      "hex": "#8b7561",
+      "nombre": "Beige Pergamino",
+      "uso": "Luces altas en pelajes, cabello y reflejos de piel clara."
+    },
+    {
+      "hex": "#794131",
+      "nombre": "Rojo Terracota",
+      "uso": "Escamas de dragón, luces de fuego y acentos cálidos en la indumentaria."
+    },
+    {
+      "hex": "#4b2422",
+      "nombre": "Rojo Sangre Oscuro",
+      "uso": "Capas de vampiro, cielos crepusculares y sombras cálidas."
+    },
+    {
+      "hex": "#141a21",
+      "nombre": "Azul Abismo",
+      "uso": "Sombras frías, telas oscuras y cielos nocturnos."
+    },
+    {
+      "hex": "#ad9883",
+      "nombre": "Gris Arena",
+      "uso": "Brillos metálicos en armaduras y reflejos de luz ambiental fría."
+    }
+  ],
+  "luz": "Iluminación dramática de tres cuartos (claroscuro) con alto contraste. Se observan luces secundarias de colores (azul, violeta, rojo fuego) que perfilan las siluetas y crean una atmósfera mística.",
+  "encuadre": "Plano medio corto (busto), con el sujeto centrado mirando ligeramente hacia tres cuartos. El fondo muestra paisajes temáticos (castillos, bosques, lunas) con menor contraste para dar profundidad.",
+  "textura": "Textura pixelada rugosa y definida. Presencia de scanlines horizontales de 2 píxeles de grosor y tramado (dithering) para las transiciones de color, evitando degradados suaves modernos.",
+  "detalle": "Alto nivel de detalle concentrado en los rostros, ojos expresivos y texturas del primer plano (escamas, pelaje, metal pulido), simplificándose hacia el fondo.",
+  "mood": "Siniestro, heroico, melancólico y nostálgico. Evoca la atmósfera de los videojuegos de rol clásicos de los años 90.",
+  "sujetos": "Personajes de fantasía con expresiones severas, orgullosas o amenazantes. Siluetas bien definidas, rasgos faciales afilados y ojos intensos o brillantes.",
+  "prompts_sdxl": {
+    "positivo": "pixel art portrait, dark fantasy style, highly detailed 16-bit retro game graphics, visible horizontal scanlines, CRT monitor texture, dithered shading, dramatic chiaroscuro lighting, sharp pixel edges, muted color palette with deep shadows, centered portrait, atmospheric background",
+    "negativo": "smooth digital painting, 3D render, vector art, blurry, anti-aliased, modern graphics, high-definition photo, soft brushstrokes, bright pastel colors, white background, modern UI, smooth gradients"
+  },
+  "prohibiciones": [
+    "No usar degradados de color suaves o aerografiados.",
+    "No incluir elementos de interfaz de usuario modernos o futuristas.",
+    "No suavizar los bordes de los píxeles con filtros de desenfoque.",
+    "No mostrar personajes sonrientes o en poses alegres.",
+    "No usar colores extremadamente saturados o neón fuera de los puntos de luz."
+  ],
+  "medidas": {
+    "tamano": "1983x793",
+    "brillo": 59,
+    "saturacion": 33,
+    "paleta": [
+      {
+        "hex": "#101114",
+        "pct": 11.6
+      },
+      {
+        "hex": "#3a393b",
+        "pct": 10.5
+      },
+      {
+        "hex": "#231d20",
+        "pct": 9.4
+      },
+      {
+        "hex": "#0b0a0b",
+        "pct": 9.4
+      },
+      {
+        "hex": "#725b4d",
+        "pct": 8.9
+      },
+      {
+        "hex": "#332223",
+        "pct": 8.4
+      },
+      {
+        "hex": "#583e35",
+        "pct": 8.1
+      },
+      {
+        "hex": "#8b7561",
+        "pct": 7.7
+      },
+      {
+        "hex": "#794131",
+        "pct": 7.4
+      },
+      {
+        "hex": "#4b2422",
+        "pct": 7.0
+      },
+      {
+        "hex": "#ad9883",
+        "pct": 6.1
+      },
+      {
+        "hex": "#141a21",
+        "pct": 5.5
+      }
+    ],
+    "scanlines_lag2": -0.813,
+    "scanlines": true
+  },
+  "imagen": "E:\\AI\\moodboard.png",
+  "modelo_extraccion": "gemini-3.5-flash"
+}
