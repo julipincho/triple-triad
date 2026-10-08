@@ -129,8 +129,10 @@ async def _prologo(screen, clock):
     await cinematicas.reproducir(
         screen, clock, prologo.escenas_encuentro_hostil(),
         musica=musica_fantasia)
+    _CONTEXTO[0] = "prólogo: Nara explica la situación"
     await cinematicas.reproducir(
-        screen, clock, prologo.escenas_nara() + prologo.escenas_cierre(),
+        screen, clock, prologo.escenas_nara() + prologo.escenas_explicacion()
+        + prologo.escenas_cierre(),
         musica=musica_fantasia, permitir_saltar=False)
     return resultado
 
@@ -312,6 +314,14 @@ async def _campana(screen, clock, estado, nuevo=False):
         if decision and decision["id"] not in estado.get("decisiones", []):
             await pantallas.decision_narrativa(screen, clock, estado, decision)
             info = campana.info_duelo(estado)
+        # antes del duelo del trono, Nara deja de ser guia y se queda. Va antes
+        # del cartel de nodo para que sea lo ultimo que pasa antes de pelear.
+        if info["nodo"] == "trono":
+            _CONTEXTO[0] = "campaña: Nara se queda"
+            await cinematicas.reproducir(
+                screen, clock, narrativa.escena_amistad(),
+                musica=audio.musica_de_faccion(estado["faccion"]),
+                permitir_saltar=False)
         # cartel de escenario antes del duelo
         escenas, musica = cinematicas.escenas_nodo(info)
         audio.musica(musica)

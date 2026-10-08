@@ -141,8 +141,8 @@ DECISION = {
 
 def nara_presentacion(confianza):
     if confianza >= 3:
-        return ("- No te conozco. Voy contigo porque el Umbral no miente. "
-                "No me hagas quedar mal.")
+        return ("- No necesito que me cuentes nada para saber a que atencion. "
+                "Voy porque quiero ir. Y eso es raro en mi.")
     return ("- Te conozco poco. Te acompano porque necesito respuestas. "
             "No porque me caigas bien.")
 
@@ -199,6 +199,9 @@ NARRATIVA = {
                 fondo="aldea"),
             esc("- Eso es del otro lado. Eso no se trae aqui.", fondo="aldea",
                 color=TEXTO_ON),
+            esc("- Cinco duelos. El ultimo es el trono. Segui, porque cada uno que "
+                "ganas es un paso menos entre vos y tu salon.", hablante="Nara",
+                fondo="aldea", color=TEXTO_ON),
         ],
         "posterior": [
             esc("Cuando sales, el custodio te sigue con la mirada hasta el arco. No es "
@@ -242,6 +245,8 @@ NARRATIVA = {
                 fondo="fortaleza"),
             esc("- Ganar no es el problema. El problema es que se abre despues.",
                 hablante="Nara", fondo="fortaleza", color=TEXTO_ON),
+            esc("- Estas a dos duelos de la vuelta. No aflojes ahora.",
+                hablante="Nara", fondo="fortaleza", color=TEXTO_ON),
         ],
     },
     "asalto": {
@@ -257,6 +262,8 @@ NARRATIVA = {
             esc("- Esas cartas no son de este mundo.", hablante="Nara", fondo="asalto"),
             esc("- Lo se. Llevo dos dias sin dormir por eso.", hablante="Nara",
                 fondo="asalto", color=TEXTO_ON),
+            esc("- Falta uno. El ultimo. Y el ultimo te devuelve a casa.",
+                hablante="Nara", fondo="asalto", color=TEXTO_ON),
         ],
     },
     "trono": {
@@ -301,6 +308,49 @@ def segunda_reaccion_mazo(faccion):
 
 def decision_de(nodo_id):
     return DECISION.get(nodo_id)
+
+
+# ------------------------------------------------------- el momento de Nara
+# La biblia pide que Nara pase de guia a amiga. NO se puede dejar en manos de
+# la confianza: `confianza_nara` solo sube con las dos decisiones de la campana
+# (maximo +1 y +2), asi que un jugador que elige frio en las dos se queda en 0
+# y `campana.nara_aliada()` jamas daria True. El momento tiene que ocurrir
+# siempre; la confianza solo cambia que tan calida es.
+AMISTAD_NARA = [
+    esc("Antes del ultimo duelo, Nara te espera en el borde del camino.",
+        fondo="camino"),
+    esc("No esta escribiendo. El libro esta cerrado.", fondo="camino"),
+    esc("- Tengo que corregir una cosa. Y corregirme yo.", hablante="Nara",
+        retrato="nara", fondo="camino"),
+    esc("- El primer dia te dije que te acompanaba porque necesitaba respuestas.",
+        hablante="Nara", retrato="nara", fondo="camino"),
+    esc("- Era verdad. Y no era todo.", hablante="Nara", retrato="nara",
+        fondo="camino", color=TEXTO_ON),
+    esc("- Vine a averiguar quien escribio las cartas. Ese era el motivo. Y "
+        "segun el motivo, vos eras un dato.", hablante="Nara", retrato="nara",
+        fondo="camino"),
+    esc("Nara abre el libro por la ultima vez. Esta lleno de flechas y de "
+        "preguntas, y de tu nombre repetido cuantas veces pudo.",
+        fondo="camino"),
+    esc("- No lo encontre. Y en el camino perdi las ganas de que me importara "
+        "tanto.", hablante="Nara", retrato="nara", fondo="camino", color=TEXTO_ON),
+    esc("Lo cierra otra vez. Esta vez no lo vuelve a abrir.", fondo="camino"),
+    esc("- Dejame acompanarte. No por el Umbral. No por las cartas.",
+        hablante="Nara", retrato="nara", fondo="camino", color=TEXTO_ON),
+    esc("- Porque quiero. Y no me da vergenza decirlo.", hablante="Nara",
+        retrato="nara", fondo="camino"),
+    esc("El camino sube hacia el trono. Por primera vez no lo camina sola.",
+        fondo="camino", color=TEXTO_ON),
+]
+
+
+def escena_amistad():
+    """Nara deja de ser una guia y pasa a ser otra cosa.
+
+    Se reproduce antes del duelo del trono, siempre, con independencia de las
+    decisiones. Es el punto 6 de la biblia: deja de dar pistas y se queda.
+    """
+    return [dict(e) for e in AMISTAD_NARA]
 
 
 def nara_linea(momento, confianza):

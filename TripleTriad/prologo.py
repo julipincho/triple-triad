@@ -233,6 +233,70 @@ def _escenas_nara():
     ]
 
 
+def _escenas_explicacion():
+    """El momento que faltaba: que esta pasando y como se vuelve a casa.
+
+    Va justo despues de que Nara reconoce las cartas, porque es ella quien
+    sabe. Tiene que decir TRES cosas:
+
+      - el Umbral lo guarda quien ocupe el trono, no una criatura concreta;
+      - la que legitimo el trono fue la sangre del dragon, asi que "vencer al
+        dragon" quedo como la formula popular aunque el rival real sea otro;
+      - la unica vuelta a casa es ganar el trono, y el camino son cinco duelos.
+
+    Lo que NO dice es contra quien: ese rival sale de la escalera del bando
+    (`facciones.rival_final`) y no depende de una palabra de esta escena. Por
+    eso la frase queda como la que dice la gente y no como una regla.
+
+    Sobre perder: `campana.registrar_derrota` no avanza el nodo, se reintenta.
+    Asi que aqui NO se dice que perder te deje trapped en el mundo.
+    """
+    return [
+        esc("Nara se sienta enfrente. Cierra el libro. Por primera vez no esta "
+            "escribiendo.", fondo="campamento", color=TEXTO_ON),
+        esc("- Sienta. Te lo voy a explicar como me lo explican a mi.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- Lo que viste en el salon no fue un fallo de la carta. Fue una "
+            "apertura.", hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("La grieta que se abrio en el salon se llama el Umbral. Ya estaba "
+            "aqui antes de que vos llegaras.", fondo="campamento", color=TEXTO_ON),
+        esc("- El Umbral no se abre solo. Lo abre uno y lo guarda otro.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("Guardarlo significa una sola cosa: sentarse en el trono.",
+            fondo="campamento"),
+        esc("- Todo lo de este mundo sale de ahi. Y el Umbral se abre para "
+            "quien lo tenga.", hablante="Nara", retrato="nara", fondo="campamento",
+            color=TEXTO_ON),
+        esc("- Por eso hay diez bandos peleando por la Copa del Trono. No es un "
+            "torneo. Es una guerra con reglas de duelo.", hablante="Nara",
+            retrato="nara", fondo="campamento"),
+        esc("Nara duda. Es la primera vez que duda.", hablante="Nara",
+            retrato="nara", fondo="campamento"),
+        esc("- Hay una cosa que la gente repite mal. Escuchame, porque importa.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- Todos dicen: hay que vencer al dragon. En todas partes.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- Es verdad a medias. La sangre del dragon fue la que legitimo el "
+            "trono. Por eso la frase quedo pegada.", hablante="Nara",
+            retrato="nara", fondo="campamento", color=TEXTO_ON),
+        esc("- Pero al dragon no lo eligio nadie. Lo eligio el bando que subio "
+            "antes que vos.", hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("Y por ultimo, lo que estabas a punto de preguntar:", fondo="campamento",
+            color=TEXTO_ON),
+        esc("- Uno no vino a salvar nada. Vino a pedir que lo saques de aca.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- No hay vuelta, ni atajo, ni puerta de servicio. Gana el trono y el "
+            "Umbral te devuelve a tu salon.", hablante="Nara", retrato="nara",
+            fondo="campamento", color=TEXTO_ON),
+        esc("- Son cinco duelos. El ultimo es el trono. Si se pierde, se vuelve "
+            "a intentar: nadie te saca de aca por perder.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("Cierra el libro. Lo vuelve a abrir. Y escribe una sola palabra:",
+            fondo="campamento"),
+        esc("CASA", efecto="titulo", fondo="campamento", color=DORADO),
+    ]
+
+
 def _escenas_cierre():
     """Cierra el prologo y pasa el turno a la eleccion de faccion."""
     return [
@@ -276,6 +340,11 @@ def escenas_encuentro_hostil():
 
 def escenas_nara():
     return [dict(e) for e in _escenas_nara()]
+
+
+def escenas_explicacion():
+    """Que esta pasando y como se vuelve a casa. Va entre Nara y el cierre."""
+    return [dict(e) for e in _escenas_explicacion()]
 
 
 def escenas_cierre():
