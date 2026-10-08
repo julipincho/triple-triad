@@ -16,6 +16,7 @@ import audio
 import duelistas
 import facciones
 import narrativa
+import peticiones
 from ui import (
     ALTO,
     ANCHO,
@@ -269,6 +270,7 @@ ETIQUETAS_RETRATO = {
     "jefe_arco": "Jefe de Arco",
     "revancha": "La Revancha",
     "gobernante": "El Gobernante",
+    "presentador": "El Presentador",
 }
 
 
@@ -287,9 +289,18 @@ MUNDO_REAL = "real"
 MUNDO_JUEGO = "juego"
 
 #: Tinte y vineta por mundo: (color RGB, alpha de capa, vineta alfa).
+#:
+#: El tinte daba 55-60% de oscurecido en el mundo del juego y 21% en el
+#: nuestro, y eso hacia que el fondo se viera como otra cosa y no como el arte
+#: que se genero. Un tinte tiene que SENTIRSE, no tapar: la diferencia entre
+#: los dos mundos sigue notandose (mas frio y mas claro el nuestro, con
+#: vineta el del juego), pero el fondo se ve como es.
+#:
+#: Bajar esto no afecta la legibilidad: el texto vive en su propio panel
+#: oscuro (`panel(screen, caja, (10, 11, 18, 226))`), no sobre el fondo.
 TRATAMIENTO = {
-    MUNDO_JUEGO: ((6, 7, 14), 168, (50, 80)),
-    MUNDO_REAL: ((18, 24, 38), 96, (0, 0)),
+    MUNDO_JUEGO: ((8, 10, 20), 86, (46, 72)),
+    MUNDO_REAL: ((20, 28, 46), 38, (0, 0)),
 }
 
 
@@ -308,7 +319,7 @@ APERTURAS = {
                 hablante="Aldric", retrato="humano"),
             esc("Juegas con el mazo humano. Nadie mas en este mundo juega con el.",
                 hablante="Aldric", retrato="humano", color=TEXTO_ON),
-            esc("Eres el ultimo attempting de una especie que se niega a desaparecer.", color=DORADO),
+            esc("Eres el ultimo resto de una especie que se niega a desaparecer.", color=DORADO),
         ],
     },
     "orco": {
@@ -422,8 +433,34 @@ APERTURAS = {
 
 
 def apertura(faccion):
+    """Cinematica de apertura de la faccion elegida.
+
+    Le agrega las dos escenas que faltaban y que son las que contestan
+    "que quieren del trono" y "por que te ayudan a vos". Sin ellas el
+    dialogo queda colgado: el bando te habla de vos y de las cartas, pero nunca
+    del pacto que te esta ofreciendo. El texto vive en `peticiones.py`, una
+    sola vez para las diez.
+    """
     datos = APERTURAS.get(faccion, APERTURAS["humano"])
-    return [dict(e) for e in datos["escenas"]], datos.get("musica")
+    escenas = [dict(e) for e in datos["escenas"]]
+    pide = peticiones.peticion(faccion)
+    ayuda = peticiones.por_que_te_ayudan(faccion)
+    if not pide or not ayuda:
+        return escenas, datos.get("musica")
+    # el hablante y el retrato son los de la propia apertura: la misma voz
+    voz = next((e for e in escenas if e.get("hablante")), None)
+    hablante = voz["hablante"] if voz else None
+    retrato = voz.get("retrato") if voz else None
+    fondo = escenas[-1]["fondo"]
+    # se insertan antes del cierre, que es la frase de relevo del bando
+    cierre = escenas.pop() if len(escenas) > 1 else None
+    escenas.append(esc("- " + pide, hablante=hablante, retrato=retrato,
+                       fondo=fondo, color=TEXTO_ON))
+    escenas.append(esc("- " + ayuda, hablante=hablante, retrato=retrato,
+                       fondo=fondo))
+    if cierre is not None:
+        escenas.append(cierre)
+    return escenas, datos.get("musica")
 
 
 INTRO = {

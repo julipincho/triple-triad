@@ -1061,6 +1061,11 @@ def info_duelo(estado, nodo_id=None):
         "reaccion_rol": duelistas.reaccion_rol(nodo_id, estado.get("faccion", "")),
         "dialogo_pre": duelistas.dialogo_de(nodo_id, "pre",
                                             duelo.get("nombre", "")),
+        # Que retrato se dibuja en la PANTALLA del duelo. Antes se usaba
+        # siempre el de la faccion y por eso Juan Rajoy salia como un humano
+        # cualquiera: `partida.py` pedia `avatar_<bando>`. Con esta clave la
+        # pantalla puede mostrar a la persona, no al bando.
+        "retrato": duelistas.retrato_de(nodo_id, rival),
     }
 
 

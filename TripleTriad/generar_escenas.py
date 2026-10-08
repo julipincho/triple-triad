@@ -236,6 +236,169 @@ CATALOGO = {
         "notas": "Tiene que ser la MISMA Nara del avatar aprobado. Duda de "
                  "duda: si el pelo o la ropa cambian, no es ella.",
     },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_humano": {
+        "archivo": "avatar_humano.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1boy, human swordsman, ash-stained travelling cloak, tired eyes, short messy dark hair, a plain steel sword held low, resolute expression, portrait",
+        "extra": "",
+        "notas": "El bando humano: un Reino que quedo en ceniza. Capa de viaje, espada baja. Es el bando de Juan, asi que tiene que le parecerse sin ser el.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_orco": {
+        "archivo": "avatar_orco.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1orc, green-grey skin, heavy jaw, broken tusk, leather scraps and crude iron shoulder plate, scarred, wide shoulders, looking straight ahead, portrait",
+        "extra": "",
+        "notas": "Los orcos fueron arrojados a las fronteras. Armadura hecha de lo que sobra.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_elfo": {
+        "archivo": "avatar_elfo.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1elf, silver-blonde hair, pointed ears, pale jade eyes, layered teal and silver leaf armour, calm unblinking gaze, portrait",
+        "extra": "",
+        "notas": "Los elfos toman las armas por primera vez en siglos. Armadura de hoja y jade, y una mirada que no parpadea.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_goblin": {
+        "archivo": "avatar_goblin.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1goblin, large pointed ears, crooked teeth, scavenged jewellery and junk armour, mismatched gloves, sharp grin, small frame, portrait",
+        "extra": "",
+        "notas": "El bando goblin: chatarra y trocitos. Es distinto de Pik a proposito: Pik es un crio asustado, este es el bando entero.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_hombre_lobo": {
+        "archivo": "avatar_hombre_lobo.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1man, wolf ears and a wolf muzzle on an otherwise human face, thick fur ruff around the neck, moonlit blue light, torn leather, weary stare, portrait",
+        "extra": "",
+        "notas": "La manada despierta hambrienta. Ojo humano en un rostro de lobo.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_vampiro": {
+        "archivo": "avatar_vampiro.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1vampire, pale skin, slicked-back black hair, high crimson collar, dark red lips, arched brows, faint fangs, gothic aristocratic, portrait",
+        "extra": "",
+        "notas": "Los nobles de la noche. Cuello alto carmesi: la silueta tiene que leerse a primera vista como un vampiro y no como un humano con capa.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_dragon": {
+        "archivo": "avatar_dragon.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1dragon, tall horned humanoid, black and crimson scales, molten cracks of light along the arms, slit pupils, volcanic glow from below, portrait",
+        "extra": "",
+        "notas": "El linaje dragonico. Que se lea escamas y no un humano con cuernos: es el bando que legitimo el trono y tiene que tener presencia.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_elfo_nocturno": {
+        "archivo": "avatar_elfo_nocturno.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1elf, dark violet skin, long silver hair, violet glowing eyes, deep indigo and purple cloak, twilight shadow, portrait",
+        "extra": "",
+        "notas": "Los elfos nocturnos fueron expulsados por mirar al Umbral. Ojos que brillan y no parpadean.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_hombre_pantera": {
+        "archivo": "avatar_hombre_pantera.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1woman, panther-like face markings, sleek black hair, magenta neon light on the rooftop behind, dark violet coat, confident half-smile, portrait",
+        "extra": "",
+        "notas": "Nadie mira al tejado. Que se lea felino y con la luz magenta de su ciudad.",
+    },
+    # ---- los diez bandos, avatares nuevos ---------------------------
+    # Los diez `avatar_<faccion>.png` que habia eran del set viejo (pintados,
+    # RGB sin alfa). Con los personajes nuevos al lado se veia el cambio de
+    # actor: el rival aparecia con otro estilo. Se regeneran los diez.
+    "avatar_hombre_lagarto": {
+        "archivo": "avatar_hombre_lagarto.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1lizardman, green reptilian scales, slit eyes, long jaw, mossy cloth and rope, swamp water dripping, patient unsmiling expression, portrait",
+        "extra": "",
+        "notas": "Del fango salieron con escamas y paciencia. Ni un gesto de apuro.",
+    },
+
+    # ---- el Presentador y los fondos que faltaban del torneo -----------
+    # Once escenas seguidas caian sobre `salon` y el Presentador no tenia cara.
+    # Con un fondo solo, el tramo se leia como una sola imagen repetida.
+    "avatar_presentador": {
+        "archivo": "avatar_presentador.png",
+        "tipo": "avatar",
+        "encuadre": "retrato",
+        "sujeto": "1man, middle-aged, tv host, short dark hair with greying "
+                  "temples, clean shaven, sharp black suit with a red tie, "
+                  "broad professional smile, headset microphone, confident "
+                  "presenter",
+        "extra": "",
+        "notas": "Anuncia la clasificatoria y presenta la carta del Umbral. "
+                 "Es un conductor de torneo, no un jefe ni un luchador. Voz "
+                 "de tv, traje, y una sonrisa que no significa nada.",
+    },
+    "fondo_escenario": {
+        "archivo": "fondos/escenario.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+        "sujeto": "esports stage seen from the stage itself, big overhead "
+                  "truss with spotlights, wide dark stage floor, two large "
+                  "side screens showing a card game board, a marked duel table "
+                  "at the centre, cables and light rigs",
+        "extra": "cool white and teal stage lighting, haze in the beams",
+        "notas": "Desde donde anuncia el Presentador. Distinto de `salon`, que "
+                 "es la vista general del salon taken from the audience.",
+    },
+    "fondo_publico": {
+        "archivo": "fondos/publico.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+        "sujeto": "tournament crowd from the front rows, rows of seated "
+                  "players with decks and notebooks, phone screens glowing, "
+                  "empty chairs and drink cups, banners hanging above",
+        "extra": "cool blue screen glow from many phones, dim hall light",
+        "notas": "La gente. Donde se dicen las cosas que no son para el "
+                 "microfono. Es el contrapeso del escenario.",
+    },
+
     # ---- los dos fondos del mundo real ------------------------------
     "salon": {
         "archivo": "fondos/salon.png",

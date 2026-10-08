@@ -83,11 +83,33 @@ class Recursos:
             self.imagenes[clave] = img
         return self.imagenes[clave]
 
+    def _cubrir(base, destino):
+        """Escala `base` para CUBRIR `destino` sin deformar y recorta el sobrante.
+
+        Los fondos son 512x256 (2:1) y la pantalla 1280x800 (1.6:1). Estirarlos
+        hasta que entren aplastaba la imagen un 20% en vertical y se veía: las
+        personas salían anchas y los edificios bajos. Un fondo de entorno no
+        puede deformarse porque el ojo compara la proporción con la realidad.
+
+        Se escala por el lado que sobra (aqui la altura) y se recorta el
+        centro del eje largo. Perder los bordes es barato en un fondo; deformar
+        la imagen no lo es.
+        """
+        w, h = destino
+        bw, bh = base.get_width(), base.get_height()
+        if bw <= 0 or bh <= 0:
+            return base
+        escala = max(w / bw, h / bh)
+        nw, nh = max(w, int(round(bw * escala))), max(h, int(round(bh * escala)))
+        img = pygame.transform.smoothscale(base, (nw, nh))
+        return img.subsurface(pygame.Rect((nw - w) // 2, (nh - h) // 2, w, h))
+
     def fondo_pantalla(self, ruta):
         """Imagen reescalada a pantalla completa, cacheada.
 
-        Escala una sola vez: hacerlo por frame reserva ~4 MB por imagen y cada
-        frame (del orden de 240 MB/s), que es la causa del consumo de memoria.
+        Cubre la pantalla SIN deformar: ver `_cubrir`. Escala una sola vez:
+        hacerlo por frame reserva ~4 MB por imagen y cada frame (del orden de
+        240 MB/s), que es la causa del consumo de memoria.
         """
         clave = ("__fondo__", ruta)
         if clave not in self.imagenes:
@@ -95,7 +117,7 @@ class Recursos:
             if (base.get_width(), base.get_height()) == (ANCHO, ALTO):
                 self.imagenes[clave] = base
             else:
-                self.imagenes[clave] = pygame.transform.smoothscale(base, (ANCHO, ALTO))
+                self.imagenes[clave] = Recursos._cubrir(base, (ANCHO, ALTO))
         return self.imagenes[clave]
 
     def capa_oscurita(self, alpha=(6, 7, 14, 168)):

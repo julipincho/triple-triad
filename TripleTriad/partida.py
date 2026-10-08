@@ -182,7 +182,13 @@ class Juego:
         self.comentario = self.rival.get("entrada") if self.rival else None
         self.comentario_t0 = time.time()
         self.t_entrada = time.time()
-        self.avatar = crt.REC.imagen(f"assets/avatar_{self.bando_cpu}.png", (96, 96))
+        # El retrato es del PERSONAJE cuando el info lo trae (Juan, Pik, Vorg...), y
+        # de la faccion cuando no. Antes pedia siempre `avatar_<bando>`, asi que
+        # en el tutorial se veia un humano en vez de Juan, y en la campana
+        # cualquier rival con nombre aparecia como un bando generico.
+        clave_retrato = (self.rival.get("retrato") if self.rival else None) \
+            or self.bando_cpu
+        self.avatar = crt.REC.imagen(f"assets/avatar_{clave_retrato}.png", (96, 96))
         if not self.avatar.get_width():  # sin arte: silueta
             self.avatar = pygame.Surface((96, 96), pygame.SRCALPHA)
             pygame.draw.circle(self.avatar, facciones.acento(self.bando_cpu), (48, 48), 46)

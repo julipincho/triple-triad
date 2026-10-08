@@ -142,12 +142,18 @@ class TestManifiestoDeAssets(unittest.TestCase):
             self.assertIn(f, hay, f)
 
     def test_detecta_lo_que_falta_de_verdad(self):
-        """Nara ya esta generada; el Cartografo y el presentador siguen faltan."""
+        """Solo falta el Cartografo.
+
+        Nara, el Presentador, Juan y los cinco rivales del arco ya tienen avatar,
+        igual que los diez bandos. El manifiesto tiene que seguir diciendo la
+        verdad: si declara algo que ya existe, no sirve para nada.
+        """
         faltan = manifiesto.retratos_faltantes()
         self.assertIn("cartografo", faltan)
-        self.assertIn("presentador", faltan)
-        self.assertNotIn("nara", faltan,
-                         "Nara ya tiene avatar: el manifiesto esta viejo")
+        for ya_esta in ("nara", "presentador", "rajoy", "humano", "orco"):
+            self.assertNotIn(ya_esta, faltan,
+                             "%s ya tiene avatar: el manifiesto esta viejo"
+                             % ya_esta)
 
     def test_no_declara_retratos_que_ya_existen(self):
         """Las de faccion y las nuevas ya generadas no pueden seguir faltando."""
