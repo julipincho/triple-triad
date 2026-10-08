@@ -23,7 +23,25 @@ TripleTriad/test_capture.png
 
 # Arte temporal de generacion (no es el que usa el juego)
 TripleTriad/cartas_raw_pixel/
+TripleTriad/cartas_crt/
 TripleTriad/auditoria/raw_*/
 TripleTriad/auditoria/var_*/
 TripleTriad/auditoria/test_gen*/
 TripleTriad/auditoria/lote_*.json
+TripleTriad/auditoria/prueba_crt/
+
+# Scratch de builds web, sesiones y experimentos sueltos
+node_modules/
+package.json
+package-lock.json
+webtest/
+webtest_build.log
+web_*.png
+smoke*.png
+test_simple.mp4
+nul
+capture_output.txt
+game_window_capture.png
+comfy_snapshot*.yml
+.opencode/
+TripleTriad/.sd_env/

@@ -157,16 +157,16 @@ def duel():
 def hoja_de_cartas():
     """Todas las cartas de todas las facciones en una sola imagen."""
     total_filas = len(facciones.orden_facciones())
-    alto = total_filas * 200 + 40
+    alto = total_filas * 240 + 40
     lienzo = pygame.Surface((ANCHO, alto))
     lienzo.fill((22, 23, 32))
     for i, f in enumerate(facciones.orden_facciones()):
-        pygame.draw.line(lienzo, facciones.acento(f), (0, 20 + i * 200), (ANCHO, 20 + i * 200), 1)
+        pygame.draw.line(lienzo, facciones.acento(f), (0, 20 + i * 240), (ANCHO, 20 + i * 240), 1)
+        n = len(mazos.TODOS[f])
+        paso = 48
         for j, carta in enumerate(mazos.TODOS[f]):
-            lienzo.blit(crt.crear(carta, None), (20 + j * 140, 30 + i * 200))
-            img = pygame.Surface((ANCHO, 1), pygame.SRCALPHA)
-            lienzo.blit(crt.crear(carta, None, escala=0.6),
-                        (760 + j * 90, 60 + i * 200))
+            lienzo.blit(crt.crear(carta, None, escala=0.5),
+                        (20 + j * paso, 30 + i * 240))
     superficie = pygame.display.get_surface()
     superficie.blit(lienzo, (0, 0))
     pygame.image.save(lienzo, os.path.join(_s(), "12_todas_las_cartas.png"))
@@ -197,6 +197,14 @@ def cinematica_demo():
         if not cin.ejecutar_un_frame(SCREEN):
             break
     guardar(SCREEN, "24_final.png")
+    # intro: dialogo del Umbral a texto completo (tiempo simulado: 30 s)
+    escenas, musica = cinematicas.intro()
+    cin = cinematicas.Cinematica(escenas)
+    cin._avanzar()
+    cin._avanzar()
+    cin._t_escena = time.time() - 30
+    cin.ejecutar_un_frame(SCREEN)
+    guardar(SCREEN, "23b_intro.png")
 
 
 def main():
@@ -237,6 +245,15 @@ def main():
             "ValueError: no se pudo cargar la carta\n",
             contexto="duelo rápido: Humanos contra Orcos")),
         ("26_elegir_rapida", lambda: pantallas.elegir_faccion(SCREEN, RelojFalso(), modo="rapida")),
+        ("27_mini_mapa", lambda: pantallas.mapa_mini(
+            SCREEN, RelojFalso(), campana.nueva_mini_campana("elfo_nocturno"))),
+        ("28_sobre", lambda: pantallas.revelar_sobre(
+            SCREEN, RelojFalso(),
+            [mazos.HUMANOS[1], mazos.HUMANOS[4]], [mazos.HUMANOS[0]])),
+        ("29_tienda", lambda: pantallas.tienda(
+            SCREEN, RelojFalso(), campana.nueva_campana("humano"))),
+        ("30_armar_mazo", lambda: (campana.asegurar_coleccion("humano"),
+                                   pantallas.armar_mazo(SCREEN, RelojFalso(), "humano"))[1]),
     ]
     for nombre, fn in pasos + pantallas_prueba:
         try:

@@ -38,7 +38,7 @@ import ui  # noqa: E402
 from reglas import CPU, USUARIO  # noqa: E402
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODULOS_CON_BUCLE = ["pantallas.py", "partida.py", "cinematicas.py", "main.py"]
+MODULOS_CON_BUCLE = ["pantallas.py", "partida.py", "cinematicas.py", "main.py", "tutorial.py"]
 
 
 class RelojFalso:
@@ -626,6 +626,9 @@ class TestPreviewDeLaMano(unittest.TestCase):
 
         pantalla = _superficie()
         juego = modulo_partida.Juego("humano", bando_rival="orco")
+        # el test es de geometria con 5 cartas en mano (los mazos tienen 10)
+        juego.mano_u = juego.mano_u[:5]
+        juego.mano_c = juego.mano_c[:5]
         # sin fundido ni banner: solo la mano, para que el color se vea puro
         juego.t_entrada = time.time() - 10
         juego.banner = None

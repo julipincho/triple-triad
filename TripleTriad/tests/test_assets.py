@@ -98,7 +98,7 @@ class TestDiagnostico(unittest.TestCase):
 
         texto = diagnostico.informe()
         self.assertIn("Todo correcto", texto)
-        self.assertIn("Facciones: 7", texto)
+        self.assertIn(f"Facciones: {len(mazos.TODOS)}", texto)
 
 
 class TestAudio(unittest.TestCase):
@@ -106,7 +106,7 @@ class TestAudio(unittest.TestCase):
         faltan = [s for s in SFX if not os.path.exists(recurso(os.path.join("assets", s)))]
         self.assertEqual(faltan, [])
 
-    def test_siete_pistas_una_por_faccion(self):
+    def test_una_pista_por_faccion(self):
         faltan = []
         for f in facciones.orden_facciones():
             nombre = audio.musica_de_faccion(f)
@@ -381,7 +381,7 @@ class TestReferencias(unittest.TestCase):
     def test_los_encuentros_tienen_efecto_conocido(self):
         import campana
 
-        efectos = {"mejorar", "robo", "mas_debil", "debilitar", "celebrar", "sigilo"}
+        efectos = {"mejorar", "robo", "mas_debil", "debilitar", "celebrar", "sigilo", "sobre"}
         for enc in campana.ENCUENTROS:
             for op in enc["opciones"]:
                 self.assertIn(op["efecto"], efectos, enc["id"])

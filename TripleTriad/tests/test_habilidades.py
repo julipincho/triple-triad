@@ -181,23 +181,24 @@ class TestHabilidades(unittest.TestCase):
         self.assertIn((0, 1), capturas(b, 1, 1))
 
     def test_todas_las_habilidades_documentadas(self):
-        for c in mazos.HUMANOS + mazos.ORCOS:
-            if c.habilidad:
-                self.assertIn(c.habilidad, HABILIDADES)
+        for cartas in mazos.TODOS.values():
+            for c in cartas:
+                if c.habilidad:
+                    self.assertIn(c.habilidad, HABILIDADES)
 
 
 class TestMazos(unittest.TestCase):
-    def test_las_siete_facciones_existen(self):
-        self.assertEqual(len(mazos.TODOS), 7)
+    def test_las_diez_facciones_existen(self):
+        self.assertEqual(len(mazos.TODOS), 10)
         for f in facciones.orden_facciones():
             self.assertIn(f, mazos.TODOS)
             self.assertIn(f, facciones.FACCIONES)
 
     def test_los_nuevos_mazos_estan_completos(self):
-        for bandos in (mazos.HUMANOS, mazos.ORCOS):
-            self.assertEqual(len(bandos), 5)
-            for c in bandos:
-                self.assertIn(c.bando, ("humano", "orco"))
+        for bando, cartas in mazos.TODOS.items():
+            self.assertEqual(len(cartas), 25, bando)
+            for c in cartas:
+                self.assertEqual(c.bando, bando)
                 for lado in LADOS:
                     self.assertTrue(1 <= c.valores[lado] <= 10, f"{c.nombre}.{lado}")
 
@@ -213,8 +214,8 @@ class TestMazos(unittest.TestCase):
 
     def test_rarezas_distribuidas(self):
         self.assertEqual(rareza(mazos.HUMANOS[0])[0], "COMUN")
-        self.assertEqual(rareza(mazos.HUMANOS[-1])[0], "LEGENDARIA")
-        self.assertEqual(rareza(mazos.ORCOS[-1])[0], "LEGENDARIA")
+        self.assertTrue(any(rareza(c)[0] == "LEGENDARIA" for c in mazos.HUMANOS))
+        self.assertTrue(any(rareza(c)[0] == "LEGENDARIA" for c in mazos.ORCOS))
 
 
 class TestSinergiasYElemento(unittest.TestCase):

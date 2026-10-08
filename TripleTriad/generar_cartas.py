@@ -25,6 +25,9 @@ RAZA = {
     "hombre_lobo": "werewolf",
     "vampiro": "vampire",
     "dragon": "dragon",
+    "elfo_nocturno": "dark elf",
+    "hombre_pantera": "panther warrior",
+    "hombre_lagarto": "lizardman warrior",
 }
 
 AVATARES = {
@@ -35,6 +38,9 @@ AVATARES = {
     "hombre_lobo": "werewolf alpha portrait, fantasy, pixel art style",
     "vampiro": "vampire countess portrait, fantasy, pixel art style",
     "dragon": "dark dragon king portrait, fantasy, pixel art style",
+    "elfo_nocturno": "dark elf queen portrait with violet eyes, fantasy, pixel art style",
+    "hombre_pantera": "black panther warrior portrait with amber eyes, fantasy, pixel art style",
+    "hombre_lagarto": "lizardman chieftain portrait, fantasy, pixel art style",
 }
 
 # Fondos de las cinematicas: (nombre, prompt)
@@ -47,16 +53,18 @@ FONDOS = {
     "trono": "throne room of ash and broken pillars, dragon silhouette in the background, fantasy, cinematic, pixel art style, no text",
     "campamento": "fantasy war camp at night with campfire and banners, cinematic, pixel art style, no text",
     "asalto": "fantasy night assault, burning banners and stone stairs, cinematic, pixel art style, no text",
+    "amanecer": "dawn breaking over a peaceful fantasy valley with villages and forests, warm hopeful light, calm before the storm, cinematic wide shot, pixel art style, no text",
+    "umbral": "colossal cracked stone portal floating above an ashen plain, violet light spilling out, tiny silhouettes watching from below, dark fantasy, cinematic wide shot, pixel art style, no text",
+    "estandartes": "war banners of rival fantasy factions gathered before a battlefield of ash, huge dragon shadow overhead, epic standoff, cinematic wide shot, pixel art style, no text",
 }
 
 
 def slug(nombre):
     s = nombre.lower().strip()
-    s = re.sub(r"[áà]", "a", s)
-    s = re.sub(r"[éè]", "e", s)
-    s = re.sub(r"[íì]", "i", s)
-    s = re.sub(r"[óò]", "o", s)
-    s = re.sub(r"[úù]", "u", s)
+    for a, b in (("á", "a"), ("à", "a"), ("é", "e"), ("è", "e"), ("í", "i"),
+                 ("ì", "i"), ("ó", "o"), ("ò", "o"), ("ú", "u"), ("ù", "u"),
+                 ("ñ", "n"), ("ü", "u"), ("ç", "c")):
+        s = s.replace(a, b)
     return re.sub(r"[^a-z0-9]+", "_", s).strip("_")
 
 
@@ -105,7 +113,8 @@ def generar_cartas(key, solo_nuevas=True):
         for carta in cartas:
             estilo = (
                 f"{carta.nombre}, fantasy {RAZA[bando]} character portrait, pixel art style, "
-                "16-bit retro video game card illustration, dark fantasy, no text, no border"
+                "16-bit retro video game card illustration, dark fantasy, no text, no words, "
+                "no letters, no watermark, no signature, no border"
             )
             destino = os.path.join(CARPETA, f"{bando}_{slug(carta.nombre)}.png")
             _pedir(estilo, destino, key, 256, 320)

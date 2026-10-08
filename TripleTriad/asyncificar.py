@@ -80,4 +80,7 @@ if __name__ == "__main__":
     transformar("pantallas.py", PANTALLAS_ASYNC)
     transformar("partida.py", ["partida"])
     transformar("cinematicas.py", ["ejecutar", "reproducir"])
+    # tutorial.py ya nace async con sus yields; si se vuelve a correr,
+    # solo verifica que existen (no rompe nada ya convertido).
+    transformar("tutorial.py", ["manual", "tutorial", "puerta_primer_arranque"])
     sys.exit(0)

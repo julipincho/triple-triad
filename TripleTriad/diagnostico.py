@@ -13,7 +13,8 @@ import mazos
 from cartas import _slug
 from paths import recurso
 
-FONDOS = ["ceniza", "camino", "aldea", "ruinas", "fortaleza", "trono", "campamento", "asalto"]
+FONDOS = ["ceniza", "camino", "aldea", "ruinas", "fortaleza", "trono", "campamento", "asalto",
+          "amanecer", "umbral", "estandartes"]
 
 # Pistas que no son de faccion (duelo y menu)
 TEMAS = ["duelo", "explora"]

@@ -92,6 +92,39 @@ FACCIONES = {
         "inicial": "O",
         "jefe": "Lyra, Dama del Bosque",
     },
+    "elfo_nocturno": {
+        "nombre": "Elfos Nocturnos",
+        "lema": "La sombra tambien florece.",
+        "arco": "Expulsados del bosque por mirar al Umbral sin parpadear, los elfos nocturnos vuelven a por lo suyo.",
+        "rival_final": "dragon",
+        "elemento": None,
+        "paleta": ((150, 110, 200), (50, 30, 80)),
+        "acento": (190, 140, 255),
+        "inicial": "N",
+        "jefe": "Ignarok, el Rey Oscuro",
+    },
+    "hombre_pantera": {
+        "nombre": "Hombres Pantera",
+        "lema": "La noche caza en silencio.",
+        "arco": "Nadie los vio llegar porque nadie mira al tejado. La manada de la sombra reclama su parte del trono.",
+        "rival_final": "hombre_lobo",
+        "elemento": None,
+        "paleta": ((110, 110, 130), (30, 30, 45)),
+        "acento": (230, 190, 90),
+        "inicial": "P",
+        "jefe": "Fenris, Alfa de la Manada",
+    },
+    "hombre_lagarto": {
+        "nombre": "Hombres Lagarto",
+        "lema": "El pantano no perdona.",
+        "arco": "Del fango salieron con escamas y paciencia. El trono tambien se conquista esperando.",
+        "rival_final": "orco",
+        "elemento": None,
+        "paleta": ((90, 150, 110), (30, 70, 45)),
+        "acento": (120, 210, 150),
+        "inicial": "S",
+        "jefe": "Vorg, Senor de la Guerra",
+    },
 }
 
 # Facciones que nunca se enfrentan a si mismas en campana.
@@ -118,7 +151,8 @@ def elemento_central(faccion):
 
 def orden_facciones():
     """Orden estable de presentacion en menus."""
-    return ["humano", "orco", "elfo", "goblin", "hombre_lobo", "vampiro", "dragon"]
+    return ["humano", "orco", "elfo", "goblin", "hombre_lobo", "vampiro", "dragon",
+            "elfo_nocturno", "hombre_pantera", "hombre_lagarto"]
 
 
 # Etiquetas cortas para el mapa de campana (los circles son pequenos)
@@ -130,6 +164,9 @@ CORTOS = {
     "hombre_lobo": "LOB",
     "vampiro": "VAM",
     "dragon": "DRA",
+    "elfo_nocturno": "ENO",
+    "hombre_pantera": "PAN",
+    "hombre_lagarto": "LAG",
 }
 
 

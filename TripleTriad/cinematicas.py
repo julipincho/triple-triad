@@ -326,12 +326,68 @@ APERTURAS = {
             esc("Donde pongas el pie, la ceniza crece.", color=DORADO),
         ],
     },
+    "elfo_nocturno": {
+        "musica": "musica_elfo_nocturno",
+        "escenas": [
+            esc("El bosque echo a los que miraban al Umbral sin parpadear. La noche los recogio.",
+                fondo="umbral"),
+            esc("Sylwen no pide volver: pide lo que le deben con intereses de sombra.",
+                hablante="Sylwen", retrato="elfo_nocturno", fondo="umbral"),
+            esc("Juegas con el mazo elfo nocturno. La oscuridad tambien tiene filo.",
+                hablante="Sylwen", retrato="elfo_nocturno", fondo="umbral", color=TEXTO_ON),
+            esc("Donde la luz no llega, llegas tu.", color=DORADO),
+        ],
+    },
+    "hombre_pantera": {
+        "musica": "musica_hombre_pantera",
+        "escenas": [
+            esc("Nadie los vio llegar porque nadie mira al tejado. Ya estaban aqui.",
+                fondo="estandartes"),
+            esc("Zarkha no ruge: susurra, y el susurro basta para vaciar una calle.",
+                hablante="Zarkha", retrato="hombre_pantera", fondo="estandartes"),
+            esc("Juegas con el mazo hombre pantera: cae sin ruido y cobra sin prisa.",
+                hablante="Zarkha", retrato="hombre_pantera", fondo="estandartes", color=TEXTO_ON),
+            esc("La mejor caza es la que nadie oye.", color=DORADO),
+        ],
+    },
+    "hombre_lagarto": {
+        "musica": "musica_hombre_lagarto",
+        "escenas": [
+            esc("El pantano lleva siglos tragando ejercitos sin masticar. Hoy escupe uno.",
+                fondo="ruinas"),
+            esc("Sskar no tiene prisa: la prisa es para los que se hunden.",
+                hablante="Sskar", retrato="hombre_lagarto", fondo="ruinas"),
+            esc("Juegas con el mazo hombre lagarto: escamas, paciencia y fango.",
+                hablante="Sskar", retrato="hombre_lagarto", fondo="ruinas", color=TEXTO_ON),
+            esc("Lo que el pantano traga, el pantano conserva.", color=DORADO),
+        ],
+    },
 }
 
 
 def apertura(faccion):
     datos = APERTURAS.get(faccion, APERTURAS["humano"])
     return [dict(e) for e in datos["escenas"]], datos.get("musica")
+
+
+INTRO = {
+    "musica": "musica_explora",
+    "escenas": [
+        esc("EL UMBRAL DEL TRONO", fondo="amanecer", efecto="titulo", color=DORADO),
+        esc("Hubo un tiempo en que el mundo amanecia sin ceniza y las cartas eran solo un juego.",
+            fondo="amanecer"),
+        esc("Entonces el cielo se rajo. Por la grieta asomo el Umbral... y el juego se volvio guerra.",
+            fondo="umbral"),
+        esc("Siete bandos afilaron sus barajas. El trono no se hereda: se gana carta a carta.",
+            fondo="estandartes"),
+        esc("Elige tu faccion. Forja tu final.", fondo="trono", color=DORADO),
+    ],
+}
+
+
+def intro():
+    """Cinematica inicial del juego. Se ve una sola vez (perfil)."""
+    return [dict(e) for e in INTRO["escenas"]], INTRO["musica"]
 
 
 def escenas_nodo(info):

@@ -35,10 +35,11 @@ ICONO_HABILIDAD = {
 
 _cache = {}
 
-# Techo de la cache de cartas. Hay 35 cartas y como mucho 4 combinaciones
-# (dueno x sinergia) x 3 escalas, asi que 400 es holgado; si se supera (porque
-# el tablero escala en plein juego) se tira entera y se vuelve a pintar.
-MAX_CACHE_CARTAS = 400
+# Techo de la cache de cartas. 250 cartas x combinaciones de dueno,
+# sinergia y escala: 2000 es holgado; si se supera se tira entera y se
+# vuelve a pintar. Cada entrada pesa ~60 KB: 2000 son ~120 MB en el peor
+# caso teorico, en la practica solo viven las que se ven en pantalla.
+MAX_CACHE_CARTAS = 2000
 
 
 def _slug(nombre):
@@ -177,11 +178,11 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_duen
     pygame.draw.rect(placa, (0, 0, 0, 200), placa.get_rect(), border_radius=5)
     s.blit(placa, (4, 26))
     if len(lineas) == 1:
-        img = REC.fuente(8).render(lineas[0], True, (245, 245, 245))
+        img = _texto_ajustado(lineas[0], 8, w - 14, (245, 245, 245))
         s.blit(img, (w // 2 - img.get_width() // 2, 31))
     else:
         for i, linea in enumerate(lineas[:2]):
-            img = REC.fuente(6).render(linea, True, (245, 245, 245))
+            img = _texto_ajustado(linea, 6, w - 14, (245, 245, 245))
             s.blit(img, (w // 2 - img.get_width() // 2, 29 + i * 11))
 
     # franja del bando: bajo el orbe sur, para que no lo tape

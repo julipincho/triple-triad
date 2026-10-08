@@ -31,6 +31,7 @@ from ui import (
     VERDE,
     Boton,
     LIMIT_FPS,
+    ancho_texto,
     con_alpha,
     dibujar_tooltips,
     envolver,
@@ -155,10 +156,12 @@ def math_seno(x):
 
 # ---------------------------------------------------------------------- menu
 async def menu(screen, clock, estado=None):
-    """Menu principal. Devuelve 'rapida', 'campana', 'coleccion', 'ajustes'."""
+    """Menu principal. Devuelve 'rapida', 'tutorial', 'mini', 'campana', 'coleccion', 'ajustes'."""
     fondo = Fondo("dragon")
     hay = bool(estado) and not estado.get("completada")
     faccion = estado.get("faccion", "humano") if hay else "dragon"
+    perfil_menu = campana.cargar_perfil()
+    mini_ok = bool(perfil_menu.get("finales"))
     t0 = time.time()
 
     while True:
@@ -178,16 +181,25 @@ async def menu(screen, clock, estado=None):
                   12, sub="Un duelo suelto, sin campana"),
             Boton(pygame.Rect(ANCHO // 2 - 340, 362, 300, 54), "COLECCION",
                   12, sub="Cartas, mazos y finales"),
+            Boton(pygame.Rect(ANCHO // 2 - 340, 428, 300, 54), "MINI CAMPANA",
+                  12, sub="3 duelos tras la campana" if mini_ok else "Completa una campana"),
         ]
+        izquierda[3].habilitado = mini_ok
         derecha = [
             Boton(pygame.Rect(ANCHO // 2 + 40, 230, 300, 54), "AJUSTES",
                   12, sub="Volumen, pantalla y controles"),
-            Boton(pygame.Rect(ANCHO // 2 + 40, 296, 300, 54), "SALIR",
+            Boton(pygame.Rect(ANCHO // 2 + 40, 296, 300, 54), "TUTORIAL",
+                  12, sub="Aprende a jugar paso a paso"),
+            Boton(pygame.Rect(ANCHO // 2 + 40, 362, 300, 54), "SALIR",
                   12, sub="Hasta la proxima partida"),
         ]
         if hay:
             izquierda[0].etiqueta = "CONTINUAR CAMPAÑA"
-            izquierda[0].sub = f"{facciones.nombre(estado['faccion'])} - {campana.nodo(campana.nodo_actual(estado))['titulo']}"
+            titulo_nodo = campana.nodo(campana.nodo_actual(estado))['titulo']
+            sub = f"{facciones.nombre(estado['faccion'])} - {titulo_nodo}"
+            if ancho_texto(sub, 8) > 280:
+                sub = f"{facciones.corto(estado['faccion'])} - {titulo_nodo}"
+            izquierda[0].sub = sub
             izquierda[0].acento = facciones.acento(estado["faccion"])
 
         botones = izquierda + derecha
@@ -195,22 +207,25 @@ async def menu(screen, clock, estado=None):
 
         # panel lateral con el estado de la partida si existe
         if hay:
-            panel(screen, pygame.Rect(ANCHO // 2 - 300, 470, 600, 190), PANEL, BORDE, radio=10)
+            panel(screen, pygame.Rect(ANCHO // 2 - 300, 494, 600, 190), PANEL, BORDE, radio=10)
             perfil = campana.cargar_perfil()
             racha = estado.get("mejor_racha", 0)
-            texto(screen, "CAMPAÑA EN CURSO", 11, DORADO, centro=(ANCHO // 2, 496))
+            texto(screen, "CAMPAÑA EN CURSO", 11, DORADO, centro=(ANCHO // 2, 520))
             texto(screen,
                   f"{facciones.nombre(estado['faccion'])}  -  Duelos ganados: {estado.get('victorias', 0)}  -  Racha: {racha}",
-                  9, TEXTO, centro=(ANCHO // 2, 526))
+                  9, TEXTO, centro=(ANCHO // 2, 550))
             texto(screen,
-                  f"Finales desbloqueados: {len(perfil.get('finales', {}))}  -  Duelos totales: {perfil.get('duelos', 0)}",
-                  9, TEXTO_TENUE, centro=(ANCHO // 2, 550))
-            # mini mazo
+                  f"Finales: {len(perfil.get('finales', {}))}  -  Duelos: {perfil.get('duelos', 0)}  -  Moneda: {perfil.get('moneda', 0)}",
+                  9, TEXTO_TENUE, centro=(ANCHO // 2, 574))
+            # mini mazo: las 5 primeras y cuantas mas hay en la coleccion
             cartas = campana.cartas_jugador(estado)
-            for i, carta in enumerate(cartas):
+            for i, carta in enumerate(cartas[:5]):
                 sup = crt.miniatura(carta, (52, 72))
-                x = ANCHO // 2 - len(cartas) * 34 + i * 68
-                screen.blit(sup, (x, 566))
+                x = ANCHO // 2 - 5 * 34 + i * 68
+                screen.blit(sup, (x, 590))
+            if len(cartas) > 5:
+                texto(screen, f"+{len(cartas) - 5} mas en el mazo", 8, TEXTO_TENUE,
+                      centro=(ANCHO // 2, 676))
 
         texto(screen, "ENTER para continuar   ESC para salir", 8, TEXTO_TENUE,
               centro=(ANCHO // 2, ALTO - 30))
@@ -236,9 +251,13 @@ async def menu(screen, clock, estado=None):
                     return "rapida"
                 if b is izquierda[2]:
                     return "coleccion"
+                if b is izquierda[3]:
+                    return "mini"
                 if b is derecha[0]:
                     return "ajustes"
                 if b is derecha[1]:
+                    return "tutorial"
+                if b is derecha[2]:
                     return "salir"
 
 
@@ -290,13 +309,24 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
                   centro=(ANCHO // 2, 124))
 
         rects = []
-        cols = 3
-        paso_x, paso_y = 290, 205
+        compacta = len(orden) > 7
+        if compacta:
+            # 10 facciones no entran en la grilla de 3: 5 columnas x 2 filas.
+            # La ficha lateral ya muestra el detalle, aqui basta arte + nombre.
+            cols = 5
+            paso_x, paso_y = 178, 225
+            x0, y0, rw, rh = 50, 160, 168, 210
+            escala_carta = 0.55
+        else:
+            cols = 3
+            paso_x, paso_y = 290, 205
+            x0, y0, rw, rh = 50, 165, 220, 190
+            escala_carta = 0.8
         for i, faccion in enumerate(orden):
             col, fila = i % cols, i // cols
-            x = 50 + col * paso_x
-            y = 165 + fila * paso_y
-            rect = pygame.Rect(x, y, 220, 190)
+            x = x0 + col * paso_x
+            y = y0 + fila * paso_y
+            rect = pygame.Rect(x, y, rw, rh)
             rects.append(rect)
             activo = i == seleccion
             marco = pygame.Rect(rect.x, rect.y, rect.w, rect.h)
@@ -307,19 +337,38 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
                 resplandor(screen, marco, facciones.acento(faccion),
                            int(70 + 50 * math_seno(t * 3)), 3, 12)
             carta = mazos.TODOS[faccion][-1]
-            sup = crt.crear(carta, None, escala=0.8)
+            sup = crt.crear(carta, None, escala=escala_carta)
             screen.blit(sup, (rect.x + 10, rect.y + 10))
-            texto(screen, facciones.nombre(faccion), 11, facciones.acento(faccion),
-                  x=rect.x + 106, y=rect.y + 22)
-            parrafo(screen, mazos.DESCRIPCION_BANDO.get(faccion, ""), 7, TEXTO_TENUE,
-                    rect.x + 106, rect.y + 48, rect.w - 116, interlinea=12)
+            if compacta:
+                lineas = envolver(facciones.nombre(faccion), 8, rect.w - 88)[:2]
+                ly = rect.y + 20
+                for linea in lineas:
+                    texto(screen, linea, 8, facciones.acento(faccion),
+                          x=rect.x + 76, y=ly)
+                    ly += 14
+            else:
+                lineas = envolver(facciones.nombre(faccion), 11, rect.w - 116)[:2]
+                ly = rect.y + 22
+                for linea in lineas:
+                    texto(screen, linea, 11, facciones.acento(faccion),
+                          x=rect.x + 106, y=ly)
+                    ly += 15
+                parrafo(screen, mazos.DESCRIPCION_BANDO.get(faccion, ""), 7, TEXTO_TENUE,
+                        rect.x + 106, rect.y + 48 if len(lineas) == 1 else rect.y + 64,
+                        rect.w - 116, interlinea=12)
             if not rapida:
-                texto(screen, f"jefe: {facciones.nombre(facciones.rival_final(faccion))}",
-                      7, (206, 146, 146), x=rect.x + 106, y=rect.bottom - 34)
-                mejor = perfil_racha(faccion, perfil)
-                if mejor:
-                    texto(screen, f"mejor racha: {mejor}", 7, TEXTO_TENUE,
-                          x=rect.x + 106, y=rect.bottom - 18)
+                if compacta:
+                    mejor = perfil_racha(faccion, perfil)
+                    if mejor:
+                        texto(screen, f"racha: {mejor}", 7, TEXTO_TENUE,
+                              x=rect.x + 76, y=rect.bottom - 20)
+                else:
+                    texto(screen, f"jefe: {facciones.nombre(facciones.rival_final(faccion))}",
+                          7, (206, 146, 146), x=rect.x + 106, y=rect.bottom - 34)
+                    mejor = perfil_racha(faccion, perfil)
+                    if mejor:
+                        texto(screen, f"mejor racha: {mejor}", 7, TEXTO_TENUE,
+                              x=rect.x + 106, y=rect.bottom - 18)
 
         # ficha de la faccion seleccionada
         faccion = orden[seleccion]
@@ -328,22 +377,32 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
         panel(screen, ficha, PANEL, facciones.acento(faccion), radio=10)
         texto(screen, facciones.nombre(faccion), 14, facciones.acento(faccion),
               centro=(ficha.centerx, ficha.y + 26))
-        parrafo(screen, facciones.FACCIONES[faccion]["lema"], 8, TEXTO_ON,
-                ficha.x + 18, ficha.y + 46, ficha.w - 36, interlinea=13, centrado=True)
-        y = ficha.y + 84
+        y_lema = parrafo(screen, facciones.FACCIONES[faccion]["lema"], 8, TEXTO_ON,
+                         ficha.x + 18, ficha.y + 46, ficha.w - 36, interlinea=13, centrado=True)
+        # el arco empieza tras el lema (el lema humano ocupa 3 lineas)
+        y = max(ficha.y + 84, y_lema + 4)
         y = parrafo(screen, facciones.FACCIONES[faccion]["arco"], 8, TEXTO,
                     ficha.x + 18, y, ficha.w - 36, interlinea=15)
         y += 8
         texto(screen, "TU MAZO", 10, DORADO, centro=(ficha.centerx, y))
         y += 12
-        for i, carta in enumerate(cartas):
-            sup = crt.miniatura(carta)
-            x = ficha.centerx - len(cartas) * 26 + i * 52
-            screen.blit(sup, (x, y))
-            if carta.habilidad:
+        mostradas = cartas[:10]
+        filas_mazo = (len(mostradas) + 5) // 6
+        for i, carta in enumerate(mostradas):
+            sup = crt.miniatura(carta, (36, 50))
+            fila, col = divmod(i, 6)
+            en_fila = min(6, len(mostradas) - fila * 6)
+            x = ficha.centerx - en_fila * 20 + col * 40
+            yy = y + fila * 56
+            screen.blit(sup, (x, yy))
+            if filas_mazo == 1 and carta.habilidad:
                 texto(screen, crt.ICONO_HABILIDAD.get(carta.habilidad, ""), 6,
-                      TEXTO_TENUE, centro=(x + 24, y + 72))
-        y += 80
+                      TEXTO_TENUE, centro=(x + 18, yy + 54))
+        y += 80 if filas_mazo == 1 else filas_mazo * 56 + 8
+        if len(cartas) > len(mostradas):
+            texto(screen, f"+{len(cartas) - len(mostradas)} mas en el mazo", 7,
+                  TEXTO_TENUE, centro=(ficha.centerx, y))
+            y += 16
         habilidades = sorted({c.habilidad for c in cartas if c.habilidad})
         if habilidades:
             texto(screen, "HABILIDADES", 8, DORADO, centro=(ficha.centerx, y))
@@ -360,7 +419,7 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
         if rapida:
             texto(screen, "EN TU MANO", 8, DORADO, centro=(ficha.centerx, y))
             y += 18
-            texto(screen, "Tu rival sera una de las otras seis facciones.", 7, TEXTO,
+            texto(screen, f"Tu rival sera una de las otras {len(orden) - 1} facciones.", 7, TEXTO,
                   x=ficha.x + 18, y=y)
         else:
             texto(screen, "TUS RIVALES EN CAMPANA", 8, DORADO, centro=(ficha.centerx, y))
@@ -369,6 +428,8 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
             # esas 7 lineas se salian de la ficha
             rivales = [facciones.nombre(r) for r in campana.escalera_de(faccion)]
             rivales.append(facciones.nombre(facciones.rival_final(faccion)))
+            vistos = set()
+            rivales = [r for r in rivales if not (r in vistos or vistos.add(r))]
             y = parrafo(screen, " › ".join(rivales), 7, TEXTO,
                         ficha.x + 18, y, ficha.w - 36, interlinea=12, centrado=True)
 
@@ -409,10 +470,10 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
                     seleccion = (seleccion + 1) % len(orden)
                     audio.sfx(audio.MENU_MOVE)
                 if ev.key in (pygame.K_UP, pygame.K_w):
-                    seleccion = (seleccion - len(orden)) % len(orden)
+                    seleccion = (seleccion - cols) % len(orden)
                     audio.sfx(audio.MENU_MOVE)
                 if ev.key in (pygame.K_DOWN, pygame.K_s):
-                    seleccion = (seleccion + len(orden)) % len(orden)
+                    seleccion = (seleccion + cols) % len(orden)
                     audio.sfx(audio.MENU_MOVE)
                 if ev.key == pygame.K_RETURN:
                     audio.sfx(audio.MENU_OK)
@@ -522,7 +583,7 @@ async def mapa_campana(screen, clock, estado):
             elif es_actual:
                 rival = campana.rival_de_nodo(estado, nombre)
                 texto(screen, facciones.corto(rival), 9, color, centro=(x, y - 6))
-                texto(screen, facciones.nombre(rival), 7, TEXTO_TENUE, centro=(x, y + 10))
+                texto(screen, facciones.nombre(rival), 6, TEXTO_TENUE, centro=(x, y + 10))
             elif visitado:
                 texto(screen, "OK", 10, color, centro=(x, y - 6))
             else:
@@ -546,10 +607,10 @@ async def mapa_campana(screen, clock, estado):
         texto(screen, "Clic en un nodo ya superado para ver su ficha.", 7, TEXTO_TENUE,
               x=60, y=730)
 
-        # mazo del jugador: tira horizontal sobre el panel de estado
+        # mazo del jugador: las 5 primeras y cuantas mas hay
         cartas = campana.cartas_jugador(estado)
         texto(screen, "TU MAZO", 9, DORADO, x=560, y=612)
-        for i, carta in enumerate(cartas):
+        for i, carta in enumerate(cartas[:5]):
             sup = crt.crear(carta, None)
             x = 560 + i * 74
             y = 630
@@ -560,11 +621,15 @@ async def mapa_campana(screen, clock, estado):
                     crt.resplandor_carta(screen, pygame.Rect(x, y, 56, 78), carta, None, 110)
                     tooltip(screen, _descripcion_carta(carta), (x + 28, y),
                             ancho=300, arriba=True)
+        if len(cartas) > 5:
+            texto(screen, f"+{len(cartas) - 5} mas", 8, TEXTO_TENUE, x=560 + 5 * 74, y=662)
 
         seguir = Boton(pygame.Rect(ANCHO - 300, 660, 260, 50), "SEGUIR", 12,
                        acento=facciones.acento(faccion))
         menu = Boton(pygame.Rect(ANCHO - 300, 722, 260, 38), "GUARDAR Y SALIR", 10)
-        _botones(screen, [seguir, menu], mouse, dt)
+        tienda_btn = Boton(pygame.Rect(ANCHO - 300, 596, 260, 50), "TIENDA", 12,
+                           sub=f"{campana.PRECIO_SOBRE} moneda")
+        _botones(screen, [seguir, menu, tienda_btn], mouse, dt)
         dibujar_tooltips(screen)
         pygame.display.flip()
 
@@ -578,6 +643,10 @@ async def mapa_campana(screen, clock, estado):
                 audio.sfx(audio.MENU_BACK)
                 return "salir"
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if tienda_btn.clic(ev.pos):
+                    audio.sfx(audio.MENU_OK)
+                    await tienda(screen, clock, estado)
+                    continue
                 if seguir.clic(ev.pos):
                     seguir.pulsar()
                     audio.sfx(audio.MENU_OK)
@@ -594,6 +663,146 @@ async def mapa_campana(screen, clock, estado):
                         if nombre in ruta:
                             audio.sfx(audio.CARD)
                             await _ficha_nodo(screen, clock, estado, nombre)
+
+
+async def tienda(screen, clock, estado):
+    """Tienda: sobres a cambio de moneda. ESC o VOLVER para salir.
+
+    Con estado None (menu/coleccion) no hay mazo de run: las nuevas van
+    solo a la coleccion.
+    """
+    fondo = Fondo((estado or {}).get("faccion", "humano"))
+    mensaje = ""
+    while True:
+        dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        fondo.dibujar(screen, dt)
+        mouse = pygame.mouse.get_pos()
+        texto(screen, "TIENDA", 22, DORADO, centro=(ANCHO // 2, 110))
+        texto(screen, f"Moneda: {campana.moneda()}", 12, DORADO,
+              centro=(ANCHO // 2, 150))
+        caja = pygame.Rect(ANCHO // 2 - 200, 200, 400, 220)
+        panel(screen, caja, PANEL, BORDE, radio=10)
+        texto(screen, "SOBRE DE CARTAS", 12, TEXTO_ON, centro=(caja.centerx, caja.y + 40))
+        texto(screen, "3 cartas al azar del pool", 9, TEXTO, centro=(caja.centerx, caja.y + 80))
+        texto(screen, "Legendaria ~10% - pity al 10", 8, TEXTO_TENUE,
+              centro=(caja.centerx, caja.y + 112))
+        texto(screen, f"Precio: {campana.PRECIO_SOBRE} moneda", 10, DORADO,
+              centro=(caja.centerx, caja.y + 150))
+        texto(screen, f"Sobres sin legendaria: {campana.pity_sobres()}/9", 8, TEXTO_TENUE,
+              centro=(caja.centerx, caja.y + 182))
+        comprar = Boton(pygame.Rect(ANCHO // 2 - 160, 450, 320, 54), "COMPRAR SOBRE",
+                        12, sub=f"{campana.PRECIO_SOBRE} moneda")
+        volver = Boton(pygame.Rect(ANCHO // 2 - 130, 520, 260, 44), "VOLVER", 10)
+        _botones(screen, [comprar, volver], mouse, dt)
+        if mensaje:
+            texto(screen, mensaje, 9, TEXTO, centro=(ANCHO // 2, 600))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.MOUSEMOTION:
+                mouse = ev.pos
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                audio.sfx(audio.MENU_BACK)
+                return
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if comprar.clic(ev.pos):
+                    ok, nuevas, mejoradas = campana.comprar_sobre(estado)
+                    if ok:
+                        audio.sfx(audio.MENU_OK)
+                        sob = campana.cartas_por_nombre(estado, nuevas + mejoradas)
+                        await revelar_sobre(
+                            screen, clock,
+                            [c for c in sob if c.nombre in nuevas],
+                            [c for c in sob if c.nombre in mejoradas])
+                        mensaje = ""
+                    else:
+                        audio.sfx(audio.INVALIDO, 0.5)
+                        mensaje = "Sin moneda: gana duelos de campana"
+                elif volver.clic(ev.pos):
+                    audio.sfx(audio.MENU_BACK)
+                    return
+
+
+async def mapa_mini(screen, clock, estado):
+    """Mapa lineal de la mini campana (3 duelos). Devuelve 'seguir' o 'salir'.
+
+    La mini no se guarda entre sesiones: salir la descarta.
+    """
+    fondo = Fondo(estado.get("faccion", "elfo_nocturno"))
+    nodos = ["mini_senda", "mini_nudo", "mini_trono"]
+    while True:
+        dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        fondo.dibujar(screen, dt)
+        mouse = pygame.mouse.get_pos()
+        actual = campana.nodo_actual(estado)
+        ruta = estado.get("ruta", [])
+        texto(screen, "MINI CAMPANA", 22, DORADO, centro=(ANCHO // 2, 120))
+        texto(screen, facciones.nombre(estado.get("faccion", "")), 12,
+              facciones.acento(estado.get("faccion", "humano")),
+              centro=(ANCHO // 2, 156))
+        for i, nid in enumerate(nodos):
+            datos = campana.nodo(nid)
+            rect = pygame.Rect(ANCHO // 2 - 460 + i * 320, 240, 280, 220)
+            if nid in ruta:
+                borde, etiqueta = VERDE, "COMPLETADO"
+            elif nid == actual:
+                borde, etiqueta = DORADO, "AHORA"
+            else:
+                borde, etiqueta = BORDE, "BLOQUEADO"
+            panel(screen, rect, PANEL, borde, radio=10)
+            texto(screen, datos["titulo"], 10, TEXTO_ON, centro=(rect.centerx, rect.y + 40))
+            texto(screen, f"Rival: {facciones.nombre(campana.rival_de_nodo(estado, nid))}",
+                  8, TEXTO, centro=(rect.centerx, rect.y + 90))
+            texto(screen, f"Nivel {datos.get('dificultad', 0)}", 8, TEXTO_TENUE,
+                  centro=(rect.centerx, rect.y + 120))
+            texto(screen, etiqueta, 9, borde, centro=(rect.centerx, rect.y + 170))
+        luchar = Boton(pygame.Rect(ANCHO // 2 - 320, 520, 300, 54), "LUCHAR", 12,
+                       sub=campana.nodo(actual)["titulo"],
+                       acento=facciones.acento(estado.get("faccion", "humano")))
+        salir = Boton(pygame.Rect(ANCHO // 2 + 20, 520, 300, 54), "ABANDONAR", 12,
+                      sub="Se pierde el progreso")
+        _botones(screen, [luchar, salir], mouse, dt)
+        texto(screen, "ESC para abandonar", 8, TEXTO_TENUE,
+              centro=(ANCHO // 2, ALTO - 120))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.MOUSEMOTION:
+                mouse = ev.pos
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                audio.sfx(audio.MENU_BACK)
+                return "salir"
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if luchar.clic(ev.pos):
+                    luchar.pulsar()
+                    audio.sfx(audio.MENU_OK)
+                    return "seguir"
+                if salir.clic(ev.pos):
+                    audio.sfx(audio.MENU_BACK)
+                    return "salir"
+
+
+def filtrar_coleccion(cartas, habilidad=None, rareza_nombre=None):
+    """Filtra por habilidad y/o rareza. Puro y testeable."""
+    out = list(cartas)
+    if habilidad:
+        out = [c for c in out if c.habilidad == habilidad]
+    if rareza_nombre:
+        out = [c for c in out if rareza(c)[0] == rareza_nombre]
+    return out
+
+
+def paginar_coleccion(cartas, pagina, por_pagina=10):
+    """Pagina (recorte) y total de paginas. Pagina fuera de rango -> ultima valida."""
+    total = max(1, (len(cartas) + por_pagina - 1) // por_pagina)
+    pagina = max(0, min(pagina, total - 1))
+    return cartas[pagina * por_pagina:(pagina + 1) * por_pagina], total, pagina
 
 
 def _descripcion_carta(carta):
@@ -687,7 +896,8 @@ async def elegir_rama(screen, clock, estado):
             recompensas = campana.recompensas_de(rama)
             texto(screen, "RECOMPENSAS: " + ", ".join(
                 {"entrenamiento": "entrenamiento", "recluta": "recluta",
-                 "sigilo": "sigilo", "aliado": "pacto"}[r] for r in recompensas),
+                 "sigilo": "sigilo", "aliado": "pacto",
+                 "sobre": "sobre"}[r] for r in recompensas),
                 7, TEXTO_TENUE, centro=(rect.centerx, rect.bottom - 20))
 
         texto(screen, "clic en la ruta que elijas", 9, TEXTO_TENUE, centro=(ANCHO // 2, 580))
@@ -815,9 +1025,122 @@ async def recompensa(screen, clock, estado, nodo_id):
                 return opciones[0]
 
 
+async def armar_mazo(screen, clock, faccion=None):
+    """Editor del mazo GLOBAL: de 5 a 10 poseidas, 1 LEG y 3 RARA maximo.
+
+    Guarda en el perfil y devuelve la lista de dicts (None si se cancela).
+    """
+    from reglas import Carta
+
+    perfil = campana.cargar_perfil()
+    coleccion = campana.coleccion_de(perfil)
+    poseidas = {}
+    for nombre, datos in coleccion.items():
+        c = Carta.desde_dict(dict(datos))
+        poseidas[nombre] = (datos, c.bando, sum(c.valores.values()))
+    nombres = sorted(poseidas, key=lambda n: (poseidas[n][1], -poseidas[n][2], n))
+    actual = [n for n in campana.mazo_global(perfil) if n in coleccion]
+    seleccion = list(actual) if actual else nombres[:5]
+    pagina, fbando = 0, faccion if faccion in facciones.FACCIONES else None
+    BANDOS = [None] + facciones.orden_facciones()
+    motivo = ""
+    while True:
+        dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        fondo = Fondo(faccion or "dragon")
+        fondo.dibujar(screen, dt)
+        mouse = pygame.mouse.get_pos()
+        visibles = [n for n in nombres if fbando is None or poseidas[n][1] == fbando]
+        pagina_items, total_pags, pagina = paginar_coleccion(visibles, pagina)
+        rars = [rareza(Carta.desde_dict(coleccion[n]))[0] for n in seleccion]
+        texto(screen, "ARMA TU MAZO", 20, DORADO, centro=(ANCHO // 2, 90))
+        texto(screen,
+              f"MAZO {len(seleccion)}/{campana.MAZO_RUN_N} (min {campana.MAZO_MIN_N})  -  LEG "
+              f"{rars.count('LEGENDARIA')}/{campana.LIMITE_LEGENDARIAS}  -  RARA "
+              f"{rars.count('RARA')}/{campana.LIMITE_RARAS}",
+              10, TEXTO, centro=(ANCHO // 2, 130))
+        for i, nombre in enumerate(pagina_items):
+            datos, bando, _total = poseidas[nombre]
+            sup = crt.crear(Carta.desde_dict(dict(datos)), None, escala=0.7)
+            x = ANCHO // 2 - len(pagina_items) * 60 + i * 120
+            rect = pygame.Rect(x, 200, sup.get_width(), sup.get_height())
+            if nombre in seleccion:
+                resplandor(screen, rect, VERDE, 130, 3, 8)
+            elif rect.collidepoint(mouse):
+                crt.resplandor_carta(screen, rect, Carta.desde_dict(dict(datos)), None, 110)
+            screen.blit(sup, (rect.x, rect.y))
+        b_bando = Boton(pygame.Rect(90, 360, 220, 40),
+                        f"BANDO: {(fbando or 'TODOS').upper()}", 8)
+        b_prev = Boton(pygame.Rect(ANCHO // 2 - 160, 360, 64, 40), "<", 10)
+        b_next = Boton(pygame.Rect(ANCHO // 2 + 96, 360, 64, 40), ">", 10)
+        _botones(screen, [b_bando, b_prev, b_next], mouse, dt)
+        texto(screen, f"{pagina + 1}/{total_pags}", 9, TEXTO, centro=(ANCHO // 2, 380))
+        guardar_btn = Boton(pygame.Rect(ANCHO // 2 - 350, 690, 330, 54),
+                            "GUARDAR MAZO", 12)
+        volver = Boton(pygame.Rect(ANCHO // 2 + 20, 690, 330, 54), "VOLVER", 12)
+        _botones(screen, [guardar_btn, volver], mouse, dt)
+        if motivo:
+            texto(screen, motivo, 9, ROJO, centro=(ANCHO // 2, 660))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                audio.sfx(audio.MENU_BACK)
+                return None
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_LEFT:
+                pagina -= 1
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_RIGHT:
+                pagina += 1
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_b:
+                fbando = BANDOS[(BANDOS.index(fbando) + 1) % len(BANDOS)]
+                pagina = 0
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if b_bando.clic(ev.pos):
+                    fbando = BANDOS[(BANDOS.index(fbando) + 1) % len(BANDOS)]
+                    pagina = 0
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
+                if b_prev.clic(ev.pos):
+                    pagina -= 1
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
+                if b_next.clic(ev.pos):
+                    pagina += 1
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
+                if guardar_btn.clic(ev.pos):
+                    elegidas = [dict(coleccion[n]) for n in seleccion]
+                    ok, motivo = campana.validar_mazo(elegidas, set(coleccion))
+                    if ok:
+                        audio.sfx(audio.MENU_OK)
+                        campana.guardar_mazo_global(list(seleccion))
+                        return elegidas
+                    audio.sfx(audio.INVALIDO, 0.5)
+                    continue
+                if volver.clic(ev.pos):
+                    audio.sfx(audio.MENU_BACK)
+                    return None
+                for i, nombre in enumerate(pagina_items):
+                    x = ANCHO // 2 - len(pagina_items) * 60 + i * 120
+                    rect = pygame.Rect(x, 200, 73, 101)
+                    if rect.collidepoint(ev.pos):
+                        if nombre in seleccion:
+                            seleccion.remove(nombre)
+                        elif len(seleccion) >= campana.MAZO_RUN_N:
+                            motivo = "Mazo lleno: quita una primero"
+                        else:
+                            seleccion.append(nombre)
+                            motivo = ""
+                        audio.sfx(audio.CARD)
+                        break
+
+
 async def elegir_carta_para_mejorar(screen, clock, estado):
     cartas = campana.cartas_jugador(estado)
     seleccion = None
+    pagina = 0
     while True:
         mouse = pygame.mouse.get_pos()
         dt = clock.tick(LIMIT_FPS) / 1000.0
@@ -829,16 +1152,22 @@ async def elegir_carta_para_mejorar(screen, clock, estado):
         texto(screen, "ENTRENAMIENTO", 20, DORADO, centro=(ANCHO // 2, 140))
         texto(screen, "Elige la carta que quieres mas fuerte (+1)", 10, TEXTO_TENUE,
               centro=(ANCHO // 2, 176))
+        pagina_items, total_pags, pagina = paginar_coleccion(cartas, pagina)
+        base = pagina * 10
         rects = []
-        for i, carta in enumerate(cartas):
-            sup = crt.crear(carta, None, escala=1.5)
-            x = ANCHO // 2 - len(cartas) * 90 + i * 180
+        for i, carta in enumerate(pagina_items):
+            sup = crt.crear(carta, None, escala=0.7)
+            x = ANCHO // 2 - len(pagina_items) * 60 + i * 120
             rect = pygame.Rect(x, 240, sup.get_width(), sup.get_height())
             rects.append(rect)
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, carta, None, 110)
             screen.blit(sup, (rect.x, rect.y - (12 if rect.collidepoint(mouse) else 0)))
-            texto(screen, f"{i + 1}", 9, TEXTO_TENUE, centro=(rect.centerx, rect.bottom + 18))
+            texto(screen, f"{(i + 1) % 10}", 9, TEXTO_TENUE, centro=(rect.centerx, rect.bottom + 18))
+        b_prev = Boton(pygame.Rect(ANCHO // 2 - 160, 640, 64, 40), "<", 10)
+        b_next = Boton(pygame.Rect(ANCHO // 2 + 96, 640, 64, 40), ">", 10)
+        _botones(screen, [b_prev, b_next], mouse, dt)
+        texto(screen, f"{pagina + 1}/{total_pags}", 9, TEXTO, centro=(ANCHO // 2, 660))
         pygame.display.flip()
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
@@ -846,12 +1175,32 @@ async def elegir_carta_para_mejorar(screen, clock, estado):
                 raise SystemExit
             if ev.type == pygame.MOUSEMOTION:
                 mouse = ev.pos
-            if ev.type == pygame.KEYDOWN and ev.key in range(pygame.K_1, pygame.K_1 + len(cartas)):
-                return ev.key - pygame.K_1
+            if ev.type == pygame.KEYDOWN:
+                idx = None
+                if pygame.K_1 <= ev.key <= pygame.K_9:
+                    idx = ev.key - pygame.K_1
+                elif ev.key == pygame.K_0:
+                    idx = 9
+                elif ev.key == pygame.K_LEFT:
+                    pagina -= 1
+                    audio.sfx(audio.MENU_MOVE)
+                elif ev.key == pygame.K_RIGHT:
+                    pagina += 1
+                    audio.sfx(audio.MENU_MOVE)
+                if idx is not None and base + idx < len(cartas):
+                    return base + idx
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if b_prev.clic(ev.pos):
+                    pagina -= 1
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
+                if b_next.clic(ev.pos):
+                    pagina += 1
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
                 for i, rect in enumerate(rects):
                     if rect.collidepoint(ev.pos):
-                        return i
+                        return base + i
 
 
 async def draft(screen, clock, estado, ofertas=None):
@@ -899,6 +1248,7 @@ async def draft(screen, clock, estado, ofertas=None):
 async def draft_reemplazo(screen, clock, estado, carta):
     """Segunda fase del draft: a quien sustituye la carta nueva."""
     cartas = campana.cartas_jugador(estado)
+    pagina = 0
     while True:
         mouse = pygame.mouse.get_pos()
         dt = clock.tick(LIMIT_FPS) / 1000.0
@@ -911,16 +1261,22 @@ async def draft_reemplazo(screen, clock, estado, carta):
               centro=(ANCHO // 2, 132))
         nueva = crt.crear(carta, None, escala=1.2)
         screen.blit(nueva, (ANCHO // 2 - nueva.get_width() // 2, 170))
+        pagina_items, total_pags, pagina = paginar_coleccion(cartas, pagina)
+        base = pagina * 10
         rects = []
-        for i, vieja in enumerate(cartas):
-            sup = crt.crear(vieja, None, escala=1.2)
-            x = ANCHO // 2 - len(cartas) * 78 + i * 156
+        for i, vieja in enumerate(pagina_items):
+            sup = crt.crear(vieja, None, escala=0.8)
+            x = ANCHO // 2 - len(pagina_items) * 60 + i * 120
             rect = pygame.Rect(x, 380, sup.get_width(), sup.get_height())
             rects.append(rect)
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, vieja, None, 110)
             screen.blit(sup, (rect.x, rect.y))
-            texto(screen, str(i + 1), 9, TEXTO_TENUE, centro=(rect.centerx, rect.bottom + 18))
+            texto(screen, str((i + 1) % 10), 9, TEXTO_TENUE, centro=(rect.centerx, rect.bottom + 18))
+        b_prev = Boton(pygame.Rect(ANCHO // 2 - 160, 560, 64, 40), "<", 10)
+        b_next = Boton(pygame.Rect(ANCHO // 2 + 96, 560, 64, 40), ">", 10)
+        _botones(screen, [b_prev, b_next], mouse, dt)
+        texto(screen, f"{pagina + 1}/{total_pags}", 9, TEXTO, centro=(ANCHO // 2, 580))
         pygame.display.flip()
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
@@ -928,12 +1284,32 @@ async def draft_reemplazo(screen, clock, estado, carta):
                 raise SystemExit
             if ev.type == pygame.MOUSEMOTION:
                 mouse = ev.pos
-            if ev.type == pygame.KEYDOWN and ev.key in range(pygame.K_1, pygame.K_1 + len(cartas)):
-                return ev.key - pygame.K_1
+            if ev.type == pygame.KEYDOWN:
+                idx = None
+                if pygame.K_1 <= ev.key <= pygame.K_9:
+                    idx = ev.key - pygame.K_1
+                elif ev.key == pygame.K_0:
+                    idx = 9
+                elif ev.key == pygame.K_LEFT:
+                    pagina -= 1
+                    audio.sfx(audio.MENU_MOVE)
+                elif ev.key == pygame.K_RIGHT:
+                    pagina += 1
+                    audio.sfx(audio.MENU_MOVE)
+                if idx is not None and base + idx < len(cartas):
+                    return base + idx
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if b_prev.clic(ev.pos):
+                    pagina -= 1
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
+                if b_next.clic(ev.pos):
+                    pagina += 1
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
                 for i, rect in enumerate(rects):
                     if rect.collidepoint(ev.pos):
-                        return i
+                        return base + i
 
 
 async def aplicar_recompensa(screen, clock, estado, clave, nodo_id):
@@ -957,11 +1333,77 @@ async def aplicar_recompensa(screen, clock, estado, clave, nodo_id):
         else:
             campana.aplicar_sigilo(estado)
             mensaje = "Ya pactaste con todos: obtienes un sigilo de guerra"
+    elif clave == "sobre":
+        nuevas, mejoradas = campana.abrir_sobre(estado)
+        sob = campana.cartas_por_nombre(estado, nuevas + mejoradas)
+        await revelar_sobre(screen, clock,
+                            [c for c in sob if c.nombre in nuevas],
+                            [c for c in sob if c.nombre in mejoradas])
+        partes = []
+        if nuevas:
+            partes.append("nuevas: " + ", ".join(nuevas))
+        if mejoradas:
+            partes.append("duplicadas (+1): " + ", ".join(mejoradas))
+        mensaje = "Sobre abierto: " + ("; ".join(partes) if partes else "vacio")
     else:
         mensaje = "Nada que aplicar"
     campana.guardar(estado)
     await cartel(screen, clock, "RECOMPENSA", mensaje)
     return mensaje
+
+
+async def revelar_sobre(screen, clock, nuevas, mejoradas):
+    """Revelado de un sobre carta a carta. Clic revela, ESC sale.
+
+    `nuevas` y `mejoradas` son listas de Carta (las mejoradas ya dieron +1).
+    """
+    todas = [(c, True) for c in nuevas] + [(c, False) for c in mejoradas]
+    fondo = Fondo("dragon")
+    reveladas = 0
+    while True:
+        dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        fondo.dibujar(screen, dt)
+        mouse = pygame.mouse.get_pos()
+        texto(screen, "SOBRE ABIERTO", 22, DORADO, centro=(ANCHO // 2, 110))
+        for i, (carta, _es_nueva) in enumerate(todas):
+            x = ANCHO // 2 - len(todas) * 60 + i * 120
+            rect = pygame.Rect(x, 250, 104, 144)
+            if i < reveladas:
+                screen.blit(crt.crear(carta, None), (x, 250))
+                etiqueta, color = rareza(carta)
+                if etiqueta == "LEGENDARIA":
+                    resplandor(screen, rect, DORADO, 150, 3, 8)
+                texto(screen, etiqueta, 8, color, centro=(rect.centerx, rect.bottom + 18))
+            else:
+                screen.blit(crt.dorso(), (x, 250))
+            if rect.collidepoint(mouse) and i < reveladas:
+                crt.resplandor_carta(screen, rect, carta, None, 80)
+        if mejoradas:
+            parrafo(screen, "Duplicadas (+1): " + ", ".join(c.nombre for c in mejoradas),
+                    9, TEXTO_TENUE, ANCHO // 2 - 300, 440, 600, interlinea=20, centrado=True)
+        if reveladas < len(todas):
+            texto(screen, f"clic para revelar ({reveladas}/{len(todas)})", 9, TEXTO_TENUE,
+                  centro=(ANCHO // 2, ALTO - 120))
+        else:
+            texto(screen, "clic para continuar", 10, DORADO, centro=(ANCHO // 2, ALTO - 120))
+        dibujar_tooltips(screen)
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                audio.sfx(audio.MENU_BACK)
+                return
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if reveladas < len(todas):
+                    carta = todas[reveladas][0]
+                    audio.sfx(audio.TORNEO if rareza(carta)[0] == "LEGENDARIA" else audio.RECOMPENSA)
+                    reveladas += 1
+                else:
+                    audio.sfx(audio.MENU_OK)
+                    return
 
 
 async def cartel(screen, clock, titulo, mensaje):
@@ -1048,6 +1490,50 @@ async def encuentro(screen, clock, estado, nodo_id):
 
 
 # ---------------------------------------------------------------- coleccion
+async def _ficha_carta(screen, clock, carta):
+    """Ficha ampliada de una carta de la coleccion. Clic o ESC para volver."""
+    while True:
+        dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
+        capa.fill((0, 0, 0, 190))
+        screen.blit(capa, (0, 0))
+        sup = crt.crear(carta, None, escala=1.6)
+        screen.blit(sup, (ANCHO // 2 - 330, 240))
+        caja = pygame.Rect(ANCHO // 2 - 140, 240, 400, 230)
+        panel(screen, caja, PANEL, facciones.acento(carta.bando), radio=10)
+        texto(screen, carta.nombre, 13, TEXTO_ON, centro=(caja.centerx, caja.y + 30))
+        etiqueta, color = rareza(carta)
+        texto(screen, f"{facciones.nombre(carta.bando)} - {etiqueta}", 9, color,
+              centro=(caja.centerx, caja.y + 58))
+        texto(screen, f"N {val(carta.valores['N'])}   S {val(carta.valores['S'])}", 10,
+              TEXTO, centro=(caja.centerx, caja.y + 92))
+        texto(screen, f"E {val(carta.valores['E'])}   O {val(carta.valores['O'])}", 10,
+              TEXTO, centro=(caja.centerx, caja.y + 116))
+        if carta.habilidad:
+            parrafo(screen,
+                    f"{crt.ICONO_HABILIDAD.get(carta.habilidad, '')}: "
+                    f"{crt.descripcion_habilidad(carta.habilidad)}",
+                    9, TEXTO, caja.x + 20, caja.y + 142, caja.w - 40, interlinea=16)
+        else:
+            texto(screen, "Sin habilidad especial", 9, TEXTO_TENUE,
+                  centro=(caja.centerx, caja.y + 150))
+        texto(screen, "Sale en sobres y en el draft", 8, TEXTO_TENUE,
+              centro=(caja.centerx, caja.bottom - 18))
+        texto(screen, "clic o ESC para volver", 9, DORADO, centro=(ANCHO // 2, 540))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                audio.sfx(audio.MENU_BACK)
+                return
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                audio.sfx(audio.MENU_OK)
+                return
+
+
 async def coleccion(screen, clock, estado=None):
     """Mazos, cartas y finales desbloqueados."""
     perfil = campana.cargar_perfil()
@@ -1055,6 +1541,9 @@ async def coleccion(screen, clock, estado=None):
     faccion = estado.get("faccion") if estado else orden[0]
     t0 = time.time()
     fondos = {f: Fondo(f) for f in orden}
+    pagina, fhab, frar = 0, None, None
+    HABS = [None, "muro", "furia", "embestida", "quema"]
+    RARS = [None, "COMUN", "RARA", "LEGENDARIA"]
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
         await asyncio.sleep(0)
@@ -1065,26 +1554,44 @@ async def coleccion(screen, clock, estado=None):
         texto(screen, "COLECCION", 22, DORADO, centro=(ANCHO // 2, 60))
         # selector de faccion
         rects = {}
+        compacta = len(orden) > 7
         for i, f in enumerate(orden):
-            x = 60 + i * 170
-            rect = pygame.Rect(x, 100, 150, 70)
+            if compacta:
+                x = 40 + i * 120
+                rect = pygame.Rect(x, 100, 112, 84)
+            else:
+                x = 60 + i * 170
+                rect = pygame.Rect(x, 100, 150, 70)
             rects[f] = rect
             activo = f == faccion
             panel(screen, rect, (18, 19, 28, 225),
                   facciones.acento(f) if activo else BORDE, radio=8, grosor=2 if activo else 1)
-            texto(screen, facciones.nombre(f), 8, facciones.acento(f), centro=(rect.centerx, rect.y + 24))
+            if compacta:
+                lineas = envolver(facciones.nombre(f), 7, rect.w - 12)[:2]
+                ly = rect.y + 12
+                for linea in lineas:
+                    texto(screen, linea, 7, facciones.acento(f),
+                          centro=(rect.centerx, ly))
+                    ly += 13
+            else:
+                texto(screen, facciones.nombre(f), 8, facciones.acento(f), centro=(rect.centerx, rect.y + 24))
             finales = perfil.get("finales", {}).get(f, [])
             texto(screen, f"{len(finales)}/3 finales", 7, TEXTO_TENUE,
-                  centro=(rect.centerx, rect.y + 48))
+                  centro=(rect.centerx, rect.bottom - 14))
             if activo:
                 resplandor(screen, rect, facciones.acento(f), int(60 + 40 * math_seno(t * 3)), 2, 8)
 
-        # mazo de la faccion
-        cartas = mazos.TODOS[faccion]
-        for i, carta in enumerate(cartas):
-            sup = crt.crear(carta, None, escala=1.25)
-            x = 70 + i * 158
-            rect = pygame.Rect(x, 210, sup.get_width(), sup.get_height())
+        # mazo de la faccion: 10 por pagina, con filtros de habilidad y rareza
+        filtradas = filtrar_coleccion(mazos.TODOS[faccion], fhab, frar)
+        pagina_items, total_pags, pagina = paginar_coleccion(filtradas, pagina)
+        rects_cartas = []
+        for i, carta in enumerate(pagina_items):
+            sup = crt.crear(carta, None, escala=1.1)
+            fila, col = divmod(i, 5)
+            x = 70 + col * 158
+            y = 200 + fila * 192
+            rect = pygame.Rect(x, y, sup.get_width(), sup.get_height())
+            rects_cartas.append((carta, rect))
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, carta, None, 120)
                 tooltip(screen, _descripcion_carta(carta), (rect.centerx, rect.y),
@@ -1092,10 +1599,18 @@ async def coleccion(screen, clock, estado=None):
             screen.blit(sup, (rect.x, rect.y))
             etiqueta, color = rareza(carta)
             texto(screen, etiqueta, 8, color, centro=(rect.centerx, rect.bottom + 18))
+        if not pagina_items:
+            texto(screen, "Sin cartas con ese filtro", 10, TEXTO_TENUE,
+                  centro=(460, 380))
+        b_hab = Boton(pygame.Rect(310, 574, 190, 32), f"HAB: {(fhab or 'TODAS').upper()}", 8)
+        b_rar = Boton(pygame.Rect(510, 574, 190, 32), f"RAREZA: {frar or 'TODAS'}", 8)
+        b_prev = Boton(pygame.Rect(710, 574, 56, 32), "<", 10)
+        b_next = Boton(pygame.Rect(862, 574, 56, 32), ">", 10)
+        _botones(screen, [b_hab, b_rar, b_prev, b_next], mouse, dt)
+        texto(screen, f"{pagina + 1}/{total_pags}", 9, TEXTO, centro=(814, 590))
 
-        # panel de finales: altura y posicion calculadas segun el contenido
-        entradas_f = []
-        altura = 0
+        # panel de finales: solo entran las que caben; el resto se resume
+        alturas = []
         for f in orden:
             conseguidos = perfil.get("finales", {}).get(f, [])
             titulos = [
@@ -1107,14 +1622,22 @@ async def coleccion(screen, clock, estado=None):
             if titulos:
                 lineas_t = envolver(" / ".join(titulos), 7, 300)
                 h += 14 * max(1, len(lineas_t))
-            entradas_f.append((f, conseguidos, titulos))
-            altura += h
-        alto_panel = max(120, altura + 60)
-        alto_panel = min(alto_panel, ALTO - 200 - 96)
+            alturas.append((f, conseguidos, titulos, h))
+        tope = ALTO - 200 - 96
+        visibles, usado = [], 0
+        for entrada in alturas:
+            if usado + entrada[3] + 60 > tope - 22:
+                break
+            visibles.append(entrada)
+            usado += entrada[3]
+        resto = len(alturas) - len(visibles)
+        if resto:
+            usado += 22
+        alto_panel = max(120, usado + 60)
         panel(screen, pygame.Rect(ANCHO - 380, 200, 340, alto_panel), PANEL, BORDE, radio=10)
         texto(screen, "FINALES", 12, DORADO, centro=(ANCHO - 210, 226))
         y = 250
-        for f, conseguidos, titulos in entradas_f:
+        for f, conseguidos, titulos, _h in visibles:
             color = facciones.acento(f) if conseguidos else (90, 90, 96)
             texto(screen, facciones.nombre(f), 9, color, x=ANCHO - 360, y=y)
             marcas = []
@@ -1129,24 +1652,28 @@ async def coleccion(screen, clock, estado=None):
                 y = parrafo(screen, " / ".join(titulos), 7, TEXTO_TENUE,
                             ANCHO - 360, y, 300, interlinea=14)
             y += 8
+        if resto:
+            texto(screen, f"+{resto} finales mas", 8, TEXTO_TENUE,
+                  centro=(ANCHO - 210, y + 6))
 
         # estadisticas
         panel(screen, pygame.Rect(60, 620, 500, 140), PANEL, BORDE, radio=10)
         texto(screen, "ESTADISTICAS", 11, DORADO, x=80, y=640)
-        texto(screen, f"Duelos: {perfil.get('duelos', 0)}   Victorias: {perfil.get('victorias', 0)}",
+        texto(screen, f"Duelos: {perfil.get('duelos', 0)}   Victorias: {perfil.get('victorias', 0)}   Moneda: {perfil.get('moneda', 0)}",
               9, TEXTO, x=80, y=668)
         mejor = perfil.get("mejor_racha", {})
         if mejor:
             texto(screen, "Mejor racha por faccion:", 8, TEXTO_TENUE, x=80, y=694)
-            x = 80
-            for f in orden:
-                if f in mejor:
-                    texto(screen, f"{facciones.nombre(f)}: {mejor[f]}", 8,
-                          facciones.acento(f), x=x, y=712)
-                    x += 160
+            con_racha = [f for f in orden if f in mejor]
+            for i, f in enumerate(con_racha):
+                fila, col = divmod(i, 5)
+                texto(screen, f"{facciones.corto(f)}: {mejor[f]}", 8,
+                      facciones.acento(f), x=80 + col * 95, y=712 + fila * 18)
 
         cerrar = Boton(pygame.Rect(ANCHO - 300, ALTO - 70, 260, 46), "VOLVER", 11)
-        _botones(screen, [cerrar], mouse, dt)
+        tienda_btn = Boton(pygame.Rect(60, ALTO - 70, 260, 46), "TIENDA", 11,
+                           sub=f"Sobres: {campana.PRECIO_SOBRE} moneda")
+        _botones(screen, [cerrar, tienda_btn], mouse, dt)
         dibujar_tooltips(screen)
         pygame.display.flip()
 
@@ -1159,15 +1686,64 @@ async def coleccion(screen, clock, estado=None):
             if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
                 audio.sfx(audio.MENU_BACK)
                 return
+
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.MOUSEMOTION:
+                mouse = ev.pos
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
+                audio.sfx(audio.MENU_BACK)
+                return
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_LEFT:
+                pagina -= 1
+                audio.sfx(audio.MENU_MOVE)
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_RIGHT:
+                pagina += 1
+                audio.sfx(audio.MENU_MOVE)
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_f:
+                fhab = HABS[(HABS.index(fhab) + 1) % len(HABS)]
+                pagina = 0
+                audio.sfx(audio.MENU_MOVE)
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_r:
+                frar = RARS[(RARS.index(frar) + 1) % len(RARS)]
+                pagina = 0
+                audio.sfx(audio.MENU_MOVE)
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if b_hab.clic(ev.pos):
+                    fhab = HABS[(HABS.index(fhab) + 1) % len(HABS)]
+                    pagina = 0
+                    audio.sfx(audio.MENU_OK)
+                elif b_rar.clic(ev.pos):
+                    frar = RARS[(RARS.index(frar) + 1) % len(RARS)]
+                    pagina = 0
+                    audio.sfx(audio.MENU_OK)
+                elif b_prev.clic(ev.pos):
+                    pagina -= 1
+                    audio.sfx(audio.MENU_MOVE)
+                elif b_next.clic(ev.pos):
+                    pagina += 1
+                    audio.sfx(audio.MENU_MOVE)
+                    continue
+                for carta, rect in rects_cartas:
+                    if rect.collidepoint(ev.pos):
+                        audio.sfx(audio.CARD)
+                        await _ficha_carta(screen, clock, carta)
+                        break
                 for f, rect in rects.items():
                     if rect.collidepoint(ev.pos):
                         faccion = f
+                        pagina = 0
                         audio.sfx(audio.CARD)
                         break
                 if cerrar.clic(ev.pos):
                     audio.sfx(audio.MENU_BACK)
                     return
+                if tienda_btn.clic(ev.pos):
+                    audio.sfx(audio.MENU_OK)
+                    await tienda(screen, clock, estado)
+                    continue
 
 
 # ----------------------------------------------------------------- ajustes
@@ -1246,6 +1822,7 @@ async def _pantalla_ayuda(screen, clock):
             "ESC: pausa dentro del duelo, cerrar una pantalla.",
             "Flechas y ENTER: moverse por los menus.",
             "H: recordatorio de Same y Plus.",
+            "T: abrir el tutorial completo.",
         ]),
         ("REGLAS QUE CUENTAN", [
             "Basica: ganas la carta vecina si tu lado es mayor.",
@@ -1280,6 +1857,12 @@ async def _pantalla_ayuda(screen, clock):
                 raise SystemExit
             if ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE:
                 audio.sfx(audio.MENU_BACK)
+                return
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_t:
+                import tutorial as _tut
+
+                audio.sfx(audio.MENU_OK)
+                await _tut.tutorial(screen, clock)
                 return
             if ev.type in (pygame.MOUSEBUTTONDOWN, pygame.KEYDOWN):
                 audio.sfx(audio.MENU_MOVE)
@@ -1399,8 +1982,8 @@ async def epilogo(screen, clock, estado):
         f"Duelos ganados: {estado.get('victorias', 0)}",
         f"Mejor racha: {estado.get('mejor_racha', 0)}",
         f"Capturas totales: {estado.get('capturas', 0)}",
-        f"Pactos: {', '.join(facciones.nombre(a) for a in estado.get('aliados', [])) or 'ninguno'}",
     ]
+    pactos = f"Pactos: {', '.join(facciones.nombre(a) for a in estado.get('aliados', [])) or 'ninguno'}"
     escenas, musica = cinematicas.escenas_final(titulo, lineas, faccion, resumen)
     audio.musica(musica)
     await cinematicas.reproducir(screen, clock, escenas, musica=musica, permitir_saltar=False)
@@ -1418,6 +2001,8 @@ async def epilogo(screen, clock, estado):
         for linea in resumen:
             texto(screen, linea, 10, TEXTO, centro=(ANCHO // 2, y))
             y += 26
+        y = parrafo(screen, pactos, 10, TEXTO, ANCHO // 2 - 400, y, 800,
+                    interlinea=26, centrado=True)
         if nuevo:
             texto(screen, "NUEVO FINAL DESBLOQUEADO", 12, VERDE, centro=(ANCHO // 2, y + 30))
         else:

@@ -21,7 +21,7 @@ import mazos
 from paths import archivo
 from reglas import Carta
 
-VERSION = 3
+VERSION = 6
 ARCHIVO_PARTIDA = "campana.json"
 ARCHIVO_PERFIL = "perfil.json"
 
@@ -91,6 +91,33 @@ DUELISTAS = {
         "win": "Orcos al Umbral!",
         "lose": "Grrr... caes hoy, no el ultimo.",
     },
+    "elfo_nocturno": {
+        "nombre": "Sylwen",
+        "titulo": "Voz del Umbral",
+        "entrada": "La sombra tambien sabe jugar.",
+        "captura_player": "La noche se repliega... por ahora.",
+        "captura_cpu": "Ni la luz te avisara.",
+        "win": "El Umbral escucha a los suyos.",
+        "lose": "Bien jugado. La sombra aprende.",
+    },
+    "hombre_pantera": {
+        "nombre": "Zarkha",
+        "titulo": "Cazadora Silente",
+        "entrada": "Shh... ya empezo la caza.",
+        "captura_player": "Grrr... me rozaste el lomo.",
+        "captura_cpu": "Ni me viste venir.",
+        "win": "La noche caza en silencio.",
+        "lose": "Buena caza, forastero.",
+    },
+    "hombre_lagarto": {
+        "nombre": "Sskar",
+        "titulo": "Senor del Pantano",
+        "entrada": "El fango te espera, viajero.",
+        "captura_player": "El pantano cede... pero traga despacio.",
+        "captura_cpu": "Quieto. Ya eres del pantano.",
+        "win": "El pantano no perdona.",
+        "lose": "Saliste del fango. Por hoy.",
+    },
 }
 
 # Titulos alternativos por nodo para que los rivales no repitanPresentacion.
@@ -101,6 +128,9 @@ TITULOS_NODO = {
     "fortaleza": "Campeon de la Fortaleza",
     "asalto": "El Que Vuelve",
     "trono": "Soberano del Umbral",
+    "mini_senda": "El Umbral Respira",
+    "mini_nudo": "La Sombra se Cierra",
+    "mini_trono": "Dueno del Umbral",
 }
 
 # ------------------------------------------------------------- grafo de nodos
@@ -176,6 +206,62 @@ NODOS = {
     },
 }
 
+# Mini campanas: 3 duelos lineales para las facciones nuevas, sin mapa ni
+# encuentros. Se desbloquean al completar la campana principal.
+NODOS_MINI = {
+    "mini_senda": {
+        "tipo": "duelo",
+        "titulo": "El Umbral Respira",
+        "escena": "umbral",
+        "dificultad": 1,
+        "previa": ["El Umbral te reconoce: ya no eres un forastero."],
+        "siguiente": "mini_nudo",
+    },
+    "mini_nudo": {
+        "tipo": "duelo",
+        "titulo": "La Sombra se Cierra",
+        "escena": "estandartes",
+        "dificultad": 2,
+        "previa": ["Los estandartes se juntan. Todos saben tu nombre."],
+        "siguiente": "mini_trono",
+    },
+    "mini_trono": {
+        "tipo": "final",
+        "titulo": "Dueno del Umbral",
+        "escena": "trono",
+        "dificultad": 3,
+        "previa": ["Tres duelos te separan de ser leyenda. Este es el ultimo."],
+        "siguiente": None,
+    },
+}
+
+MINI_FINALES = {
+    "elfo_nocturno": {
+        "titulo": "VIGIA DEL UMBRAL",
+        "lineas": [
+            "Tres duelos y el Umbral ya no ruge: susurra tu nombre.",
+            "Sylwen monta guardia donde la luz no llega.",
+            "La sombra, por fin, tiene quien la cuide.",
+        ],
+    },
+    "hombre_pantera": {
+        "titulo": "LA MEJOR PRESA",
+        "lineas": [
+            "Tres duelos sin hacer ruido y el Umbral es territorio de caza.",
+            "Zarkha no deja huellas: deja precedente.",
+            "Cazar el Umbral: nadie lo habia intentado. Nadie lo repetira.",
+        ],
+    },
+    "hombre_lagarto": {
+        "titulo": "EL FANGO MANDA",
+        "lineas": [
+            "Tres duelos y el pantano llega hasta el Umbral.",
+            "Sskar espera sentado: todo lo que se hunde, vuelve a el.",
+            "El Umbral tambien es fango, solo que mas alto.",
+        ],
+    },
+}
+
 # Escaleras de rivales: una por faccion, sin incluir su propio bando.
 ESCALERAS = {
     "humano": ["orco", "goblin", "elfo", "hombre_lobo", "vampiro"],
@@ -185,6 +271,9 @@ ESCALERAS = {
     "hombre_lobo": ["orco", "vampiro", "goblin", "elfo", "humano"],
     "vampiro": ["humano", "goblin", "hombre_lobo", "elfo", "orco"],
     "dragon": ["humano", "elfo", "orco", "hombre_lobo", "vampiro"],
+    "elfo_nocturno": ["humano", "orco", "vampiro", "goblin", "elfo"],
+    "hombre_pantera": ["goblin", "hombre_lobo", "humano", "orco", "vampiro"],
+    "hombre_lagarto": ["orco", "goblin", "elfo", "vampiro", "humano"],
 }
 
 # ------------------------------------------------------------------ recompensas
@@ -192,9 +281,9 @@ ESCALERAS = {
 RECOMPENSAS = {
     "senda": ["entrenamiento", "recluta"],
     "aldea": ["entrenamiento", "recluta", "sigilo"],
-    "ruinas": ["recluta", "sigilo", "aliado"],
-    "fortaleza": ["entrenamiento", "sigilo", "aliado"],
-    "asalto": ["entrenamiento", "recluta", "sigilo"],
+    "ruinas": ["recluta", "sigilo", "aliado", "sobre"],
+    "fortaleza": ["entrenamiento", "sigilo", "aliado", "sobre"],
+    "asalto": ["entrenamiento", "recluta", "sigilo", "sobre"],
     "trono": [],
 }
 
@@ -203,6 +292,7 @@ TEXTO_RECOMPENSA = {
     "recluta": "Recluta: elige una de las tres cartas ofrecidas.",
     "sigilo": "Sigilo de guerra: +1 permanente al lado mas bajo de todas tus cartas.",
     "aliado": "Pacto: desbloquea el mazo de esa faccion para el draft.",
+    "sobre": "Sobre: 3 cartas al azar con rareza ponderada.",
 }
 
 # -------------------------------------------------------------------- encuentros
@@ -262,13 +352,31 @@ ENCUENTROS = [
             },
         ],
     },
+    {
+        "id": "caravana",
+        "titulo": "Caravana de Sobres",
+        "escena": "campamento",
+        "texto": "Una caravana vende sobres cerrados. - Todo el mundo paga. Casi todo el mundo gana.",
+        "opciones": [
+            {
+                "id": "regatear",
+                "texto": "Regatear un sobre (3 cartas al azar)",
+                "efecto": "sobre",
+            },
+            {
+                "id": "escoltar",
+                "texto": "Escoltarla (+1 a tu carta mas debil)",
+                "efecto": "mas_debil",
+            },
+        ],
+    },
 ]
 
 ENCUENTRO_POR_NODO = {
     "senda": "mercader",
     "aldea": "hermandad",
     "ruinas": "anciano",
-    "fortaleza": "mercader",
+    "fortaleza": "caravana",
     "asalto": "hermandad",
 }
 
@@ -458,6 +566,84 @@ FINALES = {
             ],
         },
     },
+    "elfo_nocturno": {
+        "dominio": {
+            "titulo": "LA SOMBRA CORONADA",
+            "lineas": [
+                "El Umbral se abre para quien lo miro sin parpadear.",
+                "Sylwen no pide perdon al bosque: le trae un trono envuelto en noche.",
+                "Donde antes habia exilio, ahora hay vigilia.",
+            ],
+        },
+        "equilibrio": {
+            "titulo": "PACTO DE PENUMBRA",
+            "lineas": [
+                "Ni luz ni sombra: un acuerdo a media voz con el bosque.",
+                "Los elfos diurnos fingen que fue idea suya. Dejalos.",
+                "La noche y el dia comparten la misma corona por turnos.",
+            ],
+        },
+        "caos": {
+            "titulo": "SIN LUNA QUE VOLVER",
+            "lineas": [
+                "Ganaste el trono pero la sombra te desconoce.",
+                "Ni el bosque ni el Umbral reclaman tu victoria.",
+                "Reinas sobre una penumbra que no te nombra.",
+            ],
+        },
+    },
+    "hombre_pantera": {
+        "dominio": {
+            "titulo": "LA CAZA PERFECTA",
+            "lineas": [
+                "Nadie vio llegar a Zarkha y nadie la vera irse: el trono ya es suyo.",
+                "La manada de la sombra patrulla los tejados del mundo.",
+                "El silencio, por fin, tiene dueno.",
+            ],
+        },
+        "equilibrio": {
+            "titulo": "TERRITORIO COMPARTIDO",
+            "lineas": [
+                "Fenris y Zarkha acuerdan turnos de luna: nadie muerde fuera de hora.",
+                "El bosque aprende a dormir con un ojo abierto y el otro cerrado.",
+                "Una tregua felina: dura mientras nadie corra.",
+            ],
+        },
+        "caos": {
+            "titulo": "PRESA DEL RUIDO",
+            "lineas": [
+                "Ganaste haciendo ruido y la selva lo apunta todo.",
+                "Cada sombra esconde ahora otra sombra que te debe una.",
+                "El trono es tuyo, pero dormir cuesta el doble.",
+            ],
+        },
+    },
+    "hombre_lagarto": {
+        "dominio": {
+            "titulo": "EL PANTANO REINA",
+            "lineas": [
+                "El fango llego al trono sin prisa y sin pedir permiso.",
+                "Sskar no celebra: el pantano tampoco celebra, solo crece.",
+                "Lo que el pantano traga, el pantano conserva.",
+            ],
+        },
+        "equilibrio": {
+            "titulo": "AGUAS QUIETAS",
+            "lineas": [
+                "Vorg acepta el pacto del fango: territorio por tributo.",
+                "El pantano deja pasar caravanas y cobra peaje en silencio.",
+                "La paz mas lenta del mundo tambien es la mas firme.",
+            ],
+        },
+        "caos": {
+            "titulo": "FANGO REVUELTO",
+            "lineas": [
+                "Tomaste el trono chapoteando y el reino lo noto.",
+                "Cada faccion cuenta que el pantano los traiciono primero.",
+                "Gobiernas, pero con el agua al cuello.",
+            ],
+        },
+    },
 }
 
 # ---------------------------------------------------------------------- estado
@@ -487,14 +673,19 @@ def _duelista_de(rival, nodo_id):
     return d
 
 
-def nueva_campana(faccion="humano"):
+def nueva_campana(faccion="humano", mazo=None):
+    """Nueva run. Sin mazo dado usa las iniciales (determinista, tests y minis);
+    el juego real pasa una copia del mazo global."""
+    if mazo is None:
+        mazo = [c.a_dict() for c in mazo_inicial(faccion)]
     return {
         "version": VERSION,
         "faccion": faccion,
         "nodo": "senda",
         "ruta": [],
         "eleccion": None,
-        "cartas": [c.a_dict() for c in mazos.TODOS[faccion]],
+        "cartas": [dict(d) for d in mazo],
+        "semilla": random.getrandbits(64),
         "racha": 0,
         "mejor_racha": 0,
         "victorias": 0,
@@ -509,6 +700,18 @@ def nueva_campana(faccion="humano"):
     }
 
 
+def nueva_mini_campana(faccion):
+    """Mini campana de 3 duelos para las facciones nuevas. Solo vive en memoria."""
+    estado = nueva_campana(faccion, [c.a_dict() for c in mazo_inicial(faccion)])
+    estado.update({
+        "mini": True,
+        "nodo": "mini_senda",
+        "ruta": [],
+        "_archivo": None,
+    })
+    return estado
+
+
 # ---------------------------------------------------------------- persistencia
 
 
@@ -516,16 +719,28 @@ def ruta_partida():
     return archivo(ARCHIVO_PARTIDA)
 
 
-def ruta_perfil():
-    return archivo(ARCHIVO_PERFIL)
+ARCHIVO_MINI = "mini.json"
 
 
-def guardar(estado):
+def ruta_mini():
+    return archivo(ARCHIVO_MINI)
+
+
+def guardar(estado, ruta=None):
+    # Las mini campanas viven solo en memoria (sin continuar entre sesiones):
+    # con _archivo None no se escribe nada y no se pisa campana.json.
+    ruta = estado.get("_archivo", ruta_partida()) if ruta is None else ruta
+    if ruta is None:
+        return
     try:
-        with open(ruta_partida(), "w", encoding="utf-8") as f:
+        with open(ruta, "w", encoding="utf-8") as f:
             json.dump(estado, f, ensure_ascii=False, indent=2)
     except OSError:
         pass
+
+
+def ruta_perfil():
+    return archivo(ARCHIVO_PERFIL)
 
 
 def cargar():
@@ -544,23 +759,34 @@ def borrar_partida():
 
 
 def _migrar(datos):
-    """Convierte partidas viejas (lineales, 5 bandos) al grafo actual."""
+    """Convierte partidas viejas al formato actual (reset total de coleccion)."""
     if not isinstance(datos, dict):
         return None
     if datos.get("version") == VERSION:
         return datos
-    faccion = datos.get("mazo_jugador", "humano")
+    if datos.get("version") in (3, 4, 5):
+        nuevo = datos
+    else:
+        faccion = datos.get("mazo_jugador", "humano")
+        if faccion not in facciones.FACCIONES:
+            faccion = "humano"
+        nuevo = nueva_campana(faccion)
+        etapa = int(datos.get("etapa", 0) or 0)
+        orden = ["senda", "bifurcacion", "fortaleza", "asalto", "trono"]
+        nuevo["nodo"] = orden[min(etapa, len(orden) - 1)]
+        nuevo["mejor_racha"] = int(datos.get("racha", 0) or 0)
+        if etapa >= 5 and datos.get("completada"):
+            nuevo["completada"] = True
+    nuevo.setdefault("semilla", random.getrandbits(64))
+    # reset total (v5): la coleccion jugable son las 10 iniciales; el resto
+    # se descubre con sobres y draft. El progreso de nodos se conserva.
+    faccion = nuevo.get("faccion", "humano")
     if faccion not in facciones.FACCIONES:
         faccion = "humano"
-    nuevo = nueva_campana(faccion)
-    if datos.get("cartas"):
-        nuevo["cartas"] = datos["cartas"]
-    etapa = int(datos.get("etapa", 0) or 0)
-    orden = ["senda", "bifurcacion", "fortaleza", "asalto", "trono"]
-    nuevo["nodo"] = orden[min(etapa, len(orden) - 1)]
-    nuevo["mejor_racha"] = int(datos.get("racha", 0) or 0)
-    if etapa >= 5 and datos.get("completada"):
-        nuevo["completada"] = True
+        nuevo["faccion"] = faccion
+    nuevo["cartas"] = [c.a_dict() for c in mazo_inicial(faccion)]
+    nuevo["mejoras"] = {}
+    nuevo["version"] = VERSION
     return nuevo
 
 
@@ -577,6 +803,8 @@ def nodo_actual(estado):
 
 
 def nodo(nodo_id):
+    if nodo_id in NODOS_MINI:
+        return NODOS_MINI[nodo_id]
     return NODOS.get(nodo_id, NODOS["senda"])
 
 
@@ -608,7 +836,15 @@ def rival_de_nodo(estado, nodo_id=None):
     """Faccion rival del nodo. Nunca es la faccion del jugador."""
     faccion = estado["faccion"]
     nodo_id = nodo_id or nodo_actual(estado)
-    if nodo_id == "senda":
+    if estado.get("mini"):
+        escalera = escalera_de(faccion)
+        if nodo_id == "mini_senda":
+            rival = escalera[0]
+        elif nodo_id == "mini_nudo":
+            rival = escalera[1 % len(escalera)]
+        else:
+            rival = facciones.rival_final(faccion)
+    elif nodo_id == "senda":
         rival = _rival_de_escalera(estado, 0)
     elif nodo_id in ("aldea", "ruinas"):
         rival = _rival_de_escalera(estado, 1 if nodo_id == "aldea" else 2)
@@ -655,9 +891,11 @@ def info_duelo(estado, nodo_id=None):
 
 
 def mazo_rival(estado, nodo_id=None, dificultad_extra=0):
-    """Mazo rival con las cartas potenciadas segun la dificultad del nodo.
+    """5 cartas sorteadas del mazo rival, potenciadas segun dificultad.
 
     El efecto `debilitar` de los encuentros resta: el rival llega mas flojo.
+    El sorteo es determinista (semilla + nodo + intentos): recargar no
+    re-sortea, pero cada campana e intento varian.
     """
     info = info_duelo(estado, nodo_id)
     nivel = info["dificultad"] + dificultad_extra - int(estado.get("debilitar", 0) or 0)
@@ -667,11 +905,41 @@ def mazo_rival(estado, nodo_id=None, dificultad_extra=0):
         for lado in ("N", "S", "E", "O"):
             if c.valores[lado] < 10 and nivel > 0 and rng.random() < 0.7:
                 c.valores[lado] += min(nivel, 10 - c.valores[lado])
+    if len(cartas) > 5:
+        rng_sorteo = _rng_sorteo(estado, info["nodo"], extra=1)
+        cartas = [c.copia() for c in rng_sorteo.sample(cartas, 5)]
     return cartas
 
 
 def cartas_jugador(estado):
+    """Toda la coleccion del jugador (10+ cartas, nunca la mano del duelo)."""
     return [Carta.desde_dict(d, estado["faccion"]) for d in estado["cartas"]]
+
+
+def _rng_sorteo(estado, nodo_id, extra=0):
+    """Azar estable por campana, nodo e intento: varia siempre, repite al cargar."""
+    base = int(estado.get("semilla", 0) or 0)
+    intentos = int(estado.get("victorias", 0) or 0) + int(estado.get("derrotas", 0) or 0)
+    semilla = (base + sum(ord(c) for c in str(nodo_id)) * 131
+               + intentos * 17 + extra) % (2 ** 63 - 1)
+    return random.Random(semilla)
+
+
+def cartas_duelo(estado, nodo_id=None):
+    """Las 5 que tocan en este duelo, sorteadas del mazo con deltas aplicados."""
+    pool = cartas_jugador(estado)
+    deltas = mejoras_de(estado)
+    mano = []
+    for c in pool:
+        copia = c.copia()
+        extra = deltas.get(c.nombre, {})
+        for lado in ("N", "S", "E", "O"):
+            copia.valores[lado] = min(10, copia.valores[lado] + int(extra.get(lado.lower(), 0) or 0))
+        mano.append(copia)
+    if len(mano) <= 5:
+        return mano
+    rng = _rng_sorteo(estado, nodo_id or nodo_actual(estado))
+    return [c.copia() for c in rng.sample(mano, 5)]
 
 
 # -------------------------------------------------------------------- progreso
@@ -721,6 +989,7 @@ def completar(estado):
     estado["final"] = {"variante": variante, "titulo": titulo, "faccion": estado["faccion"]}
     estado["completada"] = True
     estado["nodo"] = "trono"
+    estado["mejoras"] = {}
     guardar(estado)
     nuevo = registrar_final_perfil(estado["faccion"], variante)
     estado["final"]["nuevo"] = nuevo
@@ -736,27 +1005,75 @@ def recompensas_de(nodo_id):
 
 
 def aplicar_sigilo(estado):
-    """+1 permanente al lado mas bajo de cada carta."""
+    """+1 temporal al lado mas bajo efectivo de cada carta del mazo."""
+    deltas = mejoras_de(estado)
     for d in estado["cartas"]:
-        lado = min(("n", "s", "e", "o"), key=lambda l: d[l])
-        d[lado] = min(10, d[lado] + 1)
+        efectivo = {l: min(10, d[l] + int(deltas.get(d["nombre"], {}).get(l, 0) or 0))
+                    for l in ("n", "s", "e", "o")}
+        candidatos = [l for l in ("n", "s", "e", "o") if efectivo[l] < 10]
+        if candidatos:
+            registrar_mejora(estado, d["nombre"], min(candidatos, key=lambda l: efectivo[l]))
     estado["sigilos"] = estado.get("sigilos", 0) + 1
     guardar(estado)
 
 
+def otorgar_base(nombre, datos=None):
+    """Registra la carta en la coleccion permanente (valores base)."""
+    perfil = cargar_perfil()
+    coleccion = perfil.setdefault("coleccion", {})
+    if nombre not in coleccion and isinstance(datos, dict):
+        coleccion[nombre] = {k: datos[k] for k in ("nombre", "n", "s", "e", "o", "bando", "habilidad") if k in datos}
+        guardar_perfil(perfil)
+        return True
+    return False
+
+
+def mejorar_base(nombre, puntos=1):
+    """+1 permanente al lado mas bajo de la base poseida (duplicadas)."""
+    perfil = cargar_perfil()
+    d = perfil.get("coleccion", {}).get(nombre)
+    if not isinstance(d, dict):
+        return False
+    lado = min(("n", "s", "e", "o"), key=lambda l: d[l])
+    if d[lado] >= 10:
+        return False
+    d[lado] = min(10, d[lado] + int(puntos))
+    guardar_perfil(perfil)
+    return True
+
+
+def registrar_mejora(estado, nombre, lado, puntos=1):
+    """Delta temporal de campana: vive en estado["mejoras"], no en la base."""
+    deltas = estado.setdefault("mejoras", {}).setdefault(nombre, {})
+    deltas[lado] = int(deltas.get(lado, 0) or 0) + int(puntos)
+    guardar(estado)
+    return lado
+
+
+def mejoras_de(estado):
+    deltas = estado.get("mejoras")
+    return dict(deltas) if isinstance(deltas, dict) else {}
+
+
+def valor_con_mejoras(datos, deltas_nombre):
+    """Valores base + deltas con tope 10."""
+    return {l: min(10, int(datos[l]) + int(deltas_nombre.get(l, 0) or 0))
+            for l in ("n", "s", "e", "o")}
+
+
 def mejorar_carta(estado, id_carta, lado=None):
-    """Sube +1 (max 10) en el lado indicado o, si no cabe, en el mas bajo."""
+    """Sube +1 (max 10) como delta temporal de la campana en curso."""
     d = estado["cartas"][id_carta]
-    if lado and d[lado] < 10:
-        d[lado] += 1
-        guardar(estado)
+    deltas = mejoras_de(estado).get(d["nombre"], {})
+    efectivo = {l: min(10, d[l] + int(deltas.get(l, 0) or 0)) for l in ("n", "s", "e", "o")}
+    if lado and efectivo[lado] < 10:
+        registrar_mejora(estado, d["nombre"], lado)
         return lado
-    candidatos = [l for l in ("n", "s", "e", "o") if d[l] < 10]
+    candidatos = [l for l in ("n", "s", "e", "o") if efectivo[l] < 10]
     if not candidatos:
         return None
-    elegido = min(candidatos, key=lambda l: d[l])
-    d[elegido] += 1
-    guardar(estado)
+    elegido = min(candidatos, key=lambda l: efectivo[l])
+    registrar_mejora(estado, d["nombre"], elegido)
     return elegido
 
 
@@ -767,6 +1084,153 @@ def cartas_del_pool(estado, facciones_extra=None):
     if facciones_extra:
         permitidas.update(facciones_extra)
     return [c for bando, cartas in mazos.TODOS.items() if bando in permitidas for c in cartas]
+
+
+MAZO_INICIAL_N = 10
+
+MONEDA_VICTORIA = 20
+MONEDA_POR_CAPTURA = 2
+MONEDA_POR_DUELO = 5
+
+
+def mazo_global(perfil=None):
+    """El mazo global del jugador (nombres). Solo vive en el perfil."""
+    perfil = perfil if perfil is not None else cargar_perfil()
+    mazo = perfil.get("mazo")
+    return list(mazo) if isinstance(mazo, list) else []
+
+
+def guardar_mazo_global(nombres, perfil=None):
+    perfil = cargar_perfil() if perfil is None else perfil
+    perfil["mazo"] = list(nombres)
+    guardar_perfil(perfil)
+    return perfil["mazo"]
+
+
+def ritual_inicial():
+    """Rito inicial: 5 cartas al azar de todo el catalogo + mazo con ellas."""
+    import mazos
+
+    catalogo = [c for cartas in mazos.TODOS.values() for c in cartas]
+    elegidas = random.sample(catalogo, 5)
+    perfil = cargar_perfil()
+    coleccion = perfil.setdefault("coleccion", {})
+    for c in elegidas:
+        coleccion.setdefault(c.nombre, dict(c.a_dict()))
+    perfil["mazo"] = [c.nombre for c in elegidas]
+    guardar_perfil(perfil)
+    return perfil["mazo"]
+
+
+def asegurar_mazo_global():
+    """Deja coleccion y mazo en estado jugable: ritual si esta vacio,
+    repara el mazo si quedo invalido (cartas que ya no posee)."""
+    from reglas import rareza, Carta
+
+    perfil = cargar_perfil()
+    coleccion = coleccion_de(perfil)
+    if not coleccion:
+        ritual_inicial()
+        return mazo_global()
+    mazo = [n for n in mazo_global(perfil) if n in coleccion]
+    ok, _ = validar_mazo([dict(coleccion[n]) for n in mazo], set(coleccion)) if mazo else (False, "")
+    if not ok:
+        ordenadas = sorted(coleccion, key=lambda n: (
+            rareza(Carta.desde_dict(coleccion[n]))[0] != "COMUN",
+            sum(coleccion[n][l] for l in "nseo"), n))
+        mazo = ordenadas[:MAZO_MIN_N]
+        guardar_mazo_global(mazo, perfil)
+    return mazo_global()
+
+
+def mazo_inicial(faccion):
+    """Las 10 cartas de menor total de la faccion (referencia y minis)."""
+    from reglas import total_carta
+
+    return sorted(mazos.TODOS[faccion], key=total_carta)[:MAZO_INICIAL_N]
+
+
+def coleccion_inicial(faccion):
+    """Coleccion base: valores base de las 10 iniciales, listas para mejorar."""
+    base = {}
+    for c in mazo_inicial(faccion):
+        base[c.nombre] = dict(c.a_dict())
+    return base
+
+
+def asegurar_coleccion(faccion):
+    """Otorga el mazo inicial de la faccion si falta alguna pieza."""
+    perfil = cargar_perfil()
+    coleccion = perfil.setdefault("coleccion", {})
+    for nombre, datos in coleccion_inicial(faccion).items():
+        coleccion.setdefault(nombre, datos)
+    guardar_perfil(perfil)
+    return coleccion
+
+
+def coleccion_de(perfil=None):
+    perfil = perfil if perfil is not None else cargar_perfil()
+    coleccion = perfil.get("coleccion")
+    return dict(coleccion) if isinstance(coleccion, dict) else {}
+
+
+def posee(perfil, nombre):
+    return nombre in coleccion_de(perfil)
+
+
+def moneda(perfil=None):
+    perfil = perfil if perfil is not None else cargar_perfil()
+    return int(perfil.get("moneda", 0) or 0)
+
+
+def ganar_moneda(cantidad, perfil=None):
+    """Suma moneda al perfil. Devuelve el nuevo total."""
+    perfil = cargar_perfil() if perfil is None else perfil
+    perfil["moneda"] = int(perfil.get("moneda", 0) or 0) + int(cantidad)
+    guardar_perfil(perfil)
+    return perfil["moneda"]
+
+
+def gastar_moneda(cantidad, perfil=None):
+    """Resta moneda si alcanza. Devuelve True si se pudo pagar."""
+    perfil = cargar_perfil() if perfil is None else perfil
+    total = int(perfil.get("moneda", 0) or 0)
+    if total < cantidad:
+        return False
+    perfil["moneda"] = total - int(cantidad)
+    guardar_perfil(perfil)
+    return True
+
+
+def premio_duelo(estado, victoria, capturas):
+    """Moneda por un duelo completado: base + victoria + capturas."""
+    total = MONEDA_POR_DUELO + (MONEDA_VICTORIA if victoria else 0)
+    total += MONEDA_POR_CAPTURA * int(capturas or 0)
+    ganar_moneda(total)
+    return total
+
+
+LIMITE_LEGENDARIAS = 1
+LIMITE_RARAS = 3
+MAZO_RUN_N = 10
+MAZO_MIN_N = 5
+
+
+def validar_mazo(lista_dicts, poseidas):
+    """Valida un mazo global: de 5 a 10 poseidas, 1 LEG y 3 RARA como maximo."""
+    from reglas import rareza, Carta
+
+    if not MAZO_MIN_N <= len(lista_dicts) <= MAZO_RUN_N:
+        return False, f"El mazo necesita de {MAZO_MIN_N} a {MAZO_RUN_N} cartas ({len(lista_dicts)})"
+    for d in lista_dicts:
+        if d.get("nombre") not in poseidas:
+            return False, f"{d.get('nombre')} no es tuya"
+    rarezas = [rareza(Carta.desde_dict(d))[0] for d in lista_dicts]
+    if rarezas.count("LEGENDARIA") > LIMITE_LEGENDARIAS:
+        return False, f"Maximo {LIMITE_LEGENDARIAS} legendaria"
+    if rarezas.count("RARA") > LIMITE_RARAS:
+        return False, f"Maximo {LIMITE_RARAS} raras"
+    return True, ""
 
 
 def draft_aleatorio(estado, cantidad=3, facciones_extra=None):
@@ -783,6 +1247,82 @@ def draft_aleatorio(estado, cantidad=3, facciones_extra=None):
         if c.nombre not in {o.nombre for o in ofertas}:
             ofertas.append(c.copia())
     return ofertas
+
+
+PESOS_SOBRE = {"LEGENDARIA": 2, "RARA": 6, "COMUN": 12}
+
+PRECIO_SOBRE = 60
+PITY_SOBRES = 10
+
+
+def pity_sobres(perfil=None):
+    perfil = perfil if perfil is not None else cargar_perfil()
+    return int(perfil.get("pity_sobres", 0) or 0)
+
+
+def abrir_sobre(estado, cantidad=3):
+    """Abre un sobre: `cantidad` cartas de TODO el catalogo con los pesos.
+
+    La carta nueva entra en la coleccion (y en el mazo de run si cabe);
+    la repetida da +1 a su lado mas bajo (max 10). Pity: cada 9 sobres sin
+    legendaria, el siguiente trae una garantizada. `estado` puede ser None
+    (tienda del menu): entonces no hay mazo de run que ampliar.
+    Devuelve (nuevas, mejoradas) con los nombres.
+    """
+    import mazos
+    from reglas import rareza
+
+    pool = [c for cartas in mazos.TODOS.values() for c in cartas]
+    legendarias = [c for c in pool if rareza(c)[0] == "LEGENDARIA"]
+    perfil = cargar_perfil()
+    pity = pity_sobres(perfil)
+    ofertas = []
+    intentos = 0
+    while len(ofertas) < cantidad and intentos < 80:
+        intentos += 1
+        c = random.choices(pool, weights=[PESOS_SOBRE[rareza(c)[0]] for c in pool], k=1)[0]
+        if c.nombre not in {o.nombre for o in ofertas}:
+            ofertas.append(c.copia())
+    if pity >= PITY_SOBRES - 1 and legendarias:
+        elegida = random.choice(legendarias).copia()
+        if elegida.nombre in {o.nombre for o in ofertas}:
+            ofertas = [o for o in ofertas if o.nombre != elegida.nombre]
+        ofertas = ([elegida] + ofertas)[:cantidad]
+    nuevas, mejoradas = [], []
+    hay_leg = any(rareza(o)[0] == "LEGENDARIA" for o in ofertas)
+    coleccion = coleccion_de(perfil)
+    mazo_run = estado["cartas"] if estado is not None else None
+    for c in ofertas:
+        if c.nombre in coleccion:
+            mejorar_base(c.nombre)
+            mejoradas.append(c.nombre)
+        else:
+            otorgar_base(c.nombre, c.a_dict())
+            coleccion[c.nombre] = c.a_dict()
+            if mazo_run is not None and len(mazo_run) < MAZO_RUN_N:
+                mazo_run.append(c.a_dict())
+            nuevas.append(c.nombre)
+    perfil = cargar_perfil()
+    perfil["pity_sobres"] = 0 if hay_leg else pity + 1
+    guardar_perfil(perfil)
+    if estado is not None:
+        guardar(estado)
+    return nuevas, mejoradas
+
+
+def comprar_sobre(estado):
+    """Compra un sobre con moneda. Devuelve (ok, nuevas, mejoradas)."""
+    if not gastar_moneda(PRECIO_SOBRE):
+        return False, [], []
+    return True, *abrir_sobre(estado)
+
+
+def cartas_por_nombre(estado, nombres):
+    """Cartas localizadas por nombre (catalogo completo)."""
+    import mazos
+
+    pool = {c.nombre: c for cartas in mazos.TODOS.values() for c in cartas}
+    return [pool[n].copia() for n in nombres if n in pool]
 
 
 def desbloquear_aliado(estado, faccion):
@@ -810,6 +1350,7 @@ def sustituto_aliado(estado):
 
 
 def draft_reemplazo(estado, carta, reemplazo):
+    otorgar_base(carta.nombre, carta.a_dict())
     estado["cartas"][reemplazo] = carta.a_dict()
     guardar(estado)
 
@@ -818,6 +1359,7 @@ def anadir_carta(estado, carta, reemplazo=None):
     """Anade una carta; si el mazo esta lleno sustituye la mas debil."""
     from reglas import total_carta
 
+    otorgar_base(carta.nombre, carta.a_dict())
     cartas = estado["cartas"]
     if len(cartas) < 5:
         cartas.append(carta.a_dict())
@@ -856,6 +1398,14 @@ def aplicar_encuentro(estado, efecto):
             idx = min(range(len(cartas)), key=lambda i: sum(cartas[i].valores.values()))
             lado = mejorar_carta(estado, idx)
             return ("Anciano", f"Su consejo: {cartas[idx].nombre} mas fuerte en {lado.upper()}.")
+    if efecto == "sobre":
+        nuevas, mejoradas = abrir_sobre(estado)
+        partes = []
+        if nuevas:
+            partes.append(f"nuevas: {', '.join(nuevas)}")
+        if mejoradas:
+            partes.append(f"duplicadas (+1): {', '.join(mejoradas)}")
+        return ("Caravana", f"Abres el sobre: {'; '.join(partes) or 'vacio'}.")
     if efecto == "debilitar":
         estado["debilitar"] = int(estado.get("debilitar", 0) or 0) + 1
         guardar(estado)
@@ -882,6 +1432,12 @@ def perfil_por_defecto():
         "duelos": 0,
         "victorias": 0,
         "cinematicas": [],
+        "coleccion": {},
+        "moneda": 0,
+        "mazo": [],
+        "tutorial_visto": False,
+        "tutorial_completado": False,
+        "tutorial_paso": 0,
     }
 
 
@@ -940,8 +1496,52 @@ def cinematicas_vistas():
     return set(cargar_perfil().get("cinematicas", []))
 
 
+def tutorial_estado():
+    """(visto, completado, paso) del tutorial. Paso = proxima practica (0-4)."""
+    perfil = cargar_perfil()
+    return (
+        bool(perfil.get("tutorial_visto", False)),
+        bool(perfil.get("tutorial_completado", False)),
+        int(perfil.get("tutorial_paso", 0) or 0),
+    )
+
+
+def tutorial_visto():
+    return tutorial_estado()[0]
+
+
+def marcar_tutorial(visto=None, completado=None, paso=None):
+    perfil = cargar_perfil()
+    if visto is not None:
+        perfil["tutorial_visto"] = bool(visto)
+    if completado is not None:
+        perfil["tutorial_completado"] = bool(completado)
+    if paso is not None:
+        perfil["tutorial_paso"] = int(paso)
+    guardar_perfil(perfil)
+
+
 def finales_desbloqueados():
     return cargar_perfil().get("finales", {})
+
+
+def mini_desbloqueada():
+    """Hay mini campanas si alguna campana principal se completo."""
+    return bool(cargar_perfil().get("finales"))
+
+
+def registrar_mini_final(faccion):
+    """Guarda el final de mini campana. Devuelve True si es nuevo."""
+    perfil = cargar_perfil()
+    conseguidos = perfil.setdefault("mini_finales", {})
+    nuevo = faccion not in conseguidos
+    conseguidos[faccion] = MINI_FINALES[faccion]["titulo"]
+    guardar_perfil(perfil)
+    return nuevo
+
+
+def mini_finales_desbloqueados():
+    return cargar_perfil().get("mini_finales", {})
 
 
 def hay_campana():

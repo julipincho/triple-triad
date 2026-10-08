@@ -48,6 +48,22 @@ class TestFaccionDecideCampana(unittest.TestCase):
             self.assertNotIn(f, escalera)
             self.assertEqual(len(set(escalera)), len(escalera))
 
+    def test_todas_las_facciones_tienen_tablas_completas(self):
+        """Ninguna tabla puede quedarse atras al anadir una faccion."""
+        import cinematicas
+
+        orden = set(facciones.orden_facciones())
+        self.assertEqual(set(mazos.TODOS), orden)
+        self.assertEqual(set(campana.ESCALERAS), orden)
+        self.assertEqual(set(campana.DUELISTAS), orden)
+        self.assertEqual(set(campana.FINALES), orden)
+        self.assertEqual(set(cinematicas.APERTURAS), orden)
+        self.assertEqual(set(mazos.NOMBRES_BANDO), orden)
+        self.assertEqual(set(mazos.DESCRIPCION_BANDO), orden)
+        for f in orden:
+            self.assertNotIn(f, campana.ESCALERAS[f])
+            self.assertIn(facciones.rival_final(f), campana.DUELISTAS)
+
     def test_cada_faccion_tiene_jefe_y_final_propio(self):
         for f in facciones.orden_facciones():
             estado = campana.nueva_campana(f)
@@ -178,21 +194,33 @@ class TestCartasYRecompensas(unittest.TestCase):
 
     def test_mazo_inicial_es_el_de_la_faccion(self):
         nombres = [c.nombre for c in campana.cartas_jugador(self.estado)]
-        esperados = [c.nombre for c in mazos.HUMANOS]
+        esperados = [c.nombre for c in campana.mazo_inicial("humano")]
         self.assertEqual(nombres, esperados)
-        self.assertEqual(len(campana.cartas_jugador(self.estado)), 5)
+        self.assertEqual(len(campana.cartas_jugador(self.estado)), 10)
 
     def test_mejorar_carta_no_pasa_de_diez(self):
         for _ in range(60):
             campana.mejorar_carta(self.estado, 0, lado="n")
+        # la base no se toca: el +1 vive en deltas con tope 10 efectivo
         self.assertLessEqual(self.estado["cartas"][0]["n"], 10)
+        deltas = campana.mejoras_de(self.estado)
+        nombre = self.estado["cartas"][0]["nombre"]
+        mano = campana.cartas_duelo(self.estado, "senda")
+        jugada = next(c for c in mano if c.nombre == nombre) if any(
+            c.nombre == nombre for c in mano) else None
+        if jugada is not None:
+            self.assertLessEqual(jugada.valores["N"], 10)
+        self.assertIn(nombre, deltas)
 
-    def test_sigilo_mejora_el_lado_mas_bajo(self):
-        carta = self.estado["cartas"][0]
-        minimo = min(carta["n"], carta["s"], carta["e"], carta["o"])
+    def test_sigilo_escribe_deltas_sin_tocar_base(self):
+        bases = [{k: d[k] for k in ("n", "s", "e", "o")} for d in self.estado["cartas"]]
         campana.aplicar_sigilo(self.estado)
-        nueva = self.estado["cartas"][0]
-        self.assertEqual(min(nueva["n"], nueva["s"], nueva["e"], nueva["o"]), minimo + 1)
+        for d, base in zip(self.estado["cartas"], bases):
+            self.assertEqual({k: d[k] for k in ("n", "s", "e", "o")}, base)
+            delta = campana.mejoras_de(self.estado).get(d["nombre"], {})
+            self.assertEqual(sum(delta.values()), 1)
+            lado = next(l for l, v in delta.items() if v)
+            self.assertEqual(base[lado], min(base.values()))
 
     def test_draft_ofrece_tres_cartas_distintas(self):
         ofertas = campana.draft_aleatorio(self.estado, 3)
@@ -223,6 +251,35 @@ class TestCartasYRecompensas(unittest.TestCase):
         self.assertIn("aliado", campana.recompensas_de("fortaleza"))
         self.assertEqual(campana.recompensas_de("trono"), [])
 
+    def test_sorteo_da_cinco_de_la_coleccion(self):
+        mano = campana.cartas_duelo(self.estado, "senda")
+        self.assertEqual(len(mano), 5)
+        pool = {c.nombre for c in campana.cartas_jugador(self.estado)}
+        self.assertTrue({c.nombre for c in mano} <= pool)
+
+    def test_sorteo_es_estable_al_recargar(self):
+        a = [c.nombre for c in campana.cartas_duelo(self.estado, "senda")]
+        b = [c.nombre for c in campana.cartas_duelo(self.estado, "senda")]
+        self.assertEqual(a, b)
+
+    def test_sorteo_varia_entre_campanas(self):
+        vistos = set()
+        for semilla in range(20):
+            estado = campana.nueva_campana("humano")
+            estado["semilla"] = semilla
+            vistos.add(tuple(c.nombre for c in campana.cartas_duelo(estado, "senda")))
+        self.assertGreater(len(vistos), 1)
+
+    def test_rival_tambien_sortea_cinco(self):
+        for nodo_id in ("senda", "fortaleza", "trono"):
+            mazo = campana.mazo_rival(self.estado, nodo_id)
+            self.assertEqual(len(mazo), 5)
+            self.assertTrue(all(c.bando == campana.rival_de_nodo(self.estado, nodo_id)
+                                for c in mazo))
+            for c in mazo:
+                for v in c.valores.values():
+                    self.assertLessEqual(v, 10)
+
 
 class TestEncuentros(unittest.TestCase):
     def setUp(self):
@@ -244,11 +301,14 @@ class TestEncuentros(unittest.TestCase):
         antes = sum(sum(d[l] for l in "nseo") for d in self.estado["cartas"])
         campana.aplicar_encuentro(self.estado, "mas_debil")
         despues = sum(sum(d[l] for l in "nseo") for d in self.estado["cartas"])
-        self.assertEqual(despues, antes + 1)
+        self.assertEqual(despues, antes)
+        total_deltas = sum(sum(v.values()) for v in campana.mejoras_de(self.estado).values())
+        self.assertEqual(total_deltas, 1)
 
     def test_efecto_robo_anade_carta(self):
+        antes = len(self.estado["cartas"])
         campana.aplicar_encuentro(self.estado, "robo")
-        self.assertEqual(len(self.estado["cartas"]), 5)
+        self.assertEqual(len(self.estado["cartas"]), antes)
 
     def test_encuentro_por_nodo_existe(self):
         for nodo_id in ("senda", "aldea", "ruinas", "fortaleza", "asalto"):
@@ -275,7 +335,9 @@ class TestMigracionYGuardado(unittest.TestCase):
         self.assertEqual(nuevo["faccion"], "orco")
         self.assertEqual(nuevo["nodo"], "fortaleza")
         self.assertEqual(nuevo["mejor_racha"], 3)
-        self.assertEqual(len(nuevo["cartas"]), 5)
+        self.assertEqual(len(nuevo["cartas"]), 10)
+        self.assertEqual([d["nombre"] for d in nuevo["cartas"]],
+                         [c.nombre for c in campana.mazo_inicial("orco")])
 
     def test_migra_partida_completada(self):
         viejo = {"etapa": 5, "mazo_jugador": "humano", "completada": True, "cartas": []}

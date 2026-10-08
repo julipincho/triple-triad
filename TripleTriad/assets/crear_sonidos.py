@@ -210,14 +210,19 @@ ESCALAS = {
     "hombre_lobo": [0, 2, 3, 5, 7, 8, 10],  # menor con b6: salvaje
     "vampiro": [0, 1, 3, 5, 7, 8, 10],     # menor armonica: oscura
     "dragon": [0, 2, 3, 5, 6, 8, 10],       # menor armonica menor: Dense
+    "elfo_nocturno": [0, 1, 3, 5, 6, 8, 10],  # frigia con tritono: sombra
+    "hombre_pantera": [0, 2, 3, 5, 7, 9, 10],  # dorica rapida: acecho
+    "hombre_lagarto": [0, 3, 5, 6, 7, 10],     # pentatonica menor: pantano
 }
 TONICA = {
     "humano": 220.0, "orco": 146.8, "elfo": 261.6, "goblin": 196.0,
     "hombre_lobo": 164.8, "vampiro": 155.6, "dragon": 130.8,
+    "elfo_nocturno": 174.6, "hombre_pantera": 138.6, "hombre_lagarto": 123.5,
 }
 TEMPO = {  # pulsos por minuto
     "humano": 104, "orco": 148, "elfo": 92, "goblin": 150,
     "hombre_lobo": 132, "vampiro": 88, "dragon": 116,
+    "elfo_nocturno": 96, "hombre_pantera": 156, "hombre_lagarto": 84,
 }
 OLAS = {  # instrumentos por faccion (una letra por capa)
     "humano": "TMH",
@@ -227,6 +232,9 @@ OLAS = {  # instrumentos por faccion (una letra por capa)
     "hombre_lobo": "MMM",
     "vampiro": "TTS",
     "dragon": "MHH",
+    "elfo_nocturno": "TSS",
+    "hombre_pantera": "MMH",
+    "hombre_lagarto": "TTH",
 }
 FORMA = {"T": "triangular", "S": "seno", "M": "cuadrada", "H": "saw"}
 

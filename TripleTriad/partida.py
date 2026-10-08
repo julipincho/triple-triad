@@ -746,8 +746,13 @@ def now_clickable(ahora, t0):
 
 
 # --------------------------------------------------------------------- bucle
-async def partida(screen, clock, juego, test_mode=False):
-    """Bucle bloqueante del duelo. Devuelve Resultado."""
+async def partida(screen, clock, juego, test_mode=False, guia=None):
+    """Bucle bloqueante del duelo. Devuelve Resultado.
+
+    Con `guia=` (tutorial) la colocacion se valida paso a paso, no hay
+    turno de CPU ni fin por tablero lleno: la guia cierra la practica.
+    Sin guia el comportamiento es el de siempre.
+    """
     # El enfrentamiento tiene su propia musica: no la del rival
     audio.musica(audio.musica_de_duelo())
     audio.sfx(audio.MENU)
@@ -763,13 +768,24 @@ async def partida(screen, clock, juego, test_mode=False):
                 raise SystemExit
             if ev.type == pygame.KEYDOWN:
                 if ev.key == pygame.K_ESCAPE:
-                    # con el duel ya terminado pausar no sirve de nada: ESC
-                    # (como el clic) continua y el jugador nunca se queda atrapado
-                    if not (juego.fin and now_clickable(time.time(), juego.tiempo_fin)):
+                    if guia is not None and not juego.fin:
+                        # En el tutorial ESC pide salir (con confirmacion),
+                        # nunca pausa: el jugador no debe quedarse encerrado.
+                        guia.confirmar_salida = not guia.confirmar_salida
+                        audio.sfx(audio.MENU_BACK if guia.confirmar_salida else audio.MENU)
+                    elif guia is None and not (juego.fin and now_clickable(time.time(), juego.tiempo_fin)):
                         juego.pausa = not juego.pausa
-                    audio.sfx(audio.MENU_BACK if juego.pausa else audio.MENU)
+                        audio.sfx(audio.MENU_BACK if juego.pausa else audio.MENU)
+                elif guia is not None and guia.confirmar_salida and ev.key in (
+                        pygame.K_RETURN, pygame.K_SPACE, pygame.K_KP_ENTER):
+                    juego.abandonado = True
+                    audio.sfx(audio.MENU_BACK)
+                    return Resultado(False, juego.capturas, juego.jugadas, (0, 0))
+            if guia is not None and guia.confirmar_salida and ev.type not in (
+                    pygame.KEYDOWN, pygame.QUIT):
+                continue
             if ev.type == pygame.KEYDOWN and ev.key == pygame.K_h and not juego.turno_cpu:
-                juego.mensaje = "Consejo: Same y Plus voltean al vuelo"
+                juego.mensaje = guia.pista() if guia is not None else "Consejo: Same y Plus voltean al vuelo"
             if juego.pausa:
                 if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
                     if _pausa_clic(screen, ev.pos):
@@ -781,6 +797,9 @@ async def partida(screen, clock, juego, test_mode=False):
             ) or (
                 ev.type == pygame.KEYDOWN
                 and ev.key in (pygame.K_RETURN, pygame.K_SPACE, pygame.K_KP_ENTER)
+            ) or (
+                # en el tutorial ESC tambien continua (nunca pauso ahi)
+                guia is not None and ev.type == pygame.KEYDOWN and ev.key == pygame.K_ESCAPE
             )
             if continuar and juego.fin and now_clickable(time.time(), juego.tiempo_fin):
                 resultado = Resultado(
@@ -790,6 +809,11 @@ async def partida(screen, clock, juego, test_mode=False):
                 )
                 break
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                if guia is not None and not juego.fin and guia.clic_salir(ev.pos):
+                    # boton SALIR de la practica: pide confirmacion
+                    guia.confirmar_salida = True
+                    audio.sfx(audio.MENU_BACK)
+                    continue
                 if not juego.fin and not juego.turno_cpu:
                     mouse = pygame.mouse.get_pos()
                     for i, carta in enumerate(juego.mano_u):
@@ -811,16 +835,28 @@ async def partida(screen, clock, juego, test_mode=False):
                 juego.arrastrando = None
                 celda = juego.celda_bajo_mouse(ev.pos)
                 if celda:
-                    caps = juego.colocar(carta, juego.mano_u, USUARIO, *celda)
-                    juego.mensaje = f"Juegas {carta.nombre}"
-                    if caps:
-                        juego.mensaje += f" y capturas {len(caps)}"
-                    juego.turno_cpu = True
-                    juego.cpu_en_cola = 0.85
-                    juego.cpu_en_curso = False
+                    if guia is not None:
+                        # practica: se valida el objetivo, sin turno de CPU
+                        # ni fin por tablero (la guia cierra la practica)
+                        ok, motivo = guia.validar_colocacion(juego, carta, *celda)
+                        if not ok:
+                            juego.mensaje = motivo
+                            audio.sfx(audio.INVALIDO, 0.5)
+                        else:
+                            caps = juego.colocar(carta, juego.mano_u, USUARIO, *celda)
+                            guia.tras_colocar(juego, carta, celda[0], celda[1], caps)
+                    else:
+                        caps = juego.colocar(carta, juego.mano_u, USUARIO, *celda)
+                        juego.mensaje = f"Juegas {carta.nombre}"
+                        if caps:
+                            juego.mensaje += f" y capturas {len(caps)}"
+                        juego.turno_cpu = True
+                        juego.cpu_en_cola = 0.85
+                        juego.cpu_en_curso = False
                 else:
                     audio.sfx(audio.INVALIDO, 0.5)
-                juego.comprobar_fin()
+                if guia is None:
+                    juego.comprobar_fin()
         # OJO: Resultado.__bool__ devuelve `victoria`. Si el duelo se ha
         # perdido, `if resultado:` es False y el bucle no se rompia nunca:
         # el jugador se quedaba en el cartel de DERROTA sin poder continuar.
@@ -837,6 +873,8 @@ async def partida(screen, clock, juego, test_mode=False):
             _dibujar_pausa(screen, juego)
         else:
             juego.dibujar(screen)
+            if guia is not None:
+                guia.dibujar_extra(screen, juego)
         pygame.display.flip()
         frames += 1
         if test_mode and frames > 40:
