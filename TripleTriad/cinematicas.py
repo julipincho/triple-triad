@@ -13,7 +13,9 @@ import time
 import pygame
 
 import audio
+import duelistas
 import facciones
+import narrativa
 from ui import (
     ALTO,
     ANCHO,
@@ -48,6 +50,7 @@ class Escena:
         self.efecto = datos.get("efecto", "dialogo")
         self.color = datos.get("color", TEXTO)
         self.musica = datos.get("musica")
+        self.mundo = datos.get("mundo", MUNDO_JUEGO)
         self.duracion = datos.get("duracion")
         self.mostrado = 0.0
 
@@ -163,10 +166,15 @@ class Cinematica:
 
     # ---------------------------------------------------------------- dibujo
     def _dibujar(self, screen, escena, t):
-        # fondo, oscurecido y vineta cacheados (sin reservas por frame)
+        # fondo, oscurecido y vineta cacheados (sin reservas por frame).
+        # El tinte depende del mundo: el salon del torneo se ve mas claro que
+        # el mundo fantastic, y asi se nota en que lado estas.
+        tinte, alpha, (vin_a, vin_b) = TRATAMIENTO.get(
+            getattr(escena, "mundo", MUNDO_JUEGO), TRATAMIENTO[MUNDO_JUEGO])
         screen.blit(REC.fondo_pantalla(f"assets/fondos/{escena.fondo}.png"), (0, 0))
-        screen.blit(REC.capa_oscurita((6, 7, 14, 168)), (0, 0))
-        screen.blit(REC.vineta(50, 80), (0, 0))
+        screen.blit(REC.capa_oscurita((*tinte, alpha)), (0, 0))
+        if vin_a:
+            screen.blit(REC.vineta(vin_a, vin_b), (0, 0))
 
         if escena.efecto == "titulo":
             self._titulo(screen, escena, t)
@@ -219,6 +227,12 @@ class Cinematica:
             screen.blit(pista, (caja.right - pista.get_width() - 24, caja.bottom - 26))
 
     def _retrato(self, screen, bando, t):
+        """Retrato de un bando o de un personaje concreto.
+
+        La clave es el nombre del archivo (`avatar_<clave>.png`), asi que tanto
+        `goblin` como `nara` funcionan igual. Lo que cambia es la etiqueta: para
+        un bando sale el nombre de la faccion; para un personaje, el suyo.
+        """
         entrada = ease(min(1.0, t / 0.5))
         img = REC.imagen(f"assets/avatar_{bando}.png", (150, 150))
         x = ANCHO // 2 + 200
@@ -227,7 +241,8 @@ class Cinematica:
         pygame.draw.rect(screen, (10, 10, 16), marco.inflate(12, 12), 3, border_radius=4)
         screen.blit(img, (x, y))
         resplandor(screen, marco, facciones.acento(bando), int(110 * entrada), 2, 4)
-        texto(screen, facciones.nombre(bando), 9, facciones.acento(bando), centro=(x + 75, y + 168))
+        texto(screen, _etiqueta_retrato(bando), 9, facciones.acento(bando),
+              centro=(x + 75, y + 168))
 
     def _barras(self, screen):
         barra = pygame.Surface((ANCHO, LINEA_BARRA), pygame.SRCALPHA)
@@ -236,11 +251,45 @@ class Cinematica:
         screen.blit(barra, (0, ALTO - LINEA_BARRA))
 
 
+#: Nombre legible de los retratos. Las facciones usan su propio nombre; los
+#: personajes con cara (Nara, Juan, el duelista, los rivales) el suyo.
+ETIQUETAS_RETRATO = {
+    "nara": "Nara, la Cronista",
+    "rajoy": "Juan Rajoy",
+    "duelista": "El duelista",
+    "pik": "Pik",
+    "dara": "Dara",
+    "jefe_arco": "Jefe de Arco",
+    "revancha": "La Revancha",
+    "gobernante": "El Gobernante",
+}
+
+
+def _etiqueta_retrato(clave):
+    """Como se llama al dueno del retrato, sea bando o personaje."""
+    if clave in ETIQUETAS_RETRATO:
+        return ETIQUETAS_RETRATO[clave]
+    return facciones.nombre(clave)
+
+
 # --------------------------------------------------------------- argumento
+#: treatment visual de cada mundo. "real" = el salon del torneo de nuestro
+#: mundo: luz fria, sin vineta. "juego" = el mundo fantastic: oscuro, con
+#: vineta. La diferencia tiene que notarse sin que nadie lo diga.
+MUNDO_REAL = "real"
+MUNDO_JUEGO = "juego"
+
+#: Tinte y vineta por mundo: (color RGB, alpha de capa, vineta alfa).
+TRATAMIENTO = {
+    MUNDO_JUEGO: ((6, 7, 14), 168, (50, 80)),
+    MUNDO_REAL: ((18, 24, 38), 96, (0, 0)),
+}
+
+
 def esc(linea, hablante=None, fondo="ceniza", retrato=None, efecto="dialogo",
-        musica=None, color=TEXTO):
+        musica=None, color=TEXTO, mundo=MUNDO_JUEGO):
     return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": retrato,
-            "efecto": efecto, "musica": musica, "color": color}
+            "efecto": efecto, "musica": musica, "color": color, "mundo": mundo}
 
 
 APERTURAS = {
@@ -391,19 +440,68 @@ def intro():
 
 
 def escenas_nodo(info):
-    """Cartel de escenario antes de cada duelo."""
+    """Cartel de escenario antes de cada duelo.
+
+    Son tres bloques: la previa de campana.NODOS (el tono del nodo), la previa
+    de narrativa (el caracter y la decision), y la presentacion del rival.
+    """
     escenas = []
     escena_fondo = info.get("escena", "campamento")
+    nodo_id = info.get("nodo", "")
     for previa in info.get("previa", []):
         escenas.append(esc(previa, fondo=escena_fondo))
+    # Caracter del nodo: por que estas aqui y que hay que decidir.
+    escenas.extend(narrativa.previa_nodo(nodo_id))
     rival = info["bando"]
+    # El retrato puede ser el del personaje con nombre (Pik, Dara...) en vez
+    # del bando. El color de la musica y del acento sigue siendo el del bando.
+    retrato = duelistas.retrato_de(nodo_id, rival)
     musica = audio.musica_de_faccion(rival)
     escenas.append(esc(f"{info['nombre']}, {info['titulo_duelo']}.",
-                       hablante=info["nombre"], retrato=rival,
+                       hablante=info["nombre"], retrato=retrato,
                        fondo=escena_fondo, musica=musica))
-    escenas.append(esc(info.get("entrada", ""), hablante=info["nombre"],
-                       retrato=rival, fondo=escena_fondo, color=TEXTO_ON))
+    # El rival ve tu mazo y reacciona: la reaccion del rol tiene prioridad
+    # sobre la linea generica de faccion.
+    reaccion = info.get("reaccion_rol")
+    if reaccion:
+        escenas.append(esc(reaccion, hablante=info["nombre"], retrato=retrato,
+                           fondo=escena_fondo, color=TEXTO_ON))
+    else:
+        escenas.append(esc(info.get("entrada", ""), hablante=info["nombre"],
+                           retrato=rival, fondo=escena_fondo, color=TEXTO_ON))
+    # Dialogo del rol: por que pelea este rival en este nodo.
+    for e in info.get("dialogo_pre", []):
+        escena = dict(e)
+        escena["fondo"] = escena_fondo
+        if not escena.get("retrato"):
+            escena["retrato"] = retrato
+        escenas.append(escena)
     return escenas, musica
+
+
+def escenas_posterior(info, victoria=True):
+    """Escenas de DESPUES del duelo: consecuencia y avance del misterio."""
+    nodo = info.get("nodo", "")
+    escena_fondo = info.get("escena", "campamento")
+    escenas = list(narrativa.posterior_nodo(nodo))
+    # Como termino el duelo, en la voz del rival.
+    for e in duelistas.dialogo_de(nodo, "win" if victoria else "lose",
+                                  info.get("nombre", "")):
+        escena = dict(e)
+        escena["fondo"] = escena_fondo
+        if not escena.get("retrato"):
+            escena["retrato"] = duelistas.retrato_de(nodo, info.get("bando"))
+        escenas.append(escena)
+    faccion = info.get("faccion_jugador")
+    if faccion:
+        linea = narrativa.reaccion_mazo(faccion)
+        if linea:
+            escenas.append(esc(linea, fondo=escena_fondo))
+    momento = "victoria" if victoria else "derrota"
+    linea = narrativa.nara_linea(momento, info.get("confianza_nara", 0))
+    if linea:
+        escenas.append(esc(linea, hablante="Nara", fondo=escena_fondo, color=TEXTO_ON))
+    return escenas
 
 
 def escenas_final(titulo, lineas, faccion, extra=None):

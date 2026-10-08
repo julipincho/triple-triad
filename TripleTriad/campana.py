@@ -16,14 +16,45 @@ import os
 import random
 import time
 
+import compendio
+import duelistas
+import encuentros
 import facciones
+import fragmentos
 import mazos
 from paths import archivo
 from reglas import Carta
 
-VERSION = 6
+VERSION = 7
 ARCHIVO_PARTIDA = "campana.json"
 ARCHIVO_PERFIL = "perfil.json"
+
+# --------------------------------------------------- estado narrativo (v7+)
+# La v7 suma el pegamento narrativo de "Cartones y Mazmorras": el viaje desde
+# el mundo real, la relacion con Nara y lo que el jugador descubre sobre el
+# Umbral. Todo es opcional: una partida v6 migrada arranca en 0.
+CAMPOS_NARRATIVOS = (
+    "prologo_visto",       # bool: el jugador ya vio el prologo del mundo real
+    "confianza_nara",      # 0..5
+    "conocimiento_umbral", # 0..5
+    "decisiones",          # lista de ids de decisiones morales tomadas
+    "revelaciones",        # lista de fragmentos de verdad descubiertos
+    "fragmentos",          # 0..10, progreso NG+ (se guarda en el perfil)
+    "compendio",           # lista de cartas cuya verdad ya descubrio
+)
+
+
+def _narrativa_inicial():
+    """Estado narrativo de partida nueva."""
+    return {
+        "prologo_visto": False,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 0,
+        "decisiones": [],
+        "revelaciones": [],
+        "fragmentos": 0,
+        "compendio": [],
+    }
 
 # ---------------------------------------------------------------- duelistas
 
@@ -666,10 +697,29 @@ def escalera_de(faccion):
 
 
 def _duelista_de(rival, nodo_id):
+    """Identidad del rival (por faccion) + su rol en la historia (por nodo).
+
+    `DUELISTAS` da nombre, titulo y lineas: eso no se toca. `duelistas.ROLES`
+    suma el rol (campesino, guardian, jefe_arco...), la motivacion y el
+    dialogo propio del nodo.
+    """
     d = dict(DUELISTAS.get(rival, {}))
     extra = TITULOS_NODO.get(nodo_id, "")
     if extra:
         d["titulo"] = extra
+    # El rol puede traer su propia identidad (senda: un vecino, no un campeon).
+    propia = duelistas.identidad_rol(nodo_id, rival)
+    if propia:
+        d["nombre"] = propia.get("nombre", d.get("nombre", ""))
+        d["titulo"] = propia.get("titulo", d.get("titulo", ""))
+        d["bando"] = rival
+        d["entrada"] = ""
+    rol = duelistas.rol_de(nodo_id)
+    if rol:
+        d["rol"] = rol.get("rol", "")
+        d["personalidad"] = rol.get("personalidad", "")
+        d["motivacion"] = rol.get("motivacion", "")
+        d["historia"] = rol.get("historia", "")
     return d
 
 
@@ -678,7 +728,7 @@ def nueva_campana(faccion="humano", mazo=None):
     el juego real pasa una copia del mazo global."""
     if mazo is None:
         mazo = [c.a_dict() for c in mazo_inicial(faccion)]
-    return {
+    estado = {
         "version": VERSION,
         "faccion": faccion,
         "nodo": "senda",
@@ -698,6 +748,8 @@ def nueva_campana(faccion="humano", mazo=None):
         "final": None,
         "creada": time.time(),
     }
+    estado.update(_narrativa_inicial())
+    return estado
 
 
 def nueva_mini_campana(faccion):
@@ -764,7 +816,7 @@ def _migrar(datos):
         return None
     if datos.get("version") == VERSION:
         return datos
-    if datos.get("version") in (3, 4, 5):
+    if datos.get("version") in (3, 4, 5, 6):
         nuevo = datos
     else:
         faccion = datos.get("mazo_jugador", "humano")
@@ -778,6 +830,10 @@ def _migrar(datos):
         if etapa >= 5 and datos.get("completada"):
             nuevo["completada"] = True
     nuevo.setdefault("semilla", random.getrandbits(64))
+    # v7: pegamento narrativo. Una partida vieja arranca sin prologo visto y
+    # con la relacion con Nara en cero.
+    for campo, valor in _narrativa_inicial().items():
+        nuevo.setdefault(campo, valor)
     # reset total (v5): la coleccion jugable son las 10 iniciales; el resto
     # se descubre con sobres y draft. El progreso de nodos se conserva.
     faccion = nuevo.get("faccion", "humano")
@@ -788,6 +844,112 @@ def _migrar(datos):
     nuevo["mejoras"] = {}
     nuevo["version"] = VERSION
     return nuevo
+
+
+# ------------------------------------------------------- helpers de narrativa
+
+
+def marcar_prologo_visto(estado):
+    """El jugador ya vio el prologo del mundo real."""
+    estado["prologo_visto"] = True
+
+
+def prologo_visto(estado):
+    return bool(estado.get("prologo_visto"))
+
+
+def confianza_nara(estado):
+    return int(estado.get("confianza_nara", 0) or 0)
+
+
+def subir_confianza_nara(estado, delta=1, maximo=5):
+    """Suma confianza con tope. Devuelve el valor nuevo."""
+    nuevo = max(0, min(maximo, confianza_nara(estado) + delta))
+    estado["confianza_nara"] = nuevo
+    return nuevo
+
+
+def nara_aliada(estado):
+    """Nara ya no observa: acompaña. A partir de 3 puntos de confianza."""
+    return confianza_nara(estado) >= 3
+
+
+def conocimiento_umbral(estado):
+    return int(estado.get("conocimiento_umbral", 0) or 0)
+
+
+def subir_conocimiento(estado, delta=1, maximo=5):
+    """Suma conocimiento del Umbral con tope. Devuelve el valor nuevo."""
+    nuevo = max(0, min(maximo, conocimiento_umbral(estado) + delta))
+    estado["conocimiento_umbral"] = nuevo
+    return nuevo
+
+
+def registrar_decision(estado, id_decision):
+    """Anota una decision moral. No la duplica si ya estaba."""
+    decisiones = estado.setdefault("decisiones", [])
+    if id_decision not in decisiones:
+        decisiones.append(id_decision)
+    return decisiones
+
+
+def decidir(estado, id_decision, efecto=None):
+    """Registra una decision y aplica su efecto en las variables narrativas.
+
+    `efecto` es un dict con claves opcionales:
+        confianza   -> delta para confianza_nara
+        conocimiento -> delta para conocimiento_umbral
+        revelacion  -> str, fragmento de verdad descubierto
+    """
+    registrar_decision(estado, id_decision)
+    efecto = efecto or {}
+    if "confianza" in efecto:
+        subir_confianza_nara(estado, efecto["confianza"])
+    if "conocimiento" in efecto:
+        subir_conocimiento(estado, efecto["conocimiento"])
+    revelacion = efecto.get("revelacion")
+    if revelacion:
+        revelar(estado, revelacion)
+    return efecto
+
+
+def revelar(estado, id_revelacion):
+    """Anota un fragmento de verdad descubierto (para el Compendio)."""
+    revelaciones = estado.setdefault("revelaciones", [])
+    if id_revelacion not in revelaciones:
+        revelaciones.append(id_revelacion)
+    return revelaciones
+
+
+def revelado(estado, id_revelacion):
+    return id_revelacion in estado.get("revelaciones", [])
+
+
+# ------------------------------------------------------------- compendio dual
+
+
+def compendio_revelar(estado, nombre_carta):
+    """Revela la verdad de una carta en la partida. Devuelve la entrada, o None."""
+    antes = len(estado.get("compendio") or [])
+    entrada = compendio.revelar(estado, nombre_carta)
+    if entrada and len(estado["compendio"]) > antes:
+        # descubrir una verdad concreta es entender mas del Umbral
+        subir_conocimiento(estado, 1)
+    return entrada
+
+
+def compendio_revelada(estado, nombre_carta):
+    return compendio.revelada(estado, nombre_carta)
+
+
+def compendio_progreso(estado):
+    """(descubiertas, total). El texto de la pantalla usa esto."""
+    return compendio.progreso(estado)
+
+
+def compendio_historias(estado):
+    """Las cartas cuya verdad ya conoce, para la pantalla de coleccion."""
+    return list(estado.get("compendio") or [])
 
 
 def progreso(estado):
@@ -870,6 +1032,10 @@ def info_duelo(estado, nodo_id=None):
     rival = rival_de_nodo(estado, nodo_id)
     duelo = _duelista_de(rival, nodo_id)
     return {
+        # pegamento narrativo (v7): lo que necesitan las escenas para reaccionar
+        "faccion_jugador": estado.get("faccion"),
+        "confianza_nara": int(estado.get("confianza_nara", 0) or 0),
+        "conocimiento_umbral": int(estado.get("conocimiento_umbral", 0) or 0),
         # nodo
         "nodo": nodo_id,
         "titulo": datos["titulo"],
@@ -887,6 +1053,14 @@ def info_duelo(estado, nodo_id=None):
         "captura_cpu": duelo.get("captura_cpu", ""),
         "win": duelo.get("win", ""),
         "lose": duelo.get("lose", ""),
+        # rol en la historia (v7): quien es y por que pelea
+        "rol": duelo.get("rol", ""),
+        "personalidad": duelo.get("personalidad", ""),
+        "motivacion": duelo.get("motivacion", ""),
+        "historia": duelo.get("historia", ""),
+        "reaccion_rol": duelistas.reaccion_rol(nodo_id, estado.get("faccion", "")),
+        "dialogo_pre": duelistas.dialogo_de(nodo_id, "pre",
+                                            duelo.get("nombre", "")),
     }
 
 
@@ -1376,12 +1550,44 @@ def anadir_carta(estado, carta, reemplazo=None):
 # ------------------------------------------------------------------- encuentros
 
 
-def encuentro_para(nodo_id):
-    objetivo = ENCUENTRO_POR_NODO.get(nodo_id, "mercader")
+def encuentro_para(nodo_id, enc_id=None):
+    """Encuentro de un nodo.
+
+    `enc_id` permite pedir uno concreto (los opcionales `hostil` y `nara` no
+    estan en el mapa de nodos: se ofrecen aparte).
+    """
+    objetivo = enc_id or ENCUENTRO_POR_NODO.get(nodo_id, "mercader")
     for enc in ENCUENTROS:
         if enc["id"] == objetivo:
             return enc
+    extra = encuentros._datos_extra(objetivo)
+    if extra:
+        return dict(extra)
     return ENCUENTROS[0]
+
+
+def revelation_ids():
+    """Revelaciones de Compendio que aportan los 6 tipos de encuentro."""
+    return [d["revelacion"] for d in encuentros.LORE.values() if d.get("revelacion")]
+
+
+def revelar_encuentro(estado, enc_id):
+    """Registra la revelacion de un encuentro. Devuelve sus datos, o None.
+
+    El encuentro ya dio su recompensa mecanica; esto es la otra mitad: lo que
+    el jugador aprende del mundo. No se repite en la misma partida.
+    """
+    datos = encuentros.lore_de(enc_id)
+    revelacion = datos.get("revelacion")
+    if not revelacion:
+        return None
+    if revelado(estado, revelacion):
+        return None
+    # Descubrir algo del mundo es, ademas, entender mas del Umbral.
+    revelar(estado, revelacion)
+    subir_conocimiento(estado, 1)
+    return {"titulo": datos.get("titulo", ""), "linea": datos.get("linea", []),
+            "id": revelacion}
 
 
 def aplicar_encuentro(estado, efecto):
@@ -1438,6 +1644,9 @@ def perfil_por_defecto():
         "tutorial_visto": False,
         "tutorial_completado": False,
         "tutorial_paso": 0,
+        # NG+: fragmentos de la verdad, uno por faccion completada. Vive en el
+        # perfil (no en la partida) porque las mini campanas son en memoria.
+        "fragmentos": [],
     }
 
 
@@ -1542,6 +1751,69 @@ def registrar_mini_final(faccion):
 
 def mini_finales_desbloqueados():
     return cargar_perfil().get("mini_finales", {})
+
+
+# ------------------------------------------------------ fragmentos de verdad
+# El NG+ no se cuenta en la partida: se cuenta en el perfil, porque las mini
+# campanas viven solo en memoria y se pierden al cerrar el juego.
+
+
+def fragmentos_obtenidos(perfil=None):
+    """Ids de los fragmentos de la verdad ya encontrados."""
+    if perfil is None:
+        perfil = cargar_perfil()
+    return list(perfil.get("fragmentos", []))
+
+
+def registrar_fragmento(faccion, perfil=None):
+    """Guarda el fragmento de una faccion. Devuelve (nuevo, datos).
+
+    Cada faccion completada aporta un fragmento; con los 10 aparece El
+    Cartografo, que nunca estuvo entre las 250 cartas.
+    """
+    datos = fragmentos.fragmento(faccion)
+    if not datos:
+        return False, None
+    if perfil is None:
+        perfil = cargar_perfil()
+    lista = perfil.setdefault("fragmentos", [])
+    nuevo = datos["id"] not in lista
+    if nuevo:
+        lista.append(datos["id"])
+        guardar_perfil(perfil)
+    return nuevo, datos
+
+
+def progreso_fragmentos(perfil=None):
+    """(encontrados, total) para la pantalla de NG+."""
+    return fragmentos.progreso_fragmentos(fragmentos_obtenidos(perfil))
+
+
+def secreto_desbloqueado(perfil=None):
+    """Con 10/10 fragmentos, el que escribio las cartas se deja ver."""
+    return fragmentos.secreto_desbloqueado(fragmentos_obtenidos(perfil))
+
+
+def fragmentos_texto(perfil=None):
+    """Los fragmentos encontrados, listos para mostrar (en orden de NG+)."""
+    return fragmentos.fragmentos_de(fragmentos_obtenidos(perfil))
+
+
+def mazo_rival_secreto():
+    """Mazo de El Cartografo.
+
+    No pertenece a ninguna faccion, asi que no puede salir de una escalera.
+    Usa el mejor pool del juego (dragones) con la dificultad al maximo: es el
+    duelo mas duro de la partida.
+    """
+    cartas = [c.copia() for c in mazos.DRAGONES]
+    for c in cartas:
+        for lado in ("N", "S", "E", "O"):
+            if c.valores[lado] < 10:
+                c.valores[lado] += 1
+    # Se quedan las 5 mas fuertes: el duelo final no puede depender del azar.
+    cartas.sort(key=lambda c: (sum(c.valores.values()), c.nombre), reverse=True)
+    return cartas[:5]
 
 
 def hay_campana():

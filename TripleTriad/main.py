@@ -18,7 +18,10 @@ import audio  # noqa: E402
 import campana  # noqa: E402
 import cinematicas  # noqa: E402
 import facciones  # noqa: E402
+import fragmentos  # noqa: E402
+import narrativa  # noqa: E402
 import pantallas  # noqa: E402
+import prologo  # noqa: E402
 import tutorial  # noqa: E402
 from partida import Juego, partida  # noqa: E402,F401
 from paths import log_errores  # noqa: E402
@@ -88,12 +91,58 @@ async def _duelo_rapido(screen, clock):
     _CONTEXTO[0] = "menú principal"
 
 
+async def _prologo(screen, clock):
+    """Prologo del mundo real: torneo, tutorial, Umbral, despertar y Nara.
+
+    Va antes de elegir faccion (ver la cronologia de la biblia). El tutorial es
+    un duelo real contra Juan con las 5 legendarias: el jugador aprende las
+    mecánicas jugando, no leyendo. Al cruzar al mundo fantastic el mazo pasa
+    a ser el inicial, deliberadamente mas debil.
+    """
+    _CONTEXTO[0] = "prólogo: sala del torneo"
+    audio.musica(prologo.MUSICA_MUNDO_REAL)
+    await cinematicas.reproducir(
+        screen, clock, prologo.escenas_pre_duelo(),
+        musica=prologo.MUSICA_MUNDO_REAL, permitir_saltar=True)
+
+    _CONTEXTO[0] = "prólogo: tutorial contra Juan Rajoy"
+    info = prologo.info_duelo_prologo()
+    juego = Juego("humano", bando_rival=info["bando"],
+                  mano_u_inicial=prologo.mazo_tutorial(),
+                  mano_c_inicial=prologo.mazo_rival_rajoy(),
+                  info=info, dificultad=0)
+    resultado = await partida(screen, clock, juego)
+
+    _CONTEXTO[0] = "prólogo: la carta del Umbral"
+    await cinematicas.reproducir(
+        screen, clock, prologo.escenas_post_duelo() + prologo.escenas_carta_umbral(),
+        musica=prologo.MUSICA_MUNDO_REAL)
+    await cinematicas.reproducir(
+        screen, clock, prologo.escenas_transporte(),
+        musica=prologo.MUSICA_MUNDO_REAL)
+
+    _CONTEXTO[0] = "prólogo: despertar en el bosque"
+    musica_fantasia = audio.musica_de_faccion("goblin")
+    await cinematicas.reproducir(
+        screen, clock, prologo.escenas_despertar(),
+        musica=musica_fantasia)
+    await cinematicas.reproducir(
+        screen, clock, prologo.escenas_encuentro_hostil(),
+        musica=musica_fantasia)
+    await cinematicas.reproducir(
+        screen, clock, prologo.escenas_nara() + prologo.escenas_cierre(),
+        musica=musica_fantasia, permitir_saltar=False)
+    return resultado
+
+
 async def _nueva_campana(screen, clock):
-    """Elige faccion, guarda partida nueva y entra en la cinemática de apertura."""
+    """Prologo, elige faccion, guarda partida nueva y entra en la campana."""
+    await _prologo(screen, clock)
     faccion = await pantallas.elegir_faccion(screen, clock)
     if faccion is None:
         return
     estado = campana.nueva_campana(faccion)
+    campana.marcar_prologo_visto(estado)
     campana.asegurar_coleccion(faccion)
     campana.asegurar_mazo_global()
     mazo = await pantallas.armar_mazo(screen, clock, faccion)
@@ -103,6 +152,72 @@ async def _nueva_campana(screen, clock):
     estado["cartas"] = mazo
     campana.guardar(estado)
     await _campana(screen, clock, estado, nuevo=True)
+
+
+async def _ganar_fragmento(screen, clock, faccion):
+    """Una faccion completada aporta un fragmento de la verdad.
+
+    Es el NG+: la primera vez no hace falta entender el misterio. Cada faccion
+    responde una pregunta distinta, y con las diez aparece El Cartografo, que
+    nunca estuvo entre las 250 cartas.
+    """
+    _CONTEXTO[0] = "fragmento de verdad: " + facciones.nombre(faccion)
+    nuevo, datos = campana.registrar_fragmento(faccion)
+    if not nuevo:
+        return
+    encontrados, total = campana.progreso_fragmentos()
+    await cartel(screen, clock,
+                 "FRAGMENTO DE LA VERDAD  %d/%d" % (encontrados, total),
+                 datos["pregunta"] + chr(10) + chr(10) + "- " + datos["texto"])
+    if campana.secreto_desbloqueado():
+        await cinematicas.reproducir(
+            screen, clock,
+            fragmentos.escena_desbloqueo(campana.fragmentos_obtenidos()),
+            musica=audio.musica_de_faccion("dragon"))
+
+
+async def _campana_secreta(screen, clock, faccion):
+    """La campana que no es contra una faccion: contra el que escribio las cartas."""
+    _CONTEXTO[0] = "campana secreta: El Maestro de la Mesa"
+    rival = fragmentos.CARTOGRAFO
+    await cinematicas.reproducir(
+        screen, clock,
+        fragmentos.escena_desbloqueo(campana.fragmentos_obtenidos()),
+        musica=audio.musica_de_faccion("dragon"))
+    await cinematicas.reproducir(
+        screen, clock,
+        [cinematicas.esc(linea, hablante="El Maestro de la Mesa", fondo="umbral")
+         for linea in rival["dialogo"]["pre"]],
+        musica=audio.musica_de_faccion("dragon"))
+    info = {
+        "nodo": "trono",
+        "titulo": rival["nombre"],
+        "escena": "umbral",
+        "previa": [],
+        "tipo": "secreto",
+        "dificultad": 3,
+        "bando": faccion,
+        "nombre_faccion": "Nadie",
+        "nombre": rival["nombre"],
+        "titulo_duelo": rival["titulo"],
+        "entrada": rival["dialogo"]["pre"][0],
+        "captura_player": "",
+        "captura_cpu": "",
+        "win": rival["dialogo"]["win"][0],
+        "lose": rival["dialogo"]["lose"][0],
+        "rol": rival["rol"],
+        "faccion_jugador": faccion,
+    }
+    juego = Juego(faccion, bando_rival=faccion,
+                  mano_c_inicial=campana.mazo_rival_secreto(),
+                  info=info, dificultad=3)
+    resultado = await partida(screen, clock, juego)
+    if resultado.victoria:
+        await cartel(screen, clock, "CAMPANA SECRETA COMPLETA",
+                     rival["dialogo"]["win"][1])
+    else:
+        await cartel(screen, clock, "TODAVIA NO", rival["dialogo"]["lose"][0])
+    return resultado
 
 
 async def _mini_campana(screen, clock):
@@ -147,6 +262,7 @@ async def _mini_campana(screen, clock):
                     screen, clock,
                     "MINI CAMPANA COMPLETA" + (" - FINAL NUEVO" if nuevo else ""),
                     datos["titulo"])
+                await _ganar_fragmento(screen, clock, estado["faccion"])
                 _CONTEXTO[0] = "menú principal"
                 return
             clave = await pantallas.recompensa(screen, clock, estado, info["nodo"])
@@ -191,6 +307,11 @@ async def _campana(screen, clock, estado, nuevo=False):
             campana.elegir_bifurcacion(estado, rama)
 
         info = campana.info_duelo(estado)
+        # decision moral del nodo, si la hay (se registra y mueve el estado)
+        decision = narrativa.decision_de(campana.nodo_actual(estado))
+        if decision and decision["id"] not in estado.get("decisiones", []):
+            await pantallas.decision_narrativa(screen, clock, estado, decision)
+            info = campana.info_duelo(estado)
         # cartel de escenario antes del duelo
         escenas, musica = cinematicas.escenas_nodo(info)
         audio.musica(musica)
@@ -215,9 +336,16 @@ async def _campana(screen, clock, estado, nuevo=False):
             campana.registrar_victoria(estado, resultado.capturas)
             campana.registrar_duelo_perfil(True, estado["faccion"], estado["racha"])
             campana.premio_duelo(estado, True, resultado.capturas)
+            # escena posterior: consecuencia y avance del misterio
+            info = campana.info_duelo(estado, info["nodo"])
+            _CONTEXTO[0] = f"escena posterior {info['nodo']}"
+            await cinematicas.reproducir(
+                screen, clock, cinematicas.escenas_posterior(info, True),
+                musica=musica, permitir_saltar=True)
             if estado.get("completada"):
                 campana.guardar(estado)
                 await pantallas.epilogo(screen, clock, estado)
+                await _ganar_fragmento(screen, clock, estado["faccion"])
                 return
             # recompensa
             clave = await pantallas.recompensa(screen, clock, estado, info["nodo"])
@@ -229,6 +357,12 @@ async def _campana(screen, clock, estado, nuevo=False):
             campana.registrar_derrota(estado)
             campana.registrar_duelo_perfil(False, estado["faccion"], 0)
             campana.premio_duelo(estado, False, resultado.capturas)
+            # escena posterior de derrota: la derrota tambien cuenta
+            info = campana.info_duelo(estado, info["nodo"])
+            _CONTEXTO[0] = f"escena posterior {info['nodo']} (derrota)"
+            await cinematicas.reproducir(
+                screen, clock, cinematicas.escenas_posterior(info, False),
+                musica=musica, permitir_saltar=True)
             accion = await pantallas.derrota(screen, clock, estado)
             if accion == "salir":
                 return

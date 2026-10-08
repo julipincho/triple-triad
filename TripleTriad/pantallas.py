@@ -5,6 +5,7 @@ Cada pantalla es una funcion que dibuja y atiende eventos hasta devolver
 un valor. Todas usan la misma paleta y los mismos botones de `ui`.
 """
 
+import os
 import time
 
 import pygame
@@ -12,8 +13,11 @@ import pygame
 import audio
 import campana
 import cartas as crt
+import compendio
 import cinematicas
+import encuentros
 import facciones
+import finales
 import mazos
 from reglas import LADOS, rareza, val
 from ui import (
@@ -805,12 +809,21 @@ def paginar_coleccion(cartas, pagina, por_pagina=10):
     return cartas[pagina * por_pagina:(pagina + 1) * por_pagina], total, pagina
 
 
-def _descripcion_carta(carta):
+def _descripcion_carta(carta, estado=None):
     partes = [carta.nombre, f"{facciones.nombre(carta.bando)} - {rareza(carta)[0]}"]
     if carta.habilidad:
         partes.append(f"{crt.ICONO_HABILIDAD.get(carta.habilidad, carta.habilidad)}: "
                       f"{crt.descripcion_habilidad(carta.habilidad)}")
     partes.append(" | ".join(f"{l}:{val(carta.valores[l])}" for l in LADOS))
+    # Compendio dual: si el duelista ya descubrio la verdad de esta carta,
+    # aparece debajo. Antes solo existe lo que dice el juego.
+    if estado is not None:
+        entrada = compendio.entrada(carta.nombre)
+        if entrada:
+            if campana.compendio_revelada(estado, carta.nombre):
+                partes.append("LO QUE REALMENTE PASO: " + entrada["verdad"])
+            else:
+                partes.append("LO QUE REALMENTE PASO: [sin descubrir]")
     return "\n".join(partes)
 
 
@@ -1222,7 +1235,7 @@ async def draft(screen, clock, estado, ofertas=None):
             rects.append(rect)
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, carta, None, 110)
-                tooltip(screen, _descripcion_carta(carta), (rect.centerx, rect.y),
+                tooltip(screen, _descripcion_carta(carta, estado), (rect.centerx, rect.y),
                         ancho=300, arriba=True)
             screen.blit(sup, (rect.x, rect.y))
             etiqueta, color = rareza(carta)
@@ -1427,6 +1440,77 @@ async def cartel(screen, clock, titulo, mensaje):
                 return
 
 
+def _imagen_encuentro(enc_id):
+    """La ilustracion de un encuentro, o None si todavia no se genero.
+
+    Vive en `assets/escenas/<id>.png`. Si falta, la pantalla cae al diseno de
+    antes (solo texto): el juego nunca debe romperse por falta de arte.
+    """
+    ruta = os.path.join("assets", "escenas", f"{enc_id}.png")
+    try:
+        if not os.path.exists(ruta):
+            return None
+        img = crt.REC.imagen(ruta)
+        return img if img.get_width() > 32 else None
+    except Exception:  # noqa: BLE001 - el arte faltante no puede tumbar la pantalla
+        return None
+
+
+async def decision_narrativa(screen, clock, estado, decision):
+    """Decision moral antes de un duelo: dos caminos, consecuencias reales.
+
+    A diferencia de `encuentro` (que da recompensas), aqui la decision no
+    regala nada: cambia la confianza de Nara y lo que el jugador sabe del
+    Umbral. Se registra una sola vez por partida.
+    """
+    opciones = decision["opciones"]
+    t0 = time.time()
+    while True:
+        dt = clock.tick(LIMIT_FPS) / 1000.0
+        await asyncio.sleep(0)
+        fondo = campana.nodo(estado.get("nodo") or "senda").get("escena", "camino")
+        _fondo_escena(screen, fondo)
+        mouse = pygame.mouse.get_pos()
+        t = time.time() - t0
+
+        texto(screen, decision["id"].replace("_", " ").upper(), 18, DORADO,
+              centro=(ANCHO // 2, 90))
+        parrafo(screen, decision["pregunta"], 10, TEXTO, ANCHO // 2 - 430, 160, 860,
+                interlinea=24, centrado=True)
+
+        rects = []
+        for i, op in enumerate(opciones):
+            rect = pygame.Rect(ANCHO // 2 - 340 + i * 360, 340, 320, 150)
+            rects.append(rect)
+            hover = rect.collidepoint(mouse)
+            panel(screen, rect, (20, 20, 30, 235),
+                  facciones.acento(estado["faccion"]) if hover else BORDE,
+                  radio=12, grosor=3 if hover else 2)
+            parrafo(screen, op["texto"], 9, TEXTO, rect.x + 20, rect.y + 46,
+                    rect.w - 40, interlinea=20, centrado=True)
+        texto(screen, "elegir cambia lo que Nara cree de vos", 9, TEXTO_TENUE,
+              centro=(ANCHO // 2, 545))
+        pygame.display.flip()
+
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.MOUSEMOTION:
+                mouse = ev.pos
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                for i, rect in enumerate(rects):
+                    if rect.collidepoint(ev.pos):
+                        op = opciones[i]
+                        audio.sfx(audio.MENU_OK)
+                        campana.decidir(estado, decision["id"], op["efecto"])
+                        campana.guardar(estado)
+                        await cartel(screen, clock,
+                                     "DECISION: " + op["id"].upper(),
+                                     op["respuesta"])
+                        return
+
+
 # ---------------------------------------------------------------- encuentro
 def _fondo_escena(screen, nombre):
     """Fondo de cinemática (oscurecido), para momentos narrativos.
@@ -1443,9 +1527,19 @@ def _fondo_escena(screen, nombre):
     Fondo("dragon").dibujar(screen)
 
 
-async def encuentro(screen, clock, estado, nodo_id):
-    """Encuentro narrativo con dos opciones y consecuencias reales."""
-    enc = campana.encuentro_para(nodo_id)
+async def encuentro(screen, clock, estado, nodo_id, enc_id=None):
+    """Encuentro narrativo con dos opciones y consecuencias reales.
+
+    Antes de las opciones se reproduce la voz del NPC (`encuentros.escena_antes`):
+    como se presenta y que dice al ver tu mazo. Al elegir, ademas del efecto
+    mecanico, se registra la revelacion que aporta el encuentro.
+    """
+    enc = campana.encuentro_para(nodo_id, enc_id)
+    escenas = encuentros.escena_antes(enc["id"], estado.get("faccion", ""))
+    if escenas:
+        await cinematicas.reproducir(screen, clock, escenas,
+                                     musica=audio.musica_de_menu(),
+                                     permitir_saltar=True)
     opciones = enc["opciones"]
     t0 = time.time()
     while True:
@@ -1456,21 +1550,52 @@ async def encuentro(screen, clock, estado, nodo_id):
         t = time.time() - t0
 
         texto(screen, enc["titulo"].upper(), 18, DORADO, centro=(ANCHO // 2, 110))
-        parrafo(screen, enc["texto"], 10, TEXTO, ANCHO // 2 - 420, 170, 840,
-                interlinea=24, centrado=True)
 
+        # Con ilustracion el diseno es de dos columnas: la escena a la izquierda
+        # y el texto y las opciones a la derecha. Sin ella, el de antes.
+        img_enc = _imagen_encuentro(enc["id"])
         rects = []
-        for i, op in enumerate(opciones):
-            rect = pygame.Rect(ANCHO // 2 - 340 + i * 360, 330, 320, 170)
-            rects.append(rect)
-            hover = rect.collidepoint(mouse)
-            panel(screen, rect, (20, 20, 30, 235),
-                  facciones.acento(estado["faccion"]) if hover else BORDE,
-                  radio=12, grosor=3 if hover else 2)
-            texto(screen, op["id"].upper(), 10, DORADO, centro=(rect.centerx, rect.y + 34))
-            parrafo(screen, op["texto"], 8, TEXTO, rect.x + 20, rect.y + 70, rect.w - 40,
-                    interlinea=18, centrado=True)
-        texto(screen, "clic en la opcion que elijas", 9, TEXTO_TENUE, centro=(ANCHO // 2, 540))
+        if img_enc is not None:
+            marco = pygame.Rect(64, 168, 512, 384)
+            escala = min(marco.w / img_enc.get_width(),
+                         marco.h / img_enc.get_height())
+            w = int(img_enc.get_width() * escala)
+            h = int(img_enc.get_height() * escala)
+            dibujo = crt.REC.escalar(img_enc, (w, h)) if hasattr(crt.REC, "escalar")                 else pygame.transform.smoothscale(img_enc, (w, h))
+            screen.blit(dibujo, (marco.x, marco.y))
+            pygame.draw.rect(screen, facciones.acento(estado["faccion"]),
+                             marco, 3, border_radius=8)
+            parrafo(screen, enc["texto"], 10, TEXTO, 620, 180, 580,
+                    interlinea=24)
+            for i, op in enumerate(opciones):
+                rect = pygame.Rect(620, 300 + i * 150, 600, 128)
+                rects.append(rect)
+                hover = rect.collidepoint(mouse)
+                panel(screen, rect, (20, 20, 30, 235),
+                      facciones.acento(estado["faccion"]) if hover else BORDE,
+                      radio=12, grosor=3 if hover else 2)
+                texto(screen, op["id"].upper(), 10, DORADO,
+                      centro=(rect.centerx, rect.y + 32))
+                parrafo(screen, op["texto"], 8, TEXTO, rect.x + 20, rect.y + 62,
+                        rect.w - 40, interlinea=18, centrado=True)
+            texto(screen, "clic en la opcion que elijas", 9, TEXTO_TENUE,
+                  centro=(920, 630))
+        else:
+            parrafo(screen, enc["texto"], 10, TEXTO, ANCHO // 2 - 420, 170, 840,
+                    interlinea=24, centrado=True)
+            for i, op in enumerate(opciones):
+                rect = pygame.Rect(ANCHO // 2 - 340 + i * 360, 330, 320, 170)
+                rects.append(rect)
+                hover = rect.collidepoint(mouse)
+                panel(screen, rect, (20, 20, 30, 235),
+                      facciones.acento(estado["faccion"]) if hover else BORDE,
+                      radio=12, grosor=3 if hover else 2)
+                texto(screen, op["id"].upper(), 10, DORADO,
+                      centro=(rect.centerx, rect.y + 34))
+                parrafo(screen, op["texto"], 8, TEXTO, rect.x + 20, rect.y + 70,
+                        rect.w - 40, interlinea=18, centrado=True)
+            texto(screen, "clic en la opcion que elijas", 9, TEXTO_TENUE,
+                  centro=(ANCHO // 2, 540))
         pygame.display.flip()
 
         for ev in pygame.event.get():
@@ -1486,6 +1611,13 @@ async def encuentro(screen, clock, estado, nodo_id):
                         titulo, texto_efecto = campana.aplicar_encuentro(estado, opciones[i]["efecto"])
                         campana.guardar(estado)
                         await cartel(screen, clock, titulo, texto_efecto)
+                        # El encuentro ademas revela: la recompensa es una parte,
+                        # la informacion es la otra.
+                        revelacion = campana.revelar_encuentro(estado, enc["id"])
+                        if revelacion:
+                            await cartel(screen, clock,
+                                         "REVELACION: " + revelacion["titulo"].upper(),
+                                         revelacion["linea"])
                         return
 
 
@@ -1552,6 +1684,15 @@ async def coleccion(screen, clock, estado=None):
         t = time.time() - t0
 
         texto(screen, "COLECCION", 22, DORADO, centro=(ANCHO // 2, 60))
+        # El progreso ya no se mide en cartas: se mide en historias. Es el
+        # cambio de fondo del compendio dual.
+        if estado:
+            descubiertas, total_historias = campana.compendio_progreso(estado)
+            texto(screen, f"{descubiertas}/{total_historias} historias descubiertas",
+                  9, DORADO, centro=(ANCHO // 2, 84))
+        else:
+            texto(screen, f"0/{compendio.total()} historias descubiertas", 9,
+                  TEXTO_TENUE, centro=(ANCHO // 2, 84))
         # selector de faccion
         rects = {}
         compacta = len(orden) > 7
@@ -1594,7 +1735,7 @@ async def coleccion(screen, clock, estado=None):
             rects_cartas.append((carta, rect))
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, carta, None, 120)
-                tooltip(screen, _descripcion_carta(carta), (rect.centerx, rect.y),
+                tooltip(screen, _descripcion_carta(carta, estado), (rect.centerx, rect.y),
                         ancho=300, arriba=True)
             screen.blit(sup, (rect.x, rect.y))
             etiqueta, color = rareza(carta)
@@ -1987,6 +2128,18 @@ async def epilogo(screen, clock, estado):
     escenas, musica = cinematicas.escenas_final(titulo, lineas, faccion, resumen)
     audio.musica(musica)
     await cinematicas.reproducir(screen, clock, escenas, musica=musica, permitir_saltar=False)
+
+    # El final del mundo fantastic no es el final de la historia: despues
+    # se abre el Umbral y el duelista vuelve a nuestro mundo. Esa segunda
+    # parte es comun a las diez facciones (ver finales.py).
+    await cinematicas.reproducir(
+        screen, clock, finales.escenas_umbral(variante),
+        musica=finales.musica_umbral(variante), permitir_saltar=False)
+
+    # Y el epilogo, que es donde se descubre que volver no lo salvo.
+    await cinematicas.reproducir(
+        screen, clock, finales.escenas_epilogo(variante),
+        musica=finales.musica_epilogo(variante), permitir_saltar=False)
 
     nuevo = (estado.get("final") or {}).get("nuevo")
     # volver al menu tras el final

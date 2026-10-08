@@ -162,14 +162,35 @@ class TestGrafoDeNodos(unittest.TestCase):
 
 
 class TestDificultad(unittest.TestCase):
+    NODOS_DIF = ("senda", "aldea", "ruinas", "fortaleza", "asalto", "trono")
+
+    def _fuerza(self, estado, nodo_id):
+        mazo = campana.mazo_rival(estado, nodo_id)
+        return sum(sum(c.valores.values()) for c in mazo)
+
     def test_el_trono_es_el_mas_duro(self):
-        estado = campana.nueva_campana("humano")
-        niveles = {}
-        for nodo_id in ("senda", "aldea", "ruinas", "fortaleza", "asalto", "trono"):
-            mazo = campana.mazo_rival(estado, nodo_id)
-            niveles[nodo_id] = sum(sum(c.valores.values()) for c in mazo)
-        self.assertLess(niveles["senda"], niveles["trono"])
-        self.assertLess(niveles["aldea"], niveles["trono"])
+        """El trono debe ser el nodo mas fuerte.
+
+        `mazo_rival` sortea 5 cartas del pool del rival, asi que la fuerza
+        exacta varia por campana. La garantia del diseno es la tendencia, no
+        el empate: se promedia sobre varias semillas. Con una sola muestra
+        esta asercion fallaba ~3% de las veces (aldea >= trono), no por un
+        fallo de codigo sino porque el sorteo puede invertir un nodo vecino.
+        """
+        muestras = 40
+        totales = {n: 0 for n in self.NODOS_DIF}
+        for _ in range(muestras):
+            estado = campana.nueva_campana("humano")
+            for nodo_id in self.NODOS_DIF:
+                totales[nodo_id] += self._fuerza(estado, nodo_id)
+        for nodo_id in self.NODOS_DIF:
+            totales[nodo_id] /= muestras
+
+        self.assertGreater(totales["trono"], totales["aldea"])
+        self.assertGreater(totales["trono"], totales["senda"])
+        self.assertGreater(totales["aldea"], totales["senda"])
+        # el trono es el maximo de todo el recorrido
+        self.assertEqual(max(totales, key=totales.get), "trono")
 
     def test_debilitar_reduce_al_rival(self):
         estado = campana.nueva_campana("humano")

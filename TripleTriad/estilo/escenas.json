@@ -1,0 +1,91 @@
+{
+  "resumen": "Anime en pixel art de colores vibrantes, cel shading de alto contraste y bloques de color definidos. Es el aire del mundo donde vive el duelista: mas claro y mas saturado que el arte de las cartas, para que se lean como dos registraros distintos.",
+  "medio": "Pixel art de estilo anime con sombreado por cel shading: planos de color planos y definidos, contornos limpios, sin degradados suaves. Se genera a 4x el tamano final y se reduce con vecino mas cercano, asi que los bloques son cuadrados de verdad y no hay filtro involved.",
+  "paleta": [
+    {
+      "hex": "#1b1b2f",
+      "nombre": "Noche Tinta",
+      "uso": "Sombras profundas pero frias. Nunca negro puro: en anime el negro tapa la cel shading."
+    },
+    {
+      "hex": "#2e2a5c",
+      "nombre": "Indigo",
+      "uso": "Noches, telas de elfo nocturno, fondos de escena frios."
+    },
+    {
+      "hex": "#5b4b8a",
+      "nombre": "Violeta Umbral",
+      "uso": "Magia, el Portal, todo lo que venga del otro mundo."
+    },
+    {
+      "hex": "#00c2a8",
+      "nombre": "Verde Arbol",
+      "uso": "Bosques, elfos, veneno, goblins. Mucho mas saturado que el verde de las cartas."
+    },
+    {
+      "hex": "#7ed957",
+      "nombre": "Verde Claro",
+      "uso": "Luz de hoja, brillos verdes, acentos sobre fondo oscuro."
+    },
+    {
+      "hex": "#ff6b35",
+      "nombre": "Naranja Fuego",
+      "uso": "Dragones, antorchas, el acento calido por defecto."
+    },
+    {
+      "hex": "#ffc300",
+      "nombre": "Ambar",
+      "uso": "Luz de vela, oro, rangos y insignias."
+    },
+    {
+      "hex": "#e63946",
+      "nombre": "Rojo Sangre",
+      "uso": "Vampiros, combate, peligro. Un rojo de anime, no un rojo terroso."
+    },
+    {
+      "hex": "#ff8fab",
+      "nombre": "Rosa Piel",
+      "uso": "Piel iluminada, luz calida sobre el rostro."
+    },
+    {
+      "hex": "#f1faee",
+      "nombre": "Blanco Hueso",
+      "uso": "Luces altas, texto, nevero de la imagen."
+    },
+    {
+      "hex": "#4cc9f0",
+      "nombre": "Cian Electrico",
+      "uso": "Magia tecnica, el mundo real electronico, luces frias."
+    },
+    {
+      "hex": "#4895ef",
+      "nombre": "Azul Acero",
+      "uso": "Armas, acero, agua, sombras frias de midway."
+    }
+  ],
+  "luz": "Luz de anime clasica: clave alta con cel shading de dos o tres tonos, contraluz marcado para separar la silueta del fondo y un rim light de color. Sin claroscuro de Witcher: el anime usa la luz para leer la emotion, no para tapar el dibujo.",
+  "contraste": "Alto. El fondo puede bajar de valor para que el personaje se lea, pero nunca al gris: bajar valor, no bajar saturacion.",
+  "textura": "Pixel art de bloques cuadrados definidos por downscale nearest-neighbour. Sin scanlines, sin dithering, sin trama CRT. La textura sale del tamano del pixel, no de un filtro encima.",
+  "encuadres": {
+    "retrato": "Busto, centrado, mirando al espectador, fondo simple que no compita con la cara.",
+    "silueta": "De espaldas, sin rostro, contra fondo iluminado. Es el duelista: no tiene nombre y el jugador se pone en su lugar.",
+    "escena": "Plano medio abierto con el personaje desplazado del centro, para dejar area limpia donde va el texto del juego.",
+    "fondo": "Solo lugar. Sin personajes en primer plano: un fondo con gente estorba al menu."
+  },
+  "prompts_sdxl": {
+    "positivo": "masterpiece, best quality, highly detailed, anime style, pixel art, crisp square pixels, clean lineart, high contrast cel shading, vibrant saturated colors, limited palette, retro game aesthetic, no scanlines, no dithering",
+    "negativo": "lowres, worst quality, low quality, jpeg artifacts, blurry, anti-aliased, smooth gradients, airbrush, soft brushstrokes, photorealistic, 3d render, scanlines, CRT screen, dithering, text, signature, watermark, username, logo, border, frame, ui elements, extra fingers, bad hands, malformed hands, bad anatomy, deformed"
+  },
+  "prohibiciones": [
+    "No usar scanlines ni textura de monitor CRT: eso es de las cartas.",
+    "No usar dithering ni tramado: el pixel sale del downscale, no del tramado.",
+    "No suavizar bordes ni aplicar desenfoque.",
+    "No bajar saturacion para parecer viejo: aqui la vibrancia es lo que separa este mundo del de las cartas.",
+    "No poner figuras ni caras en los fondos de cinematica."
+  ],
+  "notas": [
+    "El IPAdapter va DESACTIVADO: su ancla es el moodboard de las cartas y impondría el tinte apagado.",
+    "Si hace falta guia de estilo despues, se construye un ancla nueva con las primeras imagenes aceptadas, no se reutiliza la de cartas.",
+    "El juego lee las cartas de cartas/ y este set escribe en assets/, assets/escenas/ y assets/fondos/. No se cruzan."
+  ]
+}

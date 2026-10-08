@@ -45,3 +45,13 @@ game_window_capture.png
 comfy_snapshot*.yml
 .opencode/
 TripleTriad/.sd_env/
+# --- trabajo de arte: hojas de contactos y pruebas de estilo -------------
+# Son capturas de revision, no assets del juego. El arte que SI entra son
+# assets/avatar_*.png, assets/escenas/ y assets/fondos/.
+TripleTriad/hoja_*.png
+TripleTriad/prueba_*.png
+TripleTriad/*_sprite.png
+TripleTriad/workflow_*.json
+TripleTriad/_respaldo_antes_de_reset/
+comfyui.png
+mi_workflow*.png

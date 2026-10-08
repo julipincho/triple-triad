@@ -90,6 +90,11 @@ class TestFlujoDeCampana(unittest.TestCase):
         async def encuentro_falso(screen, clock, estado, nodo_id):
             registro["pantallas"].append(("encuentro", nodo_id))
 
+        async def decision_falsa(screen, clock, estado, decision):
+            """La decision moral aplica su primer efecto y sigue."""
+            registro["pantallas"].append(("decision", decision["id"]))
+            campana.decidir(estado, decision["id"], decision["opciones"][0]["efecto"])
+
         async def epilogo_falso(screen, clock, estado):
             registro["epilogue"] += 1
             # el epilogo real cierra la campana y registra el final
@@ -107,6 +112,7 @@ class TestFlujoDeCampana(unittest.TestCase):
             "pantallas.encuentro": encuentro_falso,
             "pantallas.derrota": derrota_falsa,
             "pantallas.epilogo": epilogo_falso,
+            "pantallas.decision_narrativa": decision_falsa,
             "cinematicas.reproducir": ara,
         }
         for ruta, fn in reemplazos.items():
@@ -131,6 +137,31 @@ class TestFlujoDeCampana(unittest.TestCase):
         self.assertEqual(estado["final"]["titulo"], campana.FINALES["humano"][estado["final"]["variante"]]["titulo"])
         self.assertEqual(estado["victorias"], 5)
         self.assertEqual(estado["racha"], 5)
+
+    def test_las_decisiones_morales_se_disparan_durante_la_campana(self):
+        """La senda y la fortaleza piden decision; se registran en el estado."""
+        import narrativa
+        estado, reg = self._simular("humano")
+        decisiones = [p[1] for p in reg["pantallas"] if p[0] == "decision"]
+        self.assertIn(narrativa.DECISION["senda"]["id"], decisiones)
+        self.assertIn(narrativa.DECISION["fortaleza"]["id"], decisiones)
+        # el efecto se aplico de verdad: no basta con que la pantalla se viera
+        for did in decisiones:
+            self.assertIn(did, estado["decisiones"])
+
+        # el doble de prueba elige siempre la primera opcion, asi que el saldo
+        # es la suma de los efectos de esas opciones (senda +1, fortaleza -1).
+        # `decisiones` guarda el id de la decision ("senda_herido"), no el nodo.
+        por_id = {d["id"]: d for d in narrativa.DECISION.values()}
+        esperado = sum(por_id[d]["opciones"][0]["efecto"].get("confianza", 0)
+                       for d in decisiones)
+        self.assertEqual(estado["confianza_nara"], esperado)
+        self.assertGreater(estado["conocimiento_umbral"], 0)
+
+    def test_la_decision_no_se_pregunta_dos_veces(self):
+        estado, reg = self._simular("humano")
+        decisiones = [p[1] for p in reg["pantallas"] if p[0] == "decision"]
+        self.assertEqual(len(decisiones), len(set(decisiones)))
 
     def test_campana_orca_llega_al_final_orco(self):
         estado, reg = self._simular("orco")
