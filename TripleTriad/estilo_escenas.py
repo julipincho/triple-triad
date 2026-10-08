@@ -140,6 +140,19 @@ NEGATIVO_BASE = (
     "extra fingers, bad hands, malformed hands, bad anatomy, deformed"
 )
 
+#: SpriteShaper tiene un sesgo fuerte hacia Asia oriental: con cualquier
+#: "fantasy village" o "fortress" devuelve pagodas, torii, faroles rojos y
+#: carteles con ideogramas. El juego es fantasy europeo de barajas (duelistas
+#: humanos, orcos, elfos, dragones, vampiros) y esa arquitectura no encaja.
+#: Se vetoa aqui y no por entrada, porque sesguea los once fondos por igual.
+NEGATIVO_ARQUITECTURA = (
+    "asian architecture, chinese architecture, japanese architecture, "
+    "pagoda, pagodas, torii gate, torii, shrine, temple gate, tatami, "
+    "red paper lanterns, chopsticks, kimono, samurai, ninja, "
+    "chinese characters, japanese characters, kanji, hangul, calligraphy, "
+    "zen garden"
+)
+
 #: Solo para retratos. Un avatar va sobre un panel de dialogo: si el fondo esta
 #: atiborrado, el personaje se pierde contra el cuadro y las cartas de fondo se
 #: leen como si fueran parte de la interfaz. Se separa del NEGATIVO_BASE para no
@@ -230,8 +243,12 @@ def _avisar_si_no_ascii(texto):
 
 
 def construir_negativo(extra="", retrato=False):
-    """Negativo del set. `retrato` anade la lista de fondo limpio."""
-    base = NEGATIVO_BASE
+    """Negativo del set. `retrato` anade la lista de fondo limpio.
+
+    El veto de arquitectura asiatica va siempre: es un sesgo del checkpoint, no
+    una caracteristica de una imagen concreta.
+    """
+    base = NEGATIVO_BASE + ", " + NEGATIVO_ARQUITECTURA
     if retrato:
         base = base + ", " + NEGATIVO_RETRATO
     if extra:

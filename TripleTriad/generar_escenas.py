@@ -241,7 +241,8 @@ CATALOGO = {
         "archivo": "fondos/salon.png",
         "tipo": "fondo",
         "encuadre": "fondo",
-        "sujeto": "large modern indoor esports tournament hall, rows of "
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "large modern indoor esports tournament hall, rows of "
                   "tables, hanging banners, big screens, crowd of players, "
                   "overhead lighting rigs",
         "extra": "cool white and teal stage lighting, no people in foreground",
@@ -253,13 +254,174 @@ CATALOGO = {
         "archivo": "fondos/apagon.png",
         "tipo": "fondo",
         "encuadre": "fondo",
-        "sujeto": "darkened empty hall, every light out, total darkness, "
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "darkened empty hall, every light out, total darkness, "
                   "only faint dim emergency exit sign, abandoned, dust in "
                   "the air, scattered playing cards on the floor",
         "extra": "very dark, near monochrome, very low light, deep shadow",
         "neg_extra": "bright, sunny, well lit, daylight, colorful, vibrant, "
                      "saturated, neon, glowing, lit up",
         "notas": "El corte. Casi negro, con las cartas regadas en el suelo.",
+    },
+    # ---- los once fondos del mundo fantastic --------------------------
+    # Estos REEMPLAZAN a los pintados que habia (aldea, ruinas, fortaleza,
+    # asalto, camino, campamento, ceniza, trono, umbral, estandartes,
+    # amanecer). Los viejos son pintura digital con degradados suaves: al
+    # ponerles encima un personaje de pixel art, la pantalla se parte en dos
+    # lenguajes visuales. Ver plan/auditoria_estilo.md.
+    #
+    # Todos van a `assets/fondos/` con el MISMO nombre de archivo que el
+    # viejo: el juego los pide por nombre y asi no hay que tocar ningun
+    # `fondo="..."` del codigo. Solo se regenera el pixel.
+    "fondo_camino": {
+        "archivo": "fondos/camino.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "dirt path winding through tall pine forest, low ground "
+                  "mist between the trunks, mossy stones at the edge, a "
+                  "wooden marker post",
+        "extra": "cool green and blue morning light, shafts of light through "
+                 "the trees",
+        "neg_extra": 'stone markers, carved runes, no asian architecture',
+        "notas": "Donde el duelista despierta. Ancho y tranquilo: es la primera "
+                 "escena del mundo del juego y tiene que dar orientacion.",
+    },
+    "fondo_aldea": {
+        "archivo": "fondos/aldea.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "small fantasy village, low stone wall around it, wooden "
+                  "houses with steep roofs, lanterns on posts, market stalls "
+                  "with striped awnings, open gate",
+        "extra": "warm afternoon light, colorful banners",
+        "neg_extra": 'no asian architecture, no chinese characters',
+        "notas": "Nodo aldea. El lugar mas habitado de la campana: aqui "
+                 "hablan los NPCs de tu faccion.",
+    },
+    "fondo_ruinas": {
+        "archivo": "fondos/ruinas.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "sunken city ruins, collapsed rooftops and broken walls "
+                  "half buried in grey ash, a leaning stone arch, scattered "
+                  "papers and broken shelves, a single tree growing through "
+                  "the rubble",
+        "extra": "overcast pale sky, drifting ash, muted warm ruins against "
+                 "cold grey air",
+        "neg_extra": 'no asian architecture',
+        "notas": "Nodo ruinas. Lo que quedo de la ciudad donde se juego el "
+                 "torneo antes de que el mundo se partiera.",
+    },
+    "fondo_fortaleza": {
+        "archivo": "fondos/fortaleza.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "hilltop fortress, high stone walls, guard towers, iron "
+                  "gate, faction banners on the towers, mountain and valley "
+                  "below, winding road up to the gate",
+        "extra": "clear daylight, crisp banners, strong silhouette",
+        "neg_extra": 'no asian architecture, gothic stone castle, european',
+        "notas": "Nodo fortaleza. El ultimo tramo antes del trono: tiene que "
+                 "leerse como meta.",
+    },
+    "fondo_asalto": {
+        "archivo": "fondos/asalto.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "torchlit fortress corridor at night, fire and smoke in "
+                  "the distance, overturned benches, scattered cards on the "
+                  "stone floor, sparks in the air, archway of dark stone",
+        "extra": "orange firelight against deep blue shadow, glowing embers",
+        "neg_extra": 'no asian architecture, european medieval stone keep',
+        "notas": "Nodo asalto. Es el momento de violence de la campana: el "
+                 "fondo tiene que estar ardiendo.",
+    },
+    "fondo_trono": {
+        "archivo": "fondos/trono.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "empty throne hall, one tall throne on a stone dais at the "
+                  "back, long carpet down the center, columns both sides, "
+                  "braziers burning, nobody seated on the throne",
+        "extra": "dramatic backlight from high windows, dust in the light "
+                 "beams",
+        "neg_extra": 'no asian architecture, gothic cathedral throne hall, european',
+        "notas": "El nodo del trono. El asiento tiene que verse VACIO y "
+                 "grande: es el lugar que el Umbral esconde.",
+    },
+    "fondo_campamento": {
+        "archivo": "fondos/campamento.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "night camp in the wilds, canvas tents, two campfires, "
+                  "cooking pot over the flames, crates and bedrolls, wagon "
+                  "parked at the edge, stars overhead",
+        "extra": "warm firelight in the foreground, deep blue night beyond",
+        "neg_extra": 'no asian architecture, european traveler camp',
+        "notas": "Fondo de los encuentros opcionales y de la escena donde "
+                 "Nara explica la situacion. Intimo: se acerca a hablar con "
+                 "alguien.",
+    },
+    "fondo_umbral": {
+        "archivo": "fondos/umbral.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "vertical crack of light splitting a dark rock face, the "
+                  "crack glowing from inside, floating playing cards drifting "
+                  "toward it, dark stone on both sides",
+        "extra": "cold blue light spilling out of the crack, luminous mist",
+        "neg_extra": 'no asian architecture, cold blue light',
+        "notas": "EL MAS IMPORTANTE: es la puerta de casa. Tiene que leerse "
+                 "como un portal, no como una grieta cualquiera. Aparece en el "
+                 "prologo, en el transporte y en los tres finales.",
+    },
+    "fondo_estandartes": {
+        "archivo": "fondos/estandartes.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "a whole field of faction banners on tall poles snapping "
+                  "in the wind, dust rising at the base, open ground in front",
+        "extra": "strong wind, banners lit by low sun, high contrast",
+        "neg_extra": 'no asian architecture, european heraldic banners with coats of arms',
+        "notas": "Mini campanas. Un muro de banderas: el bando se elige "
+                 "mirando.",
+    },
+    "fondo_amanecer": {
+        "archivo": "fondos/amanecer.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "sunrise over a valley of drifting ash, horizon line "
+                  "glowing orange, silhouettes of distant broken towers, "
+                  "sparse dead trees in the foreground",
+        "extra": "warm golden sunrise, glowing haze, long shadows",
+        "neg_extra": 'no asian architecture',
+        "notas": "Cinematica de intro. El mundo antes de que el duelista caiga "
+                 "en el.",
+    },
+    "fondo_ceniza": {
+        "archivo": "fondos/ceniza.png",
+        "tipo": "fondo",
+        "encuadre": "fondo",
+        "factor": 2,  # 1024 de ancho: a 4x SDXL se duplica
+                "sujeto": "empty dead plain under a blank grey sky, ash falling, "
+                  "burnt ground, one bare leafless tree, distant broken "
+                  "silhouettes, absolutely nothing alive",
+        "extra": "monochrome grey, no colour at all, flat overcast light, "
+                 "low contrast, cold dead air, heavy falling ash",
+        "neg_extra": "asian architecture, green tree, leaves, autumn, blue sky, clouds, sunlight, colourful, colorful, saturated, vibrant, flowers, grass",
+        "notas": "Fondo por defecto de `cinematicas.esc`. Es el vacio: lo que "
+                 "se ve cuando no hay imagen. Tiene que quedar legible "
+                 "debajo de cualquier texto.",
     },
 }
 
@@ -295,16 +457,25 @@ def _variantes(entrada):
 
 
 def _escala(entrada, factor=None):
-    """Tamano destino y tamano de generacion (multiplo del destino)."""
+    """Tamano destino y tamano de generacion (multiplo del destino).
+
+    `entrada["factor"]` pisa el factor global. Los fondos van a 2 porque a 4
+    salen a 2048 de ancho y SDXL se duplica: repite a si mismo en vez de
+    ampliar la escena. Medido con SpriteShaper, por eso el fondo lleva su
+    propio factor y no el del resto del set.
+    """
     w, h = est.MEDIDAS[entrada["encuadre"]]
-    f = factor or est.ESCALA_GENERACION
+    f = factor or entrada.get("factor") or est.ESCALA_GENERACION
     return (w, h), (w * f, h * f)
 
 
 def _reducir(ruta_origen, destino, tam_destino):
     """Reduce con vecino mas cercano: eso es lo que produce los pixeles."""
     from PIL import Image
-    os.makedirs(os.path.dirname(destino), exist_ok=True)
+    # Un `--salida` sin carpeta (p.ej. `prueba.png`) deja el dirname vacio y
+    # `makedirs("")` revienta con WinError 3. Se resuelve a cwd.
+    carpeta = os.path.dirname(os.path.abspath(destino))
+    os.makedirs(carpeta, exist_ok=True)
     with Image.open(ruta_origen) as im:
         im = im.convert("RGBA")
         if im.size != tuple(tam_destino):
