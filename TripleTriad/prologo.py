@@ -112,30 +112,30 @@ def _escenas_del_duelo():
     """El tutorial no se anuncia: se juega. Estas escenas son el ambiente."""
     return [
         esc("El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
-            fondo="campamento", mundo=REAL),
-        esc("ULTIMA RONDA CLASIFICATORIA", fondo="campamento", efecto="titulo", mundo=REAL),
-        esc("Presentador", hablante="Presentador", fondo="campamento", mundo=REAL),
-        esc("- Ultima ronda clasificatoria.", hablante="Presentador", fondo="campamento", mundo=REAL),
+            fondo="salon", mundo=REAL),
+        esc("ULTIMA RONDA CLASIFICATORIA", fondo="salon", efecto="titulo", mundo=REAL),
+        esc("Presentador", hablante="Presentador", fondo="salon", mundo=REAL),
+        esc("- Ultima ronda clasificatoria.", hablante="Presentador", fondo="salon", mundo=REAL),
         esc("- Los ocho mejores jugadores avanzaran a la Copa del Trono.",
-            hablante="Presentador", fondo="campamento", mundo=REAL),
-        esc("Tu nombre no importa aqui. Solo tu mazo.", fondo="campamento", mundo=REAL),
+            hablante="Presentador", fondo="salon", mundo=REAL),
+        esc("Tu nombre no importa aqui. Solo tu mazo.", fondo="salon", mundo=REAL),
         esc("Sacas tus cartas: cinco legendarias, una de cada faccion. Lo mejor que tienes.",
-            fondo="campamento", color=TEXTO_ON, mundo=REAL),
+            fondo="salon", color=TEXTO_ON, mundo=REAL),
         esc("No es una partida de prueba. Es una clasificatoria. Y el rival frente a ti se "
-            "llama...", fondo="campamento", mundo=REAL),
+            "llama...", fondo="salon", mundo=REAL),
     ]
 
 
 def _escenas_post_duelo():
     return [
         esc("- Otra vez esa maldita combinacion.", hablante="Juan Rajoy",
-            fondo="campamento", mundo=REAL, retrato="rajoy"),
-        esc("- Te avise que dejaras libre el centro.", fondo="campamento", mundo=REAL),
+            fondo="salon", mundo=REAL, retrato="rajoy"),
+        esc("- Te avise que dejaras libre el centro.", fondo="salon", mundo=REAL),
         esc("Juan te mira el mazo otra vez. Esta vez con respeto.",
-            hablante="Juan Rajoy", fondo="campamento", mundo=REAL, retrato="rajoy"),
-        esc("- Buena partida, crack.", hablante="Juan Rajoy", fondo="campamento",
+            hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy"),
+        esc("- Buena partida, crack.", hablante="Juan Rajoy", fondo="salon",
             retrato="rajoy", mundo=REAL),
-        esc("Cumpliste. Ahora van a presentar la carta que trajeron.", fondo="campamento", mundo=REAL),
+        esc("Cumpliste. Ahora van a presentar la carta que trajeron.", fondo="salon", mundo=REAL),
     ]
 
 
@@ -143,9 +143,9 @@ def _escenas_carta_umbral():
     """La carta que no pertenece a ninguna faccion. Y el apagon."""
     return [
         esc("Los organizadores suben al escenario con una caja que nadie ha visto antes.",
-            fondo="campamento", mundo=REAL),
+            fondo="salon", mundo=REAL),
         esc("- Una carta que no tiene faccion. Ni bando. Ni edicion.",
-            hablante="Presentador", fondo="campamento", mundo=REAL),
+            hablante="Presentador", fondo="salon", mundo=REAL),
         esc("EL UMBRAL", fondo="umbral", efecto="titulo", mundo=REAL),
         esc("Una puerta enorme. Y detras... un trono vacio.", fondo="umbral", mundo=REAL),
         esc("La reconoces. Los simbolos de los bordes salen en las cartas mas antiguas.",
@@ -163,10 +163,12 @@ def _escenas_carta_umbral():
 
 
 def _escenas_transporte():
+    # El corte ocurre en el salon, asi que es el mundo real: el apagon es la
+    # ultima imagen de nuestro mundo antes de que el mundo del juego lo trague.
     return [
-        esc("La luz se apaga.", fondo="umbral", efecto="titulo"),
-        esc("Y cuando vuelve, ya no estas en el salon.", fondo="umbral"),
-        esc("", fondo="umbral", efecto="titulo"),
+        esc("La luz se apaga.", fondo="apagon", efecto="titulo", mundo=REAL),
+        esc("Y cuando vuelve, ya no estas en el salon.", fondo="apagon", mundo=REAL),
+        esc("", fondo="apagon", efecto="titulo", mundo=REAL),
     ]
 
 

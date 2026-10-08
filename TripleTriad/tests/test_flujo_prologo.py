@@ -19,6 +19,7 @@ sys.path.insert(0, RAIZ)
 import campana
 import inspect
 import main
+import cinematicas
 import prologo
 
 CODIGO = {}
@@ -130,3 +131,55 @@ class TestInfoDelDuelo(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestElFondoSigueAlMundo(unittest.TestCase):
+    """El fondo de una escena tiene que ser del mundo que se esta viendo.
+
+    Se rompio una vez: el torneo de nuestro mundo se dibujaba contra
+    `campamento`, el campamento del mundo fantastic, y `salon` y `apagon`
+    quedaban huerfanos en disco. La regla se fija aca para que no vuelva.
+    """
+
+    #: Fondos que solo existen en nuestro mundo (el salon del torneo).
+    DE_NUESTRO_MUNDO = ("salon", "apagon")
+
+    def _todas_las_escenas(self):
+        for nombre in ("escenas_pre_duelo", "escenas_post_duelo",
+                       "escenas_carta_umbral", "escenas_transporte",
+                       "escenas_despertar", "escenas_encuentro_hostil",
+                       "escenas_nara", "escenas_cierre"):
+            for escena in getattr(prologo, nombre)():
+                yield nombre, escena
+
+    def test_ninguna_escena_del_mundo_real_usa_fondo_del_mundo_fantastico(self):
+        for nombre, escena in self._todas_las_escenas():
+            if escena.get("mundo") == cinematicas.MUNDO_REAL:
+                self.assertNotIn(escena["fondo"], ("campamento", "camino"),
+                                 "%s: una escena de nuestro mundo no puede "
+                                 "usarse el fondo del mundo fantastic (%s)"
+                                 % (nombre, escena["fondo"]))
+
+    def test_ninguna_escena_del_mundo_fantastico_usa_fondo_de_nuestro_mundo(self):
+        for nombre, escena in self._todas_las_escenas():
+            if escena.get("mundo", cinematicas.MUNDO_JUEGO) != cinematicas.MUNDO_REAL:
+                self.assertNotIn(escena["fondo"], self.DE_NUESTRO_MUNDO,
+                                 "%s: una escena del mundo del juego no "
+                                 "puede usar %s, que es de nuestro mundo"
+                                 % (nombre, escena["fondo"]))
+
+    def test_todo_fondo_del_prologo_existe(self):
+        for nombre, escena in self._todas_las_escenas():
+            ruta = os.path.join(RAIZ, "assets", "fondos", escena["fondo"] + ".png")
+            self.assertTrue(os.path.exists(ruta),
+                            "%s pide el fondo %s y no esta"
+                            % (nombre, escena["fondo"]))
+
+    def test_los_dos_fondos_de_nuestro_mundo_se_usan(self):
+        """`salon` y `apagon` existen para el torneo; no pueden quedar
+        huerfanos en disco."""
+        usados = {e["fondo"] for _, e in self._todas_las_escenas()}
+        for fondo in self.DE_NUESTRO_MUNDO:
+            self.assertIn(fondo, usados,
+                          "%s existe pero el prologo no lo usa: huerfano"
+                          % fondo)
