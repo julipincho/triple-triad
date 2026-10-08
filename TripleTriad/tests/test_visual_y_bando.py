@@ -370,3 +370,76 @@ class TestCadaFaccionDiceQuePide(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class TestSiempreSePuedeEmpezarDeCero(unittest.TestCase):
+    """Con partida guardada el menu reconvertia NUEVA CAMPANA en CONTINUAR.
+
+    Quedaba una sola forma de entrar, asi que para volver a ver el prologo habia
+    que borrar `campana.json` a mano. Y el prologo es justo lo que hay que
+    poder volver a probar.
+    """
+
+    def _menu_con_guardado(self, hay):
+        """Corre el menu real y devuelve lo que devuelve al pulsar NUEVA CAMPANA.
+
+        Se pulsa de verdad: se postea el evento de pygame en la coordenada del
+        boton. Rascar el codigo con `split` seria fragil y no probaria nada.
+        """
+        import asyncio
+        import pygame
+        import campana as camp
+        import pantallas as pant
+
+        estado = camp.nueva_campana("humano") if hay else None
+        scr = pygame.Surface((ANCHO, ALTO))
+        reloj = type("R", (), {"tick": staticmethod(lambda f=60: 16)})()
+
+        async def correr():
+            tarea = asyncio.ensure_future(pant.menu(scr, reloj, estado))
+            await asyncio.sleep(0)
+            for _ in range(6):
+                # se dibuja una vez para que el boton exista con su rect
+                await asyncio.sleep(0)
+            # coordenada del boton NUEVA CAMPANA de la columna derecha
+            x, y = ANCHO // 2 + 40 + 150, 362 + 27
+            pygame.event.post(pygame.event.Event(
+                pygame.MOUSEBUTTONDOWN, {"pos": (x, y), "button": 1}))
+            return await asyncio.wait_for(tarea, timeout=5)
+
+        loop = asyncio.new_event_loop()
+        try:
+            return loop.run_until_complete(correr())
+        except asyncio.TimeoutError:
+            return "TIMEOUT"
+        finally:
+            loop.close()
+
+    def test_con_partida_guardada_se_puede_empezar_de_cero(self):
+        self.assertEqual("nueva", self._menu_con_guardado(True),
+                         "con partida guardada no hay forma de empezar de cero")
+
+    def test_sin_partida_tambien(self):
+        self.assertEqual("nueva", self._menu_con_guardado(False))
+
+    def test_hay_confirmacion_antes_de_pisar_la_partida(self):
+        import inspect
+        import main
+        fuente = inspect.getsource(main._aplicar_ajustes.__globals__.get("_archivar_partida"))
+        # el archivado copia, nunca borra
+        self.assertIn("copy2", fuente)
+        self.assertNotIn("os.remove", fuente)
+        self.assertNotIn("os.unlink", fuente)
+        import pantallas
+        self.assertTrue(callable(pantallas.confirmar))
+
+    def test_el_respaldo_copia_en_vez_de_borrar(self):
+        import inspect
+        import main
+        fuente = inspect.getsource(main._archivar_partida)
+        self.assertIn("shutil", fuente)
+        self.assertNotIn("remove(", fuente)
+        self.assertNotIn("unlink(", fuente)
+
+
+if __name__ == "__main__":
+    unittest.main()

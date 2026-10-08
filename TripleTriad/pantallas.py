@@ -86,6 +86,56 @@ def _pulsado(botones, pos):
     return None
 
 
+async def confirmar(screen, clock, titulo, mensaje, aceptar="SI"):
+    """Pregunta si/no. Devuelve True si el jugador confirma.
+
+    Vive en el menu porque empezar una campana nueva PISA la que hay. Antes no
+    habia forma de empezar de cero con partida en curso, y la unica manera de
+    ver el prologo era borrar el `campana.json` a mano desde la consola.
+    """
+    marco = pygame.Rect(ANCHO // 2 - 320, ALTO // 2 - 150, 640, 300)
+    boton_si = Boton(pygame.Rect(marco.centerx - 230, marco.bottom - 78, 210, 52),
+                     aceptar, 12, borde=ROJO, acento=ROJO)
+    boton_no = Boton(pygame.Rect(marco.centerx + 20, marco.bottom - 78, 210, 52),
+                     "VOLVER", 12)
+    botones = [boton_si, boton_no]
+    t0 = time.time()
+    while True:
+        dt = clock.tick(LIMIT_FPS) / 1000
+        await asyncio.sleep(0)
+        mouse = pygame.mouse.get_pos()
+        t = time.time() - t0
+        for b in botones:
+            b.actualizar(dt, mouse)
+        panel(screen, marco, (28, 20, 24, 248), ROJO, radio=12, grosor=3)
+        texto(screen, titulo, 20, ROJO, centro=(marco.centerx, marco.y + 46))
+        parrafo(screen, mensaje, 10, TEXTO, marco.x + 40, marco.y + 96,
+                marco.w - 80, interlinea=22, centrado=True)
+        for b in botones:
+            b.dibujar(screen, t)
+        texto(screen, "ENTER confirma   ESC vuelve", 8, TEXTO_TENUE,
+              centro=(marco.centerx, marco.bottom - 12))
+        pygame.display.flip()
+
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.KEYDOWN:
+                if ev.key == pygame.K_ESCAPE:
+                    audio.sfx(audio.MENU_BACK)
+                    return False
+                if ev.key == pygame.K_RETURN:
+                    audio.sfx(audio.MENU_OK)
+                    return True
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                b = _pulsado(botones, ev.pos)
+                if b is boton_si:
+                    return True
+                if b is boton_no:
+                    return False
+
+
 def _tecla_navegacion(botones, evento, seleccion):
     """Flechas / tab para moverse entre botones. Devuelve el indice."""
     if evento.key in (pygame.K_DOWN, pygame.K_TAB):
@@ -160,7 +210,15 @@ def math_seno(x):
 
 # ---------------------------------------------------------------------- menu
 async def menu(screen, clock, estado=None):
-    """Menu principal. Devuelve 'rapida', 'tutorial', 'mini', 'campana', 'coleccion', 'ajustes'."""
+    """Menu principal.
+
+    Devuelve 'rapida', 'tutorial', 'mini', 'campana', 'nueva', 'coleccion',
+    'ajustes' o 'salir'.
+
+    Con partida en curso el boton de la izquierda sigue siendo CONTINUAR
+    CAMPANA, y NUEVA CAMPANA esta aparte en la columna derecha: estan las dos
+    cosas siempre, no una o la otra.
+    """
     fondo = Fondo("dragon")
     hay = bool(estado) and not estado.get("completada")
     faccion = estado.get("faccion", "humano") if hay else "dragon"
@@ -194,7 +252,10 @@ async def menu(screen, clock, estado=None):
                   12, sub="Volumen, pantalla y controles"),
             Boton(pygame.Rect(ANCHO // 2 + 40, 296, 300, 54), "TUTORIAL",
                   12, sub="Aprende a jugar paso a paso"),
-            Boton(pygame.Rect(ANCHO // 2 + 40, 362, 300, 54), "SALIR",
+            Boton(pygame.Rect(ANCHO // 2 + 40, 362, 300, 54), "NUEVA CAMPANA",
+                  12, sub="Empieza de cero y pisa la partida actual" if hay
+                  else "Elige faccion y forja tu final"),
+            Boton(pygame.Rect(ANCHO // 2 + 40, 428, 300, 54), "SALIR",
                   12, sub="Hasta la proxima partida"),
         ]
         if hay:
@@ -262,6 +323,12 @@ async def menu(screen, clock, estado=None):
                 if b is derecha[1]:
                     return "tutorial"
                 if b is derecha[2]:
+                    # NUEVA CAMPANA existe SIEMPRE. Antes el boton de la
+                    # izquierda se reconvertia en CONTINUAR cuando habia
+                    # partida, y no quedaba forma de empezar de cero: para ver
+                    # el prologo habia que borrar el guardado a mano.
+                    return "nueva"
+                if b is derecha[3]:
                     return "salir"
 
 

@@ -24,7 +24,7 @@ import pantallas  # noqa: E402
 import prologo  # noqa: E402
 import tutorial  # noqa: E402
 from partida import Juego, partida  # noqa: E402,F401
-from paths import log_errores  # noqa: E402
+from paths import dir_datos, log_errores  # noqa: E402
 from ui import ALTO, ANCHO  # noqa: E402,F401
 
 TEST = "--test" in sys.argv
@@ -378,6 +378,34 @@ async def _campana(screen, clock, estado, nuevo=False):
                 return
 
 
+def _archivar_partida():
+    """Copia `campana.json` y `perfil.json` antes de empezar de cero.
+
+    Empezar una campana nueva sobrescribe el guardado, asi que antes queda una
+    copia con fecha. Es lo unico que separa "probaste otra faccion" de "te
+    comiste la partida de la tarde": el jugador decide si quiere la vuelta, pero
+    el archivo no desaparece nunca.
+    """
+    import shutil
+    import time as _t
+
+    from paths import archivo
+
+    sello = _t.strftime("%Y%m%d_%H%M%S")
+    destino = os.path.join(dir_datos(), "_partida_archivada_%s" % sello)
+    try:
+        os.makedirs(destino, exist_ok=True)
+        copiados = []
+        for nombre in ("campana.json", "perfil.json"):
+            origen = archivo(nombre)
+            if os.path.exists(origen):
+                shutil.copy2(origen, os.path.join(destino, nombre))
+                copiados.append(nombre)
+        print("partida archivada en %s (%s)" % (destino, ", ".join(copiados)))
+    except OSError as exc:  # noqa: BLE001 - archivar es una red, no un paso
+        print("no se pudo archivar la partida: %s" % exc)
+
+
 def _aplicar_ajustes(pantalla, ajustes):
     """Aplica los cambios de pantalla y audio devueltos por la pantalla de ajustes."""
     if "sfx" in ajustes:
@@ -446,6 +474,22 @@ async def main():
                 await tutorial.tutorial(pantalla, reloj)
                 _CONTEXTO[0] = "menú principal"
             elif accion == "nueva":
+                # Empezar de cero PISA la partida en curso. Se avisa y se
+                # archiva antes: el jugador decide, y el respaldo queda por si
+                # se arrepiente.
+                if estado and not estado.get("completada"):
+                    ok = await pantallas.confirmar(
+                        pantalla, reloj,
+                        "EMPEZAR DE CERO",
+                        "Hay una campana en curso (%s - %s). Empezar de cero la "
+                        "borra y tenes que elegir faccion otra vez. Se guarda "
+                        "una copia antes."
+                        % (facciones.nombre(estado["faccion"]),
+                           campana.nodo(campana.nodo_actual(estado))["titulo"]),
+                        aceptar="EMPEZAR DE CERO")
+                    if not ok:
+                        continue
+                    _archivar_partida()
                 await _nueva_campana(pantalla, reloj)
             elif accion == "campana" and estado and not estado.get("completada"):
                 await _campana(pantalla, reloj, estado)
