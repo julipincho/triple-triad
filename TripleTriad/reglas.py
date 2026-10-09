@@ -124,6 +124,33 @@ def valor_efectivo(carta, r, c, lado, board=None):
 
 def flips_por_carta(board, r, c):
     """Basica + Same + Plus + habilidades. Devuelve set de posiciones."""
+    return _flips(board, r, c)[0]
+
+
+#: Que regla se ensea cuando una carta cae por mas de una a la vez. El same y
+#: el plus se pisan a menudo (dos 5 iguales caen por same, y si ademas sus
+#: sumas coinciden por plus), y para el jugador el efecto que tiene que
+#: aprender es el same. La basic no se enseña nunca: no es un efecto, es lo de
+#: siempre.
+MOTIVOS = ("basica", "quema", "plus", "same")
+
+
+def _regla_principal(fired):
+    """La regla mas especifica que actuo, o None si solo hubo basica."""
+    for regla in ("same", "plus", "quema"):
+        if fired.get(regla):
+            return regla
+    return None
+
+
+def _flips(board, r, c):
+    """Lo mismo que `flips_por_carta`, pero ademas dice QUE REGLA actuo.
+
+    Sin esto el cartel de efecto no puede distinguir un same de un plus: los dos
+    devuelven un conjunto de posiciones identico y no hay forma de saber, ni
+    al jugador ni al juego, cual de las dos reglas lo disparo. `fired` son las
+    reglas que llegaron a activarse y cuantas cartas volteo cada una.
+    """
     carta = board[r][c]
     muro = carta.lados_muro()
     basico = set()
@@ -147,11 +174,14 @@ def flips_por_carta(board, r, c):
             iguales.append((nr, nc))
         sumas.setdefault(m + e, []).append((nr, nc))
     flips = set(basico)
+    fired = {"basica": len(basico)}
     if len(iguales) >= 2:  # Same
         flips.update(iguales)
+        fired["same"] = len(iguales)
     for grupo in sumas.values():  # Plus
         if len(grupo) >= 2:
             flips.update(grupo)
+            fired["plus"] = fired.get("plus", 0) + len(grupo)
     if carta.habilidad == "quema":
         # La quema no barre el tablero entero: solo prende a las vecinas que
         # puede overcome. Antes daba vueltas a TODO lo que la rodeaba sin
@@ -171,29 +201,71 @@ def flips_por_carta(board, r, c):
                 continue  # el muro sigue bloqueando la quema
             m = valor_efectivo(carta, r, c, lado, board)
             e = valor_efectivo(vecina, nr, nc, OPUESTO[lado], board)
-            if m >= e:
+            if m >= e and (nr, nc) not in flips:
                 flips.add((nr, nc))
-    return flips
+                fired["quema"] = fired.get("quema", 0) + 1
+    return flips, fired
 
 
-def capturas(board, r, c):
-    """Captura cartas adyacentes con cadena. Devuelve lista de (fila, col)."""
-    origen = board[r][c]
-    if origen is None:
-        return []
+def cascada(board, r, c):
+    """La captura con cadena, diciendo que efecto disparo cada carta.
+
+    MUTA el tablero igual que `capturas` (no hace copia: esto ya es el juego
+    real, no una simulacion). Devuelve `(capturadas, eventos)`, y cada evento
+    es `(regla, posicion, origen)`: que regla/volto esa carta y desde que carta
+    salio. `regla` es None cuando solo hubo comparacion basica, que no es un
+    efecto sino lo de siempre.
+
+    El origen es lo que separa la cadena del resto: si la carta que voltea es
+    la que el jugador acaba de colocar, el efecto fue ese; si es una carta que
+    ha caido antes en ESTA jugada, el efecto fue el domino.
+    """
+    origen_carta = board[r][c]
+    if origen_carta is None:
+        return [], []
     capturadas = []
+    eventos = []
     cola = [(r, c)]
     while cola:
         cr, cc = cola.pop(0)
         dueno = board[cr][cc].dueno
-        for (nr, nc) in flips_por_carta(board, cr, cc):
+        flips, fired = _flips(board, cr, cc)
+        regla = _regla_principal(fired)
+        for (nr, nc) in sorted(flips):
             vecina = board[nr][nc]
             if vecina is None or vecina.dueno == dueno:
                 continue
             vecina.dueno = dueno
             capturadas.append((nr, nc))
+            eventos.append((regla, (nr, nc), (cr, cc)))
             cola.append((nr, nc))
-    return capturadas
+    return capturadas, eventos
+
+
+def resumen_efectos(eventos, origen):
+    """Que efectos se han activado en una jugada. Para el cartel.
+
+    Devuelve un dict con las reglas que se activaron (sus cartas), mas
+    `cadena`: cuantas cartas cayeron porque cayo una carta anterior en esta
+    misma jugada. `origen` es la casilla donde se coloco la carta, que es lo
+    que distingue "volteo por su cuenta" de "volteo por domino".
+    """
+    resumen = {"basica": 0, "cadena": 0}
+    for regla, _pos, desde in eventos:
+        if desde != origen:
+            # No es un efecto en si, pero es lo que el jugador quiere ver: que
+            # una sola jugada bien puesta voltea medio tablero.
+            resumen["cadena"] += 1
+        if regla:
+            resumen[regla] = resumen.get(regla, 0) + 1
+        else:
+            resumen["basica"] += 1
+    return resumen
+
+
+def capturas(board, r, c):
+    """Captura cartas adyacentes con cadena. Devuelve lista de (fila, col)."""
+    return cascada(board, r, c)[0]
 
 
 def simular(board, carta, r, c, dueno):

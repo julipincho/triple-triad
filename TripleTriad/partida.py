@@ -20,10 +20,12 @@ from reglas import (
     CPU,
     LADOS,
     USUARIO,
+    cascada,
     celdas_vacias,
     capturas,
     contar,
     puntaje_final,
+    resumen_efectos,
     simular,
     val,
     valor_efectivo,
@@ -37,10 +39,12 @@ from ui import (
     CARD_W,
     DORADO,
     LIMIT_FPS,
+    MEDIR,
     REC,
     ROJO,
     TABLERO_H,
     TABLERO_W,
+    TABLERO_Y,
     TEXTO,
     TEXTO_ON,
     TEXTO_TENUE,
@@ -55,6 +59,7 @@ from ui import (
     mano_rect,
     mezcla,
     panel,
+    registrar,
     resplandor,
     texto,
     tooltip,
@@ -64,6 +69,34 @@ import asyncio
 
 SLOT_BG = (28, 30, 40)
 SLOT_BORDE = (92, 84, 62)
+
+#: Los efectos con nombre que el cartel enseña: `(titulo, explicacion)`.
+#:
+#: Los titulos son los mismos que usa `tutorial.py`, en las mismas palabras, para
+#: que el cartel y el tutorial no enseñen dos nombres distintos para lo mismo.
+#: La explicacion es corta a proposito: cabe en una linea y se lee mientras el
+#: tablero sigue moviendose.
+#:
+#: El cartel sale SIEMPRE, aunque el efecto se haya visto cien veces. La idea
+#: es no depender del tutorial, y un cartel que solo aparece las tres primeras
+#: veces obliga a recordar las reglas en cuanto deja de hacerlo.
+EFECTOS = {
+    "same": ("SAME", "caen dos vecinas porque igualan tu numero"),
+    "plus": ("PLUS", "caen dos vecinas porque sus sumas coinciden"),
+}
+
+#: Tiempos del cartel, en segundos. Entrada rapida para que se lea al instante,
+#: cuerpo largo para que se pueda leer entero, y salida mas lenta que la
+#: entrada: si se fuera tan rapido como aparece, el ojo soloeria el parpadeo.
+ENTRADA_EFECTO = 0.22
+DURACION_EFECTO = 2.0
+SALIDA_EFECTO = 0.5
+
+
+def _caja_efecto(rect):
+    """Contenedora de la auditoria visual: el cartel no esta dentro de ningun
+    panel, asi que se declara aqui para que no se cuente como texto suelto."""
+    return "partida"
 
 
 def _sombra_carta(screen, rect, off=(3, 5), big=False):
@@ -177,7 +210,10 @@ class Juego:
         self.sacudida = 0.0
         self.ultima_jugada = None
         self.marcador_mostrado = [0, 0]
-        self.banner = None       # (texto, t0, color, subtitulo)
+        self.banner = None       # (titulo, t0, color, subtitulo)
+        self.efecto = None       # (nombre, t0, color, subtitulo, regla)
+        self._capa_ef = None     # surface de trabajo del cartel
+        self._efecto_sup = None  # (clave, cartel ya compuesto)
         self.comentario = None
         self.comentario_t0 = 0.0
         self._sfx_fin = None
@@ -248,7 +284,7 @@ class Juego:
         mano.remove(carta)
         carta.dueno = dueno
         self.board[r][c] = carta
-        caps = capturas(self.board, r, c)
+        caps, eventos = cascada(self.board, r, c)
         ahora = time.time()
         self.ultima_jugada = (r, c, ahora)
         for (cr, cc) in caps:
@@ -263,15 +299,62 @@ class Juego:
                 self.cadena_max = len(caps)
             if len(caps) >= 3:
                 self.sacudida = min(0.55, 0.18 + len(caps) * 0.06)
-            self.banner = (
-                f"CADENA DE {len(caps)}", ahora, self._color_dueno(dueno),
-                f"{len(caps)} cartas cambiaron de bando",
-            )
+            self._anunciar_efecto(resumen_efectos(eventos, (r, c)), ahora, dueno)
             clave = "captura_cpu" if dueno == CPU else "captura_player"
             if self.rival and self.rival.get(clave):
                 self.comentario = self.rival[clave]
                 self.comentario_t0 = ahora
         return caps
+
+    def _anunciar_efecto(self, resumen, ahora, dueno):
+        """Nombra el efecto que se acaba de activar.
+
+        Antes de esto, cualquier captura pintaba el mismo texto: `CADENA DE 4`
+        tanto si las cuatro cayeron por cadena como si dos cayeron por same y
+        dos por plus. El efecto era invisible y no habia forma de aprenderlo
+        jugando, solo con el tutorial.
+
+        Se nombra UN efecto, el mas raro, y el resto se cuenta en el subtitulo.
+        Enseñar tres nombres a la vez es ruido: el jugador necesita un concepto
+        por cartel, no un resumen de la jugada.
+        """
+        color = self._color_dueno(dueno)
+        # El total es la suma de TODO, no solo de `basica` y `cadena`. Sumando
+        # solo esas dos, una jugada de 3 por same y 2 por cadena decia
+        # "2 cartas" cuando habian caído cinco: el numero que el jugador compara
+        # con el tablero de al lado.
+        total = sum(v for v in resumen.values() if isinstance(v, int))
+        candidatos = [k for k in ("same", "plus") if resumen.get(k)]
+
+        if not candidatos:
+            # Sin same ni plus lo unico que puede haber es cadena. Una sola
+            # captura no es una cadena: es una captura normal, que ya se ven
+            # con el fogonazo y la explosion. Y el numero es el total de cartas
+            # que cambiaron de bando, que es lo que mide `cadena_max`, para que
+            # el cartel y la pantalla de resultado hablen del mismo numero.
+            if total >= 2:
+                self.efecto = ("CADENA DE %d" % total, ahora, color,
+                               "una carta tumba a las demas por domino",
+                               "cadena")
+            else:
+                self.efecto = None
+                self.banner = None
+            return
+
+        regla = max(candidatos, key=lambda k: resumen[k])
+        titulo, sub = EFECTOS[regla]
+        reparto = ["%d por %s" % (resumen[k], EFECTOS[k][0].lower())
+                   for k in candidatos]
+        if resumen["cadena"]:
+            reparto.append("%d por cadena" % resumen["cadena"])
+        if resumen["basica"]:
+            reparto.append("%d directas" % resumen["basica"])
+        self.efecto = (titulo, ahora, color,
+                       "%s.  %d cartas: %s" % (sub, total, ", ".join(reparto)),
+                       regla)
+        # Dos carteles a la vez encima del tablero es ruido, y el efecto raro
+        # merece el sitio: una cadena ya se ve sola en las cartas que caen.
+        self.banner = None
 
     def _explosion(self, r, c, dueno):
         rect = celda_rect(r, c)
@@ -467,6 +550,7 @@ class Juego:
         self._dibujar_mano(lienzo)
         self._dibujar_particulas(lienzo)
         self._dibujar_banner(lienzo, ahora)
+        self._dibujar_efecto(lienzo, ahora)
         if self.fin:
             self._dibujar_resultado(lienzo, ahora)
 
@@ -762,6 +846,120 @@ class Juego:
             pygame.draw.circle(s, con_alpha(p["color"], int(220 * k)), (int(p["x"]), int(p["y"])),
                                max(1, int(p["r"] * k)))
         screen.blit(s, (0, 0))
+
+    def _dibujar_efecto(self, screen, ahora):
+        """El cartel del efecto: SAME, PLUS o CADENA DE n.
+
+        Se compone una sola vez por efecto y se pinta con `set_alpha` sobre un
+        Surface propio. Lo contrario, ir pintando el texto con `font.render` en
+        cada frame, es justo lo que el handoff marca: una fuente por frame y
+        por texto mientras el cartel esta en pantalla. Aqui no se renderiza
+        nada, solo se mueve y se cambia el alpha.
+        """
+        if not self.efecto:
+            return
+        titulo, t0, color, sub, _regla = self.efecto
+        transcurrido = ahora - t0
+        if transcurrido >= DURACION_EFECTO:
+            self.efecto = None
+            return
+
+        caja = self._superficie_efecto(titulo, sub, color)
+        # Entrada rapida, cuerpo quieto, salida lenta: es la curva que hace que
+        # un cartel parezca un cartel y no un parpadeo.
+        if transcurrido < ENTRADA_EFECTO:
+            k = ease(transcurrido / ENTRADA_EFECTO)
+            a = int(255 * k)
+            desliza = int((1 - k) * 16)
+        elif transcurrido < DURACION_EFECTO - SALIDA_EFECTO:
+            a = 255
+            desliza = 0
+        else:
+            k = ease((transcurrido - (DURACION_EFECTO - SALIDA_EFECTO)) / SALIDA_EFECTO)
+            a = int(255 * (1 - k))
+            desliza = -int(k * 12)
+
+        x = (ANCHO - caja.get_width()) // 2
+        # Encima del tablero, no en el borde: la jugada acaba de ocurrir ahi y
+        # el ojo sigue ahi. Centrado en el tercio alto del tablero, que es por
+        # donde cae la carta que el jugador acaba de soltar.
+        y = TABLERO_Y + 150 - caja.get_height() // 2 + desliza
+        capa = self._capa_efecto(caja.get_width(), caja.get_height())
+        # Se limpia antes de blitear: el fondo del cartel es semitransparente
+        # (232 de 255) y la capa se reutiliza. Sin limpiar, dos efectos seguidos
+        # del mismo tamaño dejaban el titulo del anterior asomando debajo.
+        capa.fill((0, 0, 0, 0))
+        capa.blit(caja, (0, 0))
+        capa.set_alpha(a)
+        # El halo late despues de la entrada: da la sensacion de que el tablero
+        # sigue reaccionando a la jugada mientras el cartel ya se va.
+        if ENTRADA_EFECTO <= transcurrido < DURACION_EFECTO - SALIDA_EFECTO:
+            pulso = 0.5 + 0.5 * math.sin((ahora - t0) * 7.0)
+            resplandor(screen, pygame.Rect(x - 3, y - 3,
+                                          caja.get_width() + 6,
+                                          caja.get_height() + 6),
+                       color, alpha=int(70 + 70 * pulso), grosor=2, radio=12)
+        screen.blit(capa, (x, y))
+        if MEDIR:
+            registrar(pygame.Rect(x, y, caja.get_width(), caja.get_height()),
+                      "texto", _caja_efecto)
+
+    def _capa_efecto(self, w, h):
+        """Surface de trabajo del cartel, del tamano justo.
+
+        Se reutiliza en vez de crear una por frame: crear una SRCALPHA de
+        pantalla completa son 4 MB por frame, que es de lo que avisa el
+        handoff. Con el tamano del cartel (unos 700x120) no se nota.
+        """
+        if self._capa_ef is None or self._capa_ef.get_size() != (w, h):
+            self._capa_ef = pygame.Surface((w, h), pygame.SRCALPHA)
+        return self._capa_ef
+
+    def _superficie_efecto(self, titulo, sub, color):
+        """El cartel ya compuesto: titulo grande, filete y reparto de cartas.
+
+        Se cachea en la partida y no en `ui.superficie` a proposito: en pantalla
+        solo hay un cartel, asi que una entrada por partida no deja nada viejo
+        acumulado, mientras que la cache global creceria con cada titulo
+        distinto que saliera en toda la sesion.
+        """
+        clave = (titulo, sub, color)
+        if self._efecto_sup is not None and self._efecto_sup[0] == clave:
+            return self._efecto_sup[1]
+
+        lineas = envolver(sub, 11, ANCHO - 220) if sub else []
+        ancho_titulo = ancho_texto(titulo, 40)
+        ancho_lineas = max((ancho_texto(l, 11) for l in lineas), default=0)
+        # Los 40 px de mas no son adorno: el filete de abajo tiene que ser mas
+        # ancho que el titulo, y si el ancho saliese justo del texto el
+        # filete quedaria asomando por los lados.
+        ancho = max(ancho_titulo + 40, ancho_lineas)
+        w = min(ANCHO - 80, max(260, ancho + 96))
+        h = 30 + 46 + len(lineas) * 17 + 26
+
+        sombra = pygame.Surface((w, h), pygame.SRCALPHA)
+        pygame.draw.rect(sombra, (0, 0, 0, 130),
+                         pygame.Rect(0, 0, w - 8, h - 8), border_radius=14)
+
+        caja = pygame.Surface((w, h), pygame.SRCALPHA)
+        caja.blit(sombra, (8, 8))
+        pygame.draw.rect(caja, (11, 12, 20, 232), caja.get_rect(), border_radius=14)
+        pygame.draw.rect(caja, con_alpha(color, 170), caja.get_rect(), 2,
+                         border_radius=14)
+
+        cx = w // 2
+        texto(caja, titulo, 40, con_alpha(color, 255), centro=(cx, 38))
+        # El filete separa el nombre del efecto de su explicacion. Sin el, las
+        # dos lineas se leen como un solo bloque y el nombre se pierde.
+        pygame.draw.rect(caja, con_alpha(color, 110),
+                         pygame.Rect(cx - ancho_titulo // 2 - 20, 66,
+                                     ancho_titulo + 40, 2))
+        y = 92
+        for linea in lineas:
+            texto(caja, linea, 11, con_alpha(TEXTO, 240), centro=(cx, y))
+            y += 17
+        self._efecto_sup = (clave, caja)
+        return caja
 
     def _dibujar_banner(self, screen, ahora):
         if not self.banner:
