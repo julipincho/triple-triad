@@ -1095,7 +1095,38 @@ def mazo_rival(estado, nodo_id=None, dificultad_extra=0):
 
 
 def cartas_jugador(estado):
-    """Toda la coleccion del jugador (10+ cartas, nunca la mano del duelo)."""
+    """Toda la coleccion del jugador (10+ cartas, nunca la mano del duelo).
+
+    YA CON LAS MEJORAS PUESTAS. Los deltas de `estado["mejoras"]` son lo que el
+    jugador ha ganado en la campana, asi que la carta que tiene en la mano y la
+    que se le enseña en el menu tienen que ser la MISMA carta, con los mismos
+    numeros. Antes esta funcion devolvia los valores base y solo `cartas_duelo`
+    aplicaba los deltas: en el duel la carta valia 5 y en todas las pantallas
+    valia 4. El jugador mejoraba una carta, se le decia "sube su O a 4" (que es
+    lo que ya valia) y no lo veia cambiado en ninguna parte.
+
+    Para el valor base esta `cartas_base`.
+    """
+    deltas = mejoras_de(estado)
+    salida = []
+    for d in estado["cartas"]:
+        carta = Carta.desde_dict(d, estado["faccion"])
+        extra = deltas.get(carta.nombre)
+        if extra:
+            for lado in ("N", "S", "E", "O"):
+                carta.valores[lado] = min(
+                    10, carta.valores[lado] + int(extra.get(lado.lower(), 0) or 0))
+        salida.append(carta)
+    return salida
+
+
+def cartas_base(estado):
+    """La coleccion tal cual esta en `estado["cartas"]`, sin mejoras.
+
+    Solo para lo que tiene que hablar de la carta original: la ficha de la
+    coleccion y el texto de "duplicada (+1)" del sobre, que describen lo
+    impreso en la carta, no la carta que se llevas a la mesa.
+    """
     return [Carta.desde_dict(d, estado["faccion"]) for d in estado["cartas"]]
 
 
@@ -1109,18 +1140,15 @@ def _rng_sorteo(estado, nodo_id, extra=0):
 
 
 def cartas_duelo(estado, nodo_id=None):
-    """Las 5 que tocan en este duelo, sorteadas del mazo con deltas aplicados."""
-    pool = cartas_jugador(estado)
-    deltas = mejoras_de(estado)
-    mano = []
-    for c in pool:
-        copia = c.copia()
-        extra = deltas.get(c.nombre, {})
-        for lado in ("N", "S", "E", "O"):
-            copia.valores[lado] = min(10, copia.valores[lado] + int(extra.get(lado.lower(), 0) or 0))
-        mano.append(copia)
+    """Las 5 que tocan en este duelo, sorteadas del mazo.
+
+    Los deltas ya vienen puestos: `cartas_jugador` los aplica ahora. Esta
+    funcion no los vuelve a sumar, que es el sitio donde se aplicarian dos
+    veces y cada mejora valdria el doble en el duel que en el resto del juego.
+    """
+    mano = cartas_jugador(estado)
     if len(mano) <= 5:
-        return mano
+        return [c.copia() for c in mano]
     rng = _rng_sorteo(estado, nodo_id or nodo_actual(estado))
     return [c.copia() for c in rng.sample(mano, 5)]
 
@@ -1239,9 +1267,22 @@ def mejoras_de(estado):
 
 
 def valor_con_mejoras(datos, deltas_nombre):
-    """Valores base + deltas con tope 10."""
+    """Valores base + deltas con tope 10, en minusculas."""
     return {l: min(10, int(datos[l]) + int(deltas_nombre.get(l, 0) or 0))
             for l in ("n", "s", "e", "o")}
+
+
+def valor_actual(estado, datos, lado):
+    """Lo que vale de verdad un lado de una carta del mazo ahora mismo.
+
+    El mensaje de "subes su O" tiene que decir la cifra FINAL. Con el valor
+    base decia "sube su O a 4" cuando la carta ya valia 4 y con la mejora
+    valia 5: el jugador leia que no habia pasado nada justo despues de gastar
+    una recompensa.
+    """
+    base = int(datos[lado])
+    delta = int(mejoras_de(estado).get(datos["nombre"], {}).get(lado, 0) or 0)
+    return min(10, base + delta)
 
 
 def mejorar_carta(estado, id_carta, lado=None):

@@ -1807,7 +1807,12 @@ async def aplicar_recompensa(screen, clock, estado, clave, nodo_id):
     if clave == "entrenamiento":
         idx = await elegir_carta_para_mejorar(screen, clock, estado)
         lado = campana.mejorar_carta(estado, idx)
-        mensaje = f"{estado['cartas'][idx]['nombre']} sube su {lado.upper()} a {estado['cartas'][idx][lado]}"
+        # El valor FINAL, no el de la ficha: la ficha es el valor de fabrica y
+        # con las mejoras ya puestas de antes, decir el de la ficha hacia
+        # "sube su O a 4" cuando la carta ya valia 4.
+        mensaje = "%s sube su %s a %d" % (
+            estado["cartas"][idx]["nombre"], lado.upper(),
+            campana.valor_actual(estado, estado["cartas"][idx], lado))
     elif clave == "recluta":
         carta = await draft(screen, clock, estado)
         idx = await draft_reemplazo(screen, clock, estado, carta)
