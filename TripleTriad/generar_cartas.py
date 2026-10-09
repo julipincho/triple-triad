@@ -7,6 +7,7 @@ Uso:
 
 import argparse
 import os
+import random
 import re
 import time
 import urllib.parse
@@ -32,69 +33,90 @@ RAZA = {
 
 #: Sufijo comun a los avatares.
 #:
-#: El estilo se decidio DESPUES de mirar las cartas de verdad, no al reves. El
-#: prompt decia "pixel art style" y el resultado salia anime: pelo azul, ojos
-#: grandes, capuchas y ciudades neon. Las cartas, que pasan por el mismo
-#: pipeline, salen grabados medievales en sepia. Para el mismo bando, dos
-#: lenguatesjos visuales distintos: en la carta un lobo de armadura oscura,
-#: en el avatar un chico de pelo azul.
+#: Los avatares se generan con `animagine-xl-4.0.safetensors`, que es un modelo
+#: de anime, y ASI deben seguir: el menu, el mapa y la pantalla de faccion los
+#: enseñan de golpe, y si dos de ellos cambian de idioma visual el menu parece
+#: medio roto. Hace un tiempo se rehicieron con `sd_xl_base_1.0` para que casaran
+#: con las cartas, y el resultado fue un menu con ocho retratos anime y dos
+#: grabados, que es peor que antes.
 #:
-#: El sufijo empuja al grabado entintado, que es lo que ya hacen las cartas,
-#: y descarta explicitamente lo que salia antes.
-SUFIJO_AVATAR = (
-    "medieval woodcut engraving, etched ink lines, sepia and bone white on dark "
-    "background, 15th century manuscript illumination, heavy crosshatching, "
-    "high contrast, icon portrait, bust shot, facing the viewer, no text, "
-    "no border, not anime, not photorealistic, no modern clothing"
+#: El sufijo describe lo que hace `animagine-xl` con los avatares que ya estaban
+#: bien: retrato a busto, de frente, con cel shading y fondo claro.
+#:
+#: Dos cosas que hay que guardar si se regeneran:
+#:   - 28 pasos y CFG 6.0. Con 30 y CFG 6.5 el modelo colapsa en manchas
+#:     abstractas: sale una mancha de colores, no un retrato.
+#:   - el negativo de `generar_cartas_comfyui.NEGATIVO` MAS el de abajo. Sin
+#:     estos terminos, `animagine` mete marcos y cuadritos: de siete lobos
+#:     generados, tres salian con marco de foto y uno partido en cuatro
+#:     paneles, porque `1girl panther woman` le lee como una hoja de personaje.
+#:     `gold collar` es especialmente magnetico para el marco: `gold earring`
+#:     pide por lo mismo sin provocarlo.
+NEGATIVO_AVATAR = (
+    "photorealistic, 3d render, chibi, deformed, human face on a furry body, "
+    "hood, mask, picture frame, ornate frame, border, text, watermark"
 )
 
-#: Prompt Y CARACTERISTICAS DE LA CRIATURIDAD. "panther warrior portrait" sale
-#: un humano con capucha: hay que decir pantera, hocico, colmillos y orejas.
+SUFIJO_AVATAR = (
+    "masterpiece, best quality, highly detailed, anime style, cel shading, "
+    "vibrant colors, character portrait, facing viewer, upper body, "
+    "from the waist up, plain flat background, light background, "
+    "no text, no watermark"
+)
+
+#: Prompt Y CARACTERISTICAS DE LA CRIATURIDAD.
+#:
+#: "panther warrior portrait" sale un humano con capucha contra una ciudad neon,
+#: y "werewolf alpha portrait" sale un chico anime de pelo azul. A `animagine-xl`
+#: hay que darle los rasgos uno a uno y en su idioma (etiquetas de Danbooru),
+#: no una frase de fantasy: el modelo responde a `wolf ears, muzzle, fangs` y
+#: pasa por alto `unmistakably a panther`.
 AVATARES = {
-    "humano": "human knight captain in plate armour, bearded, heraldic surcoat, "
-              "stern face, " + SUFIJO_AVATAR,
-    "orco": "orc warlord, heavy brow, tusks, broken nose, battle scars, iron "
-            "shoulder plates, " + SUFIJO_AVATAR,
-    "goblin": "goblin warlord king, huge pointed ears, wide grin, warts, "
-              "crude crown of twisted iron, " + SUFIJO_AVATAR,
-    "elfo": "elf queen, long pointed ears, sharp cheekbones, braided hair, "
+    "humano": "1boy, human knight, plate armour, beard, heraldic surcoat, "
+              "serious expression, " + SUFIJO_AVATAR,
+    "orco": "1boy, orc, heavy brow, tusks, broken nose, battle scars, "
+            "iron shoulder plates, " + SUFIJO_AVATAR,
+    "goblin": "1boy, goblin, huge pointed ears, wide grin, warts, "
+              "crown of twisted iron, " + SUFIJO_AVATAR,
+    "elfo": "1girl, elf, long pointed ears, sharp cheekbones, braided hair, "
             "circlet, " + SUFIJO_AVATAR,
     "hombre_lobo": (
-        "werewolf alpha, full lupine head, long grey muzzle and bared fangs, "
-        "pricked pointed ears, shaggy dark fur, burning amber eyes, fur ruff "
-        "over chainmail, humanoid but unmistakably a wolf, " + SUFIJO_AVATAR),
-    "vampiro": "vampire countess, pale skin, high cheekbones, dark hair, "
-               "parted lips showing fangs, high collar, " + SUFIJO_AVATAR,
-    "dragon": "dragon king, horned reptilian skull, scales, slit pupils, "
-              "horned crown, smoke, " + SUFIJO_AVATAR,
-    "elfo_nocturno": "dark elf queen, obsidian skin, long pointed ears, "
-                     "violet eyes, hollow gaze, black circlet, " + SUFIJO_AVATAR,
-    "hombre_pantera": (
-        "black panther warrior, full feline head, short black muzzle and bared "
-        "canine fangs, rounded panther ears, sleek black fur, amber slit eyes, "
-        "whip and heavy collar, humanoid but unmistakably a black panther, "
+        "1boy, werewolf, male werewolf, wolf ears, wolf muzzle, long snout, "
+        "bared fangs, shaggy grey fur, amber eyes, torn cloak, muscular, "
         + SUFIJO_AVATAR),
-    "hombre_lagarto": "lizardman chieftain, long scaly muzzle, jaw frill, "
-                      "crocodile eyes, scutes along the brow, " + SUFIJO_AVATAR,
+    "vampiro": "1girl, vampire, pale skin, high cheekbones, dark hair, "
+               "parted lips, fangs, high collar, " + SUFIJO_AVATAR,
+    "dragon": "1boy, dragon, horned reptilian skull, scales, slit pupils, "
+              "horned crown, smoke, " + SUFIJO_AVATAR,
+    "elfo_nocturno": "1girl, dark elf, obsidian skin, long pointed ears, "
+                     "violet eyes, hollow gaze, black circlet, "
+                     + SUFIJO_AVATAR,
+    "hombre_pantera": (
+        "1girl, panther woman, black panther, feline ears, short black muzzle, "
+        "bared canine fangs, sleek black fur, amber slit eyes, gold earring, "
+        + SUFIJO_AVATAR),
+    "hombre_lagarto": "1boy, lizardman, long scaly muzzle, jaw frill, "
+                      "crocodile eyes, green scales, " + SUFIJO_AVATAR,
 }
 
 #: Los personajes con cara propia (no bandos) van aparte: son gente del guion,
 #: pero el mismo estilo les viene bien.
 AVATARES_PERSONAJES = {
-    "nara": "woman chronicler, hooded cloak, ink-stained fingers, calm "
-            "watchful face, " + SUFIJO_AVATAR,
-    "pik": "scared peasant boy, dirt on cheeks, torn shirt, wide eyes, "
+    "nara": "1girl, woman chronicler, hooded cloak, ink-stained fingers, "
+            "calm watchful face, " + SUFIJO_AVATAR,
+    "pik": "1boy, scared peasant, dirt on cheeks, torn shirt, wide eyes, "
            + SUFIJO_AVATAR,
-    "dara": "village woman with a lamp, plain shawl, weathered face, "
+    "dara": "1girl, village woman holding a lamp, plain shawl, weathered face, "
             + SUFIJO_AVATAR,
-    "jefe_arco": "armoured commander, bearded, scarred, plumed helm, "
+    "jefe_arco": "1boy, armoured commander, beard, scar, plumed helm, "
                 + SUFIJO_AVATAR,
-    "gobernante": "weary ruler, hooded, long beard, sorrowful, " + SUFIJO_AVATAR,
-    "revancha": "ruined man in a torn cloak, bitter stare, ash on his "
+    "gobernante": "1boy, weary old ruler, hooded, long beard, sorrowful, "
+                  + SUFIJO_AVATAR,
+    "revancha": "1boy, ruined man in a torn cloak, bitter stare, ash on his "
                 "shoulders, " + SUFIJO_AVATAR,
-    "presentador": "crooked showman with a painted grin, ruff collar, "
+    "presentador": "1boy, crooked showman, painted grin, ruff collar, "
                    + SUFIJO_AVATAR,
-    "rajoy": "middle aged man in a cheap suit, uncomfortable smile, "
+    "rajoy": "1boy, middle aged man in a cheap suit, uncomfortable smile, "
              + SUFIJO_AVATAR,
 }
 
@@ -186,12 +208,46 @@ def generar_cartas(key, solo_nuevas=True):
             time.sleep(1.2)
 
 
-def generar_avatares(key, solo=None, fuerza=False):
+#: Modelo con el que se hacen los avatares. Los dieciocho que ya salen bien
+#: salieron de aqui, asi que es el que hay que usar para los dos que faltaban.
+AVATAR_MODELO = "animagine-xl-4.0.safetensors"
+
+#: El `.bat` que arranca ComfyUI en una ventana nueva. Vive fuera del repo
+#: (es la instalacion local del jugador), asi que `arrancar_servidor` avisa si
+#: no esta en vez de fallar: los avatares se pueden generar a mano desde la
+#: interfaz de ComfyUI y el juego no se entero.
+COMFY_BAT = r"E:\AI\start-comfyui.bat"
+
+
+def generar_avatar_comfyui(nombre, prompt, servidor="http://127.0.0.1:8188",
+                           pasos=28, cfg=6.0, lado=512, destino=None):
+    """Un avatar por ComfyUI con `animagine-xl`. Devuelve True si se genero.
+
+    Se genera a 512 y se deja en 512: el recorte a 256 lo hace quien lo instala
+    en `assets/`, mirando la imagen, no a ciegas.
+    """
+    import generar_cartas_comfyui as comfy
+
+    if comfy.arrancar_servidor(servidor, COMFY_BAT, 180) is None:
+        print("  ComfyUI no respondio en %s" % servidor)
+        return False
+    if destino is None:
+        destino = os.path.join(ASSETS, f"avatar_{nombre}.png")
+    negativo = ", ".join(p for p in (comfy.NEGATIVO, NEGATIVO_AVATAR) if p)
+    return bool(comfy.generar_imagen(
+        servidor, prompt, negativo, destino, random.randrange(2 ** 32),
+        lado, lado, pasos, cfg, AVATAR_MODELO, ancla=None))
+
+
+def generar_avatares(key, solo=None, fuerza=False, comfyui=False):
     """Genera los avatares. `solo` limita a una lista de nombres.
 
     Con `--fuerza` se rehacen SOLO los que no estan en `AVATARES_BIEN`: los
     demas ya salian bien y regenerarlos seria gastar peticiones para obtener
     algo peor o simplemente distinto.
+
+    `comfyui` usa ComfyUI con `animagine-xl` en vez de Pollinations, que esta
+    muerto: la key de `.env` no tiene credito y devuelve HTTP 402.
     """
     print("Avatares:")
     os.makedirs(ASSETS, exist_ok=True)
@@ -214,7 +270,10 @@ def generar_avatares(key, solo=None, fuerza=False):
     for nombre in faltan:
         prompt = objetivo[nombre]
         destino = os.path.join(ASSETS, f"avatar_{nombre}.png")
-        _pedir(prompt, destino, key, 256, 256)
+        if comfyui:
+            generar_avatar_comfyui(nombre, prompt, destino=destino)
+        else:
+            _pedir(prompt, destino, key, 256, 256)
         time.sleep(1.2)
 
 
@@ -235,6 +294,10 @@ def main():
     parser.add_argument("--avatar", nargs="+", metavar="NOMBRE",
                         help="genera solo estos avatares (por ejemplo: "
                              "hombre_lobo hombre_pantera)")
+    parser.add_argument("--comfyui", action="store_true",
+                        help="los avatares van por ComfyUI con animagine-xl en "
+                             "vez de Pollinations, que devuelve HTTP 402 sin "
+                             "credito")
     args = parser.parse_args()
 
     key = cargar_key()
@@ -259,7 +322,8 @@ def main():
     if args.solo in ("cartas", "todo"):
         generar_cartas(key)
     if args.solo in ("avatares", "todo"):
-        generar_avatares(key, solo=args.avatar, fuerza=args.fuerza)
+        generar_avatares(key, solo=args.avatar, fuerza=args.fuerza,
+                         comfyui=args.comfyui)
     if args.solo in ("fondos", "todo"):
         generar_fondos(key)
     print("Listo.")
