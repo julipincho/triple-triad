@@ -30,18 +30,83 @@ RAZA = {
     "hombre_lagarto": "lizardman warrior",
 }
 
+#: Sufijo comun a los avatares.
+#:
+#: El estilo se decidio DESPUES de mirar las cartas de verdad, no al reves. El
+#: prompt decia "pixel art style" y el resultado salia anime: pelo azul, ojos
+#: grandes, capuchas y ciudades neon. Las cartas, que pasan por el mismo
+#: pipeline, salen grabados medievales en sepia. Para el mismo bando, dos
+#: lenguatesjos visuales distintos: en la carta un lobo de armadura oscura,
+#: en el avatar un chico de pelo azul.
+#:
+#: El sufijo empuja al grabado entintado, que es lo que ya hacen las cartas,
+#: y descarta explicitamente lo que salia antes.
+SUFIJO_AVATAR = (
+    "medieval woodcut engraving, etched ink lines, sepia and bone white on dark "
+    "background, 15th century manuscript illumination, heavy crosshatching, "
+    "high contrast, icon portrait, bust shot, facing the viewer, no text, "
+    "no border, not anime, not photorealistic, no modern clothing"
+)
+
+#: Prompt Y CARACTERISTICAS DE LA CRIATURIDAD. "panther warrior portrait" sale
+#: un humano con capucha: hay que decir pantera, hocico, colmillos y orejas.
 AVATARES = {
-    "humano": "human knight captain portrait, fantasy, pixel art style",
-    "orco": "orc warlord portrait, fantasy, pixel art style",
-    "goblin": "goblin warlord king portrait, fantasy, pixel art style",
-    "elfo": "elf queen portrait, fantasy, pixel art style",
-    "hombre_lobo": "werewolf alpha portrait, fantasy, pixel art style",
-    "vampiro": "vampire countess portrait, fantasy, pixel art style",
-    "dragon": "dark dragon king portrait, fantasy, pixel art style",
-    "elfo_nocturno": "dark elf queen portrait with violet eyes, fantasy, pixel art style",
-    "hombre_pantera": "black panther warrior portrait with amber eyes, fantasy, pixel art style",
-    "hombre_lagarto": "lizardman chieftain portrait, fantasy, pixel art style",
+    "humano": "human knight captain in plate armour, bearded, heraldic surcoat, "
+              "stern face, " + SUFIJO_AVATAR,
+    "orco": "orc warlord, heavy brow, tusks, broken nose, battle scars, iron "
+            "shoulder plates, " + SUFIJO_AVATAR,
+    "goblin": "goblin warlord king, huge pointed ears, wide grin, warts, "
+              "crude crown of twisted iron, " + SUFIJO_AVATAR,
+    "elfo": "elf queen, long pointed ears, sharp cheekbones, braided hair, "
+            "circlet, " + SUFIJO_AVATAR,
+    "hombre_lobo": (
+        "werewolf alpha, full lupine head, long grey muzzle and bared fangs, "
+        "pricked pointed ears, shaggy dark fur, burning amber eyes, fur ruff "
+        "over chainmail, humanoid but unmistakably a wolf, " + SUFIJO_AVATAR),
+    "vampiro": "vampire countess, pale skin, high cheekbones, dark hair, "
+               "parted lips showing fangs, high collar, " + SUFIJO_AVATAR,
+    "dragon": "dragon king, horned reptilian skull, scales, slit pupils, "
+              "horned crown, smoke, " + SUFIJO_AVATAR,
+    "elfo_nocturno": "dark elf queen, obsidian skin, long pointed ears, "
+                     "violet eyes, hollow gaze, black circlet, " + SUFIJO_AVATAR,
+    "hombre_pantera": (
+        "black panther warrior, full feline head, short black muzzle and bared "
+        "canine fangs, rounded panther ears, sleek black fur, amber slit eyes, "
+        "whip and heavy collar, humanoid but unmistakably a black panther, "
+        + SUFIJO_AVATAR),
+    "hombre_lagarto": "lizardman chieftain, long scaly muzzle, jaw frill, "
+                      "crocodile eyes, scutes along the brow, " + SUFIJO_AVATAR,
 }
+
+#: Los personajes con cara propia (no bandos) van aparte: son gente del guion,
+#: pero el mismo estilo les viene bien.
+AVATARES_PERSONAJES = {
+    "nara": "woman chronicler, hooded cloak, ink-stained fingers, calm "
+            "watchful face, " + SUFIJO_AVATAR,
+    "pik": "scared peasant boy, dirt on cheeks, torn shirt, wide eyes, "
+           + SUFIJO_AVATAR,
+    "dara": "village woman with a lamp, plain shawl, weathered face, "
+            + SUFIJO_AVATAR,
+    "jefe_arco": "armoured commander, bearded, scarred, plumed helm, "
+                + SUFIJO_AVATAR,
+    "gobernante": "weary ruler, hooded, long beard, sorrowful, " + SUFIJO_AVATAR,
+    "revancha": "ruined man in a torn cloak, bitter stare, ash on his "
+                "shoulders, " + SUFIJO_AVATAR,
+    "presentador": "crooked showman with a painted grin, ruff collar, "
+                   + SUFIJO_AVATAR,
+    "rajoy": "middle aged man in a cheap suit, uncomfortable smile, "
+             + SUFIJO_AVATAR,
+}
+
+#: Avatares que ya salen bien y NO hay que rehacer. Los dos que fallaban
+#: (hombre_lobo y hombre_pantera) NO estan aqui a proposito: con `--fuerza` se
+#: regeneran solo los que faltan de esta lista.
+AVATARES_BIEN = (
+    "humano", "orco", "goblin", "elfo", "vampiro", "dragon",
+    "elfo_nocturno", "hombre_lagarto",
+    "nara", "pik", "dara", "jefe_arco", "gobernante", "revancha",
+    "presentador", "rajoy",
+)
 
 # Fondos de las cinematicas: (nombre, prompt)
 FONDOS = {
@@ -121,12 +186,35 @@ def generar_cartas(key, solo_nuevas=True):
             time.sleep(1.2)
 
 
-def generar_avatares(key):
+def generar_avatares(key, solo=None, fuerza=False):
+    """Genera los avatares. `solo` limita a una lista de nombres.
+
+    Con `--fuerza` se rehacen SOLO los que no estan en `AVATARES_BIEN`: los
+    demas ya salian bien y regenerarlos seria gastar peticiones para obtener
+    algo peor o simplemente distinto.
+    """
     print("Avatares:")
     os.makedirs(ASSETS, exist_ok=True)
-    for bando, prompt in AVATARES.items():
-        destino = os.path.join(ASSETS, f"avatar_{bando}.png")
-        _pedir(prompt + ", no text, no border", destino, key, 256, 256)
+    objetivo = dict(AVATARES_PERSONAJES)
+    objetivo.update(AVATARES)
+
+    if solo:
+        faltan = [n for n in solo if n in objetivo]
+        if not faltan:
+            raise SystemExit(
+                "ninguno de %s es un avatar conocido; conocidos: %s"
+                % (", ".join(solo), ", ".join(sorted(objetivo))))
+    elif fuerza:
+        faltan = [n for n in objetivo if n not in AVATARES_BIEN]
+        print("  con --fuerza solo se rehacen los que no estan en "
+              "AVATARES_BIEN: %s" % ", ".join(faltan))
+    else:
+        faltan = list(objetivo)
+
+    for nombre in faltan:
+        prompt = objetivo[nombre]
+        destino = os.path.join(ASSETS, f"avatar_{nombre}.png")
+        _pedir(prompt, destino, key, 256, 256)
         time.sleep(1.2)
 
 
@@ -144,6 +232,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--fuerza", action="store_true", help="regenera tambien lo existente")
     parser.add_argument("--solo", choices=["cartas", "avatares", "fondos"], default="todo")
+    parser.add_argument("--avatar", nargs="+", metavar="NOMBRE",
+                        help="genera solo estos avatares (por ejemplo: "
+                             "hombre_lobo hombre_pantera)")
     args = parser.parse_args()
 
     key = cargar_key()
@@ -151,7 +242,15 @@ def main():
         print("Sin key en .env: usando modo anonimo (muy limitado).")
 
     if args.fuerza:
-        for carpeta in ("cartas", "assets", os.path.join("assets", "fondos")):
+        # Los avatares NO se borran aqui: los que ya salen bien (los de
+        # `AVATARES_BIEN`) se perderian y luego hay que pagar peticiones para
+        # regenerarlos. `generar_avatares` decide por su cuenta cuales rehacer.
+        carpetas = ["cartas"]
+        if args.solo in ("fondos", "todo"):
+            carpetas.append(os.path.join("assets", "fondos"))
+        if args.solo == "cartas":
+            carpetas = ["cartas"]
+        for carpeta in carpetas:
             ruta = os.path.join(os.path.dirname(os.path.abspath(__file__)), carpeta)
             for f in os.listdir(ruta) if os.path.isdir(ruta) else []:
                 if f.endswith(".png"):
@@ -160,7 +259,7 @@ def main():
     if args.solo in ("cartas", "todo"):
         generar_cartas(key)
     if args.solo in ("avatares", "todo"):
-        generar_avatares(key)
+        generar_avatares(key, solo=args.avatar, fuerza=args.fuerza)
     if args.solo in ("fondos", "todo"):
         generar_fondos(key)
     print("Listo.")

@@ -369,6 +369,10 @@ def procesar(ficha, args, servidor):
     positivo, negativo = construir_prompt(
         nombre, faccion, raza, descripcion, clase, rareza, estilo
     )
+    # `--negativo` ANADE al negativo de la biblia, no lo sustituye: asi una
+    # correccion puntual (por ejemplo "sin tríptico") no se pierde el resto.
+    if args.negativo:
+        negativo = ", ".join(p for p in (negativo, args.negativo) if p)
 
     salida = os.path.join(BASE, args.salida) if not os.path.isabs(args.salida) else args.salida
     destino = os.path.join(salida, f"{_norm(faccion)}_{slug(nombre)}.png")
@@ -407,6 +411,9 @@ def main():
     parser.add_argument("--faccion", help="id de faccion (goblin, vampiro, ...)")
     parser.add_argument("--raza", help="raza (por defecto: la faccion)")
     parser.add_argument("--descripcion", default="", help="escena o pose del personaje")
+    parser.add_argument("--negativo", default="",
+                        help="anade terminos al prompt negativo de la biblia "
+                             "(por ejemplo: 'grid, triptych, panels')")
     parser.add_argument("--clase", default="", help="clase (guerrero, nigromante, ...)")
     parser.add_argument("--rareza", default="COMUN",
                         choices=["COMUN", "RARA", "LEGENDARIA", "comun", "rara", "legendaria"],
