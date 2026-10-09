@@ -132,10 +132,13 @@ def _escenas_post_duelo():
     return [
         esc("- Otra vez esa maldita combinacion.", hablante="Juan Rajoy",
             fondo="salon", mundo=REAL, retrato="rajoy"),
-        esc("- Te avise que dejaras libre el centro.", fondo="salon", mundo=REAL),
+        # Aqui el rival se dirige al jugador por su nombre. `__JUGADOR__` se
+        # resuelve con lo que se escribio al empezar; sin nombre, "el duelista".
+        esc("- Te lo dije, __JUGADOR__. Centro libre y a correr.",
+            hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy"),
         esc("Juan te mira el mazo otra vez. Esta vez con respeto.",
             hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy"),
-        esc("- Buena partida, crack.", hablante="Juan Rajoy", fondo="salon",
+        esc("- Buena partida, __JUGADOR__.", hablante="Juan Rajoy", fondo="salon",
             retrato="rajoy", mundo=REAL),
         esc("Cumpliste. Ahora van a presentar la carta que trajeron.",
             fondo="escenario", mundo=REAL),
@@ -157,8 +160,8 @@ def _escenas_carta_umbral():
             fondo="escenario", color=TEXTO_ON, mundo=REAL),
         esc("Esas cartas las viste cientos de veces. Nunca las entendiste del todo.",
             fondo="escenario", color=TEXTO_ON, mundo=REAL),
-        esc("Las nueve casillas del tablero empiezan a iluminarse.",
-            fondo="umbral", efecto="titulo", mundo=REAL),
+        esc("LAS NUEVE CASILLAS", fondo="umbral", efecto="titulo", mundo=REAL),
+        esc("empiezan a iluminarse.", fondo="umbral", mundo=REAL),
         esc("La carta central cambia. Y durante un segundo aparece algo que no",
             fondo="umbral", mundo=REAL),
         esc("deberia existir en ninguna edicion: una decima faccion. O una figura",

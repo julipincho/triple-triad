@@ -73,6 +73,7 @@ ROLES = {
         "dialogo": {
             "pre": [
                 _esc("- No quiero pelear. De verdad. No quiero.", hablante="__NOMBRE__"),
+                _esc("- Pero tu, __JUGADOR__, si vienes a por el campo, hace falta."),
                 _esc("- Si me das el centro me voy y no miro atras."),
             ],
             "win": [
@@ -106,6 +107,7 @@ ROLES = {
         "dialogo": {
             "pre": [
                 _esc("- No entres con eso. Eso no es tuyo.", hablante="__NOMBRE__"),
+                _esc("- __JUGADOR__, si te llevas otra carta mia, te quedaras sin camino."),
                 _esc("- Aqui las cartas son Juicio, no juguete. Se nota."),
             ],
             "win": [
@@ -141,6 +143,7 @@ ROLES = {
             "pre": [
                 _esc("- Baja despacio. Esto ya estaba roto antes de que llegaras.",
                      hablante="__NOMBRE__"),
+                _esc("- __JUGADOR__, tu nombre lo vi en las ruinas. Preguntate por que."),
                 _esc("- Y no, no te lo voy a explicar."),
             ],
             "win": [
@@ -176,6 +179,7 @@ ROLES = {
             "pre": [
                 _esc("- No sigas. No por mi. Por lo que hay atras.",
                      hablante="__NOMBRE__"),
+                _esc("- __JUGADOR__, te lo pido por tu nombre. De verdad. No sigas."),
                 _esc("- Cada vez que los mundos se tocan, algo pasa en los dos lados."),
                 _esc("- Vos ya cruzaste. Preguntate que cruza de vuelta."),
             ],
@@ -213,12 +217,15 @@ ROLES = {
         "dialogo": {
             "pre": [
                 _esc("- Otra vez.", hablante="__NOMBRE__"),
+                _esc("- __JUGADOR__, siempre el mismo. Como si el nombre no te "
+                     "importara."),
                 _esc("- Otra vez la misma combinacion. No se si te enorgullece o me "
                      "insulta."),
                 _esc("- Yo si me acuerdo. Yo me acuerdo de todo."),
             ],
             "win": [
-                _esc("- No te'])) ya. Y eso es peor que perder.", hablante="__NOMBRE__"),
+                _esc("- No te dejo irte ya. Y eso es peor que perder.",
+                     hablante="__NOMBRE__"),
             ],
             "lose": [
                 _esc("- Otra vez. Que se note.", hablante="__NOMBRE__"),
@@ -248,6 +255,7 @@ ROLES = {
             "pre": [
                 _esc("- No necesitas pelear. De verdad. Eso es lo raro.",
                      hablante="__NOMBRE__"),
+                _esc("- __JUGADOR__, se tu nombre y ya se lo que vienes a buscar."),
                 _esc("- Pero si ganas, vas a descubrir la verdad. Y la verdad no es "
                      "lo que esperas."),
                 _esc("- Lo prudente es no saber. Eso no lo vas a entender hasta "
@@ -346,19 +354,65 @@ def historia_de(nodo_id):
     return rol_de(nodo_id).get("historia", "")
 
 
-def dialogo_de(nodo_id, momento, nombre_duelista):
-    """Lineas del rival en un momento dado, con el nombre ya resuelto.
+#: Placeholder del nombre del rival. Va en `hablante` ("quien habla") en la
+#: mayoria de las lineas y dentro de `texto` en algunas.
+PLACEHOLDER_NOMBRE = "__NOMBRE__"
+
+#: Placeholder de como se dirige el rival al jugador. Antes el juego no
+#: nombraba nunca al protagonista, asi que estas lineas hay que escribirlas
+#: nuevas: van con el nombre del rival intacto en `hablante`.
+PLACEHOLDER_JUGADOR = "__JUGADOR__"
+
+
+#: Cuando el jugador no pone nombre, el rival se dirige a el asi. Empieza en
+#: mayuscula porque siempre va detras de un guion o al principio de la frase.
+DEFECTO_JUGADOR = "El duelista"
+
+
+def _resolver(copia, nombre, nombre_jugador=""):
+    """Sustituye los placeholders en TODOS los campos de texto de la escena.
+
+    Antes solo se miraba `texto`, y el placeholder aparece sobre todo en
+    `hablante` (la etiqueta de quien habla). Resultado: unas veinte escenas
+    pintaban literalmente "__NOMBRE__" en la caja de dialogo, y el test no lo
+    veía porque comprobaba unicamente `e["texto"]`.
+
+    `__JUGADOR__` es el nombre del jugador y va con mayusculas: se sustituye
+    tal cual para no romper un nombre propio en minúsculas.
+    """
+    valores = ((PLACEHOLDER_NOMBRE, nombre),
+               (PLACEHOLDER_JUGADOR, nombre_jugador or DEFECTO_JUGADOR))
+    for campo in ("texto", "hablante"):
+        actual = copia.get(campo)
+        if not isinstance(actual, str):
+            continue
+        for marca, valor in valores:
+            if marca in actual:
+                if not valor:
+                    # Sin nombre del rival la linea pierde su sentido: se
+                    # descarta en vez de dejar el marcador a la vista.
+                    return None
+                actual = actual.replace(marca, valor)
+        copia[campo] = actual
+    return copia
+
+
+def dialogo_de(nodo_id, momento, nombre_duelista, nombre_jugador=""):
+    """Lineas del rival en un momento dado, con los nombres ya resueltos.
 
     `momento` in ("pre", "win", "lose").
+    `nombre_jugador` es opcional: si no se pasa, `__JUGADOR__` vale
+    "el duelista", que es el texto de siempre.
     """
     datos = rol_de(nodo_id).get("dialogo", {}).get(momento, [])
     salida = []
     for e in datos:
-        copia = dict(e)
+        copia = _resolver(dict(e), nombre_duelista, nombre_jugador)
+        if copia is None:
+            continue
         texto = copia.get("texto", "")
-        if "__NOMBRE__" in texto:
-            texto = texto.replace("__NOMBRE__", nombre_duelista)
-            # con el nombre dentro del texto no hace falta hablante
+        # Con el nombre ya dentro del texto no hace falta la etiqueta.
+        if nombre_duelista and nombre_duelista in texto:
             copia.pop("hablante", None)
         salida.append(copia)
     return salida

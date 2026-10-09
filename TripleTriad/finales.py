@@ -97,7 +97,10 @@ EPILOGO = {
             "Miras tu mazo para contar las cartas y te sobran cinco.",
             "Hay una que no compraste. No la viste nunca. No tiene fecha.",
             "Es LEGENDARIA. Y el rostro en el arte... es el tuyo.",
-            "- Quien sos? - Alguien que estuvo donde nadie debe estar.",
+            # La pregunta va al jugador por su nombre. `__JUGADOR__` lo resuelve
+            # `Cinematica` al construir la secuencia (no por frame), y sin
+            # nombre sigue siendo "El duelista".
+            "- Quien sos, __JUGADOR__? - Alguien que estuvo donde nadie debe estar.",
         ],
     },
     "equilibrio": {
@@ -133,7 +136,7 @@ EPILOGO = {
             "Las cosas de siempre son las mismas. Casi todas.",
             "En tu coleccion hay una carta nueva. No recuerdas comprarla.",
             "La sacas. Y dentro del sobre, la carta se mueve sola.",
-            "- Esto se mueve? - ...Para vos no. Ya lo hiciste antes.",
+            "- Esto se mueve, __JUGADOR__? - ...Para vos no. Ya lo hiciste antes.",
         ],
     },
 }

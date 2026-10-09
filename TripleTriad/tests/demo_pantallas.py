@@ -222,6 +222,7 @@ def main():
     ]
     estado = campana.nueva_campana("humano")
     pantallas_prueba = [
+        ("12_nombre", lambda: pantallas.pedir_nombre(SCREEN, RelojFalso(), "Bartolo")),
         ("13_portada", lambda: pantallas.portada(SCREEN, RelojFalso())),
         ("13b_menu", lambda: pantallas.menu(SCREEN, RelojFalso(), estado)),
         ("14_elegir_faccion", lambda: pantallas.elegir_faccion(SCREEN, RelojFalso())),
@@ -252,8 +253,16 @@ def main():
             [mazos.HUMANOS[1], mazos.HUMANOS[4]], [mazos.HUMANOS[0]])),
         ("29_tienda", lambda: pantallas.tienda(
             SCREEN, RelojFalso(), campana.nueva_campana("humano"))),
+        # Mazo vacio al entrar, como debe: para esta captura se elige un mazo
+        # real de 5 cartas, que es el estado que ve el jugador una vez ha
+        # pulsado en la coleccion.
         ("30_armar_mazo", lambda: (campana.asegurar_coleccion("humano"),
-                                   pantallas.armar_mazo(SCREEN, RelojFalso(), "humano"))[1]),
+                                   campana.guardar_mazo_global([]),
+                                   campana.guardar_mazo_global(
+                                       list(campana.coleccion_de(
+                                           campana.cargar_perfil()))[:5]),
+                                   pantallas.armar_mazo(
+                                       SCREEN, RelojFalso(), "humano"))[1]),
     ]
     for nombre, fn in pasos + pantallas_prueba:
         try:

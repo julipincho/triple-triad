@@ -64,15 +64,94 @@ class TestDialogos(unittest.TestCase):
                     self.assertTrue(e["texto"].strip())
 
     def test_el_nombre_del_duelista_se_sustituye(self):
-        """__NOMBRE__ se resuelve: si queda, es un bug de presentacion."""
+        """__NOMBRE__ se resuelve en TODOS los campos: si queda, es un bug.
+
+        Antes solo se comprobaba `e["texto"]` y el placeholder aparecia
+        sobre todo en `e["hablante"]` (la etiqueta de quien habla): unas
+        veinte escenas pintaban "__NOMBRE__" literal en la caja de dialogo y
+        la suite daba verde. Ahora se revisan los dos campos.
+        """
         for nodo in NODOS_DUELO:
             for momento in MOMENTOS:
                 for e in duelistas.dialogo_de(nodo, momento, "Pik"):
-                    self.assertNotIn("__NOMBRE__", e["texto"],
-                                     f"{nodo}/{momento}: placeholder sin resolver")
+                    for campo in ("texto", "hablante"):
+                        valor = e.get(campo)
+                        if isinstance(valor, str):
+                            self.assertNotIn(
+                                "__NOMBRE__", valor,
+                                f"{nodo}/{momento}: placeholder sin resolver en {campo}")
                     if "Pik" in e["texto"]:
                         self.assertIsNone(e.get("hablante"),
                                           "el nombre ya esta en el texto")
+
+    def test_el_hablante_es_el_nombre_real_del_rival(self):
+        """Quien habla lleva el nombre del rival, no el placeholder."""
+        for nodo in NODOS_DUELO:
+            for momento in MOMENTOS:
+                lineas = duelistas.dialogo_de(nodo, momento, "Gruk")
+                for e in lineas:
+                    hablante = e.get("hablante")
+                    if hablante:
+                        self.assertEqual(
+                            hablante, "Gruk",
+                            f"{nodo}/{momento}: hablante no resuelto: {hablante!r}")
+
+    def test_sin_nombre_no_se_rompe(self):
+        """Un rival sin nombre no deja el placeholder en el cuerpo del texto."""
+        for nodo in NODOS_DUELO:
+            for momento in MOMENTOS:
+                for e in duelistas.dialogo_de(nodo, momento, ""):
+                    texto = e.get("texto")
+                    if isinstance(texto, str):
+                        self.assertNotIn("__NOMBRE__", texto)
+
+
+class TestNombreDelJugador(unittest.TestCase):
+    """`__JUGADOR__`: los rivales se dirigen al jugador por su nombre."""
+
+    def test_el_nombre_del_jugador_se_sustituye(self):
+        for nodo in NODOS_DUELO:
+            for momento in MOMENTOS:
+                for e in duelistas.dialogo_de(nodo, momento, "Pik", "Bartolo"):
+                    for campo in ("texto", "hablante"):
+                        v = e.get(campo)
+                        if isinstance(v, str):
+                            self.assertNotIn("__JUGADOR__", v,
+                                             f"{nodo}/{momento}: {campo}")
+
+    def test_algun_rival_se_dirige_al_jugador_por_su_nombre(self):
+        """No basta con que se sustituya: tiene que usarse de verdad."""
+        con_nombre = sum(
+            1
+            for nodo in NODOS_DUELO
+            for momento in MOMENTOS
+            for e in duelistas.dialogo_de(nodo, momento, "Pik", "Bartolo")
+            if "Bartolo" in (e.get("texto") or ""))
+        self.assertGreaterEqual(
+            con_nombre, len(NODOS_DUELO),
+            "cada nodo deberia tener al menos una linea que nombre al jugador")
+
+    def test_sin_nombre_sale_el_duelista_no_el_marcador(self):
+        for nodo in NODOS_DUELO:
+            for momento in MOMENTOS:
+                for e in duelistas.dialogo_de(nodo, momento, "Pik", ""):
+                    texto = e.get("texto") or ""
+                    self.assertNotIn("__JUGADOR__", texto)
+                    self.assertNotIn("__NOMBRE__", texto)
+
+    def test_el_defecto_empieza_en_mayuscula(self):
+        """Va detras de un guion: "el duelista, si vienes" queda mal."""
+        self.assertEqual(duelistas.DEFECTO_JUGADOR[0], duelistas.DEFECTO_JUGADOR[0].upper())
+        self.assertTrue(duelistas.DEFECTO_JUGADOR[1:].startswith("l"),
+                        "debe ser 'El duelista', no una inicial suelta")
+
+    def test_el_nombre_propio_no_se_toca(self):
+        """Un nombre en minusculas debe seguir en minusculas."""
+        for nodo in NODOS_DUELO:
+            for e in duelistas.dialogo_de(nodo, "pre", "Pik", "bo"):
+                if "bo," in (e.get("texto") or "") or "bo " in (e.get("texto") or ""):
+                    return
+        self.fail("ninguna linea respeta las minusculas del nombre")
 
     def test_momento_desconocido_devuelve_vacio(self):
         self.assertEqual(duelistas.dialogo_de("senda", "inventado", "X"), [])

@@ -1,6 +1,7 @@
 .env
 campana.json
 perfil.json
+opciones.json
 crash.log
 build/
 dist/

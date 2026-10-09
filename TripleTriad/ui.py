@@ -54,6 +54,99 @@ TRANSICION = 0.45
 # tests/test_estabilidad.py). Evita que el consumo de CPU y memoria se dispare.
 LIMIT_FPS = 60
 
+# ---------------------------------------------------------------- medidor real
+# `tests/auditoria_visual.py` reproduce cada pantalla con un driver de video
+# falso y, con `MEDIR` a True, cada `texto`, `panel` y `Boton.dibujar` que
+# termina de pintar apunta su rect final a `_REGISTRO`. Asi la auditoria mide
+# lo que REALMENTE se dibuja en lugar de replicar las constantes del código a
+# mano, que es lo que dejó pasar siete desbordes y dos solapes reales con el
+# informe anterior en verde.
+#
+# Apagado en producción: es un `if` por llamada y no toca el presupuesto de
+# frame, pero no es gratis. Solo se enciende desde los tests.
+MEDIR = False
+
+# (rect, rol, contenedora) acumulados en el frame actual. `contenedora` es el
+# panel más pequeño que contiene al rect (None si ninguno). Se limpia cada
+# `pygame.display.flip` para que un texto no herede paneles de frames anteriores.
+_REGISTRO = []
+# Paneles pintados en el frame actual, para que `texto` pueda buscar su
+# contenedora sin tener que conocer la estructura de la pantalla.
+_PANELES_ACTUALES = []
+# Acumulado de todos los frames, para que el auditor lo analice al terminar.
+_REGISTRO_TODOS = []
+
+# Margen de seguridad: los bordes de paneles con `border_radius` pueden
+# quedar 1-2 px fuera de su `rect` teórico sin ser un problema real.
+MARGEN_SEGURIDAD = 2
+
+
+def _contenedora(rect):
+    """Panel más pequeño de `_PANELES_ACTUALES` que contiene `rect`."""
+    if not MEDIR or not _PANELES_ACTUALES:
+        return None
+    mejor = None
+    mejor_area = None
+    for p in _PANELES_ACTUALES:
+        if p.contains(rect):
+            area = p.w * p.h
+            if mejor is None or area < mejor_area:
+                mejor = p
+                mejor_area = area
+    return mejor
+
+
+def registrar(rect, rol, contenedora=None):
+    """Apunta un rect final a `_REGISTRO` si `MEDIR` está activo."""
+    if not MEDIR:
+        return
+    r = pygame.Rect(rect)
+    _REGISTRO.append((r, rol, contenedora))
+
+
+def limpiar_medicion():
+    """Vacía todos los registros (llamado al cambiar de pantalla o al fin)."""
+    _REGISTRO.clear()
+    _PANELES_ACTUALES.clear()
+    _REGISTRO_TODOS.clear()
+
+
+def _volcar_frame():
+    """Guarda los rects del frame en `_REGISTRO_TODOS` y los prepara para el siguiente."""
+    if not MEDIR:
+        return
+    for r, rol, contenedora in _REGISTRO:
+        _REGISTRO_TODOS.append((r, rol, contenedora))
+    _REGISTRO.clear()
+    _PANELES_ACTUALES.clear()
+
+
+def _volcar_frame():
+    """Guarda los rects del frame en `_REGISTRO_TODOS` y los prepara para el siguiente.
+
+    Se llama sola desde `pygame.display.flip`, el unico punto por el que
+    pasan todos los frames del juego (y de los tests). Asi la auditoria no
+    depende de que cada pantalla recuerde de llamar a nada.
+    """
+    for r, rol, contenedora in _REGISTRO:
+        _REGISTRO_TODOS.append((r, rol, contenedora))
+    _REGISTRO.clear()
+    _PANELES_ACTUALES.clear()
+
+
+# Envolver `pygame.display.flip` una sola vez: es el punto por el que pasan
+# todos los frames y no hay que tocar las 40+ pantallas que lo llaman.
+_FLIP_ORIGINAL = pygame.display.flip
+
+
+def _flip_medicion():
+    _volcar_frame()
+    _FLIP_ORIGINAL()
+
+
+if MEDIR:
+    pygame.display.flip = _flip_medicion
+
 
 # ------------------------------------------------------------------ recursos
 class Recursos:
@@ -83,26 +176,94 @@ class Recursos:
             self.imagenes[clave] = img
         return self.imagenes[clave]
 
-    def _cubrir(base, destino):
-        """Escala `base` para CUBRIR `destino` sin deformar y recorta el sobrante.
+    def _mejor_factor(self, bw, bh, w, h, tope=8):
+        """Factor entero con el que la imagen ocupa mas pantalla.
 
-        Los fondos son 512x256 (2:1) y la pantalla 1280x800 (1.6:1). Estirarlos
-        hasta que entren aplastaba la imagen un 20% en vertical y se veía: las
-        personas salían anchas y los edificios bajos. Un fondo de entorno no
-        puede deformarse porque el ojo compara la proporción con la realidad.
+        Se prueban todos los factores enteros y se gana el que menos pantalla
+        desperdicia. Hay dos formas de desperdiciarla y NO valen lo mismo:
 
-        Se escala por el lado que sobra (aqui la altura) y se recorta el
-        centro del eje largo. Perder los bordes es barato en un fondo; deformar
-        la imagen no lo es.
+          - una BARRA (la imagen no llega): se ve negro en pantalla, se nota.
+          - un RECORTE (la imagen se pasa): no se ve nada raro, solo pierdes
+            trozo del dibujo original.
+
+        Por eso la barra pesa triple: es el defecto visible. Antes de contar,
+        la barra se sumaba por producto y por eso, con un fondo cuadrado
+        (256x256), ganaba el factor 4 (1024x1024) con 256px de negro a los
+        lados frente al factor 5, que si cubria la pantalla entera. El producto
+        vale cero en cuanto falta un solo eje, que es justo el caso que
+        importaba.
+
+        Con 512x256 en 1280x800 gana el factor 3: 1536x768, recorta 256px de
+        ancho y deja 32px de barra vertical (96% de la pantalla con imagen).
+        """
+        mejor_f, mejor_coste = 1, None
+        for f in range(1, tope + 1):
+            nw, nh = bw * f, bh * f
+            barras = max(0, w - nw) + max(0, h - nh)
+            recorte = max(0, nw - w) + max(0, nh - h)
+            coste = 3 * barras + recorte
+            if mejor_coste is None or coste < mejor_coste:
+                mejor_f, mejor_coste = f, coste
+        return mejor_f
+
+    #: Ruta -> (barra_vertical, barra_horizontal) del escalado entero.
+    #: Lo consulta `cinematicas._barras` para no poner un marco negro encima de
+    #: una imagen que ya trae su propio letterbox. La clave es la RUTA y no
+    #: `id(imagen)`: CPython reutiliza el id de un objeto liberado, con lo que
+    #: una imagen nueva podia heredar el letterbox de una muerta.
+    _letterbox = {}
+
+    def _escalar_pixelart(self, base, destino):
+        """Escala pixel art con FACTOR ENTERO, sin inventar un solo pixel.
+
+        Los fondos se generan a 512x256 y la pantalla es 1280x800. Cualquier
+        escala fraccionaria (los 2.5x de `smoothscale`) funde pixeles vecinos y
+        difumina los bordes: el mundo se ve pixelado y borroso a la vez.
+
+        Aqui se elige el factor entero que mejor ocupa la pantalla, se escala
+        con vecino mas cercano (`scale`, no `smoothscale`) y se recorta el eje
+        largo. Cada pixel del original se convierte en un bloque limpio de
+        fxf, que es como se ve el pixel art de verdad.
+
+        Devuelve una superficie del tamano exacto de `destino`. Las barras que
+        la imagen no cubre se rellenan con `FONDO_ALT` (el color del juego), no
+        negro puro, para que el corte no cante.
         """
         w, h = destino
         bw, bh = base.get_width(), base.get_height()
         if bw <= 0 or bh <= 0:
             return base
-        escala = max(w / bw, h / bh)
-        nw, nh = max(w, int(round(bw * escala))), max(h, int(round(bh * escala)))
-        img = pygame.transform.smoothscale(base, (nw, nh))
-        return img.subsurface(pygame.Rect((nw - w) // 2, (nh - h) // 2, w, h))
+
+        factor = self._mejor_factor(bw, bh, w, h)
+        nw, nh = bw * factor, bh * factor
+        img = pygame.transform.scale(base, (nw, nh))
+
+        if nw >= w and nh >= h:
+            # Cubre en ambos ejes: se recorta el excedente por el centro. No
+            # queda letra: la imagen llega justa a pantalla completa.
+            return img.subsurface(pygame.Rect((nw - w) // 2, (nh - h) // 2, w, h))
+
+        # No cubre en algun eje: lienzo a medida con la imagen centrada. El
+        # letterbox que queda lo anota `fondo_pantalla`, que es quien sabe la
+        # ruta y por tanto la clave de cache.
+        lienzo = pygame.Surface((w, h), pygame.SRCALPHA)
+        lienzo.fill(FONDO_ALT + (255,))
+        lienzo.blit(img, ((w - nw) // 2, (h - nh) // 2))
+        return lienzo
+
+    def _cubrir(self, base, destino):
+        """Escala `base` para CUBRIR `destino` sin deformar y recorta el sobrante.
+
+        Los fondos son 512x256 (2:1) y la pantalla 1280x800 (1.6:1). Estirarlos
+        hasta que entren aplastaba la imagen un 20% en vertical y se veia: las
+        personas salian anchas y los edificios bajos. Un fondo de entorno no
+        puede deformarse porque el ojo compara la proporcion con la realidad.
+
+        Se escala por el lado que sobra (aqui la altura) y se recorta el
+        centro del eje largo. Perder los bordes es barato en un fondo; deformar
+        la imagen no lo es.
+        """
+        return self._escalar_pixelart(base, destino)
 
     def fondo_pantalla(self, ruta):
         """Imagen reescalada a pantalla completa, cacheada.
@@ -110,15 +271,38 @@ class Recursos:
         Cubre la pantalla SIN deformar: ver `_cubrir`. Escala una sola vez:
         hacerlo por frame reserva ~4 MB por imagen y cada frame (del orden de
         240 MB/s), que es la causa del consumo de memoria.
+
+        De paso guarda el letterbox que ha quedado, en `_letterbox`, con la
+        RUTA como clave. Antes se guardaba con `id(imagen)`, que no vale: CPython
+        reutiliza el id de un objeto liberado, asi que una superficie que se
+        queda sin referencias dejaba su entrada puesta y una imagen nueva
+       Ocogia un letterbox ajeno. Con clave de ruta no puede pasar.
         """
         clave = ("__fondo__", ruta)
         if clave not in self.imagenes:
             base = self.imagen(ruta)
-            if (base.get_width(), base.get_height()) == (ANCHO, ALTO):
+            bw, bh = base.get_width(), base.get_height()
+            if (bw, bh) == (ANCHO, ALTO):
                 self.imagenes[clave] = base
+                self._letterbox[ruta] = (0, 0)
             else:
-                self.imagenes[clave] = Recursos._cubrir(base, (ANCHO, ALTO))
+                self.imagenes[clave] = self._cubrir(base, (ANCHO, ALTO))
+                f = self._mejor_factor(bw, bh, ANCHO, ALTO)
+                nw, nh = bw * f, bh * f
+                self._letterbox[ruta] = (max(0, ALTO - nh), max(0, ANCHO - nw))
         return self.imagenes[clave]
+
+    def barras_de(self, ruta):
+        """(vertical, horizontal) del letterbox del fondo de `ruta`.
+
+        La necesita `cinematicas`: si la imagen ya trae su propio marco, no hay
+        que poner otro encima. `(0, 0)` significa que la imagen llega justa a
+        pantalla y el marco si aporta.
+
+        El argumento es la RUTA, no la superficie: con `id()` la cache no era
+        fiable (ver `fondo_pantalla`).
+        """
+        return self._letterbox.get(ruta, (0, 0))
 
     def capa_oscurita(self, alpha=(6, 7, 14, 168)):
         """Capa de oscurecido reutilizable (no se reasigna cada frame)."""
@@ -324,6 +508,12 @@ def texto(screen, cadena, tam, color=TEXTO, centro=None, y=None, x=None, sombra=
     if y is None:
         y = 0
     screen.blit(img, (x - dx, y - dy))
+    # La auditoria mide el rect final de verdad. Con MEDIR apagado no se
+    # construye ni un solo Rect: en el duelo hay ~13 textos por frame y este
+    # es el camino mas caliente del juego.
+    if MEDIR:
+        r = pygame.Rect(x, y, ancho, alto)
+        registrar(r, "texto", _contenedora(r))
     return img
 
 
@@ -417,7 +607,57 @@ def panel(screen, rect, relleno=PANEL, borde=DORADO, radio=10, grosor=2, sombra=
     screen.blit(s, rect.topleft)
     if borde:
         pygame.draw.rect(screen, borde, rect, grosor, border_radius=radio)
+    if MEDIR:
+        r = pygame.Rect(rect)
+        registrar(r, "panel")
+        _PANELES_ACTUALES.append(r)
     return rect
+
+
+def fila_centrada(ancho_item, n, gap=0, ancho_total=None):
+    """`x` inicial para centrar `n` elementos de `ancho_item` con `gap` entre ellos.
+
+    Devuelve la x del primer elemento. El patron antigo era
+    `ANCHO//2 - n*60 + i*120`, que desplaza la fila `60 - ancho_item/2` pixeles
+    del centro y ademas cambia de signo segun el ancho: con cartas de 73px
+    quedaban 23px a la izquierda, y con las de 156px del draft, 18px a la
+    derecha. Calcularlo aqui quita esa clase de bug entera: cambiar un ancho
+    o una cantidad ya no descuadra nada.
+    """
+    ancho_total = ANCHO if ancho_total is None else ancho_total
+    if n <= 0:
+        return 0
+    paso = ancho_item + gap
+    total = n * ancho_item + (n - 1) * gap
+    return (ancho_total - total) // 2
+
+
+def fila_centrada_paso(ancho_item, n, gap=0, ancho_total=None):
+    """Igual que `fila_centrada` pero devuelve tambien el paso entre elementos.
+
+    Devuelve `(x0, paso)`. Se usa donde la posicion depende de una flotacion
+    por indice: el anclaje se centra una vez y el movimiento se suma encima.
+    """
+    ancho_total = ANCHO if ancho_total is None else ancho_total
+    paso = ancho_item + gap
+    return fila_centrada(ancho_item, n, gap, ancho_total), paso
+
+
+def fila_centrada_por_centro(ancho_item, n, paso, ancho_total=None):
+    """`x` del CENTRO del primer elemento, para filas Pintadas por su centro.
+
+    La portada blitea cada carta en `x - ancho//2`, o sea `x` es el centro. Con
+    la cuenta por bordes salia mal: los centros iban de 120 a 1080, centro
+    600, y la fila quedaba 40px a la izquierda de los 640 de la pantalla.
+
+    Derivacion: la fila ocupa, de centro a centro, `(n-1)*paso`; para que el
+    conjunto quede centrado, el primer centro va a
+    `ancho/2 - (n-1)*paso/2`.
+    """
+    ancho_total = ANCHO if ancho_total is None else ancho_total
+    if n <= 1:
+        return ancho_total // 2
+    return ancho_total // 2 - (n - 1) * paso // 2
 
 
 def panel_vineta(screen, alpha=0):
@@ -518,6 +758,10 @@ class Boton:
             texto(screen, f"{self.atajo}", 8,
                   con_alpha(mezcla(self.borde, self.acento, self.hover), 200),
                   x=h.right - 18, y=h.y + 6)
+        # El botón es su propio contenedor: un texto que pide `centro` dentro
+        # del botón queda asociado a él y no a un panel vecino.
+        if MEDIR:
+            registrar(h, "boton", h)
 
     def clic(self, pos):
         return self.habilitado and self.rect.collidepoint(pos)
@@ -784,9 +1028,28 @@ def celda_rect(r, c):
     return pygame.Rect(TABLERO_X + c * PASO_X, TABLERO_Y + r * PASO_Y, CARD_W, CARD_H)
 
 
+# Separación mínima entre cartas de la mano cuando hay muchas: por debajo de
+# esto se prefieren solaparlas a dejarlas fuera de pantalla.
+MANO_GAP_MIN = 4
+
+
 def mano_rect(i, total=5):
-    paso = CARD_W + MANO_GAP
-    ancho = total * CARD_W + (total - 1) * MANO_GAP
+    """Rectángulo de la carta i-ésima de la mano.
+
+    El paso no es fijo: con pocos huecos usa el hueco normal (CARD_W +
+    MANO_GAP), pero cuando la mano tiene más de lo que cabe en pantalla
+    achucha el paso hasta que la fila entera quepa. Sin esto, con 24 cartas
+    el ancho era 2864 px y el inicio quedaba en -792: 14 de las 24 cartas
+    quedaban inalcanzables, y el jugador no podía jugárselas.
+    """
+    if total <= 1:
+        paso = CARD_W
+        ancho = CARD_W
+    else:
+        paso_fijo = CARD_W + MANO_GAP
+        paso_ajustado = (ANCHO - CARD_W) / (total - 1)
+        paso = max(MANO_GAP_MIN, min(paso_fijo, paso_ajustado))
+        ancho = CARD_W + (total - 1) * paso
     inicio = (ANCHO - ancho) // 2
     return pygame.Rect(inicio + i * paso, MANO_Y, CARD_W, CARD_H)
 

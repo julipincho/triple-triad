@@ -33,8 +33,10 @@ PERSONAJES_SIN_RETRATO = {
                   "pertenece a ninguna faccion, asi que no hay avatar de bando "
                   "que le sirva.",
     "presentador": "El presentador del torneo, en el prologo.",
-    "duelista": "El protagonista. No tiene nombre ni retrato a proposito: es el "
-                "jugador. Le pondriamos el rostro del jugador, y no lo hay.",
+    "duelista": "El protagonista. Sin retrato a proposito: es el jugador. Le "
+                "pondriamos el rostro del jugador, y no lo hay. El nombre SI "
+                "se puede escribir: la pantalla inicial lo pide y se guarda en "
+                "el perfil. Vacio significa 'el duelista', el texto de siempre.",
 }
 
 #: Pistas que hacen falta para distinguir los dos mundos con el oido.

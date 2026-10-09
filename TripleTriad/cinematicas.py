@@ -16,6 +16,7 @@ import audio
 import duelistas
 import facciones
 import narrativa
+import opciones
 import peticiones
 from ui import (
     ALTO,
@@ -70,13 +71,33 @@ class Escena:
 class Cinematica:
     """Secuencia reproducible de escenas, bloqueante."""
 
-    def __init__(self, escenas, al_terminar=None, musica=None, permitir_saltar=True):
-        self.escenas = [e if isinstance(e, Escena) else Escena(e) for e in escenas]
+    def __init__(self, escenas, al_terminar=None, musica=None, permitir_saltar=True,
+                 nombre_jugador=""):
+        # El nombre del jugador se resuelve UNA VEZ, aqui, al construir la
+        # secuencia. Por frame seria un `str.replace` sobre cada linea en cada
+        # frame; y leer el perfil seria una lectura de disco por frame.
+        self.nombre_jugador = duelistas.DEFECTO_JUGADOR if not nombre_jugador else nombre_jugador
+        # Las dos opciones de Ajustes. Se leen UNA vez aqui, al construir la
+        # secuencia, para no consultar nada por frame.
+        self.saltar_todo = opciones.saltar_cinematica()
+        self.sin_texto = opciones.saltar_dialogo()
+        propias = [e if isinstance(e, Escena) else Escena(e) for e in escenas]
+        for e in propias:
+            self._resolver_jugador(e)
+        self.escenas = propias
         self.al_terminar = al_terminar
         self.musica = musica
         self.permitir_saltar = permitir_saltar
         self.i = 0
         self._t_escena = time.time()
+
+    def _resolver_jugador(self, escena):
+        """Cambia `__JUGADOR__` por el nombre en `texto` y en `hablante`."""
+        for campo in ("texto", "hablante"):
+            valor = getattr(escena, campo, None)
+            if isinstance(valor, str) and duelistas.PLACEHOLDER_JUGADOR in valor:
+                setattr(escena, campo,
+                        valor.replace(duelistas.PLACEHOLDER_JUGADOR, self.nombre_jugador))
 
     # -------------------------------------------------------------- control
     def escena(self):
@@ -104,6 +125,17 @@ class Cinematica:
             if self.al_terminar:
                 self.al_terminar()
             return
+
+        # "Saltar cinematica" de Ajustes se lleva por delante TODO, incluida la
+        # proteccion de los finales: para eso existe esa opcion, para quien esta
+        # probando y no quiere esperar a que un epilogo de 40 escenas termine.
+        # Viene desactivada, asi que el juego de verdad no cambia: el epilogo
+        # sigue sin poder saltarse con ESC (ver `permitir_saltar`).
+        if opciones.saltar_cinematica():
+            self.i = len(self.escenas)
+            self._terminar()
+            return
+
         self._t_escena = time.time()
         audio.sfx(audio.CINEMA)
         audio.musica(self.escenas[0].musica or self.musica)
@@ -118,11 +150,19 @@ class Cinematica:
                 audio.musica(escena.musica)
             t = time.time() - self._t_escena
             if escena.efecto == "titulo":
-                escena.mostrado = len(escena.texto) if t > 0.4 else 0
+                escena.mostrado = (len(escena.texto)
+                                   if t > 0.4 or self.sin_texto else 0)
             else:
-                escena.mostrado = min(len(escena.texto), max(0.0, t - 0.3) * VELOCIDAD_ESCRITURA)
-                if escena.duracion and t > escena.duracion:
+                # Con "sin texto" el texto sale entero y sin maquina de
+                # escribir: las escenas se ven pero se advances con ENTER.
+                if self.sin_texto:
                     escena.mostrado = len(escena.texto)
+                else:
+                    escena.mostrado = min(
+                        len(escena.texto),
+                        max(0.0, t - 0.3) * VELOCIDAD_ESCRITURA)
+                    if escena.duracion and t > escena.duracion:
+                        escena.mostrado = len(escena.texto)
 
             self._dibujar(screen, escena, t)
             pygame.display.flip()
@@ -197,6 +237,12 @@ class Cinematica:
         else:
             a = int(255 * ease(k))
         tam = 34 if len(escena.texto) < 24 else 26
+        # Un titulo largo se sale de la pantalla: se encoge hasta que entra,
+        # con un minimo de 14px. Antes solo se elegia entre 34 y 26 por longitud
+        # del texto, asi que cualquier frase de +53 caracteres se salia.
+        ancho_max = ANCHO - 100
+        while tam > 14 and REC.fuente(tam).size(escena.texto)[0] > ancho_max:
+            tam -= 1
         # render con alpha directo: evita superficiesSRCALPHA que no admiten set_alpha
         color = (escena.color[0], escena.color[1], escena.color[2], a)
         img = REC.fuente(tam).render(escena.texto, True, color)
@@ -253,6 +299,30 @@ class Cinematica:
               centro=(x + 75, y + 168))
 
     def _barras(self, screen):
+        """Barras cinematograficas: ya no hacen falta.
+
+        Los fondos se escalan con factor entero y dejan su propio letterbox
+        (ver `ui.Recursos._escalar_pixelart`): con el factor 3 sobre un fondo
+        de 512x256 sobran 16px arriba y 16px abajo. Encima de eso, las barras
+        de 46px quitaban un 11% mas de altura sin aportar nada: el negro ya
+        esta y la imagen ya viene enmarcada.
+
+        Se conservan solo si el fondo llega a pantalla completa (un asset
+        reescalado a 1280x800), donde si son el marco de la escena.
+        """
+        escena = self.escena()
+        nombre = getattr(escena, "fondo", None) if escena else None
+        if not nombre:
+            return
+        ruta = f"assets/fondos/{nombre}.png"
+        REC.fondo_pantalla(ruta)  # asegura que el letterbox esta registrado
+        # `barras_de` dice si la imagen escalada traia su propio letterbox.
+        # Si lo trae, estas barras de 46px serian un segundo marco encima: no
+        # aportan nada y se comen un 11% mas de altura. Solo se pintan cuando
+        # la imagen llega justa a pantalla completa.
+        v, _h = REC.barras_de(ruta)
+        if v or _h:
+            return
         barra = pygame.Surface((ANCHO, LINEA_BARRA), pygame.SRCALPHA)
         barra.fill((0, 0, 0, 238))
         screen.blit(barra, (0, 0))
@@ -528,9 +598,12 @@ def escenas_posterior(info, victoria=True):
     nodo = info.get("nodo", "")
     escena_fondo = info.get("escena", "campamento")
     escenas = list(narrativa.posterior_nodo(nodo))
-    # Como termino el duelo, en la voz del rival.
+    # Como termino el duelo, en la voz del rival. El nombre del jugador llega
+    # ya resuelto en `info`: quien arma `info` es `campana.info_duelo`, que lo
+    # lee del perfil. Sin el, `__JUGADOR__` vale "el duelista".
     for e in duelistas.dialogo_de(nodo, "win" if victoria else "lose",
-                                  info.get("nombre", "")):
+                                  info.get("nombre", ""),
+                                  info.get("nombre_jugador", "")):
         escena = dict(e)
         escena["fondo"] = escena_fondo
         if not escena.get("retrato"):
@@ -558,6 +631,19 @@ def escenas_final(titulo, lineas, faccion, extra=None):
     return escenas, audio.musica_de_faccion(faccion)
 
 
-async def reproducir(screen, clock, escenas, musica=None, al_terminar=None, permitir_saltar=True):
+async def reproducir(screen, clock, escenas, musica=None, al_terminar=None,
+                     permitir_saltar=True, nombre_jugador=None):
+    """Reproduce una secuencia de escenas.
+
+    `nombre_jugador` es opcional: si no se pasa, se lee del perfil. Resolve el
+    marcador `__JUGADOR__` una vez al construir la secuencia, nunca por frame.
+    Se lee de `campana` aqui y no en las 20 llamadas porque `campana` no importa
+    `cinematicas`, asi que no hay ciclo; y `campana.nombre_jugador()` esta
+    cacheado, que es lo que hace que se pueda llamar sin coste.
+    """
+    if nombre_jugador is None:
+        import campana
+        nombre_jugador = campana.nombre_jugador()
     await Cinematica(escenas, al_terminar=al_terminar, musica=musica,
-                     permitir_saltar=permitir_saltar).ejecutar(screen, clock)
+                     permitir_saltar=permitir_saltar,
+                     nombre_jugador=nombre_jugador).ejecutar(screen, clock)

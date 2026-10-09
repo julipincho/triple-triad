@@ -19,6 +19,15 @@ sys.path.insert(0, RAIZ)
 import campana
 import encuentros
 import facciones
+import pygame
+import ui
+
+# `ui.envolver` necesita la fuente cargada para medir: sin `pygame.init()` y una
+# superficie, `ui.texto` revienta con "font not initialized".
+if not pygame.get_init():
+    pygame.init()
+if pygame.display.get_surface() is None:
+    pygame.display.set_mode((ui.ANCHO, ui.ALTO))
 
 TODOS = ("mercader", "anciano", "hermandad", "caravana", "hostil", "nara")
 
@@ -97,6 +106,39 @@ class TestRevelacionEnElEstado(unittest.TestCase):
         antes = list(e["revelaciones"])
         campana.revelar_encuentro(e, "inventado")
         self.assertEqual(e["revelaciones"], antes)
+
+    def test_la_revelacion_entrega_texto_pintable(self):
+        """El crash: `linea` era una LISTA y `cartel` reventaba al pintarla.
+
+        `ui.envolver` hace `_LIMPIO.get(cadena)` y una lista no se puede meter
+        como clave de diccionario: `TypeError: unhashable type: 'list'`. Pasaba
+        en el primer encuentro de cada partida, que es la primera vez que se
+        jugaba ese encuentro, o sea siempre.
+        """
+        for enc in encuentros.LORE:
+            e = campana.nueva_campana("humano")
+            datos = campana.revelar_encuentro(e, enc)
+            if datos is None:
+                continue
+            with self.subTest(encuentro=enc):
+                self.assertIsInstance(datos["linea"], str,
+                                      "la linea debe llegar como texto")
+                self.assertTrue(datos["linea"].strip())
+                # Y tiene que ser algo que `envolver` pueda usar de verdad.
+                lineas = ui.envolver(datos["linea"], 11, 640)
+                self.assertTrue(lineas)
+
+    def test_todas_las_revelaciones_son_pintables(self):
+        """Ninguna revelacion del juego puede ser una lista sin juntar."""
+        for enc in encuentros.LORE:
+            with self.subTest(encuentro=enc):
+                e = campana.nueva_campana("humano")
+                datos = campana.revelar_encuentro(e, enc)
+                if datos is None:
+                    continue
+                self.assertIsInstance(datos["linea"], str)
+                ui.envolver(datos["linea"], 11, 640)  # no debe reventar
+                self.assertIsInstance(datos["titulo"], str)
 
     def test_revelar_sube_el_conocimiento_del_umbral(self):
         """Una revelacion es un paso mas hacia entender el Umbral."""

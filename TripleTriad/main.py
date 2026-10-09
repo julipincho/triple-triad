@@ -25,6 +25,7 @@ import prologo  # noqa: E402
 import tutorial  # noqa: E402
 from partida import Juego, partida  # noqa: E402,F401
 from paths import dir_datos, log_errores  # noqa: E402
+import ui  # noqa: E402
 from ui import ALTO, ANCHO  # noqa: E402,F401
 
 TEST = "--test" in sys.argv
@@ -107,11 +108,31 @@ async def _prologo(screen, clock):
 
     _CONTEXTO[0] = "prólogo: tutorial contra Juan Rajoy"
     info = prologo.info_duelo_prologo()
-    juego = Juego("humano", bando_rival=info["bando"],
-                  mano_u_inicial=prologo.mazo_tutorial(),
-                  mano_c_inicial=prologo.mazo_rival_rajoy(),
-                  info=info, dificultad=0)
-    resultado = await partida(screen, clock, juego)
+    while True:
+        # Este bucle NO necesita tick propio: cada vuelta delega el frame en
+        # `partida.partida(...)`, que ya llama a clock.tick(ui.LIMIT_FPS).
+        juego = Juego("humano", bando_rival=info["bando"],
+                      mano_u_inicial=prologo.mazo_tutorial(),
+                      mano_c_inicial=prologo.mazo_rival_rajoy(),
+                      info=info, dificultad=0)
+        resultado = await partida(screen, clock, juego)
+        if resultado.victoria:
+            break
+        
+        # Castigo riguroso por perder el tutorial: si no clasifica, no puede avanzar.
+        # El modal se dibuja sobre el salon del torneo, no sobre el duelo congelado.
+        def _salon(scr, dt):
+            scr.blit(ui.REC.fondo_pantalla("assets/fondos/salon.png"), (0, 0))
+            scr.blit(ui.REC.capa_oscurita((6, 7, 14, 170)), (0, 0))
+
+        reintentar = await pantallas.confirmar(
+            screen, clock, "EL TORNEO SE ESCAPA",
+            "No has logrado ganar la clasificatoria contra Juan Rajoy. "
+            "El torneo no te deja avanzar sin clasificar.",
+            aceptar="REINTENTAR", fondo=_salon,
+        )
+        if not reintentar:
+            return None # Aborta prólogo y vuelve al menú
 
     _CONTEXTO[0] = "prólogo: la carta del Umbral"
     await cinematicas.reproducir(
@@ -138,8 +159,22 @@ async def _prologo(screen, clock):
 
 
 async def _nueva_campana(screen, clock):
-    """Prologo, elige faccion, guarda partida nueva y entra en la campana."""
-    await _prologo(screen, clock)
+    """Nombre, prologo, faccion, mazo, y entra en la campana."""
+    # El nombre va ANTES del prologo: el prologo es una pelicula para un
+    # protagonista anonimo, y meter un teclado en mitad de una escena
+    # cinematografica la arruina. ESC deja el nombre como estaba.
+    _CONTEXTO[0] = "nombre del duelista"
+    # `nombre_guardado` y no `nombre_jugador`: este ultimo devuelve "el
+    # duelista" cuando no hay nombre, y precargaria eso en el campo. Con solo
+    # pulsar ENTER se guardaria como nombre propio y `tiene_nombre()` mintiria.
+    nombre = await pantallas.pedir_nombre(
+        screen, clock, inicial=campana.nombre_guardado())
+    if nombre is not None and nombre != campana.nombre_guardado():
+        campana.establecer_nombre(nombre)
+    res = await _prologo(screen, clock)
+    if res is None:
+        _CONTEXTO[0] = "menú principal"
+        return
     faccion = await pantallas.elegir_faccion(screen, clock)
     if faccion is None:
         return
@@ -168,9 +203,9 @@ async def _ganar_fragmento(screen, clock, faccion):
     if not nuevo:
         return
     encontrados, total = campana.progreso_fragmentos()
-    await cartel(screen, clock,
-                 "FRAGMENTO DE LA VERDAD  %d/%d" % (encontrados, total),
-                 datos["pregunta"] + chr(10) + chr(10) + "- " + datos["texto"])
+    await pantallas.cartel(screen, clock,
+                          "FRAGMENTO DE LA VERDAD  %d/%d" % (encontrados, total),
+                          datos["pregunta"] + chr(10) + chr(10) + "- " + datos["texto"])
     if campana.secreto_desbloqueado():
         await cinematicas.reproducir(
             screen, clock,
@@ -215,10 +250,11 @@ async def _campana_secreta(screen, clock, faccion):
                   info=info, dificultad=3)
     resultado = await partida(screen, clock, juego)
     if resultado.victoria:
-        await cartel(screen, clock, "CAMPANA SECRETA COMPLETA",
-                     rival["dialogo"]["win"][1])
+        await pantallas.cartel(screen, clock, "CAMPANA SECRETA COMPLETA",
+                              rival["dialogo"]["win"][1])
     else:
-        await cartel(screen, clock, "TODAVIA NO", rival["dialogo"]["lose"][0])
+        await pantallas.cartel(screen, clock, "TODAVIA NO",
+                              rival["dialogo"]["lose"][0])
     return resultado
 
 
@@ -422,7 +458,7 @@ async def main():
     pygame.init()
     audio.iniciar()
     pantalla = pygame.display.set_mode((ANCHO, ALTO))
-    pygame.display.set_caption("Triple Triad - El Umbral del Trono")
+    pygame.display.set_caption("Cartones y Mazmorras")
     reloj = pygame.time.Clock()
     # `--fps` en escritorio, `TT_FPS=1` en la web (no hay argv ahi). Solo para
     # diagnostico: se dibuja encima del juego, no afecta al juego.

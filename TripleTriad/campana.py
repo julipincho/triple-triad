@@ -1060,12 +1060,16 @@ def info_duelo(estado, nodo_id=None):
         "historia": duelo.get("historia", ""),
         "reaccion_rol": duelistas.reaccion_rol(nodo_id, estado.get("faccion", "")),
         "dialogo_pre": duelistas.dialogo_de(nodo_id, "pre",
-                                            duelo.get("nombre", "")),
+                                            duelo.get("nombre", ""),
+                                            nombre_jugador()),
         # Que retrato se dibuja en la PANTALLA del duelo. Antes se usaba
         # siempre el de la faccion y por eso Juan Rajoy salia como un humano
         # cualquiera: `partida.py` pedia `avatar_<bando>`. Con esta clave la
         # pantalla puede mostrar a la persona, no al bando.
         "retrato": duelistas.retrato_de(nodo_id, rival),
+        # Como se llama el jugador, ya saneado. Lo leen el HUD del duelo, el
+        # cartel previo y las escenas posteriores.
+        "nombre_jugador": nombre_jugador(),
     }
 
 
@@ -1591,7 +1595,15 @@ def revelar_encuentro(estado, enc_id):
     # Descubrir algo del mundo es, ademas, entender mas del Umbral.
     revelar(estado, revelacion)
     subir_conocimiento(estado, 1)
-    return {"titulo": datos.get("titulo", ""), "linea": datos.get("linea", []),
+    return {"titulo": datos.get("titulo", ""),
+            # `linea` en el LORE es una LISTA de frases y se queda como lista
+            # para quien quiera todas. Para pintar hace falta un texto: se
+            # entrega ya unida. Antes se devolvia la lista y `pantallas` la
+            # pasaba a `cartel`, que reventaba con
+            # `TypeError: unhashable type: 'list'` al revealedor el primer
+            # encuentro de cada partida.
+            "linea": " ".join(datos.get("linea", [])).strip(),
+            "lineas": list(datos.get("linea", [])),
             "id": revelacion}
 
 
@@ -1635,6 +1647,52 @@ def aplicar_encuentro(estado, efecto):
 # -------------------------------------------------------------------- perfil
 
 
+#: Como se llama el jugador cuando no pone nombre. El juego siempre lo ha
+#: llamado asi a proposito (el protagonista no tenia nombre); ahora se puede
+#: cambiar, pero vacio sigue siendo valido y es el mismo texto que antes.
+NOMBRE_POR_DEFECTO = "el duelista"
+
+#: Tope de longitud. A 15 caben las cajas de dialogo de cuatro lineas y el HUD
+#: sin que se desborde nada; a mas habria que recortar al pintar.
+NOMBRE_MAX = 15
+
+
+def sanea_nombre(bruto, defecto=NOMBRE_POR_DEFECTO):
+    """Limpia lo que el jugador escribe y lo deja presentable.
+
+    - `<`, `>` y las comillas rompen el motor de etiquetas del renderizador.
+    - Los saltos de linea y los tabuladores descuadran las cajas de dialogo.
+    - Se colapsan los espacios y se recorta a `NOMBRE_MAX`.
+    - Si no queda nada usable, se devuelve el defecto, para que nunca salga
+      un nombre vacio por ahi.
+    """
+    if not isinstance(bruto, str):
+        return defecto
+    limpio = "".join(" " if ch in "<>\n\r\t" else ch for ch in bruto)
+    limpio = " ".join(limpio.split())[:NOMBRE_MAX].strip()
+    return limpio or defecto
+
+
+def cargar_perfil():
+    try:
+        with open(ruta_perfil(), encoding="utf-8") as f:
+            datos = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return perfil_por_defecto()
+    base = perfil_por_defecto()
+    if isinstance(datos, dict):
+        base.update(datos)
+    return base
+
+
+def guardar_perfil(perfil):
+    try:
+        with open(ruta_perfil(), "w", encoding="utf-8") as f:
+            json.dump(perfil, f, ensure_ascii=False, indent=2)
+    except OSError:
+        pass
+
+
 def perfil_por_defecto():
     return {
         "version": 1,
@@ -1652,7 +1710,64 @@ def perfil_por_defecto():
         # NG+: fragmentos de la verdad, uno por faccion completada. Vive en el
         # perfil (no en la partida) porque las mini campanas son en memoria.
         "fragmentos": [],
+        # Lo que el jugador escribe al empezar. Vacio significa "el duelista",
+        # que es como lo llamaba el juego antes de que esto existiera.
+        "nombre_jugador": "",
     }
+
+
+#: Cache del nombre del jugador. `info_duelo` se llama POR FRAME (la pantalla
+#: de elegir rama dibuja las dos ramas en cada frame) y leer `perfil.json` cada
+#: vez costaba 0,65 ms: dos veces por frame son 1,3 ms, el 8% del presupuesto de
+#: 16,67 ms, solo para una cadena que cambia una vez por partida. Se lee una vez
+#: y se invalida al escribir.
+_NOMBRE_CACHE = None
+
+
+def invalidar_nombre():
+    """Olvida el nombre cacheado. Se llama si el perfil cambia por fuera."""
+    global _NOMBRE_CACHE
+    _NOMBRE_CACHE = None
+
+
+def nombre_jugador():
+    """El nombre guardado, ya saneado. Nunca devuelve cadena vacia."""
+    global _NOMBRE_CACHE
+    if _NOMBRE_CACHE is None:
+        _NOMBRE_CACHE = sanea_nombre(cargar_perfil().get("nombre_jugador"))
+    return _NOMBRE_CACHE
+
+
+def nombre_guardado():
+    """El nombre CRUDO tal como esta en el perfil, o `""` si no hay.
+
+    Es el que hay que pasar a la pantalla de entrada como valor inicial. Usar
+    `nombre_jugador()` ahi precargaria "el duelista" en el campo, y con solo
+    pulsar ENTER se guardaria como si el jugador se hubiera elegido ese nombre:
+    `tiene_nombre()` pasaria a True sin que nadie escribiera nada.
+    """
+    return str(cargar_perfil().get("nombre_jugador") or "")
+
+
+def establecer_nombre(bruto):
+    """Guarda el nombre en el perfil y devuelve el que ha quedado."""
+    global _NOMBRE_CACHE
+    perfil = cargar_perfil()
+    perfil["nombre_jugador"] = sanea_nombre(bruto, defecto="")
+    guardar_perfil(perfil)
+    # La cache se rellena con el valor ya saneado de verdad, no con el defecto:
+    # `nombre_jugador()` devuelve "el duelista" si esta vacio.
+    _NOMBRE_CACHE = perfil["nombre_jugador"] or NOMBRE_POR_DEFECTO
+    return perfil["nombre_jugador"]
+
+
+def tiene_nombre():
+    """True si el jugador ha escrito un nombre propio.
+
+    No usa `cargar_perfil`: seria una lectura de disco por llamada, y esto se
+    consulta desde menus, no desde un bucle.
+    """
+    return bool(cargar_perfil().get("nombre_jugador"))
 
 
 def cargar_perfil():

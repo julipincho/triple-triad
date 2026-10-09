@@ -49,7 +49,7 @@ class TestLosFondosNoSeDeforman(unittest.TestCase):
     def test_el_escalado_cubre_sin_cambiar_la_proporcion(self):
         base = pygame.Surface((512, 256))
         base.fill((10, 20, 30))
-        cub = Recursos._cubrir(base, (ANCHO, ALTO))
+        cub = REC._cubrir(base, (ANCHO, ALTO))
         self.assertEqual((ANCHO, ALTO), (cub.get_width(), cub.get_height()),
                          "no cubre la pantalla entera")
         # lo que se escala es por el lado que sobra; la proporcion del recorte
@@ -67,7 +67,7 @@ class TestLosFondosNoSeDeforman(unittest.TestCase):
         base = pygame.Surface((512, 256))
         base.fill((0, 0, 0))
         pygame.draw.rect(base, (255, 255, 255), pygame.Rect(156, 78, 200, 100))
-        cub = Recursos._cubrir(base, (ANCHO, ALTO))
+        cub = REC._cubrir(base, (ANCHO, ALTO))
         # el factor de escala se deduce del ancho de la pantalla
         factor = ANCHO / 512.0
         self.assertAlmostEqual(100 * factor, 200 * factor / 2.0, 3)

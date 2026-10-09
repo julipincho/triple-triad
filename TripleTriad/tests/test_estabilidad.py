@@ -27,6 +27,10 @@ os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# El directorio de tests tambien: `discover` lo anade, pero al lanzar un solo
+# modulo (`python -m unittest tests.test_estabilidad`) no, y entonces los
+# helpers compartidos como `opciones_test` no se encuentran.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import pygame  # noqa: E402
 
@@ -116,26 +120,60 @@ class TestCineticasSeCierran(unittest.TestCase):
             pygame.event.get = original
 
     def test_la_cinematica_termina_pulsando_escape_siempre(self):
-        """Con permitir_saltar=False (epilogo) ESC tambien tiene que cerrar."""
-        for permitir in (True, False):
-            escenas = [cinematicas.Escena(cinematicas.esc("final", efecto="titulo"))]
-            pantalla = _superficie()
-            cin = cinematicas.Cinematica(escenas, permitir_saltar=permitir)
+        """Con permitir_saltar=False (epilogo) ESC tambien tiene que cerrar.
+
+        Necesita las opciones POR DEFECTO: si el desarrollador tiene "SALTAR
+        CINE" activado en su `opciones.json`, la cinematica termina antes de leer
+        el ESC y este test falla sin que el codigo tenga nada que ver. Por eso
+        se envuelve en `sin_opciones()`.
+        """
+        import opciones_test
+
+        with opciones_test.sin_opciones():
+            for permitir in (True, False):
+                escenas = [cinematicas.Escena(
+                    cinematicas.esc("final", efecto="titulo"))]
+                pantalla = _superficie()
+                cin = cinematicas.Cinematica(escenas, permitir_saltar=permitir)
+                original = pygame.event.get
+                enviados = [0]
+
+                def eventos():
+                    enviados[0] += 1
+                    if enviados[0] > 3:
+                        return [_tecla(pygame.K_ESCAPE)]
+                    return []
+                pygame.event.get = eventos
+                try:
+                    # no debe colgarse: si vuelve, la pantalla se puede cerrar
+                    asyncio.run(cin.ejecutar(pantalla, RelojFalso()))
+                finally:
+                    pygame.event.get = original
+                self.assertGreater(
+                    enviados[0], 3,
+                    f"ESC no funciono con permitir_saltar={permitir}")
+
+    def test_saltar_cine_evita_leer_eventos(self):
+        """Con la opcion a SI, la secuencia se cierra sin molestar al jugador."""
+        import opciones_test
+
+        escenas = [cinematicas.Escena(cinematicas.esc("una")),
+                   cinematicas.Escena(cinematicas.esc("dos"))]
+        with opciones_test.sin_opciones(saltar_cinematica=True):
             original = pygame.event.get
-            enviados = [0]
+            leidos = [0]
 
             def eventos():
-                enviados[0] += 1
-                if enviados[0] > 3:
-                    return [_tecla(pygame.K_ESCAPE)]
+                leidos[0] += 1
                 return []
             pygame.event.get = eventos
             try:
-                # no debe colgarse: si vuelve, la pantalla se puede cerrar
-                asyncio.run(cin.ejecutar(pantalla, RelojFalso()))
+                asyncio.run(cinematicas.Cinematica(escenas).ejecutar(
+                    _superficie(), RelojFalso()))
             finally:
                 pygame.event.get = original
-            self.assertGreater(enviados[0], 3, f"ESC no funciono con permitir_saltar={permitir}")
+            self.assertEqual(leidos[0], 0,
+                             "con SALTAR CINE no deberia leer eventos ni uno")
 
     def test_enter_tambien_avanza(self):
         escenas = [cinematicas.Escena(cinematicas.esc("uno")),

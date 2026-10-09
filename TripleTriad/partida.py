@@ -12,6 +12,7 @@ import time
 import pygame
 
 import audio
+import campana
 import cartas as crt
 import facciones
 import ui
@@ -25,6 +26,7 @@ from reglas import (
     puntaje_final,
     simular,
     val,
+    valor_efectivo,
 )
 from ui import (
     ALTO,
@@ -141,8 +143,14 @@ class Juego:
         self.en_campana = en_campana
         self.dificultad = dificultad
 
-        self.mano_u = [c.copia() for c in (mano_u_inicial or mazos.TODOS[bando_jugador])]
-        self.mano_c = [c.copia() for c in (mano_c_inicial or mazos.TODOS[self.bando_cpu])]
+        # `mano_u_inicial or mazos.TODOS[...]` caia al mazo entero cuando la
+        # lista era vacia: `[]` es falsa y `or` tomaba el segundo elemento. El
+        # tutorial y el `--test` pasaban a tener 25 cartas en lugar de las que
+        # les habian pasado. Ahora se respeta una lista vacia como "sin cartas".
+        self.mano_u = [c.copia() for c in (mano_u_inicial if mano_u_inicial is not None
+                                            else mazos.TODOS[bando_jugador])]
+        self.mano_c = [c.copia() for c in (mano_c_inicial if mano_c_inicial is not None
+                                            else mazos.TODOS[self.bando_cpu])]
         for c in self.mano_u:
             c.dueno = USUARIO
         for c in self.mano_c:
@@ -404,6 +412,31 @@ class Juego:
                 return (r, c), set(capturas(nb, r, c))
         return None, set()
 
+    def desglose_captura(self, carta, lado, r_ataque, c_ataque, r_defensa, c_defensa):
+        """Por que esta comparacion captura o no, con numeros a la vista.
+
+        El motor NO compara los numeros que se ven: compara el valor efectivo,
+        que es el visible mas embestida en el centro, elemento central, furia y
+        sinergia. Un jugador ve "5 contra 5", no hay voltaque, y deduce que las
+        reglas fallan. Aqui se calcula ese desglose para poder enseñarselo.
+
+        Devuelve `(visible_ataque, visible_defensa, efectivo_ataque,
+        efectivo_defensa)` con los cuatro numeros, o `None` si la comparacion
+        no aplica (muro, o no son vecinas enemigas).
+        """
+        if not (0 <= r_defensa < 3 and 0 <= c_defensa < 3):
+            return None
+        vecina = self.board[r_defensa][c_defensa]
+        if vecina is None or vecina.dueno == carta.dueno:
+            return None
+        opuesta = {"N": "S", "S": "N", "E": "O", "O": "E"}[lado]
+        if opuesta in vecina.lados_muro():
+            return None  # el muro bloquea: eso si hay que decirlo
+        return (carta.valores[lado],
+                vecina.valores[opuesta],
+                valor_efectivo(carta, r_ataque, c_ataque, lado, self.board),
+                valor_efectivo(vecina, r_defensa, c_defensa, opuesta, self.board))
+
     def cartas_en_mano(self):
         return self.mano_u
 
@@ -496,11 +529,15 @@ class Juego:
         texto(screen, "-", 14, TEXTO_TENUE, centro=(ANCHO // 2, 36))
         texto(screen, f"{c}", 20, mezcla(facciones.acento(self.bando_cpu), (255, 255, 255), 0.3), centro=(ANCHO // 2 + 42, 36))
 
-        # manos a los lados del marcador
+        # manos a los lados del marcador. Debajo de cada mano va el nombre:
+        # el del rival siempre, y el del jugador solo si ha puesto uno.
         texto(screen, f"TU MANO: {len(self.mano_u)}", 8, TEXTO, centro=(ANCHO // 2 - 150, 30))
         texto(screen, f"SU MANO: {len(self.mano_c)}", 8, TEXTO, centro=(ANCHO // 2 + 150, 30))
-        texto(screen, "TÚ", 8, mezcla(facciones.acento(self.bando), TEXTO_ON, 0.4), centro=(ANCHO // 2 - 150, 52))
-        texto(screen, "RIVAL", 8, mezcla(facciones.acento(self.bando_cpu), TEXTO_ON, 0.4), centro=(ANCHO // 2 + 150, 52))
+        nombre_u = self.info.get("nombre_jugador", "") if self.info else ""
+        etiqueta_u = nombre_u if (nombre_u and nombre_u != campana.NOMBRE_POR_DEFECTO) else "TÚ"
+        etiqueta_c = self.info.get("nombre", "") if self.info else ""
+        texto(screen, etiqueta_u, 8, mezcla(facciones.acento(self.bando), TEXTO_ON, 0.4), centro=(ANCHO // 2 - 150, 52))
+        texto(screen, etiqueta_c or "RIVAL", 8, mezcla(facciones.acento(self.bando_cpu), TEXTO_ON, 0.4), centro=(ANCHO // 2 + 150, 52))
 
         # racha
         if self.racha >= 2:
@@ -509,6 +546,40 @@ class Juego:
         # mensaje
         panel(screen, pygame.Rect(ANCHO // 2 - 300, 84, 600, 30), (16, 17, 26, 200), None, radio=8)
         texto(screen, self.mensaje, 9, TEXTO, centro=(ANCHO // 2, 99))
+        # El desglose de la captura: por que un 5 voltea a un 5, o por que un
+        # 9 no voltaa a un 8. Sin esto el numero de la carta parece mentira.
+        self._dibujar_desglose(screen)
+
+    def _dibujar_desglose(self, screen):
+        """Los cuatro numeros de la captura que estas a punto de hacer.
+
+        El motor compara el VALOR EFECTIVO (el que ves mas las bonificaciones),
+        no el numero impreso en la carta. Un jugador ve 5 contra 5 y no hay
+        voltaque, y sin explicacion parece un fallo. Aqui se teach el numero
+        impreso y el que manda, con el signo de quien gana.
+        """
+        if not self.arrastrando:
+            return
+        carta = self.arrastrando[0]
+        objetivo, _caps = self.preview_capturas()
+        if objetivo is None:
+            return
+        ra, ca = objetivo
+        for lado, (dr, dc) in (("N", (-1, 0)), ("S", (1, 0)),
+                               ("E", (0, 1)), ("O", (0, -1))):
+            nd = self.desglose_captura(carta, lado, ra, ca, ra + dr, ca + dc)
+            if nd is None:
+                continue
+            va, vd, ea, ed = nd
+            if va == ea and vd == ed:
+                continue  # sin bonificaciones: el numero ya lo explica
+            gana = "gana" if ea > ed else ("empata" if ea == ed else "pierde")
+            linea = (f"{lado}: {va} contra {vd}"
+                     f"   ->   {ea} contra {ed}  ({gana})")
+            y = 122 + (("N", "S", "E", "O").index(lado)) * 16
+            texto(screen, linea, 8,
+                  VERDE if ea > ed else (TEXTO_TENUE if ea == ed else ROJO),
+                  centro=(ANCHO // 2, y))
 
     def _dibujar_tablero(self, screen, ahora):
         # marco ajustado al tablero real

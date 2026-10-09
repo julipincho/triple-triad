@@ -260,19 +260,59 @@ def dorso(escala=1):
 
 
 def miniatura(carta, tam=(48, 66)):
-    """Carta reducida a `tam`, cacheada.
+    """Render optimizado de miniatura reducida a `tam`, cacheada.
 
-    La ficha de faccion y el mini mazo del menu pintan cinco miniaturas por
-    frame; antes cada una era un `transform.scale` con Surface nueva.
+    En lugar de hacer smoothscale a la carta completa (104x144 con orbes y placas),
+    lo cual volvia el arte ilegible a 48x66px, este render dibuja un marco
+    limpio con la paleta de la faccion, encuadra el arte al centro sin deformar,
+    y coloca una etiqueta de nombre ajustada de forma elegante.
     """
-    clave = ("miniatura", carta.nombre, tuple(carta.valores[d] for d in LADOS),
+    clave = ("miniatura_v2", carta.nombre, tuple(carta.valores[d] for d in LADOS),
              carta.bando, carta.habilidad, tam)
     if clave in _cache:
         return _cache[clave]
+
+    mw, mh = tam
+    s = pygame.Surface((mw, mh), pygame.SRCALPHA)
+
+    # Colores segun bando
+    if carta.bando in facciones.FACCIONES:
+        claro, oscuro = facciones.FACCIONES[carta.bando]["paleta"]
+    else:
+        claro, oscuro = DORADO, (80, 80, 90)
+
+    # Marco
+    pygame.draw.rect(s, (10, 10, 16), (0, 0, mw, mh), border_radius=5)
+    pygame.draw.rect(s, oscuro, (1, 1, mw - 2, mh - 2), border_radius=4)
+    pygame.draw.rect(s, claro, (2, 2, mw - 4, mh - 4), border_radius=3)
+
+    # Arte encuadrado
+    arte = imagen_carta(carta)
+    if arte is not None:
+        # Recorte central del arte
+        aw, ah = mw - 6, mh - 16
+        img_arte = pygame.transform.smoothscale(arte, (aw, ah))
+        s.blit(img_arte, (3, 3))
+    else:
+        # Reserva si no hay arte
+        pygame.draw.rect(s, oscuro, (3, 3, mw - 6, mh - 16), border_radius=2)
+        inicial = facciones.FACCIONES.get(carta.bando, {}).get("inicial", "?")
+        texto(s, inicial, 12, claro, centro=(mw // 2, (mh - 16) // 2))
+
+    # Placa de nombre inferior
+    placa = pygame.Surface((mw - 4, 12), pygame.SRCALPHA)
+    pygame.draw.rect(placa, (10, 10, 16, 230), placa.get_rect(), border_radius=3)
+    s.blit(placa, (2, mh - 14))
+
+    # Nombre recortado
+    nombre_txt = limpio(carta.nombre)
+    img_txt = _texto_ajustado(nombre_txt, 6, mw - 6, claro)
+    s.blit(img_txt, (mw // 2 - img_txt.get_width() // 2, mh - 12))
+
     if len(_cache) >= MAX_CACHE_CARTAS:
         _cache.clear()
-    _cache[clave] = pygame.transform.smoothscale(crear(carta, None), tam)
-    return _cache[clave]
+    _cache[clave] = s
+    return s
 
 
 def rotar(sup, clave, grados):

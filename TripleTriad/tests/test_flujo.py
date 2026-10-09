@@ -113,6 +113,12 @@ class TestFlujoDeCampana(unittest.TestCase):
             "pantallas.derrota": derrota_falsa,
             "pantallas.epilogo": epilogo_falso,
             "pantallas.decision_narrativa": decision_falsa,
+            # El cartel del NG+ (fragmento de verdad). Antes no hacia falta
+            # parchearlo porque `_ganar_fragmento` llamaba a `cartel` SIN
+            # `pantallas.` y reventaba con NameError antes de llegar al cartel:
+            # el test no colgaba, pero porque la linea estaba rota. Al
+            # arreglarla, el cartel real se ejecuta y espera un clic eterno.
+            "pantallas.cartel": ara,
             "cinematicas.reproducir": ara,
         }
         for ruta, fn in reemplazos.items():
