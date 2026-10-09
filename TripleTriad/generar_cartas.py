@@ -33,12 +33,31 @@ RAZA = {
 
 #: Sufijo comun a los avatares.
 #:
-#: Los avatares se generan con `animagine-xl-4.0.safetensors`, que es un modelo
-#: de anime, y ASI deben seguir: el menu, el mapa y la pantalla de faccion los
-#: enseñan de golpe, y si dos de ellos cambian de idioma visual el menu parece
-#: medio roto. Hace un tiempo se rehicieron con `sd_xl_base_1.0` para que casaran
-#: con las cartas, y el resultado fue un menu con ocho retratos anime y dos
-#: grabados, que es peor que antes.
+#: MODELO DE LOS AVATARES. No es el de las cartas.
+#:
+#: Hay dos idiomas artista en el juego y son distintos a proposito:
+#:
+#:   - Cartas (251) y fondos (39): pixel art de 16 bits con paleta calida
+#:     limitada, de `pixelArtDiffusionXL_spriteShaper` + IP-Adapter con el
+#:     moodboard. Es el arte del mundo del juego.
+#:   - Los diecisiete avatares que estan bien: anime ilustrado a mano, de
+#:     Pollinations con `model=flux`, que ya no esta disponible (HTTP 402).
+#:
+#: `hombre_lobo` y `hombre_pantera` se hacen en el PRIMER idioma, no en el
+#: segundo. Se intento lo segundo cuatro veces (con prompts de ilustracion pintada,
+#: y con IP-Adapter usando un avatar bueno como ancla) y nunca llego: `animagine`
+#: y `flux` no comparten el sombreado ni el pelo, y siempre se nota al lado.
+#: Como los avatares se ven a 80 px pegados a las cartas, prima que el par se
+#: note entre ellos antes que que un par no cuadre con las cartas.
+#:
+#: El truco que si funciona, y que es lo que fija la receta: el ancla NO es el
+#: moodboard sino LA CARTA DEL PROPIO BANDO. `cartas/hombre_lobo_garras_de_luna
+#: .png` ya es un lobo en el estilo exacto. Con el moodboard salian gatos y
+#: hienas con cara de mascara; con la carta del bando salen lobo y pantera.
+#:
+#: Ojo al peso: 0.6. Con 0.35 el ancla no llega a imponer la criatura.
+MODELO_AVATAR = "pixelArtDiffusionXL_spriteShaper.safetensors"
+PESO_ANCLA_AVATAR = 0.6
 #:
 #: El sufijo describe lo que hacen los avatares que ya estaban bien. Y aqui hay
 #: unaLesson que ha costado tres rondas de 24 imagenes cada una, asi que
@@ -269,8 +288,9 @@ def generar_cartas(key, solo_nuevas=True):
             time.sleep(1.2)
 
 
-#: Modelo con el que se hacen los avatares. Los dieciocho que ya salen bien
-#: salieron de aqui, asi que es el que hay que usar para los dos que faltaban.
+#: Modelo de los avatares que NO son un bando (Nara, Piks, el presentador...).
+#: Es el mismo con el que estan los diecisiete que salen bien. Los de bando van
+#: en pixel art: `MODELO_AVATAR`.
 AVATAR_MODELO = "animagine-xl-4.0.safetensors"
 
 #: El `.bat` que arranca ComfyUI en una ventana nueva. Vive fuera del repo
@@ -281,11 +301,13 @@ COMFY_BAT = r"E:\AI\start-comfyui.bat"
 
 
 def generar_avatar_comfyui(nombre, prompt, servidor="http://127.0.0.1:8188",
-                           pasos=28, cfg=6.0, lado=512, destino=None):
-    """Un avatar por ComfyUI con `animagine-xl`. Devuelve True si se genero.
+                           pasos=28, cfg=7.0, lado=256, destino=None,
+                           modelo=None, ancla=None, peso=0.35):
+    """Un avatar por ComfyUI. Devuelve True si se genero.
 
-    Se genera a 512 y se deja en 512: el recorte a 256 lo hace quien lo instala
-    en `assets/`, mirando la imagen, no a ciegas.
+    `modelo` y `ancla` decides el idioma visual: pixel art del juego para los
+    bandos que tienen carta, anime para el resto. Se generan a 256, que es el
+    tamano final: escalar pixel art despues funde los pixeles y deja de leerse.
     """
     import generar_cartas_comfyui as comfy
 
@@ -297,7 +319,27 @@ def generar_avatar_comfyui(nombre, prompt, servidor="http://127.0.0.1:8188",
     negativo = ", ".join(p for p in (comfy.NEGATIVO, NEGATIVO_AVATAR) if p)
     return bool(comfy.generar_imagen(
         servidor, prompt, negativo, destino, random.randrange(2 ** 32),
-        lado, lado, pasos, cfg, AVATAR_MODELO, ancla=None))
+        lado, lado, pasos, cfg, modelo or MODELO_AVATAR,
+        ancla=ancla, peso_ipadapter=peso if ancla else 0.4))
+
+
+def ancla_de_bando(bando):
+    """La carta del bando sirve de ancla de estilo para su avatar.
+
+    Es el truco que hace que esto salga bien: la carta ya ES esa criatura en el
+    estilo exacto del juego, asi que en vez de DESCRIBIR el estilo con palabras
+    (que es donde se fallaba, cuatro rondes seguidas) se le enseña una imagen
+    que ya lo tiene. Con el moodboard como ancla salian gatos y hienas con cara
+    de mascara; con la carta del bando salen lobo y pantera.
+
+    Devuelve None si el bando no tiene carta, y entonces toca el moodboard.
+    """
+    cartas = [c for c in TODOS.get(bando, []) if os.path.exists(
+        os.path.join(CARPETA, f"{bando}_{slug(c.nombre)}.png"))]
+    if not cartas:
+        return None
+    # La primera basta: son todas del mismo bando y del mismo estilo.
+    return os.path.join(CARPETA, f"{bando}_{slug(cartas[0].nombre)}.png")
 
 
 def generar_avatares(key, solo=None, fuerza=False, comfyui=False):
@@ -307,8 +349,8 @@ def generar_avatares(key, solo=None, fuerza=False, comfyui=False):
     demas ya salian bien y regenerarlos seria gastar peticiones para obtener
     algo peor o simplemente distinto.
 
-    `comfyui` usa ComfyUI con `animagine-xl` en vez de Pollinations, que esta
-    muerto: la key de `.env` no tiene credito y devuelve HTTP 402.
+    `comfyui` usa ComfyUI en vez de Pollinations, que esta muerto: la key de
+    `.env` no tiene credito y devuelve HTTP 402.
     """
     print("Avatares:")
     os.makedirs(ASSETS, exist_ok=True)
@@ -329,12 +371,28 @@ def generar_avatares(key, solo=None, fuerza=False, comfyui=False):
         faltan = list(objetivo)
 
     for nombre in faltan:
-        prompt = objetivo[nombre]
         destino = os.path.join(ASSETS, f"avatar_{nombre}.png")
+        ancla = ancla_de_bando(nombre)
         if comfyui:
-            generar_avatar_comfyui(nombre, prompt, destino=destino)
+            if ancla:
+                # Pixel art del juego, no anime: el prompt es el de las cartas.
+                generar_avatar_comfyui(
+                    nombre,
+                    f"fantasy {RAZA.get(nombre, 'fantasy warrior')} character portrait, "
+                    f"{nombre}, pixel art style, 16-bit retro video game "
+                    f"illustration, dark fantasy, no text, no watermark, "
+                    f"no signature, no border",
+                    destino=destino, modelo=MODELO_AVATAR, ancla=ancla,
+                    peso=PESO_ANCLA_AVATAR)
+            else:
+                # Sin carta de este bando (los personajes con nombre propio no
+                # son un bando): se usa el prompt de siempre con el modelo que
+                # hizo los demas.
+                generar_avatar_comfyui(nombre, objetivo[nombre], destino=destino,
+                                       modelo="animagine-xl-4.0.safetensors",
+                                       ancla=None)
         else:
-            _pedir(prompt, destino, key, 256, 256)
+            _pedir(objetivo[nombre], destino, key, 256, 256)
         time.sleep(1.2)
 
 
