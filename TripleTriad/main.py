@@ -316,6 +316,14 @@ async def _mini_campana(screen, clock):
 async def _campana(screen, clock, estado, nuevo=False):
     """Bucle de campana: mapa -> duelo -> recompensa -> encuentro -> final."""
     campana.asegurar_coleccion(estado["faccion"])
+    # Los fondos tienen 24 variantes y se elige una por escena con la semilla de
+    # la partida: la misma semilla da siempre los mismos fondos (el jugador no
+    # pierde la orientacion porque un sitio cambie de aspecto al entrar y salir)
+    # y otra semilla da otra combinacion. Se fija aqui, y no en cada dibujo,
+    # para no barajar por frame; y aqui, y no en `_nueva_campana`, porque esta
+    # funcion es la unica por la que pasan TANTO la partida nueva como la
+    # reanudada desde el menu.
+    ui.fijar_variantes(estado.get("semilla", 0))
     _CONTEXTO[0] = (
         f"campaña {facciones.nombre(estado['faccion'])}: "
         f"nodo {campana.nodo_actual(estado)}"

@@ -2008,7 +2008,7 @@ def _fondo_escena(screen, nombre):
     Usa el fondo y las capas cacheadas: escalar a pantalla completa en cada
     frame era lo que mas memoria consumia.
     """
-    ruta = f"assets/fondos/{nombre}.png"
+    ruta = ui.ruta_fondo(nombre)
     if crt.REC.imagen(ruta).get_width() > 32:
         screen.blit(REC.fondo_pantalla(ruta), (0, 0))
         screen.blit(REC.capa_oscurita((6, 7, 14, 186)), (0, 0))

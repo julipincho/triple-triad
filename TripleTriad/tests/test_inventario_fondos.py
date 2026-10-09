@@ -22,6 +22,7 @@ import encuentros  # noqa: E402
 import finales  # noqa: E402
 import narrativa  # noqa: E402
 import prologo  # noqa: E402
+import ui  # noqa: E402
 
 CARPETA = os.path.join(RAIZ, "assets", "fondos")
 
@@ -93,6 +94,20 @@ class TestInventarioDeFondos(unittest.TestCase):
     def setUp(self):
         self.usados = _todos_los_fondos_del_juego()
         self.en_disco = {n[:-4] for n in os.listdir(CARPETA) if n.endswith(".png")}
+        self._suma_variantes()
+
+    def _suma_variantes(self):
+        """Las variantes de fondo TAMBIEN se usan, y por un camino propio.
+
+        El codigo no las pide por su nombre: pide la escena y `ui.ruta_fondo`
+        elige una variante con la semilla de la partida. Sin sumarlas aqui las
+        24 variables salen huerfanas, y el test que de verdad importa
+        (`test_ningun_fondo_queda_huerfano`) pasa a ser el que da falsos
+        positivos por cada fondo nuevo que se genere.
+        """
+        for escena in list(self.usados):
+            for variante in ui.variantes_de(escena):
+                self.usados.setdefault(variante, set()).add("variante de " + escena)
 
     def test_todo_fondo_que_pide_el_codigo_existe(self):
         faltan = sorted(f for f in self.usados
@@ -131,7 +146,8 @@ class TestInventarioDeFondos(unittest.TestCase):
         miraba ni la intro, ni las aperturas, ni el fondo por defecto."""
         for prefijo in ("intro", "apertura ", "prologo", "narrativa ",
                         "umbral dominio", "epilogo caos", "mini ",
-                        "nodo ", "encuentro ", "default de esc()"):
+                        "nodo ", "encuentro ", "default de esc()",
+                        "variante de "):
             caminos = {d for ds in self.usados.values() for d in ds
                        if d.startswith(prefijo)}
             self.assertTrue(caminos,

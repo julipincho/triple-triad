@@ -14,6 +14,7 @@ import pygame
 
 import audio
 import duelistas
+import ui  # `ruta_fondo`: elige la variante de fondo con la semilla de partida
 import facciones
 import narrativa
 import opciones
@@ -219,7 +220,7 @@ class Cinematica:
         # el mundo fantastic, y asi se nota en que lado estas.
         tinte, alpha, (vin_a, vin_b) = TRATAMIENTO.get(
             getattr(escena, "mundo", MUNDO_JUEGO), TRATAMIENTO[MUNDO_JUEGO])
-        screen.blit(REC.fondo_pantalla(f"assets/fondos/{escena.fondo}.png"), (0, 0))
+        screen.blit(REC.fondo_pantalla(ui.ruta_fondo(escena.fondo)), (0, 0))
         screen.blit(REC.capa_oscurita((*tinte, alpha)), (0, 0))
         if vin_a:
             screen.blit(REC.vineta(vin_a, vin_b), (0, 0))
@@ -314,7 +315,11 @@ class Cinematica:
         nombre = getattr(escena, "fondo", None) if escena else None
         if not nombre:
             return
-        ruta = f"assets/fondos/{nombre}.png"
+        # La MISMA ruta que dibuja el fondo, y no la del original: si aqui se
+        # midieran las barras del `camino.png` mientras se dibuja
+        # `camino_lluvia.png`, las dos imagenes tienen letterbox distinto y se
+        # mediria el marco de una sobre la otra.
+        ruta = ui.ruta_fondo(nombre)
         REC.fondo_pantalla(ruta)  # asegura que el letterbox esta registrado
         # `barras_de` dice si la imagen escalada traia su propio letterbox.
         # Si lo trae, estas barras de 46px serian un segundo marco encima: no

@@ -12,6 +12,8 @@ import time
 
 import pygame
 
+from paths import dir_recursos
+
 from paths import recurso
 
 ANCHO, ALTO = 1280, 800
@@ -176,6 +178,12 @@ class Recursos:
             self.imagenes[clave] = img
         return self.imagenes[clave]
 
+    #: Ruta -> (barra_vertical, barra_horizontal) del escalado entero.
+    #: La clave es la RUTA y no `id(imagen)`: CPython reutiliza el id de un
+    #: objeto liberado, con lo que una imagen nueva podia heredar el letterbox
+    #: de una muerta.
+    _letterbox = {}
+
     def _mejor_factor(self, bw, bh, w, h, tope=8):
         """Factor entero con el que la imagen ocupa mas pantalla.
 
@@ -205,13 +213,6 @@ class Recursos:
             if mejor_coste is None or coste < mejor_coste:
                 mejor_f, mejor_coste = f, coste
         return mejor_f
-
-    #: Ruta -> (barra_vertical, barra_horizontal) del escalado entero.
-    #: Lo consulta `cinematicas._barras` para no poner un marco negro encima de
-    #: una imagen que ya trae su propio letterbox. La clave es la RUTA y no
-    #: `id(imagen)`: CPython reutiliza el id de un objeto liberado, con lo que
-    #: una imagen nueva podia heredar el letterbox de una muerta.
-    _letterbox = {}
 
     def _escalar_pixelart(self, base, destino):
         """Escala pixel art con FACTOR ENTERO, sin inventar un solo pixel.
@@ -356,6 +357,150 @@ class Recursos:
             except Exception:
                 self.sonidos[nombre] = None
         return self.sonidos[nombre]
+
+
+
+
+# ------------------------------------------------------------------ variantes
+# Cada escena tiene varias imagenes: el mismo lugar a distinta hora del dia o
+# con distinto tiempo. Sin esto se veia la MISMA imagen 36 veces en una partida
+# (`campamento` y `camino` son las que mas se repiten).
+#
+# La variante se elige con la semilla de la PARTIDA, asi que:
+#   - dentro de una partida, la escena se ve siempre igual (el jugador no pierde
+#     la orientacion porque el sitio cambie de aspecto al entrar y salir)
+#   - al empezar otra partida, sale otra combinacion
+#
+# El nombre del fondo sin numero es el original y sigue siendo el que se usa
+# si no hay ninguna variante. `assets/fondos/camino_lluvia.png` es una variante
+# de `camino`.
+
+_VARIANTE_SEMILLA = 0
+_VARIANTES_CACHE = {}
+_ELECCION = {}
+RUTA_FONDOS = "assets/fondos"
+
+
+def fijar_variantes(semilla):
+    """Fija la semilla con la que se eligen las variantes de fondo.
+
+    Se llama al entrar en campana con `estado["semilla"]`. Sin llamada previa
+    se usa 0, que da siempre la primera variante: es el mismo fondo de siempre,
+    que es lo que quiere quien no ha pedido otra cosa.
+
+    La eleccion se RESUELVE AQUI, no en `ruta_fondo`: esa se llama por frame
+    desde las cinematograficas y no puede estar barajando ni creando objetos de
+    `random` en cada frame. Aqui se recorre la lista de variantes, que ya esta
+    cacheada, y se deja el resultado en `_ELECCION`.
+    """
+    global _VARIANTE_SEMILLA, _ELECCION
+    _VARIANTE_SEMILLA = int(semilla or 0)
+    # `random.Random(semilla)` y no `semilla % n`: las semillas de campana son
+    # de 64 bits, asi que el resto reparte bien, pero si alguna vez se usara un
+    # numero pequeno (`nueva_campana` en los tests) `semilla % 5` las recorreria
+    # en ciclo y dos partidas seguidas darian la misma combinacion.
+    generador = random.Random(_VARIANTE_SEMILLA)
+    _ELECCION = {}
+    for escena in _VARIANTES_CACHE or _escenas_con_variantes():
+        ruta = _variantes_de(escena, generador)
+        # La comprobacion de que el archivo existe va AQUI, no en `ruta_fondo`:
+        # `ruta_fondo` se llama por frame y `os.path.exists` en un bucle de
+        # dibujo es una lectura de disco por frame. Aqui va una vez por
+        # partida, y si el archivo no esta se cae al original.
+        if ruta and os.path.exists(recurso(ruta)):
+            _ELECCION[escena] = ruta
+        else:
+            _ELECCION[escena] = ""
+
+
+def semilla_variantes():
+    return _VARIANTE_SEMILLA
+
+
+def _variantes_de(escena, generador):
+    """Elige UNA variante de la escena con el generador dado. Ruta o None."""
+    variantes = variantes_de(escena)
+    if not variantes:
+        return None
+    return "%s/%s.png" % (RUTA_FONDOS, generador.choice(variantes))
+
+
+def _escenas_con_variantes():
+    """Escenas base que tienen al menos una variante en disco.
+
+    Se lee el directorio una vez. Solo se usa al fijar la semilla, que pasa
+    una vez por partida: no es una lectura de disco por frame.
+    """
+    carpeta = os.path.join(dir_recursos(), "assets", "fondos")
+    try:
+        archivos = os.listdir(carpeta)
+    except OSError:
+        return []
+    bases = set()
+    for f in archivos:
+        if not f.endswith(".png"):
+            continue
+        nombre = f[:-4]
+        if "_" in nombre and "_" not in nombre[nombre.index("_") + 1:]:
+            bases.add(nombre[:nombre.index("_")])
+    return sorted(bases)
+
+
+def variantes_de(escena):
+    """Nombres de archivo de las variantes de una escena. Cacheado.
+
+    Se lista el directorio UNA vez por escena: `ruta_fondo` se llama por frame
+    desde las cinematograficas y recorrer la carpeta cada vez seria una
+    lectura de disco por frame.
+    """
+    if escena in _VARIANTES_CACHE:
+        return _VARIANTES_CACHE[escena]
+    carpeta = os.path.join(dir_recursos(), "assets", "fondos")
+    try:
+        archivos = os.listdir(carpeta)
+    except OSError:
+        archivos = []
+    salida = []
+    for f in archivos:
+        if not f.endswith(".png"):
+            continue
+        nombre = f[:-4]
+        if not nombre.startswith(escena + "_"):
+            continue
+        # El sufijo tiene que ser UNA palabra: `camino_amanecer` es una variante
+        # de `camino`, pero `camino_de_ceniza` seria otra escena con su propio
+        # nombre. Pedir un guion bajo hacia justo lo contrario de lo que
+        # queremos y dejaba la lista vacia.
+        if "_" in nombre[len(escena) + 1:]:
+            continue
+        salida.append(nombre)
+    salida.sort()
+    _VARIANTES_CACHE[escena] = salida
+    return salida
+
+
+def invalidar_variantes():
+    """Olvida la lista de variantes y la eleccion. Para tests y al regenerar."""
+    global _ELECCION
+    _VARIANTES_CACHE.clear()
+    _ELECCION = {}
+
+
+def ruta_fondo(escena):
+    """Ruta del fondo de una escena, ya con su variante elegida.
+
+    `escena` es el nombre sin extension ("camino"). Devuelve siempre un archivo
+    que existe: si la escena no tiene variantes, o la que salio no esta en
+    disco, cae en el original.
+
+    Esto se llama POR FRAME desde las cinematograficas, asi que es solo una
+    consulta a diccionario: la eleccion y la comprobacion del archivo ya
+    estan hechas en `fijar_variantes`, que va una vez por partida. Con
+    `os.path.exists` aqui habia una lectura de disco por frame.
+    """
+    return _ELECCION.get(escena) or "%s/%s.png" % (RUTA_FONDOS, escena)
+
+
 
 
 REC = Recursos()

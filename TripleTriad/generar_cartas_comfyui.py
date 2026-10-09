@@ -187,7 +187,16 @@ def arrancar_servidor(servidor, bat, espera):
 
     Devuelve la version o None. La ventana nueva queda visible para el
     usuario (se para con Ctrl+C ahi o con E:\\AI\\stop-comfyui.bat).
+
+    ES IDEMPOTENTE, y tiene que serlo: si ComfyUI ya esta en marcha se
+    devuelve tal cual y NO se abre ninguna ventana. Antes no lo comprobaba y
+    abria una consola nueva en CADA llamada, que al llamar desde un bucle de
+    24 variantes dejo trece ventanas de ComfyUI abiertas de golpe.
     """
+    version = comprobar_servidor(servidor)
+    if version:
+        return version
+
     if not os.path.exists(bat):
         print(f"No existe {bat}: no puedo arrancar ComfyUI automaticamente.")
         return None
