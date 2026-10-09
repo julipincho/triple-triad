@@ -239,18 +239,23 @@ class Juego:
             pygame.draw.circle(self.avatar, (12, 12, 18), (48, 48), 46, 3)
 
     # ------------------------------------------------------------- utilidades
+    def _bando_dueno(self, carta):
+        """Que baraja manda ahora sobre la carta, para teñirla de su color.
+
+        Una carta puede haber cambiado de bando mil veces en la partida: lo que
+        cuenta es de quien es AHORA, no de quien es por su faccion.
+        """
+        if carta.dueno == USUARIO:
+            return self.bando
+        if carta.dueno == CPU:
+            return self.bando_cpu
+        return None
+
     def super_cartas(self, carta, synergy=None):
         if synergy is None:
             synergy = crt.tiene_sinergia(carta, self.board)
-        # El dominio se ve en el color: la carta toma el color de la baraja
-        # de quien la posee ahora (aunque sea una carta de otro bando).
-        if carta.dueno == USUARIO:
-            bando_dueno = self.bando
-        elif carta.dueno == CPU:
-            bando_dueno = self.bando_cpu
-        else:
-            bando_dueno = None
-        return crt.crear(carta, carta.dueno, synergy=synergy, bando_dueno=bando_dueno)
+        return crt.crear(carta, carta.dueno, synergy=synergy,
+                         bando_dueno=self._bando_dueno(carta))
 
     def _color_dueno(self, dueno):
         """Color de la baraja que domina cada bando: el duelo habla en
@@ -665,6 +670,33 @@ class Juego:
                   VERDE if ea > ed else (TEXTO_TENUE if ea == ed else ROJO),
                   centro=(ANCHO // 2, y))
 
+    def _lineas_tooltip(self, carta, synergy=False, dueno_extra=None):
+        """Contenido del tooltip de una carta: nombre, bando, lados y habilidad.
+
+        Vive aqui y no en el punto donde se dibuja porque ahora lo usan dos
+        sitios: la mano y el tablero. Antes solo lo tenia la mano, asi que las
+        cartas del rival no enseñaban su habilidad: era informacion que el juego
+        te ocultaba justo cuando mas la necesitas, que es al planning, con el
+        rival ya Comprometido en el centro del tablero.
+        """
+        lineas = [f"{carta.nombre}  ({facciones.nombre(carta.bando)})"]
+        if dueno_extra:
+            lineas.append(dueno_extra)
+        lineas += [f"{l}: {val(carta.valores[l])}" for l in LADOS]
+        if carta.habilidad:
+            lineas.append(
+                f"{crt.ICONO_HABILIDAD.get(carta.habilidad, carta.habilidad)}: "
+                f"{crt.descripcion_habilidad(carta.habilidad)}"
+            )
+        else:
+            lineas.append("Sin habilidad especial")
+        if synergy:
+            # La sinergia depende de cuantas aliadas hay en el tablero AHORA, no
+            # de la carta sola: sin esto el jugador ve el +1 en la mano y no
+            # entiende por que en el tablero la carta vale mas.
+            lineas.append("SINERGIA: esta carta suma +1 a cada lado ahora mismo")
+        return "\n".join(lineas)
+
     def _dibujar_tablero(self, screen, ahora):
         # marco ajustado al tablero real
         primero = celda_rect(0, 0)
@@ -693,7 +725,23 @@ class Juego:
                 elif objetivo == (r, c):
                     pygame.draw.rect(screen, DORADO, rect, 4, border_radius=7)
                 if carta:
-                    sup = self.super_cartas(carta)
+                    synergy = crt.tiene_sinergia(carta, self.board)
+                    sup = self.super_cartas(carta, synergy=synergy)
+                    # Pasar el raton por una carta del tablero enseña lo mismo
+                    # que la mano: nombre, bando, los cuatro lados y la
+                    # habilidad. Se encola y se pinta al final del frame, como
+                    # los de la mano, para que el tablero no lo tape.
+                    if carta.dueno in (USUARIO, CPU) and rect.collidepoint(mouse):
+                        dueno_txt = "TUYA" if carta.dueno == USUARIO else "DEL RIVAL"
+                        crt.resplandor_carta(screen, rect, carta, carta.dueno, 110,
+                                             bando_dueno=self._bando_dueno(carta))
+                        # En la fila de arriba el tooltip va DEBAJO: arriba se
+                        # va al HUD y tapa el marcador de los dos bandos, que es
+                        # justo lo que se mira mientras se elige donde colocar.
+                        tooltip(
+                            screen,
+                            self._lineas_tooltip(carta, synergy, dueno_txt),
+                            (rect.centerx, rect.y), ancho=300, arriba=r > 0)
                     if self.ultima_jugada and self.ultima_jugada[0] == r and \
                             self.ultima_jugada[1] == c and ahora - self.ultima_jugada[2] < 0.2:
                         k = (ahora - self.ultima_jugada[2]) / 0.2
@@ -791,17 +839,10 @@ class Juego:
             # descripciones: se encolan y se pintan al final del frame, para
             # que ni las cartas siguientes ni el tablero las tapen
             if hover:
-                lineas = [f"{carta.nombre}  ({facciones.nombre(carta.bando)})"]
-                lineas += [f"{l}: {val(carta.valores[l])}" for l in LADOS]
-                if carta.habilidad:
-                    lineas.append(
-                        f"{crt.ICONO_HABILIDAD.get(carta.habilidad, carta.habilidad)}: "
-                        f"{crt.descripcion_habilidad(carta.habilidad)}"
-                    )
-                else:
-                    lineas.append("Sin habilidad especial")
-                tooltip(screen, "\n".join(lineas), (destino.centerx, destino.y),
-                        ancho=300, arriba=True)
+                # Mismo contenido que el tablero, via la misma funcion: si
+                # anaden una linea a una y no a la otra, se desincronizan.
+                tooltip(screen, self._lineas_tooltip(carta),
+                        (destino.centerx, destino.y), ancho=300, arriba=True)
 
         # el preview ampliado va despues del bucle, no dentro: si se pintara
         # aqui, las cartas siguientes de la mano lo taparian
