@@ -40,15 +40,36 @@ RAZA = {
 #: con las cartas, y el resultado fue un menu con ocho retratos anime y dos
 #: grabados, que es peor que antes.
 #:
-#: El sufijo describe lo que hacen los avatares que ya estaban bien: busto a
-#: tres cuartos, cel shading limpio y fondo azul-gris plano. Es tambien lo que
-#: hace que un avatar nuevo no desentone: con luna, fondo oscuro o frontal
-#: simetrico se nota aunque la criatura sea la correcta.
+#: El sufijo describe lo que hacen los avatares que ya estaban bien. Y aqui hay
+#: unaLesson que ha costado tres rondas de 24 imagenes cada una, asi que
+#: conviene no deshacerla por descuido:
 #:
-#: Tres cosas que hay que guardar si se regeneran:
+#: Los dieciseis buenos NO son cel shading. Son ilustracion PINTADA A MANO, con
+#: gradientes blandos y huella de pincel. Dos terminos del prompt empujaban
+#: justo hacia lo contrario y habia que quitar los dos:
 #:
-#:   - 28 pasos y CFG 6.0. Con 30 y CFG 6.5 el modelo colapsa en manchas
-#:     abstractas: sale una mancha de colores, no un retrato.
+#:   - `cel shading` -> campos de color planos y contorno duro. Es lo que mas
+#:     se nota al lado de `orco`, `goblin` o `dragon`.
+#:   - `vibrant colors` -> saturacion de poster.
+#:
+#: En su lugar: `painterly illustration, hand-painted, soft brushwork, textured
+#: shading, detailed fur`. Y `cel shading` va ademas en el NEGATIVO, porque
+#: quitarlo del positivo no basta: el modelo lo pone igual.
+#:
+#: Y una segunda trampa, mas sutil: quitar `cel shading` lleva al otro extremo,
+#: a arte de fauna. Las bestias salian bonitas pero como fotografia de naturaleza
+#: (cielo naranja, hierba) en vez de retrato de personaje. Se ata con
+#: `fantasy character portrait` en el positivo y `wildlife photography, nature
+#: scene, grass, sunset, dramatic sky` en el negativo.
+#:
+#: Lo que mas pesa al final no es el estilo: es la LUZ. Fondo claro, luz suave
+#: y busto a tres cuartos. Con luna, fondo oscuro o frontal simetrico se nota
+#: aunque la criatura y la pincelada sean exactas.
+#:
+#: Cuatro cosas mas que hay que guardar si se regeneran:
+#:
+#:   - 30 pasos y CFG 6.5 con esta receta; con la anterior (28 y 6.0) hay que
+#:     comprobar que no colapse en manchas.
 #:   - el negativo de `generar_cartas_comfyui.NEGATIVO` MAS el de abajo. Sin
 #:     estos terminos, `animagine` mete marcos y cuadritos: de siete lobos
 #:     generados, tres salian con marco de foto y uno partido en cuatro
@@ -60,22 +81,45 @@ RAZA = {
 #:     cierra esa puerta: sin eso, uno de cada cuatro salia con dos cabezas
 #:     enfrentadas y simetricas.
 #:
-#: Y una diferencia de fondo con los otros ocho, que no se puede arreglar desde
+#: Y una diferencia de fondo con los dieciseis buenos, que no se arregla desde
 #: el prompt: esos se hicieron con Pollinations y `model=flux`, y Pollinations
-#: devuelve HTTP 402 sin credito. Con `animagine-xl` se aproximan, pero el
-#: resultado no es identico.
+#: devuelve HTTP 402 sin credito. Con `animagine-xl` se aproximan, no se igualan.
+#:
+#: Para cerrar la brecha se probo IP-Adapter con un recorte de uno de los
+#: avatares buenos como ancla de estilo, que es lo mas parecido que hay a un
+#: LoRA con lo que hay instalado. NO APORTA NADA y sale caro, asi que conviene
+#: saberlo antes de volver a intentarlo: IP-Adapter Plus con un retrato de
+#: personaje transfiere CONTENIDO, no solo estilo, y el peso es un filo.
+#:
+#:   - 0.15 -> sombreado suave, sin dano colateral
+#:   - 0.25 -> pinta el lobo de naranja: el ancla impone su paleta
+#:   - 0.35 -> con el lagarto no trae correa, pero mete borde decorativo
+#:   - 0.40 -> le pone al lobo la correa del hocico del orco
+#:
+#: Con el orco, que tiene mandibula marcada, los cuatro lobos salieron con
+#: bozal, correa o aro. Con la elfa nocturna, el lobo salia lavanda y sin
+#: hocico. Es decir: un ancla de CARA no sirve para trasplantar estilo a otra
+#: cara. Los dos avatares que hay instalados se hicieron SIN ancla: la receta
+#: entera esta en el prompt, que es lo unico que queda escrito aqui.
 NEGATIVO_AVATAR = (
     "multiple views, character sheet, reference sheet, sprite sheet, grid, "
-    "human face, human skin, person in a costume, fursuit, mask, hood, "
+    "wildlife photography, photograph, nature scene, grass, field, forest, "
+    "sunset, dramatic sky, outdoor scenery, "
+    "cel shading, flat color, flat vector art, thick outline, poster art, "
+    "logo, neon, digital art, "
+    "human face, person in a costume, fursuit, mask, hood, "
     "chibi, cute, deformed, blurry, "
     "picture frame, ornate frame, border, text, watermark, "
-    "moon, night, scenery, vignette, photorealistic, 3d render"
+    "dark background, vignette"
 )
 
 SUFIJO_AVATAR = (
-    "masterpiece, best quality, highly detailed, anime style, cel shading, "
-    "vibrant colors, character portrait, bust shot, three-quarter view, "
-    "plain light grey-blue background, no scenery, "
+    "fantasy character portrait, painterly illustration, hand-painted, "
+    "masterpiece, best quality, highly detailed, anime style, "
+    "soft brushwork, textured shading, detailed fur, detailed eyes, "
+    "warm natural palette, bust shot, three-quarter view, "
+    "upper body, shoulders and chest visible, "
+    "plain light cream background, studio lighting, "
     "no text, no watermark"
 )
 
