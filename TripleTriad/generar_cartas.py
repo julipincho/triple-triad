@@ -40,27 +40,42 @@ RAZA = {
 #: con las cartas, y el resultado fue un menu con ocho retratos anime y dos
 #: grabados, que es peor que antes.
 #:
-#: El sufijo describe lo que hace `animagine-xl` con los avatares que ya estaban
-#: bien: retrato a busto, de frente, con cel shading y fondo claro.
+#: El sufijo describe lo que hacen los avatares que ya estaban bien: busto a
+#: tres cuartos, cel shading limpio y fondo azul-gris plano. Es tambien lo que
+#: hace que un avatar nuevo no desentone: con luna, fondo oscuro o frontal
+#: simetrico se nota aunque la criatura sea la correcta.
 #:
-#: Dos cosas que hay que guardar si se regeneran:
+#: Tres cosas que hay que guardar si se regeneran:
+#:
 #:   - 28 pasos y CFG 6.0. Con 30 y CFG 6.5 el modelo colapsa en manchas
 #:     abstractas: sale una mancha de colores, no un retrato.
 #:   - el negativo de `generar_cartas_comfyui.NEGATIVO` MAS el de abajo. Sin
 #:     estos terminos, `animagine` mete marcos y cuadritos: de siete lobos
 #:     generados, tres salian con marco de foto y uno partido en cuatro
-#:     paneles, porque `1girl panther woman` le lee como una hoja de personaje.
-#:     `gold collar` es especialmente magnetico para el marco: `gold earring`
-#:     pide por lo mismo sin provocarlo.
+#:     paneles. `gold collar` es especialmente magnetico para el marco.
+#:   - la palabra `beast` hace que `animagine` entienda "hoja de personaje" y
+#:     saque una rejilla de nueve vistas de la misma cabeza. Con la misma
+#:     raza, colmillos y orejas, pero sin `beast`, sale un retrato normal. Y
+#:     `character sheet / sprite sheet / grid` en el negativo es lo que
+#:     cierra esa puerta: sin eso, uno de cada cuatro salia con dos cabezas
+#:     enfrentadas y simetricas.
+#:
+#: Y una diferencia de fondo con los otros ocho, que no se puede arreglar desde
+#: el prompt: esos se hicieron con Pollinations y `model=flux`, y Pollinations
+#: devuelve HTTP 402 sin credito. Con `animagine-xl` se aproximan, pero el
+#: resultado no es identico.
 NEGATIVO_AVATAR = (
-    "photorealistic, 3d render, chibi, deformed, human face on a furry body, "
-    "hood, mask, picture frame, ornate frame, border, text, watermark"
+    "multiple views, character sheet, reference sheet, sprite sheet, grid, "
+    "human face, human skin, person in a costume, fursuit, mask, hood, "
+    "chibi, cute, deformed, blurry, "
+    "picture frame, ornate frame, border, text, watermark, "
+    "moon, night, scenery, vignette, photorealistic, 3d render"
 )
 
 SUFIJO_AVATAR = (
     "masterpiece, best quality, highly detailed, anime style, cel shading, "
-    "vibrant colors, character portrait, facing viewer, upper body, "
-    "from the waist up, plain flat background, light background, "
+    "vibrant colors, character portrait, bust shot, three-quarter view, "
+    "plain light grey-blue background, no scenery, "
     "no text, no watermark"
 )
 
@@ -81,8 +96,9 @@ AVATARES = {
     "elfo": "1girl, elf, long pointed ears, sharp cheekbones, braided hair, "
             "circlet, " + SUFIJO_AVATAR,
     "hombre_lobo": (
-        "1boy, werewolf, male werewolf, wolf ears, wolf muzzle, long snout, "
-        "bared fangs, shaggy grey fur, amber eyes, torn cloak, muscular, "
+        "1boy, werewolf, full wolf head, no human features, long grey wolf "
+        "muzzle, bared fangs, pricked wolf ears, thick shaggy grey fur, "
+        "burning amber eyes, ruff of fur over the shoulders, powerful neck, "
         + SUFIJO_AVATAR),
     "vampiro": "1girl, vampire, pale skin, high cheekbones, dark hair, "
                "parted lips, fangs, high collar, " + SUFIJO_AVATAR,
@@ -92,8 +108,9 @@ AVATARES = {
                      "violet eyes, hollow gaze, black circlet, "
                      + SUFIJO_AVATAR,
     "hombre_pantera": (
-        "1girl, panther woman, black panther, feline ears, short black muzzle, "
-        "bared canine fangs, sleek black fur, amber slit eyes, gold earring, "
+        "1girl, black panther, full panther head, no human features, "
+        "short black muzzle, bared canine fangs, rounded feline ears, "
+        "sleek black fur, glowing amber slit eyes, thick neck, "
         + SUFIJO_AVATAR),
     "hombre_lagarto": "1boy, lizardman, long scaly muzzle, jaw frill, "
                       "crocodile eyes, green scales, " + SUFIJO_AVATAR,
