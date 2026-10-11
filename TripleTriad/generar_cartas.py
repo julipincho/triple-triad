@@ -31,6 +31,9 @@ RAZA = {
     "hombre_lagarto": "lizardman warrior",
 }
 
+#: Receta historica. Lobo y pantera usan ahora generar_avatares_local.py:
+#: generacion a 768, prompt anatomico, reduccion a 256 y paleta de 128 colores.
+#: Los intentos descritos abajo preceden a esa receta y no rigen esos dos assets.
 #: Sufijo comun a los avatares.
 #:
 #: MODELO DE LOS AVATARES. No es el de las cartas.
@@ -372,6 +375,16 @@ def generar_avatares(key, solo=None, fuerza=False, comfyui=False):
 
     for nombre in faltan:
         destino = os.path.join(ASSETS, f"avatar_{nombre}.png")
+        if os.path.exists(destino) and not fuerza:
+            continue
+        if comfyui and nombre in ("hombre_lobo", "hombre_pantera"):
+            import generar_avatares_local as local
+            local.generar(nombre, local.VARIANTE_ELEGIDA, local.SEMILLA_ELEGIDA,
+                          "http://127.0.0.1:8188")
+            candidato = local.SALIDA / f"{nombre}_{local.VARIANTE_ELEGIDA}_{local.SEMILLA_ELEGIDA}.png"
+            with open(destino, "wb") as archivo:
+                archivo.write(candidato.read_bytes())
+            continue
         ancla = ancla_de_bando(nombre)
         if comfyui:
             if ancla:

@@ -15,6 +15,8 @@ import json
 import os
 import random
 import time
+import copy
+from contextlib import contextmanager
 
 import compendio
 import duelistas
@@ -23,7 +25,8 @@ import facciones
 import fragmentos
 import mazos
 from paths import archivo
-from reglas import Carta
+from persistencia import guardar_json, leer_json, transaccion, ErrorGuardado
+from reglas import Carta, total_carta
 
 VERSION = 7
 ARCHIVO_PARTIDA = "campana.json"
@@ -321,7 +324,7 @@ RECOMPENSAS = {
 TEXTO_RECOMPENSA = {
     "entrenamiento": "Entrenamiento: +1 a un lado de la carta que elijas.",
     "recluta": "Recluta: elige una de las tres cartas ofrecidas.",
-    "sigilo": "Sigilo de guerra: +1 permanente al lado mas bajo de todas tus cartas.",
+    "sigilo": "Sigilo de guerra: +1 al lado mas bajo de todas tus cartas durante esta campana.",
     "aliado": "Pacto: desbloquea el mazo de esa faccion para el draft.",
     "sobre": "Sobre: 3 cartas al azar con rareza ponderada.",
 }
@@ -337,12 +340,16 @@ ENCUENTROS = [
         "opciones": [
             {
                 "id": "pagar",
-                "texto": "Pagar con una carta (+1 a un lado de la que elijas)",
+                # El texto anterior decia "Pagar con una carta (+1 a un lado de
+                # la que elijas)" y no pasaba ninguna de las dos cosas: no se
+                # cobraba ninguna carta y el mazo no cambiaba (medido: delta 0).
+                # Ahora se pide la carta al jugador y se mejora de verdad.
+                "texto": "Aceptar su consejo (+1 a la carta que elijas)",
                 "efecto": "mejorar",
             },
             {
                 "id": "robar",
-                "texto": "Tomarle la bolsa (ganas una carta del pool)",
+                "texto": "Tomarle la bolsa (carta de tu faccion o de tus aliados)",
                 "efecto": "robo",
             },
         ],
@@ -378,7 +385,7 @@ ENCUENTROS = [
             },
             {
                 "id": "descansar",
-                "texto": "Descansar (+1 permanente a todas tus cartas)",
+                "texto": "Descansar (+1 al lado mas bajo de tus cartas esta campana)",
                 "efecto": "sigilo",
             },
         ],
@@ -685,6 +692,44 @@ def _semilla(faccion):
     return sum(ord(ch) for ch in faccion) * 7919
 
 
+def _duelos_desde(nodo_id, memo):
+    """Duelos que quedan desde `nodo_id`, con la rama mas larga incluida."""
+    if nodo_id is None:
+        return 0
+    if nodo_id in memo:
+        return memo[nodo_id]
+    d = NODOS.get(nodo_id)
+    if d is None:
+        memo[nodo_id] = 0
+        return 0
+    propio = 1 if d.get("tipo") in ("duelo", "final") else 0
+    if d.get("tipo") == "eleccion":
+        # La bifurcacion NO es un duelo: la clave de cada opcion es el nodo al
+        # que se va (aldea / ruinas), y ambos llevan a fortaleza. Contar nodos
+        # del grafo como si todos fueran duelos es lo que hacia que la portada
+        # dijera "Seis duelos"; y saltar al `siguiente` de la bifurcacion sin
+        # pasar por la opcion elegida es lo que hacia que salieran cuatro.
+        mejor = 0
+        for nombre_op in d.get("opciones", {}):
+            mejor = max(mejor, _duelos_desde(nombre_op, memo))
+        total = propio + mejor
+    else:
+        total = propio + _duelos_desde(d.get("siguiente"), memo)
+    memo[nodo_id] = total
+    return total
+
+
+def duelos_por_campana():
+    """Cuantos duelos ve el jugador en una campana completa.
+
+    Se recorre `NODOS` de verdad en vez de escribir el numero a mano. La
+    portada lo anuncia, y al hacerlo fijo aparecio un "Seis duelos" que
+    contaba la bifurcacion como si fuera un duelo: son cinco (senda, aldeas o
+    ruinas, fortaleza, asalto y trono).
+    """
+    return _duelos_desde("senda", {})
+
+
 def escalera_de(faccion):
     """Escalera de rivales garantizada sin la faccion del jugador."""
     base = [f for f in ESCALERAS.get(faccion, []) if f != faccion]
@@ -784,11 +829,21 @@ def guardar(estado, ruta=None):
     ruta = estado.get("_archivo", ruta_partida()) if ruta is None else ruta
     if ruta is None:
         return
+    guardar_json(ruta, estado)
+
+
+@contextmanager
+def transaccion_progreso(estado=None):
+    """Un cambio de juego confirma perfil y run juntos, o restaura la memoria."""
+    antes = copy.deepcopy(estado) if estado is not None else None
     try:
-        with open(ruta, "w", encoding="utf-8") as f:
-            json.dump(estado, f, ensure_ascii=False, indent=2)
-    except OSError:
-        pass
+        with transaccion(os.path.dirname(ruta_perfil())):
+            yield
+    except BaseException:
+        if estado is not None:
+            estado.clear()
+            estado.update(antes)
+        raise
 
 
 def ruta_perfil():
@@ -797,10 +852,42 @@ def ruta_perfil():
 
 def cargar():
     try:
-        with open(ruta_partida(), encoding="utf-8") as f:
-            return _migrar(json.load(f))
+        return _migrar(leer_json(ruta_partida()))
+    except ErrorGuardado:
+        raise
     except (FileNotFoundError, json.JSONDecodeError, OSError, AttributeError):
         return None
+
+
+def partida_danada():
+    """True si hay una partida guardada pero no se puede leer.
+
+    Sin esto, un `campana.json` corrupto hacia que `cargar()` devuelva `None` y
+    el menu ofreciera "NUEVA CAMPANA" como si fuese la primera partida: el
+    jugador perdia su campana sin que nadie le dijera nada. Aqui se distingue
+    "no has jugado nunca" de "tenias algo y se ha roto".
+    """
+    ruta = ruta_partida()
+    if not os.path.exists(ruta):
+        return False
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            json.load(f)
+        return False          # existe y es JSON valido
+    except (json.JSONDecodeError, UnicodeDecodeError, ValueError):
+        return True
+    except OSError:
+        return False          # existe pero no se puede abrir (permisos)
+
+
+def aviso_partida_danada():
+    """Texto para el jugador, o None si no hay nada que avisar."""
+    if not partida_danada():
+        return None
+    return ("No se pudo leer tu partida guardada, asi que se ha iniciado una nueva.\n\n"
+            "El archivo esta en:\n%s\n\n"
+            "Puedes renombrarlo o borrarlo: el juego volvera a empezar sin problema."
+            % ruta_partida())
 
 
 def borrar_partida():
@@ -901,6 +988,8 @@ def decidir(estado, id_decision, efecto=None):
         conocimiento -> delta para conocimiento_umbral
         revelacion  -> str, fragmento de verdad descubierto
     """
+    if id_decision in estado.get("decisiones", []):
+        return {}
     registrar_decision(estado, id_decision)
     efecto = efecto or {}
     if "confianza" in efecto:
@@ -1031,6 +1120,14 @@ def info_duelo(estado, nodo_id=None):
     datos = nodo(nodo_id)
     rival = rival_de_nodo(estado, nodo_id)
     duelo = _duelista_de(rival, nodo_id)
+    identidad_nodo = nodo_id
+    if nodo_id == "asalto":
+        # La revancha conserva a la persona, no solo la faccion del mazo.
+        rama = estado.get("eleccion") or "ruinas"
+        identidad_nodo = ("senda" if int(estado.get("revancha", 0) or 0) % 2 == 0
+                          else rama)
+        anterior = _duelista_de(rival, identidad_nodo)
+        duelo["nombre"] = anterior.get("nombre", duelo.get("nombre"))
     return {
         # pegamento narrativo (v7): lo que necesitan las escenas para reaccionar
         "faccion_jugador": estado.get("faccion"),
@@ -1066,28 +1163,62 @@ def info_duelo(estado, nodo_id=None):
         # siempre el de la faccion y por eso Juan Rajoy salia como un humano
         # cualquiera: `partida.py` pedia `avatar_<bando>`. Con esta clave la
         # pantalla puede mostrar a la persona, no al bando.
-        "retrato": duelistas.retrato_de(nodo_id, rival),
+        "retrato": duelistas.retrato_de(identidad_nodo, rival),
         # Como se llama el jugador, ya saneado. Lo leen el HUD del duelo, el
         # cartel previo y las escenas posteriores.
         "nombre_jugador": nombre_jugador(),
     }
 
 
+# Recorte del pool rival por dificultad: cuantas cartas (de las mas debiles)
+# entran en el sorteo segun el nivel del nodo. Un rival de la senda no puede
+# usar las legendarias de su faccion: en n0 el pool tiene el tamano del mazo
+# inicial del jugador (10) y en el trono casi todo el mazo. Es la "version
+# joven" vs la "version jefe" que pide el balance: dragon (y cualquier bando
+# fuerte) deja de ser imposible en los nodos tempranos.
+_POOL_POR_NIVEL = (10, 14, 18, 22)
+
+#: Techo del refuerzo por nivel que recibe el rival.
+#:
+#: El refuerzo real es `min(nivel_del_nodo, MAX_REFUERZO_RIVAL)`, asi que este
+#: tope decide si el ULTIMO nodo llega a tener mas refuerzo que los anteriores.
+#: Con 2 el tope se alcanzaba en el nivel 2: trono y asalto recibian EXACTAMENTE
+#: lo mismo, y medido con el motor real (`tools/simular_g8.py`) la curva se
+#: invertia: con mazo de 10 el trono salia al 58.4% de victorias del jugador y
+#: el asalto al 55.2%. El jefe de la campana era mas facil que el nodo previo.
+#:
+#: Con 3 el tope solo alcanza en el nivel 3, asi que el arreglo es quirurgico:
+#: senda 0, aldea 1, ruinas 2, fortaleza 2, asalto 2, trono 3. Los cinco
+#: primeros nodos no cambian ni un punto.
+MAX_REFUERZO_RIVAL = 3
+
+
+def _pool_rival(bando, nivel_pool):
+    """Las cartas mas debiles del mazo rival que entran segun la dificultad."""
+    indice = min(3, max(0, nivel_pool))
+    return sorted(mazos.TODOS[bando], key=total_carta)[:_POOL_POR_NIVEL[indice]]
+
+
 def mazo_rival(estado, nodo_id=None, dificultad_extra=0):
     """5 cartas sorteadas del mazo rival, potenciadas segun dificultad.
 
-    El efecto `debilitar` de los encuentros resta: el rival llega mas flojo.
-    El sorteo es determinista (semilla + nodo + intentos): recargar no
-    re-sortea, pero cada campana e intento varian.
+    El pool se recorta por nivel (ver `_pool_rival`): los nodos tempranos
+    juegan contra la version joven de la faccion y el trono contra casi todo
+    el mazo. El efecto `debilitar` de los encuentros resta refuerzo: el
+    rival llega mas flojo SIN cambiar el sorteo, asi el resultado es
+    deterministico (semilla + nodo + intentos; recargar no re-sortea).
     """
     info = info_duelo(estado, nodo_id)
-    nivel = info["dificultad"] + dificultad_extra - int(estado.get("debilitar", 0) or 0)
-    cartas = [c.copia() for c in mazos.TODOS[info["bando"]]]
+    nivel_pool = info["dificultad"] + dificultad_extra
+    refuerzo = nivel_pool - int(estado.get("debilitar", 0) or 0)
+    pool = _pool_rival(info["bando"], nivel_pool)
+    cartas = [c.copia() for c in pool]
     rng = random.Random((_semilla(estado["faccion"]) + sum(ord(c) for c in info["nodo"])) % 999983)
     for c in cartas:
         for lado in ("N", "S", "E", "O"):
-            if c.valores[lado] < 10 and nivel > 0 and rng.random() < 0.7:
-                c.valores[lado] += min(nivel, 10 - c.valores[lado])
+            if c.valores[lado] < 10 and refuerzo > 0 and rng.random() < 0.7:
+                c.valores[lado] += min(refuerzo, MAX_REFUERZO_RIVAL,
+                                       10 - c.valores[lado])
     if len(cartas) > 5:
         rng_sorteo = _rng_sorteo(estado, info["nodo"], extra=1)
         cartas = [c.copia() for c in rng_sorteo.sample(cartas, 5)]
@@ -1124,7 +1255,7 @@ def cartas_base(estado):
     """La coleccion tal cual esta en `estado["cartas"]`, sin mejoras.
 
     Solo para lo que tiene que hablar de la carta original: la ficha de la
-    coleccion y el texto de "duplicada (+1)" del sobre, que describen lo
+    coleccion y el texto de "duplicadas" del sobre, que describen lo
     impreso en la carta, no la carta que se llevas a la mesa.
     """
     return [Carta.desde_dict(d, estado["faccion"]) for d in estado["cartas"]]
@@ -1154,6 +1285,69 @@ def cartas_duelo(estado, nodo_id=None):
 
 
 # -------------------------------------------------------------------- progreso
+
+
+def registrar_resultado(estado, resultado):
+    """Premio, estadisticas y siguiente nodo forman una sola operacion."""
+    if resultado.abandonado:
+        return 0
+    with transaccion_progreso(estado):
+        nodo_id = nodo_actual(estado)
+        if resultado.victoria:
+            registrar_victoria(estado, resultado.capturas)
+            if not estado.get("completada"):
+                estado["recompensa_pendiente"] = nodo_id
+            else:
+                estado["final_pendiente"] = True
+        else:
+            registrar_derrota(estado)
+        registrar_duelo_perfil(resultado.victoria, estado["faccion"], estado["racha"])
+        estado["ultimo_premio"] = detalle_premio_duelo(resultado.victoria,
+                                                       resultado.capturas)
+        moneda_ganada = premio_duelo(estado, resultado.victoria, resultado.capturas)
+        guardar(estado)
+        return moneda_ganada
+
+
+def puede_continuar(estado):
+    """El final tambien se reanuda si se cerro entre victoria y epilogo."""
+    return bool(estado) and (not estado.get("completada") or
+                             estado.get("final_pendiente", False) or
+                             not estado.get("final"))
+
+
+def resumen_campana(estado):
+    """Resumen breve al reanudar: donde estas y que toca ahora.
+
+    Soltar al jugador en el mapa sin contexto tras dias sin jugar era lo que
+    hacia que no supiera ni contra quien peleaba. Devuelve una lista de frases
+    cortas para el cartel de reanudacion.
+    """
+    lineas = [f"Retomas la campana {facciones.nombre(estado.get('faccion', ''))}."]
+    if estado.get("final_pendiente"):
+        lineas.append("El final de tu historia quedo pendiente: sigue donde lo dejaste.")
+        return lineas
+    if estado.get("completada"):
+        lineas.append("La campana esta completa.")
+        return lineas
+
+    info = info_duelo(estado)
+    lineas.append(f"Siguiente parada: {info['titulo']}, contra {info['nombre']} "
+                  f"({info['nombre_faccion']}).")
+
+    victorias = estado.get("victorias", 0)
+    derrotas = estado.get("derrotas", 0)
+    if victorias or derrotas:
+        lineas.append(f"Llevas {victorias} victorias y {derrotas} derrotas.")
+
+    if nara_aliada(estado):
+        lineas.append("Nara viaja contigo: ya no solo te observa.")
+    elif confianza_nara(estado):
+        lineas.append("Nara sigue a tu lado, aun tomando nota de cada decision.")
+
+    if estado.get("recompensa_pendiente"):
+        lineas.append("Tienes una recompensa sin reclamar: la veras al entrar.")
+    return lineas
 
 
 def registrar_victoria(estado, capturas=0):
@@ -1213,6 +1407,59 @@ def completar(estado):
 
 def recompensas_de(nodo_id):
     return list(RECOMPENSAS.get(nodo_id, ["entrenamiento", "recluta"]))
+
+
+def entregar_recompensa(estado, clave, nodo_id, idx=None, carta=None):
+    """Confirma la recompensa y su recibo juntos, antes de mostrar el cartel."""
+    recibidas = estado.get("recompensas_recibidas", {})
+    if nodo_id in recibidas:
+        return copy.deepcopy(recibidas[nodo_id])
+    if clave not in recompensas_de(nodo_id):
+        raise ValueError("La recompensa no esta disponible en este nodo")
+    with transaccion_progreso(estado):
+        nuevas, mejoradas = [], []
+        if clave == "entrenamiento":
+            lado = mejorar_carta(estado, idx)
+            datos = estado["cartas"][idx]
+            mensaje = "%s sube su %s a %d" % (
+                datos["nombre"], lado.upper(), valor_actual(estado, datos, lado))
+        elif clave == "recluta":
+            reemplazada = estado["cartas"][idx]["nombre"]
+            entro = draft_reemplazo(estado, carta, idx)
+            if entro:
+                mensaje = f"{carta.nombre} entra en el mazo en lugar de {reemplazada}"
+            else:
+                # La carta es del jugador pase lo que pase; lo que no cabe es el
+                # mazo. Anunciar "entra en el mazo" cuando no ha entrado seria
+                # una promesa sin efecto, justo lo que G6 prohibe.
+                _cabe, motivo = mazo_admite(estado, carta, reemplazo=idx)
+                mensaje = (f"{carta.nombre} se guarda en tu coleccion, no en el mazo: "
+                           f"{motivo}. Puedes equiparla desde la coleccion.")
+        elif clave == "sigilo":
+            aplicar_sigilo(estado)
+            mensaje = "Tus cartas suben su lado mas bajo durante esta campana"
+        elif clave == "aliado":
+            f = sustituto_aliado(estado)
+            if f and desbloquear_aliado(estado, f):
+                mensaje = f"Pacto con {facciones.nombre(f)}: sus cartas entran en el draft"
+            else:
+                aplicar_sigilo(estado)
+                mensaje = "Ya pactaste con todos: obtienes un sigilo de guerra"
+        elif clave == "sobre":
+            nuevas, mejoradas = abrir_sobre(estado)
+            partes = []
+            if nuevas:
+                partes.append("nuevas: " + ", ".join(nuevas))
+            if mejoradas:
+                partes.append("duplicadas: " + ", ".join(mejoradas))
+            mensaje = "Sobre abierto: " + "; ".join(partes)
+        recibo = {"mensaje": mensaje, "nuevas": nuevas, "mejoradas": mejoradas,
+                  "detalles": cargar_perfil().get("ultimo_sobre_detalles", {}) if mejoradas else {}}
+        estado.setdefault("recompensas_recibidas", {})[nodo_id] = recibo
+        if estado.get("recompensa_pendiente") == nodo_id:
+            estado.pop("recompensa_pendiente")
+        guardar(estado)
+        return copy.deepcopy(recibo)
 
 
 def aplicar_sigilo(estado):
@@ -1434,6 +1681,18 @@ def premio_duelo(estado, victoria, capturas):
     return total
 
 
+def detalle_premio_duelo(victoria, capturas):
+    """Desglose de la moneda de un duelo: de donde sale cada parte."""
+    capturas = int(capturas or 0)
+    partes = [("Duelo completado", MONEDA_POR_DUELO)]
+    if victoria:
+        partes.append(("Victoria", MONEDA_VICTORIA))
+    if capturas:
+        partes.append((f"{capturas} capturas x{MONEDA_POR_CAPTURA}",
+                       MONEDA_POR_CAPTURA * capturas))
+    return {"partes": partes, "total": sum(v for _, v in partes)}
+
+
 LIMITE_LEGENDARIAS = 1
 LIMITE_RARAS = 3
 MAZO_RUN_N = 10
@@ -1446,6 +1705,9 @@ def validar_mazo(lista_dicts, poseidas):
 
     if not MAZO_MIN_N <= len(lista_dicts) <= MAZO_RUN_N:
         return False, f"El mazo necesita de {MAZO_MIN_N} a {MAZO_RUN_N} cartas ({len(lista_dicts)})"
+    nombres = [d.get("nombre") for d in lista_dicts]
+    if len(nombres) != len(set(nombres)):
+        return False, "Cada carta solo puede aparecer una vez en el mazo"
     for d in lista_dicts:
         if d.get("nombre") not in poseidas:
             return False, f"{d.get('nombre')} no es tuya"
@@ -1458,10 +1720,39 @@ def validar_mazo(lista_dicts, poseidas):
 
 
 def draft_aleatorio(estado, cantidad=3, facciones_extra=None):
-    """Ofertas de draft ponderadas por rareza (mas comun, menos comun)."""
+    """Ofertas de draft ponderadas por rareza (mas comun, menos comun).
+
+    Cada oferta tiene que ser REALMENTE jugable: una carta que el jugador elige
+    tiene que poder entrar en el mazo. Por eso se descartan dos clases:
+
+    - Las que ya estan equipadas. El mazo no admite repetidas, asi que ofrecirlas
+      era una trampa blanda: el jugador la elegia, ocupaba el sitio de otra, y
+      se quedaba sin cambio. Las repetidas siguen saliendo en el sobre, que es
+      donde dan su mejora permanente.
+    - Las que no caben por rareza. Si el mazo ya tiene su legendaria, otra
+      legendaria no puede entrar; ofrecerla consume una eleccion para nada.
+
+    Si el filtro dejara el pool vacio, se prefiere un draft corto a un mazo
+    invalido: es mejor ofrecer menos que prometer algo que no va a pasar.
+    """
     from reglas import rareza
 
     pool = cartas_del_pool(estado, facciones_extra)
+    cartas = estado.get("cartas", [])
+    en_mazo = {d.get("nombre") for d in cartas}
+    hay = {"LEGENDARIA": 0, "RARA": 0}
+    for d in cartas:
+        etiqueta = rareza(Carta.desde_dict(d))[0]
+        hay[etiqueta] = hay.get(etiqueta, 0) + 1
+
+    topes = {"LEGENDARIA": LIMITE_LEGENDARIAS, "RARA": LIMITE_RARAS}
+    jugables = [c for c in pool
+                if c.nombre not in en_mazo
+                and (rareza(c)[0] not in topes or hay[rareza(c)[0]] < topes[rareza(c)[0]])]
+    # Si el mazo ya esta saturado de una rareza y el pool es solo de esa, mejor
+    # ofrecer las que si se pueden usar aunque esten equipadas: el filtro de
+    # arriba habria dejado la lista vacia.
+    pool = jugables or [c for c in pool if c.nombre not in en_mazo] or pool
     pesos = {"LEGENDARIA": 2, "RARA": 5, "COMUN": 10}
     ofertas = []
     intentos = 0
@@ -1484,7 +1775,45 @@ def pity_sobres(perfil=None):
     return int(perfil.get("pity_sobres", 0) or 0)
 
 
+def probabilidad_legendaria_sobre(perfil=None, cantidad=3):
+    """Probabilidad de al menos una legendaria, incluida la garantia.
+
+    Sigue los 80 intentos del generador: repetir un nombre consume intento
+    pero no plaza. Los estados solo cuentan comunes y raras ya extraidas;
+    extraer una legendaria sale de la masa de probabilidad sin legendarias.
+    """
+    from collections import Counter
+    from reglas import rareza
+
+    conteos = Counter(rareza(c)[0] for cartas in mazos.TODOS.values() for c in cartas)
+    if cantidad <= 0 or not conteos["LEGENDARIA"]:
+        return 0.0
+    if pity_sobres(perfil) >= PITY_SOBRES - 1:
+        return 1.0
+    total = sum(conteos[r] * peso for r, peso in PESOS_SOBRE.items())
+    estados = {(0, 0): 1.0}
+    for _ in range(80):
+        siguientes = {}
+        for (comunes, raras), prob in estados.items():
+            if comunes + raras >= cantidad:
+                siguientes[(comunes, raras)] = siguientes.get((comunes, raras), 0) + prob
+                continue
+            pasos = [((comunes, raras), comunes * PESOS_SOBRE["COMUN"] + raras * PESOS_SOBRE["RARA"]),
+                     ((comunes + 1, raras), (conteos["COMUN"] - comunes) * PESOS_SOBRE["COMUN"]),
+                     ((comunes, raras + 1), (conteos["RARA"] - raras) * PESOS_SOBRE["RARA"])]
+            for clave, peso in pasos:
+                if peso > 0:
+                    siguientes[clave] = siguientes.get(clave, 0) + prob * peso / total
+        estados = siguientes
+    return max(0.0, min(1.0, 1 - sum(estados.values())))
+
+
 def abrir_sobre(estado, cantidad=3):
+    with transaccion_progreso(estado):
+        return _abrir_sobre(estado, cantidad)
+
+
+def _abrir_sobre(estado, cantidad=3):
     """Abre un sobre: `cantidad` cartas de TODO el catalogo con los pesos.
 
     La carta nueva entra en la coleccion (y en el mazo de run si cabe);
@@ -1513,20 +1842,30 @@ def abrir_sobre(estado, cantidad=3):
             ofertas = [o for o in ofertas if o.nombre != elegida.nombre]
         ofertas = ([elegida] + ofertas)[:cantidad]
     nuevas, mejoradas = [], []
+    detalles = {}
     hay_leg = any(rareza(o)[0] == "LEGENDARIA" for o in ofertas)
     coleccion = coleccion_de(perfil)
     mazo_run = estado["cartas"] if estado is not None else None
     for c in ofertas:
         if c.nombre in coleccion:
+            antes = dict(coleccion[c.nombre])
             mejorar_base(c.nombre)
+            despues = coleccion_de()[c.nombre]
+            cambios = [f"{l.upper()}: {antes[l]} -> {despues[l]}" for l in "nseo"
+                       if antes[l] != despues[l]]
+            detalles[c.nombre] = ", ".join(cambios) or "Al maximo: sin cambio"
             mejoradas.append(c.nombre)
         else:
             otorgar_base(c.nombre, c.a_dict())
             coleccion[c.nombre] = c.a_dict()
-            if mazo_run is not None and len(mazo_run) < MAZO_RUN_N:
-                mazo_run.append(c.a_dict())
+            # Entra al mazo solo si lo admite; si no, sigue siendo tuya y la
+            # equipas cuando quieras. Antes el `append` era a pelo y un mazo
+            # reducido se llenaba de cartas que el editor luego rechazaba.
+            if mazo_run is not None:
+                anadir_carta(estado, c)
             nuevas.append(c.nombre)
     perfil = cargar_perfil()
+    perfil["ultimo_sobre_detalles"] = detalles
     perfil["pity_sobres"] = 0 if hay_leg else pity + 1
     guardar_perfil(perfil)
     if estado is not None:
@@ -1536,16 +1875,19 @@ def abrir_sobre(estado, cantidad=3):
 
 def comprar_sobre(estado):
     """Compra un sobre con moneda. Devuelve (ok, nuevas, mejoradas)."""
-    if not gastar_moneda(PRECIO_SOBRE):
-        return False, [], []
-    return True, *abrir_sobre(estado)
+    with transaccion_progreso(estado):
+        if not gastar_moneda(PRECIO_SOBRE):
+            return False, [], []
+        return True, *abrir_sobre(estado)
 
 
 def cartas_por_nombre(estado, nombres):
-    """Cartas localizadas por nombre (catalogo completo)."""
+    """Cartas con sus valores permanentes actuales, o catalogo si no se poseen."""
     import mazos
 
     pool = {c.nombre: c for cartas in mazos.TODOS.values() for c in cartas}
+    for nombre, datos in coleccion_de().items():
+        pool[nombre] = Carta.desde_dict(datos)
     return [pool[n].copia() for n in nombres if n in pool]
 
 
@@ -1573,19 +1915,73 @@ def sustituto_aliado(estado):
     return None
 
 
+def mazo_admite(estado, carta, reemplazo=None):
+    """¿Cabe `carta` en el mazo respetando las mismas reglas que el editor?
+
+    Es el unico sitio que decide si un alta automatica (draft, sobre,
+    encuentro) puede tocar el mazo. Antes cada ruta por su cuenta y sin mirar
+    nada, y aparecian mazos que el editor despues rechazaba: una misma carta
+    dos veces, dos legendarias o trece cartas en un mazo de diez.
+
+    Si `reemplazo` apunta a la copia que se va a sustituir, esa posicion deja
+    de contar, para que sustituir una carta por si misma no sea un duplicado.
+
+    Devuelve (bool, motivo). El motivo es texto para el jugador: no se pierde
+    nada, porque la carta va siempre a la coleccion.
+    """
+    from reglas import rareza
+
+    cartas = estado["cartas"]
+    nombres = [d.get("nombre") for d in cartas]
+    sin_reemplazo = [n for i, n in enumerate(nombres) if i != reemplazo]
+    if carta.nombre in sin_reemplazo:
+        return False, f"{carta.nombre} ya esta en tu mazo"
+
+    # Mazo tal como quedaria: sin la carta de `reemplazo`, mas la nueva.
+    resultado = [d for i, d in enumerate(cartas) if i != reemplazo]
+    resultado.append(carta.a_dict())
+    if len(resultado) > MAZO_RUN_N:
+        return False, f"El mazo no admite mas de {MAZO_RUN_N} cartas"
+
+    cuenta = {"LEGENDARIA": 0, "RARA": 0}
+    for d in resultado:
+        etiqueta = rareza(Carta.desde_dict(d))[0]
+        cuenta[etiqueta] = cuenta.get(etiqueta, 0) + 1
+    if cuenta["LEGENDARIA"] > LIMITE_LEGENDARIAS:
+        return False, f"Solo {LIMITE_LEGENDARIAS} legendaria en el mazo"
+    if cuenta["RARA"] > LIMITE_RARAS:
+        return False, f"Maximo {LIMITE_RARAS} cartas raras en el mazo"
+    return True, ""
+
+
 def draft_reemplazo(estado, carta, reemplazo):
+    """Sustituye una carta del mazo por otra del draft.
+
+    La carta va SIEMPRE a la coleccion; al mazo solo si la sustitucion deja un
+    mazo legal. Antes se escribia sin comprobar nada y se podia terminar con la
+    misma carta dos veces. Devuelve si entro al mazo.
+    """
     otorgar_base(carta.nombre, carta.a_dict())
-    estado["cartas"][reemplazo] = carta.a_dict()
+    cabe, _motivo = mazo_admite(estado, carta, reemplazo=reemplazo)
+    if cabe:
+        estado["cartas"][reemplazo] = carta.a_dict()
     guardar(estado)
+    return cabe
 
 
 def anadir_carta(estado, carta, reemplazo=None):
-    """Anade una carta; si el mazo esta lleno sustituye la mas debil."""
+    """Anade una carta a la coleccion y, si el mazo lo admite, tambien al mazo.
+
+    La sustitucion sigue siendo "la mas debil" cuando el mazo esta lleno, pero
+    ahora respetando `mazo_admite`: una carta que ya esta dentro, o que
+    romperia el tope de legendarias o de raras, se queda en la coleccion y el
+    jugador la equipa despues desde el editor, donde si se explica el motivo.
+    """
     from reglas import total_carta
 
     otorgar_base(carta.nombre, carta.a_dict())
     cartas = estado["cartas"]
-    if len(cartas) < 5:
+    if len(cartas) < MAZO_MIN_N:
         cartas.append(carta.a_dict())
     else:
         idx = (
@@ -1593,8 +1989,11 @@ def anadir_carta(estado, carta, reemplazo=None):
             if reemplazo is None
             else reemplazo
         )
-        cartas[idx] = carta.a_dict()
+        cabe, _motivo = mazo_admite(estado, carta, reemplazo=idx)
+        if cabe:
+            cartas[idx] = carta.a_dict()
     guardar(estado)
+    return len(cartas)
 
 
 # ------------------------------------------------------------------- encuentros
@@ -1648,10 +2047,27 @@ def revelar_encuentro(estado, enc_id):
             "id": revelacion}
 
 
-def aplicar_encuentro(estado, efecto):
-    """Aplica una opcion de encuentro. Devuelve (titulo, texto)."""
+def aplicar_encuentro(estado, efecto, idx=None):
+    """Aplica una opcion de encuentro. Devuelve (titulo, texto).
+
+    `idx` es la carta que el jugador eligio, para los efectos que lo piden.
+    Sin el (llamadas sin eleccion, como las pruebas) se cae a la carta mas
+    debil, que es lo que hacia el resto de efectos similares.
+
+    El efecto `mejorar` **no hacia nada**: devolvia un texto que decia "un punto
+    mas de fuerza" y el mazo se quedaba igual. Medido: delta 0. G6 prohibe
+    exactamente eso, una promesa mecanica sin efecto verificable.
+    """
     if efecto == "mejorar":
-        return ("Mercader", "Pagaste con una carta y recibiste un punto mas de fuerza.")
+        cartas = cartas_jugador(estado)
+        if not cartas:
+            return ("Mercader", "No tienes cartas con que trabajar.")
+        if idx is None:
+            idx = min(range(len(cartas)), key=lambda i: sum(cartas[i].valores.values()))
+        lado = mejorar_carta(estado, idx)
+        nombre = cartas[idx].nombre
+        return ("Mercader", f"Su consejo: {nombre} sube su {lado.upper()} "
+                            f"a {valor_actual(estado, estado['cartas'][idx], lado)}.")
     if efecto == "robo":
         carta = draft_aleatorio(estado, 1)[0]
         anadir_carta(estado, carta)
@@ -1662,13 +2078,25 @@ def aplicar_encuentro(estado, efecto):
             idx = min(range(len(cartas)), key=lambda i: sum(cartas[i].valores.values()))
             lado = mejorar_carta(estado, idx)
             return ("Anciano", f"Su consejo: {cartas[idx].nombre} mas fuerte en {lado.upper()}.")
+        return ("Anciano", "No tienes cartas que mejorar.")
     if efecto == "sobre":
         nuevas, mejoradas = abrir_sobre(estado)
         partes = []
         if nuevas:
-            partes.append(f"nuevas: {', '.join(nuevas)}")
+            partes.append("nuevas: " + ", ".join(nuevas))
         if mejoradas:
-            partes.append(f"duplicadas (+1): {', '.join(mejoradas)}")
+            # El texto decia "duplicadas (+1)" a pelo. Una carta ya al maximo
+            # no sube: `abrir_sobre` lo deja escrito en `ultimo_sobre_detalles`
+            # y aqui se anunciaba un +1 que no ocurria. Medido: sobre con las
+            # tres cartas al 10-10-10-10 ->
+            # "duplicadas (+1): Oraculo de Sangre, Musgo Viejo, Ansia Nocturna"
+            # con detalle real "Al maximo: sin cambio" en las tres.
+            detalles = cargar_perfil().get("ultimo_sobre_detalles", {})
+            describe = []
+            for nombre in mejoradas:
+                d = detalles.get(nombre, "")
+                describe.append(f"{nombre} ({d})" if d else nombre)
+            partes.append("duplicadas: " + ", ".join(describe))
         return ("Caravana", f"Abres el sobre: {'; '.join(partes) or 'vacio'}.")
     if efecto == "debilitar":
         estado["debilitar"] = int(estado.get("debilitar", 0) or 0) + 1
@@ -1706,32 +2134,16 @@ def sanea_nombre(bruto, defecto=NOMBRE_POR_DEFECTO):
     - Se colapsan los espacios y se recorta a `NOMBRE_MAX`.
     - Si no queda nada usable, se devuelve el defecto, para que nunca salga
       un nombre vacio por ahi.
+    - "sin nombre" (en cualquier mayuscula) no se admite como nombre propio:
+      se trata como si el jugador hubiera dejado el campo vacio.
     """
     if not isinstance(bruto, str):
         return defecto
     limpio = "".join(" " if ch in "<>\n\r\t" else ch for ch in bruto)
     limpio = " ".join(limpio.split())[:NOMBRE_MAX].strip()
+    if limpio.casefold() == "sin nombre":
+        return defecto
     return limpio or defecto
-
-
-def cargar_perfil():
-    try:
-        with open(ruta_perfil(), encoding="utf-8") as f:
-            datos = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError, OSError):
-        return perfil_por_defecto()
-    base = perfil_por_defecto()
-    if isinstance(datos, dict):
-        base.update(datos)
-    return base
-
-
-def guardar_perfil(perfil):
-    try:
-        with open(ruta_perfil(), "w", encoding="utf-8") as f:
-            json.dump(perfil, f, ensure_ascii=False, indent=2)
-    except OSError:
-        pass
 
 
 def perfil_por_defecto():
@@ -1813,8 +2225,9 @@ def tiene_nombre():
 
 def cargar_perfil():
     try:
-        with open(ruta_perfil(), encoding="utf-8") as f:
-            datos = json.load(f)
+        datos = leer_json(ruta_perfil())
+    except ErrorGuardado:
+        raise
     except (FileNotFoundError, json.JSONDecodeError, OSError):
         return perfil_por_defecto()
     base = perfil_por_defecto()
@@ -1824,11 +2237,7 @@ def cargar_perfil():
 
 
 def guardar_perfil(perfil):
-    try:
-        with open(ruta_perfil(), "w", encoding="utf-8") as f:
-            json.dump(perfil, f, ensure_ascii=False, indent=2)
-    except OSError:
-        pass
+    guardar_json(ruta_perfil(), perfil)
 
 
 def registrar_final_perfil(faccion, variante):
@@ -1864,6 +2273,51 @@ def marcar_cinematica(cid):
 
 def cinematicas_vistas():
     return set(cargar_perfil().get("cinematicas", []))
+
+
+DIARIO_MAX = 80
+
+
+def registrar_dialogo(hablante, linea, faccion=None):
+    """Anade una linea al diario de dialogos, con tope.
+
+    El diario es un resumen de lo ultimo leido, no la biblia entera: se
+    recorta para que el perfil no crezca sin fin. Se agrupa por faccion para
+    que el jugador pueda releer lo de su partida.
+    """
+    linea = (linea or "").strip()
+    if not linea:
+        return
+    perfil = cargar_perfil()
+    diario = perfil.setdefault("diario_dialogos", [])
+    entrada = {"hablante": hablante or "", "texto": linea}
+    if faccion:
+        entrada["faccion"] = faccion
+    diario.append(entrada)
+    if len(diario) > DIARIO_MAX:
+        del diario[:-DIARIO_MAX]
+    guardar_perfil(perfil)
+
+
+def diario_dialogos(faccion=None, perfil=None):
+    """Lineas del diario, mas recientes al final.
+
+    Con `faccion`, filtra a lo de esa campana mas lo que no tiene faccion
+    (narracion comun, prologo). Nunca devuelve referencias a la lista guardada.
+    """
+    if perfil is None:
+        perfil = cargar_perfil()
+    entradas = perfil.get("diario_dialogos", [])
+    if faccion:
+        entradas = [e for e in entradas
+                    if not e.get("faccion") or e.get("faccion") == faccion]
+    return [dict(e) for e in entradas]
+
+
+def limpiar_diario():
+    perfil = cargar_perfil()
+    perfil["diario_dialogos"] = []
+    guardar_perfil(perfil)
 
 
 def tutorial_estado():

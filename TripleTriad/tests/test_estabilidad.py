@@ -675,16 +675,16 @@ class TestPreviewDeLaMano(unittest.TestCase):
         original_preview = modulo_partida.Juego._dibujar_preview
         original_crear = modulo_partida.crt.crear
 
-        def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1,
-                  bando_dueno=None):
+        def crear(carta, dueno=None, habilidad=True, escala=1,
+                  bando_dueno=None, valores=None):
             if escala != 1:
                 s = pygame.Surface((int(ui.CARD_W * escala),
                                     int(ui.CARD_H * escala)))
                 s.fill(self.MARCA)
                 return s
             return original_crear(carta, dueno, habilidad=habilidad,
-                                 synergy=synergy, escala=escala,
-                                  bando_dueno=bando_dueno)
+                                 escala=escala,
+                                   bando_dueno=bando_dueno, valores=valores)
 
         def preview(juego_, screen, mouse, carta):
             rects.append(original_preview(juego_, screen, mouse, carta))

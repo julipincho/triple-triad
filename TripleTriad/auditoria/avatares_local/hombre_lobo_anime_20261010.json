@@ -1,0 +1,16 @@
+{
+  "nombre": "hombre_lobo",
+  "modelo": "animagine-xl-4.0.safetensors",
+  "seed": 20261010,
+  "positivo": "masterpiece, best quality, very aesthetic, solo, 1boy, male anthro, furry, wolf, grey fur, long canine snout, pointed wolf ears, animal head, animal nose, yellow eyes, muscular, upper body, portrait, looking at viewer, three-quarter view, broad shoulders, brown leather vest, chest visible, fantasy warrior, uncovered face, retro JRPG portrait, detailed pixel art, textured shading, detailed fur, pale grey background, simple background, soft lighting",
+  "negativo": "human face, human ears, human skin, catboy, catgirl, mask, fursuit, hood, helmet, muzzle strap, collar, frame, border, text, watermark, multiple characters, character sheet, grid, panels, split image, photograph, 3d render, chibi, blocky, oversized pixels, blurry, full body, scenery, forest, moon, neon, oversaturated, detached head, floating head, bust statue, logo, emblem, face armor, metal on face, muzzle, bridle, harness, halter, jewelry, ornament, ornate, mask, straps on face, gold decoration",
+  "ancho": 768,
+  "alto": 768,
+  "pasos": 28,
+  "cfg": 6.0,
+  "sampler": "euler",
+  "scheduler": "normal",
+  "salida": 256,
+  "reduccion": "LANCZOS",
+  "referencia": "assets/avatar_orco.png"
+}

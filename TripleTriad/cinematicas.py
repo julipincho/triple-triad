@@ -49,7 +49,7 @@ class Escena:
         self.fondo = datos.get("fondo", "ceniza")
         self.hablante = datos.get("hablante")
         self.texto = datos.get("texto", "")
-        self.retrato = datos.get("retrato")
+        self.retrato = datos.get("retrato") or retrato_hablante(self.hablante)
         self.efecto = datos.get("efecto", "dialogo")
         # `or TEXTO` y no `datos.get("color", TEXTO)`: varios productores de
         # escenas pasan la clave CON valor None (`duelistas._esc` y
@@ -91,6 +91,9 @@ class Cinematica:
         self.permitir_saltar = permitir_saltar
         self.i = 0
         self._t_escena = time.time()
+        # Indice de la ultima escena anotada en el diario. Se anota una vez por
+        # escena y no por frame: el diario se escribe en disco.
+        self._anotado = -1
 
     def _resolver_jugador(self, escena):
         """Cambia `__JUGADOR__` por el nombre en `texto` y en `hablante`."""
@@ -121,6 +124,24 @@ class Cinematica:
         self._t_escena = time.time()
         return True
 
+    def _anotar(self, escena):
+        """Guarda en el diario una escena de dialogo, una sola vez.
+
+        Los rotulos (`efecto == "titulo"`) no son dialogo y no entran. El
+        diario es opcional: si el perfil no se puede escribir, la cinematica
+        no debe caerse por eso.
+        """
+        if escena.efecto == "titulo" or not escena.texto:
+            return
+        if self.i <= self._anotado:
+            return
+        self._anotado = self.i
+        try:
+            import campana
+            campana.registrar_dialogo(escena.hablante or "", escena.texto)
+        except Exception:  # noqa: BLE001 - el diario nunca tumba una escena
+            pass
+
     async def ejecutar(self, screen, clock):
         if not self.escenas:
             if self.al_terminar:
@@ -147,6 +168,7 @@ class Cinematica:
             escena = self.escena()
             if escena is None:
                 break
+            self._anotar(escena)
             if escena.musica:
                 audio.musica(escena.musica)
             t = time.time() - self._t_escena
@@ -289,7 +311,9 @@ class Cinematica:
         un bando sale el nombre de la faccion; para un personaje, el suyo.
         """
         entrada = ease(min(1.0, t / 0.5))
-        img = REC.imagen(f"assets/avatar_{bando}.png", (150, 150))
+        ruta = (f"assets/escenas/{bando.split(':', 1)[1]}.png"
+                if bando.startswith("encuentro:") else f"assets/avatar_{bando}.png")
+        img = REC.imagen(ruta, (150, 150))
         x = ANCHO // 2 + 200
         y = LINEA_BARRA + 76 + int((1 - entrada) * -26)
         marco = pygame.Rect(x, y, 150, 150)
@@ -349,8 +373,35 @@ ETIQUETAS_RETRATO = {
 }
 
 
+def retrato_hablante(hablante):
+    """Resuelve retratos omitidos sin heredar la cara de quien hablo antes."""
+    if not hablante:
+        return None
+    nombres = {
+        "nara": "nara", "nara, la cronista": "nara",
+        "__jugador__": "duelista", "el duelista": "duelista",
+        "juan rajoy": "rajoy", "presentador": "presentador",
+        "el presentador": "presentador", "pik": "pik", "dara": "dara",
+        "aldric": "humano", "vorg": "orco", "grix": "goblin",
+        "lyra": "elfo", "fenris": "hombre_lobo", "condesa": "vampiro",
+        "la condesa": "vampiro", "ignarok": "dragon", "sylwen": "elfo_nocturno",
+        "zarkha": "hombre_pantera", "sskar": "hombre_lagarto",
+        "mercader errante": "encuentro:mercader",
+        "el anciano del umbral": "encuentro:anciano",
+        "hermandad de armas": "encuentro:hermandad",
+        "caravana de sobres": "encuentro:caravana",
+        "alguien te ha visto": "encuentro:hostil",
+        # El Cartógrafo / Maestro de la Mesa: usa el avatar de gobernante
+        "el maestro de la mesa": "gobernante",
+    }
+    return nombres.get(hablante.casefold())
+
+
 def _etiqueta_retrato(clave):
     """Como se llama al dueno del retrato, sea bando o personaje."""
+    if clave.startswith("encuentro:"):
+        import encuentros
+        return encuentros.titulo_encuentro(clave.split(":", 1)[1])
     if clave in ETIQUETAS_RETRATO:
         return ETIQUETAS_RETRATO[clave]
     return facciones.nombre(clave)
@@ -574,7 +625,7 @@ def escenas_nodo(info):
     rival = info["bando"]
     # El retrato puede ser el del personaje con nombre (Pik, Dara...) en vez
     # del bando. El color de la musica y del acento sigue siendo el del bando.
-    retrato = duelistas.retrato_de(nodo_id, rival)
+    retrato = info.get("retrato") or duelistas.retrato_de(nodo_id, rival)
     musica = audio.musica_de_faccion(rival)
     escenas.append(esc(f"{info['nombre']}, {info['titulo_duelo']}.",
                        hablante=info["nombre"], retrato=retrato,
@@ -583,11 +634,13 @@ def escenas_nodo(info):
     # sobre la linea generica de faccion.
     reaccion = info.get("reaccion_rol")
     if reaccion:
+        escenas.append(esc("El rival senala la figura de tu carta. Le habla como "
+                           "si pudiera oirlo.", fondo=escena_fondo))
         escenas.append(esc(reaccion, hablante=info["nombre"], retrato=retrato,
                            fondo=escena_fondo, color=TEXTO_ON))
     else:
         escenas.append(esc(info.get("entrada", ""), hablante=info["nombre"],
-                           retrato=rival, fondo=escena_fondo, color=TEXTO_ON))
+                            retrato=retrato, fondo=escena_fondo, color=TEXTO_ON))
     # Dialogo del rol: por que pelea este rival en este nodo.
     for e in info.get("dialogo_pre", []):
         escena = dict(e)
@@ -602,7 +655,9 @@ def escenas_posterior(info, victoria=True):
     """Escenas de DESPUES del duelo: consecuencia y avance del misterio."""
     nodo = info.get("nodo", "")
     escena_fondo = info.get("escena", "campamento")
-    escenas = list(narrativa.posterior_nodo(nodo))
+    escenas = (list(narrativa.posterior_nodo(nodo)) if victoria else [
+        esc("El paso sigue cerrado. Recoges tus cartas: tendras que volver "
+            "a intentarlo.", fondo=escena_fondo)])
     # Como termino el duelo, en la voz del rival. El nombre del jugador llega
     # ya resuelto en `info`: quien arma `info` es `campana.info_duelo`, que lo
     # lee del perfil. Sin el, `__JUGADOR__` vale "el duelista".
@@ -612,7 +667,7 @@ def escenas_posterior(info, victoria=True):
         escena = dict(e)
         escena["fondo"] = escena_fondo
         if not escena.get("retrato"):
-            escena["retrato"] = duelistas.retrato_de(nodo, info.get("bando"))
+            escena["retrato"] = info.get("retrato") or duelistas.retrato_de(nodo, info.get("bando"))
         escenas.append(escena)
     faccion = info.get("faccion_jugador")
     if faccion:
@@ -637,7 +692,8 @@ def escenas_final(titulo, lineas, faccion, extra=None):
 
 
 async def reproducir(screen, clock, escenas, musica=None, al_terminar=None,
-                     permitir_saltar=True, nombre_jugador=None):
+                     permitir_saltar=True, nombre_jugador=None, clave=None,
+                     marcar_vista=True):
     """Reproduce una secuencia de escenas.
 
     `nombre_jugador` es opcional: si no se pasa, se lee del perfil. Resolve el
@@ -645,10 +701,51 @@ async def reproducir(screen, clock, escenas, musica=None, al_terminar=None,
     Se lee de `campana` aqui y no en las 20 llamadas porque `campana` no importa
     `cinematicas`, asi que no hay ciclo; y `campana.nombre_jugador()` esta
     cacheado, que es lo que hace que se pueda llamar sin coste.
+
+    `clave` identifica la secuencia para el diario de escenas vistas. Si ya se
+    vio y la secuencia es larga, se ofrece saltarla conservando la opcion de
+    volver a verla; las escenas cortas (carteles de duelo) no interrumpen.
     """
     if nombre_jugador is None:
         import campana
         nombre_jugador = campana.nombre_jugador()
+    escenas = list(escenas)
+    ya_vista = False
+    if clave:
+        import campana
+        ya_vista = clave in campana.cinematicas_vistas()
+        if marcar_vista and not ya_vista:
+            campana.marcar_cinematica(clave)
+    # El aviso solo se justifica para escenas de verdad, no para carteles de
+    # una o dos lineas que se leen en dos segundos.
+    if ya_vista and permitir_saltar and len(escenas) >= 3:
+        if await _preguntar_rever(screen, clock):
+            return
     await Cinematica(escenas, al_terminar=al_terminar, musica=musica,
                      permitir_saltar=permitir_saltar,
                      nombre_jugador=nombre_jugador).ejecutar(screen, clock)
+
+
+async def _preguntar_rever(screen, clock):
+    """Aviso de escena ya vista. True = saltar, False = volver a verla."""
+    while True:
+        clock.tick(LIMIT_FPS)
+        await asyncio.sleep(0)
+        screen.blit(REC.fondo_pantalla(ui.ruta_fondo("ceniza")), (0, 0))
+        screen.blit(REC.capa_oscurita((0, 0, 0, 205)), (0, 0))
+        texto(screen, "ESCENA YA VISTA", 22, DORADO, centro=(ANCHO // 2, ALTO // 2 - 70))
+        texto(screen, "ENTER o clic: saltar y seguir", 12, TEXTO,
+              centro=(ANCHO // 2, ALTO // 2 - 10))
+        texto(screen, "ESPACIO: volver a verla", 12, TEXTO_TENUE,
+              centro=(ANCHO // 2, ALTO // 2 + 28))
+        pygame.display.flip()
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+            if ev.type == pygame.KEYDOWN:
+                if ev.key == pygame.K_SPACE:
+                    return False
+                return True
+            if ev.type == pygame.MOUSEBUTTONDOWN:
+                return True

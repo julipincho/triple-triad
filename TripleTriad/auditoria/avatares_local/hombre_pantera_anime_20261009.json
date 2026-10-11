@@ -1,0 +1,16 @@
+{
+  "nombre": "hombre_pantera",
+  "modelo": "animagine-xl-4.0.safetensors",
+  "seed": 20261009,
+  "positivo": "masterpiece, best quality, very aesthetic, solo, 1boy, male anthro, furry, black panther, black fur, short feline muzzle, rounded feline ears, animal head, animal nose, yellow eyes, muscular, upper body, portrait, looking at viewer, three-quarter view, broad shoulders, brown leather armor, shoulder armor, chest visible, fantasy warrior, hand painted illustration, soft brushwork, textured shading, detailed fur, pale grey background, simple background, soft lighting",
+  "negativo": "human face, human ears, human skin, catboy, catgirl, mask, fursuit, hood, helmet, muzzle strap, collar, frame, border, text, watermark, multiple characters, character sheet, grid, panels, split image, photograph, 3d render, chibi, blocky, oversized pixels, blurry, full body, scenery, forest, moon, neon, oversaturated, detached head, floating head, bust statue, logo, emblem",
+  "ancho": 768,
+  "alto": 768,
+  "pasos": 28,
+  "cfg": 6.0,
+  "sampler": "euler",
+  "scheduler": "normal",
+  "salida": 256,
+  "reduccion": "LANCZOS",
+  "referencia": "assets/avatar_orco.png"
+}

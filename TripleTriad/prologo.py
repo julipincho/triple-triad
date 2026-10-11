@@ -98,11 +98,11 @@ JUAN_RAJOY = {
 # Frases del duelista durante el tutorial. Se intercalan con las mecanicas:
 # el jugador nunca lee "esto es un tutorial", lee a alguien que sabe jugar.
 TUTORIAL_FRASES = {
-    "same": "Same. Dos iguales se anulan. Lo basico.",
-    "plus": "Plus. A la derecha del contrario y no te tocan.",
+    "same": "Same. Dos lados iguales a sus opuestos. Los aliados tambien cuentan.",
+    "plus": "Plus. Dos sumas iguales y capturo a los enemigos que participan.",
     "capturas": "Y la tuya cae si miro el flanco debil.",
-    "cadena": "Cadena: una cae y la vecina cae con ella.",
-    "habilidad": "Ojo con la habilidad. Esta se cura sola.",
+    "cadena": "Same o Plus abren la cadena. Despues hay que superar al vecino.",
+    "habilidad": "Furia y Embestida solo responden al propietario inicial.",
     "centro": "El centro manda. Todo lo demas es decorado.",
 }
 
@@ -164,7 +164,7 @@ def _escenas_carta_umbral():
         esc("empiezan a iluminarse.", fondo="umbral", mundo=REAL),
         esc("La carta central cambia. Y durante un segundo aparece algo que no",
             fondo="umbral", mundo=REAL),
-        esc("deberia existir en ninguna edicion: una decima faccion. O una figura",
+        esc("deberia existir en ninguna edicion: una figura sin faccion",
             fondo="umbral", mundo=REAL),
         esc("sentada en el trono. Solo un segundo.", fondo="umbral", color=TEXTO_ON, mundo=REAL),
     ]
@@ -190,7 +190,7 @@ def _escenas_despertar():
         esc("Y es lo primero que notas: una torre.", fondo="camino"),
         esc("La conoces. Esta en el fondo de una carta que viste mil veces.",
             fondo="camino", color=TEXTO_ON),
-        esc("- No puede ser.", fondo="camino", color=DORADO),
+        esc("- No puede ser.", hablante="__JUGADOR__", fondo="camino", color=DORADO),
         esc("Te das vuelta. Y ahi esta.", fondo="camino"),
         esc("Pik", hablante=None, fondo="camino"),
         esc("Un goblin. No una ilustracion. No alguien vestido de goblin.",
@@ -209,11 +209,11 @@ def _escenas_encuentro_hostil():
             fondo="camino"),
         esc("Das diez pasos. Y alguien mas tambien te ve.", fondo="camino"),
         esc("No es un goblin. Es de la aldea.", fondo="camino"),
-        esc("- De donde sacas esas cartas?", fondo="camino"),
+        esc("- De donde sacas esas cartas?", hablante="Alguien Te Ha Visto", fondo="camino"),
         esc("No es una pregunta. Es una amenaza.", fondo="camino", color=TEXTO_ON),
-        esc("Tienes una decision: mostrar las cartas, o no mostrarlas.",
+        esc("Cierras el estuche antes de que pueda arrebatartelo.",
             fondo="camino", color=DORADO),
-        esc("Lo que sea que elijas, ya no puedes deshacerlo: las viste. El te vio.",
+        esc("Te apartas y sigues el camino. El no te sigue, pero ya te ha visto.",
             fondo="camino"),
     ]
 
@@ -223,7 +223,7 @@ def _escenas_nara():
     return [
         esc("Cuando logras salir, hay alguien esperandote.", fondo="campamento"),
         esc("Una mujer con una libreta abierta y tinta en los dedos.", fondo="campamento"),
-        esc("- Ustedes juegan Cartones y Mazmorras?", fondo="campamento"),
+        esc("- Ustedes juegan Cartones y Mazmorras?", hablante="__JUGADOR__", fondo="campamento"),
         esc("Lo sueltas antes de pensarlo. Es lo unico que sale.", fondo="campamento",
             color=TEXTO_ON),
         esc("- No se que son esos cartones.", hablante="Nara", retrato="nara", fondo="campamento"),
@@ -236,7 +236,7 @@ def _escenas_nara():
             fondo="campamento"),
         esc("- De donde las sacaste?", hablante="Nara", fondo="campamento",
             color=TEXTO_ON),
-        esc("Y por primera vez, las cartas pesan mas que el carbon de tu mazo.",
+        esc("Le cuentas lo del torneo, el salon y la carta que apago las luces.",
             fondo="campamento"),
     ]
 
@@ -262,7 +262,7 @@ def _escenas_explicacion():
     return [
         esc("Nara se sienta enfrente. Cierra el libro. Por primera vez no esta "
             "escribiendo.", fondo="campamento", color=TEXTO_ON),
-        esc("- Sienta. Te lo voy a explicar como me lo explican a mi.",
+        esc("- Sientate. Te voy a contar lo que sabemos aqui.",
             hablante="Nara", retrato="nara", fondo="campamento"),
         esc("- Lo que viste en el salon no fue un fallo de la carta. Fue una "
             "apertura.", hablante="Nara", retrato="nara", fondo="campamento"),
@@ -287,12 +287,12 @@ def _escenas_explicacion():
         esc("- Es verdad a medias. La sangre del dragon fue la que legitimo el "
             "trono. Por eso la frase quedo pegada.", hablante="Nara",
             retrato="nara", fondo="campamento", color=TEXTO_ON),
-        esc("- Pero al dragon no lo eligio nadie. Lo eligio el bando que subio "
-            "antes que vos.", hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- Quien guarda ahora el trono no tiene por que ser un dragon. "
+            "Es quien gano el ultimo Juicio.", hablante="Nara", retrato="nara", fondo="campamento"),
         esc("Y por ultimo, lo que estabas a punto de preguntar:", fondo="campamento",
             color=TEXTO_ON),
-        esc("- Uno no vino a salvar nada. Vino a pedir que lo saques de aca.",
-            hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- Yo no vine a salvar nada. Solo quiero volver a casa.",
+            hablante="__JUGADOR__", fondo="campamento"),
         esc("- No hay vuelta, ni atajo, ni puerta de servicio. Gana el trono y el "
             "Umbral te devuelve a tu salon.", hablante="Nara", retrato="nara",
             fondo="campamento", color=TEXTO_ON),
@@ -308,6 +308,9 @@ def _escenas_explicacion():
 def _escenas_cierre():
     """Cierra el prologo y pasa el turno a la eleccion de faccion."""
     return [
+        esc("- Guarda tus cinco legendarias en el estuche. Aqui aun no responden "
+            "como en tu mundo. Necesitas un mazo de este lado.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
         esc("A partir de aqui ya no sos un invitado.", fondo="umbral"),
         esc("A partir de aqui sos alguien que sabe demasiado.", fondo="umbral",
             color=TEXTO_ON),

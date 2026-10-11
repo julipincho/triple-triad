@@ -29,9 +29,34 @@ ARCHIVO = "opciones.json"
 _POR_DEFECTO = {
     "saltar_cinematica": False,
     "saltar_dialogo": False,
+    "movimiento_reducido": False,
+    # Modo lectura: tipografia mas grande en las pantallas de texto.
+    "texto_grande": False,
+    # Audio y pantalla: antes vivian solo en memoria y se perdian al cerrar.
+    "volumen_musica": 0.35,
+    "volumen_efectos": 0.55,
+    "pantalla_completa": False,
 }
 
 _cache = None
+
+
+def _coaccionar(clave, valor):
+    """Ajusta `valor` al tipo de la opcion. Devuelve el defecto si no encaja.
+
+    Cada opcion guarda su tipo en `_POR_DEFECTO`: booleanas, volumeros 0..1 o
+    el valor que sea. Asi un `opciones.json` corrupto o de otra version no
+    rompe el juego: se cae al defecto.
+    """
+    defecto = _POR_DEFECTO.get(clave, valor)
+    if isinstance(defecto, bool):
+        return bool(valor)
+    if isinstance(defecto, float):
+        try:
+            return max(0.0, min(1.0, float(valor)))
+        except (TypeError, ValueError):
+            return defecto
+    return valor
 
 
 def _leer():
@@ -45,9 +70,9 @@ def _leer():
         if isinstance(datos, dict):
             for clave in _POR_DEFECTO:
                 if clave in datos:
-                    base[clave] = bool(datos[clave])
+                    base[clave] = _coaccionar(clave, datos[clave])
     except (FileNotFoundError, json.JSONDecodeError, OSError, AttributeError):
-        pass  # sin fichero o ilegible: los valores por defecto serves
+        pass  # sin fichero o ilegible: los valores por defecto sirven
     _cache = base
     return _cache
 
@@ -65,7 +90,7 @@ def obtener(clave, por_defecto=None):
 def fijar(clave, valor):
     """Cambia una opcion y la guarda. Devuelve el valor guardado."""
     datos = _leer()
-    datos[clave] = bool(valor)
+    datos[clave] = _coaccionar(clave, valor)
     _persistir(datos)
     return datos[clave]
 
@@ -104,3 +129,25 @@ def saltar_dialogo():
     para revisar el guion sin esperar la maquina de escribir.
     """
     return obtener("saltar_dialogo", False)
+
+
+def movimiento_reducido():
+    """True si hay que recortar sacudidas, destellos y movimientos amplios."""
+    return obtener("movimiento_reducido", False)
+
+
+def texto_grande():
+    """True si el jugador quiere tipografia mas grande (modo lectura)."""
+    return obtener("texto_grande", False)
+
+
+def volumen_musica():
+    return obtener("volumen_musica", 0.35)
+
+
+def volumen_efectos():
+    return obtener("volumen_efectos", 0.55)
+
+
+def pantalla_completa():
+    return obtener("pantalla_completa", False)

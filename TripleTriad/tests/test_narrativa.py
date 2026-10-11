@@ -155,12 +155,14 @@ class TestDecisionesMorales(unittest.TestCase):
 
     def test_una_decision_no_se_aplica_dos_veces(self):
         estado = campana.nueva_campana("humano")
+        estado["confianza_nara"] = 4
         d = narrativa.decision_de("fortaleza")
         confianza_tras_dar = d["opciones"][0]["efecto"]["confianza"]
         campana.decidir(estado, d["id"], d["opciones"][0]["efecto"])
         campana.decidir(estado, d["id"], d["opciones"][0]["efecto"])
         # la decision resta confianza: aplicarla dos veces la restaria en doble
-        self.assertEqual(estado["confianza_nara"], 0)
+        self.assertEqual(estado["confianza_nara"], 3)
+        self.assertEqual(estado["conocimiento_umbral"], 2)
         self.assertLess(confianza_tras_dar, 0)
 
     def test_no_toda_decision_da_recompensa_gratis(self):

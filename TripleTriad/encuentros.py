@@ -60,7 +60,7 @@ LORE = {
         "titulo": "El Que Sabe Demasiado",
         "linea": [
             "- Veo que llevas cartas raras. No deberian existir.",
-            "- No son raras. Son nuevas. El mundo las todavia no escribio.",
+            "- No son raras. Son nuevas. El mundo todavia no las escribio.",
             "- Eso no tiene sentido. - Aqui todo tiene sentido, muchacho.",
         ],
         "reaccion": {
@@ -94,7 +94,7 @@ LORE = {
             "vampiro": "- Un vampiro. No sois muchos, pero sois.",
             "dragon": "- Un dragon. Eso cambia el peso de la conversacion.",
             "elfo_nocturno": "- Un nocturno. Nadie quiere a los de la noche. Nadie.",
-            "hombre_pantera": "- Una pantera. :/ Te lo dije: honor o libertad.",
+            "hombre_pantera": "- Una pantera en tu mazo. Honor o libertad: elige bien.",
             "hombre_lagarto": "- Un lagarto. Esperamos. Vosotros correis.",
         },
     },
@@ -130,13 +130,13 @@ LORE = {
             "- Son cartas. - No son cartas. Son NOMBRES. Y los nombres todavia no han pasado.",
         ],
         "reaccion": {
-            "humano": "- Un humano con eses. Eso es del otro lado.",
-            "orco": "- Un orco aqui. Con eses. Que historia.",
-            "elfo": "- Un elfo. No.}",
+            "humano": "- Un humano en esas cartas. Ese sello es del otro lado.",
+            "orco": "- Un orco con ese sello. Que historia.",
+            "elfo": "- Un elfo. Ese dibujo no deberia estar aqui.",
             "goblin": "- Un goblin. Mas te vale que sean de verdad.",
             "hombre_lobo": "- Un lobo. No me gusta esto.",
             "vampiro": "- Un vampiro. Esas cartas tienen dueno y no sos vos.",
-            "dragon": "- Un dragon. Que conmigo, con que vienes.",
+            "dragon": "- Un dragon. Con que intencion traes esa carta?",
             "elfo_nocturno": "- Un nocturno. Esas cartas no son nuestras.",
             "hombre_pantera": "- Una pantera. Ocultalas.",
             "hombre_lagarto": "- Un lagarto. Eso no se muestra. Ni a un amigo.",
@@ -150,7 +150,7 @@ LORE = {
         "linea": [
             "- Necesito que entiendas una cosa: aqui esto se llama Juicio.",
             "- Las cartas son ecos. Cuando alguien coloca una, el eco aparece.",
-            "- Tuya. Es un eco de otra cosa. De un mundo que ya te conoce.",
+            "- La tuya es un eco de otra cosa. De un mundo que ya te conoce.",
         ],
         "reaccion": {
             "humano": "- Con ese mazo. Anotado. Esto no lo leas en voz alta.",
@@ -176,11 +176,11 @@ ENCUENTRO_NARA = {
     "id": "nara",
     "titulo": "Nara, la Cronista",
     "escena": "campamento",
-    "texto": "- Sento antes de verte. Traes cartas que aca no existen.",
+    "texto": "- Te senti llegar antes de verte. Traes cartas que aca no existen.",
     "opciones": [
         {"id": "escuchar", "texto": "Escucharla (+1 a tu carta mas debil)",
          "efecto": "mas_debil"},
-        {"id": "preguntar", "texto": "Preguntarle por el Umbral (sube lo que sabes)",
+        {"id": "preguntar", "texto": "Preguntar por el Umbral (pista: el rival llega -1)",
          "efecto": "debilitar"},
     ],
     "confianza_minima": 3,
@@ -195,7 +195,7 @@ ENCUENTRO_HOSTIL = {
     "opciones": [
         {"id": "ocultar", "texto": "Ocultar las cartas (el rival llega -1)",
          "efecto": "debilitar"},
-        {"id": "mostrar", "texto": "Mostrarlas (Nara te busca antes)",
+        {"id": "mostrar", "texto": "Mostrarlas (recibes una mejora de carta)",
          "efecto": "mejorar"},
     ],
     "confianza_minima": 0,
@@ -275,5 +275,6 @@ def escena_antes(enc_id, faccion_jugador, musica=None):
     # 2. su reaccion al mazo: lo que ve cuando te mira las cartas
     linea = reaccion(enc_id, faccion_jugador)
     if linea:
+        escenas.append(esc("Su mirada se detiene en las figuras de tu mazo.", fondo=fondo))
         escenas.append(esc(linea, hablante=titulo, fondo=fondo, color=TEXTO_ON))
     return escenas

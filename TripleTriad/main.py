@@ -20,6 +20,7 @@ import cinematicas  # noqa: E402
 import facciones  # noqa: E402
 import fragmentos  # noqa: E402
 import narrativa  # noqa: E402
+import opciones  # noqa: E402
 import pantallas  # noqa: E402
 import prologo  # noqa: E402
 import tutorial  # noqa: E402
@@ -35,6 +36,10 @@ FPS = "--fps" in sys.argv
 # Donde estaba el jugador cuando algo falla. Se escribe en el crash.log para
 # poder saber que pantalla Rompio sin reproducing el fallo.
 _CONTEXTO = ["menú principal"]
+
+# Campanas cuyo resumen de reanudacion ya se mostro en esta ejecucion. Evita
+# repetir el cartel cada vez que se vuelve al menu y se pulsa CONTINUAR.
+_RESUMEN_VISTO = set()
 
 
 def comprobar_recursos():
@@ -82,6 +87,8 @@ async def _duelo_rapido(screen, clock):
                   mano_c_inicial=random.sample([c.copia() for c in _m.TODOS[rival]], 5),
                   info=info, dificultad=1)
     resultado = await partida(screen, clock, juego)
+    if resultado.abandonado:
+        return
     campana.registrar_duelo_perfil(bool(resultado), None)
     await pantallas.cartel(
         screen, clock,
@@ -181,8 +188,7 @@ async def _nueva_campana(screen, clock):
     estado = campana.nueva_campana(faccion)
     campana.marcar_prologo_visto(estado)
     campana.asegurar_coleccion(faccion)
-    campana.asegurar_mazo_global()
-    mazo = await pantallas.armar_mazo(screen, clock, faccion)
+    mazo = await pantallas.armar_mazo(screen, clock, faccion, nuevo=True)
     if mazo is None:
         _CONTEXTO[0] = "menú principal"
         return
@@ -249,6 +255,8 @@ async def _campana_secreta(screen, clock, faccion):
                   mano_c_inicial=campana.mazo_rival_secreto(),
                   info=info, dificultad=3)
     resultado = await partida(screen, clock, juego)
+    if resultado.abandonado:
+        return resultado
     if resultado.victoria:
         await pantallas.cartel(screen, clock, "CAMPANA SECRETA COMPLETA",
                               rival["dialogo"]["win"][1])
@@ -286,6 +294,8 @@ async def _mini_campana(screen, clock):
                       mano_c_inicial=campana.mazo_rival(estado),
                       info=info, en_campana=True, dificultad=info["dificultad"])
         resultado = await partida(screen, clock, juego)
+        if resultado.abandonado:
+            return
         if resultado.victoria:
             campana.registrar_victoria(estado, resultado.capturas)
             campana.registrar_duelo_perfil(True, estado["faccion"], estado["racha"])
@@ -313,6 +323,13 @@ async def _mini_campana(screen, clock):
                 return
 
 
+async def _final_campana(screen, clock, estado):
+    await pantallas.epilogo(screen, clock, estado)
+    await _ganar_fragmento(screen, clock, estado["faccion"])
+    estado.pop("final_pendiente", None)
+    campana.guardar(estado)
+
+
 async def _campana(screen, clock, estado, nuevo=False):
     """Bucle de campana: mapa -> duelo -> recompensa -> encuentro -> final."""
     campana.asegurar_coleccion(estado["faccion"])
@@ -330,16 +347,20 @@ async def _campana(screen, clock, estado, nuevo=False):
     )
     if nuevo:
         escenas, musica = cinematicas.apertura(estado["faccion"])
-        campana.marcar_cinematica(f"apertura_{estado['faccion']}")
         audio.musica(musica)
         _CONTEXTO[0] = f"cinemática de apertura {estado['faccion']}"
-        await cinematicas.reproducir(screen, clock, escenas, musica=musica)
+        await cinematicas.reproducir(screen, clock, escenas, musica=musica,
+                                     clave=f"apertura_{estado['faccion']}")
 
     while True:
         await asyncio.sleep(0)
         if estado.get("completada"):
-            await pantallas.epilogo(screen, clock, estado)
+            await _final_campana(screen, clock, estado)
             return
+        pendiente = estado.get("recompensa_pendiente")
+        if pendiente:
+            clave = await pantallas.recompensa(screen, clock, estado, pendiente)
+            await pantallas.aplicar_recompensa(screen, clock, estado, clave, pendiente)
         accion = await pantallas.mapa_campana(screen, clock, estado)
         if accion == "salir":
             campana.guardar(estado)
@@ -360,12 +381,15 @@ async def _campana(screen, clock, estado, nuevo=False):
             info = campana.info_duelo(estado)
         # antes del duelo del trono, Nara deja de ser guia y se queda. Va antes
         # del cartel de nodo para que sea lo ultimo que pasa antes de pelear.
-        if info["nodo"] == "trono":
+        # Se marca en la partida: reintentar el trono no repite la confesion.
+        if info["nodo"] == "trono" and not estado.get("amistad_vista"):
             _CONTEXTO[0] = "campaña: Nara se queda"
             await cinematicas.reproducir(
                 screen, clock, narrativa.escena_amistad(),
                 musica=audio.musica_de_faccion(estado["faccion"]),
                 permitir_saltar=False)
+            estado["amistad_vista"] = True
+            campana.guardar(estado)
         # cartel de escenario antes del duelo
         escenas, musica = cinematicas.escenas_nodo(info)
         audio.musica(musica)
@@ -373,7 +397,8 @@ async def _campana(screen, clock, estado, nuevo=False):
             f"cartel de duelo {info['nodo']} contra {info['nombre_faccion']}"
         )
         await cinematicas.reproducir(screen, clock, escenas, musica=musica,
-                                     permitir_saltar=True)
+                                     permitir_saltar=True,
+                                     clave=f"nodo_{estado['faccion']}_{info['nodo']}")
 
         mano = campana.cartas_duelo(estado, info["nodo"])
         mazo_c = campana.mazo_rival(estado)
@@ -386,20 +411,21 @@ async def _campana(screen, clock, estado, nuevo=False):
         )
         resultado = await partida(screen, clock, juego)
 
+        if resultado.abandonado:
+            campana.guardar(estado)
+            return
+        campana.registrar_resultado(estado, resultado)
         if resultado.victoria:
-            campana.registrar_victoria(estado, resultado.capturas)
-            campana.registrar_duelo_perfil(True, estado["faccion"], estado["racha"])
-            campana.premio_duelo(estado, True, resultado.capturas)
             # escena posterior: consecuencia y avance del misterio
             info = campana.info_duelo(estado, info["nodo"])
             _CONTEXTO[0] = f"escena posterior {info['nodo']}"
             await cinematicas.reproducir(
                 screen, clock, cinematicas.escenas_posterior(info, True),
-                musica=musica, permitir_saltar=True)
+                musica=musica, permitir_saltar=True,
+                clave=f"posterior_{estado['faccion']}_{info['nodo']}")
             if estado.get("completada"):
                 campana.guardar(estado)
-                await pantallas.epilogo(screen, clock, estado)
-                await _ganar_fragmento(screen, clock, estado["faccion"])
+                await _final_campana(screen, clock, estado)
                 return
             # recompensa
             clave = await pantallas.recompensa(screen, clock, estado, info["nodo"])
@@ -408,15 +434,13 @@ async def _campana(screen, clock, estado, nuevo=False):
             if random.random() < 0.65:
                 await pantallas.encuentro(screen, clock, estado, info["nodo"])
         else:
-            campana.registrar_derrota(estado)
-            campana.registrar_duelo_perfil(False, estado["faccion"], 0)
-            campana.premio_duelo(estado, False, resultado.capturas)
             # escena posterior de derrota: la derrota tambien cuenta
             info = campana.info_duelo(estado, info["nodo"])
             _CONTEXTO[0] = f"escena posterior {info['nodo']} (derrota)"
             await cinematicas.reproducir(
                 screen, clock, cinematicas.escenas_posterior(info, False),
-                musica=musica, permitir_saltar=True)
+                musica=musica, permitir_saltar=True,
+                clave=f"posterior_derrota_{estado['faccion']}_{info['nodo']}")
             accion = await pantallas.derrota(screen, clock, estado)
             if accion == "salir":
                 return
@@ -457,15 +481,27 @@ def _aplicar_ajustes(pantalla, ajustes):
     if "musica" in ajustes:
         audio.volumen_musica(ajustes["musica"])
     if "fullscreen" in ajustes:
-        flags = pygame.FULLSCREEN if ajustes["fullscreen"] else 0
-        pantalla = pygame.display.set_mode((ANCHO, ALTO), flags)
+        # Se reaplica el MODO, no solo los flags: asi se mantiene el escalado
+        # y el juego sigue ocupando 1280x800 logicos en cualquier pantalla.
+        pantalla = ui.aplicar_escalado({"completa": ajustes["fullscreen"]})
     return pantalla
 
 
 async def main():
     pygame.init()
     audio.iniciar()
-    pantalla = pygame.display.set_mode((ANCHO, ALTO))
+    # El modo lectura cambia la escala global de tipografia: se aplica antes
+    # de construir ninguna pantalla.
+    ui.fijar_escala_texto(1.25 if opciones.texto_grande() else 1.0)
+    # Las preferencias de audio y pantalla sobreviven al reinicio: se aplican
+    # al arrancar, no solo mientras la pantalla de Ajustes esta abierta.
+    audio.volumen_musica(opciones.volumen_musica())
+    audio.volumen_sfx(opciones.volumen_efectos())
+    # Pantalla: 1280x800 LOGICOS, ventana redimensionable y escalada. El juego
+    # se adapta a la resolucion del monitor y pygame traduce las coordenadas
+    # del raton a la superficie logica, asi que el codigo de dibujo no cambia.
+    ui.activar_escalado()
+    pantalla = ui.aplicar_escalado({"completa": opciones.pantalla_completa()})
     pygame.display.set_caption("Cartones y Mazmorras")
     reloj = pygame.time.Clock()
     # `--fps` en escritorio, `TT_FPS=1` en la web (no hay argv ahi). Solo para
@@ -499,6 +535,13 @@ async def main():
             campana.marcar_tutorial(visto=True)
             audio.musica(audio.musica_de_menu())
             _CONTEXTO[0] = "menú principal"
+        # Aviso de partida dañada: se comprueba UNA vez al entrar al menu, no
+        # en cada vuelta. Sin esto, un guardado ilegible hacia que el menu
+        # pareciese el de una partida nueva y nadie se enteraba de la perdida.
+        aviso_danada = campana.aviso_partida_danada()
+        if aviso_danada:
+            _CONTEXTO[0] = "aviso: partida dañada"
+            await pantallas.cartel(pantalla, reloj, "PARTIDA DANNADA", aviso_danada)
         while True:
             await asyncio.sleep(0)
             estado = campana.cargar()
@@ -521,7 +564,7 @@ async def main():
                 # Empezar de cero PISA la partida en curso. Se avisa y se
                 # archiva antes: el jugador decide, y el respaldo queda por si
                 # se arrepiente.
-                if estado and not estado.get("completada"):
+                if campana.puede_continuar(estado):
                     ok = await pantallas.confirmar(
                         pantalla, reloj,
                         "EMPEZAR DE CERO",
@@ -535,10 +578,21 @@ async def main():
                         continue
                     _archivar_partida()
                 await _nueva_campana(pantalla, reloj)
-            elif accion == "campana" and estado and not estado.get("completada"):
+            elif accion == "campana" and campana.puede_continuar(estado):
+                # Reanudar sin contexto desorientaba: un cartel corto antes del
+                # mapa recuerda donde se dejo la partida y que toca. Una vez
+                # por ejecucion y campana, no cada vez que se vuelve al menu.
+                clave = (estado.get("faccion"), estado.get("semilla"))
+                if clave not in _RESUMEN_VISTO:
+                    _RESUMEN_VISTO.add(clave)
+                    _CONTEXTO[0] = "resumen de reanudación"
+                    await pantallas.cartel(pantalla, reloj, "RETOMAS LA CAMPANA",
+                                           campana.resumen_campana(estado))
                 await _campana(pantalla, reloj, estado)
             elif accion == "coleccion":
                 await pantallas.coleccion(pantalla, reloj, estado)
+            elif accion == "diario":
+                await pantallas.diario_dialogos(pantalla, reloj, estado)
             elif accion == "ajustes":
                 pantalla = _aplicar_ajustes(pantalla, await pantallas.ajustes(pantalla, reloj))
     except SystemExit:

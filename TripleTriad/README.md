@@ -1,4 +1,6 @@
-# Triple Triad — El Umbral del Trono
+# Cartones y Mazmorras — El Umbral del Trono
+
+Estado de la candidata y comprobaciones pendientes: [revision final](docs/cierre_candidata.md).
 
 Juego de cartas estilo Triple Triad (Final Fantasy 8) en Python + pygame.
 Diez facciones, modo campana con historia, mini campanas, cinematicas,
@@ -22,7 +24,7 @@ musica por faccion y un final distinto segun la faccion que elijas.
   cachean una sola vez (`ui.REC.fondo_pantalla`, `capa_oscurita`, `vineta`).
   Antes se reescalaban a pantalla completa en cada frame, que reservaba ~4 MB por
   imagen y cada frame.
-- **Ninguna pantalla deja encerrado al jugador**: las cinematicallyas se
+- **Las cinematicas** se
   cierran con clic, ENTER o ESC (tambien el epilogo, que antes no admitia ESC).
 - **Los errores se enseñan**: si algo falla, aparece un cartel en la ventana
   con el motivo y donde estaba el jugador, en vez de cerrar el proceso. El
@@ -37,9 +39,8 @@ musica por faccion y un final distinto segun la faccion que elijas.
 
 ## Controles
 
-- **Raton**: arrastra una carta de la mano al tablero. Pasar el raton levanta
-  la carta y muestra la mejor casilla posible; clic = continuar en las
-  cinematicallyas.
+- **Raton**: arrastra una carta o selecciona carta y luego casilla. Clic para
+  continuar en las cinematicas.
 - **ESC**: pausa dentro del duelo / cerrar pantallas.
 - **Flechas + ENTER**: navegar por los menus.
 - **H**: recordatorio de reglas rapidas durante el duelo.
@@ -74,22 +75,39 @@ amplian tu coleccion entre duelos.
 
 ### Habilidades de carta
 
-- `quema`: gana o empata la comparación contra cada vecina (sin Same ni Plus), y el muro de la vecina la protege.
+- `quema`: gana o empata al colocarla; el muro protege. Por si sola no inicia cadena.
 - `muro`: su lado mas alto no puede ser capturado.
 - `furia`: +1 a todos sus lados si toca una carta amiga en el tablero.
 - `embestida`: +2 a todos sus lados en la casilla central.
 
+Furia y Embestida solo funcionan mientras la carta este con su propietario
+inicial del duelo. Al capturarla se suspenden; al recuperarla se reactivan.
+El tablero muestra los valores efectivos (bonificaciones en dorado), mientras
+que la mano muestra valores base. Muro y Quema mantienen su comportamiento.
+
+### Same, Plus y cadena
+
+- **Same:** al menos dos lados igualan los valores opuestos de sus vecinos.
+- **Plus:** al menos dos comparaciones tienen la misma suma.
+- Los aliados cuentan para ambas reglas, pero solo se capturan enemigos.
+  Los lados protegidos por Muro no participan. Se usan valores efectivos.
+- Solo las capturas de Same/Plus inician **cadena**. Las cartas de la cadena
+  capturan por superioridad estricta; no reactivan Same/Plus ni empates de Quema.
+  Las bonificaciones se calculan simultaneamente en cada oleada.
+- Varias capturas basicas en una jugada no constituyen una cadena.
+
 ## Sobres
 
-- **Sobre**: 3 cartas al azar del pool (tu faccion + aliados) con rareza
+- **Sobre**: 3 cartas al azar de todo el catalogo con rareza
   ponderada (LEGENDARIA 2 / RARA 6 / COMUN 12). Se consigue como recompensa
   post-duelo (ruinas, fortaleza, asalto) y en el encuentro de la Caravana.
 - **Revelado una a una** con fanfarria en legendarias; ESC sale en cualquier
   momento.
 - **Duplicadas dan +1** al lado mas bajo de la carta que ya tienes (max 10).
-- **Odds por sobre**: ~10% de legendaria (3.4% por carta × 3), ~57% de
-  alguna rara; el pity garantiza una legendaria si 9 sobres seguidos no dan
-  ninguna (minimo 6 cada 60 sobres).
+- **Probabilidad por sobre**: la tienda calcula la probabilidad de obtener al
+  menos una legendaria, teniendo en cuenta las tres extracciones distintas.
+  Tras nueve sobres sin legendaria, el siguiente garantiza una. El contador
+  pertenece al perfil y se conserva entre campanas.
 - La **coleccion** esta paginada (10 por pagina) con filtros de habilidad
   (tecla F) y rareza (tecla R); clic en una carta abre su ficha ampliada.
   Mejora y reemplazo tambien paginan (flechas o botones).
@@ -110,8 +128,8 @@ amplian tu coleccion entre duelos.
   o con `T` en la pantalla de ayuda.
 - **Manual visual (10 páginas)**: cada regla con su demo en un mini-tablero
   real y dos bloques: *qué es* y *para qué sirve*.
-- **4 prácticas guiadas** (básica, Same, cadena y habilidades en 3 pasos:
-  muro, furia y embestida) sobre el motor real: la jugada se valida y el
+- **4 prácticas guiadas** (básica, Same/Plus, cadena y habilidades en 4 pasos:
+  muro, furia, embestida y recuperación) sobre el motor real: la jugada se valida y el
   juego explica por qué vale o no, sin rechazos mudos.
 - **ESC o botón SALIR en cualquier momento** (pide confirmación) y el progreso
   por paso (`tutorial_paso`) permite retomar donde se quedó.
@@ -133,9 +151,11 @@ apertura -> senda -> bifurcacion -> fortaleza -> asalto -> trono
 ```
 
 - Cada nodo tiene su cartel de escena, su rival y su dificultad (0-3, aplicada
-  a las cartas del rival).
+  a las cartas del rival). Ademas, el rival juega con una **version joven** de
+  su faccion en los nodos tempranos (el pool se recorta: no usa las cartas mas
+  fuertes) y casi todo el mazo en el trono, su **version jefe**.
 - Tras cada victoria eliges una **recompensa**: entrenamiento, recluta (draft
-  de 3 cartas), sigilo (mejora permanente) o pacto (desbloquea un mazo ajeno
+  de 3 cartas), sigilo (mejora durante la campana) o pacto (desbloquea un mazo ajeno
   para el draft).
 - Entre duelos pueden aparecer **encuentros** con dos opciones y consecuencias
   reales (debilitar al rival, mejorar tu carta mas debil, etc.).
@@ -156,7 +176,7 @@ sesion: abandonarla la descarta sin tocar `campana.json`.
 ## Estructura
 
 - `main.py` — punto de entrada: portada, menu, campana y duelos
-- `reglas.py` — reglas (basica, Same, Plus, cadena, habilidades, sinergia, elemento)
+- `reglas.py` — reglas (basica, Same, Plus, cadena, habilidades, elemento)
 - `facciones.py` — identidad, paletas y arcos narrativos de cada bando
 - `mazos.py` — los diez mazos (25 cartas por faccion, 250 en total)
 - `campana.py` — grafo de nodos, mini campanas, recompensas, encuentros, finales y guardado

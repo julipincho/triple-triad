@@ -78,9 +78,9 @@ class TestElGiroDeCadaFinal(unittest.TestCase):
         self.assertIn("tuio" if False else "tuyo", texto,
                       "dominio: la carta deberia ser el rostro del duelista")
 
-    def test_dominio_hay_algo_que_cruza_en_sentido_contrario(self):
+    def test_dominio_algo_acompana_el_regreso(self):
         texto = " ".join(finales.UMBRAL["dominio"]["lineas"]).lower()
-        self.assertIn("sentido contrario", texto)
+        self.assertIn("cruza contigo hacia tu mundo", texto)
 
     def test_equilibrio_no_se_entera_casi_nadie(self):
         texto = self._unido("equilibrio")

@@ -218,7 +218,7 @@ class TestMazos(unittest.TestCase):
         self.assertTrue(any(rareza(c)[0] == "LEGENDARIA" for c in mazos.ORCOS))
 
 
-class TestSinergiasYElemento(unittest.TestCase):
+class TestElementoYHabilidades(unittest.TestCase):
     def test_elemento_central_por_faccion(self):
         b = tablero_vacio()
         lobo = poner(b, "Alfa", 7, 7, 7, 7, USUARIO, 1, 1, bando="hombre_lobo")

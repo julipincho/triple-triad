@@ -52,7 +52,7 @@ UMBRAL = {
         "lineas": [
             "Empujas. No es abrir una puerta: es convencer a algo que no quiere.",
             "El Umbral cede y del otro lado esta tu salon, tus luces, tu torneo.",
-            "Y tambien esta la otra cosa: algo cruza en sentido contrario.",
+            "Y tambien esta la otra cosa: algo cruza contigo hacia tu mundo.",
             "No lo ves. Todavia no. Vas a verlo mas tarde, en tu propio mazo.",
         ],
     },
@@ -94,7 +94,7 @@ EPILOGO = {
         "musica": "musica_explora",
         "lineas": [
             "Estas otra vez en el torneo. La misma mesa, las mismas luces.",
-            "Miras tu mazo para contar las cartas y te sobran cinco.",
+            "Abres el estuche: tus cinco legendarias siguen ahi, pero sobra una carta.",
             "Hay una que no compraste. No la viste nunca. No tiene fecha.",
             "Es LEGENDARIA. Y el rostro en el arte... es el tuyo.",
             # La pregunta va al jugador por su nombre. `__JUGADOR__` lo resuelve
@@ -130,13 +130,13 @@ EPILOGO = {
         "lineas": [
             "Volviste. El salon, las luces, el ruido de siempre. Todo esta donde "
             "lo dejaste.",
-            "Saliste por la misma grieta por la que entraste y se cerro sola. Eso "
-            "fue lo ultimo que sentiste del otro lado.",
-            "El mundo parece exactamente igual. Por eso nadie te cree.",
-            "Las cosas de siempre son las mismas. Casi todas.",
+            "Cruzaste antes de que el borde de la grieta se deshiciera. Ya no hay "
+            "una puerta que puedas cerrar.",
+            "Entre las mesas crecen los pinos del otro mundo. Ahora todos los ven.",
+            "El presentador pide calma. Nadie sabe a que mundo pertenece el salon.",
             "En tu coleccion hay una carta nueva. No recuerdas comprarla.",
-            "La sacas. Y dentro del sobre, la carta se mueve sola.",
-            "- Esto se mueve, __JUGADOR__? - ...Para vos no. Ya lo hiciste antes.",
+            "La sacas del bolsillo. La figura de la carta se mueve sola.",
+            "- Esto se mueve, __JUGADOR__? - Si. Y esta vez no soy el unico que lo ve.",
         ],
     },
 }

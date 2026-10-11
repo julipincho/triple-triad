@@ -59,6 +59,8 @@ def _carta(spec, dueno=None):
         habilidad=spec.get("habilidad"),
     )
     c.dueno = spec.get("dueno", dueno)
+    if "dueno_inicial" in spec:
+        c.dueno_inicial = spec["dueno_inicial"]
     return c
 
 
@@ -101,7 +103,8 @@ def paginas_manual():
             "que": [
                 "Al colocar, cada lado compara con su vecino.",
                 "Si tu lado es MAYOR que el del rival, esa carta cae",
-                "y pasa a tu color. Si empatas, no pasa nada.",
+                "y pasa a tu color. Empatar no captura por fuerza.",
+                "En mesa ves los valores efectivos: los bonus van en dorado.",
             ],
             "sirve": "Gana terreno con fuerza bruta: busca siempre el "
                       "flanco debil del rival.",
@@ -118,7 +121,7 @@ def paginas_manual():
             "titulo": "SAME",
             "que": [
                 "Si DOS vecinos tienen el valor IGUAL al tuyo opuesto,",
-                "caen los dos a la vez, aunque no los superes.",
+                "cuentan aliados y enemigos; solo caen los enemigos.",
                 "Ejemplo: tu N 5 y tu O 7 contra dos 5 y 7 de enfrente.",
             ],
             "sirve": "Los mazos elfos viven del Same: guarda tu carta "
@@ -135,9 +138,9 @@ def paginas_manual():
             "id": "plus",
             "titulo": "PLUS",
             "que": [
-                "Si DOS comparaciones distintas suman LO MISMO, caen las dos.",
+                "Si DOS comparaciones suman LO MISMO, caen sus enemigos.",
                 "Ejemplo: tu N 5 + su S 5 (=10) y tu E 6 + su O 4 (=10).",
-                "El Plus no necesita igualar ni superar ningun lado.",
+                "Los aliados tambien cuentan. No hace falta superar al rival.",
             ],
             "sirve": "El Plus dobla una captura sin gastar otra carta "
                       "en el centro.",
@@ -151,9 +154,9 @@ def paginas_manual():
             "id": "cadena",
             "titulo": "CADENA",
             "que": [
-                "Toda carta que cae sigue capturando, como un domino.",
-                "Una sola captura bien puesta puede volcar medio tablero.",
-                "El HUD avisa con CADENA DE 2, DE 3...",
+                "Same o Plus inician la cadena con sus cartas capturadas.",
+                "Estas capturan si SUPERAN al rival, y asi sigue el domino.",
+                "No repiten Same/Plus. Una basica sola no inicia cadena.",
             ],
             "sirve": "Piensa dos jugadas adelante: la primera captura "
                       "es la que manda.",
@@ -161,7 +164,7 @@ def paginas_manual():
                 {"nombre": "Saqueador", "n": 7, "s": 6, "e": 3, "o": 8,
                  "bando": "goblin", "dueno": USUARIO},
             ],
-            "nota": "Cae una y arrastra a su vecina: 2 de una vez.",
+            "nota": "Same/Plus abre el combo; despues solo gana el valor mayor.",
         },
         {
             "id": "habilidades",
@@ -180,15 +183,15 @@ def paginas_manual():
                 {"nombre": "Brujo Verde", "n": 3, "s": 9, "e": 4, "o": 7,
                  "bando": "goblin", "habilidad": "quema", "dueno": USUARIO},
             ],
-            "nota": "Muro defiende - Furia ataca en grupo - Embestida manda "
-                    "en el centro - Quema remata debiles.",
+            "nota": "Furia/Embestida se apagan al perder la carta y vuelven "
+                    "al recuperarla. Muro y Quema conservan su efecto.",
         },
         {
             "id": "centro",
             "titulo": "CASILLA CENTRAL",
             "que": [
                 "La casilla (1,1) da +2 a Hombres Lobo y Dragones",
-                "(su elemento) y +2 a cualquier carta con embestida.",
+                "(su elemento) y +2 con embestida activa.",
                 "El punto naranja del tablero la marca.",
             ],
             "sirve": "Quien pisa el centro con bonus manda: no lo regales "
@@ -198,26 +201,6 @@ def paginas_manual():
                  "bando": "hombre_lobo", "dueno": USUARIO},
             ],
             "nota": "En (1,1): +2 elemental lobo/dragon y +2 embestida.",
-        },
-        {
-            "id": "sinergia",
-            "titulo": "SINERGIA",
-            "que": [
-                "3 o mas cartas de tu bando en el tablero dan +1",
-                "a todos tus lados. Se marca con un punto amarillo",
-                "en la franja de la carta.",
-            ],
-            "sirve": "Los mazos de un solo bando escalan: la tercera "
-                      "carta amiga vale doble.",
-            "demo": [
-                {"nombre": "Espadachin", "n": 8, "s": 6, "e": 5, "o": 7,
-                 "bando": "humano", "dueno": USUARIO},
-                {"nombre": "Arquera de Torre", "n": 6, "s": 5, "e": 9, "o": 5,
-                 "bando": "humano", "dueno": USUARIO},
-                {"nombre": "Sargento Ferrum", "n": 5, "s": 7, "e": 6, "o": 4,
-                 "bando": "humano", "habilidad": "muro", "dueno": USUARIO},
-            ],
-            "nota": "Tres humanos en mesa: +1 a todo.",
         },
         {
             "id": "final",
@@ -237,7 +220,7 @@ def paginas_manual():
             "titulo": "CAMPANA",
             "que": [
                 "Cada victoria da una recompensa: entrenamiento,",
-                "recluta (draft de 3), sigilo (mejora permanente)",
+                "recluta (draft de 3), sigilo (mejora de campana)",
                 "o pacto (mazo ajeno para el draft).",
                 "Y ojo a los encuentros: tienen consecuencias reales.",
             ],
@@ -278,7 +261,7 @@ PRACTICAS = [
     },
     {
         "id": "same",
-        "titulo": "SAME",
+        "titulo": "SAME Y PLUS",
         "pasos": [
             {
                 "intro": "Dos rivales te miran con tu mismo numero. Castigalos.",
@@ -303,6 +286,23 @@ PRACTICAS = [
                 "nodebe": [],
                 "min_caps": 2,
             },
+            {
+                "intro": "Ahora suma: tu aliado puede ayudarte a activar Plus.",
+                "objetivo": "Coloca en el centro: N 2 + S 7 y E 3 + O 6.",
+                "pista": "Las dos sumas dan 9. El aliado cuenta, pero no cambia de color.",
+                "exito": "Plus: 2+7 = 3+6. Capturas al rival aunque su 6 supera tu 3.",
+                "fallo": "Busca las dos sumas iguales desde el centro.",
+                "tablero": [
+                    {"nombre": "Apoyo", "n": 1, "s": 7, "e": 1, "o": 1,
+                     "bando": "humano", "dueno": USUARIO, "r": 0, "c": 1},
+                    {"nombre": "Fuerte", "n": 1, "s": 1, "e": 1, "o": 6,
+                     "bando": "orco", "dueno": CPU, "r": 1, "c": 2},
+                ],
+                "mano": [{"nombre": "Sumadora", "n": 2, "s": 1, "e": 3, "o": 1,
+                          "bando": "humano"}],
+                "validas": [(1, 1)], "debe": [(1, 2)],
+                "nodebe": [(0, 1)], "min_caps": 1,
+            },
         ],
     },
     {
@@ -310,22 +310,23 @@ PRACTICAS = [
         "titulo": "CADENA",
         "pasos": [
             {
-                "intro": "La bisagra cae facil... y arrastra a su vecina.",
-                "objetivo": "Coloca a la izquierda y vuelca las dos.",
-                "pista": "Rompe con tu E (8): la bisagra cae "
-                         "y arrastra a la otra.",
-                "exito": "Cadena: cae la bisagra y arrastra a su vecina. "
-                         "2 de una vez.",
+                "intro": "Tu aliado ayuda al Same. La bisagra inicia la cadena.",
+                "objetivo": "Iguala al aliado arriba y a la bisagra a la derecha.",
+                "pista": "N 5 = S 5 del aliado y E 3 = O 3 de la bisagra.",
+                "exito": "Same con un aliado: cae Bisagra. Su E 8 supera O 5 "
+                         "de Cola y continua la cadena.",
                 "fallo": "Ahi no vuelcas nada. Entra por la izquierda "
-                         "con tu E (8).",
+                         "igualando los dos lados.",
                 "tablero": [
+                    {"nombre": "Apoyo", "n": 1, "s": 5, "e": 1, "o": 1,
+                     "bando": "humano", "dueno": USUARIO, "r": 0, "c": 0},
                     {"nombre": "Bisagra", "n": 1, "s": 1, "e": 8, "o": 3,
                      "bando": "orco", "dueno": CPU, "r": 1, "c": 1},
                     {"nombre": "Cola", "n": 1, "s": 1, "e": 1, "o": 5,
                      "bando": "orco", "dueno": CPU, "r": 1, "c": 2},
                 ],
                 "mano": [
-                    {"nombre": "Garfio", "n": 1, "s": 1, "e": 8, "o": 1,
+                    {"nombre": "Garfio", "n": 5, "s": 1, "e": 3, "o": 1,
                      "bando": "humano"},
                 ],
                 "validas": [(1, 0)],
@@ -405,6 +406,22 @@ PRACTICAS = [
                 "debe": [(1, 0)],
                 "nodebe": [],
                 "min_caps": 1,
+            },
+            {
+                "intro": "El rival capturo tu Trol. Su embestida esta INACTIVA.",
+                "objetivo": "Recupera tu Trol desde la izquierda: E 4 contra O 3.",
+                "pista": "Ahora su O vale 3, no 5. Tu E 4 lo supera.",
+                "exito": "Recuperado: Embestida vuelve a sumar +2. Furia tambien "
+                         "se reactiva al recuperar su carta, si toca una amiga.",
+                "fallo": "Ataca su O 3 desde (1,0) con tu E 4.",
+                "tablero": [
+                    {"nombre": "Tu Trol", "n": 3, "s": 3, "e": 3, "o": 3,
+                     "bando": "humano", "habilidad": "embestida", "dueno": CPU,
+                     "dueno_inicial": USUARIO, "r": 1, "c": 1},
+                ],
+                "mano": [{"nombre": "Rescate", "n": 1, "s": 1, "e": 4, "o": 1,
+                          "bando": "humano"}],
+                "validas": [(1, 0)], "debe": [(1, 1)], "nodebe": [], "min_caps": 1,
             },
         ],
     },

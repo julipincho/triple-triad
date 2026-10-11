@@ -15,9 +15,12 @@ import audio
 import campana
 import cartas as crt
 import facciones
+import opciones
 import ui
 from reglas import (
     CPU,
+    DELTA,
+    OPUESTO,
     LADOS,
     USUARIO,
     cascada,
@@ -56,7 +59,9 @@ from ui import (
     ease,
     envolver,
     fundido_entrada,
+    alto_texto,
     mano_rect,
+    MANO_Y,
     mezcla,
     panel,
     registrar,
@@ -69,6 +74,7 @@ import asyncio
 
 SLOT_BG = (28, 30, 40)
 SLOT_BORDE = (92, 84, 62)
+RECT_HISTORIAL = pygame.Rect(24, 132, 340, 34)
 
 #: Los efectos con nombre que el cartel enseña: `(titulo, explicacion)`.
 #:
@@ -81,8 +87,8 @@ SLOT_BORDE = (92, 84, 62)
 #: es no depender del tutorial, y un cartel que solo aparece las tres primeras
 #: veces obliga a recordar las reglas en cuanto deja de hacerlo.
 EFECTOS = {
-    "same": ("SAME", "caen dos vecinas porque igualan tu numero"),
-    "plus": ("PLUS", "caen dos vecinas porque sus sumas coinciden"),
+    "same": ("SAME", "dos igualdades; caen las vecinas enemigas"),
+    "plus": ("PLUS", "dos sumas iguales; caen las vecinas enemigas"),
 }
 
 #: Tiempos del cartel, en segundos. Entrada rapida para que se lea al instante,
@@ -149,13 +155,15 @@ def _caja_llena(w, h, color):
 
 
 class Resultado:
-    def __init__(self, victoria, capturas, jugadas, marcador, empate=False, racha=0):
+    def __init__(self, victoria, capturas, jugadas, marcador, empate=False, racha=0,
+                 abandonado=False):
         self.victoria = victoria
         self.capturas = capturas
         self.jugadas = jugadas
         self.marcador = marcador
         self.empate = empate
         self.racha = racha
+        self.abandonado = abandonado
 
     def __bool__(self):
         return self.victoria
@@ -185,16 +193,23 @@ class Juego:
         self.mano_c = [c.copia() for c in (mano_c_inicial if mano_c_inicial is not None
                                             else mazos.TODOS[self.bando_cpu])]
         for c in self.mano_u:
-            c.dueno = USUARIO
+            c.repartir(USUARIO)
         for c in self.mano_c:
-            c.dueno = CPU
+            c.repartir(CPU)
 
         self.board = [[None] * 3 for _ in range(3)]
         self.turno_cpu = False
         self.cpu_en_curso = False
         self.cpu_en_cola = 0.0
-        self.mensaje = "Tu turno: arrastra una carta al tablero"
+        self.mensaje = "Tu turno: elige carta y casilla con clic o ENTER. Tambien puedes arrastrar"
         self.arrastrando = None
+        self.seleccionada = None
+        self.indice_mano = 0
+        self.celda_foco = (0, 0)
+        self.modo_teclado = False
+        self.historial = []
+        self.historial_abierto = False
+        self.indice_historial = 0
         self.pos_arrastre = (0, 0)
         self.fin = False
         self.pausa = False
@@ -245,21 +260,27 @@ class Juego:
         Una carta puede haber cambiado de bando mil veces en la partida: lo que
         cuenta es de quien es AHORA, no de quien es por su faccion.
         """
+        # En un duelo espejo (incluido el prologo) la faccion no distingue
+        # propietarios. None activa el marco azul/rojo de cartas.crear.
+        if self.bando == self.bando_cpu:
+            return None
         if carta.dueno == USUARIO:
             return self.bando
         if carta.dueno == CPU:
             return self.bando_cpu
         return None
 
-    def super_cartas(self, carta, synergy=None):
-        if synergy is None:
-            synergy = crt.tiene_sinergia(carta, self.board)
-        return crt.crear(carta, carta.dueno, synergy=synergy,
+    def super_cartas(self, carta, posicion=None):
+        valores = ({lado: valor_efectivo(carta, *posicion, lado, self.board)
+                    for lado in LADOS} if posicion is not None else None)
+        return crt.crear(carta, carta.dueno, valores=valores,
                          bando_dueno=self._bando_dueno(carta))
 
     def _color_dueno(self, dueno):
         """Color de la baraja que domina cada bando: el duelo habla en
         los colores de los dos mazos, no en azul/rojo fijos."""
+        if self.bando == self.bando_cpu:
+            return {USUARIO: AZUL, CPU: ROJO}.get(dueno, DORADO)
         if dueno == USUARIO:
             return facciones.acento(self.bando)
         if dueno == CPU:
@@ -289,22 +310,30 @@ class Juego:
         mano.remove(carta)
         carta.dueno = dueno
         self.board[r][c] = carta
+        previo = copy.deepcopy(self.board)
         caps, eventos = cascada(self.board, r, c)
+        self.historial.append({"titulo": ("TU: " if dueno == USUARIO else "RIVAL: ") + carta.nombre,
+                               "lineas": self.explicar_eventos(previo, (r, c), eventos)})
+        self.historial = self.historial[-9:]
+        self.indice_historial = len(self.historial) - 1
         ahora = time.time()
         self.ultima_jugada = (r, c, ahora)
         for (cr, cc) in caps:
-            self.flash.append((cr, cc, ahora, dueno))
-            self._explosion(cr, cc, dueno)
+            if not opciones.obtener("movimiento_reducido"):
+                self.flash.append((cr, cc, ahora, dueno))
+                self._explosion(cr, cc, dueno)
         audio.sfx(audio.COLOCAR)
         self.capturas += len(caps)
         self.jugadas += 1
         if caps:
-            audio.sfx(audio.CADENA if len(caps) > 1 else audio.CAPTURAR, canal="cap")
-            if len(caps) > self.cadena_max:
-                self.cadena_max = len(caps)
-            if len(caps) >= 3:
+            resumen = resumen_efectos(eventos, (r, c))
+            audio.sfx(audio.CADENA if resumen["cadena"] else audio.CAPTURAR, canal="cap")
+            if resumen["cadena"]:
+                self.cadena_max = max(self.cadena_max,
+                                      resumen["cadena"] + resumen.get("same", 0) + resumen.get("plus", 0))
+            if len(caps) >= 3 and not opciones.obtener("movimiento_reducido"):
                 self.sacudida = min(0.55, 0.18 + len(caps) * 0.06)
-            self._anunciar_efecto(resumen_efectos(eventos, (r, c)), ahora, dueno)
+            self._anunciar_efecto(resumen, ahora, dueno)
             clave = "captura_cpu" if dueno == CPU else "captura_player"
             if self.rival and self.rival.get(clave):
                 self.comentario = self.rival[clave]
@@ -332,12 +361,8 @@ class Juego:
         candidatos = [k for k in ("same", "plus") if resumen.get(k)]
 
         if not candidatos:
-            # Sin same ni plus lo unico que puede haber es cadena. Una sola
-            # captura no es una cadena: es una captura normal, que ya se ven
-            # con el fogonazo y la explosion. Y el numero es el total de cartas
-            # que cambiaron de bando, que es lo que mide `cadena_max`, para que
-            # el cartel y la pantalla de resultado hablen del mismo numero.
-            if total >= 2:
+            # Varias capturas directas tampoco son una cadena.
+            if resumen.get("cadena"):
                 self.efecto = ("CADENA DE %d" % total, ahora, color,
                                "una carta tumba a las demas por domino",
                                "cadena")
@@ -354,6 +379,8 @@ class Juego:
             reparto.append("%d por cadena" % resumen["cadena"])
         if resumen["basica"]:
             reparto.append("%d directas" % resumen["basica"])
+        if resumen.get("quema"):
+            reparto.append("%d por quema" % resumen["quema"])
         self.efecto = (titulo, ahora, color,
                        "%s.  %d cartas: %s" % (sub, total, ", ".join(reparto)),
                        regla)
@@ -397,7 +424,7 @@ class Juego:
             self.marcador_mostrado[i] = int(round(nuevo))
         self.flash = [f for f in self.flash if ahora - f[2] < 0.6]
 
-        if self.fin or self.pausa:
+        if self.fin or self.pausa or self.historial_abierto:
             return
 
         # turno del rival
@@ -428,7 +455,7 @@ class Juego:
         idx, r, c = jugada
         carta = self.mano_c[idx]
         caps = self.colocar(carta, self.mano_c, CPU, r, c)
-        self.mensaje = f"{self.rival.get('nombre', 'Rival')} juega {carta.nombre}"
+        self.mensaje = f"{(self.rival or {}).get('nombre', 'Rival')} juega {carta.nombre}"
         if caps:
             self.mensaje += f" y captura {len(caps)}"
         self.turno_cpu = False
@@ -486,27 +513,153 @@ class Juego:
                     self.comentario_t0 = self.tiempo_fin
 
     # ------------------------------------------------------------- interaccion
+    def cancelar_seleccion(self):
+        self.arrastrando = None
+        self.seleccionada = None
+        self._arrastre_valido = False
+
+    def confirmar_jugada(self, celda, guia=None):
+        carta = self.arrastrando[0] if self.arrastrando else self.seleccionada
+        if (carta not in self.mano_u or celda not in self.celdas_libres()
+                or self.turno_cpu or self.fin or self.pausa):
+            return False
+        if guia is not None:
+            ok, motivo = guia.validar_colocacion(self, carta, *celda)
+            if not ok:
+                self.mensaje = motivo
+                audio.sfx(audio.INVALIDO, 0.5)
+                return False
+        self.cancelar_seleccion()
+        caps = self.colocar(carta, self.mano_u, USUARIO, *celda)
+        self.indice_mano = min(self.indice_mano, max(0, len(self.mano_u) - 1))
+        if guia is not None:
+            guia.tras_colocar(self, carta, celda[0], celda[1], caps)
+        else:
+            self.mensaje = f"Juegas {carta.nombre} - {len(caps)} capturas. Turno del rival"
+            self.turno_cpu = True
+            self.cpu_en_cola = 0.85
+            self.cpu_en_curso = False
+            self.comprobar_fin()
+        return True
+
+    def entrada_jugada(self, ev, guia=None):
+        """Raton, arrastre y teclado comparten la misma confirmacion."""
+        if self.fin or self.pausa or self.turno_cpu:
+            return
+        if ev.type == pygame.KEYDOWN:
+            self.modo_teclado = True
+            if ev.key in (pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN):
+                if self.seleccionada is None and self.mano_u:
+                    paso = -1 if ev.key in (pygame.K_LEFT, pygame.K_UP) else 1
+                    self.indice_mano = (self.indice_mano + paso) % len(self.mano_u)
+                else:
+                    r, c = self.celda_foco
+                    dr, dc = {pygame.K_LEFT: (0, -1), pygame.K_RIGHT: (0, 1),
+                              pygame.K_UP: (-1, 0), pygame.K_DOWN: (1, 0)}[ev.key]
+                    self.celda_foco = ((r + dr) % 3, (c + dc) % 3)
+                    self.pos_arrastre = celda_rect(*self.celda_foco).center
+            elif ev.key in (pygame.K_RETURN, pygame.K_SPACE, pygame.K_KP_ENTER):
+                if self.seleccionada is None and self.mano_u:
+                    self.seleccionada = self.mano_u[self.indice_mano % len(self.mano_u)]
+                    self.celda_foco = self.celdas_libres()[0]
+                    self.pos_arrastre = celda_rect(*self.celda_foco).center
+                elif self.celda_foco not in self.celdas_libres():
+                    self.mensaje = "Casilla ocupada: elige una libre o ESC para cancelar"
+                else:
+                    self.confirmar_jugada(self.celda_foco, guia)
+            elif ev.key in (pygame.K_ESCAPE, pygame.K_BACKSPACE):
+                self.cancelar_seleccion()
+            return
+        if ev.type == pygame.MOUSEBUTTONDOWN:
+            self.modo_teclado = False
+            if ev.button == 3:
+                self.cancelar_seleccion()
+            elif ev.button == 1:
+                for i, carta in enumerate(self.mano_u):
+                    if mano_rect(i, len(self.mano_u)).inflate(0, 40).collidepoint(ev.pos):
+                        self.indice_mano = i
+                        self.seleccionada = carta
+                        self.arrastrando = (carta, None)
+                        self.pos_arrastre = ev.pos
+                        audio.sfx(audio.DRAG, 0.5)
+                        break
+        elif ev.type == pygame.MOUSEMOTION:
+            self.modo_teclado = False
+            if self.seleccionada is not None or self.arrastrando:
+                self.pos_arrastre = ev.pos
+        elif ev.type == pygame.MOUSEBUTTONUP and ev.button == 1:
+            celda = self.celda_bajo_mouse(ev.pos)
+            if celda is not None and (self.seleccionada is not None or self.arrastrando):
+                self.confirmar_jugada(celda, guia)
+            # Soltar sobre la mano selecciona, no juega ni consume turno.
+            self.arrastrando = None
+
     def preview_capturas(self):
         """Casilla objetivo y cartas que se capturarian al soltar."""
-        if not self.arrastrando:
-            return None, set()
-        carta = self.arrastrando[0]
+        objetivo, caps, _ = self.detalle_preview()
+        return objetivo, set(caps)
+
+    def detalle_preview(self):
+        carta = self.arrastrando[0] if self.arrastrando else self.seleccionada
+        if carta is None:
+            return None, [], []
         for (r, c) in celdas_vacias(self.board):
             if celda_rect(r, c).collidepoint(self.pos_arrastre):
                 nb = copy.deepcopy(self.board)
                 nueva = carta.copia()
                 nueva.dueno = USUARIO
                 nb[r][c] = nueva
-                return (r, c), set(capturas(nb, r, c))
-        return None, set()
+                previo = copy.deepcopy(nb)
+                caps, eventos = cascada(nb, r, c)
+                return (r, c), caps, self.explicar_eventos(previo, (r, c), eventos)
+        return None, [], []
+
+    @staticmethod
+    def explicar_eventos(previo, origen, eventos):
+        """Explica eventos del motor; no inventa otra logica de capturas."""
+        def casilla(pos):
+            return f"F{pos[0] + 1} C{pos[1] + 1}"
+
+        lineas = []
+        for regla, pos, desde in eventos:
+            motivo = "Cadena" if desde != origen else {
+                None: "Basica", "same": "Same", "plus": "Plus", "quema": "Quema"
+            }.get(regla, str(regla))
+            if desde == origen and regla in (None, "quema"):
+                dr, dc = pos[0] - origen[0], pos[1] - origen[1]
+                lado = next(l for l, delta in DELTA.items() if delta == (dr, dc))
+                atacante, defensora = previo[origen[0]][origen[1]], previo[pos[0]][pos[1]]
+                a = valor_efectivo(atacante, *origen, lado, previo)
+                b = valor_efectivo(defensora, *pos, OPUESTO[lado], previo)
+                lineas.append(f"{motivo}: {casilla(pos)} ({a} {'>' if a > b else '='} {b})")
+            else:
+                lineas.append(f"{motivo}: {casilla(pos)} desde {casilla(desde)}")
+        if any(regla == "same" for regla, _, _ in eventos):
+            lineas.append("Same: dos o mas igualdades.")
+        if any(regla == "plus" for regla, _, _ in eventos):
+            lineas.append("Plus: dos o mas sumas iguales.")
+        r, c = origen
+        carta = previo[r][c]
+        for lado, (dr, dc) in DELTA.items():
+            nr, nc = r + dr, c + dc
+            if not (0 <= nr < 3 and 0 <= nc < 3):
+                continue
+            vecina = previo[nr][nc]
+            if vecina is None or vecina.dueno == carta.dueno:
+                continue
+            if OPUESTO[lado] in vecina.lados_muro():
+                lineas.append(f"Muro: bloquea {casilla((nr, nc))}")
+            elif not eventos:
+                a = valor_efectivo(carta, r, c, lado, previo)
+                b = valor_efectivo(vecina, nr, nc, OPUESTO[lado], previo)
+                lineas.append(f"{lado}: {a} contra {b}; sin captura")
+        return lineas or ["Sin capturas: solo colocacion."]
 
     def desglose_captura(self, carta, lado, r_ataque, c_ataque, r_defensa, c_defensa):
         """Por que esta comparacion captura o no, con numeros a la vista.
 
-        El motor NO compara los numeros que se ven: compara el valor efectivo,
-        que es el visible mas embestida en el centro, elemento central, furia y
-        sinergia. Un jugador ve "5 contra 5", no hay voltaque, y deduce que las
-        reglas fallan. Aqui se calcula ese desglose para poder enseñarselo.
+        Compara base y valor efectivo, incluida la carta que se va a colocar.
+        El tablero muestra efectivos; la mano muestra sus valores base.
 
         Devuelve `(visible_ataque, visible_defensa, efectivo_ataque,
         efectivo_defensa)` con los cuatro numeros, o `None` si la comparacion
@@ -520,10 +673,12 @@ class Juego:
         opuesta = {"N": "S", "S": "N", "E": "O", "O": "E"}[lado]
         if opuesta in vecina.lados_muro():
             return None  # el muro bloquea: eso si hay que decirlo
+        tablero = [fila[:] for fila in self.board]
+        tablero[r_ataque][c_ataque] = carta
         return (carta.valores[lado],
                 vecina.valores[opuesta],
-                valor_efectivo(carta, r_ataque, c_ataque, lado, self.board),
-                valor_efectivo(vecina, r_defensa, c_defensa, opuesta, self.board))
+                valor_efectivo(carta, r_ataque, c_ataque, lado, tablero),
+                valor_efectivo(vecina, r_defensa, c_defensa, opuesta, tablero))
 
     def cartas_en_mano(self):
         return self.mano_u
@@ -556,7 +711,7 @@ class Juego:
         self._dibujar_particulas(lienzo)
         self._dibujar_banner(lienzo, ahora)
         self._dibujar_efecto(lienzo, ahora)
-        if self.fin:
+        if self.fin and not self.historial_abierto:
             self._dibujar_resultado(lienzo, ahora)
 
         # los tooltips van los ultimos: por encima de cartas, tablero y cartel
@@ -617,6 +772,10 @@ class Juego:
         texto(screen, f"{t}", 20, mezcla(facciones.acento(self.bando), (255, 255, 255), 0.3), centro=(ANCHO // 2 - 42, 36))
         texto(screen, "-", 14, TEXTO_TENUE, centro=(ANCHO // 2, 36))
         texto(screen, f"{c}", 20, mezcla(facciones.acento(self.bando_cpu), (255, 255, 255), 0.3), centro=(ANCHO // 2 + 42, 36))
+        pygame.draw.rect(screen, TEXTO, (badge_t.x + 5, badge_t.centery - 4, 8, 8))
+        cx, cy = badge_c.x + 9, badge_c.centery
+        pygame.draw.polygon(screen, TEXTO, [(cx, cy - 5), (cx + 5, cy),
+                                            (cx, cy + 5), (cx - 5, cy)])
 
         # manos a los lados del marcador. Debajo de cada mano va el nombre:
         # el del rival siempre, y el del jugador solo si ha puesto uno.
@@ -633,44 +792,66 @@ class Juego:
             texto(screen, f"RACHA x{self.racha}", 9, VERDE, centro=(ANCHO - 80, 36))
 
         # mensaje
-        panel(screen, pygame.Rect(ANCHO // 2 - 300, 84, 600, 30), (16, 17, 26, 200), None, radio=8)
-        texto(screen, self.mensaje, 9, TEXTO, centro=(ANCHO // 2, 99))
+        panel(screen, pygame.Rect(ANCHO // 2 - 300, 84, 600, 44), (16, 17, 26, 200), None, radio=8)
+        for i, linea in enumerate(envolver(self.mensaje, 9, 576)[:2]):
+            texto(screen, linea, 9, TEXTO, centro=(ANCHO // 2, 98 + i * 16))
+        turno = "FINALIZADO" if self.fin else ("TURNO RIVAL" if self.turno_cpu else "TU TURNO")
+        texto(screen, turno, 9, ui.AVISO if self.turno_cpu else ui.FOCO,
+              x=ANCHO - 160, y=14)
         # El desglose de la captura: por que un 5 voltea a un 5, o por que un
         # 9 no voltaa a un 8. Sin esto el numero de la carta parece mentira.
         self._dibujar_desglose(screen)
 
     def _dibujar_desglose(self, screen):
-        """Los cuatro numeros de la captura que estas a punto de hacer.
-
-        El motor compara el VALOR EFECTIVO (el que ves mas las bonificaciones),
-        no el numero impreso en la carta. Un jugador ve 5 contra 5 y no hay
-        voltaque, y sin explicacion parece un fallo. Aqui se teach el numero
-        impreso y el que manda, con el signo de quien gana.
-        """
-        if not self.arrastrando:
+        """Explicacion lateral de la prevision o de una jugada del historial."""
+        panel(screen, RECT_HISTORIAL, (18, 19, 28, 245), ui.FOCO, radio=6)
+        texto(screen, "L: CERRAR HISTORIAL" if self.historial_abierto else "L: VER JUGADAS",
+              9, TEXTO, centro=RECT_HISTORIAL.center)
+        # Las tres pistas se anclan a la mano, no a coordenadas sueltas. La
+        # etiqueta "ELEGIDA"/"ENTER" de la carta seleccionada va justo encima
+        # de la mano (MANO_Y - 10) y antes esta tercera pista terminaba
+        # exactamente en su borde: a tamano normal se tocaban y con el modo
+        # lectura al 125% se solapaban de verdad (4px medidos).
+        _alto_pista = alto_texto("M: movimiento reducido NO", 8)
+        _y_pista = MANO_Y - 26 - _alto_pista
+        texto(screen, "Flechas / ENTER: elegir y colocar", 8, TEXTO_TENUE,
+              x=24, y=_y_pista - 2 * _alto_pista - 6)
+        texto(screen, "ESC / clic derecho: cancelar", 8, TEXTO_TENUE,
+              x=24, y=_y_pista - _alto_pista - 3)
+        texto(screen, "M: movimiento reducido " +
+              ("SI" if opciones.obtener("movimiento_reducido") else "NO"),
+              8, TEXTO_TENUE, x=24, y=_y_pista)
+        carta = self.arrastrando[0] if self.arrastrando else self.seleccionada
+        objetivo, caps, lineas = self.detalle_preview()
+        if self.historial_abierto:
+            if self.historial:
+                entrada = self.historial[self.indice_historial]
+                titulo = entrada["titulo"]
+                lineas = [f"Jugada {self.indice_historial + 1}/{len(self.historial)}",
+                          "Izquierda / derecha: recorrer"] + entrada["lineas"]
+            else:
+                titulo, lineas = "HISTORIAL", ["Todavia no se ha jugado ninguna carta."]
+        elif objetivo is not None:
+            titulo = f"PREVISION: {len(caps)} CAPTURAS"
+            ra, ca = objetivo
+            for lado, (dr, dc) in DELTA.items():
+                nd = self.desglose_captura(carta, lado, ra, ca, ra + dr, ca + dc)
+                if nd is not None and (nd[0] != nd[2] or nd[1] != nd[3]):
+                    va, vd, ea, ed = nd
+                    lineas.append(f"{lado}: {va}/{vd} -> {ea}/{ed} efectivos")
+        elif carta is not None:
+            titulo, lineas = "CARTA ELEGIDA", [carta.nombre, "Elige una casilla libre."]
+        else:
             return
-        carta = self.arrastrando[0]
-        objetivo, _caps = self.preview_capturas()
-        if objetivo is None:
-            return
-        ra, ca = objetivo
-        for lado, (dr, dc) in (("N", (-1, 0)), ("S", (1, 0)),
-                               ("E", (0, 1)), ("O", (0, -1))):
-            nd = self.desglose_captura(carta, lado, ra, ca, ra + dr, ca + dc)
-            if nd is None:
-                continue
-            va, vd, ea, ed = nd
-            if va == ea and vd == ed:
-                continue  # sin bonificaciones: el numero ya lo explica
-            gana = "gana" if ea > ed else ("empata" if ea == ed else "pierde")
-            linea = (f"{lado}: {va} contra {vd}"
-                     f"   ->   {ea} contra {ed}  ({gana})")
-            y = 122 + (("N", "S", "E", "O").index(lado)) * 16
-            texto(screen, linea, 8,
-                  VERDE if ea > ed else (TEXTO_TENUE if ea == ed else ROJO),
-                  centro=(ANCHO // 2, y))
+        contenido = envolver(titulo, 9, 308)
+        contenido += [parte for linea in lineas for parte in envolver(linea, 8, 308)]
+        panel(screen, pygame.Rect(24, 178, 340, 30 + len(contenido) * 16),
+              (18, 19, 28, 245), BORDE, radio=8)
+        for i, linea in enumerate(contenido):
+            texto(screen, linea, 8, ui.FOCO if i == 0 else TEXTO,
+                  x=40, y=194 + i * 16)
 
-    def _lineas_tooltip(self, carta, synergy=False, dueno_extra=None):
+    def _lineas_tooltip(self, carta, dueno_extra=None):
         """Contenido del tooltip de una carta: nombre, bando, lados y habilidad.
 
         Vive aqui y no en el punto donde se dibuja porque ahora lo usan dos
@@ -688,13 +869,10 @@ class Juego:
                 f"{crt.ICONO_HABILIDAD.get(carta.habilidad, carta.habilidad)}: "
                 f"{crt.descripcion_habilidad(carta.habilidad)}"
             )
+            if carta.dueno is not None and not carta.habilidad_activa():
+                lineas.append("INACTIVA: se reactiva al volver a su propietario inicial")
         else:
             lineas.append("Sin habilidad especial")
-        if synergy:
-            # La sinergia depende de cuantas aliadas hay en el tablero AHORA, no
-            # de la carta sola: sin esto el jugador ve el +1 en la mano y no
-            # entiende por que en el tablero la carta vale mas.
-            lineas.append("SINERGIA: esta carta suma +1 a cada lado ahora mismo")
         return "\n".join(lineas)
 
     def _dibujar_tablero(self, screen, ahora):
@@ -720,13 +898,8 @@ class Juego:
                     key = ("tinte_casilla", rect.w, rect.h, halo)
                     tinte = ui.superficie(key, lambda: _tinte_casilla(rect.w, rect.h, halo))
                     screen.blit(tinte, (rect.x - 5, rect.y - 5))
-                if (r, c) in caps_preview:
-                    pygame.draw.rect(screen, VERDE, rect, 4, border_radius=7)
-                elif objetivo == (r, c):
-                    pygame.draw.rect(screen, DORADO, rect, 4, border_radius=7)
                 if carta:
-                    synergy = crt.tiene_sinergia(carta, self.board)
-                    sup = self.super_cartas(carta, synergy=synergy)
+                    sup = self.super_cartas(carta, posicion=(r, c))
                     # Pasar el raton por una carta del tablero enseña lo mismo
                     # que la mano: nombre, bando, los cuatro lados y la
                     # habilidad. Se encola y se pinta al final del frame, como
@@ -740,7 +913,10 @@ class Juego:
                         # justo lo que se mira mientras se elige donde colocar.
                         tooltip(
                             screen,
-                            self._lineas_tooltip(carta, synergy, dueno_txt),
+                            self._lineas_tooltip(carta, dueno_txt) +
+                            "\nVALORES EN MESA: " + " / ".join(
+                                f"{l} {val(valor_efectivo(carta, r, c, l, self.board))}"
+                                for l in LADOS),
                             (rect.centerx, rect.y), ancho=300, arriba=r > 0)
                     if self.ultima_jugada and self.ultima_jugada[0] == r and \
                             self.ultima_jugada[1] == c and ahora - self.ultima_jugada[2] < 0.2:
@@ -764,6 +940,16 @@ class Juego:
                                 screen.blit(sup, rect.topleft)
                         else:
                             screen.blit(sup, rect.topleft)
+                # Dibujar DESPUES de la carta: su superficie tapaba el preview.
+                if (r, c) in caps_preview:
+                    pygame.draw.rect(screen, ui.EXITO, rect, 3, border_radius=7)
+                    pygame.draw.lines(screen, TEXTO_ON, False,
+                                      [(rect.x + 6, rect.y + 10),
+                                       (rect.x + 10, rect.y + 14),
+                                       (rect.x + 17, rect.y + 5)], 2)
+                elif objetivo == (r, c):
+                    pygame.draw.rect(screen, ui.FOCO, rect, 4, border_radius=7)
+                    texto(screen, "COLOCAR", 8, ui.FOCO, centro=rect.center)
                 # casilla elemental central
                 if (r, c) == (1, 1):
                     pygame.draw.circle(screen, (255, 150, 60), (rect.right - 12, rect.bottom - 12), 5)
@@ -826,16 +1012,22 @@ class Juego:
                 continue
             rect = mano_rect(i, total)
             hover = rect.collidepoint(mouse) and not self.turno_cpu and not self.fin
+            foco = (self.modo_teclado and i == self.indice_mano
+                    and not self.turno_cpu and not self.fin)
             if hover:
                 self._hover_mano = carta
                 preview = carta
             y = rect.y - (18 if hover else 0)
             destino = pygame.Rect(rect.x, y, rect.w, rect.h)
-            sup = self.super_cartas(carta, synergy=False)
+            sup = self.super_cartas(carta)
             if hover:
-                crt.resplandor_carta(screen, destino, carta, USUARIO, 110, bando_dueno=self.bando)
+                crt.resplandor_carta(screen, destino, carta, USUARIO, 110, bando_dueno=self._bando_dueno(carta))
             _sombra_carta(screen, destino)
             screen.blit(sup, (destino.x, destino.y))
+            if carta is self.seleccionada or foco:
+                pygame.draw.rect(screen, ui.FOCO, destino, 3, border_radius=7)
+                texto(screen, "ELEGIDA" if carta is self.seleccionada else "ENTER",
+                      8, ui.FOCO, centro=(destino.centerx, destino.y - 10))
             # descripciones: se encolan y se pintan al final del frame, para
             # que ni las cartas siguientes ni el tablero las tapen
             if hover:
@@ -853,7 +1045,7 @@ class Juego:
             carta, _ = self.arrastrando
             x, y = self.pos_arrastre
             _sombra_carta(screen, pygame.Rect(x - CARD_W // 2, y - CARD_H // 2, CARD_W, CARD_H), off=(6, 6))
-            screen.blit(self.super_cartas(carta, synergy=False),
+            screen.blit(self.super_cartas(carta),
                         (x - CARD_W // 2, y - CARD_H // 2))
 
     def _dibujar_preview(self, screen, mouse, carta):
@@ -862,8 +1054,8 @@ class Juego:
         Se pinta fuera del bucle de la mano y antes de la carta que se esta
         arrastrando, para que se vea entera y la arrastrada quede encima.
         """
-        grande = crt.crear(carta, USUARIO, synergy=False, escala=1.35,
-                           bando_dueno=self.bando)
+        grande = crt.crear(carta, USUARIO, escala=1.35,
+                            bando_dueno=self._bando_dueno(carta))
         gx = min(ANCHO - grande.get_width() - 10, mouse[0] + 18)
         gy = max(80, min(ALTO - grande.get_height() - 10, mouse[1] - 40))
         _sombra_carta(screen, pygame.Rect(gx, gy, grande.get_width(), grande.get_height()), big=True)
@@ -1052,7 +1244,8 @@ class Juego:
             if self.comentario:
                 texto(screen, self.comentario, 8, TEXTO, centro=(ANCHO // 2, caja.y + 190))
         if now_clickable(ahora, self.tiempo_fin):
-            texto(screen, "clic para continuar", 9, DORADO, centro=(ANCHO // 2, caja.y + 244))
+            texto(screen, "ENTER: continuar / L: ver jugadas", 8, DORADO,
+                  centro=(ANCHO // 2, caja.y + 244))
         else:
             texto(screen, ". . .", 9, con_alpha(DORADO, 90), centro=(ANCHO // 2, caja.y + 244))
 
@@ -1082,8 +1275,32 @@ async def partida(screen, clock, juego, test_mode=False, guia=None):
             if ev.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
+            if (ev.type == pygame.KEYDOWN and ev.key == pygame.K_l) or (
+                    ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1
+                    and RECT_HISTORIAL.collidepoint(ev.pos) and not juego.pausa):
+                juego.historial_abierto = not juego.historial_abierto
+                juego.cancelar_seleccion()
+                continue
+            if juego.historial_abierto:
+                if ev.type == pygame.KEYDOWN:
+                    if ev.key == pygame.K_ESCAPE:
+                        juego.historial_abierto = False
+                    elif ev.key in (pygame.K_LEFT, pygame.K_RIGHT) and juego.historial:
+                        paso = -1 if ev.key == pygame.K_LEFT else 1
+                        juego.indice_historial = (juego.indice_historial + paso) % len(juego.historial)
+                continue
+            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_m:
+                opciones.alternar("movimiento_reducido")
+                juego.sacudida = 0
+                juego.flash.clear()
+                juego.particulas.clear()
+                continue
             if ev.type == pygame.KEYDOWN:
                 if ev.key == pygame.K_ESCAPE:
+                    if juego.seleccionada is not None or juego.arrastrando:
+                        juego.cancelar_seleccion()
+                        audio.sfx(audio.MENU_BACK)
+                        continue
                     if guia is not None and not juego.fin:
                         # En el tutorial ESC pide salir (con confirmacion),
                         # nunca pausa: el jugador no debe quedarse encerrado.
@@ -1096,16 +1313,20 @@ async def partida(screen, clock, juego, test_mode=False, guia=None):
                         pygame.K_RETURN, pygame.K_SPACE, pygame.K_KP_ENTER):
                     juego.abandonado = True
                     audio.sfx(audio.MENU_BACK)
-                    return Resultado(False, juego.capturas, juego.jugadas, (0, 0))
-            if guia is not None and guia.confirmar_salida and ev.type not in (
-                    pygame.KEYDOWN, pygame.QUIT):
+                    return Resultado(False, juego.capturas, juego.jugadas, (0, 0),
+                                     abandonado=True)
+            if guia is not None and guia.confirmar_salida:
                 continue
             if ev.type == pygame.KEYDOWN and ev.key == pygame.K_h and not juego.turno_cpu:
                 juego.mensaje = guia.pista() if guia is not None else "Consejo: Same y Plus voltean al vuelo"
             if juego.pausa:
                 if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
                     if _pausa_clic(screen, ev.pos):
-                        return Resultado(False, juego.capturas, juego.jugadas, (0, 0))
+                        return Resultado(False, juego.capturas, juego.jugadas, (0, 0),
+                                         abandonado=True)
+                    juego.pausa = False
+                elif ev.type == pygame.KEYDOWN and ev.key in (pygame.K_RETURN, pygame.K_SPACE):
+                    juego.pausa = False
                 continue
             # continuar el duel terminado: clic, ESC, Intro o espacio
             continuar = (
@@ -1130,49 +1351,7 @@ async def partida(screen, clock, juego, test_mode=False, guia=None):
                     guia.confirmar_salida = True
                     audio.sfx(audio.MENU_BACK)
                     continue
-                if not juego.fin and not juego.turno_cpu:
-                    mouse = pygame.mouse.get_pos()
-                    for i, carta in enumerate(juego.mano_u):
-                        rect = mano_rect(i, max(1, len(juego.mano_u)))
-                        if rect.inflate(0, 40).collidepoint(mouse):
-                            juego.arrastrando = (carta, None)
-                            juego.pos_arrastre = mouse
-                            audio.sfx(audio.DRAG, 0.5)
-                            break
-            if ev.type == pygame.MOUSEMOTION and juego.arrastrando:
-                juego.pos_arrastre = ev.pos
-                anterior = juego._arrastre_valido
-                nueva = juego.celda_bajo_mouse(ev.pos) is not None
-                if nueva != anterior:
-                    juego._arrastre_valido = nueva
-                    audio.sfx(audio.INVALIDO if not nueva else audio.CARD, 0.35, canal="hover")
-            if ev.type == pygame.MOUSEBUTTONUP and ev.button == 1 and juego.arrastrando:
-                carta = juego.arrastrando[0]
-                juego.arrastrando = None
-                celda = juego.celda_bajo_mouse(ev.pos)
-                if celda:
-                    if guia is not None:
-                        # practica: se valida el objetivo, sin turno de CPU
-                        # ni fin por tablero (la guia cierra la practica)
-                        ok, motivo = guia.validar_colocacion(juego, carta, *celda)
-                        if not ok:
-                            juego.mensaje = motivo
-                            audio.sfx(audio.INVALIDO, 0.5)
-                        else:
-                            caps = juego.colocar(carta, juego.mano_u, USUARIO, *celda)
-                            guia.tras_colocar(juego, carta, celda[0], celda[1], caps)
-                    else:
-                        caps = juego.colocar(carta, juego.mano_u, USUARIO, *celda)
-                        juego.mensaje = f"Juegas {carta.nombre}"
-                        if caps:
-                            juego.mensaje += f" y capturas {len(caps)}"
-                        juego.turno_cpu = True
-                        juego.cpu_en_cola = 0.85
-                        juego.cpu_en_curso = False
-                else:
-                    audio.sfx(audio.INVALIDO, 0.5)
-                if guia is None:
-                    juego.comprobar_fin()
+            juego.entrada_jugada(ev, guia)
         # OJO: Resultado.__bool__ devuelve `victoria`. Si el duelo se ha
         # perdido, `if resultado:` es False y el bucle no se rompia nunca:
         # el jugador se quedaba en el cartel de DERROTA sin poder continuar.
@@ -1208,6 +1387,7 @@ def _pausa_clic(screen, pos):
 
 
 def _dibujar_pausa(screen, juego):
+    juego.dibujar(screen)
     capa = pygame.Surface((ANCHO, ALTO), pygame.SRCALPHA)
     capa.fill((0, 0, 0, 180))
     screen.blit(capa, (0, 0))

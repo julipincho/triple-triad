@@ -19,6 +19,12 @@ from paths import recurso
 ANCHO, ALTO = 1280, 800
 FUENTE_RUTA = os.path.join("assets", "PressStart2P.ttf")
 
+#: Escala global de tipografia. 1.0 = tamano de diseno. El "modo lectura" de
+#: Ajustes la sube (~1.25) para que el texto se lea sin forzar la vista. Se
+#: aplica dentro de `Recursos.fuente`, asi que afecta a TODO el juego sin
+#: tener que tocar cada llamada a `texto()`. Se fija con `fijar_escala_texto`.
+ESCALA_TEXTO = 1.0
+
 # ------------------------------------------------------------------- paleta
 FONDO = (14, 15, 22)
 FONDO_ALT = (24, 20, 28)
@@ -34,6 +40,13 @@ VERDE = (96, 214, 128)
 AZUL = (86, 158, 244)
 MORADO = (176, 132, 226)
 SOMBRA = (0, 0, 0, 150)
+
+# Colores de estado: independientes de la identidad de cada faccion.
+FOCO = (96, 220, 240)
+EXITO = VERDE
+AVISO = (255, 190, 96)
+ERROR = ROJO
+INACTIVO = TEXTO_TENUE
 
 # ------------------------------------------------------------------- medidas
 CARD_W, CARD_H = 104, 144
@@ -67,6 +80,11 @@ LIMIT_FPS = 60
 # Apagado en producción: es un `if` por llamada y no toca el presupuesto de
 # frame, pero no es gratis. Solo se enciende desde los tests.
 MEDIR = False
+
+#: Pares (cadena, rect) de todo lo dibujado en el frame actual, solo con MEDIR
+#: encendido. La auditoría de rects los usa para nombrar el texto que se sale o
+#: se solapa en vez de devolver coordenadas a ciegas.
+MEDIDO = []
 
 # (rect, rol, contenedora) acumulados en el frame actual. `contenedora` es el
 # panel más pequeño que contiene al rect (None si ninguno). Se limpia cada
@@ -114,40 +132,155 @@ def limpiar_medicion():
 
 
 def _volcar_frame():
-    """Guarda los rects del frame en `_REGISTRO_TODOS` y los prepara para el siguiente."""
-    if not MEDIR:
-        return
-    for r, rol, contenedora in _REGISTRO:
-        _REGISTRO_TODOS.append((r, rol, contenedora))
-    _REGISTRO.clear()
-    _PANELES_ACTUALES.clear()
-
-
-def _volcar_frame():
     """Guarda los rects del frame en `_REGISTRO_TODOS` y los prepara para el siguiente.
 
     Se llama sola desde `pygame.display.flip`, el unico punto por el que
     pasan todos los frames del juego (y de los tests). Asi la auditoria no
     depende de que cada pantalla recuerde de llamar a nada.
+
+    Devuelve las ternas de ESTE frame. Quien quiera mirar un frame exacto lo
+    recibe como parametro del observador en vez de ir a buscarlo a una lista
+    compartida: una pantalla puede hacer mas de un flip antes de que la tool
+    la lea (por ejemplo, la de contraste pinta un frame y luego fuerza otro),
+    y con una lista comun el segundo flip se comia el frame ya capturado.
+
+    No se guarda nada si MEDIR esta apagado: es el camino caliente y en el
+    juego normal no hay nada que registrar.
     """
-    for r, rol, contenedora in _REGISTRO:
-        _REGISTRO_TODOS.append((r, rol, contenedora))
+    if not MEDIR:
+        return []
+    frame = [(r, rol, contenedora) for r, rol, contenedora in _REGISTRO]
+    _REGISTRO_TODOS.extend(frame)
     _REGISTRO.clear()
     _PANELES_ACTUALES.clear()
+    return frame
 
 
 # Envolver `pygame.display.flip` una sola vez: es el punto por el que pasan
 # todos los frames y no hay que tocar las 40+ pantallas que lo llaman.
 _FLIP_ORIGINAL = pygame.display.flip
 
+#: Callbacks de diagnostico que se ejecutan en cada flip. Antes cada
+#: herramienta se colgaba del `pygame.display.flip` por su cuenta
+#: (`tests/auditoria_visual.py` y `tools/auditar_contraste.py`), y como las
+#: dos reescriben el MISMO atributo, la ultima en engancharse se comia el hook
+#: de la otra: la segunda en ejecutarse se quedaba sin frames, auditaba cero
+#: y se declaraba limpia. Con un solo dueno del enganche y una lista de
+#: observadores eso ya no puede pasar.
+_OBSERVADORES_FLIP = []
+
+
+def observar_flip(fn):
+    """Registra `fn(frame)` para que se ejecute en cada `display.flip`.
+
+    `frame` es la lista de ternas (rect, rol, contenedora) de ese frame, la
+    misma que devuelve `_volcar_frame`.
+    """
+    _OBSERVADORES_FLIP.append(fn)
+    return fn
+
 
 def _flip_medicion():
-    _volcar_frame()
+    frame = _volcar_frame()
+    for fn in _OBSERVADORES_FLIP:
+        fn(frame)
     _FLIP_ORIGINAL()
 
 
-if MEDIR:
-    pygame.display.flip = _flip_medicion
+def activar_medicion():
+    """Enciende MEDIR y asegura el enganche de `display.flip`.
+
+    El enganche se instala una sola vez y desde aqui. Se llama desde
+    `fijar_escala_texto` (modo lectura), que es cuando las herramientas
+    necesitan medir de verdad.
+    """
+    global MEDIR
+    MEDIR = True
+    if pygame.display.flip is not _flip_medicion:
+        pygame.display.flip = _flip_medicion
+    return MEDIR
+
+
+# ------------------------------------------------------- escalado de pantalla
+# El juego esta disenado para 1280x800 y TODO el dibujo usa esas constantes.
+# En una pantalla de otra resolucion, sin esto, el contenido sale con el tamano
+# logico en medio de la pantalla (o recortado), y el raton no coincide con lo
+# que se ve.
+#
+# La solucion es la de pygame: se pide una ventana de 1280x800 con la bandera
+# SCALED y pygame escala al tamano real de la ventana, ADEMAS de traducir las
+# coordenadas del raton a la superficie logica. Asi el codigo de dibujo no
+# cambia una linea y las coordenadas de entrada siguen siendo coherentes.
+BANDERAS_ESCALA = pygame.SCALED
+_EVENT_GET_ORIGINAL = pygame.event.get
+_ultimo_tamano = None
+#: None = aun no se ha probado; True/False = si SCALED funciona en esta
+#: maquina. Se comprueba la PRIMERA vez y se recuerda: `set_mode` con SCALED
+#: lanza "failed to create renderer" donde no hay renderer rapido, y sin este
+#: guardia el juego no arrancaria en esos sistemas.
+_ESCALA_DISPONIBLE = None
+
+
+def modo_escalado(completa=False):
+    """Flags de `set_mode`: ventana redimensionable (o completa) y escalada."""
+    flags = BANDERAS_ESCALA
+    if completa:
+        flags |= pygame.FULLSCREEN
+    return flags
+
+
+def _abrir(completa, con_escala):
+    flags = modo_escalado(completa) if con_escala else (
+        pygame.FULLSCREEN if completa else 0)
+    return pygame.display.set_mode((ANCHO, ALTO), flags)
+
+
+def aplicar_escalado(estado, completa=None):
+    """(Re)aplica el modo de pantalla. Devuelve la superficie.
+
+    Si el sistema no puede escalar, cae a una ventana normal en lugar de
+    fallar: que el juego no escale en una maquina rara es molesto; que no
+    arranque es inaceptable.
+    """
+    global _ultimo_tamano, _ESCALA_DISPONIBLE
+    if completa is None:
+        completa = estado.get("completa", False)
+    estado["completa"] = bool(completa)
+    _ultimo_tamano = (ANCHO, ALTO)
+    limpiar_cache()
+    if _ESCALA_DISPONIBLE is not False:
+        try:
+            sup = _abrir(completa, True)
+            _ESCALA_DISPONIBLE = True
+            return sup
+        except pygame.error:
+            _ESCALA_DISPONIBLE = False
+    return _abrir(completa, False)
+
+
+def _get_eventos_escalados(*args, **kwargs):
+    """Intercepta VIDEORESIZE y reaplica el modo.
+
+    Sin esto, cambiar el tamano de la ventana deja el escalado congelado en el
+    tamano viejo. Se envuelve `pygame.event.get` una sola vez (como el enganche
+    a `display.flip`) para que cubra a las 40 pantallas sin tocar ninguna.
+    """
+    eventos = _EVENT_GET_ORIGINAL(*args, **kwargs)
+    for ev in eventos:
+        if ev.type == pygame.VIDEORESIZE and _ultimo_tamano != (ANCHO, ALTO):
+            pygame.display.set_mode((ANCHO, ALTO), modo_escalado())
+            limpiar_cache()
+    return eventos
+
+
+def activar_escalado():
+    """Engancha el interception de `event.get`. Idempotente."""
+    global _EVENT_GET_ORIGINAL
+    if getattr(pygame.event.get, "_escala_tt", False):
+        return
+    _EVENT_GET_ORIGINAL = pygame.event.get
+    _get_eventos_escalados._escala_tt = True
+    pygame.event.get = _get_eventos_escalados
 
 
 # ------------------------------------------------------------------ recursos
@@ -342,13 +475,14 @@ class Recursos:
         return self.imagenes[clave]
 
     def fuente(self, tam):
-        if tam not in self.fuentes:
+        real = max(6, int(round(tam * ESCALA_TEXTO)))
+        if real not in self.fuentes:
             ruta = recurso(FUENTE_RUTA)
             try:
-                self.fuentes[tam] = pygame.font.Font(ruta, tam)
+                self.fuentes[real] = pygame.font.Font(ruta, real)
             except Exception:  # pragma: no cover - sin fuente disponible
-                self.fuentes[tam] = pygame.font.SysFont("consolas", tam, bold=True)
-        return self.fuentes[tam]
+                self.fuentes[real] = pygame.font.SysFont("consolas", real, bold=True)
+        return self.fuentes[real]
 
     def sonido(self, nombre):
         if nombre not in self.sonidos:
@@ -576,6 +710,27 @@ def limpiar_cache():
     _COLORES.clear()
 
 
+def fijar_escala_texto(factor):
+    """Fija el modo lectura. Vacia fuentes y caches porque todo el texto cambia.
+
+    Devuelve la escala efectiva (acotada) para que quien la fije sepa el valor.
+
+    NO enciende la medicion. El modo lectura es un ajuste que el jugador activa
+    en el juego normal, y la medicion registra un rect por cada texto y panel
+    de cada frame: encenderla ahi seria pagar una instrumentacion de
+    diagnostico en produccion. Quien audita llama a `activar_medicion()`.
+    """
+    global ESCALA_TEXTO
+    ESCALA_TEXTO = max(1.0, min(1.6, float(factor)))
+    REC.fuentes.clear()
+    limpiar_cache()
+    return ESCALA_TEXTO
+
+
+def escala_texto():
+    return ESCALA_TEXTO
+
+
 # ----------------------------------------------------------------- tipografia
 _REEMPLAZOS = {
     "¡": "!", "¿": "?", "—": "-", "–": "-", "“": '"', "”": '"',
@@ -622,7 +777,7 @@ def _superficie_texto(cadena, tam, color, sombra):
     if len(color) > 3 and color[3] < 255:
         return _pinta_texto(REC.fuente(tam), limpio(cadena), color, sombra)
     color = color_cache(color)
-    clave = (cadena, tam, color, sombra)
+    clave = (cadena, tam, color, sombra, ESCALA_TEXTO)
     par = _CACHE_TXT.get(clave)
     if par is not None:
         return par
@@ -659,11 +814,28 @@ def texto(screen, cadena, tam, color=TEXTO, centro=None, y=None, x=None, sombra=
     if MEDIR:
         r = pygame.Rect(x, y, ancho, alto)
         registrar(r, "texto", _contenedora(r))
+        # Con la cadena al lado: un solapamiento sin decir QUE texto se solapa
+        # obliga a buscar a ojo entre cientos de llamadas. Solo se llena con
+        # MEDIR, que ya es un modo de diagnostico.
+        MEDIDO.append((str(cadena), r))
     return img
 
 
 def ancho_texto(cadena, tam):
     return _superficie_texto(str(cadena), tam, TEXTO, False)[0].get_width()
+
+
+def alto_texto(cadena, tam):
+    """Alto REAL de la linea, ya con la escala de tipografia aplicada.
+
+    Para colocar un bloque de texto que dependa de la escala (lineas apiladas,
+    portadas, etiquetas debajo de un elemento) hace falta el alto de verdad.
+    Estimar `tam * 1.2` a ojo no vale: con el modo lectura al 160% una linea
+    pedida a 40px se dibuja a 64px, y el hueco estimado se queda corto a
+    medias y las lineas se pisan. Se mide sobre la misma surface que dibuja.
+    """
+    img, _, dy = _superficie_texto(str(cadena), tam, TEXTO, False)
+    return img.get_height() - dy
 
 
 def envolver(cadena, tam, ancho_max):
@@ -688,7 +860,12 @@ def envoltura_lineas(cadena, tam, ancho_max):
 
 
 def parrafo(screen, cadena, tam, color, x, y, ancho_max, interlinea=None, centrado=False):
-    interlinea = interlinea or tam + 12
+    # El interlinea se escala con la tipografia. Es el mismo motivo que
+    # `alto_texto`: la linea que se dibuja mide `tam * ESCALA_TEXTO`, asi que
+    # avanzar con un numero fijo de pixeles hacia que las lineas del parrafo se
+    # pisen entre si con el texto ampliado, y ademas el bloque queda mas bajo
+    # de lo que ocupa, con lo que lo que se dibuja despues se amontona encima.
+    interlinea = int(round((interlinea or tam + 12) * ESCALA_TEXTO)) or 1
     for linea in envolver(cadena, tam, ancho_max):
         if centrado:
             texto(screen, linea, tam, color, centro=(x + ancho_max // 2, y + interlinea // 2))
@@ -863,6 +1040,7 @@ class Boton:
         self.hover = 0.0
         self.presionado = 0.0
         self.habilitado = True
+        self.enfocado = False
         self._t0 = time.time()
 
     def actualizar(self, dt, mouse):
@@ -881,8 +1059,11 @@ class Boton:
         h = self.rect.move(0, elevacion)
         if not self.habilitado:
             panel(screen, h, (18, 18, 24, 180), (70, 70, 80), grosor=2)
-            texto(screen, self.etiqueta, self.tam, (110, 110, 120),
+            texto(screen, self.etiqueta, self.tam, INACTIVO,
                   centro=(h.centerx, h.centery - (6 if self.sub else 0)))
+            if self.sub:
+                texto(screen, self.sub, 8, AVISO,
+                      centro=(h.centerx, h.bottom - 11))
             return
         if self.hover > 0.02:
             resplandor(screen, h, self.acento, int(40 + 90 * self.hover), 2, 10)
@@ -890,7 +1071,7 @@ class Boton:
             screen,
             h,
             con_alpha((26, 27, 38), 215 + 25 * self.hover),
-            mezcla(self.borde, self.acento, self.hover),
+            FOCO if self.enfocado else mezcla(self.borde, FOCO, self.hover),
             grosor=2 + int(2 * self.hover),
         )
         dy = -6 if self.sub else 0
@@ -902,7 +1083,12 @@ class Boton:
         if self.atajo:
             texto(screen, f"{self.atajo}", 8,
                   con_alpha(mezcla(self.borde, self.acento, self.hover), 200),
-                  x=h.right - 18, y=h.y + 6)
+                   x=h.right - 18, y=h.y + 6)
+        if self.enfocado:
+            # El foco se reconoce tambien por forma, incluso sin color.
+            pygame.draw.polygon(screen, FOCO, [(h.x + 7, h.centery - 5),
+                                               (h.x + 13, h.centery),
+                                               (h.x + 7, h.centery + 5)])
         # El botón es su propio contenedor: un texto que pide `centro` dentro
         # del botón queda asociado a él y no a un panel vecino.
         if MEDIR:

@@ -2,16 +2,15 @@
 
 Reglas implementadas:
   - basica: la carta colocada gana los lados donde su valor supera al vecino
-  - Same:   dos vecinos enemigos con valor opuesto IGUAL
+  - Same:   dos vecinos (amigos o enemigos) con valor opuesto IGUAL
   - Plus:   dos comparaciones distintas con la misma suma
-  - cadena: una carta capturada sigue capturando (efecto domino)
-  - habilidad "quema"     : gana o empata la comparacion basica contra sus vecinas
-                             (ignora Same y Plus), pero el muro las protege
+  - cadena: Same/Plus inician un domino de comparaciones basicas
+  - habilidad "quema"     : gana o empata contra sus vecinas al colocarla;
+                             el muro las protege; no inicia cadena por si sola
   - habilidad "muro"      : el lado mas alto de la carta no puede ser capturado
   - habilidad "furia"     : +1 a todos sus lados si toca una carta amiga
   - habilidad "embestida" : +2 a todos sus lados en la casilla central
   - elemento central: +2 a la faccion elemental en la casilla (1,1)
-  - sinergia de bando: 3+ cartas amigas del mismo bando => +1 a todos sus lados
 """
 
 import copy
@@ -26,10 +25,10 @@ DELTA = {"N": (-1, 0), "S": (1, 0), "E": (0, 1), "O": (0, -1)}
 LADOS = ("N", "S", "E", "O")
 
 HABILIDADES = {
-    "quema": "Gana o empata la comparacion contra cada vecina (sin Same ni Plus).",
+    "quema": "Gana o empata al colocarla; el muro protege. No inicia combo sola.",
     "muro": "Su lado mas alto no puede ser capturado.",
-    "furia": "+1 a todos sus lados si toca una carta amiga en el tablero.",
-    "embestida": "+2 a todos sus lados si se coloca en la casilla central.",
+    "furia": "+1 junto a una amiga; solo con su propietario inicial.",
+    "embestida": "+2 en el centro; solo con su propietario inicial.",
 }
 
 
@@ -42,9 +41,30 @@ class Carta:
     def __init__(self, nombre, n, s, e, o, dueno=None, bando=None, habilidad=None):
         self.nombre = nombre
         self.valores = {"N": n, "S": s, "E": e, "O": o}
+        self.dueno_inicial = None
         self.dueno = dueno
         self.bando = bando
         self.habilidad = habilidad
+
+    @property
+    def dueno(self):
+        return self._dueno
+
+    @dueno.setter
+    def dueno(self, nuevo):
+        # La primera asignacion pertenece al reparto, no a una captura.
+        if self.dueno_inicial is None and nuevo is not None:
+            self.dueno_inicial = nuevo
+        self._dueno = nuevo
+
+    def repartir(self, dueno):
+        """Una partida nueva establece una nueva propiedad de origen."""
+        self.dueno_inicial = dueno
+        self.dueno = dueno
+
+    def habilidad_activa(self):
+        return (self.habilidad not in ("furia", "embestida") or
+                self.dueno is not None and self.dueno == self.dueno_inicial)
 
     def lado(self, d):
         return self.valores[d]
@@ -96,30 +116,19 @@ def _vecinas_amigas(board, r, c, dueno):
     return False
 
 
-def _sinergia(board, carta):
-    if board is None or not carta.bando or carta.dueno is None:
-        return 0
-    aliadas = sum(
-        1
-        for fila in board
-        for x in fila
-        if x and x.dueno == carta.dueno and x.bando == carta.bando
-    )
-    return 1 if aliadas >= 3 else 0
-
-
 def valor_efectivo(carta, r, c, lado, board=None):
-    """Valor de un lado con todas las bonificaciones de posicion y sinergia."""
+    """Valor de un lado con todas las bonificaciones de posicion."""
     v = carta.valores[lado]
     central = (r, c) == (1, 1)
-    if carta.habilidad == "embestida" and central:
+    if carta.habilidad == "embestida" and carta.habilidad_activa() and central:
         v += 2
     # Casilla elemental central: bonus +2 a la faccion que domina ese elemento
     if central and carta.bando and elemento_central(carta.bando) == carta.bando:
         v += 2
-    if carta.habilidad == "furia" and board is not None and _vecinas_amigas(board, r, c, carta.dueno):
+    if (carta.habilidad == "furia" and carta.habilidad_activa() and
+            board is not None and _vecinas_amigas(board, r, c, carta.dueno)):
         v += 1
-    return v + _sinergia(board, carta)
+    return v
 
 
 def flips_por_carta(board, r, c):
@@ -144,16 +153,24 @@ def _regla_principal(fired):
 
 
 def _flips(board, r, c):
-    """Lo mismo que `flips_por_carta`, pero ademas dice QUE REGLA actuo.
+    """Capturas y cantidades por motivo, sin contar dos veces una captura."""
+    motivos = _motivos_captura(board, r, c)
+    fired = {"basica": 0}
+    for motivo in motivos.values():
+        fired[motivo] = fired.get(motivo, 0) + 1
+    return set(motivos), fired
 
-    Sin esto el cartel de efecto no puede distinguir un same de un plus: los dos
-    devuelven un conjunto de posiciones identico y no hay forma de saber, ni
-    al jugador ni al juego, cual de las dos reglas lo disparo. `fired` son las
-    reglas que llegaron a activarse y cuantas cartas volteo cada una.
+
+def _motivos_captura(board, r, c, especiales=True):
+    """Evalua todas las caras antes de cambiar propietarios.
+
+    Los aliados cuentan para Same/Plus; un lado protegido por muro no
+    participa. Durante un combo solo se aplica la comparacion estricta.
     """
     carta = board[r][c]
-    muro = carta.lados_muro()
-    basico = set()
+    if carta is None:
+        return {}
+    motivos = {}
     iguales = []
     sumas = {}
     for lado, (dr, dc) in DELTA.items():
@@ -161,50 +178,31 @@ def _flips(board, r, c):
         if not (0 <= nr < 3 and 0 <= nc < 3):
             continue
         vecina = board[nr][nc]
-        if vecina is None or vecina.dueno == carta.dueno:
+        if vecina is None:
             continue
         opuesta = OPUESTO[lado]
         if opuesta in vecina.lados_muro():
             continue  # el muro de la vecina bloquea esta direccion
         m = valor_efectivo(carta, r, c, lado, board)
         e = valor_efectivo(vecina, nr, nc, opuesta, board)
-        if m > e:
-            basico.add((nr, nc))
+        pos = (nr, nc)
+        if vecina.dueno != carta.dueno:
+            if m > e:
+                motivos[pos] = "basica"
+            elif especiales and carta.habilidad == "quema" and m == e:
+                motivos[pos] = "quema"
         if m == e:
             iguales.append((nr, nc))
         sumas.setdefault(m + e, []).append((nr, nc))
-    flips = set(basico)
-    fired = {"basica": len(basico)}
-    if len(iguales) >= 2:  # Same
-        flips.update(iguales)
-        fired["same"] = len(iguales)
-    for grupo in sumas.values():  # Plus
-        if len(grupo) >= 2:
-            flips.update(grupo)
-            fired["plus"] = fired.get("plus", 0) + len(grupo)
-    if carta.habilidad == "quema":
-        # La quema no barre el tablero entero: solo prende a las vecinas que
-        # puede overcome. Antes daba vueltas a TODO lo que la rodeaba sin
-        # comparar un solo valor, asi que guardarla para el final (en el
-        # centro, con ocho enemigas alrededor) garantia la victoria.
-        # Ahora gana la comparacion basica o la empata, y el muro de la
-        # vecina la protege: sigue siendo la mejor carta contra una ringa
-        # debil, pero ya no es una jugada ganadora garantizada.
-        for lado, (dr, dc) in DELTA.items():
-            nr, nc = r + dr, c + dc
-            if not (0 <= nr < 3 and 0 <= nc < 3):
-                continue
-            vecina = board[nr][nc]
-            if vecina is None or vecina.dueno == carta.dueno:
-                continue
-            if OPUESTO[lado] in vecina.lados_muro():
-                continue  # el muro sigue bloqueando la quema
-            m = valor_efectivo(carta, r, c, lado, board)
-            e = valor_efectivo(vecina, nr, nc, OPUESTO[lado], board)
-            if m >= e and (nr, nc) not in flips:
-                flips.add((nr, nc))
-                fired["quema"] = fired.get("quema", 0) + 1
-    return flips, fired
+    if especiales:
+        grupos = [("plus", grupo) for grupo in sumas.values() if len(grupo) >= 2]
+        if len(iguales) >= 2:
+            grupos.append(("same", iguales))
+        for regla, grupo in grupos:
+            for nr, nc in grupo:
+                if board[nr][nc].dueno != carta.dueno:
+                    motivos[nr, nc] = regla
+    return motivos
 
 
 def cascada(board, r, c):
@@ -225,20 +223,28 @@ def cascada(board, r, c):
         return [], []
     capturadas = []
     eventos = []
-    cola = [(r, c)]
+    dueno = origen_carta.dueno
+    motivos = _motivos_captura(board, r, c)
+    cola = []
+    for pos, regla in sorted(motivos.items()):
+        nr, nc = pos
+        board[nr][nc].dueno = dueno
+        capturadas.append(pos)
+        eventos.append((None if regla == "basica" else regla, pos, (r, c)))
+        if regla in ("same", "plus"):
+            cola.append(pos)
     while cola:
-        cr, cc = cola.pop(0)
-        dueno = board[cr][cc].dueno
-        flips, fired = _flips(board, cr, cc)
-        regla = _regla_principal(fired)
-        for (nr, nc) in sorted(flips):
-            vecina = board[nr][nc]
-            if vecina is None or vecina.dueno == dueno:
-                continue
-            vecina.dueno = dueno
+        # Una oleada usa un solo estado del tablero: las bonificaciones no
+        # dependen del orden N/S/E/O ni del orden de la cola.
+        siguientes = {}
+        for cr, cc in cola:
+            for pos in sorted(_motivos_captura(board, cr, cc, especiales=False)):
+                siguientes.setdefault(pos, (cr, cc))
+        cola = sorted(siguientes)
+        for nr, nc in cola:
+            board[nr][nc].dueno = dueno
             capturadas.append((nr, nc))
-            eventos.append((regla, (nr, nc), (cr, cc)))
-            cola.append((nr, nc))
+            eventos.append((None, (nr, nc), siguientes[nr, nc]))
     return capturadas, eventos
 
 
@@ -256,7 +262,7 @@ def resumen_efectos(eventos, origen):
             # No es un efecto en si, pero es lo que el jugador quiere ver: que
             # una sola jugada bien puesta voltea medio tablero.
             resumen["cadena"] += 1
-        if regla:
+        elif regla:
             resumen[regla] = resumen.get(regla, 0) + 1
         else:
             resumen["basica"] += 1

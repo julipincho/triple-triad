@@ -94,11 +94,14 @@ REACCION_MAZO = {
 DECISION = {
     "senda": {
         "id": "senda_herido",
+        "titulo": "El herido de la cuneta",
         "pregunta": "Un vecino sangra en la cuneta. No pide nada. Solo no deja de sangrar.",
         "opciones": [
             {
                 "id": "ayudar",
-                "texto": "Parar y ayudar (pierdes tiempo)",
+                # No promete tiempo: no hay reloj en la campana. Lo que de
+                # verdad cambia es lo que Nara piensa de vos.
+                "texto": "Parar y vendarlo (Nara te mirara distinto)",
                 "efecto": {"confianza": 1, "conocimiento": 1,
                            "revelacion": "senda_misericordia"},
                 "respuesta": "El hombre no te da las gracias. Te da un nombre, y un "
@@ -106,7 +109,9 @@ DECISION = {
             },
             {
                 "id": "seguir",
-                "texto": "Seguir caminado (llegas antes)",
+                # Tampoco promete adelantar tiempo: el efecto real es la mirada
+                # fria de Nara y el avance del misterio.
+                "texto": "Seguir de largo (Nara tomara nota)",
                 "efecto": {"conocimiento": 1, "revelacion": "senda_pragmatismo"},
                 "respuesta": "Aguas arriba alguien grito. Tu ya estabas en otro camino.",
             },
@@ -114,21 +119,24 @@ DECISION = {
     },
     "fortaleza": {
         "id": "fortaleza_umbral",
-        "pregunta": "El capitan te ofrece algo: te deja pasar si le das una carta. "
-                    "Solo una.",
+        "titulo": "El capitan y las cartas",
+        "pregunta": "El capitan quiere examinar una de tus cartas antes del duelo. "
+                    "Promete devolvertela. Nara desconfia.",
         "opciones": [
             {
                 "id": "dar_carta",
-                "texto": "Darle una carta (abres el paso)",
+                "texto": "Dejarle examinar una carta (aprendes, pero Nara recela)",
                 "efecto": {"confianza": -1, "conocimiento": 2,
                            "revelacion": "fortaleza_precio"},
-                "respuesta": "Elige una. El capitan elige cual mira menos.",
+                "respuesta": "El capitan reconoce los simbolos y te explica su origen. "
+                             "Te devuelve la carta. El duelo por el paso sigue en pie.",
             },
             {
                 "id": "callar",
-                "texto": "No dar nada (te cierran el paso)",
+                "texto": "Guardar las cartas (te ganas su cautela)",
                 "efecto": {"confianza": 2, "conocimiento": 1},
-                "respuesta": "- Pasa con las cinco. - No. Pasa con las cinco o no pasa.",
+                "respuesta": "Nara asiente. El capitan aparta la mano: "
+                             "- Entonces nos veremos en el tablero.",
             },
         ],
     },
@@ -141,7 +149,7 @@ DECISION = {
 
 def nara_presentacion(confianza):
     if confianza >= 3:
-        return ("- No necesito que me cuentes nada para saber a que atencion. "
+        return ("- Ya se por que quieres volver a casa. "
                 "Voy porque quiero ir. Y eso es raro en mi.")
     return ("- Te conozco poco. Te acompano porque necesito respuestas. "
             "No porque me caigas bien.")
@@ -157,7 +165,7 @@ def nara_umbral(confianza):
 
 def nara_victoria(confianza):
     if confianza >= 3:
-        return "- Bien. Y no es por la carta que perdiste: es por lo que entendiste."
+        return "- Bien. No solo por ganar: tambien por lo que entendiste."
     return "- Ganaste. Eso no dice nada todavia."
 
 
@@ -195,9 +203,9 @@ NARRATIVA = {
         "previa": [
             esc("La aldea vive detras de un muro de piedra y dos custodios que no "
                 "preguntan nada porque ya saben la respuesta.", fondo="aldea"),
-            esc("Uno de los dos te mira las cartas y despues te mira a ti.",
+            esc("Uno de los dos ve el estuche de tus cartas y despues te mira a ti.",
                 fondo="aldea"),
-            esc("- Eso es del otro lado. Eso no se trae aqui.", fondo="aldea",
+            esc("- Ese estuche es del otro lado. Eso no se trae aqui.", fondo="aldea",
                 color=TEXTO_ON),
             esc("- Cinco duelos. El ultimo es el trono. Segui, porque cada uno que "
                 "ganas es un paso menos entre vos y tu salon.", hablante="Nara",
@@ -235,7 +243,7 @@ NARRATIVA = {
     },
     "fortaleza": {
         "previa": [
-            esc("La fortaleza domina el mapa. Quien la tiene, tiene el trono. Y el "
+            esc("La fortaleza domina el camino al trono. Y el "
                 "trono tiene el Umbral.", fondo="fortaleza"),
             esc("El capitan te espera en la puerta. Ya sabe lo que traes.",
                 fondo="fortaleza"),
@@ -259,8 +267,8 @@ NARRATIVA = {
         "posterior": [
             esc("Cuando cae, no dice nada. Solo te mira las cartas una ultima vez, como "
                 "si quisiera compararlas con un recuerdo.", fondo="asalto"),
-            esc("- Esas cartas no son de este mundo.", hablante="Nara", fondo="asalto"),
-            esc("- Lo se. Llevo dos dias sin dormir por eso.", hablante="Nara",
+            esc("- Las cartas de tu estuche siguen sin pertenecer a este mundo.", hablante="Nara", fondo="asalto"),
+            esc("- Lo se. Desde que llegue no duermo tranquilo.", hablante="__JUGADOR__",
                 fondo="asalto", color=TEXTO_ON),
             esc("- Falta uno. El ultimo. Y el ultimo te devuelve a casa.",
                 hablante="Nara", fondo="asalto", color=TEXTO_ON),
@@ -268,8 +276,8 @@ NARRATIVA = {
     },
     "trono": {
         "previa": [
-            esc("El trono esta detras de la grieta. Y la grieta detras del trono. No hay "
-                "otro orden posible.", fondo="trono"),
+            esc("El trono se alza ante la grieta. Para llegar al Umbral, primero "
+                "tendras que vencer a quien lo guarda.", fondo="trono"),
             esc("El Umbral te ve llegar. Eso es lo peor: no es una puerta. Te estaba "
                 "esperando.", fondo="trono", efecto="titulo"),
         ],
@@ -310,6 +318,31 @@ def decision_de(nodo_id):
     return DECISION.get(nodo_id)
 
 
+def titulo_decision(decision):
+    """Titulo legible de una decision. Nunca el id tecnico."""
+    return decision.get("titulo") or decision.get("pregunta", "")[:40]
+
+
+def resumen_efecto(efecto):
+    """Consecuencia concreta de una decision, sin revelar finales.
+
+    Describe solo lo que el jugador acaba de mover (confianza, conocimiento,
+    revelacion), no a donde lleva.
+    """
+    efecto = efecto or {}
+    partes = []
+    confianza = int(efecto.get("confianza", 0) or 0)
+    if confianza:
+        direccion = "mas" if confianza > 0 else "menos"
+        partes.append(f"Nara confia {direccion} en vos ({confianza:+d})")
+    conocimiento = int(efecto.get("conocimiento", 0) or 0)
+    if conocimiento:
+        partes.append(f"Entiendes algo mas del Umbral ({conocimiento:+d})")
+    if efecto.get("revelacion"):
+        partes.append("Se anota un fragmento de la verdad")
+    return " / ".join(partes) or "La decision queda registrada"
+
+
 # ------------------------------------------------------- el momento de Nara
 # La biblia pide que Nara pase de guia a amiga. NO se puede dejar en manos de
 # la confianza: `confianza_nara` solo sube con las dos decisiones de la campana
@@ -322,7 +355,7 @@ AMISTAD_NARA = [
     esc("No esta escribiendo. El libro esta cerrado.", fondo="camino"),
     esc("- Tengo que corregir una cosa. Y corregirme yo.", hablante="Nara",
         retrato="nara", fondo="camino"),
-    esc("- El primer dia te dije que te acompanaba porque necesitaba respuestas.",
+    esc("- Al principio te acompanaba porque necesitaba respuestas.",
         hablante="Nara", retrato="nara", fondo="camino"),
     esc("- Era verdad. Y no era todo.", hablante="Nara", retrato="nara",
         fondo="camino", color=TEXTO_ON),
@@ -337,9 +370,9 @@ AMISTAD_NARA = [
     esc("Lo cierra otra vez. Esta vez no lo vuelve a abrir.", fondo="camino"),
     esc("- Dejame acompanarte. No por el Umbral. No por las cartas.",
         hablante="Nara", retrato="nara", fondo="camino", color=TEXTO_ON),
-    esc("- Porque quiero. Y no me da vergenza decirlo.", hablante="Nara",
+    esc("- Porque quiero. Y no me da verguenza decirlo.", hablante="Nara",
         retrato="nara", fondo="camino"),
-    esc("El camino sube hacia el trono. Por primera vez no lo camina sola.",
+    esc("El camino sube hacia el trono. Esta vez lo recorren dos amigos.",
         fondo="camino", color=TEXTO_ON),
 ]
 

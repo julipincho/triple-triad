@@ -36,12 +36,12 @@ class TestCapturas(unittest.TestCase):
         self.assertEqual(b[0][0].dueno, USUARIO)
 
     def test_captura_cadena(self):
-        # USUARIO juega en (1,1) con E alto; captura a CPU en (1,2) que a su vez
-        # tiene S alto y captura a CPU en (2,2)
+        # Same con un aliado inicia el combo, luego S=9 supera N=2.
         b = tablero_vacio()
         b[1][2] = carta(2, 9, 2, 2, CPU)   # su O=2 será superado; su S=9
         b[2][2] = carta(2, 2, 2, 8, CPU)   # su N=2 será superado por S=9 del recién capturado
-        b[1][1] = carta(2, 2, 9, 2, USUARIO)  # E=9 > O=2
+        b[0][1] = carta(1, 5, 1, 1, USUARIO)
+        b[1][1] = carta(5, 1, 2, 1, USUARIO)
         caps = capturas(b, 1, 1)
         self.assertIn((1, 2), caps)
         self.assertIn((2, 2), caps)
@@ -137,21 +137,6 @@ class TestCapturas(unittest.TestCase):
         b[0][1] = carta(8, 8, 8, 8, CPU)  # su S=8; Drake N efectivo=9 > 8
         caps = capturas(b, 1, 1)
         self.assertIn((0, 1), caps)
-
-
-    def test_sinergia_bando(self):
-        # 3+ cartas amigas del mismo bando => +1 a los lados y captura
-        b = tablero_vacio()
-        for (r, c) in [(0, 0), (0, 1), (0, 2)]:
-            card = Carta("G", 5, 5, 5, 5, bando="goblin")
-            card.dueno = USUARIO
-            b[r][c] = card
-        colocada = Carta("M", 1, 1, 1, 1, bando="goblin")
-        colocada.dueno = USUARIO
-        b[1][1] = colocada
-        b[2][1] = carta(1, 2, 1, 1, CPU)  # N=1; colocada S=1+1=2 (sinergia) > 1 => captura
-        caps = capturas(b, 1, 1)
-        self.assertIn((2, 1), caps)
 
 
 if __name__ == "__main__":

@@ -82,7 +82,7 @@ ROLES = {
             ],
             "lose": [
                 _esc("- Viste? No era necesario ganar.", hablante="__NOMBRE__"),
-                _esc("- Perdon. No sabia contra quien tenia."),
+                _esc("- Perdon. No sabia contra quien jugaba."),
             ],
         },
         "reaccion": {
@@ -107,7 +107,7 @@ ROLES = {
         "dialogo": {
             "pre": [
                 _esc("- No entres con eso. Eso no es tuyo.", hablante="__NOMBRE__"),
-                _esc("- __JUGADOR__, si te llevas otra carta mia, te quedaras sin camino."),
+                _esc("- __JUGADOR__, si quieres pasar, tendras que ganarte el camino."),
                 _esc("- Aqui las cartas son Juicio, no juguete. Se nota."),
             ],
             "win": [
@@ -147,7 +147,7 @@ ROLES = {
                 _esc("- Y no, no te lo voy a explicar."),
             ],
             "win": [
-                _esc("- Te llevaste una carta y no una reliquia. Curioso.",
+                _esc("- Ganaste el paso. Las reliquias se quedan aqui.",
                      hablante="__NOMBRE__"),
             ],
             "lose": [
@@ -189,7 +189,7 @@ ROLES = {
                 _esc("- Lo que hay del otro lado ya esta en camino."),
             ],
             "lose": [
-                _esc("- No tenias por que ganar. Pero ya que estas, escucha.",
+                _esc("- No has ganado. Pero ya que estas, escucha.",
                      hablante="__NOMBRE__"),
                 _esc("- El Umbral no es un juego. Y cada mundo cobra."),
             ],
@@ -224,7 +224,7 @@ ROLES = {
                 _esc("- Yo si me acuerdo. Yo me acuerdo de todo."),
             ],
             "win": [
-                _esc("- No te dejo irte ya. Y eso es peor que perder.",
+                _esc("- No puedo detenerte. Y eso me duele mas que perder.",
                      hablante="__NOMBRE__"),
             ],
             "lose": [
@@ -236,7 +236,7 @@ ROLES = {
             "humano": "Un humano. La corona de un rey. Otra vez.",
             "orco": "Un orco. Todo bien. Todo bien. Otra vez.",
             "elfo": "Un elfo. Que turno has robado hoy.",
-            "goblin": "Un goblin. Los unicos que alken las reglas. Otra vez.",
+            "goblin": "Un goblin. Los que retuercen las reglas. Otra vez.",
             "hombre_lobo": "Un lobo. La luna cambia y tu tambien.",
             "vampiro": "Un vampiro. La paciencia no se hereda.",
             "dragon": "Un dragon. Y este es mi techo. Otra vez.",

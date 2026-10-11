@@ -138,15 +138,6 @@ def main():
     resolver(j, 1, 1)
     render(j, "09_embestida.png")
 
-    # 10) Sinergia: tres cartas del mismo bando +1 a todo
-    j = juego_nuevo()
-    for (r, c) in [(0, 0), (0, 2), (2, 2)]:
-        poner(j, "Aliado", 5, 5, 5, 5, USUARIO, r, c, bando="humano")
-    poner(j, "Espadachin", 1, 5, 1, 1, USUARIO, 1, 1, bando="humano")
-    poner(j, "Enemigo", 4, 4, 4, 4, CPU, 2, 1, bando="orco")
-    resolver(j, 1, 1)
-    render(j, "10_sinergia.png")
-
     print(f"\nScreenshots en {SALIDA}")
 
 

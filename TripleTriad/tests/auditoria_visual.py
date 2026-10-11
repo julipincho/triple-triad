@@ -35,22 +35,35 @@ from reglas import CPU, USUARIO, Carta  # noqa: E402
 import ui  # noqa: E402
 
 # Activar medicion real. `ui.MEDIR` hace que `registrar`/`_contenedora` hagan
-# su trabajo; no hay que reasignar nada porque la guarda esta dentro de ellas.
-ui.MEDIR = True
+# su trabajo. El enganche de `display.flip` lo instala `ui.activar_medicion()`
+# y es de un solo dueno: antes esta herramienta y `tools/auditar_contraste.py`
+# se colgaban del mismo atributo y la ultima en hacerlo se comia el hook de la
+# otra, con lo que la segunda en ejecutarse se quedaba sin frames y auditaba
+# cero, es decir, se declaraba limpia.
+ui.activar_medicion()
 
 # Envolver flip para capturar frames
 _REGISTRO_FRAMES = []
+#: Pantallas que lanzan una excepcion al dibujarse. Sin esto, una pantalla
+#: que peta no dibuja ni un rect, `auditar_rects` no encuentra nada que
+#: reportar y la auditoria la daba por buena: el fallo mas grave posible se
+#: camuflaba como "OK".
+ERRORES = []
+#: Por cada frame, la lista de (cadena, rect) dibujados. Sin esto un
+#: solapamiento devuelve dos coordenadas y obliga a buscar a mano entre miles
+#: de draws; con esto la auditoria puede nombrar el texto culpable.
+_REGISTRO_TEXTOS = []
 
 
-def _hook_flip():
-    # Agrupar los rects del frame actual
-    frame_rects = list(ui._REGISTRO)
-    _REGISTRO_FRAMES.append(frame_rects)
-    ui._volcar_frame()
-    ui._FLIP_ORIGINAL()
+def _hook_flip(frame):
+    # El frame llega como parametro desde `ui._flip_medicion`: es exactamente
+    # lo que se dibujo en ESE flip, sin depender de cuando se lee despues.
+    _REGISTRO_FRAMES.append(list(frame))
+    _REGISTRO_TEXTOS.append(list(ui.MEDIDO))
+    del ui.MEDIDO[:]
 
 
-pygame.display.flip = _hook_flip
+ui.observar_flip(_hook_flip)
 
 
 class RelojFalso:
@@ -70,12 +83,14 @@ class _FinDemo(Exception):
 
 def correr_pantalla(nombre, fn, max_frames=2):
     """Ejecuta una pantalla durante exactamente max_frames y devuelve los rects."""
+    del ERRORES[:]
     get_original = pygame.event.get
     clock_original = pygame.time.Clock
     pygame.time.Clock = RelojFalso
     estado = {"n": 0}
 
     _REGISTRO_FRAMES.clear()
+    _REGISTRO_TEXTOS.clear()
     ui.limpiar_medicion()
 
     def get_eventos():
@@ -93,6 +108,7 @@ def correr_pantalla(nombre, fn, max_frames=2):
     except _FinDemo:
         pass
     except Exception as exc:
+        ERRORES.append((nombre, repr(exc)))
         print(f"ERROR ejecutando {nombre}: {exc!r}")
     finally:
         pygame.event.get = get_original
@@ -100,6 +116,13 @@ def correr_pantalla(nombre, fn, max_frames=2):
 
     # Devolver una copia de los frames capturados
     return list(_REGISTRO_FRAMES)
+
+
+def textos_de_frame(indice):
+    """(cadena, rect) dibujados en ese frame, para nombrar un solapamiento."""
+    if 0 <= indice < len(_REGISTRO_TEXTOS):
+        return _REGISTRO_TEXTOS[indice]
+    return []
 
 
 def auditar_rects(nombre_pantalla, frames):
@@ -141,7 +164,14 @@ def auditar_rects(nombre_pantalla, frames):
                 # Si se solapan de verdad
                 if r1.colliderect(r2):
                     # Si no comparten el mismo contenedor exacto (evitamos falsos positivos en parrafos envueltos)
-                    if c1 is None or c1 != c2:
+                    # Antes se comparaba solo si `c1 != c2`, es decir, NUNCA
+                    # entre dos textos del mismo panel. El motivo declarado
+                    # eran los parrafos envueltos, pero un parrafo cuyas lineas
+                    # se pisan es justo el defecto que hay que ver. Con el
+                    # texto ampliado eso pasaba de verdad (interlinea fijo) y
+                    # la auditoria se lo callaba. Ahora se comparan siempre y
+                    # el filtro de 2x2 px de abajo es el que evita el ruido.
+                    if True:
                         # Pequeña tolerancia: un overlap de 1-2 px puede ser aceptable por sombras o acentos
                         inter = r1.clip(r2)
                         if inter.width > 2 and inter.height > 2:

@@ -62,9 +62,9 @@ def _guia_en_paso(indice_practica, indice_paso=0):
 
 
 class TestManual(unittest.TestCase):
-    def test_diez_paginas_con_que_y_sirve(self):
+    def test_nueve_paginas_con_que_y_sirve(self):
         paginas = tutorial.paginas_manual()
-        self.assertEqual(len(paginas), 10)
+        self.assertEqual(len(paginas), 9)
         for p in paginas:
             self.assertTrue(p["titulo"], p.get("id"))
             self.assertTrue(p["que"], p["id"])
@@ -85,6 +85,21 @@ class TestManual(unittest.TestCase):
 
 class TestPracticasConMotorReal(unittest.TestCase):
     """Cada paso se puede completar y la regla que enseña dispara de verdad."""
+
+    def test_todos_los_pasos_y_recuperacion_con_motor_real(self):
+        for ip, practica in enumerate(tutorial.PRACTICAS):
+            for istep in range(len(practica["pasos"])):
+                juego, guia = _guia_en_paso(ip, istep)
+                paso = guia.paso_actual()
+                r, c = paso["validas"][0]
+                carta = juego.mano_u[0]
+                self.assertTrue(guia.validar_colocacion(juego, carta, r, c)[0], (ip, istep))
+                juego.colocar(carta, juego.mano_u, USUARIO, r, c)
+                for spec in paso["tablero"]:
+                    if "dueno_inicial" in spec:
+                        recuperada = juego.board[spec["r"]][spec["c"]]
+                        self.assertEqual(recuperada.dueno, USUARIO)
+                        self.assertEqual(valor_efectivo(recuperada, 1, 1, "O", juego.board), 5)
 
     def _validar(self, ip, istep, celda, debe_ok=True):
         juego, guia = _guia_en_paso(ip, istep)

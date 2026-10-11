@@ -9,7 +9,6 @@ El juego documenta las reglas en la pantalla de ayuda:
     Muro: su mejor lado no puede caer.
     Furia: +1 a cada lado si toca una carta amiga.
     Embestida: +2 en la casilla central.
-    Sinergia: 3+ cartas de tu bando dan +1 a todo.
 
 Aqui se reimplementa cada regla desde cero, sin mirar `reglas.py`, y se
 compara con el motor real en miles de tableros. Si el motor se desvía de la
@@ -63,14 +62,15 @@ def ref_valor(carta, r, c, lado, board):
     motor y esta referencia coinciden siempre, no hay sesgo posible."""
     v = carta.valores[lado]
     # Embestida: +2 en el centro.
-    if carta.habilidad == "embestida" and (r, c) == (1, 1):
+    propia = carta.dueno is not None and carta.dueno == carta.dueno_inicial
+    if carta.habilidad == "embestida" and propia and (r, c) == (1, 1):
         v += 2
     # Casilla elemental central: +2 al bando que domina ese elemento.
     if (r, c) == (1, 1) and carta.bando and \
             reglas.elemento_central(carta.bando) == carta.bando:
         v += 2
     # Furia: +1 si toca una carta amiga.
-    if carta.habilidad == "furia":
+    if carta.habilidad == "furia" and propia:
         for dr, dc in DIR.values():
             nr, nc = r + dr, c + dc
             if 0 <= nr < 3 and 0 <= nc < 3:
@@ -78,13 +78,6 @@ def ref_valor(carta, r, c, lado, board):
                 if x is not None and x.dueno == carta.dueno:
                     v += 1
                     break
-    # Sinergia: +1 con 3+ cartas de tu bando (contando esta).
-    if board is not None:
-        mias = sum(1
-                   for fila in board for x in fila
-                   if x is not None and x.dueno == carta.dueno and x.bando == carta.bando)
-        if mias >= 3:
-            v += 1
     return v
 
 
@@ -99,14 +92,14 @@ def ref_captura(board, r, c):
         if not (0 <= nr < 3 and 0 <= nc < 3):
             continue
         vecina = board[nr][nc]
-        if vecina is None or vecina.dueno == carta.dueno:
+        if vecina is None:
             continue
         # Muro: la vecina protege el lado que mira a la carta.
         if OPUESTO[lado] in vecina.lados_muro():
             continue
         m = ref_valor(carta, r, c, lado, board)
         e = ref_valor(vecina, nr, nc, OPUESTO[lado], board)
-        if m > e:
+        if m > e and vecina.dueno != carta.dueno:
             ganadas.add((nr, nc))
         if m == e:
             mismo_valor.append((nr, nc))
@@ -114,11 +107,11 @@ def ref_captura(board, r, c):
 
     # Same: dos o mas vecinos con el MISMO valor.
     if len(mismo_valor) >= 2:
-        ganadas.update(mismo_valor)
+        ganadas.update(pos for pos in mismo_valor if board[pos[0]][pos[1]].dueno != carta.dueno)
     # Plus: dos o mas comparaciones con la MISMA suma.
     for grupo in misma_suma.values():
         if len(grupo) >= 2:
-            ganadas.update(grupo)
+            ganadas.update(pos for pos in grupo if board[pos[0]][pos[1]].dueno != carta.dueno)
     # Quema: prende a las vecinas que puede superar o igualar.
     if carta.habilidad == "quema":
         for lado, (dr, dc) in DIR.items():
@@ -249,7 +242,7 @@ class TestElNumeroQueVesNoEsElQueDecide(unittest.TestCase):
 
     "El numero de la derecha pese a ser mayor no voltea al de la izquierda" no
     es un fallo del motor: la captura compara el valor EFECTIVO (el numero mas
-    embestida en el centro, elemento central, furia y sinergia). Este test mide
+    embestida en el centro, elemento central y furia). Este test mide
     cuantas veces el numero visible no explica el resultado y deja el numero a
     la vista, para que la respuesta sea un dato y no una teoria.
     """
@@ -302,7 +295,7 @@ class TestElNumeroQueVesNoEsElQueDecide(unittest.TestCase):
         with open(ruta, encoding="utf-8") as fh:
             ayuda = fh.read()
         for regla in ("Basica", "Same", "Plus", "Cadena", "Muro", "Furia",
-                      "Embestida", "Sinergia"):
+                      "Embestida"):
             self.assertIn(regla, ayuda, f"la regla {regla} no esta en la ayuda")
 
 
@@ -356,7 +349,7 @@ class TestElDesgloseExplicaLaCaptura(unittest.TestCase):
         self.assertGreaterEqual(ed, vd)
 
     def test_una_carta_sin_bonificacion_coincide(self):
-        """Fuera del centro y sin sinergia: efectivo == visible."""
+        """Fuera del centro: efectivo == visible."""
         juego = self._juego_con(
             {(0, 0): self._carta("humano", {"S": 7, "N": 7, "E": 7, "O": 7})},
             {(1, 0): self._carta("orco", {"N": 4, "S": 4, "E": 4, "O": 4})},

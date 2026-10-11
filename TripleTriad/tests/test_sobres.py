@@ -338,6 +338,26 @@ class TestTiendaYPity(unittest.TestCase):
         self.assertEqual(campana.moneda(), 0)
         self.assertGreaterEqual(len(estado["cartas"]), antes)
 
+    def test_probabilidad_de_legendaria_es_coherente_y_garantiza_con_pity(self):
+        normal = campana.probabilidad_legendaria_sobre({"pity_sobres": 0})
+        self.assertGreater(normal, 0.0)
+        self.assertLess(normal, 1.0)
+        self.assertEqual(campana.probabilidad_legendaria_sobre(
+            {"pity_sobres": campana.PITY_SOBRES - 1}), 1.0)
+
+    def test_tienda_se_opera_con_teclado_y_muestra_probabilidad(self):
+        import pantallas
+
+        self._fijar_perfil(moneda=60, pity=0)
+        estado = campana.nueva_campana("vampiro")
+        tecla = lambda k: pygame.event.Event(pygame.KEYDOWN, key=k)
+        # ENTER compra (foco inicial), luego revela y continua, TAB a VOLVER + ENTER.
+        self._correr_pantalla(
+            lambda pantalla: pantallas.tienda(pantalla, RelojFalso(), estado),
+            [tecla(pygame.K_RETURN)] + [self._clic(640, 400)] * 4
+            + [tecla(pygame.K_TAB), tecla(pygame.K_RETURN)])
+        self.assertEqual(campana.moneda(), 0)
+
     def test_tienda_sin_moneda_avisa(self):
         import pantallas
 

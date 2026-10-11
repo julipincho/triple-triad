@@ -79,7 +79,8 @@ class TestDeteccionDeEfectos(unittest.TestCase):
         b = _tablero()
         b[0][1] = _c(9, 1, 1, 9, CPU)
         b[0][0] = _c(9, 9, 1, 1, CPU)
-        b[1][1] = _c(9, 9, 1, 1, USUARIO, "elfo")
+        b[1][2] = _c(1, 1, 1, 3, USUARIO)
+        b[1][1] = _c(1, 9, 3, 1, USUARIO, "elfo")
         caps, eventos = reglas.cascada(b, 1, 1)
         resumen = reglas.resumen_efectos(eventos, (1, 1))
         self.assertEqual(2, len(caps))
@@ -148,6 +149,11 @@ class TestAnuncioDelEfecto(unittest.TestCase):
         ponia `CADENA DE 1`, que no es una cadena ni de nombre."""
         juego = _juego(_tablero())
         juego._anunciar_efecto({"basica": 1, "cadena": 0}, time.time(), USUARIO)
+        self.assertIsNone(juego.efecto)
+
+    def test_varias_capturas_basicas_tampoco_son_cadena(self):
+        juego = _juego(_tablero())
+        juego._anunciar_efecto({"basica": 3, "cadena": 0}, time.time(), USUARIO)
         self.assertIsNone(juego.efecto)
 
     def test_cuando_hay_same_el_propio_no_avisa_dos_veces(self):

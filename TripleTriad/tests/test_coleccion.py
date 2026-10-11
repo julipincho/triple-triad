@@ -31,6 +31,22 @@ def setUpModule():
 
 
 class TestMazoInicial(unittest.TestCase):
+    def test_vista_poseidas_usa_valores_guardados_sin_alterar_catalogo(self):
+        from pantallas import cartas_coleccion
+
+        base = mazos.TODOS["humano"][0]
+        original = base.a_dict()
+        mejorada = dict(original)
+        mejorada["n"] = min(10, mejorada["n"] + 1)
+        perfil = {"coleccion": {base.nombre: mejorada}}
+        propias = cartas_coleccion(perfil, "humano")
+        self.assertEqual([c.a_dict() for c in propias], [mejorada])
+        catalogo = cartas_coleccion(perfil, "humano", False)
+        self.assertEqual(len(catalogo), len(mazos.TODOS["humano"]))
+        self.assertEqual(next(c for c in catalogo if c.nombre == base.nombre).valores["N"], mejorada["n"])
+        self.assertEqual(base.a_dict(), original)
+        self.assertEqual(cartas_coleccion(perfil, "orco"), [])
+
     def test_diez_menores_por_faccion(self):
         for f in facciones.orden_facciones():
             iniciales = campana.mazo_inicial(f)

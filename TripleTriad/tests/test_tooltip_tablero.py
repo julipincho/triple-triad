@@ -36,8 +36,8 @@ class TestTooltipDelTablero(unittest.TestCase):
     def setUp(self):
         self.juego = _juego()
 
-    def _lineas(self, carta, synergy=False, dueno_extra=None):
-        return self.juego._lineas_tooltip(carta, synergy, dueno_extra)
+    def _lineas(self, carta, dueno_extra=None):
+        return self.juego._lineas_tooltip(carta, dueno_extra)
 
     def test_dice_de_quien_es_la_carta(self):
         """Una carta cambia de bando cada vez que la capturan. Sin decir de
@@ -65,10 +65,27 @@ class TestTooltipDelTablero(unittest.TestCase):
         carta = Carta("X", 5, 5, 5, 5, bando="humano", dueno=CPU)
         self.assertIn("Sin habilidad especial", self._lineas(carta))
 
-    def test_avisa_de_la_sinergia_solo_si_la_hay(self):
-        carta = Carta("X", 5, 5, 5, 5, bando="elfo", dueno=USUARIO)
-        self.assertNotIn("SINERGIA", self._lineas(carta, synergy=False))
-        self.assertIn("SINERGIA", self._lineas(carta, synergy=True))
+    def test_habilidad_capturada_se_ve_inactiva_y_se_reactiva(self):
+        carta = Carta("X", 3, 3, 3, 3, dueno=USUARIO, bando="humano", habilidad="embestida")
+        carta.dueno = CPU
+        self.assertIn("INACTIVA", self._lineas(carta))
+        inactiva = crt.crear(carta, CPU)
+        carta.repartir(CPU)
+        self.assertNotIn("INACTIVA", self._lineas(carta))
+        activa = crt.crear(carta, CPU)
+        self.assertNotEqual(pygame.image.tostring(inactiva, "RGB"),
+                            pygame.image.tostring(activa, "RGB"))
+
+    def test_tablero_dibuja_valores_efectivos_sin_alterar_la_mano(self):
+        carta = Carta("X", 3, 3, 3, 3, dueno=USUARIO, bando="humano", habilidad="embestida")
+        self.juego.board[1][1] = carta
+        mesa = self.juego.super_cartas(carta, posicion=(1, 1))
+        mano = self.juego.super_cartas(carta)
+        esperado = crt.crear(carta, USUARIO, valores=dict.fromkeys(("N", "S", "E", "O"), 5),
+                             bando_dueno=self.juego.bando)
+        self.assertEqual(pygame.image.tostring(mesa, "RGB"), pygame.image.tostring(esperado, "RGB"))
+        self.assertNotEqual(pygame.image.tostring(mesa, "RGB"), pygame.image.tostring(mano, "RGB"))
+        self.assertEqual(carta.valores["E"], 3)
 
     def test_la_mano_y_el_tablero_ensen_lo_mismo(self):
         """Una sola funcion para los dos sitios. Es lo que evita que se

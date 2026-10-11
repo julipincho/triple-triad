@@ -36,7 +36,7 @@ ICONO_HABILIDAD = {
 _cache = {}
 
 # Techo de la cache de cartas. 250 cartas x combinaciones de dueno,
-# sinergia y escala: 2000 es holgado; si se supera se tira entera y se
+# valores efectivos y escala: 2000 es holgado; si se supera se tira entera y se
 # vuelve a pintar. Cada entrada pesa ~60 KB: 2000 son ~120 MB en el peor
 # caso teorico, en la practica solo viven las que se ven en pantalla.
 MAX_CACHE_CARTAS = 2000
@@ -110,7 +110,22 @@ def rect_arte(w, h):
     return (r + 14, 25, w - 2 * (r + 14), 79)
 
 
-def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_dueno=None):
+def bloqueada(escala=1):
+    """Hueco negro del album: oculta el arte de cartas aun no poseidas."""
+    clave = ("bloqueada", escala)
+    if clave not in _cache:
+        s = pygame.Surface((CARD_W, CARD_H), pygame.SRCALPHA)
+        pygame.draw.rect(s, (2, 3, 5), s.get_rect(), border_radius=8)
+        pygame.draw.rect(s, (76, 82, 94), s.get_rect(), 2, border_radius=8)
+        texto(s, "?", 28, (150, 155, 168), centro=(CARD_W // 2, CARD_H // 2))
+        if escala != 1:
+            s = pygame.transform.smoothscale(s, (int(CARD_W * escala), int(CARD_H * escala)))
+        _cache[clave] = s
+    return _cache[clave]
+
+
+def crear(carta, dueno=None, habilidad=True, escala=1, bando_dueno=None,
+          valores=None):
     """Superficie de una carta. `dueno`: 'T', 'C' o None.
 
     `bando_dueno`: faccion de la baraja que domina la carta ahora mismo.
@@ -118,14 +133,17 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_duen
     feedback visual de quien tiene el dominio); si no, se usa el mapa
     estandar T=AZUL, C=ROJO, None=DORADO.
     """
+    valores = carta.valores if valores is None else valores
     clave = (
         carta.nombre,
         tuple(carta.valores[d] for d in LADOS),
         carta.bando,
         carta.habilidad,
         dueno,
-        synergy,
         bando_dueno,
+        tuple(valores[d] for d in LADOS),
+        habilidad,
+        carta.habilidad_activa(),
     )
     if escala != 1:
         # Las miniaturas de la pantalla de faccion y del menu se piden a
@@ -193,14 +211,22 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_duen
     img = _texto_ajustado(etiqueta, 6, w - 16, claro)
     s.blit(img, (w // 2 - img.get_width() // 2, h - 13))
 
-    # indicador de quien capturó la carta: punto de color en la esquina
-    # inferior derecha, con el color de la baraja que la domina
+    # Propiedad redundante: cuadrado propio, rombo rival y color de faccion.
     color_dueno = (
         facciones.acento(bando_dueno)
         if bando_dueno in facciones.FACCIONES
         else {"T": AZUL, "C": ROJO}.get(dueno, DORADO)
     )
-    pygame.draw.circle(s, color_dueno, (w - 12, h - 12), 6)
+    if dueno == "T":
+        pygame.draw.rect(s, (8, 8, 12), (w - 19, h - 19, 14, 14), border_radius=2)
+        pygame.draw.rect(s, color_dueno, (w - 17, h - 17, 10, 10), border_radius=1)
+    elif dueno == "C":
+        pygame.draw.polygon(s, (8, 8, 12), [(w - 12, h - 20), (w - 4, h - 12),
+                                          (w - 12, h - 4), (w - 20, h - 12)])
+        pygame.draw.polygon(s, color_dueno, [(w - 12, h - 18), (w - 6, h - 12),
+                                           (w - 12, h - 6), (w - 18, h - 12)])
+    else:
+        pygame.draw.circle(s, color_dueno, (w - 12, h - 12), 6)
 
     # Valores en el punto medio de cada lado: se leen sin esfuerzo.
     # El panel de arte esta hecho para no solaparlos.
@@ -211,7 +237,8 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_duen
         pygame.draw.circle(s, (8, 8, 12), (cx, cy), radio)
         pygame.draw.circle(s, color_borde, (cx, cy), radio, 2)
         pygame.draw.circle(s, con_alpha(color_borde, 70), (cx, cy), radio)
-        img = REC.fuente(11).render(val(carta.valores[lado]), True, (255, 255, 255))
+        color_valor = (255, 240, 160) if valores[lado] != carta.valores[lado] else (255, 255, 255)
+        img = REC.fuente(11).render(val(valores[lado]), True, color_valor)
         s.blit(img, (cx - img.get_width() // 2, cy - img.get_height() // 2))
 
     # marca de habilidad: sobre la parte baja del retrato (nunca la cara)
@@ -223,6 +250,9 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_duen
             "furia": (230, 90, 90),
             "embestida": (240, 180, 60),
         }.get(carta.habilidad, DORADO)
+        if dueno is not None and not carta.habilidad_activa():
+            etiqueta_h = "INACTIVA"
+            color_h = (140, 140, 140)
         ancho, alto = 46, 13
         bx, by = w // 2 - ancho // 2, ay + ah - alto - 3
         placa_h = pygame.Surface((ancho, alto), pygame.SRCALPHA)
@@ -230,11 +260,6 @@ def crear(carta, dueno=None, habilidad=True, synergy=False, escala=1, bando_duen
         s.blit(placa_h, (bx, by))
         img = _texto_ajustado(etiqueta_h, 6, ancho - 4, (14, 12, 10))
         s.blit(img, (bx + (ancho - img.get_width()) // 2, by + 3))
-
-    # marca de sinergia activa: en la franja del bando, donde no molesta
-    if synergy:
-        pygame.draw.circle(s, (255, 240, 160), (13, h - 9), 5)
-        pygame.draw.circle(s, (12, 12, 18), (13, h - 9), 5, 1)
 
     if escala == 1:
         _cache[clave] = s
@@ -379,17 +404,6 @@ def _halo_carta(w, h, color, alpha):
             (i * 4, i * 4, w + 16 - i * 8, h + 16 - i * 8), 2, border_radius=10,
         )
     return halo
-
-
-def tiene_sinergia(carta, board):
-    """True si la carta tiene sinergia de bando activa en el tablero."""
-    if not board or not carta.bando:
-        return False
-    aliadas = sum(
-        1 for f in board for x in f
-        if x and x.dueno == carta.dueno and x.bando == carta.bando
-    )
-    return aliadas >= 3
 
 
 def descripcion_habilidad(habilidad):

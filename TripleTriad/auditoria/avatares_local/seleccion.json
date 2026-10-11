@@ -1,0 +1,23 @@
+{
+  "variante": "retrato",
+  "seed": 20261010,
+  "otros_avatares_sha256": {
+    "avatar_dara.png": "0079c06b9b272a7f9b7952d7760f6fd48e1740a1cc5b54a84e29d25146238248",
+    "avatar_dragon.png": "c6c23bdfdc5dbb4578a5364ea92bb18a31761db8b760d2c6015eba77a869f042",
+    "avatar_duelista.png": "f310cedfecf0400a48fb900515df770fa144f296ec7984fb2ac61c9bc0b12db3",
+    "avatar_elfo.png": "aeabd64af80dac29415232498419e163aa0d612db58b8ec96d4d4f4ff7ea6cf9",
+    "avatar_elfo_nocturno.png": "f27772ef95e5e9c3446af8ede84664c53703a0f849b8e22db18359ae550b5b5b",
+    "avatar_gobernante.png": "b0e8ffdc6468f281b7a8ca1780024c3889378ea4d961a25b9a8b180f173b2fe8",
+    "avatar_goblin.png": "0495bcddbbf18131cfb68d934f17dda6b0cdb8618c59b23209b67c4adc277cbd",
+    "avatar_hombre_lagarto.png": "35c7974510985d58255411558980869c7674b3e3af1d895d5d67f50f5ba7b559",
+    "avatar_humano.png": "4cba0a838bc7cc5c5ad2f7dcc23c114dea5acbf37a4f2e5217c458eb8dcb1e3a",
+    "avatar_jefe_arco.png": "d88fb40a24f22e126a36f547402c6632cf4c9594856aa7dd34840c18b4eceef2",
+    "avatar_nara.png": "f08745927627130008356dae54d6546fe13345343f03a06c6de28d12010b67a2",
+    "avatar_orco.png": "26579b0f84f54140b508a264c09ab059ef12cae03fc4d74ecd6a6de20a0402b4",
+    "avatar_pik.png": "42312984fb53ab3d4fcd6fa0598ad3c19a117c48228e187b1b5446b9aaad2154",
+    "avatar_presentador.png": "7e7a6fb188e7e3e5ace4fb88d2d166aa3b6a322cf0127126013f1833815d6d7d",
+    "avatar_rajoy.png": "9c99a30e4c9f1b7f4706214438a2543679906a8b8090e53f026c3d2e1f174f4a",
+    "avatar_revancha.png": "3caa49941b98c1d27c1fd153302e735fda45e53c20ce8997c9c03c9fc7c060bf",
+    "avatar_vampiro.png": "382439998dce1cba737284c385a43d60a491fb3895812abbcd959bcb70d1dbaa"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "nombre": "hombre_pantera",
+  "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+  "seed": 20261009,
+  "positivo": "anthropomorphic black panther warrior, unmistakable black leopard head, rounded feline ears, short broad feline muzzle, black nose, golden feline eyes, black fur with blue grey highlights, leather shoulder armor, stern expression, single fantasy RPG character portrait, head and shoulders, three quarter view, face fully visible, detailed hand painted Japanese fantasy game illustration, fine pixel art, intricate small pixel details, soft shading, restrained colors, pale grey neutral background, soft even lighting, centered bust composition, no border",
+  "negativo": "human face, human ears, human skin, catboy, catgirl, mask, fursuit, hood, helmet, muzzle strap, collar, frame, border, text, watermark, multiple characters, character sheet, grid, panels, split image, photograph, 3d render, chibi, blocky, oversized pixels, blurry, full body, scenery, forest, moon, neon, oversaturated",
+  "ancho": 768,
+  "alto": 768,
+  "pasos": 28,
+  "cfg": 6.0,
+  "sampler": "euler",
+  "scheduler": "normal",
+  "salida": 256,
+  "reduccion": "LANCZOS",
+  "referencia": "assets/avatar_orco.png"
+}

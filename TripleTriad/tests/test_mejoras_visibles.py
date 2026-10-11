@@ -139,6 +139,7 @@ class TestSigiloSeAplicaATodas(unittest.TestCase):
         """Las mejoras son de la campana en curso. Si se colaran en el perfil,
         al empezar otra campana habria cartas infladas para siempre."""
         estado = _estado()
+        perfil_antes = campana.cargar_perfil()
         antes = {d["nombre"]: {k: d[k] for k in "nseo"}
                  for d in estado["cartas"]}
         campana.aplicar_sigilo(estado)
@@ -149,11 +150,7 @@ class TestSigiloSeAplicaATodas(unittest.TestCase):
                    for d in estado["cartas"]}
         self.assertEqual(antes, despues)
         # Y el perfil no se ha tocado.
-        perfil = campana.cargar_perfil()
-        for nombre, valores in antes.items():
-            if nombre in perfil.get("coleccion", {}):
-                self.assertEqual(
-                    {k: perfil["coleccion"][nombre][k] for k in "nseo"}, valores)
+        self.assertEqual(campana.cargar_perfil(), perfil_antes)
 
 
 if __name__ == "__main__":

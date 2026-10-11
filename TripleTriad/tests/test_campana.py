@@ -208,6 +208,49 @@ class TestDificultad(unittest.TestCase):
             for v in c.valores.values():
                 self.assertLessEqual(v, 10)
 
+    def test_rival_joven_no_usa_legendarias(self):
+        """La version joven: en nodos tempranos el pool rival se recorta y
+        el rival nunca juega con las cartas mas fuertes de su faccion.
+
+        n0 (senda) y n1 (aldea) solo pueden salir cartas del pool debil;
+        n3 (trono) abre las legendarias. Si esto cambia, dragon (o cualquier
+        bando fuerte) vuelve a ser imposible en los primeros duelos.
+        """
+        from reglas import rareza
+        # el pool crece con la dificultad y n0 es del tamano del mazo inicial
+        tam = [len(campana._pool_rival("dragon", n)) for n in (0, 1, 2, 3)]
+        self.assertEqual(tam, [10, 14, 18, 22])
+        # n0, n1 y n2 sin legendarias: la version joven. El trono (n3) abre
+        # las legendarias que si caben en las 22 cartas mas debiles.
+        for nivel in (0, 1, 2):
+            pool = campana._pool_rival("dragon", nivel)
+            self.assertFalse(any(rareza(c)[0] == "LEGENDARIA" for c in pool),
+                             f"nivel {nivel}: pool joven con legendarias")
+        pool_jefe = campana._pool_rival("dragon", 3)
+        self.assertTrue(any(rareza(c)[0] == "LEGENDARIA" for c in pool_jefe),
+                        "el trono deberia poder jugar legendarias")
+        # y en un duelo real de la senda nunca aparece una legendaria rival
+        for _ in range(30):
+            estado = campana.nueva_campana("humano")
+            for c in campana.mazo_rival(estado, "senda"):
+                self.assertNotEqual(rareza(c)[0], "LEGENDARIA")
+
+    def test_debilitar_resta_refuerzo_sin_cambiar_el_sorteo(self):
+        """`debilitar` NO re-sortea: el pool y las cartas sorteadas son las
+        mismas, solo baja el refuerzo por nivel. Si el sorteo cambiara, el
+        efecto seria aleatorio en vez de un debilitamiento predecible."""
+        estado = campana.nueva_campana("humano")
+        base = campana.mazo_rival(estado, "fortaleza")
+        estado["debilitar"] = 1
+        mitigado = campana.mazo_rival(estado, "fortaleza")
+        self.assertEqual([c.nombre for c in mitigado],
+                         [c.nombre for c in base])
+        suma_base = sum(sum(c.valores.values()) for c in base)
+        suma_mitigado = sum(sum(c.valores.values()) for c in mitigado)
+        self.assertLessEqual(suma_mitigado, suma_base)
+        campana.registrar_victoria(estado)
+        self.assertEqual(estado["debilitar"], 0)
+
 
 class TestCartasYRecompensas(unittest.TestCase):
     def setUp(self):

@@ -84,8 +84,15 @@ class TestFlujoDeCampana(unittest.TestCase):
             return rama
 
         async def recompensa_falsa(screen, clock, estado, nodo_id):
-            registro["pantallas"].append(("recompensa", nodo_id, recompensa))
-            return recompensa
+            disponibles = campana.recompensas_de(nodo_id)
+            elegida = recompensa if recompensa in disponibles else disponibles[0]
+            registro["pantallas"].append(("recompensa", nodo_id, elegida))
+            return elegida
+
+        async def aplicar_recompensa_falsa(screen, clock, estado, clave, nodo_id):
+            # La pantalla decide; el modelo confirma tambien el recibo pendiente.
+            return campana.entregar_recompensa(
+                estado, clave, nodo_id, idx=0, carta=mazos.TODOS[faccion][0])
 
         async def encuentro_falso(screen, clock, estado, nodo_id):
             registro["pantallas"].append(("encuentro", nodo_id))
@@ -108,7 +115,7 @@ class TestFlujoDeCampana(unittest.TestCase):
             "pantallas.mapa_campana": mapa_falso,
             "pantallas.elegir_rama": rama_falsa,
             "pantallas.recompensa": recompensa_falsa,
-            "pantallas.aplicar_recompensa": ara,
+            "pantallas.aplicar_recompensa": aplicar_recompensa_falsa,
             "pantallas.encuentro": encuentro_falso,
             "pantallas.derrota": derrota_falsa,
             "pantallas.epilogo": epilogo_falso,
