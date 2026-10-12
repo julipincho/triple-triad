@@ -694,7 +694,7 @@ def generar_uno(servidor, clave, variante="pixel", semilla=None, modelo=None,
     ok = comfy.generar_imagen(
         servidor, positivo, negativo, temporal, semilla,
         gw, gh, pasos, cfg, modelo,
-        ancla=None, peso_ipadapter=est.PESO_IPADAPTER)
+        ancla=None, peso_ipadapter=est.PESO_IPADAPTER, tipo="escena")
     if not ok:
         print("  fallo la generacion")
         return None

@@ -154,7 +154,7 @@ def generar_una(escena, nombre, descripcion, args):
                           args.modelo,
                           ancla=args.ancla if args.ancla else None,
                           peso_ipadapter=args.peso_ipadapter,
-                          peso_tipo=args.peso_tipo)
+                          peso_tipo=args.peso_tipo, tipo="variante")
     if ok:
         print("    -> %s" % os.path.basename(salida))
     return bool(ok)

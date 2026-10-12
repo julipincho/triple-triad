@@ -36,7 +36,6 @@ import json
 import os
 import random
 import re
-import subprocess
 import sys
 import time
 import urllib.error
@@ -53,6 +52,130 @@ CLIP_VISION = "CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors"
 IPADAPTER_FILE = "ip-adapter-plus_sdxl_vit-h.safetensors"
 ANCLA_DEFECTO = os.path.join(BASE, "estilo", "ancla.png")
 COMFY_INPUT = r"E:\AI\ComfyUI\input"
+
+# Coordinacion entre procesos: bloqueo de arranque, estado de la cola y registro
+# minimo de trabajos. Vive al lado, en `comfy_coord.py`, y no arranca nada por si
+# solo. El juego NUNCA importa este modulo.
+if BASE not in sys.path:
+    sys.path.insert(0, BASE)
+import comfy_coord  # noqa: E402
+
+# --- Observador GPU-Coordinator v0.2 (modo observacion, BEST-EFFORT) ---------
+# Informa a `gpu_coordinator` de las generaciones SIN alterarlas: no adquiere
+# bloqueos de GPU, no abre puertos y jamas puede interrumpir el flujo. Si el
+# paquete no esta disponible (o falla), la generacion sigue exactamente igual.
+try:
+    from gpu_coordinator.observador import Observador
+    from gpu_coordinator import (AdmisionDenegada, Coordinador,
+                                 RecursosNoDisponibles)
+except Exception:  # noqa: BLE001 - sin GPU-Coordinator no pasa nada
+    try:
+        _ruta_gpu_coord = r"E:\AI\GPU-Coordinator"
+        if _ruta_gpu_coord not in sys.path:
+            sys.path.insert(0, _ruta_gpu_coord)
+        from gpu_coordinator.observador import Observador
+        from gpu_coordinator import (AdmisionDenegada, Coordinador,
+                                     RecursosNoDisponibles)
+    except Exception:  # noqa: BLE001 - sin GPU-Coordinator no pasa nada
+        Observador = None
+        Coordinador = None
+        AdmisionDenegada = None
+        RecursosNoDisponibles = None
+
+_observador = Observador() if Observador is not None else None
+
+# --- Portero GPU-Coordinator v0.3 (coordinacion activa, OPT-IN) --------------
+# Por defecto `modo_portero=False` -> este bloque es INERTE: la generacion
+# funciona exactamente como en v0.2. Solo `generar_cartas_comfyui.py`
+# (tipo="carta") puede activarlo; los otros tres scripts siguen en modo
+# observador. El permiso exclusivo y el arranque de ComfyUI no se sustituyen.
+_DENEGACIONES = tuple(c for c in (AdmisionDenegada, RecursosNoDisponibles)
+                      if c is not None)
+
+
+class _PorteroInactivo:
+    """No-op con la misma interfaz que el portero del coordinador.
+
+    Se usa cuando GPU-Coordinator no esta, cuando el tipo no es "carta" o
+    cuando `modo_portero` esta deshabilitado: envolver la generacion con el
+    portero no cambia nada mientras este desactivado.
+    """
+
+    activo = False
+
+    def marcar_id_externo(self, id_externo):
+        return id_externo
+
+    def finalizar(self, *args, **kwargs):
+        return None
+
+    def fallar(self, *args, **kwargs):
+        return None
+
+    def marcar_timeout(self, *args, **kwargs):
+        return None
+
+    def marcar_desconocido(self, *args, **kwargs):
+        return None
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return False
+
+
+_PORTERO_INACTIVO = _PorteroInactivo()
+_coordinador = None
+
+
+def _obtener_coordinador():
+    """Crea (una sola vez) el coordinador. Best-effort: nunca lanza."""
+    global _coordinador
+    if _coordinador is None and Coordinador is not None:
+        try:
+            _coordinador = Coordinador()
+        except Exception:  # noqa: BLE001 - sin coordinador se genera igual
+            _coordinador = None
+    return _coordinador
+
+
+def _abrir_portero(tipo):
+    """Context manager del portero (best-effort, opt-in, solo cartas).
+
+    Devuelve un no-op si GPU-Coordinator no esta, si el tipo no es "carta" o si
+    `modo_portero` esta deshabilitado. Las **denegaciones** del portero (trabajo
+    previo sin reconciliar o recurso no disponible) si se propagan: son la razon
+    de ser del modo activo, y el llamador decide abortar.
+    """
+    if tipo != "carta" or Coordinador is None:
+        return _PORTERO_INACTIVO
+    coord = _obtener_coordinador()
+    if coord is None:
+        return _PORTERO_INACTIVO
+    try:
+        return coord.portero(tipo)
+    except _DENEGACIONES:
+        raise
+    except Exception:  # noqa: BLE001 - el portero jamas rompe la generacion
+        return _PORTERO_INACTIVO
+
+
+def _informar_observador(estado, job_id, id_externo=None, motivo="", tipo="imagen"):
+    """Espejo compacto en GPU-Coordinator de cada transicion del registro del juego.
+
+    Usa el MISMO `job_id` (correlacion estable) y ocurre en el MISMO instante
+    que `registro.registrar(...)`, asi los dos registros no duplican eventos:
+    hablan del mismo trabajo. Nunca lanza: cualquier fallo se ignora.
+    """
+    obs = _observador
+    if obs is None:
+        return False
+    try:
+        return obs.informar(estado, job_id, tipo=tipo, id_externo=id_externo,
+                            motivo=motivo)
+    except Exception:  # noqa: BLE001 - el observador jamas interrumpe el flujo
+        return False
 
 # Las facciones aportan color de acento; si no se pueden importar, no pasa nada.
 try:
@@ -175,51 +298,34 @@ def _post_json(url, payload, timeout=30):
 
 def comprobar_servidor(servidor):
     """Devuelve la version de ComfyUI o None si no responde."""
-    try:
-        datos = json.loads(_get(f"{servidor}/system_stats", timeout=5).decode("utf-8"))
-        return datos.get("system", {}).get("comfyui_version", "desconocida")
-    except Exception:  # noqa: BLE001 - sin servidor o apagado
-        return None
+    return comfy_coord.comprobar_servidor(servidor)
 
 
 def arrancar_servidor(servidor, bat, espera):
-    """Arranca ComfyUI en una consola nueva y espera a que responda.
+    """Arranca ComfyUI a lo sumo UNA vez, con bloqueo entre procesos.
 
     Devuelve la version o None. La ventana nueva queda visible para el
-    usuario (se para con Ctrl+C ahi o con E:\\AI\\stop-comfyui.bat).
+    usuario (se para con Ctrl+C ahi; ver la politica de `E:\\AI\\stop_comfyui.ps1`).
 
-    ES IDEMPOTENTE, y tiene que serlo: si ComfyUI ya esta en marcha se
-    devuelve tal cual y NO se abre ninguna ventana. Antes no lo comprobaba y
-    abria una consola nueva en CADA llamada, que al llamar desde un bucle de
-    24 variantes dejo trece ventanas de ComfyUI abiertas de golpe.
+    ES IDEMPOTENTE: si ComfyUI ya esta en marcha se devuelve tal cual y NO se
+    abre ninguna ventana. Ahora el arranque pasa por
+    `comfy_coord.arrancar_con_bloqueo`, que serializa el arranque entre procesos
+    (dos scripts no abren dos ventanas), recomprueba el servidor DESPUES de
+    tomar el bloqueo y evita el doble lanzamiento. El bloqueo cubre solo el
+    arranque; ComfyUI serializa los trabajos en su propia cola.
     """
-    version = comprobar_servidor(servidor)
-    if version:
-        return version
-
-    if not os.path.exists(bat):
+    resultado = comfy_coord.arrancar_con_bloqueo(
+        servidor, bat, espera, chequeo=comprobar_servidor, log=print)
+    if resultado.ok:
+        if resultado.arrancado:
+            print(f"  listo tras {resultado.segundos:.0f} s")
+        return resultado.version
+    if resultado.motivo == "bat_ausente":
         print(f"No existe {bat}: no puedo arrancar ComfyUI automaticamente.")
-        return None
-    print(f"ComfyUI no esta en marcha: arrancando {bat}")
-    nueva_consola = getattr(subprocess, "CREATE_NEW_CONSOLE", 0x00000010)
-    mas_nueva = nueva_consola | getattr(subprocess, "CREATE_BREAKAWAY_FROM_JOB", 0x01000000)
-    try:
-        subprocess.Popen(f'cmd.exe /c "{bat}"', creationflags=mas_nueva)
-    except OSError:
-        try:
-            subprocess.Popen(f'cmd.exe /c "{bat}"', creationflags=nueva_consola)
-        except OSError as e:
-            print(f"  no pude arrancarlo: {e}")
-            return None
-    print("  esperando a que este listo (ha abierto una ventana de ComfyUI)...")
-    inicio = time.time()
-    while time.time() - inicio < espera:
-        version = comprobar_servidor(servidor)
-        if version:
-            print(f"  listo tras {time.time() - inicio:.0f} s")
-            return version
-        time.sleep(2)
-    print(f"  no respondio en {espera} s: mira la ventana de ComfyUI.")
+    elif resultado.motivo == "bloqueo":
+        print("  otro proceso esta arrancando ComfyUI y no respondio a tiempo.")
+    elif resultado.motivo == "no_responde":
+        print(f"  no respondio en {espera} s: mira la ventana de ComfyUI.")
     return None
 
 
@@ -283,71 +389,156 @@ def _copiar_ancla_a_input(ancla):
 
 def generar_imagen(servidor, positivo, negativo, destino, seed,
                    ancho, alto, steps, cfg, modelo, espera=300,
-                   ancla=None, peso_ipadapter=0.8, peso_tipo="linear"):
-    """Ejecuta el workflow y escribe el PNG en `destino`. Devuelve True/False."""
+                   ancla=None, peso_ipadapter=0.8, peso_tipo="linear",
+                   registro=None, tipo=None):
+    """Ejecuta el workflow y escribe el PNG en `destino`. Devuelve True/False.
+
+    Registra el trabajo (id, estado, prompt_id) en el registro minimo de
+    `comfy_coord`. Un timeout NO cancela el trabajo en ComfyUI: queda como
+    `timeout` y puede seguir vivo. Nunca se envia una cancelacion.
+
+    Modo observacion v0.2 (best-effort): informa a GPU-Coordinator en el mismo
+    instante y con el mismo `job_id` que el registro propio. `tipo` es opcional
+    ("carta", "escena", "variante", "avatar", ...) y no cambia el
+    comportamiento de ningun llamador.
+
+    Modo portero v0.3 (OPT-IN, solo `tipo="carta"` y `modo_portero=true`):
+    envuelve la generacion con el permiso exclusivo del coordinador. Con el
+    modo deshabilitado (por defecto) el envoltorio es inerte y el
+    comportamiento es identico al de v0.2.
+    """
     if ancla and not _copiar_ancla_a_input(ancla):
         print(f"  aviso: no puedo copiar el ancla a {COMFY_INPUT}; genero sin IP-Adapter")
         ancla = None
     flujo = _workflow(positivo, negativo, seed, ancho, alto, steps, cfg, modelo,
                       ancla=ancla, peso_ipadapter=peso_ipadapter,
                       peso_tipo=peso_tipo)
+    registro = registro or comfy_coord.RegistroTrabajos()
+    job_id = comfy_coord.nuevo_id()
+    tipo = tipo or "imagen"
+    registro.registrar(job_id, "pendiente")
+    _informar_observador("pendiente", job_id, tipo=tipo)
+
+    # Portero (solo cartas, opt-in). Si esta apagado, `porteria` es un no-op.
     try:
-        r = _post_json(f"{servidor}/prompt", {"prompt": flujo})
-    except urllib.error.HTTPError as e:
-        cuerpo = e.read().decode("utf-8", "replace")
+        porteria = _abrir_portero(tipo)
+    except _DENEGACIONES as e:
+        print(f"  GPU-Coordinator (portero): generacion omitida "
+              f"({getattr(e, 'motivo', e)})")
+        registro.registrar(job_id, "fallido", motivo="portero_denego")
+        _informar_observador("fallido", job_id, tipo=tipo,
+                             motivo="portero_denego")
+        return False
+
+    with porteria as op:
         try:
-            err = json.loads(cuerpo)
-            msg = err.get("error") or cuerpo
-            nodos = err.get("node_errors") or {}
-            detalle = "; ".join(
-                json.dumps(v, ensure_ascii=False) for v in nodos.values()
-            )
-            if detalle:
-                msg = f"{msg} | {detalle}"
-        except ValueError:
-            msg = cuerpo
-        print(f"  ComfyUI rechazo el workflow ({e.code}): {msg}")
-        return False
-    except Exception as e:  # noqa: BLE001
-        print(f"  error de conexion: {e}")
-        return False
+            r = _post_json(f"{servidor}/prompt", {"prompt": flujo})
+        except urllib.error.HTTPError as e:
+            cuerpo = e.read().decode("utf-8", "replace")
+            try:
+                err = json.loads(cuerpo)
+                msg = err.get("error") or cuerpo
+                nodos = err.get("node_errors") or {}
+                detalle = "; ".join(
+                    json.dumps(v, ensure_ascii=False) for v in nodos.values()
+                )
+                if detalle:
+                    msg = f"{msg} | {detalle}"
+            except ValueError:
+                msg = cuerpo
+            print(f"  ComfyUI rechazo el workflow ({e.code}): {msg}")
+            registro.registrar(job_id, "fallido", motivo="workflow_rechazado")
+            _informar_observador("fallido", job_id, tipo=tipo,
+                                 motivo="workflow_rechazado")
+            op.fallar("workflow_rechazado")
+            return False
+        except Exception as e:  # noqa: BLE001
+            print(f"  error de conexion: {e}")
+            registro.registrar(job_id, "desconocido", motivo="conexion")
+            _informar_observador("desconocido", job_id, tipo=tipo, motivo="conexion")
+            op.marcar_desconocido("conexion")
+            return False
 
-    prompt_id = r.get("prompt_id")
-    if not prompt_id:
-        print(f"  respuesta inesperada: {r}")
+        prompt_id = r.get("prompt_id")
+        if not prompt_id:
+            print(f"  respuesta inesperada: {r}")
+            registro.registrar(job_id, "fallido", motivo="sin_prompt_id")
+            _informar_observador("fallido", job_id, tipo=tipo,
+                                 motivo="sin_prompt_id")
+            op.fallar("sin_prompt_id")
+            return False
+
+        op.marcar_id_externo(prompt_id)
+        registro.registrar(job_id, "en_ejecucion", prompt_id=prompt_id)
+        _informar_observador("ejecutando", job_id, id_externo=prompt_id, tipo=tipo)
+        inicio = time.time()
+        try:
+            while time.time() - inicio < espera:
+                hist = json.loads(_get(f"{servidor}/history/{prompt_id}").decode("utf-8"))
+                entrada = hist.get(prompt_id)
+                if entrada:
+                    estado = (entrada.get("status") or {}).get("status_str")
+                    if estado == "error":
+                        print("  fallo durante la ejecucion, mira la consola de ComfyUI")
+                        registro.registrar(job_id, "fallido", prompt_id=prompt_id,
+                                           motivo="error_ejecucion")
+                        _informar_observador("fallido", job_id, id_externo=prompt_id,
+                                             tipo=tipo, motivo="error_ejecucion")
+                        op.fallar("error_ejecucion")
+                        return False
+                    salidas = entrada.get("outputs") or {}
+                    imagenes = next(
+                        (v["images"] for v in salidas.values() if v.get("images")), None
+                    )
+                    if imagenes:
+                        img = imagenes[0]
+                        consulta = urllib.parse.urlencode({
+                            "filename": img["filename"],
+                            "subfolder": img.get("subfolder", ""),
+                            "type": img.get("type", "output"),
+                        })
+                        datos = _get(f"{servidor}/view?{consulta}", timeout=60)
+                        if not datos.startswith(b"\x89PNG\r\n\x1a\n"):
+                            print("  la respuesta no es un PNG valido")
+                            registro.registrar(job_id, "fallido", prompt_id=prompt_id,
+                                               motivo="png_invalido")
+                            _informar_observador("fallido", job_id,
+                                                 id_externo=prompt_id, tipo=tipo,
+                                                 motivo="png_invalido")
+                            op.fallar("png_invalido")
+                            return False
+                        with open(destino, "wb") as f:
+                            f.write(datos)
+                        registro.registrar(job_id, "finalizado", prompt_id=prompt_id)
+                        _informar_observador("finalizado", job_id,
+                                             id_externo=prompt_id, tipo=tipo)
+                        op.finalizar()
+                        return True
+                time.sleep(1.5)
+        except KeyboardInterrupt:
+            # No se cancela nada en ComfyUI: queda como desconocido.
+            registro.registrar(job_id, "desconocido", prompt_id=prompt_id,
+                               motivo="interrumpido_local")
+            _informar_observador("desconocido", job_id, id_externo=prompt_id,
+                                 tipo=tipo, motivo="interrumpido_local")
+            op.marcar_desconocido("interrumpido_local")
+            raise
+        except Exception as e:  # noqa: BLE001
+            print(f"  error consultando el estado: {e}")
+            registro.registrar(job_id, "desconocido", prompt_id=prompt_id,
+                               motivo="error_consulta")
+            _informar_observador("desconocido", job_id, id_externo=prompt_id,
+                                 tipo=tipo, motivo="error_consulta")
+            op.marcar_desconocido("error_consulta")
+            return False
+
+        print("  timeout: ComfyUI no termino a tiempo (el trabajo puede seguir en ComfyUI)")
+        registro.registrar(job_id, "timeout", prompt_id=prompt_id,
+                           motivo="no_cancelado_en_comfyui")
+        _informar_observador("timeout", job_id, id_externo=prompt_id, tipo=tipo,
+                             motivo="no_cancelado_en_comfyui")
+        op.marcar_timeout("no_cancelado_en_comfyui")
         return False
-
-    inicio = time.time()
-    while time.time() - inicio < espera:
-        hist = json.loads(_get(f"{servidor}/history/{prompt_id}").decode("utf-8"))
-        entrada = hist.get(prompt_id)
-        if entrada:
-            estado = (entrada.get("status") or {}).get("status_str")
-            if estado == "error":
-                print("  fallo durante la ejecucion, mira la consola de ComfyUI")
-                return False
-            salidas = entrada.get("outputs") or {}
-            imagenes = next(
-                (v["images"] for v in salidas.values() if v.get("images")), None
-            )
-            if imagenes:
-                img = imagenes[0]
-                consulta = urllib.parse.urlencode({
-                    "filename": img["filename"],
-                    "subfolder": img.get("subfolder", ""),
-                    "type": img.get("type", "output"),
-                })
-                datos = _get(f"{servidor}/view?{consulta}", timeout=60)
-                if not datos.startswith(b"\x89PNG\r\n\x1a\n"):
-                    print("  la respuesta no es un PNG valido")
-                    return False
-                with open(destino, "wb") as f:
-                    f.write(datos)
-                return True
-        time.sleep(1.5)
-
-    print("  timeout: ComfyUI no termino a tiempo")
-    return False
 
 
 # ------------------------------------------------------------------ CLI ------
@@ -358,6 +549,41 @@ def _ficha_desde_args(args):
         "descripcion": args.descripcion, "clase": args.clase,
         "rareza": args.rareza, "estilo": args.estilo, "seed": args.seed,
     }
+
+
+def _ruta_legible(destino, base=BASE):
+    """Ruta relativa a `base` si comparten unidad; si no, la ruta tal cual.
+
+    `os.path.relpath` lanza ValueError cuando destino y base estan en unidades
+    distintas (por ejemplo, salida en C: y proyecto en E:). En ese caso se
+    devuelve la ruta absoluta para no abortar tras una generacion correcta.
+    """
+    try:
+        return os.path.relpath(destino, base)
+    except ValueError:
+        return destino
+
+
+def _resolver_destino_salida(salida, faccion, nombre, base=BASE):
+    """Devuelve `(carpeta, png)` para salida como carpeta o archivo PNG.
+
+    Por compatibilidad, una ruta que ya sea una carpeta siempre se trata como
+    carpeta (incluso si termina en `.png`). Una ruta no existente con sufijo
+    `.png` se interpreta como el archivo PNG exacto; cualquier otro valor
+    conserva la semántica histórica de carpeta.
+    """
+    ruta = salida if os.path.isabs(salida) else os.path.join(base, salida)
+    ruta = os.path.abspath(ruta)
+    if os.path.isdir(ruta):
+        carpeta = ruta
+        destino = os.path.join(carpeta, f"{_norm(faccion)}_{slug(nombre)}.png")
+    elif os.path.splitext(ruta)[1].lower() == ".png":
+        destino = ruta
+        carpeta = os.path.dirname(destino)
+    else:
+        carpeta = ruta
+        destino = os.path.join(carpeta, f"{_norm(faccion)}_{slug(nombre)}.png")
+    return carpeta, destino
 
 
 def procesar(ficha, args, servidor):
@@ -383,8 +609,7 @@ def procesar(ficha, args, servidor):
     if args.negativo:
         negativo = ", ".join(p for p in (negativo, args.negativo) if p)
 
-    salida = os.path.join(BASE, args.salida) if not os.path.isabs(args.salida) else args.salida
-    destino = os.path.join(salida, f"{_norm(faccion)}_{slug(nombre)}.png")
+    salida, destino = _resolver_destino_salida(args.salida, faccion, nombre)
 
     if args.solo_prompt:
         print(f"--- {nombre} (seed {seed}) ---")
@@ -394,7 +619,7 @@ def procesar(ficha, args, servidor):
         return "prompt"
 
     if os.path.exists(destino) and not args.fuerza:
-        print(f"  ya existe: {os.path.relpath(destino, BASE)} (usa --fuerza para regenerar)")
+        print(f"  ya existe: {_ruta_legible(destino)} (usa --fuerza para regenerar)")
         return "omitida"
 
     print(f"  {nombre} | seed {seed} | {args.ancho}x{args.alto} | {args.steps} pasos")
@@ -405,9 +630,10 @@ def procesar(ficha, args, servidor):
         espera=args.espera,
         ancla=args.ancla, peso_ipadapter=args.peso_ipadapter,
         peso_tipo=args.peso_tipo,
+        tipo="carta",
     )
     if ok:
-        print(f"  guardada: {os.path.relpath(destino, BASE)}")
+        print(f"  guardada: {_ruta_legible(destino)}")
         return "generada"
     return "fallo"
 

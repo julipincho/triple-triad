@@ -30,6 +30,7 @@ TripleTriad/auditoria/var_*/
 TripleTriad/auditoria/test_gen*/
 TripleTriad/auditoria/lote_*.json
 TripleTriad/auditoria/prueba_crt/
+TripleTriad/auditoria/trabajos_comfyui.jsonl
 
 # Scratch de builds web, sesiones y experimentos sueltos
 node_modules/

@@ -93,7 +93,7 @@ def generar(nombre, variante, seed, servidor):
     # La referencia es de evaluacion visual, no se transfiere su anatomia.
     if not comfy.generar_imagen(servidor, receta["positivo"], receta["negativo"],
                                str(original), seed, 768, 768, 28, 6.0,
-                               MODELOS[variante], espera=900):
+                               MODELOS[variante], espera=900, tipo="avatar"):
         raise RuntimeError(f"No se genero {stem}")
     preparar(original, SALIDA / f"{stem}.png")
     (SALIDA / f"{stem}.json").write_text(json.dumps(receta, indent=2), encoding="utf-8")
