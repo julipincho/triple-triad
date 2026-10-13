@@ -73,7 +73,7 @@ class Cinematica:
     """Secuencia reproducible de escenas, bloqueante."""
 
     def __init__(self, escenas, al_terminar=None, musica=None, permitir_saltar=True,
-                 nombre_jugador=""):
+                 nombre_jugador="", bucle=True):
         # El nombre del jugador se resuelve UNA VEZ, aqui, al construir la
         # secuencia. Por frame seria un `str.replace` sobre cada linea en cada
         # frame; y leer el perfil seria una lectura de disco por frame.
@@ -88,6 +88,9 @@ class Cinematica:
         self.escenas = propias
         self.al_terminar = al_terminar
         self.musica = musica
+        # Las pistas de fondo se repiten; el apagón del prologo es un golpe
+        # puntual y sonaría entero otra vez si se leiese en bucle.
+        self.bucle = bucle
         self.permitir_saltar = permitir_saltar
         self.i = 0
         self._t_escena = time.time()
@@ -160,7 +163,7 @@ class Cinematica:
 
         self._t_escena = time.time()
         audio.sfx(audio.CINEMA)
-        audio.musica(self.escenas[0].musica or self.musica)
+        audio.musica(self.escenas[0].musica or self.musica, bucle=self.bucle)
 
         while True:
             clock.tick(LIMIT_FPS)
@@ -693,7 +696,7 @@ def escenas_final(titulo, lineas, faccion, extra=None):
 
 async def reproducir(screen, clock, escenas, musica=None, al_terminar=None,
                      permitir_saltar=True, nombre_jugador=None, clave=None,
-                     marcar_vista=True):
+                     marcar_vista=True, bucle=True):
     """Reproduce una secuencia de escenas.
 
     `nombre_jugador` es opcional: si no se pasa, se lee del perfil. Resolve el
@@ -723,7 +726,7 @@ async def reproducir(screen, clock, escenas, musica=None, al_terminar=None,
             return
     await Cinematica(escenas, al_terminar=al_terminar, musica=musica,
                      permitir_saltar=permitir_saltar,
-                     nombre_jugador=nombre_jugador).ejecutar(screen, clock)
+                     nombre_jugador=nombre_jugador, bucle=bucle).ejecutar(screen, clock)
 
 
 async def _preguntar_rever(screen, clock):

@@ -108,10 +108,9 @@ async def _prologo(screen, clock):
     a ser el inicial, deliberadamente mas debil.
     """
     _CONTEXTO[0] = "prólogo: sala del torneo"
-    audio.musica(prologo.MUSICA_MUNDO_REAL)
     await cinematicas.reproducir(
         screen, clock, prologo.escenas_pre_duelo(),
-        musica=prologo.MUSICA_MUNDO_REAL, permitir_saltar=True)
+        musica=prologo.MUSICA_TORNEO, permitir_saltar=True)
 
     _CONTEXTO[0] = "prólogo: tutorial contra Juan Rajoy"
     info = prologo.info_duelo_prologo()
@@ -144,24 +143,25 @@ async def _prologo(screen, clock):
     _CONTEXTO[0] = "prólogo: la carta del Umbral"
     await cinematicas.reproducir(
         screen, clock, prologo.escenas_post_duelo() + prologo.escenas_carta_umbral(),
-        musica=prologo.MUSICA_MUNDO_REAL)
+        musica=prologo.MUSICA_UMBRAL)
+    # El apagón es un golpe puntual, no un bucle: es lo único del prólogo que no
+    # se repite, por eso lleva pista corta y propia y se pide sin bucle.
     await cinematicas.reproducir(
         screen, clock, prologo.escenas_transporte(),
-        musica=prologo.MUSICA_MUNDO_REAL)
+        musica=prologo.MUSICA_APAGON, bucle=False)
 
     _CONTEXTO[0] = "prólogo: despertar en el bosque"
-    musica_fantasia = audio.musica_de_faccion("goblin")
     await cinematicas.reproducir(
         screen, clock, prologo.escenas_despertar(),
-        musica=musica_fantasia)
+        musica=prologo.MUSICA_BOSQUE)
     await cinematicas.reproducir(
         screen, clock, prologo.escenas_encuentro_hostil(),
-        musica=musica_fantasia)
+        musica=prologo.MUSICA_BOSQUE)
     _CONTEXTO[0] = "prólogo: Nara explica la situación"
     await cinematicas.reproducir(
         screen, clock, prologo.escenas_nara() + prologo.escenas_explicacion()
         + prologo.escenas_cierre(),
-        musica=musica_fantasia, permitir_saltar=False)
+        musica=prologo.MUSICA_CAMPAMENTO, permitir_saltar=False)
     return resultado
 
 

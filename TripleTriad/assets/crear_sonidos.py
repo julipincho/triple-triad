@@ -17,6 +17,25 @@ SR = 22050
 CARPETA = os.path.dirname(os.path.abspath(__file__))
 MUSICA = os.path.join(CARPETA, "musica")
 
+#: Pistas que NO genera este script y que se saltan si ya estan.
+#:
+#: `musica_duelo` es un render de ACE-Step 1.5, integrado con
+#: `integrar_musica_ia.py`. Antes de esa integracion la generaba este archivo
+#: como tema chiptune, y sin esta guarda reejecutarlo lo machacaba en silencio:
+#: el script reescribia el WAV y avisaba igual de "Listo.". Lo mismo con las
+#: cuatro pistas nuevas del prologo.
+#:
+#: Para recuperar una de estas por chiptune hay que borrar el WAV a proposito.
+MUSICA_DE_OTRO_ORIGEN = {
+    "musica_duelo", "musica_torneo", "musica_umbral",
+    "musica_apagon", "musica_bosque", "musica_campamento",
+}
+
+
+def _existe_de_otro_origen(nombre):
+    return nombre in MUSICA_DE_OTRO_ORIGEN and os.path.exists(
+        os.path.join(MUSICA, f"{nombre}.wav"))
+
 
 # ------------------------------------------------------------------ helpers
 def _env(i, n, ataque=0.01, caida=0.25):
@@ -142,6 +161,26 @@ def efectos():
         pulso(930, 0.06, 0.22, "cuadrada"),
         pulso(1240, 0.16, 0.2, "triangular", caida=0.4),
         ruido(0.12, 0.1, caida=0.3),
+    ))
+    # same: dos lados iguales. Suena a quinta exacta y cerrada, como un
+    # chasquido de dos piezas que encajan. Mas seco y mas agudo que `capture`,
+    # que es un campanilla ascendente blanda.
+    _escribir("same.wav", mix(
+        pulso(784, 0.05, 0.26, "cuadrada", caida=0.12),
+        pulso(1175, 0.05, 0.22, "cuadrada", detune=0.004, caida=0.12),
+        pulso(1568, 0.14, 0.16, "triangular", caida=0.3),
+        pulso(2350, 0.09, 0.07, "seno", caida=0.25),
+    ))
+    # plus: dos sumas iguales y cae todo el que participa. Es lo mas ancho de
+    # los tres: un golpe grave de marcador con una quinta entera encima, para
+    # que se note que la jugada no tumba una carta sino varias.
+    _escribir("plus.wav", mix(
+        pulso(110, 0.22, 0.3, "seno", ataque=0.004, caida=0.45),
+        pulso(165, 0.2, 0.22, "cuadrada", caida=0.4, detune=0.006),
+        pulso(330, 0.16, 0.18, "cuadrada", caida=0.35),
+        pulso(494, 0.16, 0.14, "triangular", caida=0.35),
+        pulso(659, 0.24, 0.12, "triangular", caida=0.5),
+        ruido(0.1, 0.1, caida=0.2, filtro=0.3),
     ))
     # victoria: arpegio mayor
     _escribir("win.wav", concat(
@@ -385,6 +424,9 @@ def musica_temas():
     print("Temas...")
     os.makedirs(MUSICA, exist_ok=True)
     for nombre in TEMAS:
+        if _existe_de_otro_origen(nombre):
+            print(f"  {nombre}.wav  (ya existe de otro origen: no se toca)")
+            continue
         muestras = _tema(nombre)
         _escribir(f"musica_{nombre}.wav", muestras, MUSICA)
         print(f"  musica_{nombre}.wav  ({len(muestras) / SR:.1f}s)")

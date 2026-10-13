@@ -99,6 +99,28 @@ DURACION_EFECTO = 2.0
 SALIDA_EFECTO = 0.5
 
 
+def _sonido_de_efecto(resumen):
+    """Que sonido suena al capturar. Prioridad: regla rara > cadena > basica.
+
+    Antes sonaba `CADENA` si habia cadena y `CAPTURAR` si no, asi que un same o
+    un plus se oian igual que una captura simple, mientras el cartel de al lado
+    si decia SAME o PLUS. El sonido va atras del cartel: lo primero que se oye
+    es un tono y solo despues se lee que regla era.
+
+    La prioridad copia la de `_anunciar_efecto`: si hay same o plus, manda el
+    mas frecuente; a igualdad, plus, que es el mas ancho de los dos. La cadena
+    solo aparece si no hubo regla, porque `_anunciar_efecto` tampoco la nombra
+    en ese caso (una cadena con same se anuncia como SAME).
+    """
+    candidatos = [k for k in ("same", "plus") if resumen.get(k)]
+    if candidatos:
+        return {"plus": audio.PLUS, "same": audio.SAME}[
+            max(candidatos, key=lambda k: resumen[k])]
+    if resumen.get("cadena"):
+        return audio.CADENA
+    return audio.CAPTURAR
+
+
 def _caja_efecto(rect):
     """Contenedora de la auditoria visual: el cartel no esta dentro de ningun
     panel, asi que se declara aqui para que no se cuente como texto suelto."""
@@ -327,7 +349,7 @@ class Juego:
         self.jugadas += 1
         if caps:
             resumen = resumen_efectos(eventos, (r, c))
-            audio.sfx(audio.CADENA if resumen["cadena"] else audio.CAPTURAR, canal="cap")
+            audio.sfx(_sonido_de_efecto(resumen), canal="cap")
             if resumen["cadena"]:
                 self.cadena_max = max(self.cadena_max,
                                       resumen["cadena"] + resumen.get("same", 0) + resumen.get("plus", 0))

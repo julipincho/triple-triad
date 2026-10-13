@@ -219,10 +219,52 @@ def musica_de_menu():
     return "musica_explora"
 
 
+# --- Musica de las cinematicas del prologo -------------------------------
+# Estas seis NO son chiptune: son renders de ACE-Step 1.5, integrados con
+# `assets/integrar_musica_ia.py`. El motivo es que el prologo tiene cinco
+# bloques distintos y antes todos sonaban a lo mismo: el salon del torneo y el
+# Umbral usaban `musica_explora` (que tambien suena en el bosque, en el menu y
+# al partir de una faccion) y el bosque y el campamento compartian
+# `musica_goblin`, una mayor con paso entero a 150 BPM que en la escena en la que
+# reencuentras la realidad sonaba a broma.
+#
+# Se nombran aqui para que la escena no monte el nombre a mano.
+
+def musica_del_torneo():
+    """El salon de la clasificatoria, antes del tutorial."""
+    return "musica_torneo"
+
+
+def musica_del_umbral():
+    """La carta sin faccion, el trono vacio y las nueve casillas."""
+    return "musica_umbral"
+
+
+def musica_del_apagon():
+    """El corte entre el salon y el bosque. No se repite: es un golpe puntual."""
+    return "musica_apagon"
+
+
+def musica_del_bosque():
+    """Despertar en el bosque, la torre, Pik y los aldeanos."""
+    return "musica_bosque"
+
+
+def musica_del_campamento():
+    """Nara, la explicacion y el cierre del prologo."""
+    return "musica_campamento"
+
+
 # ------------------------------------------------------- atajos de nombres
 COLOCAR = "place.wav"
 CAPTURAR = "capture.wav"
 CADENA = "chain.wav"
+#: Same y plus tienen sonido propio. Antes no existian: `partida.py` elegia
+#: entre `CADENA` y `CAPTURAR`, asi que un same o un plus se oian como una
+#: captura cualquiera. Ahora cada regla se distingue de oido, que es lo que
+#: `_anunciar_efecto` ya hacia por escrito con el cartel.
+SAME = "same.wav"
+PLUS = "plus.wav"
 VICTORIA = "win.wav"
 DERROTA = "lose.wav"
 MENU = "menu.wav"

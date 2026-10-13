@@ -29,10 +29,24 @@ from reglas import rareza, total_carta
 from ui import DORADO, TEXTO_ON
 
 # ------------------------------------------------------------------ musica
-# El mundo real tiene que sonar distinto al fantastic: el prologo arranca con
-# musica de exploracion (el tournaments es el que ya existe) y cambia a musica
-# de faccion cuando ya estamos dentro del juego.
-MUSICA_MUNDO_REAL = "musica_explora"
+# El mundo real tiene que sonar distinto al fantastic, pero dentro de cada uno
+# tampoco todo puede ser la misma pista. El prologo tiene cinco bloques y antes
+# se comprimian en dos: el salon del torneo y el Umbral usaban musica_explora
+# (que ademas suena en el menu y al elegir faccion), y el bosque y el
+# campamento compartian musica_goblin.
+#
+# Desde la integracion de las pistas de ACE-Step 1.5 cada bloque tiene la suya.
+# El menu sigue con musica_explora: es pista de menu, no del prologo.
+MUSICA_TORNEO = "musica_torneo"
+MUSICA_UMBRAL = "musica_umbral"
+MUSICA_APAGON = "musica_apagon"
+MUSICA_BOSQUE = "musica_bosque"
+MUSICA_CAMPAMENTO = "musica_campamento"
+
+#: Se conserva por compatibilidad con quien lo importaba. Apuntaba al salon del
+#: torneo y hoy el salon tiene pista propia, asi que delegar aqui ya no describe
+#: lo que suena: usa MUSICA_TORNEO.
+MUSICA_MUNDO_REAL = MUSICA_TORNEO
 
 
 # ------------------------------------------------------- las 5 legendarias

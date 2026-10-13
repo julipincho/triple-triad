@@ -40,6 +40,7 @@ SFX = [
     audio.COLOCAR, audio.CAPTURAR, audio.CADENA, audio.VICTORIA, audio.DERROTA,
     audio.MENU, audio.MENU_MOVE, audio.MENU_OK, audio.MENU_BACK, audio.CARD,
     audio.DRAG, audio.INVALIDO, audio.CINEMA, audio.RECOMPENSA, audio.TORNEO,
+    audio.SAME, audio.PLUS,
 ]
 
 
@@ -233,13 +234,24 @@ class TestAudio(unittest.TestCase):
     def test_el_bucle_de_la_musica_no_tiene_corte(self):
         """Las pistas se reproducen con play(-1). Con un fundido en los
         extremos, al repetir se oia un hueco de ~160 ms: eso era la musica
-        trabada al terminar el dialogo."""
-        import struct
+        trabada al terminar el dialogo.
+
+        El test mira por frames, no por samples sueltos, porque conviven dos
+        formatos: las pistas chiptune de `crear_sonidos.py` son 22050 Hz mono y
+        las de ACE-Step 1.5 son 44100 Hz estereo. Leerlas como mono desnudo
+        revienta con `struct.error` en cuanto una pista trae dos canales.
+
+        `musica_apagon` queda fuera a proposito: es el golpe puntual de la
+        transicion entre mundos, el juego lo pide con `bucle=False` y no se
+        repite, asi que su cola no tiene por que encajar con su cabeza.
+        """
+        import array
         import wave
 
-        def silencio(muestras, sr, umbral=300):
+        def silencio(frames, sr, umbral=300):
+            """Ms seguidos por debajo del umbral, en un canal de referencia."""
             mejor = actual = 0
-            for v in muestras:
+            for v in frames:
                 if abs(v) < umbral:
                     actual += 1
                     mejor = max(mejor, actual)
@@ -248,16 +260,31 @@ class TestAudio(unittest.TestCase):
             return mejor / sr * 1000
 
         for nombre in ("musica_duelo", "musica_explora",
-                       "musica_humano", "musica_orco"):
+                       "musica_humano", "musica_orco",
+                       "musica_torneo", "musica_umbral",
+                       "musica_bosque", "musica_campamento"):
             ruta = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
             with wave.open(ruta) as w:
                 n = w.getnframes()
                 sr = w.getframerate()
-                muestras = struct.unpack(f"<{n}h", w.readframes(n))
+                canales = w.getnchannels()
+                ancho = w.getsampwidth()
+                crudo = w.readframes(n)
+            self.assertEqual(ancho, 2, f"{nombre}.wav deberia ser 16-bit")
+            muestras = array.array("h")
+            muestras.frombytes(crudo)
+            if sys.byteorder != "little":
+                muestras.byteswap()
+            # Un valor por frame: el pico entre canales, que es lo que se oye.
+            if canales == 2:
+                frames = [max(abs(muestras[i]), abs(muestras[i + 1]))
+                          for i in range(0, len(muestras) - 1, 2)]
+            else:
+                frames = muestras
             # la costura son los ultimos 100 ms: si estan mudos, se oye un corte
-            corte = silencio(muestras[-int(sr * 0.1):], sr)
+            corte = silencio(frames[-int(sr * 0.1):], sr)
             # ...salvo que la pista ya tenga silencios de esa longitud dentro
-            interior = silencio(muestras[int(n * 0.2):int(n * 0.8)], sr)
+            interior = silencio(frames[int(n * 0.2):int(n * 0.8)], sr)
             self.assertLessEqual(
                 corte, max(interior * 1.4, 40),
                 f"{nombre}.wav se corta al repetir: {corte:.0f} ms de silencio "

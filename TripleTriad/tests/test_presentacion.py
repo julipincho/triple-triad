@@ -163,8 +163,32 @@ class TestManifiestoDeAssets(unittest.TestCase):
             self.assertNotIn(nombre, manifiesto.retratos_faltantes(), nombre)
 
     def test_detecta_la_musica_que_falta(self):
-        faltan = manifiesto.musica_faltante()
-        self.assertIn("musica_torneo", faltan)
+        """El mecanismo sigue detectando lo que no esta en disco.
+
+        Antes comprobaba que `musica_torneo` salia en la lista, porque era
+        justo lo que faltaba. Ya esta integrada (render de ACE-Step 1.5), asi
+        que ese caso real ya no aplica y se prueba con una entrada ficticia:
+        si `musica_faltante` se limitara a vaciar el diccionario, este test
+        pasaria sin comprobar nada.
+        """
+        antes = dict(manifiesto.MUSICA_FALTANTE)
+        try:
+            manifiesto.MUSICA_FALTANTE["musica_no_existe_de_verdad"] = "prueba"
+            faltan = manifiesto.musica_faltante()
+            self.assertIn("musica_no_existe_de_verdad", faltan)
+            # ...y una que SI existe no aparece por estar declarada.
+            manifiesto.MUSICA_FALTANTE["musica_duelo"] = "prueba"
+            self.assertNotIn("musica_duelo", manifiesto.musica_faltante())
+        finally:
+            manifiesto.MUSICA_FALTANTE.clear()
+            manifiesto.MUSICA_FALTANTE.update(antes)
+
+    def test_las_pistas_del_prologo_no_faltan(self):
+        """Las seis del prologo y del duelo estan integradas de verdad."""
+        for p in ("musica_torneo", "musica_umbral", "musica_apagon",
+                  "musica_bosque", "musica_campamento", "musica_duelo"):
+            self.assertNotIn(p, manifiesto.musica_faltante(), p)
+            self.assertIn(p, manifiesto.pistas_existentes(), p)
 
     def test_no_declara_pistas_que_ya_existen(self):
         for p in ("musica_explora", "musica_duelo", "musica_humano"):

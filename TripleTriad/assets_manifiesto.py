@@ -40,12 +40,19 @@ PERSONAJES_SIN_RETRATO = {
 }
 
 #: Pistas que hacen falta para distinguir los dos mundos con el oido.
-MUSICA_FALTANTE = {
-    "musica_torneo": "El salon del torneo: electronica, tensa, moderna. Hoy el "
-                     "prologo usa musica_explora, que tambien suena en el bosque.",
-    "musica_umbral": "Un tema propio para cuando la grieta se abre. Hoy se "
-                     "reutiliza musica_duelo.",
-}
+#:
+#: Las dos que hubo aqui (musica_torneo y musica_umbral) ya estan integradas:
+#: son renders de ACE-Step 1.5, convertidos por `assets/integrar_musica_ia.py`.
+#: Se dejan vacias mientras siga siendo verdad; `musica_faltante()` las filtra
+#: contra el disco, asi que basta con anadir aqui lo que se pida.
+#:
+#: Aviso sobre `musica_torneo`: la nota original la pedia "electronica, tensa,
+#: moderna", para marcar el salto entre nuestro mundo y el fantastic. El render
+#: que se integro es dark fantasy orquestal, igual que el resto del lote, asi
+#: que el salon se distingue del bosque por la instrumentacion pero no por el
+#: idioma. Si se quiere el contraste moderno de verdad, hay que regenerar esa
+#: pista con otro caption.
+MUSICA_FALTANTE = {}
 
 RAIZ = os.path.dirname(os.path.abspath(__file__))
 
