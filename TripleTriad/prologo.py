@@ -126,7 +126,7 @@ def _escenas_del_duelo():
     """El tutorial no se anuncia: se juega. Estas escenas son el ambiente."""
     return [
         esc("El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
-            fondo="salon", mundo=REAL, fondo_hd="salon_torneo.png"),
+            fondo="salon", mundo=REAL, fondo_hd="salon_torneo_lleno.png"),
         esc("ULTIMA RONDA CLASIFICATORIA", fondo="escenario", efecto="titulo", mundo=REAL),
         esc("Presentador", hablante="Presentador", retrato="presentador",
             fondo="escenario", mundo=REAL),
@@ -145,19 +145,19 @@ def _escenas_del_duelo():
 def _escenas_post_duelo():
     return [
         esc("- Otra vez esa maldita combinacion.", hablante="Juan Rajoy",
-            fondo="salon", mundo=REAL, retrato="rajoy", fondo_hd="salon_torneo.png"),
+            fondo="salon", mundo=REAL, retrato="rajoy", fondo_hd="salon_torneo_lleno.png"),
         # Aqui el rival se dirige al jugador por su nombre. `__JUGADOR__` se
         # resuelve con lo que se escribio al empezar; sin nombre, "el duelista".
         esc("- Te lo dije, __JUGADOR__. Centro libre y a correr.",
             hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy",
-            fondo_hd="salon_torneo.png"),
+            fondo_hd="salon_torneo_lleno.png"),
         esc("Juan te mira el mazo otra vez. Esta vez con respeto.",
             hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy",
-            fondo_hd="salon_torneo.png"),
+            fondo_hd="salon_torneo_lleno.png"),
         esc("- Buena partida, __JUGADOR__.", hablante="Juan Rajoy", fondo="salon",
-            retrato="rajoy", mundo=REAL, fondo_hd="salon_torneo.png"),
+            retrato="rajoy", mundo=REAL, fondo_hd="salon_torneo_lleno.png"),
         esc("Cumpliste. Ahora van a presentar la carta que trajeron.",
-            fondo="escenario", mundo=REAL),
+            fondo="salon", mundo=REAL, fondo_hd="salon_torneo_lleno.png"),
     ]
 
 
@@ -166,7 +166,7 @@ def _escenas_carta_umbral():
     return [
         # vista desde el publico: primero los vemos subir, despues estamos arriba
         esc("Los organizadores suben al escenario con una caja que nadie ha visto antes.",
-            fondo="salon", mundo=REAL, fondo_hd="salon_torneo.png"),
+            fondo="salon", mundo=REAL, fondo_hd="salon_torneo_lleno.png"),
         esc("- Una carta que no tiene faccion. Ni bando. Ni edicion.",
             hablante="Presentador", retrato="presentador", fondo="escenario", mundo=REAL),
         esc("EL UMBRAL", fondo="escenario", efecto="titulo", mundo=REAL),
@@ -179,10 +179,12 @@ def _escenas_carta_umbral():
         esc("LAS NUEVE CASILLAS", fondo="umbral", efecto="titulo", mundo=REAL),
         esc("empiezan a iluminarse.", fondo="umbral", mundo=REAL),
         esc("La carta central cambia. Y durante un segundo aparece algo que no",
-            fondo="umbral", mundo=REAL),
+            fondo="umbral", mundo=REAL,
+            fondo_hd="revelacion_carta_torneo.png"),
         esc("deberia existir en ninguna edicion: una figura sin faccion",
             fondo="umbral", mundo=REAL),
-        esc("sentada en el trono. Solo un segundo.", fondo="umbral", color=TEXTO_ON, mundo=REAL),
+        esc("sentada en el trono. Solo un segundo.", fondo="umbral", color=TEXTO_ON,
+            mundo=REAL, fondo_hd="portal_umbral_torneo.png"),
     ]
 
 

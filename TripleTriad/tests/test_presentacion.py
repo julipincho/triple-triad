@@ -59,10 +59,31 @@ class TestTratamientoVisual(unittest.TestCase):
 
 
 class TestQueEscenasSonDeQueMundo(unittest.TestCase):
+    def test_lote_02_ocupa_los_momentos_del_prologo_en_orden(self):
+        preduelo = prologo.escenas_pre_duelo()
+        postduelo = prologo.escenas_post_duelo()
+        carta = prologo.escenas_carta_umbral()
+        transporte = prologo.escenas_transporte()
+
+        self.assertEqual(preduelo[0]["fondo_hd"], "salon_torneo_lleno.png")
+        self.assertTrue(all(e.get("fondo_hd") == "salon_torneo_lleno.png"
+                            for e in postduelo if e["fondo"] == "salon"))
+        self.assertEqual(carta[0]["fondo_hd"], "salon_torneo_lleno.png")
+        self.assertEqual(carta[8]["fondo_hd"], "revelacion_carta_torneo.png")
+        self.assertEqual(carta[10]["fondo_hd"], "portal_umbral_torneo.png")
+        self.assertTrue(all(e.get("fondo_hd") is None for e in transporte))
+
+        for nombre in ("salon_torneo_lleno.png", "revelacion_carta_torneo.png",
+                       "portal_umbral_torneo.png"):
+            self.assertTrue(os.path.isfile(os.path.join(
+                RAIZ, "assets", "cinematicas_hd", nombre)), nombre)
+
     def test_hd_optativo_solo_en_callsite_aprobado(self):
         self.assertTrue(cinematicas.FONDOS_CINEMATICOS_HD)
-        self.assertTrue(any(e.get("fondo_hd") == "salon_torneo.png"
-                            for e in prologo.escenas_pre_duelo()))
+        self.assertEqual(prologo.escenas_pre_duelo()[0].get("fondo_hd"),
+                         "salon_torneo_lleno.png")
+        self.assertEqual(finales.escenas_epilogo("dominio")[0].get("fondo_hd"),
+                         "salon_torneo.png")
         self.assertTrue(all(e.get("fondo_hd") == "camino_lluvioso.png"
                             for e in prologo.escenas_despertar()))
         self.assertTrue(all(e.get("fondo_hd") is None
