@@ -59,6 +59,18 @@ class TestTratamientoVisual(unittest.TestCase):
 
 
 class TestQueEscenasSonDeQueMundo(unittest.TestCase):
+    def test_hd_optativo_solo_en_callsite_aprobado(self):
+        self.assertTrue(cinematicas.FONDOS_CINEMATICOS_HD)
+        self.assertTrue(any(e.get("fondo_hd") == "salon_torneo.png"
+                            for e in prologo.escenas_pre_duelo()))
+        self.assertTrue(all(e.get("fondo_hd") == "camino_lluvioso.png"
+                            for e in prologo.escenas_despertar()))
+        self.assertTrue(all(e.get("fondo_hd") is None
+                            for e in narrativa.posterior_nodo("fortaleza")
+                            if e.get("fondo") == "camino"))
+        self.assertTrue(any(e.get("fondo_hd") == "sala_trono.png"
+                            for e in narrativa.posterior_nodo("fortaleza")))
+
     def test_el_torneo_es_del_mundo_real(self):
         """Del salon, del duelista y de Juan: nuestro mundo."""
         for e in prologo.escenas_pre_duelo():

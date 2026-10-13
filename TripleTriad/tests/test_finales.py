@@ -134,10 +134,11 @@ class TestEscenas(unittest.TestCase):
 
     def test_el_epilogo_ocurre_en_el_mundo_real(self):
         """El epilogo es de vuelta en nuestro mundo: no en el trono ni el bosque."""
-        fondos = {"campamento", "campamento"}
+        fondos = {"salon"}
         for v in VARIANTES:
             for e in finales.escenas_epilogo(v):
                 self.assertIn(e["fondo"], fondos, v)
+                self.assertEqual(e["fondo_hd"], "salon_torneo.png", v)
 
     def test_los_fondos_existen(self):
         for v in VARIANTES:

@@ -426,6 +426,32 @@ class Recursos:
                 self._letterbox[ruta] = (max(0, ALTO - nh), max(0, ANCHO - nw))
         return self.imagenes[clave]
 
+    def fondo_cinematico(self, ruta, tamano=(1280, 720), viewport=(ANCHO, ALTO)):
+        """Centra un fondo cinematografico sin estirarlo ni filtrarlo.
+
+        El lote HD ya esta exportado al tamano de presentacion: se blitea a
+        escala 1:1 sobre el lienzo logico (y=40 en 1280x800). La cache incluye
+        ruta, tamano y viewport para admitir lotes/presentaciones futuras.
+        Devuelve None si el asset no existe, dejando al llamador usar el
+        fondo original.
+        """
+        clave = ("__cinematica__", ruta, tuple(tamano), tuple(viewport))
+        if clave not in self.imagenes:
+            completa = recurso(ruta)
+            if not os.path.isfile(completa):
+                return None
+            try:
+                imagen = pygame.image.load(completa).convert()
+            except pygame.error:
+                imagen = pygame.image.load(completa)
+            lienzo = pygame.Surface(viewport)
+            lienzo.fill(FONDO_ALT)
+            x = (viewport[0] - tamano[0]) // 2
+            y = (viewport[1] - tamano[1]) // 2
+            lienzo.blit(imagen, (x, y))
+            self.imagenes[clave] = lienzo
+        return self.imagenes[clave]
+
     def barras_de(self, ruta):
         """(vertical, horizontal) del letterbox del fondo de `ruta`.
 

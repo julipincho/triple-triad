@@ -126,7 +126,7 @@ def _escenas_del_duelo():
     """El tutorial no se anuncia: se juega. Estas escenas son el ambiente."""
     return [
         esc("El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
-            fondo="salon", mundo=REAL),
+            fondo="salon", mundo=REAL, fondo_hd="salon_torneo.png"),
         esc("ULTIMA RONDA CLASIFICATORIA", fondo="escenario", efecto="titulo", mundo=REAL),
         esc("Presentador", hablante="Presentador", retrato="presentador",
             fondo="escenario", mundo=REAL),
@@ -145,15 +145,17 @@ def _escenas_del_duelo():
 def _escenas_post_duelo():
     return [
         esc("- Otra vez esa maldita combinacion.", hablante="Juan Rajoy",
-            fondo="salon", mundo=REAL, retrato="rajoy"),
+            fondo="salon", mundo=REAL, retrato="rajoy", fondo_hd="salon_torneo.png"),
         # Aqui el rival se dirige al jugador por su nombre. `__JUGADOR__` se
         # resuelve con lo que se escribio al empezar; sin nombre, "el duelista".
         esc("- Te lo dije, __JUGADOR__. Centro libre y a correr.",
-            hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy"),
+            hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy",
+            fondo_hd="salon_torneo.png"),
         esc("Juan te mira el mazo otra vez. Esta vez con respeto.",
-            hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy"),
+            hablante="Juan Rajoy", fondo="salon", mundo=REAL, retrato="rajoy",
+            fondo_hd="salon_torneo.png"),
         esc("- Buena partida, __JUGADOR__.", hablante="Juan Rajoy", fondo="salon",
-            retrato="rajoy", mundo=REAL),
+            retrato="rajoy", mundo=REAL, fondo_hd="salon_torneo.png"),
         esc("Cumpliste. Ahora van a presentar la carta que trajeron.",
             fondo="escenario", mundo=REAL),
     ]
@@ -164,7 +166,7 @@ def _escenas_carta_umbral():
     return [
         # vista desde el publico: primero los vemos subir, despues estamos arriba
         esc("Los organizadores suben al escenario con una caja que nadie ha visto antes.",
-            fondo="salon", mundo=REAL),
+            fondo="salon", mundo=REAL, fondo_hd="salon_torneo.png"),
         esc("- Una carta que no tiene faccion. Ni bando. Ni edicion.",
             hablante="Presentador", retrato="presentador", fondo="escenario", mundo=REAL),
         esc("EL UMBRAL", fondo="escenario", efecto="titulo", mundo=REAL),
@@ -197,22 +199,29 @@ def _escenas_transporte():
 def _escenas_despertar():
     """El mundo fantastic. Y el primer personaje real: un goblin."""
     return [
-        esc("Bosque. Lluvia. Barro hasta los tobillos.", fondo="camino"),
-        esc("Tu mochila esta tirada. Tu telefono no tiene senal.", fondo="camino"),
+        esc("Bosque. Lluvia. Barro hasta los tobillos.", fondo="camino",
+            fondo_hd="camino_lluvioso.png"),
+        esc("Tu mochila esta tirada. Tu telefono no tiene senal.", fondo="camino",
+            fondo_hd="camino_lluvioso.png"),
         esc("Pero las cartas siguen ahi. Las cinco legendarias.",
-            fondo="camino", color=TEXTO_ON),
-        esc("Y es lo primero que notas: una torre.", fondo="camino"),
+            fondo="camino", color=TEXTO_ON, fondo_hd="camino_lluvioso.png"),
+        esc("Y es lo primero que notas: una torre.", fondo="camino",
+            fondo_hd="camino_lluvioso.png"),
         esc("La conoces. Esta en el fondo de una carta que viste mil veces.",
-            fondo="camino", color=TEXTO_ON),
-        esc("- No puede ser.", hablante="__JUGADOR__", fondo="camino", color=DORADO),
-        esc("Te das vuelta. Y ahi esta.", fondo="camino"),
-        esc("Pik", hablante=None, fondo="camino"),
+            fondo="camino", color=TEXTO_ON, fondo_hd="camino_lluvioso.png"),
+        esc("- No puede ser.", hablante="__JUGADOR__", fondo="camino", color=DORADO,
+            fondo_hd="camino_lluvioso.png"),
+        esc("Te das vuelta. Y ahi esta.", fondo="camino",
+            fondo_hd="camino_lluvioso.png"),
+        esc("Pik", hablante=None, fondo="camino", fondo_hd="camino_lluvioso.png"),
         esc("Un goblin. No una ilustracion. No alguien vestido de goblin.",
-            fondo="camino"),
-        esc("Pik", hablante="Pik", retrato="pik", fondo="camino"),
+            fondo="camino", fondo_hd="camino_lluvioso.png"),
+        esc("Pik", hablante="Pik", retrato="pik", fondo="camino",
+            fondo_hd="camino_lluvioso.png"),
         esc("- No deberias tener eso.", hablante="Pik", retrato="pik",
-            fondo="camino"),
-        esc("Lo dice senalando tus cartas. Y no parece una broma.", fondo="camino"),
+            fondo="camino", fondo_hd="camino_lluvioso.png"),
+        esc("Lo dice senalando tus cartas. Y no parece una broma.", fondo="camino",
+            fondo_hd="camino_lluvioso.png"),
     ]
 
 
@@ -328,9 +337,9 @@ def _escenas_cierre():
         esc("A partir de aqui ya no sos un invitado.", fondo="umbral"),
         esc("A partir de aqui sos alguien que sabe demasiado.", fondo="umbral",
             color=TEXTO_ON),
-        esc("ELIGE TU MAZO PRINCIPAL", fondo="trono", efecto="titulo"),
+        esc("ELIGE TU MAZO PRINCIPAL", fondo="trono", efecto="titulo", fondo_hd="sala_trono.png"),
         esc("No es quien eres. Es el mazo que juegas. Y el mundo lo va a leer.",
-            fondo="trono"),
+            fondo="trono", fondo_hd="sala_trono.png"),
     ]
 
 

@@ -9,6 +9,7 @@ componer secuencias sin codigo nuevo:
 """
 
 import time
+import os
 
 import pygame
 
@@ -47,6 +48,7 @@ class Escena:
 
     def __init__(self, datos):
         self.fondo = datos.get("fondo", "ceniza")
+        self.fondo_hd = datos.get("fondo_hd")
         self.hablante = datos.get("hablante")
         self.texto = datos.get("texto", "")
         self.retrato = datos.get("retrato") or retrato_hablante(self.hablante)
@@ -245,7 +247,14 @@ class Cinematica:
         # el mundo fantastic, y asi se nota en que lado estas.
         tinte, alpha, (vin_a, vin_b) = TRATAMIENTO.get(
             getattr(escena, "mundo", MUNDO_JUEGO), TRATAMIENTO[MUNDO_JUEGO])
-        screen.blit(REC.fondo_pantalla(ui.ruta_fondo(escena.fondo)), (0, 0))
+        fondo_hd = None
+        if FONDOS_CINEMATICOS_HD and escena.fondo_hd:
+            fondo_hd = REC.fondo_cinematico(
+                os.path.join("assets", "cinematicas_hd", escena.fondo_hd))
+        if fondo_hd is not None:
+            screen.blit(fondo_hd, (0, 0))
+        else:
+            screen.blit(REC.fondo_pantalla(ui.ruta_fondo(escena.fondo)), (0, 0))
         screen.blit(REC.capa_oscurita((*tinte, alpha)), (0, 0))
         if vin_a:
             screen.blit(REC.vineta(vin_a, vin_b), (0, 0))
@@ -417,6 +426,10 @@ def _etiqueta_retrato(clave):
 MUNDO_REAL = "real"
 MUNDO_JUEGO = "juego"
 
+# Reversible sin retirar los PNG: `False` vuelve al selector de fondos
+# originales, conservando intacta la resolucion global y los assets HD.
+FONDOS_CINEMATICOS_HD = os.environ.get("TRIPLETRIAD_CINEMATICAS_HD", "1") != "0"
+
 #: Tinte y vineta por mundo: (color RGB, alpha de capa, vineta alfa).
 #:
 #: El tinte daba 55-60% de oscurecido en el mundo del juego y 21% en el
@@ -434,9 +447,15 @@ TRATAMIENTO = {
 
 
 def esc(linea, hablante=None, fondo="ceniza", retrato=None, efecto="dialogo",
-        musica=None, color=TEXTO, mundo=MUNDO_JUEGO):
+        musica=None, color=TEXTO, mundo=MUNDO_JUEGO, fondo_hd=None):
+    # Todas las escenas cuya clave narrativa ya es "trono" pueden usar el
+    # interior aprobado. Un callsite que no deba usarlo puede indicar otro
+    # fondo narrativo en vez de heredar esta clave.
+    if fondo == "trono" and fondo_hd is None:
+        fondo_hd = "sala_trono.png"
     return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": retrato,
-            "efecto": efecto, "musica": musica, "color": color, "mundo": mundo}
+            "efecto": efecto, "musica": musica, "color": color, "mundo": mundo,
+            "fondo_hd": fondo_hd}
 
 
 APERTURAS = {

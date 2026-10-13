@@ -29,7 +29,7 @@ from ui import TEXTO
 
 
 def esc(linea, hablante=None, fondo="trono", efecto="dialogo", color=TEXTO,
-        mundo="juego"):
+        mundo="juego", fondo_hd=None):
     """Constructor de escena.
 
     `color` arranca en TEXTO y no en None: con None, TODOS los finales
@@ -38,7 +38,8 @@ def esc(linea, hablante=None, fondo="trono", efecto="dialogo", color=TEXTO,
     `duelistas._esc`, que tumbaba el cartel de duelo.
     """
     return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": None,
-            "efecto": efecto, "musica": None, "color": color, "mundo": mundo}
+            "efecto": efecto, "musica": None, "color": color, "mundo": mundo,
+            "fondo_hd": fondo_hd}
 
 
 # --------------------------------------------------------------- el Umbral
@@ -90,7 +91,7 @@ UMBRAL = {
 EPILOGO = {
     "dominio": {
         "titulo": "VOLVISTE CON ALGO",
-        "fondo": "campamento",
+        "fondo": "salon",
         "musica": "musica_explora",
         "lineas": [
             "Estas otra vez en el torneo. La misma mesa, las mismas luces.",
@@ -105,7 +106,7 @@ EPILOGO = {
     },
     "equilibrio": {
         "titulo": "UNA EXPANSION NUEVA",
-        "fondo": "campamento",
+        "fondo": "salon",
         "musica": "musica_explora",
         "lineas": [
             "Para todos, en el salon, pasaron tres segundos. Nada mas.",
@@ -125,7 +126,7 @@ EPILOGO = {
         # texto para las diez facciones. Lo que cambia es que el regreso queda
         # dicho, y el caos sigue siendo caos: volviste, y algo vino con vos.
         "titulo": "VOLVISTE. Y ALGO VINO CON VOS.",
-        "fondo": "campamento",
+        "fondo": "salon",
         "musica": "musica_duelo",
         "lineas": [
             "Volviste. El salon, las luces, el ruido de siempre. Todo esta donde "
@@ -174,9 +175,10 @@ def escenas_epilogo(variante):
     """La escena final en nuestro mundo."""
     datos = EPILOGO.get(variante, EPILOGO["equilibrio"])
     escenas = [esc(datos["titulo"], fondo=datos["fondo"], efecto="titulo",
-                   mundo="real")]
+                   mundo="real", fondo_hd="salon_torneo.png")]
     for linea in datos["lineas"]:
-        escenas.append(esc(linea, fondo=datos["fondo"], mundo="real"))
+        escenas.append(esc(linea, fondo=datos["fondo"], mundo="real",
+                           fondo_hd="salon_torneo.png"))
     return escenas
 
 
