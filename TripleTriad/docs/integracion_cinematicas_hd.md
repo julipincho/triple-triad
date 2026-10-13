@@ -23,5 +23,8 @@ Los demás callsites con clave `camino` (campaña y variantes) no seleccionan el
 fondo lluvioso. `campamento` permanece sin cambios. Masters y manifest original
 del paquete están preservados fuera del repositorio en el staging aprobado.
 
-Las capturas in-game requieren el runtime pygame disponible; no se deben
-presentar previsualizaciones del PNG como capturas del juego.
+Capturas del reproductor a 1280×800, generadas con pygame:
+`capturas/cinematicas_hd/01_salon_prologo.png`,
+`capturas/cinematicas_hd/02_camino_dialogo_retrato.png`,
+`capturas/cinematicas_hd/03_sala_trono.png` y
+`capturas/cinematicas_hd/04_salon_epilogo.png`.

@@ -66,10 +66,10 @@ class TestQueEscenasSonDeQueMundo(unittest.TestCase):
         self.assertTrue(all(e.get("fondo_hd") == "camino_lluvioso.png"
                             for e in prologo.escenas_despertar()))
         self.assertTrue(all(e.get("fondo_hd") is None
-                            for e in narrativa.posterior_nodo("fortaleza")
+                            for e in prologo.escenas_encuentro_hostil()
                             if e.get("fondo") == "camino"))
         self.assertTrue(any(e.get("fondo_hd") == "sala_trono.png"
-                            for e in narrativa.posterior_nodo("fortaleza")))
+                            for e in narrativa.previa_nodo("trono")))
 
     def test_el_torneo_es_del_mundo_real(self):
         """Del salon, del duelista y de Juan: nuestro mundo."""

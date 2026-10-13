@@ -34,9 +34,12 @@ def esc(linea, hablante=None, fondo="ceniza", retrato=None, efecto="dialogo",
     lo usa `cinematicas`, e importarlo seria un ciclo. Las claves son las
     mismas, asi que las escenas de aqui se pasan tal cual al reproductor.
     """
-    return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": retrato,
-            "efecto": efecto, "musica": musica, "color": color or TEXTO,
-            "mundo": mundo}
+    escena = {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": retrato,
+              "efecto": efecto, "musica": musica, "color": color or TEXTO,
+              "mundo": mundo}
+    if fondo == "trono":
+        escena["fondo_hd"] = "sala_trono.png"
+    return escena
 
 
 # --------------------------------------------------------------- reacciones

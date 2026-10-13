@@ -37,9 +37,11 @@ def esc(linea, hablante=None, fondo="trono", efecto="dialogo", color=TEXTO,
     que la campana no se podia terminar. Es el mismo defecto que tenia
     `duelistas._esc`, que tumbaba el cartel de duelo.
     """
-    return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": None,
-            "efecto": efecto, "musica": None, "color": color, "mundo": mundo,
-            "fondo_hd": fondo_hd}
+    escena = {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": None,
+              "efecto": efecto, "musica": None, "color": color, "mundo": mundo}
+    if fondo_hd:
+        escena["fondo_hd"] = fondo_hd
+    return escena
 
 
 # --------------------------------------------------------------- el Umbral

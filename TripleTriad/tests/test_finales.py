@@ -119,7 +119,7 @@ class TestEscenas(unittest.TestCase):
              "color", "mundo"}
         for v in VARIANTES:
             for e in finales.escenas_umbral(v) + finales.escenas_epilogo(v):
-                self.assertEqual(set(e), claves, v)
+                self.assertIn(set(e), (claves, claves | {"fondo_hd"}), v)
                 self.assertTrue(e["texto"].strip(), v)
 
     def test_la_primera_escena_es_titulo(self):
