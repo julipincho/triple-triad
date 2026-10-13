@@ -32,6 +32,11 @@ Capturas del reproductor a 1280×800, generadas con pygame:
 `capturas/cinematicas_hd/03_sala_trono.png` y
 `capturas/cinematicas_hd/04_salon_epilogo.png`.
 
+Capturas del Lote 02: `05_salon_activo_lote02.png`,
+`06_salon_lleno_dialogo_retrato.png`, `07_revelacion_carta.png`,
+`07b_revelacion_carta_continua.png`, `08_portal_antes_del_apagon.png` y
+`09_apagon_transporte.png` (todas en `capturas/cinematicas_hd/`).
+
 ## Planos pendientes del primer arco
 
 - Primer plano de la carta física dentro de su caja, antes de activarse; los

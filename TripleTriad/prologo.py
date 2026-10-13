@@ -182,7 +182,8 @@ def _escenas_carta_umbral():
             fondo="umbral", mundo=REAL,
             fondo_hd="revelacion_carta_torneo.png"),
         esc("deberia existir en ninguna edicion: una figura sin faccion",
-            fondo="umbral", mundo=REAL),
+            fondo="umbral", mundo=REAL,
+            fondo_hd="revelacion_carta_torneo.png"),
         esc("sentada en el trono. Solo un segundo.", fondo="umbral", color=TEXTO_ON,
             mundo=REAL, fondo_hd="portal_umbral_torneo.png"),
     ]

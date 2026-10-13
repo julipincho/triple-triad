@@ -70,6 +70,7 @@ class TestQueEscenasSonDeQueMundo(unittest.TestCase):
                             for e in postduelo if e["fondo"] == "salon"))
         self.assertEqual(carta[0]["fondo_hd"], "salon_torneo_lleno.png")
         self.assertEqual(carta[8]["fondo_hd"], "revelacion_carta_torneo.png")
+        self.assertEqual(carta[9]["fondo_hd"], "revelacion_carta_torneo.png")
         self.assertEqual(carta[10]["fondo_hd"], "portal_umbral_torneo.png")
         self.assertTrue(all(e.get("fondo_hd") is None for e in transporte))
 
