@@ -103,6 +103,9 @@ class TestChipsDePortada(unittest.TestCase):
         comprueba contra el panel real que registra la auditoria, no contra un
         ancho fijo en el test.
         """
+        import campana
+        import facciones
+
         mod = self.mod
         for escala in (1.0, 1.25, 1.6):
             mod.ui.fijar_escala_texto(escala)
@@ -110,9 +113,15 @@ class TestChipsDePortada(unittest.TestCase):
                 "portada_chips",
                 lambda: mod.AV.pantallas.portada(mod.pantalla, mod.AV.RelojFalso()))
             dibujado = mod.AV.textos_de_frame(0)
-            # La banda de chips va en y=250 con 40 de alto.
+            # Los chips bajaron desde y=250 a y=390 cuando el logo paso a
+            # ocupar la parte alta de la portada. Se identifican por su texto
+            # y no por una banda de coordenadas: la portada tiene otros rótulos
+            # (el subtitulo) que caerian dentro de cualquier banda adivinada.
+            etiquetas = {f"{len(facciones.orden_facciones())} facciones",
+                         f"{campana.duelos_por_campana()} duelos",
+                         "Un final por faccion"}
             for cadena, rect in dibujado:
-                if not (245 <= rect.centery <= 275):
+                if cadena not in etiquetas:
                     continue
                 # Busca el panel mas pequeno que contenga el texto.
                 marco = None

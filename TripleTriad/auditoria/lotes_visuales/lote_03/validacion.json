@@ -1,0 +1,503 @@
+{
+  "escenas_renderizadas": 81,
+  "escenas_modificadas": {
+    "prologo.carta_umbral.1": "escenario_carta_cubierta",
+    "prologo.carta_umbral.6": "activacion_carta_plano_cercano",
+    "prologo.carta_umbral.7": "activacion_carta_plano_cercano"
+  },
+  "archivos_previos_comprobados": 1267,
+  "unico_archivo_previo_modificado": [
+    "E:\\openCode\\TripleTriad\\assets\\lotes_visuales\\registro.json"
+  ],
+  "recursos_integrados": 2,
+  "recursos_pendientes": 3,
+  "viewport_1_a_1": true,
+  "escenas": [
+    {
+      "escena": "prologo.pre_duelo.0",
+      "fondo_lote": null,
+      "fondo_hd": "salon_torneo_lleno.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.pre_duelo.1",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.pre_duelo.2",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "presentador"
+    },
+    {
+      "escena": "prologo.pre_duelo.3",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "presentador"
+    },
+    {
+      "escena": "prologo.pre_duelo.4",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "presentador"
+    },
+    {
+      "escena": "prologo.pre_duelo.5",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.pre_duelo.6",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.pre_duelo.7",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.post_duelo.0",
+      "fondo_lote": null,
+      "fondo_hd": "salon_torneo_lleno.png",
+      "retrato": "rajoy"
+    },
+    {
+      "escena": "prologo.post_duelo.1",
+      "fondo_lote": null,
+      "fondo_hd": "salon_torneo_lleno.png",
+      "retrato": "rajoy"
+    },
+    {
+      "escena": "prologo.post_duelo.2",
+      "fondo_lote": null,
+      "fondo_hd": "salon_torneo_lleno.png",
+      "retrato": "rajoy"
+    },
+    {
+      "escena": "prologo.post_duelo.3",
+      "fondo_lote": null,
+      "fondo_hd": "salon_torneo_lleno.png",
+      "retrato": "rajoy"
+    },
+    {
+      "escena": "prologo.post_duelo.4",
+      "fondo_lote": null,
+      "fondo_hd": "salon_torneo_lleno.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.0",
+      "fondo_lote": null,
+      "fondo_hd": "salon_torneo_lleno.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.1",
+      "fondo_lote": "assets/lotes_visuales/lote_03/fondos/escenario_carta_cubierta.png",
+      "fondo_hd": null,
+      "retrato": "presentador"
+    },
+    {
+      "escena": "prologo.carta_umbral.2",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.3",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.4",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.5",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.6",
+      "fondo_lote": "assets/lotes_visuales/lote_03/fondos/activacion_carta_plano_cercano.png",
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.7",
+      "fondo_lote": "assets/lotes_visuales/lote_03/fondos/activacion_carta_plano_cercano.png",
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.8",
+      "fondo_lote": null,
+      "fondo_hd": "revelacion_carta_torneo.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.9",
+      "fondo_lote": null,
+      "fondo_hd": "revelacion_carta_torneo.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.carta_umbral.10",
+      "fondo_lote": null,
+      "fondo_hd": "portal_umbral_torneo.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.transporte.0",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.transporte.1",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.transporte.2",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.0",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.1",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.2",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.3",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.4",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.5",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": "duelista"
+    },
+    {
+      "escena": "prologo.despertar.6",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.7",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.8",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.despertar.9",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": "pik"
+    },
+    {
+      "escena": "prologo.despertar.10",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": "pik"
+    },
+    {
+      "escena": "prologo.despertar.11",
+      "fondo_lote": null,
+      "fondo_hd": "camino_lluvioso.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.encuentro_hostil.0",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.encuentro_hostil.1",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.encuentro_hostil.2",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.encuentro_hostil.3",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "encuentro:hostil"
+    },
+    {
+      "escena": "prologo.encuentro_hostil.4",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.encuentro_hostil.5",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.encuentro_hostil.6",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.nara.0",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.nara.1",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.nara.2",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "duelista"
+    },
+    {
+      "escena": "prologo.nara.3",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.nara.4",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.nara.5",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.nara.6",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.nara.7",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.nara.8",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.nara.9",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.nara.10",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.explicacion.0",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.explicacion.1",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.2",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.3",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.explicacion.4",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.5",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.explicacion.6",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.7",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.8",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.9",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.10",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.11",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.12",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.13",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.explicacion.14",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "duelista"
+    },
+    {
+      "escena": "prologo.explicacion.15",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.16",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.explicacion.17",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.explicacion.18",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.cierre.0",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": "nara"
+    },
+    {
+      "escena": "prologo.cierre.1",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.cierre.2",
+      "fondo_lote": null,
+      "fondo_hd": null,
+      "retrato": null
+    },
+    {
+      "escena": "prologo.cierre.3",
+      "fondo_lote": null,
+      "fondo_hd": "sala_trono.png",
+      "retrato": null
+    },
+    {
+      "escena": "prologo.cierre.4",
+      "fondo_lote": null,
+      "fondo_hd": "sala_trono.png",
+      "retrato": null
+    }
+  ]
+}

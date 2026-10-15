@@ -11,6 +11,7 @@ import random
 import time
 
 import pygame
+import arte_visual
 
 from paths import dir_recursos
 
@@ -293,6 +294,9 @@ class Recursos:
         self.sonidos = {}
 
     def imagen(self, ruta, escala=None):
+        nueva = arte_visual.alternativa(ruta, "retrato")
+        if nueva:
+            ruta = nueva
         clave = (ruta, escala)
         if clave not in self.imagenes:
             completa = recurso(ruta)
@@ -307,7 +311,8 @@ class Recursos:
                 pygame.draw.rect(img, (90, 60, 110), img.get_rect(), border_radius=4)
                 pygame.draw.line(img, (200, 180, 230), (8, 16), (24, 16), 2)
             if escala:
-                img = pygame.transform.smoothscale(img, escala)
+                img = (pygame.transform.scale(img, escala) if nueva
+                       else pygame.transform.smoothscale(img, escala))
             self.imagenes[clave] = img
         return self.imagenes[clave]
 

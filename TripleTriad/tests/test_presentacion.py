@@ -72,7 +72,10 @@ class TestQueEscenasSonDeQueMundo(unittest.TestCase):
         self.assertEqual(carta[8]["fondo_hd"], "revelacion_carta_torneo.png")
         self.assertEqual(carta[9]["fondo_hd"], "revelacion_carta_torneo.png")
         self.assertEqual(carta[10]["fondo_hd"], "portal_umbral_torneo.png")
-        self.assertTrue(all(e.get("fondo_hd") is None for e in transporte))
+        self.assertTrue(all(e.get("fondo_hd") == "prologo_apagon_salon.png"
+                            for e in transporte))
+        self.assertTrue(all(e.get("fondo_hd") == "prologo_escenario_presentacion.png"
+                            for e in preduelo if e["fondo"] == "escenario"))
 
         for nombre in ("salon_torneo_lleno.png", "revelacion_carta_torneo.png",
                        "portal_umbral_torneo.png"):
@@ -85,9 +88,13 @@ class TestQueEscenasSonDeQueMundo(unittest.TestCase):
                          "salon_torneo_lleno.png")
         self.assertEqual(finales.escenas_epilogo("dominio")[0].get("fondo_hd"),
                          "salon_torneo.png")
+        self.assertEqual(finales.escenas_epilogo("equilibrio")[0].get("fondo_hd"),
+                         "salon_torneo.png")
+        self.assertEqual(finales.escenas_epilogo("caos")[0].get("fondo_hd"),
+                         "epilogo_caos_salon_invadio.png")
         self.assertTrue(all(e.get("fondo_hd") == "camino_lluvioso.png"
                             for e in prologo.escenas_despertar()))
-        self.assertTrue(all(e.get("fondo_hd") is None
+        self.assertTrue(all(e.get("fondo_hd") == "camino_lluvioso.png"
                             for e in prologo.escenas_encuentro_hostil()
                             if e.get("fondo") == "camino"))
         self.assertTrue(any(e.get("fondo_hd") == "sala_trono.png"

@@ -1,0 +1,99 @@
+{
+  "recursos": [
+    {
+      "id": "vision_trono_sobre_torneo",
+      "nombre": "Visión del trono — pendiente por guion y mapeo protegido",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/vision_trono_sobre_torneo.png",
+      "dimensiones": [
+        1280,
+        720
+      ],
+      "sha256": "f2ae4db92c57be1ae275f001c34ea6c415d7b30e5daba838b59359f3d1fb6154",
+      "escenas": [],
+      "notas": "Trono vacío en una manifestación sobrenatural. carta_umbral.3 describe el dibujo de puerta/trono antes de activarse: este PNG anticiparía la magia. carta_umbral.8–10 describe una figura sentada y tiene asignaciones HD protegidas del Lote 02. Sin destino compatible autorizado; no sustituir ni agregar escena.",
+      "ruta": "assets/lotes_visuales/lote_04/fondos/vision_trono_sobre_torneo.png",
+      "hash_proporcionado": true,
+      "claves": [],
+      "personaje": null,
+      "estado": "pendiente",
+      "motivos": [
+        "Sin asignación narrativa"
+      ]
+    },
+    {
+      "id": "apagon_torneo_anomalia",
+      "nombre": "Inicio del apagón en el salón del torneo",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/apagon_torneo_anomalia.png",
+      "dimensiones": [
+        1280,
+        720
+      ],
+      "sha256": "d20f45c28f9515017786efa2a22bf293915937f8d4752ca10f97bb2da4466411",
+      "escenas": [
+        "prologo.transporte.0"
+      ],
+      "notas": "La luz se apaga: comienzo del fallo de luces con resplandor residual. No representa negro absoluto. No asignar a transporte.1, cuyo texto ya anuncia la salida del salón; transporte.1 y .2 conservan el montaje previo.",
+      "ruta": "assets/lotes_visuales/lote_04/fondos/apagon_torneo_anomalia.png",
+      "hash_proporcionado": true,
+      "claves": [
+        "f4d5c7fa7d198f11059c974d048d6901cea077860c084ec9787989d791a1afdd"
+      ],
+      "personaje": null,
+      "estado": "listo",
+      "motivos": []
+    },
+    {
+      "id": "ruptura_arena_vortice_alternativa",
+      "nombre": "Ruptura extrema — alternativa no integrada",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/ruptura_arena_vortice_alternativa.png",
+      "dimensiones": [
+        1280,
+        720
+      ],
+      "sha256": "73d4fd946d3d351ee34c62c8c0f8a9a075dc2017b4a15fc93823722312b615f8",
+      "escenas": [],
+      "classification": "optional_alternative",
+      "notas": "Pendiente: sugiere destrucción física de la sala no establecida por el guion.",
+      "ruta": "assets/lotes_visuales/lote_04/fondos/ruptura_arena_vortice_alternativa.png",
+      "hash_proporcionado": true,
+      "claves": [],
+      "personaje": null,
+      "estado": "pendiente",
+      "motivos": [
+        "Sin asignación narrativa"
+      ]
+    },
+    {
+      "id": "transito_umbral_entre_mundos",
+      "nombre": "Tránsito dimensional — alternativa no integrada",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/transito_umbral_entre_mundos.png",
+      "dimensiones": [
+        1280,
+        720
+      ],
+      "sha256": "7c3ee03985d1aa9259c56d0100661d5ed50a0332a03ca816a23c5496109515cb",
+      "escenas": [],
+      "classification": "optional_alternative",
+      "notas": "Pendiente: puente/camino dimensional y castillo no descritos como viaje físico en el transporte existente.",
+      "ruta": "assets/lotes_visuales/lote_04/fondos/transito_umbral_entre_mundos.png",
+      "hash_proporcionado": true,
+      "claves": [],
+      "personaje": null,
+      "estado": "pendiente",
+      "motivos": [
+        "Sin asignación narrativa"
+      ]
+    }
+  ],
+  "png_no_declarados": [
+    "docs/vista_previa_lote04.png",
+    "masters_originales/apagon_torneo_anomalia_master.png",
+    "masters_originales/ruptura_arena_vortice_alternativa_master.png",
+    "masters_originales/transito_umbral_entre_mundos_master.png",
+    "masters_originales/vision_trono_sobre_torneo_master.png"
+  ]
+}

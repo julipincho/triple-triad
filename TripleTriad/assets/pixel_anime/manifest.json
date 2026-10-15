@@ -1,0 +1,559 @@
+{
+  "lote": "pixel_anime_20261013",
+  "seleccion": {
+    "assets/avatar_dara.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_dara.png",
+      "sha256": "5e08e50947486ac839b88c891c6de70e99b12962fe0335aedda2923ed8cd2458",
+      "original_sha256": "0079c06b9b272a7f9b7952d7760f6fd48e1740a1cc5b54a84e29d25146238248",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 1827535772,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_dara.json"
+    },
+    "assets/avatar_dragon.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_dragon.png",
+      "sha256": "a8ef8ba4e7866ebbbf1ca3bd26144d2942fa0f24b8f30859d0f8ab0f587e7bb2",
+      "original_sha256": "c6c23bdfdc5dbb4578a5364ea92bb18a31761db8b760d2c6015eba77a869f042",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2149433577,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_dragon.json"
+    },
+    "assets/avatar_duelista.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_duelista.png",
+      "sha256": "1262b618e020296849088e0e6937598d9c5da39ebbf9ff1feca8d576c7144cc8",
+      "original_sha256": "f310cedfecf0400a48fb900515df770fa144f296ec7984fb2ac61c9bc0b12db3",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2815142745,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_duelista.json"
+    },
+    "assets/avatar_elfo.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_elfo.png",
+      "sha256": "0de9e9390f6307406dd96794258d3f5758551cbb0137ce9709e91faea79fa6ff",
+      "original_sha256": "aeabd64af80dac29415232498419e163aa0d612db58b8ec96d4d4f4ff7ea6cf9",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 1812575472,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_elfo.json"
+    },
+    "assets/avatar_elfo_nocturno.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_elfo_nocturno.png",
+      "sha256": "ee7cfd0293f421549cd377ff1423c84f80633a1835e874665be831e1494b2f09",
+      "original_sha256": "f27772ef95e5e9c3446af8ede84664c53703a0f849b8e22db18359ae550b5b5b",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2272941841,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_elfo_nocturno.json"
+    },
+    "assets/avatar_gobernante.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_gobernante.png",
+      "sha256": "9b6ff1dcfd2e92c25228ce0caf93e2ecedfbcc395195a0add36a74956a498e45",
+      "original_sha256": "b0e8ffdc6468f281b7a8ca1780024c3889378ea4d961a25b9a8b180f173b2fe8",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2207259907,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_gobernante.json"
+    },
+    "assets/avatar_goblin.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_goblin.png",
+      "sha256": "2f932bc15a6ba83473944a1d56afc08a5734e6b865a905ac01189e9e86dcc9a3",
+      "original_sha256": "0495bcddbbf18131cfb68d934f17dda6b0cdb8618c59b23209b67c4adc277cbd",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 3303459620,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_goblin.json"
+    },
+    "assets/avatar_hombre_lagarto.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_hombre_lagarto.png",
+      "sha256": "58b1ea484f4e327e244f05cd3d06addc42f1c1cc2bbfae9b9929e45ee2c4cbbb",
+      "original_sha256": "35c7974510985d58255411558980869c7674b3e3af1d895d5d67f50f5ba7b559",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 585700231,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_hombre_lagarto.json"
+    },
+    "assets/avatar_hombre_lobo.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_hombre_lobo.png",
+      "sha256": "0d1e8f800ab17d1af692eb4af1cdbb2d314d5d4d8117d26e0b70cd360ca7a6f9",
+      "original_sha256": "e49c4c80982f2240facac14d93854410613f5ba18df4e4442cff21608a8994f9",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 261708125,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_hombre_lobo.json"
+    },
+    "assets/avatar_hombre_pantera.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_hombre_pantera.png",
+      "sha256": "75a9abf3b3ad6a4cc0322942a9f13aa209bf9615308305c10626f38315fac6a8",
+      "original_sha256": "720691fc27db2236c3e5208270c5d5b87c1ae5769048a8529debaa952c12d378",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 36543237,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_hombre_pantera.json"
+    },
+    "assets/avatar_humano.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_humano.png",
+      "sha256": "167786366873593cda747984215574aca9710a09bebc43d8035e6e7dce824dd0",
+      "original_sha256": "4cba0a838bc7cc5c5ad2f7dcc23c114dea5acbf37a4f2e5217c458eb8dcb1e3a",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2922696431,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_humano.json"
+    },
+    "assets/avatar_jefe_arco.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_jefe_arco.png",
+      "sha256": "039bf1a21e6cc3dee3988489ecf10ec86336172135a1cf58037d4ae88c76c1ff",
+      "original_sha256": "d88fb40a24f22e126a36f547402c6632cf4c9594856aa7dd34840c18b4eceef2",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 3307640239,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_jefe_arco.json"
+    },
+    "assets/avatar_nara.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_nara.png",
+      "sha256": "4d04c9f289961a55a55ec21dd7a4b916aaee8f63ace520e622096be47d9bfbdd",
+      "original_sha256": "f08745927627130008356dae54d6546fe13345343f03a06c6de28d12010b67a2",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 974888981,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_nara.json"
+    },
+    "assets/avatar_orco.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_orco.png",
+      "sha256": "f457dcb1dcf21a7595e22f16df29569c6ea928e0b3c26b09d05a074da73e57e6",
+      "original_sha256": "26579b0f84f54140b508a264c09ab059ef12cae03fc4d74ecd6a6de20a0402b4",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 1133334024,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_orco.json"
+    },
+    "assets/avatar_pik.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_pik.png",
+      "sha256": "9144907b903053533d7f0669fddcb49dbd3950cc262b4e8e90b6a1fbea4d63a7",
+      "original_sha256": "42312984fb53ab3d4fcd6fa0598ad3c19a117c48228e187b1b5446b9aaad2154",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 883829664,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_pik.json"
+    },
+    "assets/avatar_presentador.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_presentador.png",
+      "sha256": "3923cf466e7f52647afd15c17ade22c22d4e08dd2d41a2b74d86d5a3161e8982",
+      "original_sha256": "7e7a6fb188e7e3e5ace4fb88d2d166aa3b6a322cf0127126013f1833815d6d7d",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2822207833,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_presentador.json"
+    },
+    "assets/avatar_rajoy.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_rajoy.png",
+      "sha256": "70c9f42e282a2d122cf8a810bbd47484ebf988078b941685887f467fb449da9b",
+      "original_sha256": "9c99a30e4c9f1b7f4706214438a2543679906a8b8090e53f026c3d2e1f174f4a",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2937784112,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_rajoy.json"
+    },
+    "assets/avatar_revancha.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_revancha.png",
+      "sha256": "6aeeb95776ecbdd0eacbe8cfe1d0094dd67f6ee0001fd6e4aa37a577625fb81c",
+      "original_sha256": "3caa49941b98c1d27c1fd153302e735fda45e53c20ce8997c9c03c9fc7c060bf",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 1687755566,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_revancha.json"
+    },
+    "assets/avatar_vampiro.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/avatares/avatar_vampiro.png",
+      "sha256": "3e0faeb77fbea59fef6caa26bce66555d6168b2df8e8d2d21a6636c85ac5c4d0",
+      "original_sha256": "382439998dce1cba737284c385a43d60a491fb3895812abbcd959bcb70d1dbaa",
+      "modelo": "animagine-xl-4.0.safetensors",
+      "seed": 2643761034,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\avatar_vampiro.json"
+    },
+    "assets/fondos/aldea.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/aldea.png",
+      "sha256": "41a59c406b8bebd373fcd519e33b890a746b486eb59d2fd1e78004ec9fcc3b54",
+      "original_sha256": "61321f57e2b75ba2abba6d7b811c8b92b873165155209205cc5602317f3172c6",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1352702403,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\aldea.json"
+    },
+    "assets/fondos/amanecer.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/amanecer.png",
+      "sha256": "699deec89caf908539c7ed15ed9bce88732b6d390fae5a792e56f31ea3833872",
+      "original_sha256": "8aa15ce772797ca0a644fe41e6eaae28ea4ed3cd041415cbbca169911d233ca4",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1870892320,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\amanecer.json"
+    },
+    "assets/fondos/apagon.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/apagon.png",
+      "sha256": "8abec638c023cf3b260d25c62a98810e25b5e0a61a79c6dbd01c0eeda5dbf28d",
+      "original_sha256": "44c7d1934ed7b0efdbea1bbbcc7d42426ed317a7efe432a2500afdfd15351206",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2371270761,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\revision\\fondos\\apagon.json"
+    },
+    "assets/fondos/asalto.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/asalto.png",
+      "sha256": "4d3e168d8ef6cb01b026fbd6c5ae94ba272de746f35da3d402af5fecca025688",
+      "original_sha256": "7cf1c0faa4c38ef61ed94f3dcb50b0f5cae3f5b6d6ac6e4a020baa65f97c85e5",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 890048401,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\asalto.json"
+    },
+    "assets/fondos/asalto_amanecer.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/asalto_amanecer.png",
+      "sha256": "6262e93fffe4bba96bcfafaa91dd694a06ed7d9b9a8bdb332180c4af3eaa6667",
+      "original_sha256": "2ec3c460b46a25b4f77646f82110764c771603809c44548e2ad5b3fdf201cf67",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 4020246436,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\revision\\fondos\\asalto_amanecer.json"
+    },
+    "assets/fondos/asalto_noche.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/asalto_noche.png",
+      "sha256": "e8990e56760089bbfacd860b534c0d72e50759494f1663ae841bdf47d7199849",
+      "original_sha256": "fa77899f973da31ea1dd8e927475573cdf4b2a1139a5de91822cfc1821c516ca",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1700123577,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\revision\\fondos\\asalto_noche.json"
+    },
+    "assets/fondos/camino.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/camino.png",
+      "sha256": "56252df32a47bdf9e3f305324a2f5749fe3cc4e1b9983e0686c2ab0d738ff2c9",
+      "original_sha256": "96a2832515615e110a3f567638d64d31fcfe6e2a641394081543c9267dc7ed49",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 659950131,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\camino.json"
+    },
+    "assets/fondos/camino_amanecer.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/camino_amanecer.png",
+      "sha256": "982650dd33b0c44dcbec96d1477f5a1d382697d4353a78f7da9b5c09d3b2476f",
+      "original_sha256": "d5ba4a8cacb9be7b05c00b22f6982b29ce9ca8eb5c0f31e4d21b05abb806e515",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 951121193,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\camino_amanecer.json"
+    },
+    "assets/fondos/camino_lluvia.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/camino_lluvia.png",
+      "sha256": "415742a9ff59ceee752bf059e64082a64f83c8173df10eabc34184c1f7849c07",
+      "original_sha256": "c0f795ce6ec4e7e361548d95547f4b6205309f2241b291f8fd0605120bf797e6",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 592771578,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\revision\\fondos\\camino_lluvia.json"
+    },
+    "assets/fondos/camino_nevada.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/camino_nevada.png",
+      "sha256": "d9fd36008df42def501f614e41a9e711ebef3e6ac7ea0e15d332332954e6db33",
+      "original_sha256": "1abdf02e010254da2dc540f238c56842890d63dbafab3e7ad3ae32f7cbe2c1a5",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3714676962,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\camino_nevada.json"
+    },
+    "assets/fondos/camino_niebla.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/camino_niebla.png",
+      "sha256": "0def7176427944033e4db5481fc9da9f8bd51cdf6702f79f2f893db1e83c0ea5",
+      "original_sha256": "1ba26e1b64353215ad0dbe615425c0f702eed2fac2f38d809ddf83201fd714c8",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1663498699,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\camino_niebla.json"
+    },
+    "assets/fondos/camino_noche.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/camino_noche.png",
+      "sha256": "10944535e58c31e4aad3ab62c14e21b6f13024e09fa40aa40b6845670bfb72fb",
+      "original_sha256": "1326a1ac7d13473d239d0c253ba1e49f108ffd038fe95b3bdc8c155acd495d01",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 4031908270,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\camino_noche.json"
+    },
+    "assets/fondos/campamento.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/campamento.png",
+      "sha256": "1559f20cf4d34b466d3cc88c195203973a0761c1f7e49bc99777e6149fd9a808",
+      "original_sha256": "643c3069a0dbaef2d6ed4dd0c2544da24469b7b106ad6137bf95d79e6f0d42e8",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2561341244,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\campamento.json"
+    },
+    "assets/fondos/campamento_amanecer.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/campamento_amanecer.png",
+      "sha256": "aeaa6587684ea552900fdfeb596be377f4ab63bd73857a1812c796c66ed75ad4",
+      "original_sha256": "d5bc937fd21b18e656e2e7e7dc4e1d148d74a7613343f2457d75c8df936ddfc5",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 663394562,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\campamento_amanecer.json"
+    },
+    "assets/fondos/campamento_asedio.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/campamento_asedio.png",
+      "sha256": "92d75f54d4a87165e0188ebb4accef09b48f46ef8479cf751e371dd6a8aae028",
+      "original_sha256": "60560fa297cd451a37400410ba45bb1df726e47186e89ad3ab0aa5bd20cb84ca",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 304859605,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\campamento_asedio.json"
+    },
+    "assets/fondos/campamento_lluvia.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/campamento_lluvia.png",
+      "sha256": "dd5b7cca9a3d1fc1598a6fa20c8a0dfee211e596dfbc28add1befd438cbe676b",
+      "original_sha256": "31f51fcadd62bce92fa40dc71ea4f364187e6b34223e2e69672a9cf86cba8c54",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3646476262,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\campamento_lluvia.json"
+    },
+    "assets/fondos/campamento_niebla.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/campamento_niebla.png",
+      "sha256": "0143e0774004205edf1c48aaff7bbb31d62cd4cd5f0c7b56426e5596b80f43ec",
+      "original_sha256": "65b2168eee6cd4d5f8f8fe9a83d66c7d38f0c246e6ed15d3c40900114b3bd312",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 289806013,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\campamento_niebla.json"
+    },
+    "assets/fondos/campamento_tormenta.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/campamento_tormenta.png",
+      "sha256": "0b2fea3516c7ef2725276d7492bd476b8ca8a79b31a894d6a57f062c4db4b454",
+      "original_sha256": "2494855215ca45d6f5393d024ed922aa940c771a90c46390cb1ce82f7bae6779",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2168504908,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\revision\\fondos\\campamento_tormenta.json"
+    },
+    "assets/fondos/ceniza.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/ceniza.png",
+      "sha256": "33445656607d487163abc8527bb74e165dfeede47022589c534dfbf777b8d76b",
+      "original_sha256": "f57c6b356fcf151a98e23091173c8bfa87f78b02524b885eca110218c2c5766f",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 4103187362,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\ceniza.json"
+    },
+    "assets/fondos/escenario.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/escenario.png",
+      "sha256": "9873e73a4ac02ef657a239d1f6234338a1ca50c40b8fe504531d622e7cca0315",
+      "original_sha256": "794deb0f56bb6a2095eab2f6e9400e94bc827da996b1d86dc96113df4304d439",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 149946951,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\escenario.json"
+    },
+    "assets/fondos/escenario_lleno.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/escenario_lleno.png",
+      "sha256": "befd1d1ad4ebf0b388f577deee20e89d037d33dbc0dd77b4caa5815d54505d31",
+      "original_sha256": "44e9f063b8852b5ef2203e6178b590d69f13ad1bf8e033df4faedd9ee8077489",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3365421914,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\revision\\fondos\\escenario_lleno.json"
+    },
+    "assets/fondos/escenario_vacio.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/escenario_vacio.png",
+      "sha256": "3f1a43f394c14b423a432c4d81fc510fd9fd3ba93d5684c964c251db2d443e6b",
+      "original_sha256": "1da62d2f1f02ea1de6e72ea2a712939609202c2dfb1210a7f7f3140320c701e7",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3879376490,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\revision\\fondos\\escenario_vacio.json"
+    },
+    "assets/fondos/estandartes.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/estandartes.png",
+      "sha256": "d0f11e1cf38ec2ac8c1270995a72c608a952d7024b28cd85dad25073ab26c3b1",
+      "original_sha256": "b019b587dd8f55c3e2e910eadd543ea7ef4982450b2e4c3bc40415af5f8d3542",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2019519023,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\estandartes.json"
+    },
+    "assets/fondos/fortaleza.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/fortaleza.png",
+      "sha256": "feb9f7bb89b57399af50112cb11f396c56cbf3829d0adc5377f5898ce94e21c0",
+      "original_sha256": "6a328c7a6a82caad0aca4f74e067b06b217771edc214179e4676d915b90f7d50",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3574820499,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\fortaleza.json"
+    },
+    "assets/fondos/publico.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/publico.png",
+      "sha256": "822abdf9ac9291b71ee7793edd8c5370d4fd1d45e5abfb9c161439cc59b2aa7a",
+      "original_sha256": "568555099bf98db4f6dcd7522f0e9bbd2195e250492eeba8004c6ecb7c0c0611",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2083424659,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\publico.json"
+    },
+    "assets/fondos/ruinas.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/ruinas.png",
+      "sha256": "9f81dda8dadf5fe294dd4ded69dd5dd1332083306a88a093d98d6f6fef4177b5",
+      "original_sha256": "f3f35bada910428c7c7297627351622dedc5f26cb777ff8cc4d77bae96c8fbd9",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 788506100,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\ruinas.json"
+    },
+    "assets/fondos/ruinas_brasa.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/ruinas_brasa.png",
+      "sha256": "6796ddf74fd410b9a84c7f5ab8f0486bf00b0821ff9b9034fd0b3abcd026c3c3",
+      "original_sha256": "b57114fd3e08f73c27f7bbc62dce762703d6573aa6160cc4b659e055c3c4b713",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1581479365,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\ruinas_brasa.json"
+    },
+    "assets/fondos/ruinas_derrumbe.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/ruinas_derrumbe.png",
+      "sha256": "377d274207853ecfab3f0b7a68cacd685710e11ef0c54d4ca4577b4a8d0134f9",
+      "original_sha256": "16541e7c7c3abf3dafaf37a3bc4d407a4b833bc2722e7bab461cdf46a2c1f91d",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2097631844,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\ruinas_derrumbe.json"
+    },
+    "assets/fondos/ruinas_profundo.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/ruinas_profundo.png",
+      "sha256": "0fe5c8a220721893622066b3bfd93fd5a8062f687d3ccdc8b0295b222f66c671",
+      "original_sha256": "c466593d981f793b9673bedcdd3dc544f67794f850a893edff710554a29d9b24",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3079454153,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\fondos\\ruinas_profundo.json"
+    },
+    "assets/fondos/trono_derrumbe.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/trono_derrumbe.png",
+      "sha256": "535b60a9fc1515779058862d7bf8df3a673a6cd67b5ab9a3f986ca7b3ddfa6d5",
+      "original_sha256": "ec178be9c23403f68741229fdba08c1f6be50310c86e8703d2086f533373b392",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1489326877,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\trono_derrumbe.json"
+    },
+    "assets/fondos/trono_nieve.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/trono_nieve.png",
+      "sha256": "5ef9bb82d2f2d13589ab974305d699606eb70e7edde6803135fd25840bed85e6",
+      "original_sha256": "36a8070b6d3d1cda222ab41fcd5967c3e555298b5fa1098eedaca7c52203b84c",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3245052431,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\trono_nieve.json"
+    },
+    "assets/fondos/umbral.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/umbral.png",
+      "sha256": "4d4c78cd93868c26cfb64ec055dc7e8dbd308dd9ee91cc873c1c1ba41e527993",
+      "original_sha256": "36e632d54c82f629764f8880ce9430293017f1f040fcf657ad14fa9b70569e7d",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1038178637,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\umbral.json"
+    },
+    "assets/fondos/umbral_ancho.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/umbral_ancho.png",
+      "sha256": "5b20e9c7bf9295f211423e286e773ac67eab17dc5d6546c33bccecb275da28f1",
+      "original_sha256": "3a71e17dbb86361b2dfc32be702ecff3df934a800e191c86fe28589456b99ab1",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2277140399,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\umbral_ancho.json"
+    },
+    "assets/fondos/umbral_angosto.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/umbral_angosto.png",
+      "sha256": "79d99d553c3b6ea43f336e5e814c42bd9efb15d2de8c0c7b457f012a2ba56af3",
+      "original_sha256": "8d7845492e84000bc6df48c608d0e36ab6288a45abcd8f9c0bc6d669fcb070e3",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2285927725,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\umbral_angosto.json"
+    },
+    "assets/fondos/umbral_cerrando.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/umbral_cerrando.png",
+      "sha256": "c2a3fe364ba70482feeebef9aac8207b6245d3c69ea6e0a0225f2d5671e83cfe",
+      "original_sha256": "737d2849771d0822d8826ff9fe4ce2e65eab4a4eaa60156cd4fe5de5f3a33f82",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1099666656,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\umbral_cerrando.json"
+    },
+    "assets/fondos/umbral_deslumbrante.png": {
+      "tipo": "fondo",
+      "ruta": "assets/pixel_anime/cinematicas/umbral_deslumbrante.png",
+      "sha256": "7b9ac2d44432fd226dbbe2eb0a7bdfdd45a343f3ff428b6bc089c407213423a1",
+      "original_sha256": "7f7d416d97594e9dc1ac87da29d81ea46cba5556bfe54254c69257a1df2f5221",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3449580415,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\nuevo\\fondos\\umbral_deslumbrante.json"
+    },
+    "assets/escenas/anciano.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/encuentros/anciano.png",
+      "sha256": "cee96394a9dc10d8559d2ec72e7756c940568332f6f54b65db6292f02e4664d2",
+      "original_sha256": "49d626eb50777d7b2fbb59f2269787d6f0a159067d6ed01cb29cbdaf3412e39c",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1899575172,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\escenas\\anciano.json"
+    },
+    "assets/escenas/caravana.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/encuentros/caravana.png",
+      "sha256": "419379fbad67943f4f59c7bb557514fbb3386e95a9274a9d498e6d27b2fe194a",
+      "original_sha256": "52ba2f266a2c2b4afef98c2e333b4128b13c4e67d2c5ddfe097d8c0c72f1581e",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 1728108996,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\escenas\\caravana.json"
+    },
+    "assets/escenas/hermandad.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/encuentros/hermandad.png",
+      "sha256": "e2199ca35168b749b3b681fe6991296b063721ab94b5e9a300efca5eb1d1ef3c",
+      "original_sha256": "1e57a74ceeb3c3f4bcfad137494296a996b8dc987944dcbd85e787a633a5489a",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 2133153882,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\escenas\\hermandad.json"
+    },
+    "assets/escenas/hostil.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/encuentros/hostil.png",
+      "sha256": "32a553492c8c1fe5bf7aabf3b33ba61096ff02f57c621997065a296ca81b595a",
+      "original_sha256": "01d775d11bea51c9e6d2d3ae7c871f13bafd06ed8647a472b06f499d401e8ce5",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3693305460,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\escenas\\hostil.json"
+    },
+    "assets/escenas/mercader.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/encuentros/mercader.png",
+      "sha256": "34fd85235ba636c0577f5dc10f1c09b017b7be4713f0e0d012a928d610915bea",
+      "original_sha256": "ba31bcec5a0a7abc2666021df286f2c6920a0825d9b402c3bc95e93161c62d73",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 3540126496,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\escenas\\mercader.json"
+    },
+    "assets/escenas/nara.png": {
+      "tipo": "retrato",
+      "ruta": "assets/pixel_anime/encuentros/nara.png",
+      "sha256": "f8aba0c65b97af3f0f1c75f386cf8ed9ae590f00a4932cd8d32e604a5e91d079",
+      "original_sha256": "0a6f294df4bd682cd0db6cd9efd19754f02381c6a31498556a4d28cfe8bab3fb",
+      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
+      "seed": 4077895904,
+      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\escenas\\nara.json"
+    }
+  },
+  "reservados": {
+    "salon": "Lotes HD aprobados tienen prioridad",
+    "trono": "Sala del trono aprobada tiene prioridad",
+    "trono_guardia": "Candidatos sin guardias legibles: conservar original"
+  }
+}

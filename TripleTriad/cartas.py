@@ -125,7 +125,7 @@ def bloqueada(escala=1):
 
 
 def crear(carta, dueno=None, habilidad=True, escala=1, bando_dueno=None,
-          valores=None):
+          valores=None, nombre_separado="externo"):
     """Superficie de una carta. `dueno`: 'T', 'C' o None.
 
     `bando_dueno`: faccion de la baraja que domina la carta ahora mismo.
@@ -135,6 +135,7 @@ def crear(carta, dueno=None, habilidad=True, escala=1, bando_dueno=None,
     """
     valores = carta.valores if valores is None else valores
     clave = (
+        nombre_separado,
         carta.nombre,
         tuple(carta.valores[d] for d in LADOS),
         carta.bando,
@@ -175,12 +176,32 @@ def crear(carta, dueno=None, habilidad=True, escala=1, bando_dueno=None,
     # arte: panel central, libre de los orbes de valor
     arte = imagen_carta(carta)
     ax, ay, aw, ah = rect_arte(w, h)
+    if nombre_separado is True:
+        # Prototipo optativo: la placa conserva su lugar pero el arte empieza
+        # debajo; no modifica archivos ni el render habitual del juego.
+        inicio = 44 if len(_lineas_nombre(carta.nombre, w - 14)) == 1 else 58
+        ah -= inicio - ay
+        ay = inicio
     if arte is not None:
-        img = pygame.transform.smoothscale(arte, (aw, ah))
+        if nombre_separado is True:
+            factor = min(aw / arte.get_width(), ah / arte.get_height())
+            img = pygame.Surface((aw, ah), pygame.SRCALPHA)
+            ajuste = pygame.transform.smoothscale(arte, (
+                max(1, round(arte.get_width() * factor)),
+                max(1, round(arte.get_height() * factor))))
+            img.blit(ajuste, ajuste.get_rect(center=img.get_rect().center))
+        else:
+            img = pygame.transform.smoothscale(arte, (aw, ah))
         mascara = pygame.Surface((aw, ah), pygame.SRCALPHA)
         for i in range(5):
             mascara.fill((0, 0, 0, 10 * i), (0, 0, aw, ah - 5 - i))
         img.blit(mascara, (0, 0))
+        borde = pygame.Surface((aw, ah), pygame.SRCALPHA)
+        pygame.draw.rect(borde, (255, 255, 255), borde.get_rect(), border_radius=5)
+        con_borde = pygame.Surface((aw, ah), pygame.SRCALPHA)
+        con_borde.blit(img, (0, 0))
+        img = con_borde
+        img.blit(borde, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
         s.blit(img, (ax, ay))
     else:
         inicial = facciones.FACCIONES.get(carta.bando, {}).get("inicial", "?")
@@ -191,10 +212,13 @@ def crear(carta, dueno=None, habilidad=True, escala=1, bando_dueno=None,
 
     # placa de nombre: bajo el orbe norte, sobre el panel de arte
     lineas = _lineas_nombre(carta.nombre, w - 14)
+    if nombre_separado == "externo":
+        lineas = []
     alto_placa = 16 if len(lineas) == 1 else 30
     placa = pygame.Surface((w - 8, alto_placa), pygame.SRCALPHA)
     pygame.draw.rect(placa, (0, 0, 0, 200), placa.get_rect(), border_radius=5)
-    s.blit(placa, (4, 26))
+    if lineas:
+        s.blit(placa, (4, 26))
     if len(lineas) == 1:
         img = _texto_ajustado(lineas[0], 8, w - 14, (245, 245, 245))
         s.blit(img, (w // 2 - img.get_width() // 2, 31))
@@ -317,27 +341,31 @@ def miniatura(carta, tam=(48, 66)):
         # Recorte central del arte
         aw, ah = mw - 6, mh - 16
         img_arte = pygame.transform.smoothscale(arte, (aw, ah))
-        s.blit(img_arte, (3, 3))
+        redondeada = pygame.Surface((aw, ah), pygame.SRCALPHA)
+        redondeada.blit(img_arte, (0, 0))
+        mascara = pygame.Surface((aw, ah), pygame.SRCALPHA)
+        pygame.draw.rect(mascara, (255, 255, 255), mascara.get_rect(), border_radius=3)
+        redondeada.blit(mascara, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+        s.blit(redondeada, (3, 3))
     else:
         # Reserva si no hay arte
         pygame.draw.rect(s, oscuro, (3, 3, mw - 6, mh - 16), border_radius=2)
         inicial = facciones.FACCIONES.get(carta.bando, {}).get("inicial", "?")
         texto(s, inicial, 12, claro, centro=(mw // 2, (mh - 16) // 2))
 
-    # Placa de nombre inferior
-    placa = pygame.Surface((mw - 4, 12), pygame.SRCALPHA)
-    pygame.draw.rect(placa, (10, 10, 16, 230), placa.get_rect(), border_radius=3)
-    s.blit(placa, (2, mh - 14))
-
-    # Nombre recortado
-    nombre_txt = limpio(carta.nombre)
-    img_txt = _texto_ajustado(nombre_txt, 6, mw - 6, claro)
-    s.blit(img_txt, (mw // 2 - img_txt.get_width() // 2, mh - 12))
+    # El nombre pertenece al tooltip externo, nunca a la ilustracion.
 
     if len(_cache) >= MAX_CACHE_CARTAS:
         _cache.clear()
     _cache[clave] = s
     return s
+
+
+def nombre_al_pasar(screen, carta, rect):
+    """Etiqueta externa solo al apuntar a una carta visible."""
+    if pygame.Rect(rect).collidepoint(pygame.mouse.get_pos()):
+        ui.tooltip(screen, carta.nombre, (rect.centerx, rect.y), ancho=260, arriba=True)
+        ui.dibujar_tooltips(screen)
 
 
 def rotar(sup, clave, grados):

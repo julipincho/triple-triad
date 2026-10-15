@@ -19,16 +19,22 @@ MUSICA = os.path.join(CARPETA, "musica")
 
 #: Pistas que NO genera este script y que se saltan si ya estan.
 #:
-#: `musica_duelo` es un render de ACE-Step 1.5, integrado con
-#: `integrar_musica_ia.py`. Antes de esa integracion la generaba este archivo
-#: como tema chiptune, y sin esta guarda reejecutarlo lo machacaba en silencio:
-#: el script reescribia el WAV y avisaba igual de "Listo.". Lo mismo con las
-#: cuatro pistas nuevas del prologo.
+#: Todas son renders de ACE-Step 1.5, integradas con `integrar_musica_ia.py`:
+#: las cinco del prologo, la del duelo y el menu con las diez facciones. Sin
+#: esta guarda, reejecutar este archivo las machacaba en silencio: reescribia el
+#: WAV y avisaba igual de "Listo.". (Pasó con `musica_duelo`.)
 #:
-#: Para recuperar una de estas por chiptune hay que borrar el WAV a proposito.
+#: Este script ya solo produce los efectos de sonido: de las 17 pistas, ninguna
+#: se genera aqui. Para recuperar una por chiptune hay que borrar el WAV a
+#: proposito.
 MUSICA_DE_OTRO_ORIGEN = {
+    # prologo
     "musica_duelo", "musica_torneo", "musica_umbral",
     "musica_apagon", "musica_bosque", "musica_campamento",
+    # menu y facciones
+    "musica_explora", "musica_humano", "musica_orco", "musica_elfo",
+    "musica_goblin", "musica_hombre_lobo", "musica_vampiro", "musica_dragon",
+    "musica_elfo_nocturno", "musica_hombre_pantera", "musica_hombre_lagarto",
 }
 
 
@@ -424,8 +430,11 @@ def musica_temas():
     print("Temas...")
     os.makedirs(MUSICA, exist_ok=True)
     for nombre in TEMAS:
-        if _existe_de_otro_origen(nombre):
-            print(f"  {nombre}.wav  (ya existe de otro origen: no se toca)")
+        # OJO: las claves de TEMAS son "duelo"/"explora", sin el prefijo. Hay
+        # que pasar el nombre entero o la guarda no encuentra nada, pisa la
+        # pista de IA y no dice nada.
+        if _existe_de_otro_origen(f"musica_{nombre}"):
+            print(f"  musica_{nombre}.wav  (ya existe de otro origen: no se toca)")
             continue
         muestras = _tema(nombre)
         _escribir(f"musica_{nombre}.wav", muestras, MUSICA)
@@ -438,6 +447,9 @@ def musica():
     os.makedirs(MUSICA, exist_ok=True)
     pulsos = 4
     for faccion in ESCALAS:
+        if _existe_de_otro_origen(f"musica_{faccion}"):
+            print(f"  musica_{faccion}.wav  (ya existe de otro origen: no se toca)")
+            continue
         largo_pulso = 60.0 / TEMPO[faccion]
         largo = int(SR * largo_pulso)
         rnd = random.Random(sum(ord(c) for c in faccion))

@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "lote": "lote_03",
+  "fuente": "E:/AI/CartonesMazmorrasVisual/CartonesMazmorras_Lote03_1280x720.zip",
+  "fuente_sha256": "c3b6a09cac0e1f0af532048d25043b21af24124379871fdd90daae6d057aa738",
+  "notas": "Adaptación de esquema sin modificar los PNG ni el manifiesto original. Solo se asignan acontecimientos existentes sin HD aprobado; alternativas y candidato incompatible quedan pendientes.",
+  "recursos": [
+    {
+      "id": "escenario_carta_cubierta",
+      "nombre": "Presentador anuncia la carta todavía cubierta",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/escenario_carta_cubierta.png",
+      "dimensiones": [1280, 720],
+      "sha256": "8b95d98a45d1072ef5533c9073722827c739e780b8dffc75fd20e85515bb428f",
+      "escenas": ["prologo.carta_umbral.1"],
+      "notas": "Anuncio existente: Una carta que no tiene faccion. Ni bando. Ni edicion. Plano de preparación, antes de descubrirla. La entrada de organizadores [0] conserva salon_torneo_lleno del Lote 02."
+    },
+    {
+      "id": "carta_presentada_sin_activar",
+      "nombre": "Presentación física — pendiente por continuidad",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/carta_presentada_sin_activar.png",
+      "dimensiones": [1280, 720],
+      "sha256": "be061e36ae1be87dd1c8dfc3ffd1e1445c794e560d00cebb0afa955d64d0bed9",
+      "escenas": [],
+      "notas": "NO INTEGRAR: resplandor/energía violeta ya visible antes de la activación; muestra símbolo de rombo, no puerta/trono vacío descritos por el texto. La cara/reverso no está justificada por el montaje existente. Requiere imagen corregida o revisión explícita, sin alterar el guion."
+    },
+    {
+      "id": "activacion_carta_plano_cercano",
+      "nombre": "Primer fenómeno sobrenatural — plano cercano",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/activacion_carta_plano_cercano.png",
+      "dimensiones": [1280, 720],
+      "sha256": "92986c111001c00de61245ea101961a97495bdab95cfd8a3b450f971fa7f6ef7",
+      "escenas": ["prologo.carta_umbral.6", "prologo.carta_umbral.7"],
+      "notas": "LAS NUEVE CASILLAS / empiezan a iluminarse: plano de activación dentro del salón. Coinciden marco dorado, medallón superior izquierdo y abertura oval violeta con revelacion_carta_torneo. No se afirma que muestre nueve casillas legibles; funciona como plano de reacción mágica de la carta, sin añadir una escena. [8:11] conservan revelación y portal aprobados."
+    },
+    {
+      "id": "umbral_ruptura_total_alternativa",
+      "nombre": "Alternativa de ruptura total — solo revisión",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/umbral_ruptura_total_alternativa.png",
+      "dimensiones": [1280, 720],
+      "sha256": "7a90227ea9183ce50ba256775f3aaa11ac3988b70469b633c461a058794779e6",
+      "escenas": [],
+      "classification": "optional_alternative",
+      "notas": "Pendiente por instrucción del usuario. No sustituir portal_umbral_torneo del Lote 02 ni añadir acontecimientos."
+    },
+    {
+      "id": "publico_reacciona_portal_alternativa",
+      "nombre": "Alternativa del público reaccionando — solo revisión",
+      "tipo": "fondo",
+      "archivo": "cinematicas_hd/publico_reacciona_portal_alternativa.png",
+      "dimensiones": [1280, 720],
+      "sha256": "ed5c90e2bb509419329126e5cc6628e4865eccf27013e7181de8a3da7d69eb44",
+      "escenas": [],
+      "classification": "optional_alternative",
+      "notas": "Pendiente por instrucción del usuario. No existe un beat autónomo de reacción que autorice insertar esta toma sin alterar el montaje protegido."
+    }
+  ]
+}

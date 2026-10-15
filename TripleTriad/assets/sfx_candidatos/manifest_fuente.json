@@ -1,0 +1,153 @@
+{
+  "project": "Cartones y Mazmorras",
+  "batch": "SFX_Lote01",
+  "status": "PROTOTIPO - requiere escucha y aprobación; NO auto-integrar",
+  "method": "síntesis original con numpy/scipy, sin recursos externos ni modelos",
+  "format": "WAV PCM 16-bit stereo 48000 Hz",
+  "note": "Variantes, no samplear todos los efectos de una vez. No sustituir música ni SFX existentes sin aprobación.",
+  "files": [
+    {
+      "file": "card_place_01.wav",
+      "event": "card_place",
+      "variant": 1,
+      "seconds": 0.31,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "cfee8189ec5d75cbe4ef3c32bfdfdde952402f2f0f9bb0d9b3de33ed6f88bf8a",
+      "peak": 0.72
+    },
+    {
+      "file": "card_place_02.wav",
+      "event": "card_place",
+      "variant": 2,
+      "seconds": 0.31,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "bdb828ae2a7b85162eabebb77b163c93768a2bea228ffad3d14f96c725a7b8da",
+      "peak": 0.72
+    },
+    {
+      "file": "card_flip_01.wav",
+      "event": "card_flip",
+      "variant": 1,
+      "seconds": 0.37,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "e920d38c179d60d38f6ae15b7dee5baff109a69ab1d6d7506106c2e76bf107d3",
+      "peak": 0.72
+    },
+    {
+      "file": "card_flip_02.wav",
+      "event": "card_flip",
+      "variant": 2,
+      "seconds": 0.37,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "cdd155b40e152667701b736057393e6a33400995629ebc0c2399f110ed608623",
+      "peak": 0.72
+    },
+    {
+      "file": "card_capture_01.wav",
+      "event": "card_capture",
+      "variant": 1,
+      "seconds": 0.66,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "56a563aecb6fdf02a92a7ee2f5b4ecd55e0ea0fdee288fbe57b5e72504a26f41",
+      "peak": 0.72
+    },
+    {
+      "file": "card_capture_02.wav",
+      "event": "card_capture",
+      "variant": 2,
+      "seconds": 0.66,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "72b124cef2c21c5bb1c5b43a51b39cf5017fd6c7b66aac863310810615dedf88",
+      "peak": 0.72
+    },
+    {
+      "file": "ability_trigger_01.wav",
+      "event": "ability_trigger",
+      "variant": 1,
+      "seconds": 0.83,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "70ce4ab6f0f756dce448a8bdb496dfbe04cfb593d5a00493080445ea4a717fd4",
+      "peak": 0.72
+    },
+    {
+      "file": "ability_trigger_02.wav",
+      "event": "ability_trigger",
+      "variant": 2,
+      "seconds": 0.83,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "058a8ffca9c8b30dac76a66e9503d0850e215a83032291f1687fdb2390123552",
+      "peak": 0.72
+    },
+    {
+      "file": "same_plus_01.wav",
+      "event": "same_plus",
+      "variant": 1,
+      "seconds": 0.76,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "1c716619a400dfd2f8c775ca2d4c65eb5595e2d1a79f065104ff5c27751c1dc1",
+      "peak": 0.72
+    },
+    {
+      "file": "combo_chain_01.wav",
+      "event": "combo_chain",
+      "variant": 1,
+      "seconds": 1.05,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "c7d4d623345c2728e3cc1951e58dada1192d560284e3cd3a1a46ef65a770eca8",
+      "peak": 0.72
+    },
+    {
+      "file": "combo_chain_02.wav",
+      "event": "combo_chain",
+      "variant": 2,
+      "seconds": 1.05,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "7745a832cd080ccab00b65c1297fa694762ed8054c0ef18ebdcaee25a201385b",
+      "peak": 0.72
+    },
+    {
+      "file": "invalid_move_01.wav",
+      "event": "invalid_move",
+      "variant": 1,
+      "seconds": 0.35,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "04f2b2d81890bf3c8db7fb0a055fb0a0b0b37a7802e959519a58b15273f14e13",
+      "peak": 0.72
+    },
+    {
+      "file": "turn_change_01.wav",
+      "event": "turn_change",
+      "variant": 1,
+      "seconds": 0.53,
+      "channels": 2,
+      "sample_rate": 48000,
+      "bit_depth": 16,
+      "sha256": "be25653cac118c21cbf8d46378831bd9b82d9610d3900fa50e2181083f1ad580",
+      "peak": 0.72
+    }
+  ]
+}

@@ -49,6 +49,26 @@ PISTAS = {
     "09_campamento": ("musica_campamento", True),
 }
 
+#: Menu y las diez facciones. Vienen de otro lote de pruebas, con su propia raiz.
+#: Los nombres de destino coinciden con los que `audio.musica_de_faccion()`
+#: construye, asi que no hay que tocar el codigo del juego para que encajen.
+FACCIONES = {
+    "10_menu": "musica_explora",
+    "11_humano": "musica_humano",
+    "12_orco": "musica_orco",
+    "13_elfo": "musica_elfo",
+    "14_goblin": "musica_goblin",
+    "15_hombre_lobo": "musica_hombre_lobo",
+    "16_vampiro": "musica_vampiro",
+    "17_dragon": "musica_dragon",
+    "18_elfo_nocturno": "musica_elfo_nocturno",
+    "19_hombre_pantera": "musica_hombre_pantera",
+    "20_hombre_lagarto": "musica_hombre_lagarto",
+}
+
+#: Raiz del segundo lote de pruebas (menu y facciones).
+ORIGEN_FACCIONES = r"E:\AI\ACE-Step-1.5\pruebas_musica_facciones\salida"
+
 #: El duelo ya tiene render validado, pero nunca se integro: el WAV que usa el
 #: juego seguia siendo el chiptune de `crear_sonidos.py`.
 DUELO = {
@@ -245,8 +265,9 @@ def convertir(ffmpeg, origen, destino_wav, bucle=True):
     return os.path.getsize(destino_wav), os.path.getsize(destino_ogg)
 
 
-def integrar(ffmpeg, nombre_origen, destino, subtitulo="", bucle=True):
-    origen = _un_wav(os.path.join(ORIGEN, nombre_origen))
+def integrar(ffmpeg, nombre_origen, destino, subtitulo="", bucle=True,
+             origen_raiz=None):
+    origen = _un_wav(os.path.join(origen_raiz or ORIGEN, nombre_origen))
     if origen is None:
         print(f"  - {nombre_origen}: no hay WAV en la carpeta, me salto")
         return False
@@ -263,6 +284,8 @@ def main():
     parser.add_argument("--ffmpeg", help="ruta a ffmpeg.exe")
     parser.add_argument("--solo", nargs="*",
                         help="integrar solo estas carpetas de origen")
+    parser.add_argument("--solo-facciones", action="store_true",
+                        help="saltar el menu y las diez facciones")
     parser.add_argument("--con-duelo", action="store_true",
                         help="integrar tambien la pista del duelo ya validada")
     args = parser.parse_args()
@@ -276,6 +299,15 @@ def main():
             continue
         if integrar(ffmpeg, carpeta, destino, bucle=bucle):
             integradas += 1
+
+    if not args.solo_facciones:
+        print("\nMenu y facciones:")
+        for carpeta, destino in FACCIONES.items():
+            if args.solo and carpeta not in args.solo:
+                continue
+            if integrar(ffmpeg, carpeta, destino,
+                        origen_raiz=ORIGEN_FACCIONES):
+                integradas += 1
 
     if args.con_duelo:
         origen = DUELO["origen"]

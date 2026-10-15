@@ -138,7 +138,9 @@ class TestEscenas(unittest.TestCase):
         for v in VARIANTES:
             for e in finales.escenas_epilogo(v):
                 self.assertIn(e["fondo"], fondos, v)
-                self.assertEqual(e["fondo_hd"], "salon_torneo.png", v)
+                esperado = ("epilogo_caos_salon_invadio.png" if v == "caos"
+                            else "salon_torneo.png")
+                self.assertEqual(e["fondo_hd"], esperado, v)
 
     def test_los_fondos_existen(self):
         for v in VARIANTES:

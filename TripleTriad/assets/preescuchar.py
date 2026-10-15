@@ -43,6 +43,24 @@ SFX = [
     ("plus.wav", "plus (nuevo)"),
 ]
 
+#: Candidatos del Lote 01 de SFX. NO estan integrados: viven en
+#: `assets/sfx_candidatos/` y solo se escuchan con `--candidatos`.
+CANDIDATOS = [
+    ("card_place_01.wav", "colocar carta (v1)"),
+    ("card_place_02.wav", "colocar carta (v2)"),
+    ("card_flip_01.wav", "giro de carta (v1)"),
+    ("card_flip_02.wav", "giro de carta (v2)"),
+    ("card_capture_01.wav", "captura (v1)"),
+    ("card_capture_02.wav", "captura (v2)"),
+    ("same_plus_01.wav", "same/plus"),
+    ("combo_chain_01.wav", "cadena (v1)"),
+    ("combo_chain_02.wav", "cadena (v2)"),
+    ("ability_trigger_01.wav", "habilidad (v1)"),
+    ("ability_trigger_02.wav", "habilidad (v2)"),
+    ("invalid_move_01.wav", "jugada invalida"),
+    ("turn_change_01.wav", "cambio de turno"),
+]
+
 
 def _abrir():
     pygame.mixer.init(frequency=SR, size=-16, channels=2, buffer=512)
@@ -81,15 +99,30 @@ def _reproducir_pista(nombre, donde, sin_cortar):
 def _reproducir_sfx():
     print("Efectos (uno detras de otro):")
     for archivo, etiqueta in SFX:
-        ruta = os.path.join(RAIZ, "assets", archivo)
-        if not os.path.exists(ruta):
-            print(f"  - {archivo}: no esta")
-            continue
-        sonido = pygame.mixer.Sound(ruta)
-        largo = sonido.get_length()
-        sonido.play()
-        print(f"  > {archivo:<14} {largo:4.2f} s  ({etiqueta})")
-        pygame.time.wait(int(largo * 1000) + 400)
+        _tocar(os.path.join(RAIZ, "assets", archivo), archivo, etiqueta)
+
+
+def _tocar(ruta, archivo, etiqueta):
+    if not os.path.exists(ruta):
+        print(f"  - {archivo}: no esta")
+        return False
+    sonido = pygame.mixer.Sound(ruta)
+    largo = sonido.get_length()
+    sonido.play()
+    print(f"  > {archivo:<24} {largo:4.2f} s  ({etiqueta})")
+    pygame.time.wait(int(largo * 1000) + 400)
+    return True
+
+
+def _reproducir_candidatos():
+    print("Candidatos SFX Lote 01 (NO integrados):\n")
+    faltan = 0
+    for archivo, etiqueta in CANDIDATOS:
+        ruta = os.path.join(RAIZ, "assets", "sfx_candidatos", archivo)
+        if not _tocar(ruta, archivo, etiqueta):
+            faltan += 1
+    if faltan:
+        print(f"  {faltan} candidatos no estan en assets/sfx_candidatos/")
 
 
 def main():
@@ -98,6 +131,8 @@ def main():
                         help="pistas concretas; sin nada, todas en orden")
     parser.add_argument("--sfx", action="store_true",
                         help="reproducir solo los efectos de las reglas")
+    parser.add_argument("--candidatos", action="store_true",
+                        help="reproducir los candidatos del Lote 01 de SFX")
     parser.add_argument("--sin-cortar", action="store_true",
                         help="esperar a que acabe en vez de cortar por pista")
     args = parser.parse_args()
@@ -107,6 +142,10 @@ def main():
 
     if args.sfx:
         _reproducir_sfx()
+        return 0
+
+    if args.candidatos:
+        _reproducir_candidatos()
         return 0
 
     pedidos = args.nombres or [n for n, _ in PISTAS]

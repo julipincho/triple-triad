@@ -351,7 +351,9 @@ def _escenas_cierre():
 
 def escenas_pre_duelo():
     """Antes del tutorial. Se reproducen antes de arrancar la partida."""
-    return [dict(e) for e in _escenas_del_duelo()]
+    escenas = [dict(e) for e in _escenas_del_duelo()]
+    _fondo_hd_en_fondo(escenas, "publico", "salon_torneo_lleno.png")
+    return _fondo_hd_en_fondo(escenas, "escenario", "prologo_escenario_presentacion.png")
 
 
 def escenas_post_duelo():
@@ -360,11 +362,13 @@ def escenas_post_duelo():
 
 
 def escenas_carta_umbral():
-    return [dict(e) for e in _escenas_carta_umbral()]
+    escenas = [dict(e) for e in _escenas_carta_umbral()]
+    return _fondo_hd_en_fondo(escenas, "escenario", "prologo_escenario_presentacion.png")
 
 
 def escenas_transporte():
-    return [dict(e) for e in _escenas_transporte()]
+    escenas = [dict(e) for e in _escenas_transporte()]
+    return _fondo_hd_en_fondo(escenas, "apagon", "prologo_apagon_salon.png")
 
 
 def escenas_despertar():
@@ -372,20 +376,33 @@ def escenas_despertar():
 
 
 def escenas_encuentro_hostil():
-    return [dict(e) for e in _escenas_encuentro_hostil()]
+    return _fondo_hd_en_fondo([dict(e) for e in _escenas_encuentro_hostil()],
+                             "camino", "camino_lluvioso.png")
 
 
 def escenas_nara():
-    return [dict(e) for e in _escenas_nara()]
+    escenas = [dict(e) for e in _escenas_nara()]
+    return _fondo_hd_en_fondo(escenas, "campamento", "prologo_campamento_nara.png")
 
 
 def escenas_explicacion():
     """Que esta pasando y como se vuelve a casa. Va entre Nara y el cierre."""
-    return [dict(e) for e in _escenas_explicacion()]
+    escenas = [dict(e) for e in _escenas_explicacion()]
+    return _fondo_hd_en_fondo(escenas, "campamento", "prologo_campamento_nara.png")
 
 
 def escenas_cierre():
-    return [dict(e) for e in _escenas_cierre()]
+    escenas = [dict(e) for e in _escenas_cierre()]
+    _fondo_hd_en_fondo(escenas, "umbral", "prologo_campamento_nara.png")
+    return _fondo_hd_en_fondo(escenas, "campamento", "prologo_campamento_nara.png")
+
+
+def _fondo_hd_en_fondo(escenas, clave, archivo):
+    """Asigna HD solo dentro de esta secuencia y no pisa HD explícitos."""
+    for escena in escenas:
+        if escena.get("fondo") == clave and not escena.get("fondo_hd"):
+            escena["fondo_hd"] = archivo
+    return escenas
 
 
 def mazo_rival_rajoy():

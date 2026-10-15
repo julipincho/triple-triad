@@ -1,0 +1,160 @@
+{
+  "lote": "SFX_Lote01",
+  "fuente": "E:/AI/CartonesMazmorrasVisual/CartonesMazmorras_SFX_Lote01_prototipos.zip",
+  "fuente_sha256": "08803f2fcefee231222b42de690dfcf9085f6d3cbfbc03a981a9c360583813fe",
+  "estado": "candidatos_no_aprobados",
+  "eventos": {
+    "card_place": {
+      "variantes": [
+        "card_place_01.wav",
+        "card_place_02.wav"
+      ],
+      "wav": {
+        "card_place_01.wav": {
+          "sha256": "cfee8189ec5d75cbe4ef3c32bfdfdde952402f2f0f9bb0d9b3de33ed6f88bf8a",
+          "seconds": 0.31,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        },
+        "card_place_02.wav": {
+          "sha256": "bdb828ae2a7b85162eabebb77b163c93768a2bea228ffad3d14f96c725a7b8da",
+          "seconds": 0.31,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    },
+    "card_flip": {
+      "variantes": [
+        "card_flip_01.wav",
+        "card_flip_02.wav"
+      ],
+      "wav": {
+        "card_flip_01.wav": {
+          "sha256": "e920d38c179d60d38f6ae15b7dee5baff109a69ab1d6d7506106c2e76bf107d3",
+          "seconds": 0.37,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        },
+        "card_flip_02.wav": {
+          "sha256": "cdd155b40e152667701b736057393e6a33400995629ebc0c2399f110ed608623",
+          "seconds": 0.37,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    },
+    "card_capture": {
+      "variantes": [
+        "card_capture_01.wav",
+        "card_capture_02.wav"
+      ],
+      "wav": {
+        "card_capture_01.wav": {
+          "sha256": "56a563aecb6fdf02a92a7ee2f5b4ecd55e0ea0fdee288fbe57b5e72504a26f41",
+          "seconds": 0.66,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        },
+        "card_capture_02.wav": {
+          "sha256": "72b124cef2c21c5bb1c5b43a51b39cf5017fd6c7b66aac863310810615dedf88",
+          "seconds": 0.66,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    },
+    "ability_trigger": {
+      "variantes": [
+        "ability_trigger_01.wav",
+        "ability_trigger_02.wav"
+      ],
+      "wav": {
+        "ability_trigger_01.wav": {
+          "sha256": "70ce4ab6f0f756dce448a8bdb496dfbe04cfb593d5a00493080445ea4a717fd4",
+          "seconds": 0.83,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        },
+        "ability_trigger_02.wav": {
+          "sha256": "058a8ffca9c8b30dac76a66e9503d0850e215a83032291f1687fdb2390123552",
+          "seconds": 0.83,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    },
+    "same_plus": {
+      "variantes": [
+        "same_plus_01.wav"
+      ],
+      "wav": {
+        "same_plus_01.wav": {
+          "sha256": "1c716619a400dfd2f8c775ca2d4c65eb5595e2d1a79f065104ff5c27751c1dc1",
+          "seconds": 0.76,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    },
+    "combo_chain": {
+      "variantes": [
+        "combo_chain_01.wav",
+        "combo_chain_02.wav"
+      ],
+      "wav": {
+        "combo_chain_01.wav": {
+          "sha256": "c7d4d623345c2728e3cc1951e58dada1192d560284e3cd3a1a46ef65a770eca8",
+          "seconds": 1.05,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        },
+        "combo_chain_02.wav": {
+          "sha256": "7745a832cd080ccab00b65c1297fa694762ed8054c0ef18ebdcaee25a201385b",
+          "seconds": 1.05,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    },
+    "invalid_move": {
+      "variantes": [
+        "invalid_move_01.wav"
+      ],
+      "wav": {
+        "invalid_move_01.wav": {
+          "sha256": "04f2b2d81890bf3c8db7fb0a055fb0a0b0b37a7802e959519a58b15273f14e13",
+          "seconds": 0.35,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    },
+    "turn_change": {
+      "variantes": [
+        "turn_change_01.wav"
+      ],
+      "wav": {
+        "turn_change_01.wav": {
+          "sha256": "be25653cac118c21cbf8d46378831bd9b82d9610d3900fa50e2181083f1ad580",
+          "seconds": 0.53,
+          "sample_rate": 48000,
+          "channels": 2,
+          "bit_depth": 16
+        }
+      }
+    }
+  }
+}

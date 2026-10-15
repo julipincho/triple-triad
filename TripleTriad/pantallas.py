@@ -287,11 +287,56 @@ def _tecla_navegacion(botones, evento, seleccion):
 
 
 # ------------------------------------------------------------------- portada
+_LOGO_PORTADA = {}
+
+
+def _logo_portada():
+    """Carga y escala el logo de la portada. Todo se calcula una vez.
+
+    El logo fuente mide 1669x941: mas ancho que la pantalla (1280). Como
+   对这个 caso no sirve un factor entero (daria 1 y desborda), se reduce en
+    dos pasos: primero a la mitad con vecino mas cercano, que conserva la
+    rejilla de pixeles, y despues el resto con `smoothscale`. Un salto directo
+    a 0.38 con `scale` dejaria los bordes de las letras full Aliasing.
+
+    La respiracion se pre-calculan en tres tamanos y se va alternando: en
+    pantalla no se reescala nada.
+    """
+    if _LOGO_PORTADA:
+        return _LOGO_PORTADA
+    img = pygame.image.load(ui.recurso("assets/logo.png")).convert_alpha()
+    # Recorte del canal alfa: el PNG trae margen transparente a los lados.
+    caja = img.get_bounding_rect()
+    if caja.width and caja.height:
+        img = img.subsurface(caja)
+
+    # La banda manda: de 20 a 380, con los chips abajo. El ancho sale del alto.
+    h = 330
+    w = int(h * img.get_width() / img.get_height())
+    if w > ANCHO - 140:                     # guarda lateral por si acaso
+        w = ANCHO - 140
+        h = int(w * img.get_height() / img.get_width())
+
+    # Mitad con vecino mas cercano y luego el resto suave. Se escala UNA vez
+    # al cargar; en pantalla solo se copia la imagen.
+    mitad = pygame.transform.scale(img, (img.get_width() // 2, img.get_height() // 2))
+    base = pygame.transform.smoothscale(mitad, (w, h))
+    _LOGO_PORTADA.update({
+        "logo": base, "w": w, "h": h,
+        "y": 20 + h // 2,
+    })
+    return _LOGO_PORTADA
+
+
 async def portada(screen, clock):
-    """Pantalla de titulo con la marca animada."""
+    """Pantalla de titulo con el logo estatico."""
     fondo = Fondo("dragon")
     t0 = time.time()
     mouse = pygame.mouse.get_pos()
+    # El logo sustituye al titulo escrito. Se escala UNA vez por factor entero
+    # para no difuminar el pixel art, y se cachea: si se reescala por frame se
+    # paga el coste en cada iteracion y ademas la imagen se suaviza.
+    logo_base = _logo_portada()
     boton = Boton(pygame.Rect(ANCHO // 2 - 170, ALTO - 120, 340, 52), "PULSA PARA EMPEZAR", 12)
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
@@ -299,33 +344,14 @@ async def portada(screen, clock):
         t = time.time() - t0
         fondo.dibujar(screen, dt)
 
-        # logo
-        escala = 1 + 0.012 * math_seno(t * 1.6)
-        tam = int(40 * escala)
-        # La separacion entre las dos lineas tiene que seguir a la tipografia.
-        # Se mide el alto REAL de la linea (ui.alto_texto ya aplica la escala
-        # del modo lectura) en vez de estimarlo: estimando `tam * 1.28` el hueco
-        # se quedaba corto a partir de 125% y las dos lineas se solapaban.
-        alto_linea = max(
-            ui.alto_texto("CARTONES", tam),
-            ui.alto_texto("Y MAZMORRAS", tam),
-        )
-        y1 = 138 - (alto_linea - 40) * 0.5
-        y2 = y1 + alto_linea + 10
-        # El título del juego es "Cartones y Mazmorras". Se pinta a dos líneas
-        # porque a 46px cada palabra mide 360px y 552px juntas: una sola línea
-        # de 912px dejaba solo 184px de margen a cada lado y rozaba los bordes
-        # del lienzo. El resplandor va a medida del lockup (600px).
-        texto(screen, "CARTONES", tam, DORADO, centro=(ANCHO // 2, int(y1)))
-        texto(screen, "Y MAZMORRAS", tam, DORADO, centro=(ANCHO // 2, int(y2)))
-        # El resplandor va a medida del lockup MEDIDO, no a 600 fijos: al 160%
-        # el titulo mide 700 y el halo se quedaba corto por los dos lados.
-        ancho_titulo = max(ui.ancho_texto("CARTONES", tam),
-                           ui.ancho_texto("Y MAZMORRAS", tam))
-        resplandor(screen, pygame.Rect(ANCHO // 2 - ancho_titulo // 2 - 20,
-                                        int(y1) - 20,
-                                        ancho_titulo + 40,
-                                        int(y2 - y1 + 40)), DORADO, 60, 3, 8)
+        # Logo ESTATICO: una sola imagen, la misma en todos los frames. Antes
+        # respiraba alternando entre tres tamanos pre-escalados.
+        # SIN resplandor: el logo ya trae su propio halo pintado (los destellos
+        # violeta), y encima el rectángulo del resplandor se veía como un marco
+        # oscuro alrededor de la imagen.
+        sup = logo_base["logo"]
+        screen.blit(sup, (ANCHO // 2 - sup.get_width() // 2,
+                          logo_base["y"] - sup.get_height() // 2))
         # chips: el numero de facciones y de duelos se SACAN de los datos, no
         # se escriben a mano. Estaban fijos ("Siete facciones", "Cinco duelos",
         # luego "Seis duelos") y los tres acabaron mal: hay diez facciones y
@@ -349,8 +375,10 @@ async def portada(screen, clock):
         x_chip = fila_centrada(CHIP_W, len(chips), CHIP_GAP)
         for i, f in enumerate(chips):
             x = x_chip + i * (CHIP_W + CHIP_GAP)
-            panel(screen, pygame.Rect(x, 250, CHIP_W, 40), (16, 17, 26, 200), BORDE, radio=8, grosor=1)
-            texto(screen, f, 9, TEXTO_TENUE, centro=(x + CHIP_W // 2, 270))
+            # 320, no 250: el logo ocupa la banda superior. A 250 los chips se
+            # montaban encima de la base del logo.
+            panel(screen, pygame.Rect(x, 390, CHIP_W, 40), (16, 17, 26, 200), BORDE, radio=8, grosor=1)
+            texto(screen, f, 9, TEXTO_TENUE, centro=(x + CHIP_W // 2, 410))
 
         # cartas flotando de fondo (giro y sombra cacheados: antes eran cinco
         # Surface nuevas por frame y eso solo en la portada ya costaba caro)
@@ -368,7 +396,7 @@ async def portada(screen, clock):
             clave = crt._slug(carta.nombre)
             sup = crt.crear(carta, None)
             x = x_carta + i * paso_carta + math_seno(t * 0.8 + i) * 8
-            y = 380 + math_seno(t * 1.1 + i * 1.7) * 12
+            y = 530 + math_seno(t * 1.1 + i * 1.7) * 12
             sombra = crt.sombra(sup, clave)
             rot = crt.rotar(sup, clave, math_seno(t * 0.5 + i) * 2)
             screen.blit(sombra, (x - sup.get_width() // 2 + 4, y - sup.get_height() // 2 + 6))
@@ -775,7 +803,7 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
                     seleccion = (seleccion + cols) % len(orden)
                     audio.sfx(audio.MENU_MOVE)
                 if ev.key == pygame.K_RETURN:
-                    audio.sfx(audio.MENU_OK)
+                    audio.sfx("faccion_confirmar_cristal.wav")
                     return orden[seleccion]
                 if ev.key == pygame.K_ESCAPE:
                     audio.sfx(audio.MENU_BACK)
@@ -787,11 +815,11 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
                             seleccion = i
                             audio.sfx(audio.CARD)
                         else:
-                            audio.sfx(audio.MENU_OK)
+                            audio.sfx("faccion_confirmar_cristal.wav")
                             return orden[i]
                 if aceptar.clic(ev.pos):
                     aceptar.pulsar()
-                    audio.sfx(audio.MENU_OK)
+                    audio.sfx("faccion_confirmar_cristal.wav")
                     return orden[seleccion]
                 if atras.clic(ev.pos):
                     audio.sfx(audio.MENU_BACK)
@@ -1653,6 +1681,7 @@ async def elegir_rama(screen, clock, estado):
             sup = crt.crear(carta, None)
             screen.blit(pygame.transform.scale(sup, (86, 118)),
                         (x_mazo + i * paso_mazo, 610))
+            crt.nombre_al_pasar(screen, carta, pygame.Rect(x_mazo + i * paso_mazo, 610, 86, 118))
         pygame.display.flip()
 
         for ev in pygame.event.get():
@@ -1764,6 +1793,7 @@ async def recompensa(screen, clock, estado, nodo_id):
             sup = crt.crear(carta, None)
             screen.blit(pygame.transform.scale(sup, (96, 132)),
                         (x_mazo + i * paso_mazo, 560))
+            crt.nombre_al_pasar(screen, carta, pygame.Rect(x_mazo + i * paso_mazo, 560, 96, 132))
         pygame.display.flip()
 
         for ev in pygame.event.get():
@@ -1854,6 +1884,8 @@ async def armar_mazo(screen, clock, faccion=None, nuevo=False):
             screen.blit(crt.crear(carta, None), (x, y))
 
         rects_mazo = []
+        for nombre, rect in rects_coleccion:
+            crt.nombre_al_pasar(screen, poseidas[nombre][0], rect)
         for i in range(MAZO_HUECOS):
             x = MAZO_ORIGEN[0] + i * MAZO_PASO_X
             y = MAZO_ORIGEN[1]
@@ -1863,6 +1895,7 @@ async def armar_mazo(screen, clock, faccion=None, nuevo=False):
             if i < len(seleccion):
                 c_id = seleccion[i]
                 screen.blit(crt.miniatura(poseidas[c_id][0], (104, 144)), (x, y))
+                crt.nombre_al_pasar(screen, poseidas[c_id][0], rect)
                 if rect.collidepoint(mouse): crt.resplandor_carta(screen, rect, poseidas[c_id][0], None, 110)
             else:
                 texto(screen, "VACIO", 8, TEXTO_TENUE, centro=rect.center)
@@ -1956,6 +1989,7 @@ async def elegir_carta_para_mejorar(screen, clock, estado):
             if rect.collidepoint(mouse):
                 crt.resplandor_carta(screen, rect, carta, None, 110)
             screen.blit(sup, (rect.x, rect.y - (12 if rect.collidepoint(mouse) else 0)))
+            crt.nombre_al_pasar(screen, carta, rect)
             texto(screen, f"{(i + 1) % 10}", 9, TEXTO_TENUE, centro=(rect.centerx, rect.bottom + 18))
         b_prev = Boton(pygame.Rect(ANCHO // 2 - 160, 640, 64, 40), "<", 10)
         b_next = Boton(pygame.Rect(ANCHO // 2 + 96, 640, 64, 40), ">", 10)
@@ -2085,6 +2119,7 @@ async def draft_reemplazo(screen, clock, estado, carta):
                 crt.resplandor_carta(screen, rect, vieja, None, 110)
             screen.blit(sup, (rect.x, rect.y))
             texto(screen, str((i + 1) % 10), 9, TEXTO_TENUE, centro=(rect.centerx, rect.bottom + 18))
+            crt.nombre_al_pasar(screen, vieja, rect)
         b_prev = Boton(pygame.Rect(ANCHO // 2 - 160, 560, 64, 40), "<", 10)
         b_next = Boton(pygame.Rect(ANCHO // 2 + 96, 560, 64, 40), ">", 10)
         _botones(screen, [b_prev, b_next], mouse, dt)
@@ -2175,6 +2210,7 @@ async def revelar_sobre(screen, clock, nuevas, mejoradas, detalles=None):
                 screen.blit(crt.dorso(), (x, 250))
             if rect.collidepoint(mouse) and i < reveladas:
                 crt.resplandor_carta(screen, rect, carta, None, 80)
+                crt.nombre_al_pasar(screen, carta, rect)
         if mejoradas:
             parrafo(screen, "\n".join(c.nombre + ": " + detalles.get(c.nombre, "Duplicada; valores actuales")
                                      for c in mejoradas),

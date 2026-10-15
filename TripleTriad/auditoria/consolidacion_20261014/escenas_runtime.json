@@ -1,0 +1,569 @@
+[
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 0,
+    "texto": "El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
+    "fondo_runtime": "assets/cinematicas_hd/salon_torneo_lleno.png",
+    "retrato": null
+  },
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 1,
+    "texto": "ULTIMA RONDA CLASIFICATORIA",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": null
+  },
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 2,
+    "texto": "Presentador",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": "presentador"
+  },
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 3,
+    "texto": "- Ultima ronda clasificatoria.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": "presentador"
+  },
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 4,
+    "texto": "- Los ocho mejores jugadores avanzaran a la Copa del Trono.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": "presentador"
+  },
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 5,
+    "texto": "Tu nombre no importa aqui. Solo tu mazo.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/publico.png",
+    "retrato": null
+  },
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 6,
+    "texto": "Sacas tus cartas: cinco legendarias, una de cada faccion. Lo mejor que tienes.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/publico.png",
+    "retrato": null
+  },
+  {
+    "bloque": "pre_duelo",
+    "indice_base_0": 7,
+    "texto": "No es una partida de prueba. Es una clasificatoria. Y el rival frente a ti se llama...",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/publico.png",
+    "retrato": null
+  },
+  {
+    "bloque": "post_duelo",
+    "indice_base_0": 0,
+    "texto": "- Otra vez esa maldita combinacion.",
+    "fondo_runtime": "assets/cinematicas_hd/salon_torneo_lleno.png",
+    "retrato": "rajoy"
+  },
+  {
+    "bloque": "post_duelo",
+    "indice_base_0": 1,
+    "texto": "- Te lo dije, El duelista. Centro libre y a correr.",
+    "fondo_runtime": "assets/cinematicas_hd/salon_torneo_lleno.png",
+    "retrato": "rajoy"
+  },
+  {
+    "bloque": "post_duelo",
+    "indice_base_0": 2,
+    "texto": "Juan te mira el mazo otra vez. Esta vez con respeto.",
+    "fondo_runtime": "assets/cinematicas_hd/salon_torneo_lleno.png",
+    "retrato": "rajoy"
+  },
+  {
+    "bloque": "post_duelo",
+    "indice_base_0": 3,
+    "texto": "- Buena partida, El duelista.",
+    "fondo_runtime": "assets/cinematicas_hd/salon_torneo_lleno.png",
+    "retrato": "rajoy"
+  },
+  {
+    "bloque": "post_duelo",
+    "indice_base_0": 4,
+    "texto": "Cumpliste. Ahora van a presentar la carta que trajeron.",
+    "fondo_runtime": "assets/cinematicas_hd/salon_torneo_lleno.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 0,
+    "texto": "Los organizadores suben al escenario con una caja que nadie ha visto antes.",
+    "fondo_runtime": "assets/cinematicas_hd/salon_torneo_lleno.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 1,
+    "texto": "- Una carta que no tiene faccion. Ni bando. Ni edicion.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": "presentador"
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 2,
+    "texto": "EL UMBRAL",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 3,
+    "texto": "Una puerta enorme. Y detras... un trono vacio.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 4,
+    "texto": "La reconoces. Los simbolos de los bordes salen en las cartas mas antiguas.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 5,
+    "texto": "Esas cartas las viste cientos de veces. Nunca las entendiste del todo.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/escenario.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 6,
+    "texto": "LAS NUEVE CASILLAS",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 7,
+    "texto": "empiezan a iluminarse.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 8,
+    "texto": "La carta central cambia. Y durante un segundo aparece algo que no",
+    "fondo_runtime": "assets/cinematicas_hd/revelacion_carta_torneo.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 9,
+    "texto": "deberia existir en ninguna edicion: una figura sin faccion",
+    "fondo_runtime": "assets/cinematicas_hd/revelacion_carta_torneo.png",
+    "retrato": null
+  },
+  {
+    "bloque": "carta_umbral",
+    "indice_base_0": 10,
+    "texto": "sentada en el trono. Solo un segundo.",
+    "fondo_runtime": "assets/cinematicas_hd/portal_umbral_torneo.png",
+    "retrato": null
+  },
+  {
+    "bloque": "transporte",
+    "indice_base_0": 0,
+    "texto": "La luz se apaga.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/apagon.png",
+    "retrato": null
+  },
+  {
+    "bloque": "transporte",
+    "indice_base_0": 1,
+    "texto": "Y cuando vuelve, ya no estas en el salon.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/apagon.png",
+    "retrato": null
+  },
+  {
+    "bloque": "transporte",
+    "indice_base_0": 2,
+    "texto": "",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/apagon.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 0,
+    "texto": "Bosque. Lluvia. Barro hasta los tobillos.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 1,
+    "texto": "Tu mochila esta tirada. Tu telefono no tiene senal.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 2,
+    "texto": "Pero las cartas siguen ahi. Las cinco legendarias.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 3,
+    "texto": "Y es lo primero que notas: una torre.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 4,
+    "texto": "La conoces. Esta en el fondo de una carta que viste mil veces.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 5,
+    "texto": "- No puede ser.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": "duelista"
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 6,
+    "texto": "Te das vuelta. Y ahi esta.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 7,
+    "texto": "Pik",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 8,
+    "texto": "Un goblin. No una ilustracion. No alguien vestido de goblin.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 9,
+    "texto": "Pik",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": "pik"
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 10,
+    "texto": "- No deberias tener eso.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": "pik"
+  },
+  {
+    "bloque": "despertar",
+    "indice_base_0": 11,
+    "texto": "Lo dice senalando tus cartas. Y no parece una broma.",
+    "fondo_runtime": "assets/cinematicas_hd/camino_lluvioso.png",
+    "retrato": null
+  },
+  {
+    "bloque": "encuentro_hostil",
+    "indice_base_0": 0,
+    "texto": "El goblin se va. Tu decides seguir. El bosque no es sitio para quedarse.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null
+  },
+  {
+    "bloque": "encuentro_hostil",
+    "indice_base_0": 1,
+    "texto": "Das diez pasos. Y alguien mas tambien te ve.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null
+  },
+  {
+    "bloque": "encuentro_hostil",
+    "indice_base_0": 2,
+    "texto": "No es un goblin. Es de la aldea.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null
+  },
+  {
+    "bloque": "encuentro_hostil",
+    "indice_base_0": 3,
+    "texto": "- De donde sacas esas cartas?",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": "encuentro:hostil"
+  },
+  {
+    "bloque": "encuentro_hostil",
+    "indice_base_0": 4,
+    "texto": "No es una pregunta. Es una amenaza.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null
+  },
+  {
+    "bloque": "encuentro_hostil",
+    "indice_base_0": 5,
+    "texto": "Cierras el estuche antes de que pueda arrebatartelo.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null
+  },
+  {
+    "bloque": "encuentro_hostil",
+    "indice_base_0": 6,
+    "texto": "Te apartas y sigues el camino. El no te sigue, pero ya te ha visto.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 0,
+    "texto": "Cuando logras salir, hay alguien esperandote.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 1,
+    "texto": "Una mujer con una libreta abierta y tinta en los dedos.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 2,
+    "texto": "- Ustedes juegan Cartones y Mazmorras?",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "duelista"
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 3,
+    "texto": "Lo sueltas antes de pensarlo. Es lo unico que sale.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 4,
+    "texto": "- No se que son esos cartones.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 5,
+    "texto": "- Aqui esto se llama Juicio.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 6,
+    "texto": "Mira tus cinco legendarias con los ojos muy abiertos.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 7,
+    "texto": "- Eso no son cartas de aqui. Esas cartas son de otro lado.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 8,
+    "texto": "Y entonces hace la pregunta que lo cambia todo:",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 9,
+    "texto": "- De donde las sacaste?",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "nara",
+    "indice_base_0": 10,
+    "texto": "Le cuentas lo del torneo, el salon y la carta que apago las luces.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 0,
+    "texto": "Nara se sienta enfrente. Cierra el libro. Por primera vez no esta escribiendo.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 1,
+    "texto": "- Sientate. Te voy a contar lo que sabemos aqui.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 2,
+    "texto": "- Lo que viste en el salon no fue un fallo de la carta. Fue una apertura.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 3,
+    "texto": "La grieta que se abrio en el salon se llama el Umbral. Ya estaba aqui antes de que vos llegaras.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 4,
+    "texto": "- El Umbral no se abre solo. Lo abre uno y lo guarda otro.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 5,
+    "texto": "Guardarlo significa una sola cosa: sentarse en el trono.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 6,
+    "texto": "- Todo lo de este mundo sale de ahi. Y el Umbral se abre para quien lo tenga.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 7,
+    "texto": "- Por eso hay diez bandos peleando por la Copa del Trono. No es un torneo. Es una guerra con reglas de duelo.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 8,
+    "texto": "Nara duda. Es la primera vez que duda.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 9,
+    "texto": "- Hay una cosa que la gente repite mal. Escuchame, porque importa.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 10,
+    "texto": "- Todos dicen: hay que vencer al dragon. En todas partes.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 11,
+    "texto": "- Es verdad a medias. La sangre del dragon fue la que legitimo el trono. Por eso la frase quedo pegada.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 12,
+    "texto": "- Quien guarda ahora el trono no tiene por que ser un dragon. Es quien gano el ultimo Juicio.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 13,
+    "texto": "Y por ultimo, lo que estabas a punto de preguntar:",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 14,
+    "texto": "- Yo no vine a salvar nada. Solo quiero volver a casa.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "duelista"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 15,
+    "texto": "- No hay vuelta, ni atajo, ni puerta de servicio. Gana el trono y el Umbral te devuelve a tu salon.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 16,
+    "texto": "- Son cinco duelos. El ultimo es el trono. Si se pierde, se vuelve a intentar: nadie te saca de aca por perder.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 17,
+    "texto": "Cierra el libro. Lo vuelve a abrir. Y escribe una sola palabra:",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "explicacion",
+    "indice_base_0": 18,
+    "texto": "CASA",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null
+  },
+  {
+    "bloque": "cierre",
+    "indice_base_0": 0,
+    "texto": "- Guarda tus cinco legendarias en el estuche. Aqui aun no responden como en tu mundo. Necesitas un mazo de este lado.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": "nara"
+  },
+  {
+    "bloque": "cierre",
+    "indice_base_0": 1,
+    "texto": "A partir de aqui ya no sos un invitado.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null
+  },
+  {
+    "bloque": "cierre",
+    "indice_base_0": 2,
+    "texto": "A partir de aqui sos alguien que sabe demasiado.",
+    "fondo_runtime": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null
+  },
+  {
+    "bloque": "cierre",
+    "indice_base_0": 3,
+    "texto": "ELIGE TU MAZO PRINCIPAL",
+    "fondo_runtime": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null
+  },
+  {
+    "bloque": "cierre",
+    "indice_base_0": 4,
+    "texto": "No es quien eres. Es el mazo que juegas. Y el mundo lo va a leer.",
+    "fondo_runtime": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null
+  }
+]

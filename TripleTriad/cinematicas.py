@@ -14,6 +14,7 @@ import os
 import pygame
 
 import audio
+import arte_visual
 import duelistas
 import ui  # `ruta_fondo`: elige la variante de fondo con la semilla de partida
 import facciones
@@ -47,6 +48,8 @@ class Escena:
     """Una escena: fondo, hablante, retrato y dialogo."""
 
     def __init__(self, datos):
+        import lotes_visuales
+        self.fondo_lote = lotes_visuales.fondo(datos)
         self.fondo = datos.get("fondo", "ceniza")
         self.fondo_hd = datos.get("fondo_hd")
         self.hablante = datos.get("hablante")
@@ -251,6 +254,12 @@ class Cinematica:
         if FONDOS_CINEMATICOS_HD and escena.fondo_hd:
             fondo_hd = REC.fondo_cinematico(
                 os.path.join("assets", "cinematicas_hd", escena.fondo_hd))
+        if FONDOS_CINEMATICOS_HD and not escena.fondo_hd:
+            # La variante se resuelve antes de buscar arte nuevo. Un HD
+            # explicito de los lotes aprobados siempre conserva prioridad.
+            nueva = escena.fondo_lote or arte_visual.alternativa(ui.ruta_fondo(escena.fondo), "fondo")
+            if nueva:
+                fondo_hd = REC.fondo_cinematico(nueva)
         if fondo_hd is not None:
             screen.blit(fondo_hd, (0, 0))
         else:
@@ -591,6 +600,23 @@ def apertura(faccion):
     """
     datos = APERTURAS.get(faccion, APERTURAS["humano"])
     escenas = [dict(e) for e in datos["escenas"]]
+    # Resolver por secuencia/facción: varias aperturas comparten claves como
+    # ``trono`` y ``ruinas`` con otras cinemáticas y pantallas.
+    fondos_hd = {
+        "humano": "apertura_humano_reino_en_cenizas.png",
+        "orco": "apertura_orco_frontera_muralla.png",
+        "goblin": "apertura_goblin_puerta_bajo_foso.png",
+        "elfo": "apertura_elfo_bosque_silencioso.png",
+        "hombre_lobo": "apertura_hombre_lobo_ciudad_lunar.png",
+        "vampiro": "apertura_vampiro_cripta_pacto_roto.png",
+        "dragon": "apertura_dragon_cielo_brasa.png",
+        "elfo_nocturno": "apertura_elfo_nocturno_bosque_umbral.png",
+        "hombre_pantera": "apertura_pantera_tejados_ciudad.png",
+        "hombre_lagarto": "apertura_lagarto_pantano_ruinas.png",
+    }
+    fondo_hd = fondos_hd.get(faccion, fondos_hd["humano"])
+    for escena in escenas:
+        escena["fondo_hd"] = fondo_hd
     pide = peticiones.peticion(faccion)
     ayuda = peticiones.por_que_te_ayudan(faccion)
     if not pide or not ayuda:
@@ -603,9 +629,9 @@ def apertura(faccion):
     # se insertan antes del cierre, que es la frase de relevo del bando
     cierre = escenas.pop() if len(escenas) > 1 else None
     escenas.append(esc("- " + pide, hablante=hablante, retrato=retrato,
-                       fondo=fondo, color=TEXTO_ON))
+                       fondo=fondo, color=TEXTO_ON, fondo_hd=fondo_hd))
     escenas.append(esc("- " + ayuda, hablante=hablante, retrato=retrato,
-                       fondo=fondo))
+                       fondo=fondo, fondo_hd=fondo_hd))
     if cierre is not None:
         escenas.append(cierre)
     return escenas, datos.get("musica")
@@ -614,13 +640,14 @@ def apertura(faccion):
 INTRO = {
     "musica": "musica_explora",
     "escenas": [
-        esc("EL UMBRAL DEL TRONO", fondo="amanecer", efecto="titulo", color=DORADO),
+        esc("EL UMBRAL DEL TRONO", fondo="amanecer", efecto="titulo", color=DORADO,
+            fondo_hd="intro_amanecer_mundo_antiguo.png"),
         esc("Hubo un tiempo en que el mundo amanecia sin ceniza y las cartas eran solo un juego.",
-            fondo="amanecer"),
+            fondo="amanecer", fondo_hd="intro_amanecer_mundo_antiguo.png"),
         esc("Entonces el cielo se rajo. Por la grieta asomo el Umbral... y el juego se volvio guerra.",
-            fondo="umbral"),
+            fondo="umbral", fondo_hd="intro_grieta_umbral_cielo.png"),
         esc("Siete bandos afilaron sus barajas. El trono no se hereda: se gana carta a carta.",
-            fondo="estandartes"),
+            fondo="estandartes", fondo_hd="intro_estandartes_siete_bandos.png"),
         esc("Elige tu faccion. Forja tu final.", fondo="trono", color=DORADO),
     ],
 }
@@ -670,6 +697,7 @@ def escenas_nodo(info):
         if not escena.get("retrato"):
             escena["retrato"] = retrato
         escenas.append(escena)
+    _continuidad_nodo_hd(escenas, nodo_id)
     return escenas, musica
 
 
@@ -700,7 +728,19 @@ def escenas_posterior(info, victoria=True):
     linea = narrativa.nara_linea(momento, info.get("confianza_nara", 0))
     if linea:
         escenas.append(esc(linea, hablante="Nara", fondo=escena_fondo, color=TEXTO_ON))
+    _continuidad_nodo_hd(escenas, nodo)
     return escenas
+
+
+def _continuidad_nodo_hd(escenas, nodo):
+    """Completa solo planos conocidos; incluye dialogos de rol sin esc()."""
+    destino = {"senda": ("camino", "camino_lluvioso.png"),
+               "trono": ("trono", "sala_trono.png")}.get(nodo)
+    if destino:
+        clave, archivo = destino
+        for escena in escenas:
+            if escena.get("fondo") == clave and not escena.get("fondo_hd"):
+                escena["fondo_hd"] = archivo
 
 
 def escenas_final(titulo, lineas, faccion, extra=None):

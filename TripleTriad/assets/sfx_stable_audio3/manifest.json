@@ -1,0 +1,101 @@
+{
+  "lote": "sfx_stable_audio3",
+  "modelo": "stabilityai/stable-audio-3-small-sfx",
+  "licencia": "Stability AI Community License: uso comercial hasta 1M USD/año",
+  "formato": "WAV PCM16 stereo 44100 Hz (identico al mixer, sin remuestreo)",
+  "reversible_con": "TRIPLETRIAD_SFX_STABLE_AUDIO3=0",
+  "sin_tocar": [
+    "win.wav",
+    "lose.wav",
+    "cinema.wav",
+    "reward.wav",
+    "boss.wav",
+    "assets/musica/ (incluye musica_duelo.wav)"
+  ],
+  "mapa": {
+    "place.wav": {
+      "archivo": "assets/sfx_stable_audio3/card_place.wav",
+      "archivo_nombre": "card_place.wav",
+      "uso": "colocar carta en el tablero",
+      "callsite": "partida.py:347",
+      "sha256": "410fc5c04ddc3b5107f6e3a4e70df6cafad00161aeed001ea843d2f39e586467"
+    },
+    "capture.wav": {
+      "archivo": "assets/sfx_stable_audio3/card_capture.wav",
+      "archivo_nombre": "card_capture.wav",
+      "uso": "captura basica",
+      "callsite": "partida.py:121",
+      "sha256": "dfd0da545066736d7b5f94e4bd80437bba1e3d40d5c07e793f84a57af1d98c33"
+    },
+    "same.wav": {
+      "archivo": "assets/sfx_stable_audio3/same.wav",
+      "archivo_nombre": "same.wav",
+      "uso": "regla SAME",
+      "callsite": "partida.py:117",
+      "sha256": "21bff0103aab06493f71003553efc1653f582282ffc7d07e77d288c77a869dd0"
+    },
+    "plus.wav": {
+      "archivo": "assets/sfx_stable_audio3/plus.wav",
+      "archivo_nombre": "plus.wav",
+      "uso": "regla PLUS",
+      "callsite": "partida.py:117",
+      "sha256": "ff090e0c6d662857467fa8fac066f145665d1917d5be358e052cfc2d99a05094"
+    },
+    "chain.wav": {
+      "archivo": "assets/sfx_stable_audio3/combo_chain.wav",
+      "archivo_nombre": "combo_chain.wav",
+      "uso": "cadena de capturas",
+      "callsite": "partida.py:120",
+      "sha256": "6ebad850d37c265e1b3176723265db9d811f36a9966ecadd597704cdbdb167ab"
+    },
+    "invalid.wav": {
+      "archivo": "assets/sfx_stable_audio3/invalid_move.wav",
+      "archivo_nombre": "invalid_move.wav",
+      "uso": "jugada invalida",
+      "callsite": "partida.py:552 / pantallas.py",
+      "sha256": "bbc85ab5a6ce21859a6782d74fbe7c1552561abc47a0f333fc123954da294d34"
+    },
+    "menu.wav": {
+      "archivo": "assets/sfx_stable_audio3/ui_select.wav",
+      "archivo_nombre": "ui_select.wav",
+      "uso": "abrir duelo / entrar",
+      "callsite": "partida.py:1289",
+      "sha256": "38e52927f2cd987d0ed705751ca14ac1489996eb5cfeb2ba381dca434aa81098"
+    },
+    "menu_move.wav": {
+      "archivo": "assets/sfx_stable_audio3/ui_move.wav",
+      "archivo_nombre": "ui_move.wav",
+      "uso": "mover el cursor en menus",
+      "callsite": "pantallas.py:497",
+      "sha256": "7c3b6d67d0db619a0a0cc96211559f25d4aef88dfcccda4c3ac15b6baaf3f752"
+    },
+    "menu_ok.wav": {
+      "archivo": "assets/sfx_stable_audio3/ui_confirm.wav",
+      "archivo_nombre": "ui_confirm.wav",
+      "uso": "confirmar en menus",
+      "callsite": "pantallas.py:90,187,210,270",
+      "sha256": "1cb7b0657f2d2d4555539ced2cf609fbd9518087bb506f13547261d6ffafa29f"
+    },
+    "menu_back.wav": {
+      "archivo": "assets/sfx_stable_audio3/ui_back.wav",
+      "archivo_nombre": "ui_back.wav",
+      "uso": "volver / cancelar",
+      "callsite": "pantallas.py:184,193,267",
+      "sha256": "e5f64dff898a46eb445b3c91d6813338394e6df753edf20f74307df9986cffed"
+    },
+    "card.wav": {
+      "archivo": "assets/sfx_stable_audio3/card_flip.wav",
+      "archivo_nombre": "card_flip.wav",
+      "uso": "elegir carta en un menu",
+      "callsite": "pantallas.py:788,1007,1308",
+      "sha256": "e4bc6dcea6833ba61aa75759b017e93d22cd3772f7e4dd12040c03d9a6af3ab4"
+    },
+    "drag.wav": {
+      "archivo": "assets/sfx_stable_audio3/ui_move.wav",
+      "archivo_nombre": "ui_move.wav",
+      "uso": "tomar una carta de la mano",
+      "callsite": "partida.py:606",
+      "sha256": "7c3b6d67d0db619a0a0cc96211559f25d4aef88dfcccda4c3ac15b6baaf3f752"
+    }
+  }
+}

@@ -1,0 +1,1517 @@
+[
+  {
+    "id": "intro.0",
+    "texto": "EL UMBRAL DEL TRONO",
+    "ruta": "assets/cinematicas_hd/intro_amanecer_mundo_antiguo.png"
+  },
+  {
+    "id": "intro.1",
+    "texto": "Hubo un tiempo en que el mundo amanecia sin ceniza y las cartas eran solo un juego.",
+    "ruta": "assets/cinematicas_hd/intro_amanecer_mundo_antiguo.png"
+  },
+  {
+    "id": "intro.2",
+    "texto": "Entonces el cielo se rajo. Por la grieta asomo el Umbral... y el juego se volvio guerra.",
+    "ruta": "assets/cinematicas_hd/intro_grieta_umbral_cielo.png"
+  },
+  {
+    "id": "intro.3",
+    "texto": "Siete bandos afilaron sus barajas. El trono no se hereda: se gana carta a carta.",
+    "ruta": "assets/cinematicas_hd/intro_estandartes_siete_bandos.png"
+  },
+  {
+    "id": "intro.4",
+    "texto": "Elige tu faccion. Forja tu final.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "prologo.pre_duelo.0",
+    "texto": "El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
+    "ruta": "assets/cinematicas_hd/salon_torneo_lleno.png"
+  },
+  {
+    "id": "prologo.pre_duelo.1",
+    "texto": "ULTIMA RONDA CLASIFICATORIA",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.pre_duelo.2",
+    "texto": "Presentador",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.pre_duelo.3",
+    "texto": "- Ultima ronda clasificatoria.",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.pre_duelo.4",
+    "texto": "- Los ocho mejores jugadores avanzaran a la Copa del Trono.",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.pre_duelo.5",
+    "texto": "Tu nombre no importa aqui. Solo tu mazo.",
+    "ruta": "assets/pixel_anime/cinematicas/publico.png"
+  },
+  {
+    "id": "prologo.pre_duelo.6",
+    "texto": "Sacas tus cartas: cinco legendarias, una de cada faccion. Lo mejor que tienes.",
+    "ruta": "assets/pixel_anime/cinematicas/publico.png"
+  },
+  {
+    "id": "prologo.pre_duelo.7",
+    "texto": "No es una partida de prueba. Es una clasificatoria. Y el rival frente a ti se llama...",
+    "ruta": "assets/pixel_anime/cinematicas/publico.png"
+  },
+  {
+    "id": "prologo.post_duelo.0",
+    "texto": "- Otra vez esa maldita combinacion.",
+    "ruta": "assets/cinematicas_hd/salon_torneo_lleno.png"
+  },
+  {
+    "id": "prologo.post_duelo.1",
+    "texto": "- Te lo dije, __JUGADOR__. Centro libre y a correr.",
+    "ruta": "assets/cinematicas_hd/salon_torneo_lleno.png"
+  },
+  {
+    "id": "prologo.post_duelo.2",
+    "texto": "Juan te mira el mazo otra vez. Esta vez con respeto.",
+    "ruta": "assets/cinematicas_hd/salon_torneo_lleno.png"
+  },
+  {
+    "id": "prologo.post_duelo.3",
+    "texto": "- Buena partida, __JUGADOR__.",
+    "ruta": "assets/cinematicas_hd/salon_torneo_lleno.png"
+  },
+  {
+    "id": "prologo.post_duelo.4",
+    "texto": "Cumpliste. Ahora van a presentar la carta que trajeron.",
+    "ruta": "assets/cinematicas_hd/salon_torneo_lleno.png"
+  },
+  {
+    "id": "prologo.carta_umbral.0",
+    "texto": "Los organizadores suben al escenario con una caja que nadie ha visto antes.",
+    "ruta": "assets/cinematicas_hd/salon_torneo_lleno.png"
+  },
+  {
+    "id": "prologo.carta_umbral.1",
+    "texto": "- Una carta que no tiene faccion. Ni bando. Ni edicion.",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.carta_umbral.2",
+    "texto": "EL UMBRAL",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.carta_umbral.3",
+    "texto": "Una puerta enorme. Y detras... un trono vacio.",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.carta_umbral.4",
+    "texto": "La reconoces. Los simbolos de los bordes salen en las cartas mas antiguas.",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.carta_umbral.5",
+    "texto": "Esas cartas las viste cientos de veces. Nunca las entendiste del todo.",
+    "ruta": "assets/cinematicas_hd/prologo_escenario_presentacion.png"
+  },
+  {
+    "id": "prologo.carta_umbral.6",
+    "texto": "LAS NUEVE CASILLAS",
+    "ruta": "assets/lotes_visuales/lote_03/fondos/activacion_carta_plano_cercano.png"
+  },
+  {
+    "id": "prologo.carta_umbral.7",
+    "texto": "empiezan a iluminarse.",
+    "ruta": "assets/lotes_visuales/lote_03/fondos/activacion_carta_plano_cercano.png"
+  },
+  {
+    "id": "prologo.carta_umbral.8",
+    "texto": "La carta central cambia. Y durante un segundo aparece algo que no",
+    "ruta": "assets/cinematicas_hd/revelacion_carta_torneo.png"
+  },
+  {
+    "id": "prologo.carta_umbral.9",
+    "texto": "deberia existir en ninguna edicion: una figura sin faccion",
+    "ruta": "assets/cinematicas_hd/revelacion_carta_torneo.png"
+  },
+  {
+    "id": "prologo.carta_umbral.10",
+    "texto": "sentada en el trono. Solo un segundo.",
+    "ruta": "assets/cinematicas_hd/portal_umbral_torneo.png"
+  },
+  {
+    "id": "prologo.transporte.0",
+    "texto": "La luz se apaga.",
+    "ruta": "assets/cinematicas_hd/prologo_apagon_salon.png"
+  },
+  {
+    "id": "prologo.transporte.1",
+    "texto": "Y cuando vuelve, ya no estas en el salon.",
+    "ruta": "assets/cinematicas_hd/prologo_apagon_salon.png"
+  },
+  {
+    "id": "prologo.transporte.2",
+    "texto": "",
+    "ruta": "assets/cinematicas_hd/prologo_apagon_salon.png"
+  },
+  {
+    "id": "prologo.despertar.0",
+    "texto": "Bosque. Lluvia. Barro hasta los tobillos.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.1",
+    "texto": "Tu mochila esta tirada. Tu telefono no tiene senal.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.2",
+    "texto": "Pero las cartas siguen ahi. Las cinco legendarias.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.3",
+    "texto": "Y es lo primero que notas: una torre.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.4",
+    "texto": "La conoces. Esta en el fondo de una carta que viste mil veces.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.5",
+    "texto": "- No puede ser.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.6",
+    "texto": "Te das vuelta. Y ahi esta.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.7",
+    "texto": "Pik",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.8",
+    "texto": "Un goblin. No una ilustracion. No alguien vestido de goblin.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.9",
+    "texto": "Pik",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.10",
+    "texto": "- No deberias tener eso.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.despertar.11",
+    "texto": "Lo dice senalando tus cartas. Y no parece una broma.",
+    "ruta": "assets/cinematicas_hd/camino_lluvioso.png"
+  },
+  {
+    "id": "prologo.encuentro_hostil.0",
+    "texto": "El goblin se va. Tu decides seguir. El bosque no es sitio para quedarse.",
+    "ruta": "assets/pixel_anime/cinematicas/camino.png"
+  },
+  {
+    "id": "prologo.encuentro_hostil.1",
+    "texto": "Das diez pasos. Y alguien mas tambien te ve.",
+    "ruta": "assets/pixel_anime/cinematicas/camino.png"
+  },
+  {
+    "id": "prologo.encuentro_hostil.2",
+    "texto": "No es un goblin. Es de la aldea.",
+    "ruta": "assets/pixel_anime/cinematicas/camino.png"
+  },
+  {
+    "id": "prologo.encuentro_hostil.3",
+    "texto": "- De donde sacas esas cartas?",
+    "ruta": "assets/pixel_anime/cinematicas/camino.png"
+  },
+  {
+    "id": "prologo.encuentro_hostil.4",
+    "texto": "No es una pregunta. Es una amenaza.",
+    "ruta": "assets/pixel_anime/cinematicas/camino.png"
+  },
+  {
+    "id": "prologo.encuentro_hostil.5",
+    "texto": "Cierras el estuche antes de que pueda arrebatartelo.",
+    "ruta": "assets/pixel_anime/cinematicas/camino.png"
+  },
+  {
+    "id": "prologo.encuentro_hostil.6",
+    "texto": "Te apartas y sigues el camino. El no te sigue, pero ya te ha visto.",
+    "ruta": "assets/pixel_anime/cinematicas/camino.png"
+  },
+  {
+    "id": "prologo.nara.0",
+    "texto": "Cuando logras salir, hay alguien esperandote.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.1",
+    "texto": "Una mujer con una libreta abierta y tinta en los dedos.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.2",
+    "texto": "- Ustedes juegan Cartones y Mazmorras?",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.3",
+    "texto": "Lo sueltas antes de pensarlo. Es lo unico que sale.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.4",
+    "texto": "- No se que son esos cartones.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.5",
+    "texto": "- Aqui esto se llama Juicio.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.6",
+    "texto": "Mira tus cinco legendarias con los ojos muy abiertos.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.7",
+    "texto": "- Eso no son cartas de aqui. Esas cartas son de otro lado.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.8",
+    "texto": "Y entonces hace la pregunta que lo cambia todo:",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.9",
+    "texto": "- De donde las sacaste?",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.nara.10",
+    "texto": "Le cuentas lo del torneo, el salon y la carta que apago las luces.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.0",
+    "texto": "Nara se sienta enfrente. Cierra el libro. Por primera vez no esta escribiendo.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.1",
+    "texto": "- Sientate. Te voy a contar lo que sabemos aqui.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.2",
+    "texto": "- Lo que viste en el salon no fue un fallo de la carta. Fue una apertura.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.3",
+    "texto": "La grieta que se abrio en el salon se llama el Umbral. Ya estaba aqui antes de que vos llegaras.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.4",
+    "texto": "- El Umbral no se abre solo. Lo abre uno y lo guarda otro.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.5",
+    "texto": "Guardarlo significa una sola cosa: sentarse en el trono.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.6",
+    "texto": "- Todo lo de este mundo sale de ahi. Y el Umbral se abre para quien lo tenga.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.7",
+    "texto": "- Por eso hay diez bandos peleando por la Copa del Trono. No es un torneo. Es una guerra con reglas de duelo.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.8",
+    "texto": "Nara duda. Es la primera vez que duda.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.9",
+    "texto": "- Hay una cosa que la gente repite mal. Escuchame, porque importa.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.10",
+    "texto": "- Todos dicen: hay que vencer al dragon. En todas partes.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.11",
+    "texto": "- Es verdad a medias. La sangre del dragon fue la que legitimo el trono. Por eso la frase quedo pegada.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.12",
+    "texto": "- Quien guarda ahora el trono no tiene por que ser un dragon. Es quien gano el ultimo Juicio.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.13",
+    "texto": "Y por ultimo, lo que estabas a punto de preguntar:",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.14",
+    "texto": "- Yo no vine a salvar nada. Solo quiero volver a casa.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.15",
+    "texto": "- No hay vuelta, ni atajo, ni puerta de servicio. Gana el trono y el Umbral te devuelve a tu salon.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.16",
+    "texto": "- Son cinco duelos. El ultimo es el trono. Si se pierde, se vuelve a intentar: nadie te saca de aca por perder.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.17",
+    "texto": "Cierra el libro. Lo vuelve a abrir. Y escribe una sola palabra:",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.explicacion.18",
+    "texto": "CASA",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.cierre.0",
+    "texto": "- Guarda tus cinco legendarias en el estuche. Aqui aun no responden como en tu mundo. Necesitas un mazo de este lado.",
+    "ruta": "assets/cinematicas_hd/prologo_campamento_nara.png"
+  },
+  {
+    "id": "prologo.cierre.1",
+    "texto": "A partir de aqui ya no sos un invitado.",
+    "ruta": "assets/pixel_anime/cinematicas/umbral.png"
+  },
+  {
+    "id": "prologo.cierre.2",
+    "texto": "A partir de aqui sos alguien que sabe demasiado.",
+    "ruta": "assets/pixel_anime/cinematicas/umbral.png"
+  },
+  {
+    "id": "prologo.cierre.3",
+    "texto": "ELIGE TU MAZO PRINCIPAL",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "prologo.cierre.4",
+    "texto": "No es quien eres. Es el mazo que juegas. Y el mundo lo va a leer.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.humano.0",
+    "texto": "La noche cae sobre un reino que ya no es un reino: solo ceniza y cuatro murallas.",
+    "ruta": "assets/cinematicas_hd/apertura_humano_reino_en_cenizas.png"
+  },
+  {
+    "id": "apertura.humano.1",
+    "texto": "El rey Aldric no tiene ejercito. Tiene una correo, dos espadas y una promesa.",
+    "ruta": "assets/cinematicas_hd/apertura_humano_reino_en_cenizas.png"
+  },
+  {
+    "id": "apertura.humano.2",
+    "texto": "Juegas con el mazo humano. Nadie mas en este mundo juega con el.",
+    "ruta": "assets/cinematicas_hd/apertura_humano_reino_en_cenizas.png"
+  },
+  {
+    "id": "apertura.humano.3",
+    "texto": "- Queremos que el Umbral quede vigilado: que nadie baje mas al mundo de los juegos, y que nadie salga de el.",
+    "ruta": "assets/cinematicas_hd/apertura_humano_reino_en_cenizas.png"
+  },
+  {
+    "id": "apertura.humano.4",
+    "texto": "- Te ayudamos porque llegaste con cartas que no son de aca. Nadie te puede usar mejor que nosotros.",
+    "ruta": "assets/cinematicas_hd/apertura_humano_reino_en_cenizas.png"
+  },
+  {
+    "id": "apertura.humano.5",
+    "texto": "Eres el ultimo resto de una especie que se niega a desaparecer.",
+    "ruta": "assets/cinematicas_hd/apertura_humano_reino_en_cenizas.png"
+  },
+  {
+    "id": "final.humano.dominio.0",
+    "texto": "EL REY RECONSTRUIDO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.dominio.1",
+    "texto": "El Umbral calla y la corona vuelve a ser de bronce y no de ceniza.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.dominio.2",
+    "texto": "No hay hambre en las fronteras: hay escuelas y campanas que suenan temprano.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.dominio.3",
+    "texto": "La historia no dira que los humanos fueron los mas fuertes.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.dominio.4",
+    "texto": "Dira que fueron los que se quedaron.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.equilibrio.0",
+    "texto": "LA PAZ CONGELADA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.equilibrio.1",
+    "texto": "Ganaste el trono y el derecho a conservarlo: eso es justo lo que ellos querian.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.equilibrio.2",
+    "texto": "El bosque respira otra vez, la manada vuelve al bosque, la noche se aquieta.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.equilibrio.3",
+    "texto": "Nadie recuerda ya que hubo una guerra. Eso, en el fondo, tambien es una victoria.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.caos.0",
+    "texto": "UNA CORONA FRAGIL",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.caos.1",
+    "texto": "Ganaste, pero por poco, y el reino lo sabe.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.caos.2",
+    "texto": "Los elfos cuentan otra version. Los orcos, otra. Nadie coincide.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.humano.caos.3",
+    "texto": "La paz que lograste durara lo que dura un invierno sin pan.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.orco.0",
+    "texto": "Al otro lado de la frontera hay un mundo con un muro y una sola palabra: invasores.",
+    "ruta": "assets/cinematicas_hd/apertura_orco_frontera_muralla.png"
+  },
+  {
+    "id": "apertura.orco.1",
+    "texto": "Vorg no sabe leer. Sabe contar. Y sabe que le deben siete generaciones.",
+    "ruta": "assets/cinematicas_hd/apertura_orco_frontera_muralla.png"
+  },
+  {
+    "id": "apertura.orco.2",
+    "texto": "Juegas con el mazo orco. No el que te impone el mundo: el que tu pueblo se ha ganado con los dientes.",
+    "ruta": "assets/cinematicas_hd/apertura_orco_frontera_muralla.png"
+  },
+  {
+    "id": "apertura.orco.3",
+    "texto": "- Queremos un lugar en el mundo que nos negaron otra vez. No un trono para tapar una cosa: un sitio en la mesa.",
+    "ruta": "assets/cinematicas_hd/apertura_orco_frontera_muralla.png"
+  },
+  {
+    "id": "apertura.orco.4",
+    "texto": "- Te ayudamos porque peleas bien y porque no rubs nada. Un orco prefiere a alguien util antes que a alguien educado.",
+    "ruta": "assets/cinematicas_hd/apertura_orco_frontera_muralla.png"
+  },
+  {
+    "id": "apertura.orco.5",
+    "texto": "No fight contra el mundo entero: solo contra lo que se opone.",
+    "ruta": "assets/cinematicas_hd/apertura_orco_frontera_muralla.png"
+  },
+  {
+    "id": "final.orco.dominio.0",
+    "texto": "EL TRONO DE CENIZA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.dominio.1",
+    "texto": "Los portones ceden y el trono del Umbral es tuyo para quien lo alcance.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.dominio.2",
+    "texto": "El bosque envejece mil anos en una sola noche.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.dominio.3",
+    "texto": "No eres un rey: eres el primer orco que no pide permiso para existir.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.equilibrio.0",
+    "texto": "LA TRIBU REUNIDA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.equilibrio.1",
+    "texto": "No arrasaste el mundo: lo tomaste en fracciones justas.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.equilibrio.2",
+    "texto": "Los elfos exiliados al norte y un pacto que nadie se atreve a romper.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.equilibrio.3",
+    "texto": "Es poco. Para tu pueblo, es todo.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.caos.0",
+    "texto": "NADA DE ESO QUEDA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.caos.1",
+    "texto": "Quemaste el trono, pero no lo tomaste. Ya hubo otros que lo intentaron.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.caos.2",
+    "texto": "El bosque crece sobre tus banderas y los elfos tocan la ceniza con reverencia.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.orco.caos.3",
+    "texto": "Tu pueblo sobrevive. Es la unica victoria que no puedes negociar.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.goblin.0",
+    "texto": "Bajo el foso hay una puerta que nadie abrio en doscientos anos. Hoy se abre sola.",
+    "ruta": "assets/cinematicas_hd/apertura_goblin_puerta_bajo_foso.png"
+  },
+  {
+    "id": "apertura.goblin.1",
+    "texto": "Grix tiene tres mil goblins y ninguna idea de lo que significa la palabra plan.",
+    "ruta": "assets/cinematicas_hd/apertura_goblin_puerta_bajo_foso.png"
+  },
+  {
+    "id": "apertura.goblin.2",
+    "texto": "Con el mazo goblin no pretendes conquistar un trono. Pretendes llevarte el sofa.",
+    "ruta": "assets/cinematicas_hd/apertura_goblin_puerta_bajo_foso.png"
+  },
+  {
+    "id": "apertura.goblin.3",
+    "texto": "- Queremos el trono entero y sin reparto. Es lo unico que sabemos pedir, y por eso mismo lo pedimos fuerte.",
+    "ruta": "assets/cinematicas_hd/apertura_goblin_puerta_bajo_foso.png"
+  },
+  {
+    "id": "apertura.goblin.4",
+    "texto": "- Te ayudamos porque entraste al mundo con cinco cartas imposibles y no preguntaste de donde. Eso, para un goblin, casi es amistad.",
+    "ruta": "assets/cinematicas_hd/apertura_goblin_puerta_bajo_foso.png"
+  },
+  {
+    "id": "apertura.goblin.5",
+    "texto": "Todo lo que brilla es tuyo. Tambien todo lo que se mueve.",
+    "ruta": "assets/cinematicas_hd/apertura_goblin_puerta_bajo_foso.png"
+  },
+  {
+    "id": "final.goblin.dominio.0",
+    "texto": "EL BOTIN DE TODO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.dominio.1",
+    "texto": "El rey dragon no deja tronos: deja tesoros, y eso os basta.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.dominio.2",
+    "texto": "Grix duerme sobre una montana de oro y ronca como un jabali.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.dominio.3",
+    "texto": "Hehe.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.equilibrio.0",
+    "texto": "UN GRIJON CON CASA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.equilibrio.1",
+    "texto": "Osaron los goblins con casa propia y un muro de quince centimetros.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.equilibrio.2",
+    "texto": "Los elfos no approve el uso de la palabra goblin con mayuscula, pero no pueden atacaros.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.equilibrio.3",
+    "texto": "Nadie recuerda que hubo una guerra por una montana de oro.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.caos.0",
+    "texto": "SIN BOTIN, CON HAMBRE",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.caos.1",
+    "texto": "Perdisteis el rastro del rey dragon y el banquete de la victoria.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.caos.2",
+    "texto": "Grix os culpa a todos menos a si mismo. Es tradicion.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.goblin.caos.3",
+    "texto": "La montana de oro se la llevan los elfos, que no comparten ni el sonido.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.elfo.0",
+    "texto": "El bosque lleva cuatrocientos anos callado. Esta manana ha tirado una hoja distinta.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_bosque_silencioso.png"
+  },
+  {
+    "id": "apertura.elfo.1",
+    "texto": "Lyra guarda un arma que solo se saca cuando el bosque entero la pide.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_bosque_silencioso.png"
+  },
+  {
+    "id": "apertura.elfo.2",
+    "texto": "Juegas con el mazo elfico. No es un privilege: es una deuda con cuatro lados.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_bosque_silencioso.png"
+  },
+  {
+    "id": "apertura.elfo.3",
+    "texto": "- Queremos que el Umbral se cierre y que la ceniza deje de caer. No queremos el trono: queremos que no haga falta.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_bosque_silencioso.png"
+  },
+  {
+    "id": "apertura.elfo.4",
+    "texto": "- Te ayudamos porque todavia no te odio nadie. Vamos a decidir eso antes de que se nos acabe la paciencia.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_bosque_silencioso.png"
+  },
+  {
+    "id": "apertura.elfo.5",
+    "texto": "La gracia no discute con el fuego. Se planta delante.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_bosque_silencioso.png"
+  },
+  {
+    "id": "final.elfo.dominio.0",
+    "texto": "EL BOSQUE RESPONDE",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.dominio.1",
+    "texto": "Las raices de mil anos sostienen por fin una corona elfica.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.dominio.2",
+    "texto": "El fuego se apaga en el Claro y los elfos cantan tu nombre muy alto.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.dominio.3",
+    "texto": "Fue la primera vez en cuatrocientos anos que el bosque eligio bando.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.equilibrio.0",
+    "texto": "EL BOSQUE EN PAZ",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.equilibrio.1",
+    "texto": "No tomaste el trono: lo dejaste entre las ramas, como se debe.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.equilibrio.2",
+    "texto": "Lyra firma la paz y las raices cubren los campos de batalla.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.equilibrio.3",
+    "texto": "Los elfos cuelgan su bandera blanca de los arboles y la ciudad respira.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.caos.0",
+    "texto": "HOJAS SECAS",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.caos.1",
+    "texto": "El bosque se levanto contigo y ya no sabe a quien obedecer.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.caos.2",
+    "texto": "Los elfos caminan por un reino que ya no reconoce la bandera del bosque.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo.caos.3",
+    "texto": "Hasta los arboles han dejado de responder a la bandera del bosque.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.hombre_lobo.0",
+    "texto": "La luna se levanta antes que el sol y eso, en esta ciudad, nadie se lo toma bien.",
+    "ruta": "assets/cinematicas_hd/apertura_hombre_lobo_ciudad_lunar.png"
+  },
+  {
+    "id": "apertura.hombre_lobo.1",
+    "texto": "Fenris no quiere un trono. Quiere saber por que la ciudad tiene agua y el bosque tiene hambre.",
+    "ruta": "assets/cinematicas_hd/apertura_hombre_lobo_ciudad_lunar.png"
+  },
+  {
+    "id": "apertura.hombre_lobo.2",
+    "texto": "Juegas con el mazo hombre lobo: cae con fuerza y levanta la manada a la vez.",
+    "ruta": "assets/cinematicas_hd/apertura_hombre_lobo_ciudad_lunar.png"
+  },
+  {
+    "id": "apertura.hombre_lobo.3",
+    "texto": "- Queremos que la ciudad deje de ser el corral. No la queremos para nosotros: queremos que la manada deje de depender de ella.",
+    "ruta": "assets/cinematicas_hd/apertura_hombre_lobo_ciudad_lunar.png"
+  },
+  {
+    "id": "apertura.hombre_lobo.4",
+    "texto": "- Te ayudamos porque reconocemos a uno que vuelve a levantarse despues de perder. No miramos la estrategia, miramos el historial.",
+    "ruta": "assets/cinematicas_hd/apertura_hombre_lobo_ciudad_lunar.png"
+  },
+  {
+    "id": "apertura.hombre_lobo.5",
+    "texto": "Cuando aulla la manada, las cartas empiezan a obedecer.",
+    "ruta": "assets/cinematicas_hd/apertura_hombre_lobo_ciudad_lunar.png"
+  },
+  {
+    "id": "final.hombre_lobo.dominio.0",
+    "texto": "LA MANADA CORONA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.dominio.1",
+    "texto": "La luna miro a la ciudad y esta vez no aparto la cara.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.dominio.2",
+    "texto": "La manada duerme en los auditorios que fueron palacios.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.dominio.3",
+    "texto": "Nadie cierra las puertas de noche y nadie lo echa de menos.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.equilibrio.0",
+    "texto": "LUNAR PARADO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.equilibrio.1",
+    "texto": "No eres rey: eres el guardio que decide cuando empieza la luna.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.equilibrio.2",
+    "texto": "La ciudad abre las puertas de noche y nadie registra por que.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.equilibrio.3",
+    "texto": "El bosque y la ciudad comparten ahora el mismo reloj lunar.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.caos.0",
+    "texto": "SIN LUNA, SIN MANADA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.caos.1",
+    "texto": "La manada se ha dispersado por un mapa que ya no reconoce sus huellas.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.caos.2",
+    "texto": "Alfa sin manada es solo un lobo muy cansado.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lobo.caos.3",
+    "texto": "Los pueblos de la frontera ya no cuentan manadas: cuentan silencios.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.vampiro.0",
+    "texto": "El pacto que unio a la noche con la tierra se rompio en una sola noche.",
+    "ruta": "assets/cinematicas_hd/apertura_vampiro_cripta_pacto_roto.png"
+  },
+  {
+    "id": "apertura.vampiro.1",
+    "texto": "La Condesa vuelve a la cripta con un mismo nombre: su propia sangre.",
+    "ruta": "assets/cinematicas_hd/apertura_vampiro_cripta_pacto_roto.png"
+  },
+  {
+    "id": "apertura.vampiro.2",
+    "texto": "Con el mazo vampiro no pezas un ejercito. Pezas una deuda.",
+    "ruta": "assets/cinematicas_hd/apertura_vampiro_cripta_pacto_roto.png"
+  },
+  {
+    "id": "apertura.vampiro.3",
+    "texto": "- Queremos que se reponga el pacto antiguo que el rey dragon rompio. No el trono entero: que la deuda que se nos debe vuelva a existir.",
+    "ruta": "assets/cinematicas_hd/apertura_vampiro_cripta_pacto_roto.png"
+  },
+  {
+    "id": "apertura.vampiro.4",
+    "texto": "- Te ayudamos porque tenemos mil anos de practica y vos no le debes nada a nadie. Eso nos hace utiles: no podes reclamar nada.",
+    "ruta": "assets/cinematicas_hd/apertura_vampiro_cripta_pacto_roto.png"
+  },
+  {
+    "id": "apertura.vampiro.5",
+    "texto": "Y las deudas se cobran con intereses.",
+    "ruta": "assets/cinematicas_hd/apertura_vampiro_cripta_pacto_roto.png"
+  },
+  {
+    "id": "final.vampiro.dominio.0",
+    "texto": "LA NOCHE CORONA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.dominio.1",
+    "texto": "El pacto antiguo se ha roto y tu linaje lo ha escrito con sangre nueva.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.dominio.2",
+    "texto": "Tres ciudades arden antes del amanecer y en todas se abre la ventana para ti.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.dominio.3",
+    "texto": "Los humanos descubren que la noche tiene ahora un gobierno.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.equilibrio.0",
+    "texto": "EL PACTO REESCRITO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.equilibrio.1",
+    "texto": "No destruiste a la manada: negociaste con ella.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.equilibrio.2",
+    "texto": "Hay dos poderes ahora y los dos saben leer el mismo contrato.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.equilibrio.3",
+    "texto": "Las criaturas de la noche se reparten el mapa en una paz que huele a ironia.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.caos.0",
+    "texto": "CRIPTA ABIERTA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.caos.1",
+    "texto": "Perdiste el pacto y la corona en la misma noche.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.caos.2",
+    "texto": "Los nobles de la noche empiezan a cazarse entre si y el amanecer no llega a tiempo.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.vampiro.caos.3",
+    "texto": "El amanecer llega puntual, y la ciudad cree que es una victoria.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.dragon.0",
+    "texto": "El cielo lleva semanas del color de la brasa y los pajaros no han cantado.",
+    "ruta": "assets/cinematicas_hd/apertura_dragon_cielo_brasa.png"
+  },
+  {
+    "id": "apertura.dragon.1",
+    "texto": "Ignarok no envio un reto. El reto fue el silencio del cielo entero.",
+    "ruta": "assets/cinematicas_hd/apertura_dragon_cielo_brasa.png"
+  },
+  {
+    "id": "apertura.dragon.2",
+    "texto": "Juegas con el mazo dragon. Nadie te lo pidio: tu lo tomaste.",
+    "ruta": "assets/cinematicas_hd/apertura_dragon_cielo_brasa.png"
+  },
+  {
+    "id": "apertura.dragon.3",
+    "texto": "- Queremos el trono porque el trono es nuestro por sangre y siempre lo fue. No negociamos: reconocemos.",
+    "ruta": "assets/cinematicas_hd/apertura_dragon_cielo_brasa.png"
+  },
+  {
+    "id": "apertura.dragon.4",
+    "texto": "- Te ayudamos porque un dragon no ayuda por bondad. Te ayudamos porque sos la primera cosa en mucho tiempo que nos interesa.",
+    "ruta": "assets/cinematicas_hd/apertura_dragon_cielo_brasa.png"
+  },
+  {
+    "id": "apertura.dragon.5",
+    "texto": "Donde pongas el pie, la ceniza crece.",
+    "ruta": "assets/cinematicas_hd/apertura_dragon_cielo_brasa.png"
+  },
+  {
+    "id": "final.dragon.dominio.0",
+    "texto": "EL REY DEL CIELO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.dominio.1",
+    "texto": "La ceniza que nacio en lo dragonico se ha vuelto tu corona.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.dominio.2",
+    "texto": "Los humanos que te desafiaron son ahora hogueras, no ejercitos.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.dominio.3",
+    "texto": "El cielo arde y esta vez lo enciendes tu.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.equilibrio.0",
+    "texto": "DOS CORONAS",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.equilibrio.1",
+    "texto": "No aplastaste a los humanos: les hiciste una oferta y la aceptaron.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.equilibrio.2",
+    "texto": "El reino de Aldric sigue en pie y ahora te escucha.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.equilibrio.3",
+    "texto": "Los dos tronos comparten una sola hoguera y un solo guardian.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.caos.0",
+    "texto": "EL UMBRAL VACIO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.caos.1",
+    "texto": "Tu propia fuerza te ha dejado solo en el Umbral, como un rey de piedra.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.caos.2",
+    "texto": "No hay a quien quemar. Solo ceniza, y ceniza.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.dragon.caos.3",
+    "texto": "La ceniza no sabe a quien pertenece. Ya no queda nadie que lo pregunte.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.elfo_nocturno.0",
+    "texto": "El bosque echo a los que miraban al Umbral sin parpadear. La noche los recogio.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_nocturno_bosque_umbral.png"
+  },
+  {
+    "id": "apertura.elfo_nocturno.1",
+    "texto": "Sylwen no pide volver: pide lo que le deben con intereses de sombra.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_nocturno_bosque_umbral.png"
+  },
+  {
+    "id": "apertura.elfo_nocturno.2",
+    "texto": "Juegas con el mazo elfo nocturno. La oscuridad tambien tiene filo.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_nocturno_bosque_umbral.png"
+  },
+  {
+    "id": "apertura.elfo_nocturno.3",
+    "texto": "- Queremos volver al bosque del que nos expulsaron por mirar al Umbral sin parpadear. Queremos que la grieta vuelva a ser solo un rumor.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_nocturno_bosque_umbral.png"
+  },
+  {
+    "id": "apertura.elfo_nocturno.4",
+    "texto": "- Te ayudamos porque uno de los nuestros ya te vio y no le avisamos. Ayudamos a quien ya tenemos fichado.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_nocturno_bosque_umbral.png"
+  },
+  {
+    "id": "apertura.elfo_nocturno.5",
+    "texto": "Donde la luz no llega, llegas tu.",
+    "ruta": "assets/cinematicas_hd/apertura_elfo_nocturno_bosque_umbral.png"
+  },
+  {
+    "id": "final.elfo_nocturno.dominio.0",
+    "texto": "LA SOMBRA CORONADA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.dominio.1",
+    "texto": "El Umbral se abre para quien lo miro sin parpadear.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.dominio.2",
+    "texto": "Sylwen no pide perdon al bosque: le trae un trono envuelto en noche.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.dominio.3",
+    "texto": "Donde antes habia exilio, ahora hay vigilia.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.equilibrio.0",
+    "texto": "PACTO DE PENUMBRA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.equilibrio.1",
+    "texto": "Ni luz ni sombra: un acuerdo a media voz con el bosque.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.equilibrio.2",
+    "texto": "Los elfos diurnos fingen que fue idea suya. Dejalos.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.equilibrio.3",
+    "texto": "La noche y el dia comparten la misma corona por turnos.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.caos.0",
+    "texto": "SIN LUNA QUE VOLVER",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.caos.1",
+    "texto": "Ganaste el trono pero la sombra te desconoce.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.caos.2",
+    "texto": "Ni el bosque ni el Umbral reclaman tu victoria.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.elfo_nocturno.caos.3",
+    "texto": "Reinas sobre una penumbra que no te nombra.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.hombre_pantera.0",
+    "texto": "Nadie los vio llegar porque nadie mira al tejado. Ya estaban aqui.",
+    "ruta": "assets/cinematicas_hd/apertura_pantera_tejados_ciudad.png"
+  },
+  {
+    "id": "apertura.hombre_pantera.1",
+    "texto": "Zarkha no ruge: susurra, y el susurro basta para vaciar una calle.",
+    "ruta": "assets/cinematicas_hd/apertura_pantera_tejados_ciudad.png"
+  },
+  {
+    "id": "apertura.hombre_pantera.2",
+    "texto": "Juegas con el mazo hombre pantera: cae sin ruido y cobra sin prisa.",
+    "ruta": "assets/cinematicas_hd/apertura_pantera_tejados_ciudad.png"
+  },
+  {
+    "id": "apertura.hombre_pantera.3",
+    "texto": "- Queremos que los tejados sigan siendo de quien los usa. El trono nos importa menos que no perder el unico sitio que tenemos.",
+    "ruta": "assets/cinematicas_hd/apertura_pantera_tejados_ciudad.png"
+  },
+  {
+    "id": "apertura.hombre_pantera.4",
+    "texto": "- Te ayudamos porque camina donde nadie mira, y porque te vigilamos desde que bajaste al bosque. Ayudamos a quien tenemos al lado.",
+    "ruta": "assets/cinematicas_hd/apertura_pantera_tejados_ciudad.png"
+  },
+  {
+    "id": "apertura.hombre_pantera.5",
+    "texto": "La mejor caza es la que nadie oye.",
+    "ruta": "assets/cinematicas_hd/apertura_pantera_tejados_ciudad.png"
+  },
+  {
+    "id": "final.hombre_pantera.dominio.0",
+    "texto": "LA CAZA PERFECTA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.dominio.1",
+    "texto": "Nadie vio llegar a Zarkha y nadie la vera irse: el trono ya es suyo.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.dominio.2",
+    "texto": "La manada de la sombra patrulla los tejados del mundo.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.dominio.3",
+    "texto": "El silencio, por fin, tiene dueno.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.equilibrio.0",
+    "texto": "TERRITORIO COMPARTIDO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.equilibrio.1",
+    "texto": "Fenris y Zarkha acuerdan turnos de luna: nadie muerde fuera de hora.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.equilibrio.2",
+    "texto": "El bosque aprende a dormir con un ojo abierto y el otro cerrado.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.equilibrio.3",
+    "texto": "Una tregua felina: dura mientras nadie corra.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.caos.0",
+    "texto": "PRESA DEL RUIDO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.caos.1",
+    "texto": "Ganaste haciendo ruido y la selva lo apunta todo.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.caos.2",
+    "texto": "Cada sombra esconde ahora otra sombra que te debe una.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_pantera.caos.3",
+    "texto": "El trono es tuyo, pero dormir cuesta el doble.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "apertura.hombre_lagarto.0",
+    "texto": "El pantano lleva siglos tragando ejercitos sin masticar. Hoy escupe uno.",
+    "ruta": "assets/cinematicas_hd/apertura_lagarto_pantano_ruinas.png"
+  },
+  {
+    "id": "apertura.hombre_lagarto.1",
+    "texto": "Sskar no tiene prisa: la prisa es para los que se hunden.",
+    "ruta": "assets/cinematicas_hd/apertura_lagarto_pantano_ruinas.png"
+  },
+  {
+    "id": "apertura.hombre_lagarto.2",
+    "texto": "Juegas con el mazo hombre lagarto: escamas, paciencia y fango.",
+    "ruta": "assets/cinematicas_hd/apertura_lagarto_pantano_ruinas.png"
+  },
+  {
+    "id": "apertura.hombre_lagarto.3",
+    "texto": "- Queremos que el agua vuelva a ser de todos. El trono es el unico papel que existe para conseguir eso.",
+    "ruta": "assets/cinematicas_hd/apertura_lagarto_pantano_ruinas.png"
+  },
+  {
+    "id": "apertura.hombre_lagarto.4",
+    "texto": "- Te ayudamos porque tenemos mas paciencia que cualquiera: esperamos mas que el mundo, y esperamos un duelo mas.",
+    "ruta": "assets/cinematicas_hd/apertura_lagarto_pantano_ruinas.png"
+  },
+  {
+    "id": "apertura.hombre_lagarto.5",
+    "texto": "Lo que el pantano traga, el pantano conserva.",
+    "ruta": "assets/cinematicas_hd/apertura_lagarto_pantano_ruinas.png"
+  },
+  {
+    "id": "final.hombre_lagarto.dominio.0",
+    "texto": "EL PANTANO REINA",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.dominio.1",
+    "texto": "El fango llego al trono sin prisa y sin pedir permiso.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.dominio.2",
+    "texto": "Sskar no celebra: el pantano tampoco celebra, solo crece.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.dominio.3",
+    "texto": "Lo que el pantano traga, el pantano conserva.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.equilibrio.0",
+    "texto": "AGUAS QUIETAS",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.equilibrio.1",
+    "texto": "Vorg acepta el pacto del fango: territorio por tributo.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.equilibrio.2",
+    "texto": "El pantano deja pasar caravanas y cobra peaje en silencio.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.equilibrio.3",
+    "texto": "La paz mas lenta del mundo tambien es la mas firme.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.caos.0",
+    "texto": "FANGO REVUELTO",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.caos.1",
+    "texto": "Tomaste el trono chapoteando y el reino lo noto.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.caos.2",
+    "texto": "Cada faccion cuenta que el pantano los traiciono primero.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "final.hombre_lagarto.caos.3",
+    "texto": "Gobiernas, pero con el agua al cuello.",
+    "ruta": "assets/cinematicas_hd/sala_trono.png"
+  },
+  {
+    "id": "umbral.dominio.0",
+    "texto": "FORZAS LA APERTURA",
+    "ruta": "assets/cinematicas_hd/final_umbral_dominio_forzado.png"
+  },
+  {
+    "id": "umbral.dominio.1",
+    "texto": "Empujas. No es abrir una puerta: es convencer a algo que no quiere.",
+    "ruta": "assets/cinematicas_hd/final_umbral_dominio_forzado.png"
+  },
+  {
+    "id": "umbral.dominio.2",
+    "texto": "El Umbral cede y del otro lado esta tu salon, tus luces, tu torneo.",
+    "ruta": "assets/cinematicas_hd/final_umbral_dominio_forzado.png"
+  },
+  {
+    "id": "umbral.dominio.3",
+    "texto": "Y tambien esta la otra cosa: algo cruza contigo hacia tu mundo.",
+    "ruta": "assets/cinematicas_hd/final_umbral_dominio_forzado.png"
+  },
+  {
+    "id": "umbral.dominio.4",
+    "texto": "No lo ves. Todavia no. Vas a verlo mas tarde, en tu propio mazo.",
+    "ruta": "assets/cinematicas_hd/final_umbral_dominio_forzado.png"
+  },
+  {
+    "id": "epilogo.dominio.0",
+    "texto": "VOLVISTE CON ALGO",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.dominio.1",
+    "texto": "Estas otra vez en el torneo. La misma mesa, las mismas luces.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.dominio.2",
+    "texto": "Abres el estuche: tus cinco legendarias siguen ahi, pero sobra una carta.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.dominio.3",
+    "texto": "Hay una que no compraste. No la viste nunca. No tiene fecha.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.dominio.4",
+    "texto": "Es LEGENDARIA. Y el rostro en el arte... es el tuyo.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.dominio.5",
+    "texto": "- Quien sos, __JUGADOR__? - Alguien que estuvo donde nadie debe estar.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "umbral.equilibrio.0",
+    "texto": "LA ABRES LO JUSTO",
+    "ruta": "assets/cinematicas_hd/final_umbral_equilibrio_apertura.png"
+  },
+  {
+    "id": "umbral.equilibrio.1",
+    "texto": "No la fuerzas. La negocias: el tiempo justo para cruzar y volver.",
+    "ruta": "assets/cinematicas_hd/final_umbral_equilibrio_apertura.png"
+  },
+  {
+    "id": "umbral.equilibrio.2",
+    "texto": "Alguien sostiene el otro lado. Alguien que se queda esperando.",
+    "ruta": "assets/cinematicas_hd/final_umbral_equilibrio_apertura.png"
+  },
+  {
+    "id": "umbral.equilibrio.3",
+    "texto": "Cruzas. El Umbral se cierra detras con un ruido pequeno, de puerta.",
+    "ruta": "assets/cinematicas_hd/final_umbral_equilibrio_apertura.png"
+  },
+  {
+    "id": "umbral.equilibrio.4",
+    "texto": "Para todos los de aqui, en el salon, pasaron tres segundos.",
+    "ruta": "assets/cinematicas_hd/final_umbral_equilibrio_apertura.png"
+  },
+  {
+    "id": "epilogo.equilibrio.0",
+    "texto": "UNA EXPANSION NUEVA",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.equilibrio.1",
+    "texto": "Para todos, en el salon, pasaron tres segundos. Nada mas.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.equilibrio.2",
+    "texto": "Buscas en internet los nombres de los que conociste. Nada cambia.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.equilibrio.3",
+    "texto": "Todo esta igual. Hasta que abris Cartones y Mazmorras.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.equilibrio.4",
+    "texto": "Hay una expansion nueva. Anunciada esta manana. Nadie sabe de quien.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.equilibrio.5",
+    "texto": "La portada es el rostro de alguien que te ayudo a volver. Nara.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "epilogo.equilibrio.6",
+    "texto": "- Como puede estar en una carta? - Porque ya la viste. En el bosque.",
+    "ruta": "assets/cinematicas_hd/salon_torneo.png"
+  },
+  {
+    "id": "umbral.caos.0",
+    "texto": "SE ROMPE",
+    "ruta": "assets/cinematicas_hd/final_umbral_caos_mundos_mezclados.png"
+  },
+  {
+    "id": "umbral.caos.1",
+    "texto": "No se abre. Se rompe. Y romper no es lo mismo que abrir.",
+    "ruta": "assets/cinematicas_hd/final_umbral_caos_mundos_mezclados.png"
+  },
+  {
+    "id": "umbral.caos.2",
+    "texto": "Las dos paredes de la realidad se mezclan como un mazo mal barajado.",
+    "ruta": "assets/cinematicas_hd/final_umbral_caos_mundos_mezclados.png"
+  },
+  {
+    "id": "umbral.caos.3",
+    "texto": "El bosque entra al salon. El salon entra al bosque. Sin permiso.",
+    "ruta": "assets/cinematicas_hd/final_umbral_caos_mundos_mezclados.png"
+  },
+  {
+    "id": "umbral.caos.4",
+    "texto": "Y en el bolsillo te queda una carta que no compraste nunca.",
+    "ruta": "assets/cinematicas_hd/final_umbral_caos_mundos_mezclados.png"
+  },
+  {
+    "id": "epilogo.caos.0",
+    "texto": "VOLVISTE. Y ALGO VINO CON VOS.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  },
+  {
+    "id": "epilogo.caos.1",
+    "texto": "Volviste. El salon, las luces, el ruido de siempre. Todo esta donde lo dejaste.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  },
+  {
+    "id": "epilogo.caos.2",
+    "texto": "Cruzaste antes de que el borde de la grieta se deshiciera. Ya no hay una puerta que puedas cerrar.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  },
+  {
+    "id": "epilogo.caos.3",
+    "texto": "Entre las mesas crecen los pinos del otro mundo. Ahora todos los ven.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  },
+  {
+    "id": "epilogo.caos.4",
+    "texto": "El presentador pide calma. Nadie sabe a que mundo pertenece el salon.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  },
+  {
+    "id": "epilogo.caos.5",
+    "texto": "En tu coleccion hay una carta nueva. No recuerdas comprarla.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  },
+  {
+    "id": "epilogo.caos.6",
+    "texto": "La sacas del bolsillo. La figura de la carta se mueve sola.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  },
+  {
+    "id": "epilogo.caos.7",
+    "texto": "- Esto se mueve, __JUGADOR__? - Si. Y esta vez no soy el unico que lo ve.",
+    "ruta": "assets/cinematicas_hd/epilogo_caos_salon_invadio.png"
+  }
+]

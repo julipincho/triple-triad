@@ -5,8 +5,11 @@ cuadradas y de sierra, estilo chiptune) para que el juego no dependa de bancos
 de sonido externos. Aqui solo se mezclan, con volumen y afinacion por pantalla.
 """
 
+import hashlib
+import json
 import os
 import sys
+from functools import lru_cache
 
 import pygame
 
@@ -25,6 +28,44 @@ _cache_musica = {}
 _musica_actual = None
 _sfx_actuales = {}
 _musica_pausada = False
+
+# --------------------------------------------------------------- lote Stable
+# Efectos generados con Stable Audio 3.0 Small SFX. Se resuelve por el MISMO
+# nombre que el juego ya pide, asi que `partida.py` y `pantallas.py` no
+# cambian: `sfx()` redirige el nombre al WAV nuevo.
+#
+# No es un cache: se relee si falta el archivo o si el hash no cuadra, para
+# que un asset corrupto caiga al sonido original en vez de cortar el audio.
+# La musica NO pasa por aqui: `_ruta_musica` queda intacto, asi que
+# `musica_duelo` y el resto de la banda sonora no se tocan.
+_LOTE_ACTIVO = os.environ.get("TRIPLETRIAD_SFX_STABLE_AUDIO3", "1") != "0"
+
+
+@lru_cache(maxsize=1)
+def _lote_sfx():
+    if not _LOTE_ACTIVO:
+        return {}
+    try:
+        with open(recurso("assets/sfx_stable_audio3/manifest.json"), encoding="utf-8") as f:
+            return json.load(f).get("mapa", {})
+    except (OSError, ValueError, KeyError):
+        return {}
+
+
+def _lote_disponible(nombre):
+    """Ruta del WAV del lote para este nombre del juego, o None."""
+    entrada = _lote_sfx().get(nombre)
+    if not entrada:
+        return None
+    ruta = entrada["archivo"]
+    completa = recurso(ruta)
+    try:
+        with open(completa, "rb") as f:
+            if hashlib.sha256(f.read()).hexdigest() != entrada["sha256"]:
+                return None
+    except OSError:
+        return None
+    return ruta
 
 
 def es_web():
@@ -96,9 +137,12 @@ def sfx(nombre, volumen=1.0, canal=None):
     """Reproduce un efecto. `canal` permite que dos sonidos se pisen."""
     if not disponible():
         return
+    # El lote Stable sustituye el archivo por el MISMO nombre logico, asi que
+    # la cache y el canal siguen funcionando igual que antes.
+    nombre = _lote_disponible(nombre) or nombre
     sonido = _cache_sfx.get(nombre)
     if sonido is None:
-        ruta = _ruta(nombre)
+        ruta = nombre if nombre.startswith("assets/") else _ruta(nombre)
         if not os.path.exists(ruta):
             _cache_sfx[nombre] = False
             return

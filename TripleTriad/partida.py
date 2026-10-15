@@ -403,6 +403,11 @@ class Juego:
             reparto.append("%d directas" % resumen["basica"])
         if resumen.get("quema"):
             reparto.append("%d por quema" % resumen["quema"])
+        # La habilidad "quema" es el unico efecto del juego que se puede
+        # DETECTAR al colocar. Antes no sonaba nada propio: la captura se
+        # oia como una captura mas. No cambia ninguna regla, solo avisa.
+        if resumen.get("quema"):
+            audio.sfx("assets/sfx_stable_audio3/ability.wav", 0.7, canal="habilidad")
         self.efecto = (titulo, ahora, color,
                        "%s.  %d cartas: %s" % (sub, total, ", ".join(reparto)),
                        regla)
@@ -486,6 +491,10 @@ class Juego:
         if not self.fin:
             self.mensaje += " - tu turno"
             self.racha = 0
+            # El cambio de turno era visible (el mensaje) y mudo. Se anade el
+            # sonido justo al pasar el turno, no antes, para que no pise la
+            # captura que acaba de sonar.
+            audio.sfx("assets/sfx_stable_audio3/turn_change.wav", 0.55, canal="turno")
 
     def _elegir_jugada_cpu(self):
         """IA: simula cada jugada posible y puntua con ruido segun dificultad."""

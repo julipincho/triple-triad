@@ -1,0 +1,99 @@
+{
+  "project": "Cartones y Mazmorras",
+  "batch": "lote_05",
+  "created": "2026-10-14",
+  "status": "candidates_not_integrated",
+  "theme": "Despertar, primer claro del bosque, refugio y viaje temprano",
+  "export": "Imagenes PNG RGB 1280x720 (ImageOps.fit center crop sutil + Lanczos); masters 1672x941 preservados sin modificacion",
+  "protect": [
+    "Lotes 01-04 y todos los fondos ya aprobados/integrados",
+    "Avatares, cartas, bandas sonoras, dialogos, reglas y logica"
+  ],
+  "mapping_policy": "No sobrescribir rutas ni remapear claves existentes automaticamente. Investigar localizacion canonica en narrativa y enlazar solo cuando tenga sentido. Reportar candidatos no asignados.",
+  "assets": [
+    {
+      "id": "despertar_bosque_ruinas_arcanas",
+      "role": "Despertar del protagonista en el mundo fantastico tras la transicion dimensional",
+      "mapping": "Primer despertar en el bosque / llegada al otro mundo; confirmar escena y orden en el codigo",
+      "caution": "El paisaje contiene un castillo lejano y restos de magia; no convertir esos detalles visuales en sucesos argumentales nuevos",
+      "filename": "cinematicas_hd/despertar_bosque_ruinas_arcanas.png",
+      "original": "masters_originales/despertar_bosque_ruinas_arcanas_master.png",
+      "export_dimensions": [
+        1280,
+        720
+      ],
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "source_sha256": "0d51d7e48c300fbc4c47b55bef9aa87edbab2a80a727a67c9d440be0e6ef0051",
+      "export_sha256": "66e7780775925ffc2c803c4946012fd57eb0820aed6002805b024ff67f69ba67",
+      "format": "PNG RGB",
+      "classification": "candidate_new",
+      "approval": "pending_individual_review"
+    },
+    {
+      "id": "claro_pik_piedra_antigua",
+      "role": "Claro del bosque con piedra antigua y luces suaves; candidato para primer encuentro con Pik",
+      "mapping": "Dialogo o exploracion del bosque en que aparece Pik, solo si la localizacion y secuencia coinciden",
+      "caution": "No insertar un nuevo encuentro, un monumento canonico ni trasladar a Pik de su ubicacion original",
+      "filename": "cinematicas_hd/claro_pik_piedra_antigua.png",
+      "original": "masters_originales/claro_pik_piedra_antigua_master.png",
+      "export_dimensions": [
+        1280,
+        720
+      ],
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "source_sha256": "eab08ed2654e07b02f1132ba3323d61557d52efd7710075dd3785c8979e0d418",
+      "export_sha256": "6403adf77daade5bbf1164395eafd98737b775d6d714ead1430a400b5c6ff1db",
+      "format": "PNG RGB",
+      "classification": "candidate_new",
+      "approval": "pending_individual_review"
+    },
+    {
+      "id": "refugio_nara_campamento",
+      "role": "Campamento o refugio temprano en el bosque; candidato para secuencia de descanso / Nara",
+      "mapping": "Campamento temprano, si existe escena de refugio tras el primer encuentro con Nara",
+      "caution": "No presentar a Nara en un campamento si el guion ubica su encuentro en otro lugar; nunca reutilizar este fondo para epilogos en el mundo real",
+      "filename": "cinematicas_hd/refugio_nara_campamento.png",
+      "original": "masters_originales/refugio_nara_campamento_master.png",
+      "export_dimensions": [
+        1280,
+        720
+      ],
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "source_sha256": "9dc3112e0443d76ab005786e0ad79a13dbcd018ce62e44bd47d28c7e93686310",
+      "export_sha256": "3af827ee84d69c8ce74540338be6592152e7ea02cfe1b1fd0f812abbb34a7564",
+      "format": "PNG RGB",
+      "classification": "candidate_new",
+      "approval": "pending_individual_review"
+    },
+    {
+      "id": "mirador_bosque_castillo_lluvia",
+      "role": "Sendero con ruinas y mirador hacia castillo para las primeras etapas del viaje",
+      "mapping": "Camino lluvioso / viaje posterior al bosque; evaluar como variante segun hora y contexto",
+      "caution": "No reemplazar globalmente claves compartidas de camino, ni forzar un castillo visible donde el guion no lo contempla",
+      "filename": "cinematicas_hd/mirador_bosque_castillo_lluvia.png",
+      "original": "masters_originales/mirador_bosque_castillo_lluvia_master.png",
+      "export_dimensions": [
+        1280,
+        720
+      ],
+      "source_dimensions": [
+        1672,
+        941
+      ],
+      "source_sha256": "e52ab7722fdcae075a77a57ebae552d646f09904910c1b374f9df1c57248db48",
+      "export_sha256": "a8f188f58a119148b89fd910af8c31307104b7dea936fbead91d927f22e198a1",
+      "format": "PNG RGB",
+      "classification": "candidate_new",
+      "approval": "pending_individual_review"
+    }
+  ]
+}

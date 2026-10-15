@@ -291,6 +291,65 @@ class TestAudio(unittest.TestCase):
                 f"en la costura frente a {interior:.0f} ms dentro de la pista")
 
 
+    def test_las_pistas_de_ia_no_vuelven_a_chiptune(self):
+        """Las 17 pistas de ACE-Step no pueden degradarse a chiptune.
+
+        `crear_sonidos.py` las genera en 22050 Hz mono y las de ACE-Step estan
+        en 44100 Hz estereo. El formato delata de donde viene cada una, asi que
+        esto es una red contra que alguien reejecute el script y se lleve por
+        delante la musica sin que ningun otro test se entere: la pista chiptune
+        sustituida es valida, abre bien y ademas hace bucle perfecto, asi que
+        todo lo demas la daria por buena.
+        """
+        import wave
+
+        de_ia = {
+            # prologo
+            "musica_duelo", "musica_torneo", "musica_umbral", "musica_apagon",
+            "musica_bosque", "musica_campamento",
+            # menu y facciones
+            "musica_explora", "musica_humano", "musica_orco", "musica_elfo",
+            "musica_goblin", "musica_hombre_lobo", "musica_vampiro",
+            "musica_dragon", "musica_elfo_nocturno", "musica_hombre_pantera",
+            "musica_hombre_lagarto",
+        }
+        for nombre in sorted(de_ia):
+            ruta = recurso(os.path.join("assets", "musica", f"{nombre}.wav"))
+            with wave.open(ruta) as w:
+                self.assertEqual(w.getframerate(), 44100,
+                                 f"{nombre}.wav esta en {w.getframerate()} Hz: "
+                                 f"huele a chiptune, ha volado "
+                                 f"crear_sonidos.py")
+                self.assertEqual(w.getnchannels(), 2,
+                                 f"{nombre}.wav es mono: tambien huele a "
+                                 f"chiptune")
+
+    def test_crear_sonidos_no_pisa_las_pistas_de_ia(self):
+        """La guarda de `crear_sonidos.py` cubre las 17, con el prefijo puesto.
+
+        Las claves de `TEMAS` son "duelo"/"explora" y las de `ESCALAS` sin
+        prefijo. Si la guarda busca el nombre corto, nunca encuentra nada y
+        sobrescribe en silencio (pasó: musica_duelo y musica_explora quedaron en
+        22050 Hz mono).
+        """
+        import importlib.util
+
+        # `crear_sonidos.py` vive en assets/, no en la raiz: no se importa como
+        # modulo normal, se carga por ruta.
+        ruta_cs = recurso(os.path.join("assets", "crear_sonidos.py"))
+        spec = importlib.util.spec_from_file_location("crear_sonidos_test", ruta_cs)
+        cs = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cs)
+
+        self.assertEqual(cs.MUSICA_DE_OTRO_ORIGEN,
+                         {"musica_duelo", "musica_torneo", "musica_umbral",
+                          "musica_apagon", "musica_bosque", "musica_campamento"}
+                         | {f"musica_{f}" for f in cs.ESCALAS}
+                         | {"musica_explora"})
+        for nombre in cs.MUSICA_DE_OTRO_ORIGEN:
+            self.assertTrue(cs._existe_de_otro_origen(nombre), nombre)
+
+
 class TestReferencias(unittest.TestCase):
     def test_el_selector_de_faccion_sobrevive_al_raton(self):
         """ Reproduce el crash exacto: mover el raton por las facciones.

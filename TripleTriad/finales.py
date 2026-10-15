@@ -167,20 +167,30 @@ def musica_epilogo(variante):
 def escenas_umbral(variante, faccion=None):
     """Escenas de la apertura del Umbral, comunes a todas las facciones."""
     datos = UMBRAL.get(variante, UMBRAL["equilibrio"])
-    escenas = [esc(datos["titulo"], fondo="umbral", efecto="titulo")]
+    fondos_hd = {
+        "dominio": "final_umbral_dominio_forzado.png",
+        "equilibrio": "final_umbral_equilibrio_apertura.png",
+        "caos": "final_umbral_caos_mundos_mezclados.png",
+    }
+    fondo_hd = fondos_hd.get(variante, fondos_hd["equilibrio"])
+    escenas = [esc(datos["titulo"], fondo="umbral", efecto="titulo", fondo_hd=fondo_hd)]
     for linea in datos["lineas"]:
-        escenas.append(esc(linea, fondo="umbral"))
+        escenas.append(esc(linea, fondo="umbral", fondo_hd=fondo_hd))
     return escenas
 
 
 def escenas_epilogo(variante):
     """La escena final en nuestro mundo."""
     datos = EPILOGO.get(variante, EPILOGO["equilibrio"])
+    # Solo el epílogo de caos muestra los pinos invadiendo el salón real.
+    # Dominio y equilibrio conservan el fondo aprobado salon_torneo.png.
+    fondo_hd = ("epilogo_caos_salon_invadio.png" if variante == "caos"
+                else "salon_torneo.png")
     escenas = [esc(datos["titulo"], fondo=datos["fondo"], efecto="titulo",
-                   mundo="real", fondo_hd="salon_torneo.png")]
+                   mundo="real", fondo_hd=fondo_hd)]
     for linea in datos["lineas"]:
         escenas.append(esc(linea, fondo=datos["fondo"], mundo="real",
-                           fondo_hd="salon_torneo.png"))
+                           fondo_hd=fondo_hd))
     return escenas
 
 
