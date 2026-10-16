@@ -1,0 +1,63 @@
+test_cartel_ampliado_separa_lineas_y_actualiza_cache (test_v2_1_legibilidad.TestLecturaDeJugada.test_cartel_ampliado_separa_lineas_y_actualiza_cache) ... ok
+test_colocacion_normal_conserva_el_ritmo (test_v2_1_legibilidad.TestLecturaDeJugada.test_colocacion_normal_conserva_el_ritmo) ... ok
+test_cpu_no_pisa_el_cartel_same (test_v2_1_legibilidad.TestLecturaDeJugada.test_cpu_no_pisa_el_cartel_same) ... ok
+test_pausa_e_historial_conservan_el_tiempo_del_efecto (test_v2_1_legibilidad.TestLecturaDeJugada.test_pausa_e_historial_conservan_el_tiempo_del_efecto) ... ok
+test_quema_se_anuncia_sin_inventar_cadena (test_v2_1_legibilidad.TestLecturaDeJugada.test_quema_se_anuncia_sin_inventar_cadena) ... ok
+test_resultado_espera_al_efecto_de_la_ultima_jugada (test_v2_1_legibilidad.TestLecturaDeJugada.test_resultado_espera_al_efecto_de_la_ultima_jugada) ... ok
+test_tecla_l_no_abre_historial_durante_pausa (test_v2_1_legibilidad.TestLecturaDeJugada.test_tecla_l_no_abre_historial_durante_pausa) ... ok
+test_tooltip_no_tapa_efecto_o_resultado (test_v2_1_legibilidad.TestLecturaDeJugada.test_tooltip_no_tapa_efecto_o_resultado) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.463s
+
+OK
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+test_cuando_hay_same_el_propio_no_avisa_dos_veces (test_cartel_efecto.TestAnuncioDelEfecto.test_cuando_hay_same_el_propio_no_avisa_dos_veces)
+El cartel del efecto y el banner se pisan en el mismo sitio del ... ok
+test_el_cartel_no_dura_eternamente (test_cartel_efecto.TestAnuncioDelEfecto.test_el_cartel_no_dura_eternamente)
+Un cartel que no se apaga tapa el tablero y es peor que no tenerlo. ... ok
+test_el_plus_se_anuncia_con_su_nombre (test_cartel_efecto.TestAnuncioDelEfecto.test_el_plus_se_anuncia_con_su_nombre) ... ok
+test_el_reparto_suma_lo_que_cayo_de_verdad (test_cartel_efecto.TestAnuncioDelEfecto.test_el_reparto_suma_lo_que_cayo_de_verdad) ... ok
+test_el_same_se_anuncia_con_su_nombre (test_cartel_efecto.TestAnuncioDelEfecto.test_el_same_se_anuncia_con_su_nombre) ... ok
+test_la_cadena_dice_cuantas_cartas_cayeron (test_cartel_efecto.TestAnuncioDelEfecto.test_la_cadena_dice_cuantas_cartas_cayeron) ... ok
+test_una_captura_normal_no_pone_nada (test_cartel_efecto.TestAnuncioDelEfecto.test_una_captura_normal_no_pone_nada)
+Sin same, sin plus y sin cadena no hay efecto que nombrar. Antes ... ok
+test_varias_capturas_basicas_tampoco_son_cadena (test_cartel_efecto.TestAnuncioDelEfecto.test_varias_capturas_basicas_tampoco_son_cadena) ... ok
+test_dibujar_el_cartel_no_reventa (test_cartel_efecto.TestCartelSeDibuja.test_dibujar_el_cartel_no_reventa) ... ok
+test_dos_efectos_seguidos_no_dejan_el_anterior_debajo (test_cartel_efecto.TestCartelSeDibuja.test_dos_efectos_seguidos_no_dejan_el_anterior_debajo)
+La capa de trabajo se reutiliza y el fondo del cartel es ... ok
+test_el_titulo_no_se_sale_del_cartel (test_cartel_efecto.TestCartelSeDibuja.test_el_titulo_no_se_sale_del_cartel)
+El caso que paso al principio: la caja se ajustaba al texto medido ... ok
+test_cascada_sigue_dando_las_mismas_carturas_que_capturas (test_cartel_efecto.TestDeteccionDeEfectos.test_cascada_sigue_dando_las_mismas_carturas_que_capturas)
+`capturas` es la mitad izquierda de `cascada`. Si divergen, el juego ... ok
+test_la_cadena_se_cuenta_por_el_origen (test_cartel_efecto.TestDeteccionDeEfectos.test_la_cadena_se_cuenta_por_el_origen) ... ok
+test_plus_del_tutorial_se_detecta_como_plus (test_cartel_efecto.TestDeteccionDeEfectos.test_plus_del_tutorial_se_detecta_como_plus) ... ok
+test_same_del_tutorial_se_detecta_como_same (test_cartel_efecto.TestDeteccionDeEfectos.test_same_del_tutorial_se_detecta_como_same) ... ok
+test_una_captura_suelta_no_es_una_cadena (test_cartel_efecto.TestDeteccionDeEfectos.test_una_captura_suelta_no_es_una_cadena) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.045s
+
+OK
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+test_al_pasar_por_encima_del_rival_no_revienta (test_tooltip_tablero.TestHoverSobreElTablero.test_al_pasar_por_encima_del_rival_no_revienta) ... ok
+test_el_resplandor_no_se_dibuja_sin_raton_sobre_la_carta (test_tooltip_tablero.TestHoverSobreElTablero.test_el_resplandor_no_se_dibuja_sin_raton_sobre_la_carta)
+Con el raton lejos, `_dibujar_tablero` no debe encolar tooltip: se ... ok
+test_dice_de_quien_es_la_carta (test_tooltip_tablero.TestTooltipDelTablero.test_dice_de_quien_es_la_carta)
+Una carta cambia de bando cada vez que la capturan. Sin decir de ... ok
+test_enseña_la_habilidad_con_su_explicacion (test_tooltip_tablero.TestTooltipDelTablero.test_enseña_la_habilidad_con_su_explicacion) ... ok
+test_enseña_los_cuatro_lados (test_tooltip_tablero.TestTooltipDelTablero.test_enseña_los_cuatro_lados) ... ok
+test_habilidad_capturada_se_ve_inactiva_y_se_reactiva (test_tooltip_tablero.TestTooltipDelTablero.test_habilidad_capturada_se_ve_inactiva_y_se_reactiva) ... ok
+test_la_mano_y_el_tablero_ensen_lo_mismo (test_tooltip_tablero.TestTooltipDelTablero.test_la_mano_y_el_tablero_ensen_lo_mismo)
+Una sola funcion para los dos sitios. Es lo que evita que se ... ok
+test_tablero_dibuja_valores_efectivos_sin_alterar_la_mano (test_tooltip_tablero.TestTooltipDelTablero.test_tablero_dibuja_valores_efectivos_sin_alterar_la_mano) ... ok
+test_una_carta_sin_habilidad_lo_dice (test_tooltip_tablero.TestTooltipDelTablero.test_una_carta_sin_habilidad_lo_dice) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.182s
+
+OK
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html

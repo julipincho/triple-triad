@@ -77,14 +77,30 @@ python -m unittest discover -s tests -p test_flujo_prologo.py -v
 python -m unittest discover -s tests -p test_guion_cierre.py -v
 ```
 
-## Próximo bloque recomendado (04)
+## Bloque 04: Chrome y presentación de efectos
 
-1. Probar interactivamente efectos del jugador y del rival, incluyendo último movimiento, pausa, historial y movimiento reducido. El rival espera para no pisar el cartel del jugador; no se ha bloqueado la entrada del jugador durante un cartel del rival.
-2. Exportar a una carpeta de desarrollo distinta de `ver2SubirV2` y comprobar Chrome/iframe antes de preparar la entrega 2.1. No atribuir a esta pasada medidas de rendimiento de la entrega anterior.
-3. Realizar una pasada interactiva de ambas rutas y, si se ajusta la revancha, cubrir también `revancha=1`. El bloque 02 comprobó las transiciones con resultados simulados y la variante predeterminada.
-4. Leer el prólogo condensado en el flujo real para evaluar sus pausas y la transición al editor; las capturas del bloque 03 muestran el texto completo, sin simular el tiempo de lectura.
+Ver [informe y auditoría](informe_v2_1_bloque_04.md). Se construyó un build aislado con `tools/preparar_web_release.py --v21-audit` en `build/v2_1_auditoria`. `partida.py` corrige L durante pausa, conservación de anuncios al consultar pausa/historial, orden efecto final/resultado, tooltips superpuestos y reutilización del resultado estático. La caché se invalida al abrir pausa/historial o cambiar escala/movimiento reducido; no debe almacenar frames con animaciones pendientes.
 
-Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_04.md` y enlazarlo desde aquí y desde el plan.
+Las herramientas y evidencias están en `auditoria/v2_1_bloque_04`. `iframe_check.mjs` y `efectos_check.mjs` usan **los mismos puertos 8765 y 9225**: ejecutar secuencialmente. Chrome usa un perfil temporal. `fixture_web.py` se inyecta en /tmp del navegador para estados controlados, no forma parte del export ni modifica cartas o perfiles reales. No confundir estos estados con una campaña jugada de principio a fin.
+
+La fase `antes` del script de efectos no hace checkout del código antiguo: exige servir un build anterior para recrear la comparación. Las evidencias anteriores corresponden al código base `9f1c926`. Reconstruir siempre el staging actual antes de validar `despues`. La cadena de versión sigue en 2.0; verificar hashes y presencia del prólogo condensado.
+
+La suite completa pasó con **1088 pruebas, OK y código 0**. La repetición de efectos en Chrome pasó: Same, Plus, Quema, rival, pausa, historial, movimiento reducido y orden del resultado final. El resultado estable pasó de 32,49 FPS sin caché a 62,47 FPS con caché en este entorno. Antes de dar por cerrada una nueva pasada, comprobar los resultados JSON y las capturas, no solo que el script termine.
+
+La navegación del build final también pasó: menú 62,45 FPS, duelo 62,47, muestreo tras arrastre 57,04; 12 posiciones de puntero con desviación máxima de 2 px, audio listo sin error y duelo rápido terminado con regreso al menú. Son medidas locales de Chrome headless, no un certificado de rendimiento de la página publicada. Los comandos exactos de reconstrucción y prueba están en el informe 04.
+
+## Próximo bloque recomendado (05)
+
+1. Realizar una pasada interactiva de ambas rutas de campaña, con datos temporales, y cubrir también `revancha=1`. El bloque 02 comprobó transiciones simuladas; el 04 jugó un duelo rápido y casos controlados, no la campaña completa.
+2. Leer el prólogo condensado en el flujo real y evaluar sus pausas y la transición al editor. Las capturas del bloque 03 muestran el texto completo, sin simular el tiempo de lectura.
+3. Si se modifica presentación o entrada, reconstruir `build/v2_1_auditoria` y repetir las pruebas de Chrome del bloque 04. Preservar las evidencias ya cerradas; guardar resultados nuevos en la carpeta del bloque 05.
+4. Comprobar minicampañas y el último efecto del rival en un duelo que termina en derrota. Hay cobertura compartida del orden del resultado y un efecto del rival probado, pero no una captura específica de esa combinación final.
+   Revisar además resultado y pausa con texto al 125 % y 160 %: la prueba de efectos de Chrome del bloque 04 usa la escala de lectura normal; cambiar DPR no equivale a ampliar la tipografía.
+5. Antes de una entrega 2.1, preparar nuevos paquetes, validar Windows y probar la página de itch.io después de subir el ZIP autorizado. No sobrescribir ni atribuir a 2.1 los resultados de la entrega estable 2.0.
+
+Atención al empaquetar: `tools/empaquetar_release_2_0.py` selecciona el staging R2 de 2.0, no `v2_1_auditoria`. No usarlo para una entrega 2.1 sin adaptar explícitamente rutas y versionado. Los títulos del preparador, `version.py`, `version_info.txt` y el ejecutable se deben revisar al preparar esa entrega; no basta con renombrar el ZIP.
+
+Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_05.md` y enlazarlo desde aquí y desde el plan.
 
 Para el navegador hay referencias de pruebas reales en `auditoria/web_60fps_20261016/browser_check.mjs` e `iframe_check.mjs` (Node y Chrome mediante CDP). Esos scripts apuntan al build antiguo `release_2_0_web_r2`: copiarlos para el bloque 04 y ajustar el directorio servido y la carpeta de evidencias. No usar sus resultados o su APK como prueba de esta rama. Medir los FPS del juego mediante `web_diagnostico.py` y `window.__ttDiag` con `?auditar=1`, no únicamente los de `requestAnimationFrame`. Usar un perfil temporal de Chrome y preservar las auditorías y paquetes estables anteriores.
 

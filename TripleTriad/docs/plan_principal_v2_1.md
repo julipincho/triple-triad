@@ -8,7 +8,7 @@ Pulir la jugabilidad y la narrativa existentes, sin agregar funcionalidades ni s
 
 ## Los 12 frentes
 
-Primera pasada de los apartados 1, 2 y 3 implementada en el bloque 01, ampliada con consecuencias de duelos y minicampañas en el bloque 02 y ritmo del prólogo en el bloque 03; los frentes completos siguen en curso. Ver [bloque 01](informe_v2_1_bloque_01.md), [bloque 02](informe_v2_1_bloque_02.md), [bloque 03 y auditoría](informe_v2_1_bloque_03.md) y [guía de continuidad](continuidad_v2_1.md). Cada frente se cerrará con cambios concretos, comprobación y un informe de lo realizado.
+Primera pasada de los apartados 1, 2 y 3 implementada en el bloque 01, ampliada con consecuencias de duelos y minicampañas en el bloque 02, ritmo del prólogo en el bloque 03 y validación/correcciones en Chrome en el bloque 04; los frentes completos siguen en curso. Ver [bloque 01](informe_v2_1_bloque_01.md), [bloque 02](informe_v2_1_bloque_02.md), [bloque 03](informe_v2_1_bloque_03.md), [bloque 04 y auditoría](informe_v2_1_bloque_04.md) y [guía de continuidad](continuidad_v2_1.md). Cada frente se cerrará con cambios concretos, comprobación y un informe de lo realizado.
 
 1. **Intención de cada duelo.** Revisar los diálogos previos para expresar qué quiere el rival y qué se juega el protagonista; conectar la victoria con ese conflicto.
 2. **Ritmo del comienzo.** Reducir explicaciones repetidas y presentar las reglas cuando se utilizan. Comprobar que el primer duelo sea comprensible y despierte curiosidad.

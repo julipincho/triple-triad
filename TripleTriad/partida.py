@@ -236,6 +236,8 @@ class Juego:
         self.pos_arrastre = (0, 0)
         self.fin = False
         self.pausa = False
+        self._presentacion_suspendida_desde = None
+        self._resultado_frame = None
         self.tiempo_fin = 0.0
 
         self.capturas = 0
@@ -434,6 +436,21 @@ class Juego:
             )
 
     # ---------------------------------------------------------------- actualizacion
+    def sincronizar_presentacion(self, ahora):
+        """Conserva el tiempo de lectura al abrir pausa o historial."""
+        if self.pausa or self.historial_abierto:
+            if self._presentacion_suspendida_desde is None:
+                self._presentacion_suspendida_desde = ahora
+        elif self._presentacion_suspendida_desde is not None:
+            demora = max(0.0, ahora - self._presentacion_suspendida_desde)
+            for atributo in ('efecto', 'banner'):
+                anuncio = getattr(self, atributo)
+                if anuncio:
+                    setattr(self, atributo, (anuncio[0], anuncio[1] + demora, *anuncio[2:]))
+            if self.fin:
+                self.tiempo_fin += demora
+            self._presentacion_suspendida_desde = None
+
     def actualizar(self, dt):
         ahora = time.time()
 
@@ -454,11 +471,11 @@ class Juego:
             self.marcador_mostrado[i] = int(round(nuevo))
         self.flash = [f for f in self.flash if ahora - f[2] < 0.6]
 
-        if self.fin or self.pausa or self.historial_abierto:
+        if self.pausa or self.historial_abierto:
             return
 
         # turno del rival
-        if self.turno_cpu and not self.cpu_en_curso:
+        if not self.fin and self.turno_cpu and not self.cpu_en_curso:
             self.cpu_en_cola -= dt
             if self.cpu_en_cola <= 0:
                 self._jugar_cpu()
@@ -524,7 +541,8 @@ class Juego:
             return
         if not celdas_vacias(self.board) or (not self.mano_u and not self.mano_c):
             self.fin = True
-            self.tiempo_fin = time.time()
+            ahora = time.time()
+            self.tiempo_fin = max(ahora, self.efecto[1] + DURACION_EFECTO if self.efecto else ahora)
             t, c, ganador = puntaje_final(self.board)
             self.ganador = ganador
             if ganador == USUARIO:
@@ -729,7 +747,21 @@ class Juego:
 
     # ------------------------------------------------------------------ dibujo
     def dibujar(self, screen):
-        ahora = time.time()
+        ahora = self._presentacion_suspendida_desde if self._presentacion_suspendida_desde is not None else time.time()
+        # Tras acabar las animaciones el resultado es estático. Reutilizar un
+        # fotograma opaco evita volver a componer tablero y velos alfa en WASM.
+        # Pausa/historial invalidan la imagen; el puntero no genera tooltips
+        # durante el resultado, así que no hay contenido dinámico que perder.
+        estable = (self.fin and not (self.pausa or self.historial_abierto or self.efecto
+                                    or self.banner or self.flash or self.particulas)
+                   and self.sacudida <= 0 and ahora - self.tiempo_fin >= 0.8)
+        clave = (screen.get_size(), ui.escala_texto(), self.tiempo_fin,
+                 opciones.obtener('movimiento_reducido'))
+        if estable and self._resultado_frame is not None and self._resultado_frame[0] == clave:
+            screen.blit(self._resultado_frame[1], (0, 0))
+            return
+        if not estable:
+            self._resultado_frame = None
         dx = dy = 0
         if self.sacudida > 0:
             dx = int(math.sin(ahora * 60) * self.sacudida * 6)
@@ -749,7 +781,7 @@ class Juego:
         self._dibujar_particulas(lienzo)
         self._dibujar_banner(lienzo, ahora)
         self._dibujar_efecto(lienzo, ahora)
-        if self.fin and not self.historial_abierto:
+        if self.fin and not self.historial_abierto and ahora >= self.tiempo_fin:
             self._dibujar_resultado(lienzo, ahora)
 
         # los tooltips van los ultimos: por encima de cartas, tablero y cartel
@@ -758,6 +790,8 @@ class Juego:
 
         if dx or dy:
             screen.blit(lienzo, (dx, dy))
+        if estable:
+            self._resultado_frame = (clave, screen.copy().convert())
 
     def _dibujar_fondo(self, screen):
         # fondo + velo ya compuestos: un solo blit opaco, nada de 4 MB/frame
@@ -942,7 +976,8 @@ class Juego:
                     # que la mano: nombre, bando, los cuatro lados y la
                     # habilidad. Se encola y se pinta al final del frame, como
                     # los de la mano, para que el tablero no lo tape.
-                    if carta.dueno in (USUARIO, CPU) and rect.collidepoint(mouse):
+                    if (carta.dueno in (USUARIO, CPU) and rect.collidepoint(mouse)
+                            and not (self.fin or self.pausa or self.historial_abierto or self.efecto)):
                         dueno_txt = "TUYA" if carta.dueno == USUARIO else "DEL RIVAL"
                         crt.resplandor_carta(screen, rect, carta, carta.dueno, 110,
                                              bando_dueno=self._bando_dueno(carta))
@@ -1056,7 +1091,8 @@ class Juego:
             if self.arrastrando and self.arrastrando[0] is carta:
                 continue
             rect = mano_rect(i, total)
-            hover = rect.collidepoint(mouse) and not self.turno_cpu and not self.fin
+            hover = rect.collidepoint(mouse) and not (
+                self.turno_cpu or self.fin or self.pausa or self.historial_abierto or self.efecto)
             foco = (self.modo_teclado and i == self.indice_mano
                     and not self.turno_cpu and not self.fin)
             if hover:
@@ -1134,7 +1170,7 @@ class Juego:
         por texto mientras el cartel esta en pantalla. Aqui no se renderiza
         nada, solo se mueve y se cambia el alpha.
         """
-        if not self.efecto:
+        if not self.efecto or self.historial_abierto:
             return
         titulo, t0, color, sub, _regla = self.efecto
         transcurrido = ahora - t0
@@ -1248,9 +1284,11 @@ class Juego:
         return caja
 
     def _dibujar_banner(self, screen, ahora):
-        if not self.banner:
+        if not self.banner or self.historial_abierto:
             return
         cadena, t0, color, sub = self.banner
+        if ahora < t0:
+            return
         k = min(1.0, (ahora - t0) / 1.2)
         if k >= 1:
             self.banner = None
@@ -1328,9 +1366,9 @@ async def partida(screen, clock, juego, test_mode=False, guia=None):
             if ev.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
-            if (ev.type == pygame.KEYDOWN and ev.key == pygame.K_l) or (
+            if not juego.pausa and ((ev.type == pygame.KEYDOWN and ev.key == pygame.K_l) or (
                     ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1
-                    and RECT_HISTORIAL.collidepoint(ev.pos) and not juego.pausa):
+                    and RECT_HISTORIAL.collidepoint(ev.pos))):
                 juego.historial_abierto = not juego.historial_abierto
                 juego.cancelar_seleccion()
                 continue
@@ -1411,7 +1449,9 @@ async def partida(screen, clock, juego, test_mode=False, guia=None):
         if resultado is not None:
             break
 
-        if juego.fin and juego._sfx_fin:
+        juego.sincronizar_presentacion(time.time())
+        if (juego.fin and juego._sfx_fin and not (juego.pausa or juego.historial_abierto)
+                and time.time() >= juego.tiempo_fin):
             audio.sfx(juego._sfx_fin)
             juego._sfx_fin = None
 

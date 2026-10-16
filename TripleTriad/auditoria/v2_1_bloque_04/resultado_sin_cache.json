@@ -1,0 +1,667 @@
+{
+  "phase": "despues",
+  "casos": {
+    "same": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.6780001239776614,
+      "pausa": false,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166909.872,
+      "efecto": "SAME",
+      "efecto_edad": 0.3320000171661377,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "pausa": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.3880001239776614,
+      "pausa": true,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166912.446,
+      "efecto": "SAME",
+      "efecto_edad": 2.9060001373291016,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "historial_en_pausa": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.3880001239776614,
+      "pausa": true,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166912.892,
+      "efecto": "SAME",
+      "efecto_edad": 3.3519999980926514,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "reanudado": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.1490001239776613,
+      "pausa": false,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166913.314,
+      "efecto": "SAME",
+      "efecto_edad": 0.8309998512268066,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "historial": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.8959995956420899,
+      "pausa": false,
+      "historial": true,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166916.499,
+      "efecto": "SAME",
+      "efecto_edad": 2.4170002937316895,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "historial_cerrado": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.6969995956420898,
+      "pausa": false,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166916.978,
+      "efecto": "SAME",
+      "efecto_edad": 0.30500030517578125,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "quema": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.6630000514984133,
+      "pausa": false,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166918.1580002,
+      "efecto": "QUEMA",
+      "efecto_edad": 0.3470001220703125,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "plus": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.6680000514984132,
+      "pausa": false,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166919.2979999,
+      "efecto": "PLUS",
+      "efecto_edad": 0.34199976921081543,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "cpu_same": {
+      "turno_cpu": false,
+      "cpu_en_cola": -0.011999999999999997,
+      "pausa": false,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166920.119,
+      "efecto": "SAME",
+      "efecto_edad": 0.4460000991821289,
+      "mensaje": "Rival juega Lancero Gruano y captura 1 - tu turno",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "C",
+          null
+        ],
+        [
+          null,
+          "C",
+          "C"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": false
+    },
+    "movimiento_reducido": {
+      "turno_cpu": true,
+      "cpu_en_cola": 1.6500000000000001,
+      "pausa": false,
+      "historial": false,
+      "fin": false,
+      "tiempo_fin": 0,
+      "ahora": 1792166921.412,
+      "efecto": "SAME",
+      "efecto_edad": 0.3510000705718994,
+      "mensaje": "Juegas Espadachin - 1 capturas. Turno del rival",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [
+        [
+          640,
+          710
+        ]
+      ],
+      "tablero": [
+        [
+          null,
+          "T",
+          null
+        ],
+        [
+          null,
+          "T",
+          "T"
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "movimiento_reducido": true
+    },
+    "final_efecto": {
+      "turno_cpu": true,
+      "cpu_en_cola": 2,
+      "pausa": false,
+      "historial": false,
+      "fin": true,
+      "tiempo_fin": 1792166924.1590002,
+      "ahora": 1792166922.501,
+      "efecto": "SAME",
+      "efecto_edad": 0.34199976921081543,
+      "mensaje": "Has ganado el duelo",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [],
+      "tablero": [
+        [
+          "T",
+          "T",
+          "T"
+        ],
+        [
+          "T",
+          "T",
+          "T"
+        ],
+        [
+          "T",
+          "T",
+          "T"
+        ]
+      ],
+      "movimiento_reducido": true
+    },
+    "final_resultado": {
+      "turno_cpu": true,
+      "cpu_en_cola": 2,
+      "pausa": false,
+      "historial": false,
+      "fin": true,
+      "tiempo_fin": 1792166924.1590002,
+      "ahora": 1792166924.9910002,
+      "efecto": null,
+      "efecto_edad": null,
+      "mensaje": "Has ganado el duelo",
+      "jugadas": 1,
+      "capturas": 1,
+      "mano": [],
+      "tablero": [
+        [
+          "T",
+          "T",
+          "T"
+        ],
+        [
+          "T",
+          "T",
+          "T"
+        ],
+        [
+          "T",
+          "T",
+          "T"
+        ]
+      ],
+      "movimiento_reducido": true
+    }
+  },
+  "diag": {
+    "cuadros": 2100,
+    "fps": 32.48921537958429,
+    "p95_ms": 40.399999999998215,
+    "max_ms": 50.40000099999986,
+    "periodos": [
+      18.000000000000682,
+      17.600000999998144,
+      17.399998999998445,
+      17.300001000002396,
+      17.399999999994975,
+      17.29999900000223,
+      17.600000999998144,
+      17.5000000000054,
+      17.499999999998295,
+      16.100000000001558,
+      15.999999999998238,
+      15.999999999998238,
+      16.500000000000625,
+      15.999999999998238,
+      16.29999900000456,
+      16.500000000000625,
+      16.2000009999943,
+      16.200000000004877,
+      16.19999999999777,
+      15.999999999998238,
+      16.500000000000625,
+      16.600000000003945,
+      16.799998999999843,
+      16.400000999993836,
+      16.59999900000031,
+      16.300001000004727,
+      16.500000000000625,
+      16.59999999999684,
+      16.19999999999777,
+      16.000000000005343,
+      16.500000000000625,
+      16.299999999993986,
+      16.30000000000109,
+      16.200000000004877,
+      15.999999999998238,
+      16.19999999999777,
+      15.999999999998238,
+      16.200000000004877,
+      15.999999999998238,
+      38.699999000002094,
+      34.200000999994984,
+      33.900000000002706,
+      33.799999999999386,
+      33.40000000000032,
+      33.00000000000125,
+      36.19999899999726,
+      50.40000099999986,
+      38.20000000000334,
+      33.699999999996066,
+      33.799999999999386,
+      33.200000000000784,
+      33.40000000000032,
+      33.10000000000457,
+      32.79999999999461,
+      33.39999900000379,
+      33.1000010000011,
+      33.299999999997,
+      33.200000000000784,
+      33.99999999999892,
+      33.00000000000125,
+      33.39999899999668,
+      33.1000010000011,
+      33.10000000000457,
+      33.699999999996066,
+      33.200000000000784,
+      33.59999999999985,
+      33.200000000000784,
+      33.00000000000125,
+      33.200000000000784,
+      32.8999990000014,
+      33.200000999997314,
+      33.00000000000125,
+      33.29999900000047,
+      33.00000000000125,
+      33.100000999993995,
+      33.10000000000457,
+      32.59999999999508,
+      32.60000000000218,
+      32.80000000000172,
+      32.39999999999554,
+      32.8999990000014,
+      33.1000010000011,
+      33.50000000000364,
+      33.49999999999653,
+      33.300000000004104,
+      33.09999899999383,
+      32.80000100000535,
+      33.099999999997465,
+      32.40000000000265,
+      32.79999999999461,
+      32.80000000000172,
+      32.80000000000172,
+      34.10000000000224,
+      33.49999999999653,
+      32.29999999999933,
+      32.80000000000172,
+      32.49999999999886,
+      32.89999999999793,
+      34.80000000000416,
+      34.70000000000084,
+      32.49999999999886,
+      32.49999999999886,
+      32.69999900000187,
+      40.80000100000092,
+      48.4999999999971,
+      37.19999900000204,
+      35.40000099999929,
+      33.200000000000784,
+      34.199999999998454,
+      33.59999999999985,
+      35.29999999999944,
+      33.099999999997465,
+      33.10000000000457,
+      33.099999000000935,
+      32.60000099999871,
+      35.09999999999991,
+      43.70000000000118,
+      45.199999999994134,
+      47.2999999999999,
+      44.90000000000549,
+      40.299999999994895,
+      36.100000000004684,
+      37.599999999997635,
+      37.50000000000142,
+      35.899999999998045,
+      36.50000000000375,
+      35.99999999999426,
+      35.700000000005616,
+      36.40000000000043,
+      36.599999999999966,
+      33.40000000000032,
+      33.49999999999653,
+      33.299999999997,
+      33.39999900000379,
+      33.300001000000634,
+      33.799999999999386,
+      33.200000000000784,
+      33.00000000000125,
+      33.299999999997,
+      33.39999900000379,
+      33.30000099999353,
+      33.40000000000032,
+      33.29999900000047,
+      32.900001000001566,
+      33.00000000000125,
+      33.099999000000935,
+      32.900001000001566,
+      32.999999999994145,
+      32.900000000005036,
+      33.099999999997465,
+      33.099999000000935,
+      33.00000000000125,
+      32.49999999999886,
+      32.80000099999825,
+      36.999999999999034,
+      40.300000000002,
+      40.399999000001685,
+      40.30000099999853,
+      40.399999999998215,
+      40.500000000001535,
+      39.20000000000101,
+      37.3999999999981,
+      35.899999999998045,
+      36.000000000001364,
+      36.79999900000297,
+      37.10000099999888,
+      36.2000000000009,
+      33.19999899999715,
+      33.20000100000442,
+      33.29999900000047,
+      33.100000999993995,
+      33.300000000004104,
+      33.00000000000125,
+      33.099999000000935,
+      33.30000099999353,
+      33.199999000004254,
+      33.1000010000011,
+      33.299999999997,
+      33.200000000000784,
+      33.200000000000784
+    ],
+    "puntero": [
+      640,
+      377
+    ],
+    "evento": {
+      "tipo": 1026,
+      "pos": [
+        640,
+        377
+      ]
+    },
+    "ventana": [
+      1280,
+      800
+    ],
+    "superficie": [
+      1280,
+      800
+    ],
+    "contexto": "duelo rápido contra Humanos"
+  },
+  "music": {
+    "paused": false,
+    "ready": 4,
+    "error": null
+  },
+  "runtime": {
+    "prologoCondensado": true
+  }
+}

@@ -2,6 +2,7 @@
 import os
 import sys
 import unittest
+import asyncio
 from unittest.mock import patch
 
 os.environ.setdefault('SDL_VIDEODRIVER', 'dummy')
@@ -90,6 +91,91 @@ class TestLecturaDeJugada(unittest.TestCase):
                 previous = card
         finally:
             ui.fijar_escala_texto(original_scale)
+
+    def test_pausa_e_historial_conservan_el_tiempo_del_efecto(self):
+        for attribute in ('pausa', 'historial_abierto'):
+            with self.subTest(estado=attribute):
+                game = self.juego()
+                game.efecto = ('SAME', 100.0, ui.DORADO, 'Una captura', 'same')
+                setattr(game, attribute, True)
+                game.sincronizar_presentacion(100.5)
+                with patch('partida.time.time', return_value=120.0):
+                    game.dibujar(pygame.display.get_surface())
+                self.assertIsNotNone(game.efecto)
+                setattr(game, attribute, False)
+                game.sincronizar_presentacion(120.0)
+                self.assertEqual(game.efecto[1], 119.5)
+
+    def test_resultado_espera_al_efecto_de_la_ultima_jugada(self):
+        game = self.juego()
+        game.board = [[Carta('Espadachin', 1, 1, 1, 1, dueno=USUARIO,
+                             bando='humano') for _ in range(3)] for _ in range(3)]
+        game.efecto = ('SAME', 100.0, ui.DORADO, 'Una captura', 'same')
+        with patch('partida.time.time', return_value=100.0):
+            game.comprobar_fin()
+        self.assertEqual(game.tiempo_fin, 102.0)
+        with patch.object(game, '_dibujar_resultado') as result:
+            with patch('partida.time.time', return_value=100.5):
+                game.dibujar(pygame.display.get_surface())
+            result.assert_not_called()
+            with patch('partida.time.time', return_value=102.1):
+                game.dibujar(pygame.display.get_surface())
+            result.assert_called_once()
+        self.assertFalse(partida.now_clickable(102.5, game.tiempo_fin))
+        self.assertTrue(partida.now_clickable(102.7, game.tiempo_fin))
+
+    def test_tooltip_no_tapa_efecto_o_resultado(self):
+        game = self.juego()
+        game.board[1][1] = Carta('Espadachin', 1, 1, 1, 1, dueno=USUARIO, bando='humano')
+        for state in ('efecto', 'fin'):
+            game.efecto = ('SAME', 100.0, ui.DORADO, 'Una captura', 'same') if state == 'efecto' else None
+            game.fin = state == 'fin'
+            with patch('partida.time.time', return_value=100.5), \
+                 patch('pygame.mouse.get_pos', return_value=ui.celda_rect(1, 1).center), \
+                 patch('partida.tooltip') as tip:
+                game.dibujar(pygame.display.get_surface())
+            tip.assert_not_called()
+
+    def test_tecla_l_no_abre_historial_durante_pausa(self):
+        game = self.juego()
+        events = [[pygame.event.Event(pygame.KEYDOWN, key=key)]
+                  for key in (pygame.K_ESCAPE, pygame.K_l, pygame.K_RETURN)] + [[]] * 45
+        class Clock:
+            def tick(self, fps):
+                return 16
+        with patch('pygame.event.get', side_effect=events), patch.object(game, 'dibujar'), \
+             patch('pygame.display.flip'):
+            asyncio.run(partida.partida(pygame.display.get_surface(), Clock(), game, test_mode=True))
+        self.assertFalse(game.pausa)
+        self.assertFalse(game.historial_abierto)
+
+    def test_resultado_estatico_se_reutiliza_y_historial_lo_invalida(self):
+        game = self.juego()
+        game.fin = True
+        game.tiempo_fin = 100.0
+        game.t_entrada = 90.0
+        screen = pygame.display.get_surface()
+        with patch('partida.time.time', return_value=103.0), \
+             patch.object(game, '_dibujar_resultado', wraps=game._dibujar_resultado) as draw:
+            game.dibujar(screen)
+            self.assertIsNotNone(game._resultado_frame)
+            game.dibujar(screen)
+            self.assertEqual(draw.call_count, 1)
+            game.historial_abierto = True
+            game.dibujar(screen)
+            self.assertIsNone(game._resultado_frame)
+            game.historial_abierto = False
+            game.dibujar(screen)
+            self.assertEqual(draw.call_count, 2)
+
+    def test_animaciones_terminan_despues_del_ultimo_movimiento(self):
+        game = self.juego()
+        game.fin = True
+        game.sacudida = 0.3
+        game.particulas = [dict(x=0, y=0, vx=1, vy=1, t=0, vida=0.2)]
+        game.actualizar(1.0)
+        self.assertEqual(game.sacudida, 0)
+        self.assertEqual(game.particulas, [])
 
 
 if __name__ == '__main__':

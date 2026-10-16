@@ -1,0 +1,10 @@
+{
+  "apk_sha256": "0b38a47da2f0560d1958ca411456f3bb25e0a948836831902494d0dff53573eb",
+  "partida_sha256": "b671590ee4963c591a6973edb4922ca9f066550da0fb14e5c71d5f747b645ec9",
+  "fuentes_verificadas": [
+    "partida.py",
+    "prologo.py",
+    "ui.py"
+  ],
+  "fixture_excluida": true
+}

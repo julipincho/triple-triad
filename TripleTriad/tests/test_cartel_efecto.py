@@ -44,6 +44,7 @@ def _juego(board):
     juego.rival = None
     juego.efecto = None
     juego.banner = None
+    juego.historial_abierto = False
     juego._capa_ef = None
     juego._efecto_sup = None
     return juego

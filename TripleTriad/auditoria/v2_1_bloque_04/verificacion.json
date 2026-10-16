@@ -1,0 +1,18 @@
+{
+  "imagenes_protegidas": 1221,
+  "imagenes_modificadas": [],
+  "enlaces_locales_verificados": 21,
+  "pruebas": 1088,
+  "resultado": "OK",
+  "build_publicado": false,
+  "fps_finales": {
+    "menuDiag": 62.45,
+    "duelDiag": 62.47,
+    "dragDiag": 57.04
+  },
+  "posiciones_puntero": 12,
+  "error_maximo_puntero_px": 2,
+  "chrome_efectos_exit": 0,
+  "chrome_iframe_exit": 0,
+  "fps_resultado": 62.47
+}

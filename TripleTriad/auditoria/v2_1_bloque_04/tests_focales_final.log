@@ -1,0 +1,17 @@
+test_animaciones_terminan_despues_del_ultimo_movimiento (test_v2_1_legibilidad.TestLecturaDeJugada.test_animaciones_terminan_despues_del_ultimo_movimiento) ... ok
+test_cartel_ampliado_separa_lineas_y_actualiza_cache (test_v2_1_legibilidad.TestLecturaDeJugada.test_cartel_ampliado_separa_lineas_y_actualiza_cache) ... ok
+test_colocacion_normal_conserva_el_ritmo (test_v2_1_legibilidad.TestLecturaDeJugada.test_colocacion_normal_conserva_el_ritmo) ... ok
+test_cpu_no_pisa_el_cartel_same (test_v2_1_legibilidad.TestLecturaDeJugada.test_cpu_no_pisa_el_cartel_same) ... ok
+test_pausa_e_historial_conservan_el_tiempo_del_efecto (test_v2_1_legibilidad.TestLecturaDeJugada.test_pausa_e_historial_conservan_el_tiempo_del_efecto) ... ok
+test_quema_se_anuncia_sin_inventar_cadena (test_v2_1_legibilidad.TestLecturaDeJugada.test_quema_se_anuncia_sin_inventar_cadena) ... ok
+test_resultado_espera_al_efecto_de_la_ultima_jugada (test_v2_1_legibilidad.TestLecturaDeJugada.test_resultado_espera_al_efecto_de_la_ultima_jugada) ... ok
+test_resultado_estatico_se_reutiliza_y_historial_lo_invalida (test_v2_1_legibilidad.TestLecturaDeJugada.test_resultado_estatico_se_reutiliza_y_historial_lo_invalida) ... ok
+test_tecla_l_no_abre_historial_durante_pausa (test_v2_1_legibilidad.TestLecturaDeJugada.test_tecla_l_no_abre_historial_durante_pausa) ... ok
+test_tooltip_no_tapa_efecto_o_resultado (test_v2_1_legibilidad.TestLecturaDeJugada.test_tooltip_no_tapa_efecto_o_resultado) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.414s
+
+OK
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html

@@ -9,6 +9,8 @@ import hashlib
 
 BASE = Path(__file__).resolve().parents[1]
 revision = 'release_2_0_web_r2' if '--r2' in sys.argv else ('release_2_0_web_r1' if '--r1' in sys.argv else 'release_2_0')
+if '--v21-audit' in sys.argv:
+    revision = 'v2_1_auditoria'
 DEST = BASE / 'build' / revision / 'cartones-mazmorras'
 DEST.mkdir(parents=True, exist_ok=True)
 
