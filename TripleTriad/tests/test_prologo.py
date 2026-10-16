@@ -165,7 +165,7 @@ class TestEscenas(unittest.TestCase):
         self.assertIn("no puede ser", unido)          # el despertar
         self.assertIn("no deberias tener eso", unido)  # el goblin
         self.assertIn("amenaza", unido)                # el encuentro hostil
-        self.assertIn("aqui esto se llama juicio", unido)
+        self.assertIn("aquí esto se llama juicio", unido)
         # Nara aparece despues del hostil, nunca antes
         self.assertLess(unido.index("amenaza"), unido.index("se llama juicio"))
 

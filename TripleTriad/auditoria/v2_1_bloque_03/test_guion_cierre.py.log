@@ -1,0 +1,47 @@
+test_el_objetivo_aparece_en_varios_tramos_y_no_solo_al_final (test_guion_cierre.TestElObjetivoDeVolverACasa.test_el_objetivo_aparece_en_varios_tramos_y_no_solo_al_final)
+Si solo aparece en el ultimo nodo, el jugador llega sin saber que ... ok
+test_el_prologo_dice_que_se_vuelve_a_casa (test_guion_cierre.TestElObjetivoDeVolverACasa.test_el_prologo_dice_que_se_vuelve_a_casa)
+El prologo es donde se promete. Sin la promesa el resto no ata. ... ok
+test_la_campana_dice_que_se_vuelve_a_casa (test_guion_cierre.TestElObjetivoDeVolverACasa.test_la_campana_dice_que_se_vuelve_a_casa) ... ok
+test_los_finales_siguen_being_common_a_las_diez_facciones (test_guion_cierre.TestElObjetivoDeVolverACasa.test_los_finales_siguen_being_common_a_las_diez_facciones)
+La vuelta a casa la decide la VARIANTE, no el jefe. Este bloque no ... ok
+test_dice_como_se_vuelve_a_casa (test_guion_cierre.TestLaExplicacionInicial.test_dice_como_se_vuelve_a_casa) ... ok
+test_dice_cuantos_duelos_faltan (test_guion_cierre.TestLaExplicacionInicial.test_dice_cuantos_duelos_faltan) ... ok
+test_dice_que_la_frase_del_dragon_la_repite_la_gente (test_guion_cierre.TestLaExplicacionInicial.test_dice_que_la_frase_del_dragon_la_repite_la_gente)
+Sin esto, la mencion al dragon seria una regla y contradiria al ... ok
+test_explica_que_es_el_umbral (test_guion_cierre.TestLaExplicacionInicial.test_explica_que_es_el_umbral) ... ok
+test_explica_que_la_sangre_del_dragon_legitimo_el_trono (test_guion_cierre.TestLaExplicacionInicial.test_explica_que_la_sangre_del_dragon_legitimo_el_trono)
+Es lo que hace que 'vencer al dragon' sea la frase popular. ... ok
+test_explica_que_lo_guarda_quien_ocupa_el_trono (test_guion_cierre.TestLaExplicacionInicial.test_explica_que_lo_guarda_quien_ocupa_el_trono) ... ok
+test_la_explicacion_existe_y_no_esta_vacia (test_guion_cierre.TestLaExplicacionInicial.test_la_explicacion_existe_y_no_esta_vacia) ... ok
+test_la_explicacion_va_entre_nara_y_el_cierre (test_guion_cierre.TestLaExplicacionInicial.test_la_explicacion_va_entre_nara_y_el_cierre) ... ok
+test_no_contradice_el_rival_por_faccion (test_guion_cierre.TestLaExplicacionInicial.test_no_contradice_el_rival_por_faccion)
+La escena no puede nombrar rival: el rival sale de la escalera del ... ok
+test_caos_sigue_siendo_caos (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_caos_sigue_siendo_caos)
+Que vuelva a casa no lo vuelve un final amable. Tiene que seguir ... ok
+test_el_caos_dice_el_regreso_al_principio (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_caos_dice_el_regreso_al_principio)
+El regreso se dice de entrada, no como un afterthought al final: si ... ok
+test_el_final_de_caos_ya_no_deja_duda (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_final_de_caos_ya_no_deja_duda) ... ok
+test_el_final_lo_elige_la_variante_y_no_el_jefe (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_final_lo_elige_la_variante_y_no_el_jefe)
+Lo que decide el epilogo es como termino la campana, no que bando ... ok
+test_el_rival_del_trono_sigue_siendo_el_de_la_faccion (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_rival_del_trono_sigue_siendo_el_de_la_faccion)
+La decision cerrada: cada faccion conserva su rival_final. ... ok
+test_el_umbral_y_el_epilogo_siguen_diciendo_al_mismo_lado (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_umbral_y_el_epilogo_siguen_diciendo_al_mismo_lado)
+`UMBRAL[caos]` cuenta que el salon quedo del otro lado, asi que el ... ok
+test_los_tres_finales_dicen_el_regreso (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_los_tres_finales_dicen_el_regreso) ... ok
+test_los_tres_finales_siguen_siendo_distintos (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_los_tres_finales_siguen_siendo_distintos) ... ok
+test_dice_que_se_queda_por_querer_y_no_por_el_mision (test_guion_cierre.TestNaraSeVuelveAmiga.test_dice_que_se_queda_por_querer_y_no_por_el_mision) ... ok
+test_el_dialogo_alta_confianza_no_es_mas_frio (test_guion_cierre.TestNaraSeVuelveAmiga.test_el_dialogo_alta_confianza_no_es_mas_frio)
+Estaba al reves: con confianza alta Nara decia 'no te conozco'. ... ok
+test_el_momento_existe (test_guion_cierre.TestNaraSeVuelveAmiga.test_el_momento_existe) ... ok
+test_el_momento_no_depende_de_la_confianza (test_guion_cierre.TestNaraSeVuelveAmiga.test_el_momento_no_depende_de_la_confianza)
+`confianza_nara` solo sube con las dos decisiones de la campana ... ok
+test_reconoce_que_mentia_sobre_su_motivo (test_guion_cierre.TestNaraSeVuelveAmiga.test_reconoce_que_mentia_sobre_su_motivo) ... ok
+test_se_reproduce_antes_del_duelo_del_trono (test_guion_cierre.TestNaraSeVuelveAmiga.test_se_reproduce_antes_del_duelo_del_trono) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.037s
+
+OK
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html

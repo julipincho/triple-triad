@@ -1,0 +1,822 @@
+{
+  "despertar": [
+    {
+      "texto": "Bosque. Lluvia. Barro hasta los tobillos.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Tu mochila esta tirada. Tu telefono no tiene senal.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Pero las cartas siguen ahi. Las cinco legendarias.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Y es lo primero que notas: una torre.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "La conoces. Esta en el fondo de una carta que viste mil veces.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "- No puede ser.",
+      "hablante": "__JUGADOR__",
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        240,
+        200,
+        90
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Te das vuelta. Y ahi esta.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Pik",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Un goblin. No una ilustracion. No alguien vestido de goblin.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Pik",
+      "hablante": "Pik",
+      "fondo": "camino",
+      "retrato": "pik",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "- No deberias tener eso.",
+      "hablante": "Pik",
+      "fondo": "camino",
+      "retrato": "pik",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Lo dice senalando tus cartas. Y no parece una broma.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    }
+  ],
+  "encuentro_hostil": [
+    {
+      "texto": "El goblin se va. Tu decides seguir. El bosque no es sitio para quedarse.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Das diez pasos. Y alguien mas tambien te ve.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "No es un goblin. Es de la aldea.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "- De donde sacas esas cartas?",
+      "hablante": "Alguien Te Ha Visto",
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "No es una pregunta. Es una amenaza.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Cierras el estuche antes de que pueda arrebatartelo.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        240,
+        200,
+        90
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Te apartas y sigues el camino. El no te sigue, pero ya te ha visto.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    }
+  ],
+  "nara": [
+    {
+      "texto": "Cuando logras salir, hay alguien esperandote.",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Una mujer con una libreta abierta y tinta en los dedos.",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Ustedes juegan Cartones y Mazmorras?",
+      "hablante": "__JUGADOR__",
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Lo sueltas antes de pensarlo. Es lo unico que sale.",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- No se que son esos cartones.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Aqui esto se llama Juicio.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Mira tus cinco legendarias con los ojos muy abiertos.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Eso no son cartas de aqui. Esas cartas son de otro lado.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Y entonces hace la pregunta que lo cambia todo:",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- De donde las sacaste?",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Le cuentas lo del torneo, el salon y la carta que apago las luces.",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    }
+  ],
+  "explicacion": [
+    {
+      "texto": "Nara se sienta enfrente. Cierra el libro. Por primera vez no esta escribiendo.",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Sientate. Te voy a contar lo que sabemos aqui.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Lo que viste en el salon no fue un fallo de la carta. Fue una apertura.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "La grieta que se abrio en el salon se llama el Umbral. Ya estaba aqui antes de que vos llegaras.",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- El Umbral no se abre solo. Lo abre uno y lo guarda otro.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Guardarlo significa una sola cosa: sentarse en el trono.",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Todo lo de este mundo sale de ahi. Y el Umbral se abre para quien lo tenga.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Por eso hay diez bandos peleando por la Copa del Trono. No es un torneo. Es una guerra con reglas de duelo.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Nara duda. Es la primera vez que duda.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Hay una cosa que la gente repite mal. Escuchame, porque importa.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Todos dicen: hay que vencer al dragon. En todas partes.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Es verdad a medias. La sangre del dragon fue la que legitimo el trono. Por eso la frase quedo pegada.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Quien guarda ahora el trono no tiene por que ser un dragon. Es quien gano el ultimo Juicio.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Y por ultimo, lo que estabas a punto de preguntar:",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Yo no vine a salvar nada. Solo quiero volver a casa.",
+      "hablante": "__JUGADOR__",
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- No hay vuelta, ni atajo, ni puerta de servicio. Gana el trono y el Umbral te devuelve a tu salon.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "- Son cinco duelos. El ultimo es el trono. Si se pierde, se vuelve a intentar: nadie te saca de aca por perder.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "Cierra el libro. Lo vuelve a abrir. Y escribe una sola palabra:",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "CASA",
+      "hablante": null,
+      "fondo": "campamento",
+      "retrato": null,
+      "efecto": "titulo",
+      "musica": null,
+      "color": [
+        240,
+        200,
+        90
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    }
+  ],
+  "cierre": [
+    {
+      "texto": "- Guarda tus cinco legendarias en el estuche. Aqui aun no responden como en tu mundo. Necesitas un mazo de este lado.",
+      "hablante": "Nara",
+      "fondo": "campamento",
+      "retrato": "nara",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "A partir de aqui ya no sos un invitado.",
+      "hablante": null,
+      "fondo": "umbral",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "A partir de aqui sos alguien que sabe demasiado.",
+      "hablante": null,
+      "fondo": "umbral",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "prologo_campamento_nara.png"
+    },
+    {
+      "texto": "ELIGE TU MAZO PRINCIPAL",
+      "hablante": null,
+      "fondo": "trono",
+      "retrato": null,
+      "efecto": "titulo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "sala_trono.png"
+    },
+    {
+      "texto": "No es quien eres. Es el mazo que juegas. Y el mundo lo va a leer.",
+      "hablante": null,
+      "fondo": "trono",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "sala_trono.png"
+    }
+  ]
+}

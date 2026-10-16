@@ -6,7 +6,7 @@ Actualizar este documento al terminar cada bloque. No requiere reconstruir la co
 
 El usuario pidió mejorar el juego por bloques sencillos, con informes y auditorías visuales que expliquen qué cambió, para qué y por qué. Trabajar en **`v2.1`**. Plan autorizado en [plan_principal_v2_1.md](plan_principal_v2_1.md). Sin agregar funcionalidades ni sistemas.
 
-El bloque 01 implementa una primera pasada de los apartados **1, 2 y 3**: intención de los duelos principales, entrada al torneo y legibilidad de efectos. Ver [informe](informe_v2_1_bloque_01.md). El bloque 02 continúa esos apartados con consecuencias de duelos y previas de minicampañas; ver [informe y auditoría](informe_v2_1_bloque_02.md). No confundir la numeración solicitada con el orden 3, 2, 4 sugerido previamente: el apartado 4 todavía no se ha trabajado.
+El bloque 01 implementa una primera pasada de los apartados **1, 2 y 3**: intención de los duelos principales, entrada al torneo y legibilidad de efectos. Ver [informe](informe_v2_1_bloque_01.md). El bloque 02 continúa esos apartados con consecuencias de duelos y previas de minicampañas; ver [informe](informe_v2_1_bloque_02.md). El bloque 03 reduce repeticiones del prólogo y aclara la transición al mazo; ver [informe y auditoría](informe_v2_1_bloque_03.md). No confundir la numeración solicitada con el orden 3, 2, 4 sugerido previamente: el apartado 4 todavía no se ha trabajado.
 
 ## Restricciones que deben conservarse
 
@@ -60,11 +60,32 @@ python -m unittest discover -s tests -v
 
 La fase anterior se compara contra `cf2b62f`; carga módulos narrativos aislados y las previas antiguas de minicampaña, sin hacer checkout ni tocar el árbol de trabajo.
 
-## Próximo bloque recomendado (03)
+## Bloque 03: estado y comprobaciones
 
-1. Revisar el resto del prólogo: despertar, explicación de Nara y elección de mazo. Conservar la promesa de volver a casa, el motivo del dragón histórico y la posibilidad de reintentar; las pruebas de `test_guion_cierre.py` protegen esos puntos.
-2. Probar interactivamente efectos del jugador y del rival, incluyendo último movimiento, pausa, historial y movimiento reducido. El rival espera para no pisar el cartel del jugador; no se ha bloqueado la entrada del jugador durante un cartel del rival.
-3. Exportar a una carpeta de desarrollo distinta de `ver2SubirV2` y comprobar Chrome/iframe antes de preparar la entrega 2.1. No atribuir a esta pasada medidas de rendimiento de la entrega anterior.
-4. Realizar una pasada interactiva de ambas rutas y, si se ajusta la revancha, cubrir también `revancha=1`. El bloque 02 comprobó las transiciones con resultados simulados y la variante predeterminada.
+- `prologo.py`: despertar 12 a 7 escenas, encuentro hostil 7 a 6, Nara 11 a 8, explicación 19 a 13, cierre 5 a 4. Total del tramo: 54 a 38. No confundir este total con todo el prólogo, que incluye también el torneo y el transporte.
+- Se conservan la torre conocida, las legendarias, Pik, la amenaza, la explicación del dragón histórico, la vuelta a casa, cinco duelos y reintentos. La transición final describe el mazo existente de diez cartas y la mano de cinco.
+- `tests/test_prologo.py`: la frase Juicio ahora se comprueba con la grafía «Aquí». El orden exigido no se cambió.
+- `tests/test_revision_visual_hover.py`: los fondos se comprueban por escenario y con listas no vacías, no por los índices que cambian al condensar escenas. Incluye el trono como caso explícito.
+- `tools/auditar_v2_1_bloque_03.py`: base anterior `7689a0f`, todas las escenas de los cinco tramos medidas a tres escalas. 162 frames anteriores y 114 posteriores, 60 capturas comparativas, ningún problema detectado; 1221 imágenes protegidas intactas.
+- Evidencias y registros en `auditoria/v2_1_bloque_03/`. Las pruebas específicas del prólogo, su flujo y el cierre narrativo pasan. La suite completa terminó con 1082 pruebas `OK` y código de salida 0, registrada en `tests.log` en UTF-8.
 
-Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_03.md` y enlazarlo desde aquí y desde el plan.
+```powershell
+python tools/auditar_v2_1_bloque_03.py antes
+python tools/auditar_v2_1_bloque_03.py despues
+python -m unittest discover -s tests -p test_prologo.py -v
+python -m unittest discover -s tests -p test_flujo_prologo.py -v
+python -m unittest discover -s tests -p test_guion_cierre.py -v
+```
+
+## Próximo bloque recomendado (04)
+
+1. Probar interactivamente efectos del jugador y del rival, incluyendo último movimiento, pausa, historial y movimiento reducido. El rival espera para no pisar el cartel del jugador; no se ha bloqueado la entrada del jugador durante un cartel del rival.
+2. Exportar a una carpeta de desarrollo distinta de `ver2SubirV2` y comprobar Chrome/iframe antes de preparar la entrega 2.1. No atribuir a esta pasada medidas de rendimiento de la entrega anterior.
+3. Realizar una pasada interactiva de ambas rutas y, si se ajusta la revancha, cubrir también `revancha=1`. El bloque 02 comprobó las transiciones con resultados simulados y la variante predeterminada.
+4. Leer el prólogo condensado en el flujo real para evaluar sus pausas y la transición al editor; las capturas del bloque 03 muestran el texto completo, sin simular el tiempo de lectura.
+
+Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_04.md` y enlazarlo desde aquí y desde el plan.
+
+Para el navegador hay referencias de pruebas reales en `auditoria/web_60fps_20261016/browser_check.mjs` e `iframe_check.mjs` (Node y Chrome mediante CDP). Esos scripts apuntan al build antiguo `release_2_0_web_r2`: copiarlos para el bloque 04 y ajustar el directorio servido y la carpeta de evidencias. No usar sus resultados o su APK como prueba de esta rama. Medir los FPS del juego mediante `web_diagnostico.py` y `window.__ttDiag` con `?auditar=1`, no únicamente los de `requestAnimationFrame`. Usar un perfil temporal de Chrome y preservar las auditorías y paquetes estables anteriores.
+
+Para la validación nativa ejecutar las fuentes actuales con `python main.py` y un `TRIPLETRIAD_DATA` temporal. Los ejecutables existentes en `dist` y las entregas de `ver2SubirV2` siguen siendo 2.0: abrirlos no valida estos cambios de 2.1. No usar el perfil real del jugador para una pasada automatizada.

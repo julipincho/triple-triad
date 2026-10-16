@@ -44,10 +44,17 @@ class TestRevisionVisual(unittest.TestCase):
             self.assertTrue(all(e.get('fondo_hd') == 'sala_trono.png'
                                 for e in escenas if e['fondo'] == 'trono'))
 
-    def test_tres_planos_del_prologo_reutilizan_hd(self):
-        self.assertTrue(all(e['fondo_hd'] == 'salon_torneo_lleno.png'
-                            for e in prologo.escenas_pre_duelo()[5:]))
-        self.assertTrue(all(e['fondo_hd'] == 'camino_lluvioso.png'
-                            for e in prologo.escenas_encuentro_hostil()))
-        self.assertTrue(all(e['fondo_hd'] == 'prologo_campamento_nara.png'
-                            for e in prologo.escenas_cierre()[1:3]))
+    def test_planos_del_prologo_reutilizan_hd_por_escenario(self):
+        cases = (
+            ([e for e in prologo.escenas_pre_duelo() if e['fondo'] == 'publico'],
+             'salon_torneo_lleno.png'),
+            (prologo.escenas_encuentro_hostil(), 'camino_lluvioso.png'),
+            ([e for e in prologo.escenas_cierre() if e['fondo'] in ('umbral', 'campamento')],
+             'prologo_campamento_nara.png'),
+            ([e for e in prologo.escenas_cierre() if e['fondo'] == 'trono'],
+             'sala_trono.png'),
+        )
+        for scenes, expected in cases:
+            with self.subTest(fondo_hd=expected):
+                self.assertTrue(scenes, 'La comprobacion no puede aceptar una secuencia vacia')
+                self.assertTrue(all(e['fondo_hd'] == expected for e in scenes))

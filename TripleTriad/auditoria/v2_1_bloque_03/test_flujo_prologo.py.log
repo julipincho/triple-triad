@@ -1,0 +1,29 @@
+test_los_dos_fondos_de_nuestro_mundo_se_usan (test_flujo_prologo.TestElFondoSigueAlMundo.test_los_dos_fondos_de_nuestro_mundo_se_usan)
+`salon` y `apagon` existen para el torneo; no pueden quedar ... ok
+test_ninguna_escena_del_mundo_fantastico_usa_fondo_de_nuestro_mundo (test_flujo_prologo.TestElFondoSigueAlMundo.test_ninguna_escena_del_mundo_fantastico_usa_fondo_de_nuestro_mundo) ... ok
+test_ninguna_escena_del_mundo_real_usa_fondo_del_mundo_fantastico (test_flujo_prologo.TestElFondoSigueAlMundo.test_ninguna_escena_del_mundo_real_usa_fondo_del_mundo_fantastico) ... ok
+test_todo_fondo_del_prologo_existe (test_flujo_prologo.TestElFondoSigueAlMundo.test_todo_fondo_del_prologo_existe) ... ok
+test_el_prologo_no_toca_las_variables_de_nara (test_flujo_prologo.TestEstadoNarrativoTrasElPrologo.test_el_prologo_no_toca_las_variables_de_nara)
+Ver el prologue no equivale a conocer a Nara: eso pasa en la campaña. ... ok
+test_partida_nueva_con_prologo_marcado (test_flujo_prologo.TestEstadoNarrativoTrasElPrologo.test_partida_nueva_con_prologo_marcado) ... ok
+test_partida_sin_prologo_se_distingue (test_flujo_prologo.TestEstadoNarrativoTrasElPrologo.test_partida_sin_prologo_se_distingue) ... ok
+test_el_duelo_ocurre_dentro_del_prologo (test_flujo_prologo.TestFlujoDeMain.test_el_duelo_ocurre_dentro_del_prologo) ... ok
+test_el_prologo_existe_y_es_awaitable (test_flujo_prologo.TestFlujoDeMain.test_el_prologo_existe_y_es_awaitable) ... ok
+test_el_prologo_marca_el_bandera (test_flujo_prologo.TestFlujoDeMain.test_el_prologo_marca_el_bandera) ... ok
+test_el_prologue_ocurre_antes_de_elegir_faccion (test_flujo_prologo.TestFlujoDeMain.test_el_prologue_ocurre_antes_de_elegir_faccion)
+La biblia pide PROLOGO -> DESPERTAR -> APERTURA_FACCION -> CAPITULOS. ... ok
+test_la_partida_nace_con_el_mazo_debil_del_mundo_fantastico (test_flujo_prologo.TestFlujoDeMain.test_la_partida_nace_con_el_mazo_debil_del_mundo_fantastico)
+El prologue no deja las legendarias en la partida del jugador. ... ok
+test_info_tiene_la_forma_que_espera_partida (test_flujo_prologo.TestInfoDelDuelo.test_info_tiene_la_forma_que_espera_partida) ... ok
+test_no_es_un_nodo_de_campana (test_flujo_prologo.TestInfoDelDuelo.test_no_es_un_nodo_de_campana)
+El tutorial no puede aparecer en el mapa ni avanzar el progreso. ... ok
+test_el_duelo_va_entre_pre_y_post (test_flujo_prologo.TestOrdenDeLasEscenas.test_el_duelo_va_entre_pre_y_post) ... ok
+test_el_orden_es_el_del_plan (test_flujo_prologo.TestOrdenDeLasEscenas.test_el_orden_es_el_del_plan) ... ok
+test_se_reproducen_todas (test_flujo_prologo.TestOrdenDeLasEscenas.test_se_reproducen_todas) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.036s
+
+OK
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html

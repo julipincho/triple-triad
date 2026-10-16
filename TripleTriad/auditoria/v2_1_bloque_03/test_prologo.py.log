@@ -1,0 +1,36 @@
+test_ambos_mazos_tienen_cinco_cartas (test_prologo.TestContrasteConMundoFantastico.test_ambos_mazos_tienen_cinco_cartas)
+En el 3x3 cada bando coloca 5: las manos deben ser comparables. ... ok
+test_el_duelista_parte_con_ventaja (test_prologo.TestContrasteConMundoFantastico.test_el_duelista_parte_con_ventaja)
+5 legendarias contra 5 comunes: el duelista gana si juega bien. ... ok
+test_el_duelo_del_tutorial_es_ganable (test_prologo.TestContrasteConMundoFantastico.test_el_duelo_del_tutorial_es_ganable)
+Juan no tiene legendarias: el duelo enseña mecánicas, no humilla. ... ok
+test_el_mazo_fantastico_es_mas_debil (test_prologo.TestContrasteConMundoFantastico.test_el_mazo_fantastico_es_mas_debil)
+El poder del mundo real no acompana al duelista. ... ok
+test_mazo_rajoy_es_estable (test_prologo.TestContrasteConMundoFantastico.test_mazo_rajoy_es_estable) ... ok
+test_humor_meta_del_duelista (test_prologo.TestEscenas.test_humor_meta_del_duelista)
+El contraste de conocimiento debe aparecer, no solo el drama. ... ok
+test_la_escena_negra_no_tiene_texto (test_prologo.TestEscenas.test_la_escena_negra_no_tiene_texto) ... ok
+test_las_escenas_tienen_fondo_valido (test_prologo.TestEscenas.test_las_escenas_tienen_fondo_valido) ... ok
+test_orden_del_prologo (test_prologo.TestEscenas.test_orden_del_prologo)
+El prologo va del mundo real al fantastic, y termina eligiendo mazo. ... ok
+test_retratos_validos (test_prologo.TestEscenas.test_retratos_validos)
+Facciones de bando o personajes con cara: los dos son retrato. ... ok
+test_todas_las_escenas_existen (test_prologo.TestEscenas.test_todas_las_escenas_existen) ... ok
+test_es_estable_entre_llamadas (test_prologo.TestMazoTutorial.test_es_estable_entre_llamadas) ... ok
+test_es_la_mas_fuerte_de_su_faccion (test_prologo.TestMazoTutorial.test_es_la_mas_fuerte_de_su_faccion)
+Cada una es la legendaria de mayor suma de su faccion. ... ok
+test_no_altera_el_pool_original (test_prologo.TestMazoTutorial.test_no_altera_el_pool_original)
+mazo_tutorial devuelve copias: el pool global queda intacto. ... ok
+test_son_cinco_cartas_una_por_faccion (test_prologo.TestMazoTutorial.test_son_cinco_cartas_una_por_faccion) ... ok
+test_todas_son_legendarias (test_prologo.TestMazoTutorial.test_todas_son_legendarias) ... ok
+test_es_humano_y_no_se_enfrenta_a_si_mismo (test_prologo.TestRivalJuanRajoy.test_es_humano_y_no_se_enfrenta_a_si_mismo) ... ok
+test_la_voz_es_suya_y_no_del_duelista (test_prologo.TestRivalJuanRajoy.test_la_voz_es_suya_y_no_del_duelista)
+Juan habla de 'tu' porque es el rival, no el protagonista. ... ok
+test_tiene_los_campos_que_pide_el_duelo (test_prologo.TestRivalJuanRajoy.test_tiene_los_campos_que_pide_el_duelo) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.037s
+
+OK
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html

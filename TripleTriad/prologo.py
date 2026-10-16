@@ -198,25 +198,19 @@ def _escenas_transporte():
 def _escenas_despertar():
     """El mundo fantastic. Y el primer personaje real: un goblin."""
     return [
-        esc("Bosque. Lluvia. Barro hasta los tobillos.", fondo="camino",
-            fondo_hd="camino_lluvioso.png"),
-        esc("Tu mochila esta tirada. Tu telefono no tiene senal.", fondo="camino",
+        esc("Bosque. Lluvia. Barro hasta los tobillos. Tu mochila está tirada "
+            "y el teléfono no tiene señal.", fondo="camino",
             fondo_hd="camino_lluvioso.png"),
         esc("Pero las cartas siguen ahi. Las cinco legendarias.",
             fondo="camino", color=TEXTO_ON, fondo_hd="camino_lluvioso.png"),
-        esc("Y es lo primero que notas: una torre.", fondo="camino",
-            fondo_hd="camino_lluvioso.png"),
-        esc("La conoces. Esta en el fondo de una carta que viste mil veces.",
+        esc("Entre los árboles ves una torre. La conoces: está en el fondo "
+            "de una carta que viste mil veces.",
             fondo="camino", color=TEXTO_ON, fondo_hd="camino_lluvioso.png"),
         esc("- No puede ser.", hablante="__JUGADOR__", fondo="camino", color=DORADO,
             fondo_hd="camino_lluvioso.png"),
-        esc("Te das vuelta. Y ahi esta.", fondo="camino",
-            fondo_hd="camino_lluvioso.png"),
-        esc("Pik", hablante=None, fondo="camino", fondo_hd="camino_lluvioso.png"),
-        esc("Un goblin. No una ilustracion. No alguien vestido de goblin.",
+        esc("Te das vuelta. Un goblin: no una ilustración ni alguien disfrazado. "
+            "Se presenta como Pik.",
             fondo="camino", fondo_hd="camino_lluvioso.png"),
-        esc("Pik", hablante="Pik", retrato="pik", fondo="camino",
-            fondo_hd="camino_lluvioso.png"),
         esc("- No deberias tener eso.", hablante="Pik", retrato="pik",
             fondo="camino", fondo_hd="camino_lluvioso.png"),
         esc("Lo dice senalando tus cartas. Y no parece una broma.", fondo="camino",
@@ -229,8 +223,8 @@ def _escenas_encuentro_hostil():
     return [
         esc("El goblin se va. Tu decides seguir. El bosque no es sitio para quedarse.",
             fondo="camino"),
-        esc("Das diez pasos. Y alguien mas tambien te ve.", fondo="camino"),
-        esc("No es un goblin. Es de la aldea.", fondo="camino"),
+        esc("Das diez pasos y alguien más te ve. Esta vez no es un goblin: "
+            "es de la aldea.", fondo="camino"),
         esc("- De donde sacas esas cartas?", hablante="Alguien Te Ha Visto", fondo="camino"),
         esc("No es una pregunta. Es una amenaza.", fondo="camino", color=TEXTO_ON),
         esc("Cierras el estuche antes de que pueda arrebatartelo.",
@@ -243,19 +237,17 @@ def _escenas_encuentro_hostil():
 def _escenas_nara():
     """Nara, la Cronista: el otro personaje que entra en juego."""
     return [
-        esc("Cuando logras salir, hay alguien esperandote.", fondo="campamento"),
-        esc("Una mujer con una libreta abierta y tinta en los dedos.", fondo="campamento"),
+        esc("Cuando logras salir, te espera una mujer con una libreta abierta "
+            "y tinta en los dedos.", fondo="campamento"),
         esc("- Ustedes juegan Cartones y Mazmorras?", hablante="__JUGADOR__", fondo="campamento"),
         esc("Lo sueltas antes de pensarlo. Es lo unico que sale.", fondo="campamento",
             color=TEXTO_ON),
-        esc("- No se que son esos cartones.", hablante="Nara", retrato="nara", fondo="campamento"),
-        esc("- Aqui esto se llama Juicio.", hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- No sé qué son esos cartones. Aquí esto se llama Juicio.",
+            hablante="Nara", retrato="nara", fondo="campamento"),
         esc("Mira tus cinco legendarias con los ojos muy abiertos.", hablante="Nara",
             retrato="nara", fondo="campamento"),
         esc("- Eso no son cartas de aqui. Esas cartas son de otro lado.",
             hablante="Nara", fondo="campamento"),
-        esc("Y entonces hace la pregunta que lo cambia todo:", hablante="Nara",
-            fondo="campamento"),
         esc("- De donde las sacaste?", hablante="Nara", fondo="campamento",
             color=TEXTO_ON),
         esc("Le cuentas lo del torneo, el salon y la carta que apago las luces.",
@@ -282,37 +274,27 @@ def _escenas_explicacion():
     Asi que aqui NO se dice que perder te deje trapped en el mundo.
     """
     return [
-        esc("Nara se sienta enfrente. Cierra el libro. Por primera vez no esta "
-            "escribiendo.", fondo="campamento", color=TEXTO_ON),
-        esc("- Sientate. Te voy a contar lo que sabemos aqui.",
-            hablante="Nara", retrato="nara", fondo="campamento"),
-        esc("- Lo que viste en el salon no fue un fallo de la carta. Fue una "
-            "apertura.", hablante="Nara", retrato="nara", fondo="campamento"),
-        esc("La grieta que se abrio en el salon se llama el Umbral. Ya estaba "
-            "aqui antes de que vos llegaras.", fondo="campamento", color=TEXTO_ON),
-        esc("- El Umbral no se abre solo. Lo abre uno y lo guarda otro.",
-            hablante="Nara", retrato="nara", fondo="campamento"),
-        esc("Guardarlo significa una sola cosa: sentarse en el trono.",
-            fondo="campamento"),
-        esc("- Todo lo de este mundo sale de ahi. Y el Umbral se abre para "
-            "quien lo tenga.", hablante="Nara", retrato="nara", fondo="campamento",
+        esc("Nara se sienta enfrente y cierra el libro. Por primera vez deja "
+            "de escribir para mirarte.", fondo="campamento", color=TEXTO_ON),
+        esc("- Lo del salón fue una apertura del Umbral. Esa grieta ya estaba "
+            "aquí antes de que llegaras.", hablante="Nara", retrato="nara", fondo="campamento"),
+        esc("- Quien ocupa el trono guarda el Umbral. Todo lo de este mundo "
+            "sale de ahí, y la grieta se abre para quien tenga el trono.",
+            hablante="Nara", retrato="nara", fondo="campamento",
             color=TEXTO_ON),
         esc("- Por eso hay diez bandos peleando por la Copa del Trono. No es un "
             "torneo. Es una guerra con reglas de duelo.", hablante="Nara",
             retrato="nara", fondo="campamento"),
         esc("Nara duda. Es la primera vez que duda.", hablante="Nara",
             retrato="nara", fondo="campamento"),
-        esc("- Hay una cosa que la gente repite mal. Escuchame, porque importa.",
-            hablante="Nara", retrato="nara", fondo="campamento"),
-        esc("- Todos dicen: hay que vencer al dragon. En todas partes.",
+        esc("- Todos dicen que hay que vencer al dragon. La gente lo repite, "
+            "pero no es tan simple.",
             hablante="Nara", retrato="nara", fondo="campamento"),
         esc("- Es verdad a medias. La sangre del dragon fue la que legitimo el "
             "trono. Por eso la frase quedo pegada.", hablante="Nara",
             retrato="nara", fondo="campamento", color=TEXTO_ON),
         esc("- Quien guarda ahora el trono no tiene por que ser un dragon. "
             "Es quien gano el ultimo Juicio.", hablante="Nara", retrato="nara", fondo="campamento"),
-        esc("Y por ultimo, lo que estabas a punto de preguntar:", fondo="campamento",
-            color=TEXTO_ON),
         esc("- Yo no vine a salvar nada. Solo quiero volver a casa.",
             hablante="__JUGADOR__", fondo="campamento"),
         esc("- No hay vuelta, ni atajo, ni puerta de servicio. Gana el trono y el "
@@ -333,11 +315,11 @@ def _escenas_cierre():
         esc("- Guarda tus cinco legendarias en el estuche. Aqui aun no responden "
             "como en tu mundo. Necesitas un mazo de este lado.",
             hablante="Nara", retrato="nara", fondo="campamento"),
-        esc("A partir de aqui ya no sos un invitado.", fondo="umbral"),
-        esc("A partir de aqui sos alguien que sabe demasiado.", fondo="umbral",
+        esc("A partir de aquí ya no sos un invitado: sos alguien que sabe demasiado.", fondo="umbral",
             color=TEXTO_ON),
         esc("ELIGE TU MAZO PRINCIPAL", fondo="trono", efecto="titulo", fondo_hd="sala_trono.png"),
-        esc("No es quien eres. Es el mazo que juegas. Y el mundo lo va a leer.",
+        esc("El bando no define quién sos: define tu mazo. Armá diez cartas; "
+            "en cada duelo llevarás cinco. El mundo va a leer lo que juegues.",
             fondo="trono", fondo_hd="sala_trono.png"),
     ]
 
