@@ -1,0 +1,376 @@
+{
+  "senda": [
+    {
+      "texto": "La senda sube entre pinos negros. En la cuneta hay un hombre que sangra y no te pide nada.",
+      "hablante": null,
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    },
+    {
+      "texto": "Nara mira al hombre. Luego mira tus cartas. Luego decide no decir nada.",
+      "hablante": "Nara",
+      "fondo": "camino",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "camino_lluvioso.png"
+    }
+  ],
+  "aldea": [
+    {
+      "texto": "La aldea vive detras de un muro de piedra y dos custodios que no preguntan nada porque ya saben la respuesta.",
+      "hablante": null,
+      "fondo": "aldea",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_aldea_20261015.png"
+    },
+    {
+      "texto": "Uno de los dos ve el estuche de tus cartas y despues te mira a ti.",
+      "hablante": null,
+      "fondo": "aldea",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_aldea_20261015.png"
+    },
+    {
+      "texto": "- Ese estuche es del otro lado. Eso no se trae aqui.",
+      "hablante": null,
+      "fondo": "aldea",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_aldea_20261015.png"
+    },
+    {
+      "texto": "- Cinco duelos. El ultimo es el trono. Segui, porque cada uno que ganas es un paso menos entre vos y tu salon.",
+      "hablante": "Nara",
+      "fondo": "aldea",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_aldea_20261015.png"
+    }
+  ],
+  "ruinas": [
+    {
+      "texto": "Bajo la ceniza hay una ciudad entera. Las calles siguen donde estaban y las casas siguen teniendo techo.",
+      "hablante": null,
+      "fondo": "ruinas",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_ruinas_20261015.png"
+    },
+    {
+      "texto": "No hay nadie. Y sin embargo, en una pared hay un cartel: el dibujo de una carta que reconoces.",
+      "hablante": null,
+      "fondo": "ruinas",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_ruinas_20261015.png"
+    },
+    {
+      "texto": "Es una de las tuyas. Esta aqui pintada, en un mundo que no tiene nada que ver con tus sobres.",
+      "hablante": null,
+      "fondo": "ruinas",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_ruinas_20261015.png"
+    }
+  ],
+  "fortaleza": [
+    {
+      "texto": "La fortaleza domina el camino al trono. Y el trono tiene el Umbral.",
+      "hablante": null,
+      "fondo": "fortaleza",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_fortaleza_20261015.png"
+    },
+    {
+      "texto": "El capitan te espera en la puerta. Ya sabe lo que traes.",
+      "hablante": null,
+      "fondo": "fortaleza",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_fortaleza_20261015.png"
+    }
+  ],
+  "asalto": [
+    {
+      "texto": "Vuelve. Con las mismas heridas y con la misma pregunta.",
+      "hablante": null,
+      "fondo": "asalto",
+      "retrato": null,
+      "efecto": "titulo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_asalto_20261015.png"
+    },
+    {
+      "texto": "- Creiste que estaba derrotado.",
+      "hablante": null,
+      "fondo": "asalto",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_asalto_20261015.png"
+    },
+    {
+      "texto": "- No lo estaba.",
+      "hablante": null,
+      "fondo": "asalto",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "juego",
+      "fondo_hd": "campana_asalto_20261015.png"
+    }
+  ],
+  "trono": [
+    {
+      "texto": "El trono se alza ante la grieta. Para llegar al Umbral, primero tendras que vencer a quien lo guarda.",
+      "hablante": null,
+      "fondo": "trono",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "sala_trono.png"
+    },
+    {
+      "texto": "El Umbral te ve llegar. Eso es lo peor: no es una puerta. Te estaba esperando.",
+      "hablante": null,
+      "fondo": "trono",
+      "retrato": null,
+      "efecto": "titulo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "juego",
+      "fondo_hd": "sala_trono.png"
+    }
+  ],
+  "torneo": [
+    {
+      "texto": "El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
+      "hablante": null,
+      "fondo": "salon",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "real",
+      "fondo_hd": "salon_torneo_lleno.png"
+    },
+    {
+      "texto": "ULTIMA RONDA CLASIFICATORIA",
+      "hablante": null,
+      "fondo": "escenario",
+      "retrato": null,
+      "efecto": "titulo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "real",
+      "fondo_hd": "prologo_escenario_presentacion.png"
+    },
+    {
+      "texto": "Presentador",
+      "hablante": "Presentador",
+      "fondo": "escenario",
+      "retrato": "presentador",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "real",
+      "fondo_hd": "prologo_escenario_presentacion.png"
+    },
+    {
+      "texto": "- Ultima ronda clasificatoria.",
+      "hablante": "Presentador",
+      "fondo": "escenario",
+      "retrato": "presentador",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "real",
+      "fondo_hd": "prologo_escenario_presentacion.png"
+    },
+    {
+      "texto": "- Los ocho mejores jugadores avanzaran a la Copa del Trono.",
+      "hablante": "Presentador",
+      "fondo": "escenario",
+      "retrato": "presentador",
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "real",
+      "fondo_hd": "prologo_escenario_presentacion.png"
+    },
+    {
+      "texto": "Tu nombre no importa aqui. Solo tu mazo.",
+      "hablante": null,
+      "fondo": "publico",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "real",
+      "fondo_hd": "salon_torneo_lleno.png"
+    },
+    {
+      "texto": "Sacas tus cartas: cinco legendarias, una de cada faccion. Lo mejor que tienes.",
+      "hablante": null,
+      "fondo": "publico",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        255,
+        240,
+        200
+      ],
+      "mundo": "real",
+      "fondo_hd": "salon_torneo_lleno.png"
+    },
+    {
+      "texto": "No es una partida de prueba. Es una clasificatoria. Y el rival frente a ti se llama...",
+      "hablante": null,
+      "fondo": "publico",
+      "retrato": null,
+      "efecto": "dialogo",
+      "musica": null,
+      "color": [
+        238,
+        236,
+        224
+      ],
+      "mundo": "real",
+      "fondo_hd": "salon_torneo_lleno.png"
+    }
+  ]
+}

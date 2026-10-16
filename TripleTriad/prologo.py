@@ -128,17 +128,13 @@ def _escenas_del_duelo():
         esc("El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
             fondo="salon", mundo=REAL, fondo_hd="salon_torneo_lleno.png"),
         esc("ULTIMA RONDA CLASIFICATORIA", fondo="escenario", efecto="titulo", mundo=REAL),
-        esc("Presentador", hablante="Presentador", retrato="presentador",
-            fondo="escenario", mundo=REAL),
-        esc("- Ultima ronda clasificatoria.", hablante="Presentador",
-            retrato="presentador", fondo="escenario", mundo=REAL),
-        esc("- Los ocho mejores jugadores avanzaran a la Copa del Trono.",
+        esc("- Los ocho mejores avanzan a la Copa del Trono. Esta partida decide tu lugar.",
             hablante="Presentador", retrato="presentador", fondo="escenario", mundo=REAL),
         esc("Tu nombre no importa aqui. Solo tu mazo.", fondo="publico", mundo=REAL),
         esc("Sacas tus cartas: cinco legendarias, una de cada faccion. Lo mejor que tienes.",
             fondo="publico", color=TEXTO_ON, mundo=REAL),
-        esc("No es una partida de prueba. Es una clasificatoria. Y el rival frente a ti se "
-            "llama...", fondo="publico", mundo=REAL),
+        esc("Juan Rajoy acomoda sus cartas frente a ti. Cinco cartas, nueve casillas. "
+            "Basta con terminar con mas cartas de tu color.", fondo="publico", mundo=REAL),
     ]
 
 

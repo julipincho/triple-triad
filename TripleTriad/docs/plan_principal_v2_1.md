@@ -8,7 +8,7 @@ Pulir la jugabilidad y la narrativa existentes, sin agregar funcionalidades ni s
 
 ## Los 12 frentes
 
-Todos pendientes. Cada frente se cerrará con cambios concretos, comprobación y un informe de lo realizado.
+Primera pasada de los apartados 1, 2 y 3 implementada en el bloque 01; los frentes completos siguen en curso. Ver [informe y auditoría](informe_v2_1_bloque_01.md) y [guía de continuidad](continuidad_v2_1.md). Cada frente se cerrará con cambios concretos, comprobación y un informe de lo realizado.
 
 1. **Intención de cada duelo.** Revisar los diálogos previos para expresar qué quiere el rival y qué se juega el protagonista; conectar la victoria con ese conflicto.
 2. **Ritmo del comienzo.** Reducir explicaciones repetidas y presentar las reglas cuando se utilizan. Comprobar que el primer duelo sea comprensible y despierte curiosidad.

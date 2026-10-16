@@ -89,6 +89,7 @@ RECT_HISTORIAL = pygame.Rect(24, 132, 340, 34)
 EFECTOS = {
     "same": ("SAME", "dos igualdades; caen las vecinas enemigas"),
     "plus": ("PLUS", "dos sumas iguales; caen las vecinas enemigas"),
+    "quema": ("QUEMA", "captura al empatar; no inicia cadena"),
 }
 
 #: Tiempos del cartel, en segundos. Entrada rapida para que se lea al instante,
@@ -382,6 +383,12 @@ class Juego:
         # con el tablero de al lado.
         total = sum(v for v in resumen.values() if isinstance(v, int))
         candidatos = [k for k in ("same", "plus") if resumen.get(k)]
+        # Quema conserva su nombre aunque no coincida con Same o Plus.
+        # El sonido va antes del retorno de una captura sin regla especial.
+        if resumen.get("quema"):
+            audio.sfx("assets/sfx_stable_audio3/ability.wav", 0.7, canal="habilidad")
+            if not candidatos and not resumen.get("cadena"):
+                candidatos = ["quema"]
 
         if not candidatos:
             # Varias capturas directas tampoco son una cadena.
@@ -402,15 +409,10 @@ class Juego:
             reparto.append("%d por cadena" % resumen["cadena"])
         if resumen["basica"]:
             reparto.append("%d directas" % resumen["basica"])
-        if resumen.get("quema"):
+        if resumen.get("quema") and "quema" not in candidatos:
             reparto.append("%d por quema" % resumen["quema"])
-        # La habilidad "quema" es el unico efecto del juego que se puede
-        # DETECTAR al colocar. Antes no sonaba nada propio: la captura se
-        # oia como una captura mas. No cambia ninguna regla, solo avisa.
-        if resumen.get("quema"):
-            audio.sfx("assets/sfx_stable_audio3/ability.wav", 0.7, canal="habilidad")
         self.efecto = (titulo, ahora, color,
-                       "%s.  %d cartas: %s" % (sub, total, ", ".join(reparto)),
+                       "%s.  %d %s: %s" % (sub, total, "carta" if total == 1 else "cartas", ", ".join(reparto)),
                        regla)
         # Dos carteles a la vez encima del tablero es ruido, y el efecto raro
         # merece el sitio: una cadena ya se ve sola en las cartas que caen.
@@ -569,7 +571,11 @@ class Juego:
         else:
             self.mensaje = f"Juegas {carta.nombre} - {len(caps)} capturas. Turno del rival"
             self.turno_cpu = True
-            self.cpu_en_cola = 0.85
+            # El rival no debe borrar el anuncio antes de que pueda leerse.
+            # Las jugadas normales conservan su ritmo; Same/Plus/Quema esperan
+            # solo hasta terminar su cartel, sin bloquear el bucle de 60 FPS.
+            restante = max(0.0, self.efecto[1] + DURACION_EFECTO - time.time()) if self.efecto else 0.0
+            self.cpu_en_cola = max(0.85, restante)
             self.cpu_en_curso = False
             self.comprobar_fin()
         return True
@@ -1195,19 +1201,27 @@ class Juego:
         acumulado, mientras que la cache global creceria con cada titulo
         distinto que saliera en toda la sesion.
         """
-        clave = (titulo, sub, color)
+        clave = (titulo, sub, color, ui.escala_texto())
         if self._efecto_sup is not None and self._efecto_sup[0] == clave:
             return self._efecto_sup[1]
 
-        lineas = envolver(sub, 11, ANCHO - 220) if sub else []
+        # Mantener el anuncio lejos de los retratos laterales, también en
+        # modo lectura; envolver el subtítulo antes de ensanchar el panel.
+        ancho_maximo = ANCHO - 400
+        lineas = envolver(sub, 11, ancho_maximo - 96) if sub else []
         ancho_titulo = ancho_texto(titulo, 40)
         ancho_lineas = max((ancho_texto(l, 11) for l in lineas), default=0)
         # Los 40 px de mas no son adorno: el filete de abajo tiene que ser mas
         # ancho que el titulo, y si el ancho saliese justo del texto el
         # filete quedaria asomando por los lados.
         ancho = max(ancho_titulo + 40, ancho_lineas)
-        w = min(ANCHO - 80, max(260, ancho + 96))
-        h = 30 + 46 + len(lineas) * 17 + 26
+        w = min(ancho_maximo, max(260, ancho + 96))
+        alto_titulo = alto_texto(titulo, 40)
+        alto_linea = alto_texto(sub or " ", 11)
+        interlinea = max(17, alto_linea + 6)
+        y_filete = 18 + alto_titulo + 8
+        y_sub = y_filete + 16 + alto_linea // 2
+        h = y_sub + max(0, len(lineas) - 1) * interlinea + alto_linea // 2 + 20
 
         sombra = pygame.Surface((w, h), pygame.SRCALPHA)
         pygame.draw.rect(sombra, (0, 0, 0, 130),
@@ -1220,16 +1234,16 @@ class Juego:
                          border_radius=14)
 
         cx = w // 2
-        texto(caja, titulo, 40, con_alpha(color, 255), centro=(cx, 38))
+        texto(caja, titulo, 40, con_alpha(color, 255), centro=(cx, 18 + alto_titulo // 2))
         # El filete separa el nombre del efecto de su explicacion. Sin el, las
         # dos lineas se leen como un solo bloque y el nombre se pierde.
         pygame.draw.rect(caja, con_alpha(color, 110),
-                         pygame.Rect(cx - ancho_titulo // 2 - 20, 66,
+                         pygame.Rect(cx - ancho_titulo // 2 - 20, y_filete,
                                      ancho_titulo + 40, 2))
-        y = 92
+        y = y_sub
         for linea in lineas:
             texto(caja, linea, 11, con_alpha(TEXTO, 240), centro=(cx, y))
-            y += 17
+            y += interlinea
         self._efecto_sup = (clave, caja)
         return caja
 

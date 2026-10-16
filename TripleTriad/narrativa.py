@@ -188,7 +188,8 @@ NARRATIVA = {
         "previa": [
             esc("La senda sube entre pinos negros. En la cuneta hay un hombre que "
                 "sangra y no te pide nada.", fondo="camino"),
-            esc("Nara mira al hombre. Luego mira tus cartas. Luego decide no decir nada.",
+            esc("- No quiere pelear, pero el camino se decide por Juicio. "
+                "Ganale sin hacerle dano y los dos podremos seguir.",
                 hablante="Nara", fondo="camino"),
         ],
         "posterior": [
@@ -210,8 +211,8 @@ NARRATIVA = {
                 fondo="aldea"),
             esc("- Ese estuche es del otro lado. Eso no se trae aqui.", fondo="aldea",
                 color=TEXTO_ON),
-            esc("- Cinco duelos. El ultimo es el trono. Segui, porque cada uno que "
-                "ganas es un paso menos entre vos y tu salon.", hablante="Nara",
+            esc("- No quieren otro peligro cerca de la aldea. Demostra que podes "
+                "ganarte el paso. Necesitas su ayuda para llegar al trono y volver a casa.", hablante="Nara",
                 fondo="aldea", color=TEXTO_ON),
         ],
         "posterior": [
@@ -232,8 +233,9 @@ NARRATIVA = {
                 "y las casas siguen teniendo techo.", fondo="ruinas"),
             esc("No hay nadie. Y sin embargo, en una pared hay un cartel: el dibujo de "
                 "una carta que reconoces.", fondo="ruinas", color=TEXTO_ON),
-            esc("Es una de las tuyas. Esta aqui pintada, en un mundo que no tiene nada "
-                "que ver con tus sobres.", fondo="ruinas"),
+            esc("Es una de las tuyas. El guardian no te deja acercarte al muro: "
+                "tendras que vencerlo para investigar por que tu carta estaba aqui antes que vos.",
+                fondo="ruinas"),
         ],
         "posterior": [
             esc("Cuando sales de las ruinas, Nara no te pregunta por lo que viste. "
@@ -248,7 +250,8 @@ NARRATIVA = {
         "previa": [
             esc("La fortaleza domina el camino al trono. Y el "
                 "trono tiene el Umbral.", fondo="fortaleza"),
-            esc("El capitan te espera en la puerta. Ya sabe lo que traes.",
+            esc("El capitan te espera en la puerta. Quiere impedir que abras el Umbral: "
+                "teme lo que pueda cruzar de vuelta. Para seguir, tendras que vencerlo.",
                 fondo="fortaleza"),
         ],
         "posterior": [
@@ -265,7 +268,8 @@ NARRATIVA = {
             esc("Vuelve. Con las mismas heridas y con la misma pregunta.", fondo="asalto",
                 efecto="titulo"),
             esc("- Creiste que estaba derrotado.", fondo="asalto", color=TEXTO_ON),
-            esc("- No lo estaba.", fondo="asalto", color=TEXTO_ON),
+            esc("- No lo estaba. Quiero la revancha. Si vas al trono, primero "
+                "demostra que aquella victoria no fue suerte.", fondo="asalto", color=TEXTO_ON),
         ],
         "posterior": [
             esc("Cuando cae, no dice nada. Solo te mira las cartas una ultima vez, como "
@@ -281,8 +285,9 @@ NARRATIVA = {
         "previa": [
             esc("El trono se alza ante la grieta. Para llegar al Umbral, primero "
                 "tendras que vencer a quien lo guarda.", fondo="trono"),
-            esc("El Umbral te ve llegar. Eso es lo peor: no es una puerta. Te estaba "
-                "esperando.", fondo="trono", efecto="titulo"),
+            esc("El guardian no se aparta: defiende el derecho a decidir sobre el Umbral. "
+                "Si lo vences, la decision de volver a casa sera tuya.",
+                fondo="trono"),
         ],
         "posterior": [
             esc("Aqui termina el camino. Y aqui se decide de quien es el mundo.",
