@@ -18,7 +18,7 @@ vuelve (asalto) y el gobernante del trono.
 Se suma por encima, sin reemplazar nada:
     campana._duelista_de -> mezcla DUELISTAS (identidad) + duelistas (rol).
 
-Texto visible en ASCII, como todo el juego. Este modulo no importa campana:
+Texto visible en español, con acentos y signos de apertura. Este modulo no importa campana:
 campana lo importa a el.
 """
 
@@ -77,12 +77,12 @@ ROLES = {
                 _esc("- Si me das el centro me voy y no miro atras."),
             ],
             "win": [
-                _esc("- Ganaste. Ya era hora, de verdad.", hablante="__NOMBRE__"),
+                _esc("- Ganaste. Ya está. Pasá antes de que alguien pida otro Juicio.", hablante="__NOMBRE__"),
                 _esc("- Aqui nadie muere por un Juicio. Que se note."),
             ],
             "lose": [
-                _esc("- Viste? No era necesario ganar.", hablante="__NOMBRE__"),
-                _esc("- Perdon. No sabia contra quien jugaba."),
+                _esc("- ¿Viste? Hasta yo puedo ganar. Pero ahora me toca cerrarte el paso.", hablante="__NOMBRE__"),
+                _esc("- Lo siento. Recogé las cartas; si volvés a intentarlo, acá te espero."),
             ],
         },
         "reaccion": {
@@ -111,11 +111,11 @@ ROLES = {
                 _esc("- Aqui las cartas son Juicio, no juguete. Se nota."),
             ],
             "win": [
-                _esc("- No deberia haber perdido.", hablante="__NOMBRE__"),
+                _esc("- Ganaste el paso. Cumplo mi palabra; la aldea sigue bajo mi cuidado.", hablante="__NOMBRE__"),
                 _esc("- Quien te ensena a jugar asi, te miente en algo."),
             ],
             "lose": [
-                _esc("- Bien. La aldea esta a salvo.", hablante="__NOMBRE__"),
+                _esc("- El paso sigue cerrado. Si volvés, tendrás que ganártelo.", hablante="__NOMBRE__"),
                 _esc("- Eso es lo unico que importa aqui."),
             ],
         },
@@ -147,11 +147,11 @@ ROLES = {
                 _esc("- Y no, no te lo voy a explicar."),
             ],
             "win": [
-                _esc("- Ganaste el paso. Las reliquias se quedan aqui.",
+                _esc("- Podés mirar el dibujo. Ganaste el paso; las reliquias se quedan aquí.",
                      hablante="__NOMBRE__"),
             ],
             "lose": [
-                _esc("- Aqui no hay nada que robar. Solo cosas que alguien borro.",
+                _esc("- Todavía no. Las ruinas pueden esperar a que ordenes esas cartas.",
                      hablante="__NOMBRE__"),
             ],
         },
@@ -184,12 +184,12 @@ ROLES = {
                 _esc("- Vos ya cruzaste. Preguntate que cruza de vuelta."),
             ],
             "win": [
-                _esc("- Ganaste. Bien. Ahora descubri lo que yo no pude impedir.",
+                _esc("- Ganaste. No voy a cerrarte la puerta. Recordá mi advertencia cuando llegues.",
                      hablante="__NOMBRE__"),
                 _esc("- Lo que hay del otro lado ya esta en camino."),
             ],
             "lose": [
-                _esc("- No has ganado. Pero ya que estas, escucha.",
+                _esc("- Hoy no vas a cruzar. Si insistís, te esperaré en esta misma puerta.",
                      hablante="__NOMBRE__"),
                 _esc("- El Umbral no es un juego. Y cada mundo cobra."),
             ],
@@ -224,12 +224,12 @@ ROLES = {
                 _esc("- Yo si me acuerdo. Yo me acuerdo de todo."),
             ],
             "win": [
-                _esc("- No puedo detenerte. Y eso me duele mas que perder.",
+                _esc("- Perdí otra vez. No puedo detenerte; eso duele más que la derrota.",
                      hablante="__NOMBRE__"),
             ],
             "lose": [
-                _esc("- Otra vez. Que se note.", hablante="__NOMBRE__"),
-                _esc("- Perder un duelo no es perder. Lo importante es otra cosa."),
+                _esc("- Esta vez gané yo. Ahora sabés por qué volví.", hablante="__NOMBRE__"),
+                _esc("- Si todavía querés llegar al trono, volvé a sentarte."),
             ],
         },
         "reaccion": {
@@ -262,11 +262,11 @@ ROLES = {
                      "que sea tarde."),
             ],
             "win": [
-                _esc("- Ganaste. Ahora sos el primero que sabe.", hablante="__NOMBRE__"),
+                _esc("- Ganaste el Juicio. El Umbral queda en tus manos; su precio, también.", hablante="__NOMBRE__"),
                 _esc("- Abre el Umbral si viniste a eso. Y despues no mires atras."),
             ],
             "lose": [
-                _esc("- Perdiste. Pero la verdad no la perdiste con el duelo.",
+                _esc("- El trono sigue bajo mi guardia. Tu regreso tendrá que esperar otro Juicio.",
                      hablante="__NOMBRE__"),
                 _esc("- Eso es lo que importa. No el trono."),
             ],

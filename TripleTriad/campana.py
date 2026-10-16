@@ -248,7 +248,8 @@ NODOS_MINI = {
         "titulo": "El Umbral Respira",
         "escena": "umbral",
         "dificultad": 1,
-        "previa": ["El Umbral te reconoce: ya no eres un forastero."],
+        "previa": ["El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: "
+                   "tendrás que ganar el paso, aunque ya no seas un forastero."],
         "siguiente": "mini_nudo",
     },
     "mini_nudo": {
@@ -256,7 +257,8 @@ NODOS_MINI = {
         "titulo": "La Sombra se Cierra",
         "escena": "estandartes",
         "dificultad": 2,
-        "previa": ["Los estandartes se juntan. Todos saben tu nombre."],
+        "previa": ["Los estandartes se juntan para cerrarte el camino. Su representante "
+                   "defiende el acceso al trono; vencerlo te dejará frente al último rival."],
         "siguiente": "mini_trono",
     },
     "mini_trono": {
@@ -264,7 +266,8 @@ NODOS_MINI = {
         "titulo": "Dueno del Umbral",
         "escena": "trono",
         "dificultad": 3,
-        "previa": ["Tres duelos te separan de ser leyenda. Este es el ultimo."],
+        "previa": ["Solo queda este duelo. Quien guarda el Umbral defiende su dominio; "
+                   "ganar decidirá quién permanece junto a la grieta."],
         "siguiente": None,
     },
 }

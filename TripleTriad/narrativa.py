@@ -193,8 +193,8 @@ NARRATIVA = {
                 hablante="Nara", fondo="camino"),
         ],
         "posterior": [
-            esc("Adelante, la senda se estrecha y el Umbral se ve desde aqui: una "
-                "grieta vertical, quieta, como una puerta que nadie ha empujado.",
+            esc("El rival guarda sus cartas y te deja seguir. Adelante, la senda se "
+                "estrecha: el Umbral parece una puerta que nadie ha empujado.",
                 fondo="camino"),
             esc("Lo que el juego nunca dijo: el Umbral no es una puerta. Es una "
                 "pregunta que alguien hizo hace mucho y sigue esperando.",
@@ -216,8 +216,8 @@ NARRATIVA = {
                 fondo="aldea", color=TEXTO_ON),
         ],
         "posterior": [
-            esc("Cuando sales, el custodio te sigue con la mirada hasta el arco. No es "
-                "hostilidad: es la mirada de quien sabe que algo viene y no sabe que.",
+            esc("El custodio abre el paso. Ganaste el Juicio, no su confianza: "
+                "te sigue con la mirada hasta el arco.",
                 fondo="aldea"),
             esc("Nara espera en el camino con la libreta abierta.", hablante="Nara",
                 fondo="aldea"),
@@ -238,8 +238,8 @@ NARRATIVA = {
                 fondo="ruinas"),
         ],
         "posterior": [
-            esc("Cuando sales de las ruinas, Nara no te pregunta por lo que viste. "
-                "Escribe.", hablante="Nara", fondo="ruinas"),
+            esc("El custodio te deja estudiar el dibujo. Al salir de las ruinas, "
+                "Nara no pregunta por lo que viste. Escribe.", hablante="Nara", fondo="ruinas"),
             esc("- El Umbral no invento el mundo. Lo copio. Y lo copio mal.",
                 hablante="Nara", fondo="ruinas"),
             esc("- Alguien escribio esas cartas antes de que fueran ciertas.",
@@ -255,7 +255,8 @@ NARRATIVA = {
                 fondo="fortaleza"),
         ],
         "posterior": [
-            esc("Adentro huele a hierro mojado. Aqui se decide quien se queda.",
+            esc("El capitán se aparta y cruzas la puerta. El duelo abrió el paso; "
+                "su advertencia sobre el Umbral sigue contigo.",
                 fondo="fortaleza"),
             esc("- Ganar no es el problema. El problema es que se abre despues.",
                 hablante="Nara", fondo="fortaleza", color=TEXTO_ON),
@@ -272,8 +273,8 @@ NARRATIVA = {
                 "demostra que aquella victoria no fue suerte.", fondo="asalto", color=TEXTO_ON),
         ],
         "posterior": [
-            esc("Cuando cae, no dice nada. Solo te mira las cartas una ultima vez, como "
-                "si quisiera compararlas con un recuerdo.", fondo="asalto"),
+            esc("Esta vez recoge sus cartas y deja libre el camino. La revancha "
+                "terminó; el recuerdo de la primera derrota sigue ahí.", fondo="asalto"),
             esc("- Las cartas de tu estuche siguen sin pertenecer a este mundo.", hablante="Nara", fondo="asalto"),
             esc("- Lo se. Desde que llegue no duermo tranquilo.", hablante="__JUGADOR__",
                 fondo="asalto", color=TEXTO_ON),
@@ -290,7 +291,7 @@ NARRATIVA = {
                 fondo="trono"),
         ],
         "posterior": [
-            esc("Aqui termina el camino. Y aqui se decide de quien es el mundo.",
+            esc("EL JUICIO TERMINA",
                 fondo="trono", efecto="titulo"),
             esc("- Si abres el Umbral vas a poder volver. Eso no significa que sea "
                 "buena idea.", hablante="Nara", fondo="trono", color=TEXTO_ON),

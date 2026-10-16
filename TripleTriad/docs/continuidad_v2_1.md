@@ -6,7 +6,7 @@ Actualizar este documento al terminar cada bloque. No requiere reconstruir la co
 
 El usuario pidió mejorar el juego por bloques sencillos, con informes y auditorías visuales que expliquen qué cambió, para qué y por qué. Trabajar en **`v2.1`**. Plan autorizado en [plan_principal_v2_1.md](plan_principal_v2_1.md). Sin agregar funcionalidades ni sistemas.
 
-El bloque 01 implementa una primera pasada de los apartados **1, 2 y 3**: intención de los duelos principales, entrada al torneo y legibilidad de efectos. Ver [informe](informe_v2_1_bloque_01.md). No confundir la numeración solicitada con el orden 3, 2, 4 sugerido previamente: el apartado 4 no se ha trabajado en esta pasada.
+El bloque 01 implementa una primera pasada de los apartados **1, 2 y 3**: intención de los duelos principales, entrada al torneo y legibilidad de efectos. Ver [informe](informe_v2_1_bloque_01.md). El bloque 02 continúa esos apartados con consecuencias de duelos y previas de minicampañas; ver [informe y auditoría](informe_v2_1_bloque_02.md). No confundir la numeración solicitada con el orden 3, 2, 4 sugerido previamente: el apartado 4 todavía no se ha trabajado.
 
 ## Restricciones que deben conservarse
 
@@ -42,11 +42,29 @@ La auditoría configura SDL dummy y un directorio temporal de datos. Importante:
 
 En PowerShell 5.1, al redirigir stderr de unittest puede aparecer un resultado de shell engañoso aunque unittest diga `OK`. Capturar el código real con `exit $LASTEXITCODE` al final del comando. Los mensajes de error de ComfyUI o `ZeroDivisionError('division by zero')` al pie del registro forman parte de pruebas deliberadas de fallo; mirar el resumen de unittest.
 
-## Próximo bloque recomendado
+## Bloque 02: estado y comprobaciones
 
-1. Recorrer las dos variantes de ruta hasta el trono y revisar las previas nuevas contra las respuestas posteriores; comprobar que ninguna promesa exceda el efecto real. Las minicampañas todavía conservan su redacción original.
-2. Revisar el resto del prólogo: despertar, explicación de Nara y elección de mazo. Conservar la promesa de volver a casa, el motivo del dragón histórico y la posibilidad de reintentar; las pruebas de `test_guion_cierre.py` protegen esos puntos.
-3. Probar interactivamente efectos del jugador y del rival, incluyendo último movimiento, pausa, historial y movimiento reducido. El rival espera para no pisar el cartel del jugador; no se ha bloqueado la entrada del jugador durante un cartel del rival.
-4. Exportar a una carpeta de desarrollo distinta de `ver2SubirV2` y comprobar Chrome/iframe antes de preparar la entrega 2.1. No atribuir a esta pasada medidas de rendimiento de la entrega anterior.
+- `narrativa.py`: consecuencias de victoria en los seis nodos principales; título posterior del trono abreviado para evitar un desborde al 160 %.
+- `duelistas.py`: cierres de victoria y derrota coherentes con el obstáculo de cada nodo. No cambia la identidad del rival ni su facción.
+- `campana.py`: solo las tres cadenas `NODOS_MINI[*].previa`; no se modificaron transiciones ni recompensas.
+- `tools/auditar_v2_1_bloque_02.py`: 20 rutas principales y tres minicampañas; 109 estados de duelo con comprobación de derrota sin avance y victoria con transición. Son resultados simulados, no partidas jugadas contra la IA.
+- Capturas y registros en `auditoria/v2_1_bloque_02/`: 63 frames medidos por fase, 27 capturas por fase, un desborde anterior del título frente a cero posteriores; 1221 imágenes protegidas intactas.
+- Las minicampañas no llaman a `escenas_posterior` como la campaña principal. No agregar ese flujo bajo el supuesto de que ya existe.
+- Suite completa del bloque 02: 1082 pruebas `OK`, código de salida 0. `tests.log` está en UTF-8. Las dos comprobaciones antiguas de ASCII se adaptaron al español soportado y a la cobertura de la fuente.
 
-Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_02.md` y enlazarlo desde aquí y desde el plan.
+```powershell
+python tools/auditar_v2_1_bloque_02.py antes
+python tools/auditar_v2_1_bloque_02.py despues
+python -m unittest discover -s tests -v
+```
+
+La fase anterior se compara contra `cf2b62f`; carga módulos narrativos aislados y las previas antiguas de minicampaña, sin hacer checkout ni tocar el árbol de trabajo.
+
+## Próximo bloque recomendado (03)
+
+1. Revisar el resto del prólogo: despertar, explicación de Nara y elección de mazo. Conservar la promesa de volver a casa, el motivo del dragón histórico y la posibilidad de reintentar; las pruebas de `test_guion_cierre.py` protegen esos puntos.
+2. Probar interactivamente efectos del jugador y del rival, incluyendo último movimiento, pausa, historial y movimiento reducido. El rival espera para no pisar el cartel del jugador; no se ha bloqueado la entrada del jugador durante un cartel del rival.
+3. Exportar a una carpeta de desarrollo distinta de `ver2SubirV2` y comprobar Chrome/iframe antes de preparar la entrega 2.1. No atribuir a esta pasada medidas de rendimiento de la entrega anterior.
+4. Realizar una pasada interactiva de ambas rutas y, si se ajusta la revancha, cubrir también `revancha=1`. El bloque 02 comprobó las transiciones con resultados simulados y la variante predeterminada.
+
+Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_03.md` y enlazarlo desde aquí y desde el plan.

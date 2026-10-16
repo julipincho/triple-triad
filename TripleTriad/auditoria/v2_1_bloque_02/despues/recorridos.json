@@ -1,0 +1,272 @@
+[
+  {
+    "faccion": "humano",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "humano",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "orco",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "orco",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "elfo",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "elfo",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "goblin",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "goblin",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_lobo",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_lobo",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "vampiro",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "vampiro",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "dragon",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "dragon",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "elfo_nocturno",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "elfo_nocturno",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_pantera",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_pantera",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_lagarto",
+    "rama": "aldea",
+    "ruta": [
+      "senda",
+      "aldea",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_lagarto",
+    "rama": "ruinas",
+    "ruta": [
+      "senda",
+      "ruinas",
+      "fortaleza",
+      "asalto",
+      "trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "elfo_nocturno",
+    "mini": true,
+    "ruta": [
+      "mini_senda",
+      "mini_nudo",
+      "mini_trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_pantera",
+    "mini": true,
+    "ruta": [
+      "mini_senda",
+      "mini_nudo",
+      "mini_trono"
+    ],
+    "completada": true
+  },
+  {
+    "faccion": "hombre_lagarto",
+    "mini": true,
+    "ruta": [
+      "mini_senda",
+      "mini_nudo",
+      "mini_trono"
+    ],
+    "completada": true
+  }
+]

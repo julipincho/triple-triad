@@ -351,8 +351,13 @@ class TestIntegracionConElFlujo(unittest.TestCase):
                         f"{nodo}: avatar inexistente {retrato}")
 
 
-class TestTextoAscii(unittest.TestCase):
-    def test_todo_el_texto_de_rol_es_ascii(self):
+class TestTextoEspanol(unittest.TestCase):
+    def test_texto_de_rol_conserva_espanol_sin_caracteres_corruptos(self):
+        import pygame
+        import ui
+        pygame.font.init()
+        font = ui.REC.fuente(12)
+        spanish = 'áéíóúüñÁÉÍÓÚÜÑ¿¡'
         for nodo in NODOS_DUELO:
             textos = [duelistas.motivacion_de(nodo), duelistas.historia_de(nodo),
                       duelistas.personalidad_de(nodo)]
@@ -362,7 +367,10 @@ class TestTextoAscii(unittest.TestCase):
                 textos += [e["texto"] for e in duelistas.dialogo_de(nodo, momento, "X")]
             for t in textos:
                 for ch in t:
-                    self.assertLessEqual(ord(ch), 127, f"{nodo}: {ch!r} en {t[:40]!r}")
+                    self.assertTrue((ch.isascii() and (ch.isprintable() or ch in '\n\t'))
+                                    or ch in spanish, f"{nodo}: {ch!r} en {t[:40]!r}")
+                    if ch in spanish:
+                        self.assertIsNotNone(font.metrics(ch)[0], f"glifo ausente: {ch}")
 
 
 class TestSinCiclos(unittest.TestCase):

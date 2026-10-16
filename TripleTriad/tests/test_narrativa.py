@@ -230,15 +230,16 @@ class TestSinCiclosDeImportacion(unittest.TestCase):
             importlib.import_module(nombre)
 
 
-class TestTextoVisibleEnAscii(unittest.TestCase):
-    def test_el_texto_del_juego_es_ascii(self):
-        """El resto del juego es ASCII; el pixel font no cubre otros alfabetos."""
+class TestTextoVisibleEnEspanol(unittest.TestCase):
+    def test_el_texto_admite_espanol_sin_caracteres_corruptos(self):
+        """La fuente y la capa de idioma ya admiten Ñ, acentos y signos españoles."""
+        spanish = 'áéíóúüñÁÉÍÓÚÜÑ¿¡'
         for nodo in NODOS_DUELO:
             for e in narrativa.previa_nodo(nodo) + narrativa.posterior_nodo(nodo):
                 for ch in e["texto"]:
-                    self.assertLessEqual(
-                        ord(ch), 127,
-                        f"{nodo}: caracter no-ascii {ch!r} en {e['texto'][:40]!r}")
+                    self.assertTrue(
+                        (ch.isascii() and (ch.isprintable() or ch in '\n\t')) or ch in spanish,
+                        f"{nodo}: caracter no admitido {ch!r} en {e['texto'][:40]!r}")
 
 
 if __name__ == "__main__":
