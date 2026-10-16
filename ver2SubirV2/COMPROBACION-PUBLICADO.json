@@ -1,0 +1,11 @@
+{
+  "pagina": "https://darmagion.itch.io/cartonesymazmorras",
+  "iframe_publicado": "https://html-classic.itch.zone/html/19793825/index.html?v=1792124676",
+  "apk_publicado_sha256": "a33298f31a777504ff9521cfcc1e672e10cf8babaf54253b41e22b4776c651a4",
+  "publicado_fps_web": 30,
+  "publicado_escalado": "pygame.SCALED",
+  "apk_corregido_sha256": "d85cb349201100d47b05cb67fe927d133dae113955b5a9107282d9036a0e4248",
+  "corregido_fps_web": 60,
+  "corregido_escalado_web": 0,
+  "conclusion": "La pagina publica sirve una entrega anterior a la correccion R2. Reemplazar el ZIP web por el de ver2SubirV2."
+}

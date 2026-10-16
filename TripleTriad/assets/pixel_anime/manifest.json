@@ -525,12 +525,11 @@
     },
     "assets/escenas/hostil.png": {
       "tipo": "retrato",
-      "ruta": "assets/pixel_anime/encuentros/hostil.png",
-      "sha256": "32a553492c8c1fe5bf7aabf3b33ba61096ff02f57c621997065a296ca81b595a",
+      "ruta": "assets/pixel_anime/encuentros/hostil_v2.png",
+      "sha256": "71c0b12f7b6e8db1f2c5d6771ad042a5b6374733b9177b49e1b0b4a03b29aaa8",
       "original_sha256": "01d775d11bea51c9e6d2d3ae7c871f13bafd06ed8647a472b06f499d401e8ce5",
-      "modelo": "pixelArtDiffusionXL_spriteShaper.safetensors",
-      "seed": 3693305460,
-      "receta": "E:\\AI\\CartonesMazmorrasVisual\\exports\\pixel_anime_20261013_final\\candidatos\\escenas\\hostil.json"
+      "modelo": "image_gen integrada",
+      "receta": "auditoria/uiux_saneamiento_20261015/hostil_prompt.json"
     },
     "assets/escenas/mercader.png": {
       "tipo": "retrato",

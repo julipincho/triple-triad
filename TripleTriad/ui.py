@@ -8,6 +8,7 @@ hover/aparicion hechas con interpolacion en vez de saltos.
 import math
 import os
 import random
+import sys
 import time
 
 import pygame
@@ -212,7 +213,9 @@ def activar_medicion():
 # SCALED y pygame escala al tamano real de la ventana, ADEMAS de traducir las
 # coordenadas del raton a la superficie logica. Asi el codigo de dibujo no
 # cambia una linea y las coordenadas de entrada siguen siendo coherentes.
-BANDERAS_ESCALA = pygame.SCALED
+# El navegador ya escala el canvas por CSS. SCALED introduce otra conversion
+# entre su renderer, el tamano fisico/DPR y las coordenadas del puntero.
+BANDERAS_ESCALA = 0 if sys.platform == "emscripten" else pygame.SCALED
 _EVENT_GET_ORIGINAL = pygame.event.get
 _ultimo_tamano = None
 #: None = aun no se ha probado; True/False = si SCALED funciona en esta
@@ -302,7 +305,9 @@ class Recursos:
             completa = recurso(ruta)
             if os.path.exists(completa):
                 try:
-                    img = pygame.image.load(completa).convert_alpha()
+                    img = pygame.image.load(completa)
+                    # No pagar mezcla alfa por pixel en fondos opacos (WASM).
+                    img = img.convert_alpha() if img.get_flags() & pygame.SRCALPHA else img.convert()
                 except pygame.error:
                     # sin modo video activo: cargamos sin convertir
                     img = pygame.image.load(completa)
@@ -764,13 +769,13 @@ def escala_texto():
 
 # ----------------------------------------------------------------- tipografia
 _REEMPLAZOS = {
-    "¡": "!", "¿": "?", "—": "-", "–": "-", "“": '"', "”": '"',
+    "—": "-", "–": "-", "“": '"', "”": '"',
     "‘": "'", "’": "'", "…": "...", "·": "-", "•": "*",
 }
 
 
 def limpio(texto):
-    """La fuente pixel no tiene tildes ni signos raros: los limpiamos.
+    """Conserva los caracteres españoles y normaliza Unicode para medir y pintar.
 
     El resultado se cachea: `normalize` de unicodedata es de las cosas mas
     caras del frame si se repite, y los textos del juego son pocos y fijos.
@@ -783,8 +788,7 @@ def limpio(texto):
         texto = texto.replace(a, b)
     import unicodedata
 
-    nfkd = unicodedata.normalize("NFKD", texto)
-    largo = "".join(c for c in nfkd if not unicodedata.combining(c))
+    largo = unicodedata.normalize("NFC", texto)
     return _cache_put(_LIMPIO, original, largo, 4000)
 
 
@@ -842,7 +846,7 @@ def texto(screen, cadena, tam, color=TEXTO, centro=None, y=None, x=None, sombra=
     # La auditoria mide el rect final de verdad. Con MEDIR apagado no se
     # construye ni un solo Rect: en el duelo hay ~13 textos por frame y este
     # es el camino mas caliente del juego.
-    if MEDIR:
+    if MEDIR and screen.get_size() == (ANCHO, ALTO):
         r = pygame.Rect(x, y, ancho, alto)
         registrar(r, "texto", _contenedora(r))
         # Con la cadena al lado: un solapamiento sin decir QUE texto se solapa
@@ -1106,7 +1110,10 @@ class Boton:
             grosor=2 + int(2 * self.hover),
         )
         dy = -6 if self.sub else 0
-        texto(screen, self.etiqueta, self.tam,
+        tam = self.tam
+        while tam > 6 and ancho_texto(self.etiqueta, tam) > h.w - 24:
+            tam -= 1
+        texto(screen, self.etiqueta, tam,
               mezcla(self.color, TEXTO_ON, self.hover),
               centro=(h.centerx, h.centery + dy))
         if self.sub:
@@ -1409,7 +1416,7 @@ def mano_rect(i, total=5):
         ancho = CARD_W
     else:
         paso_fijo = CARD_W + MANO_GAP
-        paso_ajustado = (ANCHO - CARD_W) / (total - 1)
+        paso_ajustado = (ANCHO - 256 - CARD_W) / (total - 1)
         paso = max(MANO_GAP_MIN, min(paso_fijo, paso_ajustado))
         ancho = CARD_W + (total - 1) * paso
     inicio = (ANCHO - ancho) // 2

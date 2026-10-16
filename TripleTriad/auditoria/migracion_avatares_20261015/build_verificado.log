@@ -1,0 +1,21 @@
+140 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.8
+140 INFO: Python: 3.12.10
+161 INFO: Platform: Windows-11-10.0.26200-SP0
+161 INFO: Python environment: C:\Users\julip\AppData\Local\Programs\Python\Python312
+166 INFO: Module search paths (PYTHONPATH):
+['E:\\openCode\\TripleTriad',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\DLLs',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages',
+ 'E:\\openCode\\TripleTriad']
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+585 INFO: Appending 'datas' from .spec
+595 INFO: checking Analysis
+646 INFO: checking PYZ
+674 INFO: checking PKG
+696 INFO: Bootloader C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+696 INFO: checking EXE
+715 INFO: Build complete! The results are available in: E:\openCode\TripleTriad\dist

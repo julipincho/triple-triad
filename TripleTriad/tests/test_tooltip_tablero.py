@@ -101,6 +101,12 @@ class TestTooltipDelTablero(unittest.TestCase):
 
 
 class TestHoverSobreElTablero(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        global PANTALLA
+        pygame.init()
+        PANTALLA = pygame.display.set_mode((1280, 800))
+
     def setUp(self):
         self.juego = _juego()
         self.rival = self.juego.mano_c.pop(0)

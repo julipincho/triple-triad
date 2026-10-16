@@ -270,6 +270,7 @@ class Juego:
         clave_retrato = (self.rival.get("retrato") if self.rival else None) \
             or self.bando_cpu
         self.avatar = crt.REC.imagen(f"assets/avatar_{clave_retrato}.png", (96, 96))
+        self.avatar_jugador = crt.REC.imagen("assets/avatar_duelista.png", (96, 96))
         if not self.avatar.get_width():  # sin arte: silueta
             self.avatar = pygame.Surface((96, 96), pygame.SRCALPHA)
             pygame.draw.circle(self.avatar, facciones.acento(self.bando_cpu), (48, 48), 46)
@@ -782,7 +783,7 @@ class Juego:
             texto(screen, f"{self.info.get('nombre_faccion', '')} - nivel {self.info.get('dificultad', 0)}",
                   8, TEXTO_TENUE, x=24, y=36)
         else:
-            texto(screen, "DUELO RAPIDO", 10, DORADO, x=24, y=16)
+            texto(screen, "DUELO RÁPIDO", 10, DORADO, x=24, y=16)
             texto(screen, f"{facciones.nombre(self.bando)} vs {facciones.nombre(self.bando_cpu)}",
                   8, TEXTO_TENUE, x=24, y=36)
 
@@ -1010,6 +1011,13 @@ class Juego:
                     resplandor(screen, rect, DORADO, int(50 + 70 * pulso), 2, 7)
 
     def _dibujar_avatar(self, screen, ahora):
+        # El jugador comparte la columna del rival, fuera del tablero y la mano.
+        jugador = pygame.Rect(ANCHO - 116, 652, 96, 96)
+        screen.blit(self.avatar_jugador, jugador)
+        pygame.draw.rect(screen, ui.FOCO, jugador, 2)
+        nombre_jugador = self.info.get("nombre_jugador") or "Tú"
+        for i, linea in enumerate(envolver(nombre_jugador, 8, 112)):
+            texto(screen, linea, 8, TEXTO, centro=(jugador.centerx, 760 + i * 14))
         if self.avatar is None:
             return
         x, y = ANCHO - 116, 132

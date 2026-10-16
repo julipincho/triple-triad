@@ -17,6 +17,12 @@ from paths import recurso
 
 
 class TestArtePixelAnime(unittest.TestCase):
+    def setUp(self):
+        # Estos tests verifican el lote base, independientemente de lotes nuevos.
+        sustitucion = patch("arte_visual.lotes_visuales.retrato", return_value=None)
+        sustitucion.start()
+        self.addCleanup(sustitucion.stop)
+
     @classmethod
     def setUpClass(cls):
         pygame.init()

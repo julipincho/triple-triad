@@ -50,7 +50,8 @@ class TestPropiedadPorForma(unittest.TestCase):
         etiquetas = (("T", "PROPIA"), ("C", "RIVAL"), (None, "LIBRE"))
         sups = [cartas.crear(base, dueno=d, escala=2) for d, _e in etiquetas]
         w, h = sups[0].get_size()
-        caja = (h - 20, w - 20, 16, 16)
+        # Indicador superior derecho, en una carta dibujada a escala 2.
+        caja = (11, w - 39, 30, 30)
         # El arco del borde redondeado esta en las tres: se resta, para que lo
         # que compare sea solo la FORMA de la marca.
         comunes = self.mod.siluetas_comunes(sups, caja)

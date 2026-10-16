@@ -1,0 +1,37 @@
+{
+  "version": "2.0",
+  "windows_extraido_check": 0,
+  "windows_extraido_test": 0,
+  "cartas_web_sin_modificar": 250,
+  "archivos": {
+    "Cartones-y-Mazmorras-2.0-Web.zip": {
+      "bytes": 103915289,
+      "sha256": "aa98b6b430c05c9ed67fac76cacaac5f476dc60fcd8eb71a25487959ad54b13b"
+    },
+    "Cartones-y-Mazmorras-2.0-Windows.zip": {
+      "bytes": 350279034,
+      "sha256": "8bc919b1cda74c281f162e2404ec3a218760cce720fb04d80759299e31436105"
+    },
+    "Portada-2.0-1260x1000.png": {
+      "bytes": 2442524,
+      "sha256": "6924fde57c473b73bcf577e31afda47a3ce6f81dda30345349abc0cb4ae15945"
+    },
+    "Portada-2.0-630x500.png": {
+      "bytes": 697655,
+      "sha256": "af2d570da3d4016d4b7cba30b8cdab98afdde1a75ce05d526aa597e3cf30148e"
+    }
+  },
+  "revision_web": 2,
+  "objetivo_fps": 60,
+  "pruebas_automaticas": 1078,
+  "pruebas_automaticas_resultado": "OK",
+  "posiciones_puntero_verificadas": 30,
+  "desviacion_maxima_puntero_px": 2,
+  "fps_iframe": {
+    "menu": 62.54,
+    "duelo": 61.66,
+    "despues_arrastre": 59.79
+  },
+  "paquete_web_r2_verificado": true,
+  "publicado_automaticamente": false
+}

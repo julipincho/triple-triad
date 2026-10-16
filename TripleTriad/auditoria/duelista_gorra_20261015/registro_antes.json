@@ -1,0 +1,808 @@
+{
+  "version": 1,
+  "historicos": [
+    {
+      "lote": "lote_01",
+      "commit_integracion": "21be366",
+      "recursos": [
+        {
+          "id": "salon_torneo",
+          "original": "E:\\AI\\CartonesMazmorrasVisual\\CartonesMazmorras_Lote01_1280x720.zip::masters/salon_torneo_master.png",
+          "original_sha256": "6c40eeef3588418bfe9f4a579ce7820d236fe9ae588096d49d3679e61903cb5b",
+          "export": "E:\\AI\\CartonesMazmorrasVisual\\exports\\approved\\lote_01\\cinematicas_hd\\salon_torneo.png",
+          "runtime": "E:\\openCode\\TripleTriad\\assets\\cinematicas_hd\\salon_torneo.png",
+          "referencias": [
+            {
+              "archivo": "finales.py",
+              "linea": 180,
+              "texto": "mundo=\"real\", fondo_hd=\"salon_torneo.png\")]"
+            },
+            {
+              "archivo": "finales.py",
+              "linea": 183,
+              "texto": "fondo_hd=\"salon_torneo.png\"))"
+            }
+          ]
+        },
+        {
+          "id": "camino_lluvioso",
+          "original": "E:\\AI\\CartonesMazmorrasVisual\\CartonesMazmorras_Lote01_1280x720.zip::masters/camino_lluvioso_master.png",
+          "original_sha256": "28e8da3263137cc26c5b415ea0043df2ee9cc861d88d39b1efe4c3a515fd3766",
+          "export": "E:\\AI\\CartonesMazmorrasVisual\\exports\\approved\\lote_01\\cinematicas_hd\\camino_lluvioso.png",
+          "runtime": "E:\\openCode\\TripleTriad\\assets\\cinematicas_hd\\camino_lluvioso.png",
+          "referencias": [
+            {
+              "archivo": "prologo.py",
+              "linea": 206,
+              "texto": "fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 208,
+              "texto": "fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 210,
+              "texto": "fondo=\"camino\", color=TEXTO_ON, fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 212,
+              "texto": "fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 214,
+              "texto": "fondo=\"camino\", color=TEXTO_ON, fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 216,
+              "texto": "fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 218,
+              "texto": "fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 219,
+              "texto": "esc(\"Pik\", hablante=None, fondo=\"camino\", fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 221,
+              "texto": "fondo=\"camino\", fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 223,
+              "texto": "fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 225,
+              "texto": "fondo=\"camino\", fondo_hd=\"camino_lluvioso.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 227,
+              "texto": "fondo_hd=\"camino_lluvioso.png\"),"
+            }
+          ]
+        },
+        {
+          "id": "sala_trono",
+          "original": "E:\\AI\\CartonesMazmorrasVisual\\CartonesMazmorras_Lote01_1280x720.zip::masters/sala_trono_master.png",
+          "original_sha256": "825f0a06168355b1540effb1b35da4fc6d373406bdc6a5e244f75d02f531683f",
+          "export": "E:\\AI\\CartonesMazmorrasVisual\\exports\\approved\\lote_01\\cinematicas_hd\\sala_trono.png",
+          "runtime": "E:\\openCode\\TripleTriad\\assets\\cinematicas_hd\\sala_trono.png",
+          "referencias": [
+            {
+              "archivo": "cinematicas.py",
+              "linea": 462,
+              "texto": "fondo_hd = \"sala_trono.png\""
+            },
+            {
+              "archivo": "narrativa.py",
+              "linea": 41,
+              "texto": "escena[\"fondo_hd\"] = \"sala_trono.png\""
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 343,
+              "texto": "esc(\"ELIGE TU MAZO PRINCIPAL\", fondo=\"trono\", efecto=\"titulo\", fondo_hd=\"sala_trono.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 345,
+              "texto": "fondo=\"trono\", fondo_hd=\"sala_trono.png\"),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lote": "lote_02",
+      "commit_integracion": "4229c2e",
+      "recursos": [
+        {
+          "id": "salon_torneo_lleno",
+          "original": "E:\\AI\\CartonesMazmorrasVisual\\CartonesMazmorras_Lote02_1280x720.zip::masters_originales/salon_torneo_lleno_original.png",
+          "original_sha256": "4b9b7bf18b1f416739735ebf7f46cf37489eeae5d8d2f1c21ad6447d517f0cd0",
+          "export": "E:\\AI\\CartonesMazmorrasVisual\\exports\\approved\\lote_02\\cinematicas_hd\\salon_torneo_lleno.png",
+          "runtime": "E:\\openCode\\TripleTriad\\assets\\cinematicas_hd\\salon_torneo_lleno.png",
+          "referencias": [
+            {
+              "archivo": "prologo.py",
+              "linea": 129,
+              "texto": "fondo=\"salon\", mundo=REAL, fondo_hd=\"salon_torneo_lleno.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 148,
+              "texto": "fondo=\"salon\", mundo=REAL, retrato=\"rajoy\", fondo_hd=\"salon_torneo_lleno.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 153,
+              "texto": "fondo_hd=\"salon_torneo_lleno.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 156,
+              "texto": "fondo_hd=\"salon_torneo_lleno.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 158,
+              "texto": "retrato=\"rajoy\", mundo=REAL, fondo_hd=\"salon_torneo_lleno.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 160,
+              "texto": "fondo=\"salon\", mundo=REAL, fondo_hd=\"salon_torneo_lleno.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 169,
+              "texto": "fondo=\"salon\", mundo=REAL, fondo_hd=\"salon_torneo_lleno.png\"),"
+            }
+          ]
+        },
+        {
+          "id": "revelacion_carta_torneo",
+          "original": "E:\\AI\\CartonesMazmorrasVisual\\CartonesMazmorras_Lote02_1280x720.zip::masters_originales/revelacion_carta_torneo_original.png",
+          "original_sha256": "a73b4aa4bd8ed157dbdc18ff1478cbc06d17160d86447c4ae01fcb238dbdd6eb",
+          "export": "E:\\AI\\CartonesMazmorrasVisual\\exports\\approved\\lote_02\\cinematicas_hd\\revelacion_carta_torneo.png",
+          "runtime": "E:\\openCode\\TripleTriad\\assets\\cinematicas_hd\\revelacion_carta_torneo.png",
+          "referencias": [
+            {
+              "archivo": "prologo.py",
+              "linea": 183,
+              "texto": "fondo_hd=\"revelacion_carta_torneo.png\"),"
+            },
+            {
+              "archivo": "prologo.py",
+              "linea": 186,
+              "texto": "fondo_hd=\"revelacion_carta_torneo.png\"),"
+            }
+          ]
+        },
+        {
+          "id": "portal_umbral_torneo",
+          "original": "E:\\AI\\CartonesMazmorrasVisual\\CartonesMazmorras_Lote02_1280x720.zip::masters_originales/portal_umbral_torneo_original.png",
+          "original_sha256": "e67a691bf0ee5e4547d1f16e43c35f37f46c99a04f08cd7c281d8ae64ac43788",
+          "export": "E:\\AI\\CartonesMazmorrasVisual\\exports\\approved\\lote_02\\cinematicas_hd\\portal_umbral_torneo.png",
+          "runtime": "E:\\openCode\\TripleTriad\\assets\\cinematicas_hd\\portal_umbral_torneo.png",
+          "referencias": [
+            {
+              "archivo": "prologo.py",
+              "linea": 188,
+              "texto": "mundo=REAL, fondo_hd=\"portal_umbral_torneo.png\"),"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "protegidos": {
+    "assets/cinematicas_hd/camino_lluvioso.png": "acabb2264f68137128f73d151e615331ee794ac85d45939ea11dd44bca1c9051",
+    "assets/cinematicas_hd/portal_umbral_torneo.png": "ec8a5fafa04f4f305cc0d1c9f48b3e4f64211553813f900a1f7dd7ef2bf443a1",
+    "assets/cinematicas_hd/revelacion_carta_torneo.png": "5096f48780908d6d4ad2c4fa7014b83f1f833fb8bb9608690fd91df7940d3054",
+    "assets/cinematicas_hd/sala_trono.png": "78b1264e903b9652d61d459d2048fddb983827d964ba6641337f9c154ce06aa9",
+    "assets/cinematicas_hd/salon_torneo.png": "24e67297733f054ddfcb293d1d2267447c77691d16c83bc8941268d73b51ee72",
+    "assets/cinematicas_hd/salon_torneo_lleno.png": "8a71424cec21d50ec06a4d13e3ef7a20c1e1aba2d3860b0fdd68ac2078ac2319",
+    "assets/avatar_dara.png": "0079c06b9b272a7f9b7952d7760f6fd48e1740a1cc5b54a84e29d25146238248",
+    "assets/avatar_dragon.png": "c6c23bdfdc5dbb4578a5364ea92bb18a31761db8b760d2c6015eba77a869f042",
+    "assets/avatar_duelista.png": "f310cedfecf0400a48fb900515df770fa144f296ec7984fb2ac61c9bc0b12db3",
+    "assets/avatar_elfo.png": "aeabd64af80dac29415232498419e163aa0d612db58b8ec96d4d4f4ff7ea6cf9",
+    "assets/avatar_elfo_nocturno.png": "f27772ef95e5e9c3446af8ede84664c53703a0f849b8e22db18359ae550b5b5b",
+    "assets/avatar_gobernante.png": "b0e8ffdc6468f281b7a8ca1780024c3889378ea4d961a25b9a8b180f173b2fe8",
+    "assets/avatar_goblin.png": "0495bcddbbf18131cfb68d934f17dda6b0cdb8618c59b23209b67c4adc277cbd",
+    "assets/avatar_hombre_lagarto.png": "35c7974510985d58255411558980869c7674b3e3af1d895d5d67f50f5ba7b559",
+    "assets/avatar_hombre_lobo.png": "e49c4c80982f2240facac14d93854410613f5ba18df4e4442cff21608a8994f9",
+    "assets/avatar_hombre_pantera.png": "720691fc27db2236c3e5208270c5d5b87c1ae5769048a8529debaa952c12d378",
+    "assets/avatar_humano.png": "4cba0a838bc7cc5c5ad2f7dcc23c114dea5acbf37a4f2e5217c458eb8dcb1e3a",
+    "assets/avatar_jefe_arco.png": "d88fb40a24f22e126a36f547402c6632cf4c9594856aa7dd34840c18b4eceef2",
+    "assets/avatar_nara.png": "f08745927627130008356dae54d6546fe13345343f03a06c6de28d12010b67a2",
+    "assets/avatar_orco.png": "26579b0f84f54140b508a264c09ab059ef12cae03fc4d74ecd6a6de20a0402b4",
+    "assets/avatar_pik.png": "42312984fb53ab3d4fcd6fa0598ad3c19a117c48228e187b1b5446b9aaad2154",
+    "assets/avatar_presentador.png": "7e7a6fb188e7e3e5ace4fb88d2d166aa3b6a322cf0127126013f1833815d6d7d",
+    "assets/avatar_rajoy.png": "9c99a30e4c9f1b7f4706214438a2543679906a8b8090e53f026c3d2e1f174f4a",
+    "assets/avatar_revancha.png": "3caa49941b98c1d27c1fd153302e735fda45e53c20ce8997c9c03c9fc7c060bf",
+    "assets/avatar_vampiro.png": "382439998dce1cba737284c385a43d60a491fb3895812abbcd959bcb70d1dbaa",
+    "assets/fondos/aldea.png": "61321f57e2b75ba2abba6d7b811c8b92b873165155209205cc5602317f3172c6",
+    "assets/fondos/amanecer.png": "8aa15ce772797ca0a644fe41e6eaae28ea4ed3cd041415cbbca169911d233ca4",
+    "assets/fondos/apagon.png": "44c7d1934ed7b0efdbea1bbbcc7d42426ed317a7efe432a2500afdfd15351206",
+    "assets/fondos/asalto.png": "7cf1c0faa4c38ef61ed94f3dcb50b0f5cae3f5b6d6ac6e4a020baa65f97c85e5",
+    "assets/fondos/asalto_amanecer.png": "2ec3c460b46a25b4f77646f82110764c771603809c44548e2ad5b3fdf201cf67",
+    "assets/fondos/asalto_noche.png": "fa77899f973da31ea1dd8e927475573cdf4b2a1139a5de91822cfc1821c516ca",
+    "assets/fondos/camino.png": "96a2832515615e110a3f567638d64d31fcfe6e2a641394081543c9267dc7ed49",
+    "assets/fondos/camino_amanecer.png": "d5ba4a8cacb9be7b05c00b22f6982b29ce9ca8eb5c0f31e4d21b05abb806e515",
+    "assets/fondos/camino_lluvia.png": "c0f795ce6ec4e7e361548d95547f4b6205309f2241b291f8fd0605120bf797e6",
+    "assets/fondos/camino_nevada.png": "1abdf02e010254da2dc540f238c56842890d63dbafab3e7ad3ae32f7cbe2c1a5",
+    "assets/fondos/camino_niebla.png": "1ba26e1b64353215ad0dbe615425c0f702eed2fac2f38d809ddf83201fd714c8",
+    "assets/fondos/camino_noche.png": "1326a1ac7d13473d239d0c253ba1e49f108ffd038fe95b3bdc8c155acd495d01",
+    "assets/fondos/campamento.png": "643c3069a0dbaef2d6ed4dd0c2544da24469b7b106ad6137bf95d79e6f0d42e8",
+    "assets/fondos/campamento_amanecer.png": "d5bc937fd21b18e656e2e7e7dc4e1d148d74a7613343f2457d75c8df936ddfc5",
+    "assets/fondos/campamento_asedio.png": "60560fa297cd451a37400410ba45bb1df726e47186e89ad3ab0aa5bd20cb84ca",
+    "assets/fondos/campamento_lluvia.png": "31f51fcadd62bce92fa40dc71ea4f364187e6b34223e2e69672a9cf86cba8c54",
+    "assets/fondos/campamento_niebla.png": "65b2168eee6cd4d5f8f8fe9a83d66c7d38f0c246e6ed15d3c40900114b3bd312",
+    "assets/fondos/campamento_tormenta.png": "2494855215ca45d6f5393d024ed922aa940c771a90c46390cb1ce82f7bae6779",
+    "assets/fondos/ceniza.png": "f57c6b356fcf151a98e23091173c8bfa87f78b02524b885eca110218c2c5766f",
+    "assets/fondos/escenario.png": "794deb0f56bb6a2095eab2f6e9400e94bc827da996b1d86dc96113df4304d439",
+    "assets/fondos/escenario_lleno.png": "44e9f063b8852b5ef2203e6178b590d69f13ad1bf8e033df4faedd9ee8077489",
+    "assets/fondos/escenario_vacio.png": "1da62d2f1f02ea1de6e72ea2a712939609202c2dfb1210a7f7f3140320c701e7",
+    "assets/fondos/estandartes.png": "b019b587dd8f55c3e2e910eadd543ea7ef4982450b2e4c3bc40415af5f8d3542",
+    "assets/fondos/fortaleza.png": "6a328c7a6a82caad0aca4f74e067b06b217771edc214179e4676d915b90f7d50",
+    "assets/fondos/publico.png": "568555099bf98db4f6dcd7522f0e9bbd2195e250492eeba8004c6ecb7c0c0611",
+    "assets/fondos/ruinas.png": "f3f35bada910428c7c7297627351622dedc5f26cb777ff8cc4d77bae96c8fbd9",
+    "assets/fondos/ruinas_brasa.png": "b57114fd3e08f73c27f7bbc62dce762703d6573aa6160cc4b659e055c3c4b713",
+    "assets/fondos/ruinas_derrumbe.png": "16541e7c7c3abf3dafaf37a3bc4d407a4b833bc2722e7bab461cdf46a2c1f91d",
+    "assets/fondos/ruinas_profundo.png": "c466593d981f793b9673bedcdd3dc544f67794f850a893edff710554a29d9b24",
+    "assets/fondos/salon.png": "8c8c72b4994f348af9899075d6ba17c63b7edb07bbe76cdd1e8125f578f0bed2",
+    "assets/fondos/trono.png": "d3d44370e822734fd52876e9173f6c5f449fe6e13e40dc1d16a0be40478295f5",
+    "assets/fondos/trono_derrumbe.png": "ec178be9c23403f68741229fdba08c1f6be50310c86e8703d2086f533373b392",
+    "assets/fondos/trono_guardia.png": "0fdce25121d6d801970b18e2020f69bb5c6d8bc93c5e82ec289ce63d0e3a16f9",
+    "assets/fondos/trono_nieve.png": "36a8070b6d3d1cda222ab41fcd5967c3e555298b5fa1098eedaca7c52203b84c",
+    "assets/fondos/umbral.png": "36e632d54c82f629764f8880ce9430293017f1f040fcf657ad14fa9b70569e7d",
+    "assets/fondos/umbral_ancho.png": "3a71e17dbb86361b2dfc32be702ecff3df934a800e191c86fe28589456b99ab1",
+    "assets/fondos/umbral_angosto.png": "8d7845492e84000bc6df48c608d0e36ab6288a45abcd8f9c0bc6d669fcb070e3",
+    "assets/fondos/umbral_cerrando.png": "737d2849771d0822d8826ff9fe4ce2e65eab4a4eaa60156cd4fe5de5f3a33f82",
+    "assets/fondos/umbral_deslumbrante.png": "7f7d416d97594e9dc1ac87da29d81ea46cba5556bfe54254c69257a1df2f5221",
+    "assets/escenas/anciano.png": "49d626eb50777d7b2fbb59f2269787d6f0a159067d6ed01cb29cbdaf3412e39c",
+    "assets/escenas/caravana.png": "52ba2f266a2c2b4afef98c2e333b4128b13c4e67d2c5ddfe097d8c0c72f1581e",
+    "assets/escenas/hermandad.png": "1e57a74ceeb3c3f4bcfad137494296a996b8dc987944dcbd85e787a633a5489a",
+    "assets/escenas/hostil.png": "01d775d11bea51c9e6d2d3ae7c871f13bafd06ed8647a472b06f499d401e8ce5",
+    "assets/escenas/mercader.png": "ba31bcec5a0a7abc2666021df286f2c6920a0825d9b402c3bc95e93161c62d73",
+    "assets/escenas/nara.png": "0a6f294df4bd682cd0db6cd9efd19754f02381c6a31498556a4d28cfe8bab3fb",
+    "assets/pixel_anime/avatares/avatar_dara.png": "5e08e50947486ac839b88c891c6de70e99b12962fe0335aedda2923ed8cd2458",
+    "assets/pixel_anime/avatares/avatar_dragon.png": "a8ef8ba4e7866ebbbf1ca3bd26144d2942fa0f24b8f30859d0f8ab0f587e7bb2",
+    "assets/pixel_anime/avatares/avatar_duelista.png": "1262b618e020296849088e0e6937598d9c5da39ebbf9ff1feca8d576c7144cc8",
+    "assets/pixel_anime/avatares/avatar_elfo.png": "0de9e9390f6307406dd96794258d3f5758551cbb0137ce9709e91faea79fa6ff",
+    "assets/pixel_anime/avatares/avatar_elfo_nocturno.png": "ee7cfd0293f421549cd377ff1423c84f80633a1835e874665be831e1494b2f09",
+    "assets/pixel_anime/avatares/avatar_gobernante.png": "9b6ff1dcfd2e92c25228ce0caf93e2ecedfbcc395195a0add36a74956a498e45",
+    "assets/pixel_anime/avatares/avatar_goblin.png": "2f932bc15a6ba83473944a1d56afc08a5734e6b865a905ac01189e9e86dcc9a3",
+    "assets/pixel_anime/avatares/avatar_hombre_lagarto.png": "58b1ea484f4e327e244f05cd3d06addc42f1c1cc2bbfae9b9929e45ee2c4cbbb",
+    "assets/pixel_anime/avatares/avatar_hombre_lobo.png": "0d1e8f800ab17d1af692eb4af1cdbb2d314d5d4d8117d26e0b70cd360ca7a6f9",
+    "assets/pixel_anime/avatares/avatar_hombre_pantera.png": "75a9abf3b3ad6a4cc0322942a9f13aa209bf9615308305c10626f38315fac6a8",
+    "assets/pixel_anime/avatares/avatar_humano.png": "167786366873593cda747984215574aca9710a09bebc43d8035e6e7dce824dd0",
+    "assets/pixel_anime/avatares/avatar_jefe_arco.png": "039bf1a21e6cc3dee3988489ecf10ec86336172135a1cf58037d4ae88c76c1ff",
+    "assets/pixel_anime/avatares/avatar_nara.png": "4d04c9f289961a55a55ec21dd7a4b916aaee8f63ace520e622096be47d9bfbdd",
+    "assets/pixel_anime/avatares/avatar_orco.png": "f457dcb1dcf21a7595e22f16df29569c6ea928e0b3c26b09d05a074da73e57e6",
+    "assets/pixel_anime/avatares/avatar_pik.png": "9144907b903053533d7f0669fddcb49dbd3950cc262b4e8e90b6a1fbea4d63a7",
+    "assets/pixel_anime/avatares/avatar_presentador.png": "3923cf466e7f52647afd15c17ade22c22d4e08dd2d41a2b74d86d5a3161e8982",
+    "assets/pixel_anime/avatares/avatar_rajoy.png": "70c9f42e282a2d122cf8a810bbd47484ebf988078b941685887f467fb449da9b",
+    "assets/pixel_anime/avatares/avatar_revancha.png": "6aeeb95776ecbdd0eacbe8cfe1d0094dd67f6ee0001fd6e4aa37a577625fb81c",
+    "assets/pixel_anime/avatares/avatar_vampiro.png": "3e0faeb77fbea59fef6caa26bce66555d6168b2df8e8d2d21a6636c85ac5c4d0",
+    "assets/pixel_anime/cinematicas/aldea.png": "41a59c406b8bebd373fcd519e33b890a746b486eb59d2fd1e78004ec9fcc3b54",
+    "assets/pixel_anime/cinematicas/amanecer.png": "699deec89caf908539c7ed15ed9bce88732b6d390fae5a792e56f31ea3833872",
+    "assets/pixel_anime/cinematicas/apagon.png": "8abec638c023cf3b260d25c62a98810e25b5e0a61a79c6dbd01c0eeda5dbf28d",
+    "assets/pixel_anime/cinematicas/asalto.png": "4d3e168d8ef6cb01b026fbd6c5ae94ba272de746f35da3d402af5fecca025688",
+    "assets/pixel_anime/cinematicas/asalto_amanecer.png": "6262e93fffe4bba96bcfafaa91dd694a06ed7d9b9a8bdb332180c4af3eaa6667",
+    "assets/pixel_anime/cinematicas/asalto_noche.png": "e8990e56760089bbfacd860b534c0d72e50759494f1663ae841bdf47d7199849",
+    "assets/pixel_anime/cinematicas/camino.png": "56252df32a47bdf9e3f305324a2f5749fe3cc4e1b9983e0686c2ab0d738ff2c9",
+    "assets/pixel_anime/cinematicas/camino_amanecer.png": "982650dd33b0c44dcbec96d1477f5a1d382697d4353a78f7da9b5c09d3b2476f",
+    "assets/pixel_anime/cinematicas/camino_lluvia.png": "415742a9ff59ceee752bf059e64082a64f83c8173df10eabc34184c1f7849c07",
+    "assets/pixel_anime/cinematicas/camino_nevada.png": "d9fd36008df42def501f614e41a9e711ebef3e6ac7ea0e15d332332954e6db33",
+    "assets/pixel_anime/cinematicas/camino_niebla.png": "0def7176427944033e4db5481fc9da9f8bd51cdf6702f79f2f893db1e83c0ea5",
+    "assets/pixel_anime/cinematicas/camino_noche.png": "10944535e58c31e4aad3ab62c14e21b6f13024e09fa40aa40b6845670bfb72fb",
+    "assets/pixel_anime/cinematicas/campamento.png": "1559f20cf4d34b466d3cc88c195203973a0761c1f7e49bc99777e6149fd9a808",
+    "assets/pixel_anime/cinematicas/campamento_amanecer.png": "aeaa6587684ea552900fdfeb596be377f4ab63bd73857a1812c796c66ed75ad4",
+    "assets/pixel_anime/cinematicas/campamento_asedio.png": "92d75f54d4a87165e0188ebb4accef09b48f46ef8479cf751e371dd6a8aae028",
+    "assets/pixel_anime/cinematicas/campamento_lluvia.png": "dd5b7cca9a3d1fc1598a6fa20c8a0dfee211e596dfbc28add1befd438cbe676b",
+    "assets/pixel_anime/cinematicas/campamento_niebla.png": "0143e0774004205edf1c48aaff7bbb31d62cd4cd5f0c7b56426e5596b80f43ec",
+    "assets/pixel_anime/cinematicas/campamento_tormenta.png": "0b2fea3516c7ef2725276d7492bd476b8ca8a79b31a894d6a57f062c4db4b454",
+    "assets/pixel_anime/cinematicas/ceniza.png": "33445656607d487163abc8527bb74e165dfeede47022589c534dfbf777b8d76b",
+    "assets/pixel_anime/cinematicas/escenario.png": "9873e73a4ac02ef657a239d1f6234338a1ca50c40b8fe504531d622e7cca0315",
+    "assets/pixel_anime/cinematicas/escenario_lleno.png": "befd1d1ad4ebf0b388f577deee20e89d037d33dbc0dd77b4caa5815d54505d31",
+    "assets/pixel_anime/cinematicas/escenario_vacio.png": "3f1a43f394c14b423a432c4d81fc510fd9fd3ba93d5684c964c251db2d443e6b",
+    "assets/pixel_anime/cinematicas/estandartes.png": "d0f11e1cf38ec2ac8c1270995a72c608a952d7024b28cd85dad25073ab26c3b1",
+    "assets/pixel_anime/cinematicas/fortaleza.png": "feb9f7bb89b57399af50112cb11f396c56cbf3829d0adc5377f5898ce94e21c0",
+    "assets/pixel_anime/cinematicas/publico.png": "822abdf9ac9291b71ee7793edd8c5370d4fd1d45e5abfb9c161439cc59b2aa7a",
+    "assets/pixel_anime/cinematicas/ruinas.png": "9f81dda8dadf5fe294dd4ded69dd5dd1332083306a88a093d98d6f6fef4177b5",
+    "assets/pixel_anime/cinematicas/ruinas_brasa.png": "6796ddf74fd410b9a84c7f5ab8f0486bf00b0821ff9b9034fd0b3abcd026c3c3",
+    "assets/pixel_anime/cinematicas/ruinas_derrumbe.png": "377d274207853ecfab3f0b7a68cacd685710e11ef0c54d4ca4577b4a8d0134f9",
+    "assets/pixel_anime/cinematicas/ruinas_profundo.png": "0fe5c8a220721893622066b3bfd93fd5a8062f687d3ccdc8b0295b222f66c671",
+    "assets/pixel_anime/cinematicas/trono_derrumbe.png": "535b60a9fc1515779058862d7bf8df3a673a6cd67b5ab9a3f986ca7b3ddfa6d5",
+    "assets/pixel_anime/cinematicas/trono_nieve.png": "5ef9bb82d2f2d13589ab974305d699606eb70e7edde6803135fd25840bed85e6",
+    "assets/pixel_anime/cinematicas/umbral.png": "4d4c78cd93868c26cfb64ec055dc7e8dbd308dd9ee91cc873c1c1ba41e527993",
+    "assets/pixel_anime/cinematicas/umbral_ancho.png": "5b20e9c7bf9295f211423e286e773ac67eab17dc5d6546c33bccecb275da28f1",
+    "assets/pixel_anime/cinematicas/umbral_angosto.png": "79d99d553c3b6ea43f336e5e814c42bd9efb15d2de8c0c7b457f012a2ba56af3",
+    "assets/pixel_anime/cinematicas/umbral_cerrando.png": "c2a3fe364ba70482feeebef9aac8207b6245d3c69ea6e0a0225f2d5671e83cfe",
+    "assets/pixel_anime/cinematicas/umbral_deslumbrante.png": "7b9ac2d44432fd226dbbe2eb0a7bdfdd45a343f3ff428b6bc089c407213423a1",
+    "assets/pixel_anime/encuentros/anciano.png": "cee96394a9dc10d8559d2ec72e7756c940568332f6f54b65db6292f02e4664d2",
+    "assets/pixel_anime/encuentros/caravana.png": "419379fbad67943f4f59c7bb557514fbb3386e95a9274a9d498e6d27b2fe194a",
+    "assets/pixel_anime/encuentros/hermandad.png": "e2199ca35168b749b3b681fe6991296b063721ab94b5e9a300efca5eb1d1ef3c",
+    "assets/pixel_anime/encuentros/hostil.png": "32a553492c8c1fe5bf7aabf3b33ba61096ff02f57c621997065a296ca81b595a",
+    "assets/pixel_anime/encuentros/mercader.png": "34fd85235ba636c0577f5dc10f1c09b017b7be4713f0e0d012a928d610915bea",
+    "assets/pixel_anime/encuentros/nara.png": "f8aba0c65b97af3f0f1c75f386cf8ed9ae590f00a4932cd8d32e604a5e91d079",
+    "assets/pixel_anime/manifest.json": "b56303273702f8a2aa7d95983056cc57721dc743e9e80bdd15b80dcb6908b5c9"
+  },
+  "lotes": {
+    "migracion_20261015": {
+      "activo": true,
+      "recursos": [
+        {
+          "id": "nara",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/nara.png",
+          "sha256": "a65a8e3a59009c6621efaab3169a6664d3c8a7d097b2d9dd95e4232857838a60",
+          "estado": "listo",
+          "personaje": "nara"
+        },
+        {
+          "id": "dara",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/dara.png",
+          "sha256": "dc22e74f0905e146ece6cc8a128b1442c58cb20cd32918207d6393d806be01d9",
+          "estado": "listo",
+          "personaje": "dara"
+        },
+        {
+          "id": "dragon",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/dragon.png",
+          "sha256": "c18fb53c6eff3b3db005772e97eed5c38ff5535c9c8fae58e4e5b930d8cb2231",
+          "estado": "listo",
+          "personaje": "dragon"
+        },
+        {
+          "id": "duelista",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/duelista.png",
+          "sha256": "cd562a1dcafba49c3d51657344337c87d2c875807706408f085be9a57277ebac",
+          "estado": "listo",
+          "personaje": "duelista"
+        },
+        {
+          "id": "elfo",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/elfo.png",
+          "sha256": "9740ac39a547aa1bd34d80d05228de91ab2b4b4076ec5051eac999749d12b619",
+          "estado": "listo",
+          "personaje": "elfo"
+        },
+        {
+          "id": "elfo_nocturno",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/elfo_nocturno.png",
+          "sha256": "b9943761afa5f1f1435e8a6f1ed0b3b39ac1218a1ae6ab4d60f275bff0a10f6b",
+          "estado": "listo",
+          "personaje": "elfo_nocturno"
+        },
+        {
+          "id": "gobernante",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/gobernante.png",
+          "sha256": "bfb17955f1d20f587e7a466e19b5dc1b8ab1f3c18ccebbfc52503c00f8a925d6",
+          "estado": "listo",
+          "personaje": "gobernante"
+        },
+        {
+          "id": "goblin",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/goblin.png",
+          "sha256": "8124b344e17ff4b9daa0d27cfa201e01e89c2c51d9d2b161af22790e0d3346b6",
+          "estado": "listo",
+          "personaje": "goblin"
+        },
+        {
+          "id": "hombre_lagarto",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/hombre_lagarto.png",
+          "sha256": "1be3df2beb028761632a02be8f0ac98d7fe0fd91a8fc47f32203607a212bdf93",
+          "estado": "listo",
+          "personaje": "hombre_lagarto"
+        },
+        {
+          "id": "hombre_lobo",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/hombre_lobo.png",
+          "sha256": "ffcd587ff5ab524186607f687cb8b2e8cf94f4fbd5558927e603f5f2da413654",
+          "estado": "listo",
+          "personaje": "hombre_lobo"
+        },
+        {
+          "id": "hombre_pantera",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/hombre_pantera.png",
+          "sha256": "1b25b5921950f64779b4c9771bb0f82b275ed9a0511090211c41408624a2452f",
+          "estado": "listo",
+          "personaje": "hombre_pantera"
+        },
+        {
+          "id": "humano",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/humano.png",
+          "sha256": "d1d1b7b125bbaffa7c6fa1f06692389576c29a612d3f4278843100be8e399d28",
+          "estado": "listo",
+          "personaje": "humano"
+        },
+        {
+          "id": "jefe_arco",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/jefe_arco.png",
+          "sha256": "7f1c48ce472630ca41793ad13ec88c00d088720f36e3bb1e73fde70114019360",
+          "estado": "listo",
+          "personaje": "jefe_arco"
+        },
+        {
+          "id": "orco",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/orco.png",
+          "sha256": "132f5b9204f0c0e58a9960223c8768364d709615f842d0f1b8506c174a97807a",
+          "estado": "listo",
+          "personaje": "orco"
+        },
+        {
+          "id": "pik",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/pik.png",
+          "sha256": "fe9d6f01324fec6541aa0477120f31acec0beb5574ac1c5d4b26cb414dc4b799",
+          "estado": "listo",
+          "personaje": "pik"
+        },
+        {
+          "id": "presentador",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/presentador.png",
+          "sha256": "7297114132e22a09ab1241b65488e82a85a7990477a7276daf321063f9a584f9",
+          "estado": "listo",
+          "personaje": "presentador"
+        },
+        {
+          "id": "rajoy",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/rajoy.png",
+          "sha256": "f80abf45fc806b0d010a32ad2cde83061afe5460d19ce8001253ca0a08ae42a9",
+          "estado": "listo",
+          "personaje": "rajoy"
+        },
+        {
+          "id": "revancha",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/revancha.png",
+          "sha256": "0ce86376d3fd275bfd7503c5dfa4e7710d282e296d3a652b2c67156f7566f890",
+          "estado": "listo",
+          "personaje": "revancha"
+        },
+        {
+          "id": "vampiro",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/vampiro.png",
+          "sha256": "6c3d7f49b5d30f64cd0b5273272a787e87903498795c423b6ba7bafb9b5a1870",
+          "estado": "listo",
+          "personaje": "vampiro"
+        },
+        {
+          "id": "aldea",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_aldea_20261015.png",
+          "sha256": "916a77520640442383d7a24fe81f9a79582ab3d313825e418fa4e75de4c61131",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "ruinas",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_ruinas_20261015.png",
+          "sha256": "1cdcebf228c54387b472a03202fc479eca7c41b040c1e87755eee3fb01895aa3",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "fortaleza",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_fortaleza_20261015.png",
+          "sha256": "2a5f8a03041d1067115fdcbbf28ea40263a123689dda46d7981a6327ac733e2d",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "asalto",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_asalto_20261015.png",
+          "sha256": "523fa49842a171b9ed2e5fdff24c5b46bc98367b0f711a49dc173829eb8fdc91",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "umbral",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_umbral_20261015.png",
+          "sha256": "4b7d63fac7725cbc064496d3fd05cf61249e73065325d801f34d9be92bd874c8",
+          "estado": "integrado_hd"
+        }
+      ]
+    },
+    "lote_03": {
+      "activo": true,
+      "zip_sha256": "a429b5894df1c37894ad26b298b22703ec1296ead1ef153d69b26aea0355bcaf",
+      "recursos": [
+        {
+          "id": "escenario_carta_cubierta",
+          "nombre": "Presentador anuncia la carta todavía cubierta",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/escenario_carta_cubierta.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "8b95d98a45d1072ef5533c9073722827c739e780b8dffc75fd20e85515bb428f",
+          "escenas": [
+            "prologo.carta_umbral.1"
+          ],
+          "notas": "Anuncio existente: Una carta que no tiene faccion. Ni bando. Ni edicion. Plano de preparación, antes de descubrirla. La entrada de organizadores [0] conserva salon_torneo_lleno del Lote 02.",
+          "ruta": "assets/lotes_visuales/lote_03/fondos/escenario_carta_cubierta.png",
+          "hash_proporcionado": true,
+          "claves": [
+            "7afda18c503b1809d7950ef6a04a97aa942d8f40f5bd75ad8e3463d382d869df"
+          ],
+          "personaje": null,
+          "estado": "listo",
+          "motivos": []
+        },
+        {
+          "id": "carta_presentada_sin_activar",
+          "nombre": "Presentación física — pendiente por continuidad",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/carta_presentada_sin_activar.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "be061e36ae1be87dd1c8dfc3ffd1e1445c794e560d00cebb0afa955d64d0bed9",
+          "escenas": [],
+          "notas": "NO INTEGRAR: resplandor/energía violeta ya visible antes de la activación; muestra símbolo de rombo, no puerta/trono vacío descritos por el texto. La cara/reverso no está justificada por el montaje existente. Requiere imagen corregida o revisión explícita, sin alterar el guion.",
+          "ruta": "assets/lotes_visuales/lote_03/fondos/carta_presentada_sin_activar.png",
+          "hash_proporcionado": true,
+          "claves": [],
+          "personaje": null,
+          "estado": "pendiente",
+          "motivos": [
+            "Sin asignación narrativa"
+          ]
+        },
+        {
+          "id": "activacion_carta_plano_cercano",
+          "nombre": "Primer fenómeno sobrenatural — plano cercano",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/activacion_carta_plano_cercano.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "92986c111001c00de61245ea101961a97495bdab95cfd8a3b450f971fa7f6ef7",
+          "escenas": [
+            "prologo.carta_umbral.6",
+            "prologo.carta_umbral.7"
+          ],
+          "notas": "LAS NUEVE CASILLAS / empiezan a iluminarse: plano de activación dentro del salón. Coinciden marco dorado, medallón superior izquierdo y abertura oval violeta con revelacion_carta_torneo. No se afirma que muestre nueve casillas legibles; funciona como plano de reacción mágica de la carta, sin añadir una escena. [8:11] conservan revelación y portal aprobados.",
+          "ruta": "assets/lotes_visuales/lote_03/fondos/activacion_carta_plano_cercano.png",
+          "hash_proporcionado": true,
+          "claves": [
+            "32cac3507a083c0d099e134c2eecd79efefa0f95b4633ebdc97aa6580e710465",
+            "e60ee95dc468c310aeada25f7735575f165f38c492ab9c0a6b9514174ad36698"
+          ],
+          "personaje": null,
+          "estado": "listo",
+          "motivos": []
+        },
+        {
+          "id": "umbral_ruptura_total_alternativa",
+          "nombre": "Alternativa de ruptura total — solo revisión",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/umbral_ruptura_total_alternativa.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "7a90227ea9183ce50ba256775f3aaa11ac3988b70469b633c461a058794779e6",
+          "escenas": [],
+          "classification": "optional_alternative",
+          "notas": "Pendiente por instrucción del usuario. No sustituir portal_umbral_torneo del Lote 02 ni añadir acontecimientos.",
+          "ruta": "assets/lotes_visuales/lote_03/fondos/umbral_ruptura_total_alternativa.png",
+          "hash_proporcionado": true,
+          "claves": [],
+          "personaje": null,
+          "estado": "pendiente",
+          "motivos": [
+            "Sin asignación narrativa"
+          ]
+        },
+        {
+          "id": "publico_reacciona_portal_alternativa",
+          "nombre": "Alternativa del público reaccionando — solo revisión",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/publico_reacciona_portal_alternativa.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "ed5c90e2bb509419329126e5cc6628e4865eccf27013e7181de8a3da7d69eb44",
+          "escenas": [],
+          "classification": "optional_alternative",
+          "notas": "Pendiente por instrucción del usuario. No existe un beat autónomo de reacción que autorice insertar esta toma sin alterar el montaje protegido.",
+          "ruta": "assets/lotes_visuales/lote_03/fondos/publico_reacciona_portal_alternativa.png",
+          "hash_proporcionado": true,
+          "claves": [],
+          "personaje": null,
+          "estado": "pendiente",
+          "motivos": [
+            "Sin asignación narrativa"
+          ]
+        }
+      ],
+      "archivos": {
+        "assets/lotes_visuales/lote_03/manifest_original.json": "8e7f30fde68d22ffee44080ee183ce11f18d5573b0aa314c6718780ff7852231",
+        "assets/lotes_visuales/lote_03/paquete_original.zip": "a429b5894df1c37894ad26b298b22703ec1296ead1ef153d69b26aea0355bcaf",
+        "assets/lotes_visuales/lote_03/preview.html": "f25ad21cf197f4973f19720050b53b6d2fbfae2d97285bce10a7ea5bc355a89d",
+        "assets/lotes_visuales/lote_03/revision.json": "6a951b02db26a6754b8ec8969e761fd2141c62f5a30ed11b666acb2e63fbe33b",
+        "assets/lotes_visuales/lote_03/fondos/activacion_carta_plano_cercano.png": "92986c111001c00de61245ea101961a97495bdab95cfd8a3b450f971fa7f6ef7",
+        "assets/lotes_visuales/lote_03/fondos/carta_presentada_sin_activar.png": "be061e36ae1be87dd1c8dfc3ffd1e1445c794e560d00cebb0afa955d64d0bed9",
+        "assets/lotes_visuales/lote_03/fondos/escenario_carta_cubierta.png": "8b95d98a45d1072ef5533c9073722827c739e780b8dffc75fd20e85515bb428f",
+        "assets/lotes_visuales/lote_03/fondos/publico_reacciona_portal_alternativa.png": "ed5c90e2bb509419329126e5cc6628e4865eccf27013e7181de8a3da7d69eb44",
+        "assets/lotes_visuales/lote_03/fondos/umbral_ruptura_total_alternativa.png": "7a90227ea9183ce50ba256775f3aaa11ac3988b70469b633c461a058794779e6"
+      },
+      "png_no_declarados": [
+        "docs/vista_previa_lote03.png",
+        "masters_originales/activacion_carta_plano_cercano_master.png",
+        "masters_originales/carta_presentada_sin_activar_master.png",
+        "masters_originales/escenario_carta_cubierta_master.png",
+        "masters_originales/publico_reacciona_portal_alternativa_master.png",
+        "masters_originales/umbral_ruptura_total_alternativa_master.png"
+      ],
+      "integrado_alguna_vez": true
+    },
+    "lote_04": {
+      "activo": true,
+      "zip_sha256": "c8c260cb1eac5aa711918ecf2c43eddbf2d8edb4a539c5453a92c64817d5cffa",
+      "recursos": [
+        {
+          "id": "vision_trono_sobre_torneo",
+          "nombre": "Visión del trono — pendiente por guion y mapeo protegido",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/vision_trono_sobre_torneo.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "f2ae4db92c57be1ae275f001c34ea6c415d7b30e5daba838b59359f3d1fb6154",
+          "escenas": [],
+          "notas": "Trono vacío en una manifestación sobrenatural. carta_umbral.3 describe el dibujo de puerta/trono antes de activarse: este PNG anticiparía la magia. carta_umbral.8–10 describe una figura sentada y tiene asignaciones HD protegidas del Lote 02. Sin destino compatible autorizado; no sustituir ni agregar escena.",
+          "ruta": "assets/lotes_visuales/lote_04/fondos/vision_trono_sobre_torneo.png",
+          "hash_proporcionado": true,
+          "claves": [],
+          "personaje": null,
+          "estado": "pendiente",
+          "motivos": [
+            "Sin asignación narrativa"
+          ]
+        },
+        {
+          "id": "apagon_torneo_anomalia",
+          "nombre": "Inicio del apagón en el salón del torneo",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/apagon_torneo_anomalia.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "d20f45c28f9515017786efa2a22bf293915937f8d4752ca10f97bb2da4466411",
+          "escenas": [
+            "prologo.transporte.0"
+          ],
+          "notas": "La luz se apaga: comienzo del fallo de luces con resplandor residual. No representa negro absoluto. No asignar a transporte.1, cuyo texto ya anuncia la salida del salón; transporte.1 y .2 conservan el montaje previo.",
+          "ruta": "assets/lotes_visuales/lote_04/fondos/apagon_torneo_anomalia.png",
+          "hash_proporcionado": true,
+          "claves": [
+            "f4d5c7fa7d198f11059c974d048d6901cea077860c084ec9787989d791a1afdd"
+          ],
+          "personaje": null,
+          "estado": "listo",
+          "motivos": []
+        },
+        {
+          "id": "ruptura_arena_vortice_alternativa",
+          "nombre": "Ruptura extrema — alternativa no integrada",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/ruptura_arena_vortice_alternativa.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "73d4fd946d3d351ee34c62c8c0f8a9a075dc2017b4a15fc93823722312b615f8",
+          "escenas": [],
+          "classification": "optional_alternative",
+          "notas": "Pendiente: sugiere destrucción física de la sala no establecida por el guion.",
+          "ruta": "assets/lotes_visuales/lote_04/fondos/ruptura_arena_vortice_alternativa.png",
+          "hash_proporcionado": true,
+          "claves": [],
+          "personaje": null,
+          "estado": "pendiente",
+          "motivos": [
+            "Sin asignación narrativa"
+          ]
+        },
+        {
+          "id": "transito_umbral_entre_mundos",
+          "nombre": "Tránsito dimensional — alternativa no integrada",
+          "tipo": "fondo",
+          "archivo": "cinematicas_hd/transito_umbral_entre_mundos.png",
+          "dimensiones": [
+            1280,
+            720
+          ],
+          "sha256": "7c3ee03985d1aa9259c56d0100661d5ed50a0332a03ca816a23c5496109515cb",
+          "escenas": [],
+          "classification": "optional_alternative",
+          "notas": "Pendiente: puente/camino dimensional y castillo no descritos como viaje físico en el transporte existente.",
+          "ruta": "assets/lotes_visuales/lote_04/fondos/transito_umbral_entre_mundos.png",
+          "hash_proporcionado": true,
+          "claves": [],
+          "personaje": null,
+          "estado": "pendiente",
+          "motivos": [
+            "Sin asignación narrativa"
+          ]
+        }
+      ],
+      "archivos": {
+        "assets/lotes_visuales/lote_04/manifest_original.json": "2e8f5e82c0aa599276d3557456879a659fb017e153d7b33dc955a10112bcc0e2",
+        "assets/lotes_visuales/lote_04/paquete_original.zip": "c8c260cb1eac5aa711918ecf2c43eddbf2d8edb4a539c5453a92c64817d5cffa",
+        "assets/lotes_visuales/lote_04/preview.html": "27dced1841f952e09e7289081ceb0d5a75ecb4e221a715116db70c904dd4f1ef",
+        "assets/lotes_visuales/lote_04/revision.json": "a0fab8c1bb6a1e54d948c06a779b3f89b553d9aa96351bebf20632e076a637b8",
+        "assets/lotes_visuales/lote_04/fondos/apagon_torneo_anomalia.png": "d20f45c28f9515017786efa2a22bf293915937f8d4752ca10f97bb2da4466411",
+        "assets/lotes_visuales/lote_04/fondos/ruptura_arena_vortice_alternativa.png": "73d4fd946d3d351ee34c62c8c0f8a9a075dc2017b4a15fc93823722312b615f8",
+        "assets/lotes_visuales/lote_04/fondos/transito_umbral_entre_mundos.png": "7c3ee03985d1aa9259c56d0100661d5ed50a0332a03ca816a23c5496109515cb",
+        "assets/lotes_visuales/lote_04/fondos/vision_trono_sobre_torneo.png": "f2ae4db92c57be1ae275f001c34ea6c415d7b30e5daba838b59359f3d1fb6154"
+      },
+      "png_no_declarados": [
+        "docs/vista_previa_lote04.png",
+        "masters_originales/apagon_torneo_anomalia_master.png",
+        "masters_originales/ruptura_arena_vortice_alternativa_master.png",
+        "masters_originales/transito_umbral_entre_mundos_master.png",
+        "masters_originales/vision_trono_sobre_torneo_master.png"
+      ],
+      "integrado_alguna_vez": true
+    }
+  },
+  "eventos": [
+    {
+      "accion": "preparar",
+      "lote": "lote_03"
+    },
+    {
+      "accion": "activar",
+      "lote": "lote_03"
+    },
+    {
+      "accion": "preparar",
+      "lote": "lote_04"
+    },
+    {
+      "accion": "activar",
+      "lote": "lote_04"
+    }
+  ]
+}

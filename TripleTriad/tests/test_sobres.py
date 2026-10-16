@@ -187,13 +187,19 @@ class TestColeccionPaginada(unittest.TestCase):
         original = pygame.event.get
         estado = campana.nueva_campana("humano")
         cola = [
-            pygame.event.Event(pygame.MOUSEBUTTONDOWN, pos=(890, 590), button=1),
+            pygame.event.Event(pygame.MOUSEBUTTONDOWN, pos=(860, 590), button=1),
             pygame.event.Event(pygame.MOUSEBUTTONDOWN, pos=(135, 279), button=1),
             pygame.event.Event(pygame.MOUSEBUTTONDOWN, pos=(640, 400), button=1),
             pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE),
+            pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE),
         ]
 
+        llamadas = 0
         def get():
+            nonlocal llamadas
+            llamadas += 1
+            if llamadas > 300:
+                raise AssertionError("la colección o su ficha no devuelven el control")
             return [cola.pop(0)] if cola else []
 
         pygame.event.get = get
@@ -236,7 +242,7 @@ class TestMejoraPaginada(unittest.TestCase):
             lambda pantalla: pantallas.elegir_carta_para_mejorar(
                 pantalla, RelojFalso(), estado),
             [self._derecha(),
-             pygame.event.Event(pygame.MOUSEBUTTONDOWN, pos=(556, 290), button=1)])
+             pygame.event.Event(pygame.MOUSEBUTTONDOWN, pos=(220, 290), button=1)])
         self.assertEqual(idx, 10)
 
     def test_reemplazo_pagina_dos_devuelve_indice_global(self):

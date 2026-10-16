@@ -380,6 +380,11 @@ AMISTAD_NARA = [
 ]
 
 
+# Fondo propio para esta secuencia: no altera otras escenas del camino.
+for _escena_amistad in AMISTAD_NARA:
+    _escena_amistad["fondo_hd"] = "amistad_nara_camino_v2.png"
+
+
 def escena_amistad():
     """Nara deja de ser una guia y pasa a ser otra cosa.
 

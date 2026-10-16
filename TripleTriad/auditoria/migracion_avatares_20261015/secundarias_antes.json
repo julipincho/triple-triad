@@ -1,0 +1,1514 @@
+[
+  {
+    "id": "mini.elfo_nocturno.mini_senda.previa.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "El Umbral te reconoce: ya no eres un forastero."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_senda.previa.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": "orco",
+    "texto": "Vorg, El Umbral Respira."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_senda.previa.2",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": "orco",
+    "texto": "NAKA! Hoy la tierra es nuestra!"
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_senda.victoria.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "Un elfo nocturno. De noche te reconocen; de dia, no."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_senda.victoria.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_senda.derrota.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_senda.derrota.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "Un elfo nocturno. De noche te reconocen; de dia, no."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_senda.derrota.2",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.previa.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Los estandartes se juntan. Todos saben tu nombre."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.previa.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": "hombre_pantera",
+    "texto": "Zarkha, La Sombra se Cierra."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.previa.2",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": "hombre_pantera",
+    "texto": "Shh... ya empezo la caza."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.victoria.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Un elfo nocturno. De noche te reconocen; de dia, no."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.victoria.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.derrota.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.derrota.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Un elfo nocturno. De noche te reconocen; de dia, no."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_nudo.derrota.2",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.previa.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Tres duelos te separan de ser leyenda. Este es el ultimo."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.previa.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": "dragon",
+    "texto": "Ignarok, Dueno del Umbral."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.previa.2",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": "dragon",
+    "texto": "QUEMARE. TU MAZO ARDE."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.victoria.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Un elfo nocturno. De noche te reconocen; de dia, no."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.victoria.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.derrota.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.derrota.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Un elfo nocturno. De noche te reconocen; de dia, no."
+  },
+  {
+    "id": "mini.elfo_nocturno.mini_trono.derrota.2",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.previa.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "El Umbral te reconoce: ya no eres un forastero."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.previa.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": "elfo",
+    "texto": "Lyra, El Umbral Respira."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.previa.2",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": "elfo",
+    "texto": "Que la luz guie mi mazo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.victoria.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "Pantera. Nadie sabe si eres presa o peligro, y los dos son malos."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.victoria.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.derrota.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.derrota.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "Pantera. Nadie sabe si eres presa o peligro, y los dos son malos."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_senda.derrota.2",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.previa.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Los estandartes se juntan. Todos saben tu nombre."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.previa.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": "vampiro",
+    "texto": "Condesa Sanguinaria, La Sombra se Cierra."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.previa.2",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": "vampiro",
+    "texto": "Tus cartas son mias."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.victoria.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Pantera. Nadie sabe si eres presa o peligro, y los dos son malos."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.victoria.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.derrota.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.derrota.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Pantera. Nadie sabe si eres presa o peligro, y los dos son malos."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_nudo.derrota.2",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.previa.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Tres duelos te separan de ser leyenda. Este es el ultimo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.previa.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": "hombre_lobo",
+    "texto": "Fenris, Dueno del Umbral."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.previa.2",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": "hombre_lobo",
+    "texto": "Grrr... prepara tus cartas."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.victoria.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Pantera. Nadie sabe si eres presa o peligro, y los dos son malos."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.victoria.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.derrota.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.derrota.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Pantera. Nadie sabe si eres presa o peligro, y los dos son malos."
+  },
+  {
+    "id": "mini.hombre_pantera.mini_trono.derrota.2",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.previa.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "El Umbral te reconoce: ya no eres un forastero."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.previa.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": "vampiro",
+    "texto": "Condesa Sanguinaria, El Umbral Respira."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.previa.2",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": "vampiro",
+    "texto": "Tus cartas son mias."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.victoria.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "Un lagarto. La gente tiene miedo al agua y le perdona a uno todo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.victoria.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.derrota.0",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.derrota.1",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "Un lagarto. La gente tiene miedo al agua y le perdona a uno todo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_senda.derrota.2",
+    "fondo": "assets/pixel_anime/cinematicas/umbral.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.previa.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Los estandartes se juntan. Todos saben tu nombre."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.previa.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": "hombre_lobo",
+    "texto": "Fenris, La Sombra se Cierra."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.previa.2",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": "hombre_lobo",
+    "texto": "Grrr... prepara tus cartas."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.victoria.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Un lagarto. La gente tiene miedo al agua y le perdona a uno todo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.victoria.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.derrota.0",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.derrota.1",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "Un lagarto. La gente tiene miedo al agua y le perdona a uno todo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_nudo.derrota.2",
+    "fondo": "assets/pixel_anime/cinematicas/estandartes.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.previa.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Tres duelos te separan de ser leyenda. Este es el ultimo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.previa.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": "orco",
+    "texto": "Vorg, Dueno del Umbral."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.previa.2",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": "orco",
+    "texto": "NAKA! Hoy la tierra es nuestra!"
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.victoria.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Un lagarto. La gente tiene miedo al agua y le perdona a uno todo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.victoria.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "- Ganaste. Eso no dice nada todavia."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.derrota.0",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "El paso sigue cerrado. Recoges tus cartas: tendras que volver a intentarlo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.derrota.1",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "Un lagarto. La gente tiene miedo al agua y le perdona a uno todo."
+  },
+  {
+    "id": "mini.hombre_lagarto.mini_trono.derrota.2",
+    "fondo": "assets/cinematicas_hd/sala_trono.png",
+    "retrato": null,
+    "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo."
+  },
+  {
+    "id": "encuentro.humano.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.humano.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.humano.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un humano. La corona de un rey que murio antes de tu abuelo."
+  },
+  {
+    "id": "encuentro.humano.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.humano.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.humano.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un humano mirando un libro que no es un libro."
+  },
+  {
+    "id": "encuentro.humano.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.humano.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.humano.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un humano. Nos cuadra. Sumate."
+  },
+  {
+    "id": "encuentro.humano.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.humano.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.humano.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un humano con un sobre. Suerte."
+  },
+  {
+    "id": "encuentro.humano.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.humano.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.humano.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un humano en esas cartas. Ese sello es del otro lado."
+  },
+  {
+    "id": "encuentro.humano.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.humano.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.humano.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Anotado. Esto no lo leas en voz alta."
+  },
+  {
+    "id": "encuentro.orco.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.orco.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.orco.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un orco comprando. Anoto el dia en la agenda."
+  },
+  {
+    "id": "encuentro.orco.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.orco.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.orco.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un orco. Poca gente lee. Tu lees. Bien."
+  },
+  {
+    "id": "encuentro.orco.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.orco.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.orco.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un orco. Bien. Uno mas que no se asusta."
+  },
+  {
+    "id": "encuentro.orco.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.orco.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.orco.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un orco con un sobre. No me negateis nada."
+  },
+  {
+    "id": "encuentro.orco.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.orco.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.orco.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un orco con ese sello. Que historia."
+  },
+  {
+    "id": "encuentro.orco.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.orco.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.orco.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Bien. Nadie va a creerte, y eso nos sirve."
+  },
+  {
+    "id": "encuentro.goblin.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.goblin.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.goblin.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un goblin. Al menos un goblin no pregunta por el precio."
+  },
+  {
+    "id": "encuentro.goblin.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.goblin.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.goblin.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un goblin leyendo. Esto si es una sorpresa."
+  },
+  {
+    "id": "encuentro.goblin.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.goblin.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.goblin.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un goblin. Robanos algo y te aceptamos igual."
+  },
+  {
+    "id": "encuentro.goblin.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.goblin.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.goblin.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un goblin con un sobre. Probemos el doble."
+  },
+  {
+    "id": "encuentro.goblin.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.goblin.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.goblin.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un goblin. Mas te vale que sean de verdad."
+  },
+  {
+    "id": "encuentro.goblin.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.goblin.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.goblin.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Eres el primero que devuelve algo por nada."
+  },
+  {
+    "id": "encuentro.elfo.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.elfo.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un elfo. No se lo vendo. Se lo presto. Hay diferencia."
+  },
+  {
+    "id": "encuentro.elfo.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.elfo.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un elfo. Entonces no viste nuestra version."
+  },
+  {
+    "id": "encuentro.elfo.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.elfo.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un elfo. Con lo que dijiste del bosque, casi te dejamos ir."
+  },
+  {
+    "id": "encuentro.elfo.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.elfo.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un elfo. Si, lo he visto antes."
+  },
+  {
+    "id": "encuentro.elfo.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.elfo.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un elfo. Ese dibujo no deberia estar aqui."
+  },
+  {
+    "id": "encuentro.elfo.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.elfo.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Vas a tener que elegir a quien le decis la verdad."
+  },
+  {
+    "id": "encuentro.hombre_lobo.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.hombre_lobo.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lobo.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un lobo. De dia. Caro el dia."
+  },
+  {
+    "id": "encuentro.hombre_lobo.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.hombre_lobo.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lobo.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un lobo. De noche se lee mejor."
+  },
+  {
+    "id": "encuentro.hombre_lobo.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.hombre_lobo.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lobo.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un lobo. De noche somos mas."
+  },
+  {
+    "id": "encuentro.hombre_lobo.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.hombre_lobo.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lobo.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un lobo con un sobre. Huelo el sobre."
+  },
+  {
+    "id": "encuentro.hombre_lobo.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.hombre_lobo.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lobo.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un lobo. No me gusta esto."
+  },
+  {
+    "id": "encuentro.hombre_lobo.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.hombre_lobo.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lobo.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. La luna va a opinar."
+  },
+  {
+    "id": "encuentro.vampiro.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.vampiro.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.vampiro.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un vampiro. No acepto billetes. Acepto acero."
+  },
+  {
+    "id": "encuentro.vampiro.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.vampiro.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.vampiro.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un vampiro. Sabe cosas que yo todavia no."
+  },
+  {
+    "id": "encuentro.vampiro.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.vampiro.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.vampiro.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un vampiro. No sois muchos, pero sois."
+  },
+  {
+    "id": "encuentro.vampiro.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.vampiro.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.vampiro.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un vampiro con un sobre. Sabe a dinero viejo."
+  },
+  {
+    "id": "encuentro.vampiro.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.vampiro.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.vampiro.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un vampiro. Esas cartas tienen dueno y no sos vos."
+  },
+  {
+    "id": "encuentro.vampiro.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.vampiro.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.vampiro.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Hay gente aqui que todavia esta viva."
+  },
+  {
+    "id": "encuentro.dragon.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.dragon.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.dragon.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un dragon. Todo lo que tengo es tuyo. Todo."
+  },
+  {
+    "id": "encuentro.dragon.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.dragon.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.dragon.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un dragon. El te mira y no le tiembla la voz."
+  },
+  {
+    "id": "encuentro.dragon.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.dragon.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.dragon.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un dragon. Eso cambia el peso de la conversacion."
+  },
+  {
+    "id": "encuentro.dragon.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.dragon.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.dragon.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un dragon con un sobre. Eso vale mas que el sobre."
+  },
+  {
+    "id": "encuentro.dragon.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.dragon.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.dragon.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un dragon. Con que intencion traes esa carta?"
+  },
+  {
+    "id": "encuentro.dragon.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.dragon.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.dragon.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Cuidado con quien lo ve."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.elfo_nocturno.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un nocturno. Cierra antes de que salga el sol."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.elfo_nocturno.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un nocturno. Nosotros tambien lo expulsamos."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.elfo_nocturno.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un nocturno. Nadie quiere a los de la noche. Nadie."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.elfo_nocturno.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un nocturno con un sobre. De dia, por una vez."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.elfo_nocturno.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un nocturno. Esas cartas no son nuestras."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.elfo_nocturno.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.elfo_nocturno.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Deberiamos hablar de noche."
+  },
+  {
+    "id": "encuentro.hombre_pantera.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.hombre_pantera.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_pantera.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Una pantera. No mire. Yo no miro."
+  },
+  {
+    "id": "encuentro.hombre_pantera.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.hombre_pantera.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_pantera.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Una pantera. No hace ruido al escuchar."
+  },
+  {
+    "id": "encuentro.hombre_pantera.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.hombre_pantera.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_pantera.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Una pantera en tu mazo. Honor o libertad: elige bien."
+  },
+  {
+    "id": "encuentro.hombre_pantera.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.hombre_pantera.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_pantera.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Una pantera con un sobre. Sin preguntas."
+  },
+  {
+    "id": "encuentro.hombre_pantera.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.hombre_pantera.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_pantera.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Una pantera. Ocultalas."
+  },
+  {
+    "id": "encuentro.hombre_pantera.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.hombre_pantera.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_pantera.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. La verdad no es de nadie."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.mercader.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "MERCADER ERRANTE"
+  },
+  {
+    "id": "encuentro.hombre_lagarto.mercader.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.mercader.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un lagarto. Paga cuando puede. Siempre puede."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.anciano.0",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "EL ANCIANO DEL UMBRAL"
+  },
+  {
+    "id": "encuentro.hombre_lagarto.anciano.1",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.anciano.2",
+    "fondo": "assets/pixel_anime/cinematicas/ruinas.png",
+    "retrato": null,
+    "texto": "- Un lagarto. Los lagartos recuerdan mejor."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.hermandad.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "HERMANDAD DE ARMAS"
+  },
+  {
+    "id": "encuentro.hombre_lagarto.hermandad.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.hermandad.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un lagarto. Esperamos. Vosotros correis."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.caravana.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "CARAVANA DE SOBRES"
+  },
+  {
+    "id": "encuentro.hombre_lagarto.caravana.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.caravana.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Un lagarto con un sobre. Todos los sobres son iguales."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.hostil.0",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "ALGUIEN TE HA VISTO"
+  },
+  {
+    "id": "encuentro.hombre_lagarto.hostil.1",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.hostil.2",
+    "fondo": "assets/pixel_anime/cinematicas/camino.png",
+    "retrato": null,
+    "texto": "- Un lagarto. Eso no se muestra. Ni a un amigo."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.nara.0",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "NARA, LA CRONISTA"
+  },
+  {
+    "id": "encuentro.hombre_lagarto.nara.1",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "Su mirada se detiene en las figuras de tu mazo."
+  },
+  {
+    "id": "encuentro.hombre_lagarto.nara.2",
+    "fondo": "assets/pixel_anime/cinematicas/campamento.png",
+    "retrato": null,
+    "texto": "- Con ese mazo. Alguien hizo esto hace mucho."
+  }
+]

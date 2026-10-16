@@ -271,7 +271,7 @@ async def _mini_campana(screen, clock):
     _CONTEXTO[0] = "mini campaña: eligiendo facción"
     faccion = await pantallas.elegir_faccion(
         screen, clock,
-        facciones_disponibles=["elfo_nocturno", "hombre_pantera", "hombre_lagarto"])
+        facciones_disponibles=["elfo_nocturno", "hombre_pantera", "hombre_lagarto"], modo="mini")
     if faccion is None:
         _CONTEXTO[0] = "menú principal"
         return
@@ -488,6 +488,8 @@ def _aplicar_ajustes(pantalla, ajustes):
 
 
 async def main():
+    if sys.platform == "emscripten":
+        pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=2048)
     pygame.init()
     audio.iniciar()
     # El modo lectura cambia la escala global de tipografia: se aplica antes
@@ -503,6 +505,9 @@ async def main():
     ui.activar_escalado()
     pantalla = ui.aplicar_escalado({"completa": opciones.pantalla_completa()})
     pygame.display.set_caption("Cartones y Mazmorras")
+    if sys.platform == "emscripten":
+        import web_diagnostico
+        web_diagnostico.activar(contexto)
     reloj = pygame.time.Clock()
     # `--fps` en escritorio, `TT_FPS=1` en la web (no hay argv ahi). Solo para
     # diagnostico: se dibuja encima del juego, no afecta al juego.

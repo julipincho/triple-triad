@@ -20,6 +20,7 @@ import ui  # `ruta_fondo`: elige la variante de fondo con la semilla de partida
 import facciones
 import narrativa
 import opciones
+from idioma import espanol
 import peticiones
 from ui import (
     ALTO,
@@ -53,7 +54,7 @@ class Escena:
         self.fondo = datos.get("fondo", "ceniza")
         self.fondo_hd = datos.get("fondo_hd")
         self.hablante = datos.get("hablante")
-        self.texto = datos.get("texto", "")
+        self.texto = espanol(datos.get("texto", ""))
         self.retrato = datos.get("retrato") or retrato_hablante(self.hablante)
         self.efecto = datos.get("efecto", "dialogo")
         # `or TEXTO` y no `datos.get("color", TEXTO)`: varios productores de
@@ -301,16 +302,18 @@ class Cinematica:
 
     def _dialogo(self, screen, escena, t):
         if escena.retrato:
-            self._retrato(screen, escena.retrato, t)
-        if escena.hablante:
+            self._retrato(screen, escena.retrato, t, escena.hablante)
+        elif escena.hablante:
             ancho_txt = REC.fuente(13).render(escena.hablante, True, DORADO).get_width()
             rect = pygame.Rect(60, LINEA_BARRA + 24, ancho_txt + 40, 32)
             panel(screen, rect, (12, 12, 20, 214), DORADO, radio=6, grosor=1, sombra=False)
             texto(screen, escena.hablante, 13, DORADO, x=rect.x + 16, y=rect.y + 9)
 
-        caja = pygame.Rect(120, ALTO - 212, ANCHO - 240, 152)
+        lineas = envoltura_lineas(escena.texto, 12, ANCHO - 300)
+        interlinea = max(26, ui.alto_texto("Áñ", 12) + 8)
+        alto = max(152, len(lineas) * interlinea + 72)
+        caja = pygame.Rect(120, ALTO - 60 - alto, ANCHO - 240, alto)
         panel(screen, caja, (10, 11, 18, 226), con_alpha(DORADO, 190), radio=8)
-        lineas = envoltura_lineas(escena.texto, 12, caja.w - 60)
         restantes = int(escena.mostrado)
         y = caja.y + 26
         for linea in lineas:
@@ -319,12 +322,12 @@ class Cinematica:
             trozo = linea[:restantes]
             texto(screen, trozo, 12, escena.color, x=caja.x + 30, y=y)
             restantes -= len(linea) + 1
-            y += 26
+            y += interlinea
         if escena.completa:
             pista = REC.fuente(8).render("clic para continuar", True, TEXTO_TENUE)
             screen.blit(pista, (caja.right - pista.get_width() - 24, caja.bottom - 26))
 
-    def _retrato(self, screen, bando, t):
+    def _retrato(self, screen, bando, t, hablante=None):
         """Retrato de un bando o de un personaje concreto.
 
         La clave es el nombre del archivo (`avatar_<clave>.png`), asi que tanto
@@ -341,8 +344,9 @@ class Cinematica:
         pygame.draw.rect(screen, (10, 10, 16), marco.inflate(12, 12), 3, border_radius=4)
         screen.blit(img, (x, y))
         resplandor(screen, marco, facciones.acento(bando), int(110 * entrada), 2, 4)
-        texto(screen, _etiqueta_retrato(bando), 9, facciones.acento(bando),
-              centro=(x + 75, y + 168))
+        etiqueta = hablante or _etiqueta_retrato(bando)
+        for i, linea in enumerate(ui.envolver(etiqueta, 9, 220)):
+            texto(screen, linea, 9, TEXTO_ON, centro=(x + 75, y + 168 + i * 20))
 
     def _barras(self, screen):
         """Barras cinematograficas: ya no hacen falta.
@@ -735,6 +739,13 @@ def escenas_posterior(info, victoria=True):
 def _continuidad_nodo_hd(escenas, nodo):
     """Completa solo planos conocidos; incluye dialogos de rol sin esc()."""
     destino = {"senda": ("camino", "camino_lluvioso.png"),
+               "aldea": ("aldea", "campana_aldea_20261015.png"),
+               "ruinas": ("ruinas", "campana_ruinas_20261015.png"),
+               "fortaleza": ("fortaleza", "campana_fortaleza_20261015.png"),
+               "asalto": ("asalto", "campana_asalto_20261015.png"),
+               "mini_senda": ("umbral", "campana_umbral_20261015.png"),
+               "mini_nudo": ("estandartes", "intro_estandartes_siete_bandos.png"),
+               "mini_trono": ("trono", "sala_trono.png"),
                "trono": ("trono", "sala_trono.png")}.get(nodo)
     if destino:
         clave, archivo = destino
@@ -793,8 +804,10 @@ async def _preguntar_rever(screen, clock):
     while True:
         clock.tick(LIMIT_FPS)
         await asyncio.sleep(0)
-        screen.blit(REC.fondo_pantalla(ui.ruta_fondo("ceniza")), (0, 0))
-        screen.blit(REC.capa_oscurita((0, 0, 0, 205)), (0, 0))
+        screen.blit(REC.fondo_pantalla("assets/pixel_anime/detalles/escena_vista_v2.png"), (0, 0))
+        screen.blit(REC.capa_oscurita((8, 8, 18, 80)), (0, 0))
+        panel(screen, pygame.Rect(ANCHO // 2 - 350, ALTO // 2 - 104, 700, 172),
+              (14, 15, 28, 232), (132, 94, 184), radio=12)
         texto(screen, "ESCENA YA VISTA", 22, DORADO, centro=(ANCHO // 2, ALTO // 2 - 70))
         texto(screen, "ENTER o clic: saltar y seguir", 12, TEXTO,
               centro=(ANCHO // 2, ALTO // 2 - 10))

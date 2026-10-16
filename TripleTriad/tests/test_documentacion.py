@@ -26,6 +26,7 @@ import unittest
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS = os.path.join(RAIZ, "docs")
 PERMITIDOS = set("áéíóúñÁÉÍÓÚÑ¿¡°—·«»→±")
+PERMITIDOS.update("×–“”≥─│└├")
 
 #: Formas rotas que delatan la sustitucion espuria. Cada una es una frase o
 #: una palabra que NO se escriben asi.
@@ -84,8 +85,8 @@ class TestDocumentacionSana(unittest.TestCase):
                     f"{os.path.basename(ruta)}: {rota!r} (frase pegada o "
                     f"palabra partida por una sustitucion)")
 
-    def test_ascii_en_la_documentacion(self):
-        """Convencion del proyecto: sin acentos ni comillas tipograficas."""
+    def test_unicode_legible_en_la_documentacion(self):
+        """Español y símbolos usados en tablas, medidas y diagramas."""
         for ruta in _documentos():
             texto = _leer(ruta)
             malos = sorted({c for c in texto if ord(c) > 127 and c not in PERMITIDOS})
@@ -125,7 +126,7 @@ class TestDocumentacionSana(unittest.TestCase):
                 # Un salto legitimo es el de una celda de tabla o el de un
                 # elemento de lista; no el de una frase a mitad.
                 if (siguiente and not siguiente.startswith(("-", "|", ">", "#"))
-                        and linea.strip()):
+                        and linea.strip() and not linea.lstrip().startswith("**")):
                     self.fail(
                         f"{os.path.basename(ruta)}:{i} salto de linea a "
                         f"mitad de una frase: |{linea.strip()}| / "

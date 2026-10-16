@@ -66,3 +66,13 @@ TripleTriad/_partida_guardada_*/
 TripleTriad/_respaldo_avatares_viejos/
 TripleTriad/_partida_archivada_*/
 TripleTriad/auditoria/avatares_local/*.png
+
+# Entregas locales y respaldos de paquetes; el codigo y los informes se versionan.
+/ver2Subir/*.zip
+/ver2SubirV2/*.zip
+TripleTriad/auditoria/release_2_0/*.zip
+TripleTriad/auditoria/web_60fps_20261016/itch_*.html
+TripleTriad/auditoria/detalles_visuales_20261015/exe_check.log
+TripleTriad/auditoria/detalles_visuales_20261015/exe_debug.log
+TripleTriad/auditoria/release_2_0/pythons.js
+TripleTriad/auditoria/release_2_0/cpythonrc.py

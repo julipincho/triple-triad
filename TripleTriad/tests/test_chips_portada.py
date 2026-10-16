@@ -89,7 +89,7 @@ class TestChipsDePortada(unittest.TestCase):
         esperados = [
             f"{len(facciones.orden_facciones())} facciones",
             f"{campana.duelos_por_campana()} duelos",
-            "Un final por faccion",
+            "Un final por facción",
         ]
         for chip in esperados:
             self.assertIn(chip, dibujado,

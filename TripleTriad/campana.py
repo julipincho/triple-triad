@@ -1602,14 +1602,34 @@ def asegurar_mazo_global():
     coleccion = coleccion_de(perfil)
     if not coleccion:
         ritual_inicial()
-        return mazo_global()
+        perfil = cargar_perfil()
+        coleccion = coleccion_de(perfil)
     mazo = [n for n in mazo_global(perfil) if n in coleccion]
-    ok, _ = validar_mazo([dict(coleccion[n]) for n in mazo], set(coleccion)) if mazo else (False, "")
+    ok, _ = validar_mazo([dict(coleccion[n]) for n in mazo], set(coleccion)) if len(mazo) == MAZO_RUN_N else (False, "")
     if not ok:
-        ordenadas = sorted(coleccion, key=lambda n: (
-            rareza(Carta.desde_dict(coleccion[n]))[0] != "COMUN",
-            sum(coleccion[n][l] for l in "nseo"), n))
-        mazo = ordenadas[:MAZO_MIN_N]
+        def seleccionar():
+            ordenadas = sorted(coleccion, key=lambda n: (
+                rareza(Carta.desde_dict(coleccion[n]))[0] != "COMUN",
+                sum(coleccion[n][l] for l in "nseo"), n))
+            resultado, raras, legendarias = [], 0, 0
+            for nombre in ordenadas:
+                categoria = rareza(Carta.desde_dict(coleccion[nombre]))[0]
+                if categoria == "RARA" and raras >= 3 or categoria == "LEGENDARIA" and legendarias >= 1:
+                    continue
+                resultado.append(nombre)
+                raras += categoria == "RARA"
+                legendarias += categoria == "LEGENDARIA"
+                if len(resultado) == MAZO_RUN_N:
+                    break
+            return resultado
+        mazo = seleccionar()
+        if len(mazo) < MAZO_RUN_N:
+            # El ritual historico da cinco: no puede dejar un editor de diez
+            # imposible de completar. Se conservan las cartas y mejoras previas.
+            asegurar_coleccion("humano")
+            perfil = cargar_perfil()
+            coleccion = coleccion_de(perfil)
+            mazo = seleccionar()
         guardar_mazo_global(mazo, perfil)
     return mazo_global()
 

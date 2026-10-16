@@ -202,7 +202,8 @@ class TestEscenaAntesDelEncuentro(unittest.TestCase):
                 escenas = encuentros.escena_antes(enc, faccion)
                 self.assertTrue(escenas, f"{enc}/{faccion}: sin escenas")
                 for e in escenas:
-                    self.assertEqual(set(e), claves)
+                    self.assertTrue(claves <= set(e))
+                    self.assertTrue(set(e) <= claves | {"fondo_hd"})
 
     def test_el_fondo_es_el_del_encuentro(self):
         for enc_id in ("hostil", "nara"):

@@ -935,7 +935,9 @@ class TestCachesDeRender(unittest.TestCase):
     def test_limpio_se_puede_llamar_ANTES_y_despues_de_cachear(self):
         """`limpio` cachea por el texto original: llamarlo dos veces con el
         texto ya limpio tiene que devolver lo mismo."""
-        self.assertEqual(ui.limpio("Árbol"), ui.limpio("Arbol"))
+        self.assertEqual(ui.limpio("Árbol"), "Árbol")
+        self.assertEqual(ui.limpio("Espan\u0303a"), "España")
+        self.assertEqual(ui.limpio("¿Qué? ¡Sí!"), "¿Qué? ¡Sí!")
         self.assertEqual(ui.limpio("¿Qué?"), ui.limpio("¿Qué?"))
 
     def test_panel_y_resplandor_devuelven_el_mismo_pixel(self):

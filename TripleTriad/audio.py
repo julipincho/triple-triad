@@ -125,6 +125,10 @@ def volumen_musica(v=None):
 
 def _ajustar_volumen_musica():
     """Aplica el volumen al stream de música que este sonando."""
+    if _WEB:
+        from audio_web import controlar
+        controlar('volume', volumen=_volumen_musica)
+        return
     if not disponible():
         return
     try:
@@ -201,6 +205,11 @@ def musica(nombre, bucle=True):
     if not os.path.exists(ruta):
         _cache_musica[nombre] = False
         return
+    if _WEB:
+        from audio_web import controlar
+        controlar('play', ruta=ruta, volumen=_volumen_musica, bucle=bucle)
+        _musica_pausada = False
+        return
     try:
         pygame.mixer.music.load(ruta)
     except Exception:
@@ -218,7 +227,11 @@ def pausar_musica():
     global _musica_pausada
     if disponible() and not _musica_pausada:
         try:
-            pygame.mixer.music.pause()
+            if _WEB:
+                from audio_web import controlar
+                controlar('pause')
+            else:
+                pygame.mixer.music.pause()
             _musica_pausada = True
         except Exception:
             pass
@@ -228,7 +241,11 @@ def reanudar_musica():
     global _musica_pausada
     if disponible() and _musica_pausada:
         try:
-            pygame.mixer.music.unpause()
+            if _WEB:
+                from audio_web import controlar
+                controlar('resume')
+            else:
+                pygame.mixer.music.unpause()
             _musica_pausada = False
         except Exception:
             pass
@@ -238,7 +255,11 @@ def detener_musica():
     global _musica_actual, _musica_pausada
     if disponible():
         try:
-            pygame.mixer.music.stop()
+            if _WEB:
+                from audio_web import controlar
+                controlar('stop')
+            else:
+                pygame.mixer.music.stop()
         except Exception:
             pass
     _musica_actual = None

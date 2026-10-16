@@ -1,0 +1,5 @@
+{
+  "herramienta": "image_gen integrada",
+  "prompt": "Use case: style-transfer. ONE square dialogue/event portrait for Cartones y Mazmorras. Image 1 is the exact identity to preserve: a young adult male medieval villager with tousled short dark brown hair, teal eyes, off-white simple peasant tunic with blue grey rolled sleeves, plain brown leather vest, dark teal scarf hanging around his neck, raising one index finger in a wary challenging warning. Preserve identity, clothing, age and warning gesture. Image 2 supplies ONLY the approved new art style: cinematic retro anime pixel art, deliberate crisp small pixel clusters, warm antique gold rim light, deep midnight/slate blue shadows, restrained saturation and detailed readable face. Chest-up three-quarter front view, entire head and raised finger visible, single character centered, simple dim forest backdrop. Serious suspicious expression, not villainous or smiling. No armor, sword, other characters, cards, text, logo, border or watermark. Square 1024x1024, readable as a 150px dialogue avatar.",
+  "asset": "assets/pixel_anime/encuentros/hostil_v2.png"
+}

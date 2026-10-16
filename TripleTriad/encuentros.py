@@ -263,8 +263,12 @@ def escena_antes(enc_id, faccion_jugador, musica=None):
     from ui import TEXTO_ON
 
     def esc(linea, hablante=None, fondo=None, retrato=None, color=None, mundo="juego"):
+        fondo_hd = {"campamento": "prologo_campamento_nara.png",
+                    "camino": "camino_lluvioso.png",
+                    "ruinas": "campana_ruinas_20261015.png"}.get(fondo)
         return {"texto": linea, "hablante": hablante, "fondo": fondo, "retrato": retrato,
-                "efecto": "dialogo", "musica": musica, "color": color, "mundo": mundo}
+                "efecto": "dialogo", "musica": musica, "color": color, "mundo": mundo,
+                "fondo_hd": fondo_hd}
 
     fondo = escena_encuentro(enc_id)
     escenas = []

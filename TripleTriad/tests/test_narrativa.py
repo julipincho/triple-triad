@@ -41,7 +41,8 @@ class TestCoberturaDeNodos(unittest.TestCase):
              "color", "mundo"}
         for nodo in NODOS_DUELO:
             for e in narrativa.previa_nodo(nodo) + narrativa.posterior_nodo(nodo):
-                self.assertEqual(set(e), claves, f"{nodo}: claves distintas")
+                self.assertTrue(claves <= set(e), f"{nodo}: faltan claves")
+                self.assertTrue(set(e) <= claves | {"fondo_hd"}, f"{nodo}: claves desconocidas")
 
     def test_las_escenas_no_dejan_texto_vacio(self):
         for nodo in NODOS_DUELO:

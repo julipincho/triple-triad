@@ -1,0 +1,76 @@
+229 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.8
+229 INFO: Python: 3.12.10
+256 INFO: Platform: Windows-11-10.0.26200-SP0
+256 INFO: Python environment: C:\Users\julip\AppData\Local\Programs\Python\Python312
+265 INFO: Module search paths (PYTHONPATH):
+['E:\\openCode\\TripleTriad',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\DLLs',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312',
+ 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages',
+ 'E:\\openCode\\TripleTriad']
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+1900 INFO: Appending 'datas' from .spec
+1915 INFO: checking Analysis
+1929 INFO: Building because _input_datas changed
+1929 INFO: Looking for Python shared library...
+1929 INFO: Using Python shared library: C:\Users\julip\AppData\Local\Programs\Python\Python312\python312.dll
+1929 INFO: Running Analysis Analysis-00.toc
+1929 INFO: Target bytecode optimization level: 0
+1929 INFO: Initializing module dependency graph...
+1929 INFO: Initializing module graph hook caches...
+1964 INFO: Analyzing modules for base_library.zip ...
+3229 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+3652 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+4949 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+6127 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+7215 INFO: Caching module dependency graph...
+7249 INFO: Analyzing E:\openCode\TripleTriad\main.py
+7464 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+7664 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+8094 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+8599 INFO: Processing standard module hook 'hook-pygame.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pygame\\__pyinstaller'
+8826 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+8827 INFO: SetuptoolsInfo: initializing cached setuptools info...
+9629 INFO: Processing standard module hook 'hook-numpy.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+10544 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+10679 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+10894 INFO: Processing standard module hook 'hook-webbrowser.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+12329 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks'
+13264 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+14386 INFO: Processing module hooks (post-graph stage)...
+14469 INFO: Performing binary vs. data reclassification (614 entries)
+14764 INFO: Looking for ctypes DLLs
+14791 INFO: Analyzing run-time hooks ...
+14793 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+14803 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+14809 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+14865 INFO: Creating base_library.zip...
+14893 INFO: Looking for dynamic libraries
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+15545 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pygame', 'C:\\Users\\julip\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\numpy.libs']
+15545 INFO: Extra DLL search directories (PATH): []
+16363 INFO: Warnings written to E:\openCode\TripleTriad\build\TripleTriad\warn-TripleTriad.txt
+16404 INFO: Graph cross-reference written to E:\openCode\TripleTriad\build\TripleTriad\xref-TripleTriad.html
+16464 INFO: checking PYZ
+16499 INFO: checking PKG
+16514 INFO: Building because toc changed
+16514 INFO: Building PKG (CArchive) TripleTriad.pkg
+33648 INFO: Building PKG (CArchive) TripleTriad.pkg completed successfully.
+33664 INFO: Bootloader C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+33664 INFO: checking EXE
+33679 INFO: Building because toc changed
+33679 INFO: Building EXE from EXE-00.toc
+33699 INFO: Copying bootloader EXE to E:\openCode\TripleTriad\dist\TripleTriad.exe
+33779 INFO: Copying icon to EXE
+33824 INFO: Copying 0 resources to EXE
+33824 INFO: Embedding manifest in EXE
+33862 INFO: Appending PKG archive to EXE
+35644 INFO: Fixing EXE headers
+38595 INFO: Building EXE from EXE-00.toc completed successfully.
+38604 INFO: Build complete! The results are available in: E:\openCode\TripleTriad\dist
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html

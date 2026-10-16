@@ -1,0 +1,133 @@
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Auditoria visual con TEXTO AMPLIADO (escala 1.0)
+
+  12_nombre: OK
+  12b_editar_mazo: OK
+  13_portada: OK
+  13b_menu: OK
+  14_elegir_faccion: OK
+  14b_elegir_faccion_rapida: OK
+  15_mapa: OK
+  16_elegir_rama: OK
+  17_recompensa: OK
+  18_encuentro: OK
+  19_coleccion: OK
+  20_ajustes: OK
+  21_derrota: OK
+  22_draft: OK
+  22b_mejorar: OK
+  22c_reemplazo: OK
+  22d_ficha_nodo: OK
+  27_mini_mapa: OK
+  28_sobre: OK
+  29_tienda: OK
+  30_armar_mazo: OK
+  31_diario: OK
+  32_decision: OK
+  14c_ficha_humano: OK
+  14c_ficha_orco: OK
+  14c_ficha_elfo: OK
+  14c_ficha_goblin: OK
+  14c_ficha_hombre_lobo: OK
+  14c_ficha_vampiro: OK
+  14c_ficha_dragon: OK
+  14c_ficha_elfo_nocturno: OK
+  14c_ficha_hombre_pantera: OK
+  14c_ficha_hombre_lagarto: OK
+  40_duelo_inicio: OK
+  41_duelo_turno_cpu: OK
+  42_ayuda: OK
+  43_cartel: OK
+  44_error: OK
+  45_epilogo: OK
+  46_comparar_reemplazo: OK
+
+Auditoria visual con TEXTO AMPLIADO (escala 1.25)
+
+  12_nombre: OK
+  12b_editar_mazo: OK
+  13_portada: OK
+  13b_menu: OK
+  14_elegir_faccion: OK
+  14b_elegir_faccion_rapida: OK
+  15_mapa: OK
+  16_elegir_rama: OK
+  17_recompensa: OK
+  18_encuentro: OK
+  19_coleccion: OK
+  20_ajustes: OK
+  21_derrota: OK
+  22_draft: OK
+  22b_mejorar: OK
+  22c_reemplazo: OK
+  22d_ficha_nodo: OK
+  27_mini_mapa: OK
+  28_sobre: OK
+  29_tienda: OK
+  30_armar_mazo: OK
+  31_diario: OK
+  32_decision: OK
+  14c_ficha_humano: OK
+  14c_ficha_orco: OK
+  14c_ficha_elfo: OK
+  14c_ficha_goblin: OK
+  14c_ficha_hombre_lobo: OK
+  14c_ficha_vampiro: OK
+  14c_ficha_dragon: OK
+  14c_ficha_elfo_nocturno: OK
+  14c_ficha_hombre_pantera: OK
+  14c_ficha_hombre_lagarto: OK
+  40_duelo_inicio: OK
+  41_duelo_turno_cpu: OK
+  42_ayuda: OK
+  43_cartel: OK
+  44_error: OK
+  45_epilogo: OK
+  46_comparar_reemplazo: OK
+
+Auditoria visual con TEXTO AMPLIADO (escala 1.6)
+
+  12_nombre: OK
+  12b_editar_mazo: OK
+  13_portada: OK
+  13b_menu: OK
+  14_elegir_faccion: OK
+  14b_elegir_faccion_rapida: OK
+  15_mapa: OK
+  16_elegir_rama: OK
+  17_recompensa: OK
+  18_encuentro: OK
+  19_coleccion: OK
+  20_ajustes: OK
+  21_derrota: OK
+  22_draft: OK
+  22b_mejorar: OK
+  22c_reemplazo: OK
+  22d_ficha_nodo: OK
+  27_mini_mapa: OK
+  28_sobre: OK
+  29_tienda: OK
+  30_armar_mazo: OK
+  31_diario: OK
+  32_decision: OK
+  14c_ficha_humano: OK
+  14c_ficha_orco: OK
+  14c_ficha_elfo: OK
+  14c_ficha_goblin: OK
+  14c_ficha_hombre_lobo: OK
+  14c_ficha_vampiro: OK
+  14c_ficha_dragon: OK
+  14c_ficha_elfo_nocturno: OK
+  14c_ficha_hombre_pantera: OK
+  14c_ficha_hombre_lagarto: OK
+  40_duelo_inicio: OK
+  41_duelo_turno_cpu: OK
+  42_ayuda: OK
+  43_cartel: OK
+  44_error: OK
+  45_epilogo: OK
+  46_comparar_reemplazo: OK
+
+
+Auditoria con texto ampliado: sin desbordes.

@@ -1,0 +1,3246 @@
+[
+  {
+    "faccion": "humano",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "UNA CORONA FRAGIL",
+      [
+        "Ganaste, pero por poco, y el reino lo sabe.",
+        "Los elfos cuentan otra version. Los orcos, otra. Nadie coincide.",
+        "La paz que lograste durara lo que dura un invierno sin pan."
+      ]
+    ]
+  },
+  {
+    "faccion": "humano",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "UNA CORONA FRAGIL",
+      [
+        "Ganaste, pero por poco, y el reino lo sabe.",
+        "Los elfos cuentan otra version. Los orcos, otra. Nadie coincide.",
+        "La paz que lograste durara lo que dura un invierno sin pan."
+      ]
+    ]
+  },
+  {
+    "faccion": "orco",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "NADA DE ESO QUEDA",
+      [
+        "Quemaste el trono, pero no lo tomaste. Ya hubo otros que lo intentaron.",
+        "El bosque crece sobre tus banderas y los elfos tocan la ceniza con reverencia.",
+        "Tu pueblo sobrevive. Es la unica victoria que no puedes negociar."
+      ]
+    ]
+  },
+  {
+    "faccion": "orco",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "NADA DE ESO QUEDA",
+      [
+        "Quemaste el trono, pero no lo tomaste. Ya hubo otros que lo intentaron.",
+        "El bosque crece sobre tus banderas y los elfos tocan la ceniza con reverencia.",
+        "Tu pueblo sobrevive. Es la unica victoria que no puedes negociar."
+      ]
+    ]
+  },
+  {
+    "faccion": "goblin",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "SIN BOTIN, CON HAMBRE",
+      [
+        "Perdisteis el rastro del rey dragon y el banquete de la victoria.",
+        "Grix os culpa a todos menos a si mismo. Es tradicion.",
+        "La montana de oro se la llevan los elfos, que no comparten ni el sonido."
+      ]
+    ]
+  },
+  {
+    "faccion": "goblin",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "SIN BOTIN, CON HAMBRE",
+      [
+        "Perdisteis el rastro del rey dragon y el banquete de la victoria.",
+        "Grix os culpa a todos menos a si mismo. Es tradicion.",
+        "La montana de oro se la llevan los elfos, que no comparten ni el sonido."
+      ]
+    ]
+  },
+  {
+    "faccion": "elfo",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          9,
+          0
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "HOJAS SECAS",
+      [
+        "El bosque se levanto contigo y ya no sabe a quien obedecer.",
+        "Los elfos caminan por un reino que ya no reconoce la bandera del bosque.",
+        "Hasta los arboles han dejado de responder a la bandera del bosque."
+      ]
+    ]
+  },
+  {
+    "faccion": "elfo",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          8,
+          1
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "HOJAS SECAS",
+      [
+        "El bosque se levanto contigo y ya no sabe a quien obedecer.",
+        "Los elfos caminan por un reino que ya no reconoce la bandera del bosque.",
+        "Hasta los arboles han dejado de responder a la bandera del bosque."
+      ]
+    ]
+  },
+  {
+    "faccion": "hombre_lobo",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "SIN LUNA, SIN MANADA",
+      [
+        "La manada se ha dispersado por un mapa que ya no reconoce sus huellas.",
+        "Alfa sin manada es solo un lobo muy cansado.",
+        "Los pueblos de la frontera ya no cuentan manadas: cuentan silencios."
+      ]
+    ]
+  },
+  {
+    "faccion": "hombre_lobo",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      }
+    ],
+    "final": [
+      "equilibrio",
+      "LUNAR PARADO",
+      [
+        "No eres rey: eres el guardio que decide cuando empieza la luna.",
+        "La ciudad abre las puertas de noche y nadie registra por que.",
+        "El bosque y la ciudad comparten ahora el mismo reloj lunar."
+      ]
+    ]
+  },
+  {
+    "faccion": "vampiro",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "CRIPTA ABIERTA",
+      [
+        "Perdiste el pacto y la corona en la misma noche.",
+        "Los nobles de la noche empiezan a cazarse entre si y el amanecer no llega a tiempo.",
+        "El amanecer llega puntual, y la ciudad cree que es una victoria."
+      ]
+    ]
+  },
+  {
+    "faccion": "vampiro",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          8,
+          1
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "CRIPTA ABIERTA",
+      [
+        "Perdiste el pacto y la corona en la misma noche.",
+        "Los nobles de la noche empiezan a cazarse entre si y el amanecer no llega a tiempo.",
+        "El amanecer llega puntual, y la ciudad cree que es una victoria."
+      ]
+    ]
+  },
+  {
+    "faccion": "dragon",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          8,
+          1
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "EL UMBRAL VACIO",
+      [
+        "Tu propia fuerza te ha dejado solo en el Umbral, como un rey de piedra.",
+        "No hay a quien quemar. Solo ceniza, y ceniza.",
+        "La ceniza no sabe a quien pertenece. Ya no queda nadie que lo pregunte."
+      ]
+    ]
+  },
+  {
+    "faccion": "dragon",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          8,
+          1
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "EL UMBRAL VACIO",
+      [
+        "Tu propia fuerza te ha dejado solo en el Umbral, como un rey de piedra.",
+        "No hay a quien quemar. Solo ceniza, y ceniza.",
+        "La ceniza no sabe a quien pertenece. Ya no queda nadie que lo pregunte."
+      ]
+    ]
+  },
+  {
+    "faccion": "elfo_nocturno",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "SIN LUNA QUE VOLVER",
+      [
+        "Ganaste el trono pero la sombra te desconoce.",
+        "Ni el bosque ni el Umbral reclaman tu victoria.",
+        "Reinas sobre una penumbra que no te nombra."
+      ]
+    ]
+  },
+  {
+    "faccion": "elfo_nocturno",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "SIN LUNA QUE VOLVER",
+      [
+        "Ganaste el trono pero la sombra te desconoce.",
+        "Ni el bosque ni el Umbral reclaman tu victoria.",
+        "Reinas sobre una penumbra que no te nombra."
+      ]
+    ]
+  },
+  {
+    "faccion": "hombre_pantera",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "PRESA DEL RUIDO",
+      [
+        "Ganaste haciendo ruido y la selva lo apunta todo.",
+        "Cada sombra esconde ahora otra sombra que te debe una.",
+        "El trono es tuyo, pero dormir cuesta el doble."
+      ]
+    ]
+  },
+  {
+    "faccion": "hombre_pantera",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "PRESA DEL RUIDO",
+      [
+        "Ganaste haciendo ruido y la selva lo apunta todo.",
+        "Cada sombra esconde ahora otra sombra que te debe una.",
+        "El trono es tuyo, pero dormir cuesta el doble."
+      ]
+    ]
+  },
+  {
+    "faccion": "hombre_lagarto",
+    "rama": "aldea",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          8,
+          1
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "aldea",
+        "victoria": true,
+        "marcador": [
+          9,
+          0
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "FANGO REVUELTO",
+      [
+        "Tomaste el trono chapoteando y el reino lo noto.",
+        "Cada faccion cuenta que el pantano los traiciono primero.",
+        "Gobiernas, pero con el agua al cuello."
+      ]
+    ]
+  },
+  {
+    "faccion": "hombre_lagarto",
+    "rama": "ruinas",
+    "duelos": [
+      {
+        "nodo": "senda",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "ruinas",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          0,
+          9
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "fortaleza",
+        "victoria": true,
+        "marcador": [
+          5,
+          4
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "asalto",
+        "victoria": true,
+        "marcador": [
+          6,
+          3
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          3,
+          6
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          1,
+          8
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          2,
+          7
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": false,
+        "marcador": [
+          4,
+          5
+        ]
+      },
+      {
+        "nodo": "trono",
+        "victoria": true,
+        "marcador": [
+          7,
+          2
+        ]
+      }
+    ],
+    "final": [
+      "caos",
+      "FANGO REVUELTO",
+      [
+        "Tomaste el trono chapoteando y el reino lo noto.",
+        "Cada faccion cuenta que el pantano los traiciono primero.",
+        "Gobiernas, pero con el agua al cuello."
+      ]
+    ]
+  }
+]

@@ -44,8 +44,11 @@ MAX_CACHE_CARTAS = 2000
 
 def _slug(nombre):
     import re
+    import unicodedata
 
-    s = limpio(nombre).lower().strip()
+    # Las rutas historicas son ASCII; el texto visible conserva sus tildes.
+    s = unicodedata.normalize("NFKD", nombre)
+    s = "".join(c for c in s if not unicodedata.combining(c)).lower().strip()
     s = re.sub(r"[^a-z0-9]+", "_", s)
     return s.strip("_")
 
@@ -235,22 +238,20 @@ def crear(carta, dueno=None, habilidad=True, escala=1, bando_dueno=None,
     img = _texto_ajustado(etiqueta, 6, w - 16, claro)
     s.blit(img, (w // 2 - img.get_width() // 2, h - 13))
 
-    # Propiedad redundante: cuadrado propio, rombo rival y color de faccion.
+    # Propiedad (no afinidad): junto al marco superior, fuera de la faccion.
     color_dueno = (
         facciones.acento(bando_dueno)
         if bando_dueno in facciones.FACCIONES
         else {"T": AZUL, "C": ROJO}.get(dueno, DORADO)
     )
     if dueno == "T":
-        pygame.draw.rect(s, (8, 8, 12), (w - 19, h - 19, 14, 14), border_radius=2)
-        pygame.draw.rect(s, color_dueno, (w - 17, h - 17, 10, 10), border_radius=1)
+        pygame.draw.rect(s, (8, 8, 12), (w - 19, 6, 14, 14), border_radius=2)
+        pygame.draw.rect(s, color_dueno, (w - 17, 8, 10, 10), border_radius=1)
     elif dueno == "C":
-        pygame.draw.polygon(s, (8, 8, 12), [(w - 12, h - 20), (w - 4, h - 12),
-                                          (w - 12, h - 4), (w - 20, h - 12)])
-        pygame.draw.polygon(s, color_dueno, [(w - 12, h - 18), (w - 6, h - 12),
-                                           (w - 12, h - 6), (w - 18, h - 12)])
-    else:
-        pygame.draw.circle(s, color_dueno, (w - 12, h - 12), 6)
+        pygame.draw.polygon(s, (8, 8, 12), [(w - 12, 5), (w - 4, 13),
+                                          (w - 12, 21), (w - 20, 13)])
+        pygame.draw.polygon(s, color_dueno, [(w - 12, 7), (w - 6, 13),
+                                           (w - 12, 19), (w - 18, 13)])
 
     # Valores en el punto medio de cada lado: se leen sin esfuerzo.
     # El panel de arte esta hecho para no solaparlos.
@@ -282,7 +283,18 @@ def crear(carta, dueno=None, habilidad=True, escala=1, bando_dueno=None,
         placa_h = pygame.Surface((ancho, alto), pygame.SRCALPHA)
         pygame.draw.rect(placa_h, con_alpha(color_h, 225), placa_h.get_rect(), border_radius=5)
         s.blit(placa_h, (bx, by))
-        img = _texto_ajustado(etiqueta_h, 6, ancho - 4, (14, 12, 10))
+        if etiqueta_h == "EMBESTIDA":
+            # Ocho letras no caben en 42 px, especialmente en modo lectura.
+            # Fuente local: la escala de accesibilidad no agranda esta placa fija.
+            tam_h = 5
+            fuente_h = pygame.font.Font(recurso(ui.FUENTE_RUTA), tam_h)
+            img = fuente_h.render(etiqueta_h, True, (14, 12, 10))
+            while img.get_width() > ancho - 4 and tam_h > 1:
+                tam_h -= 1
+                img = pygame.font.Font(recurso(ui.FUENTE_RUTA), tam_h).render(
+                    etiqueta_h, True, (14, 12, 10))
+        else:
+            img = _texto_ajustado(etiqueta_h, 6, ancho - 4, (14, 12, 10))
         s.blit(img, (bx + (ancho - img.get_width()) // 2, by + 3))
 
     if escala == 1:

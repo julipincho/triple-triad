@@ -101,7 +101,7 @@ def main():
 
     x0 = 200
     forma = {"T": "marca: cuadrado", "C": "marca: rombo",
-             None: "marca: circulo"}
+             None: "sin propietario"}
     for i, (dueno, etiqueta, _c) in enumerate(marcas):
         sup = cartas.crear(base, dueno=dueno, escala=2)
         rect = sup.get_rect()
@@ -120,7 +120,7 @@ def main():
     print("Comprobacion de la marca de propiedad en gris (sin color):")
     sups = [cartas.crear(base, dueno=d, escala=2) for d, _e, _c in marcas]
     w, h = sups[0].get_size()
-    caja = (h - 20, w - 20, 16, 16)
+    caja = (11, w - 39, 30, 30)
     comunes = siluetas_comunes(sups, caja)
     siluetas = {}
     for sup, (_d, etiqueta, _c) in zip(sups, marcas):

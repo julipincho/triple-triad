@@ -1,0 +1,40 @@
+{
+  "version": "2.0",
+  "windows_extraido_check": 0,
+  "windows_extraido_test": 0,
+  "cartas_web_sin_modificar": 250,
+  "archivos": {
+    "Cartones-y-Mazmorras-2.0-Web.zip": {
+      "bytes": 103914372,
+      "sha256": "93074000a48e583f8df4f4bf93d5a9e5778dc902e8a3a7b09418270aa670f0e9"
+    },
+    "Cartones-y-Mazmorras-2.0-Windows.zip": {
+      "bytes": 350279034,
+      "sha256": "bdb696a9032f6df782aa3466923f39859e860071e1669b5cee0b7d5ba7c09f3d"
+    },
+    "Portada-2.0-1260x1000.png": {
+      "bytes": 2442524,
+      "sha256": "6924fde57c473b73bcf577e31afda47a3ce6f81dda30345349abc0cb4ae15945"
+    },
+    "Portada-2.0-630x500.png": {
+      "bytes": 697655,
+      "sha256": "af2d570da3d4016d4b7cba30b8cdab98afdde1a75ce05d526aa597e3cf30148e"
+    }
+  },
+  "revision_web": 1,
+  "chrome": {
+    "title": "Cartones y Mazmorras",
+    "host": "game.itch.zone:8765",
+    "canvas": true,
+    "version": "2.0",
+    "arteNuevo": true
+  },
+  "musica_chrome": {
+    "time": 9.996451,
+    "paused": false,
+    "ready": 4,
+    "error": null
+  },
+  "pruebas_existentes": 1076,
+  "pruebas_adicionales_mazo": 2
+}

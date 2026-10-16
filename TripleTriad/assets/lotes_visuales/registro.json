@@ -343,6 +343,198 @@
     "assets/pixel_anime/manifest.json": "b56303273702f8a2aa7d95983056cc57721dc743e9e80bdd15b80dcb6908b5c9"
   },
   "lotes": {
+    "migracion_20261015": {
+      "activo": true,
+      "recursos": [
+        {
+          "id": "nara",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/nara.png",
+          "sha256": "a65a8e3a59009c6621efaab3169a6664d3c8a7d097b2d9dd95e4232857838a60",
+          "estado": "listo",
+          "personaje": "nara"
+        },
+        {
+          "id": "dara",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/dara.png",
+          "sha256": "dc22e74f0905e146ece6cc8a128b1442c58cb20cd32918207d6393d806be01d9",
+          "estado": "listo",
+          "personaje": "dara"
+        },
+        {
+          "id": "dragon",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/dragon.png",
+          "sha256": "c18fb53c6eff3b3db005772e97eed5c38ff5535c9c8fae58e4e5b930d8cb2231",
+          "estado": "listo",
+          "personaje": "dragon"
+        },
+        {
+          "id": "duelista",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/duelista_gorra.png",
+          "sha256": "89d8d8cff2ab994aedc8e601c44ec350489820d92a24272d2c350884e5a222a3",
+          "estado": "listo",
+          "personaje": "duelista"
+        },
+        {
+          "id": "elfo",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/elfo.png",
+          "sha256": "9740ac39a547aa1bd34d80d05228de91ab2b4b4076ec5051eac999749d12b619",
+          "estado": "listo",
+          "personaje": "elfo"
+        },
+        {
+          "id": "elfo_nocturno",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/elfo_nocturno.png",
+          "sha256": "b9943761afa5f1f1435e8a6f1ed0b3b39ac1218a1ae6ab4d60f275bff0a10f6b",
+          "estado": "listo",
+          "personaje": "elfo_nocturno"
+        },
+        {
+          "id": "gobernante",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/gobernante.png",
+          "sha256": "bfb17955f1d20f587e7a466e19b5dc1b8ab1f3c18ccebbfc52503c00f8a925d6",
+          "estado": "listo",
+          "personaje": "gobernante"
+        },
+        {
+          "id": "goblin",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/goblin.png",
+          "sha256": "8124b344e17ff4b9daa0d27cfa201e01e89c2c51d9d2b161af22790e0d3346b6",
+          "estado": "listo",
+          "personaje": "goblin"
+        },
+        {
+          "id": "hombre_lagarto",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/hombre_lagarto.png",
+          "sha256": "1be3df2beb028761632a02be8f0ac98d7fe0fd91a8fc47f32203607a212bdf93",
+          "estado": "listo",
+          "personaje": "hombre_lagarto"
+        },
+        {
+          "id": "hombre_lobo",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/hombre_lobo.png",
+          "sha256": "ffcd587ff5ab524186607f687cb8b2e8cf94f4fbd5558927e603f5f2da413654",
+          "estado": "listo",
+          "personaje": "hombre_lobo"
+        },
+        {
+          "id": "hombre_pantera",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/hombre_pantera.png",
+          "sha256": "1b25b5921950f64779b4c9771bb0f82b275ed9a0511090211c41408624a2452f",
+          "estado": "listo",
+          "personaje": "hombre_pantera"
+        },
+        {
+          "id": "humano",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/humano.png",
+          "sha256": "d1d1b7b125bbaffa7c6fa1f06692389576c29a612d3f4278843100be8e399d28",
+          "estado": "listo",
+          "personaje": "humano"
+        },
+        {
+          "id": "jefe_arco",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/jefe_arco.png",
+          "sha256": "7f1c48ce472630ca41793ad13ec88c00d088720f36e3bb1e73fde70114019360",
+          "estado": "listo",
+          "personaje": "jefe_arco"
+        },
+        {
+          "id": "orco",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/orco.png",
+          "sha256": "132f5b9204f0c0e58a9960223c8768364d709615f842d0f1b8506c174a97807a",
+          "estado": "listo",
+          "personaje": "orco"
+        },
+        {
+          "id": "pik",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/pik.png",
+          "sha256": "fe9d6f01324fec6541aa0477120f31acec0beb5574ac1c5d4b26cb414dc4b799",
+          "estado": "listo",
+          "personaje": "pik"
+        },
+        {
+          "id": "presentador",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/presentador.png",
+          "sha256": "7297114132e22a09ab1241b65488e82a85a7990477a7276daf321063f9a584f9",
+          "estado": "listo",
+          "personaje": "presentador"
+        },
+        {
+          "id": "rajoy",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/rajoy.png",
+          "sha256": "f80abf45fc806b0d010a32ad2cde83061afe5460d19ce8001253ca0a08ae42a9",
+          "estado": "listo",
+          "personaje": "rajoy"
+        },
+        {
+          "id": "revancha",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/revancha.png",
+          "sha256": "0ce86376d3fd275bfd7503c5dfa4e7710d282e296d3a652b2c67156f7566f890",
+          "estado": "listo",
+          "personaje": "revancha"
+        },
+        {
+          "id": "vampiro",
+          "tipo": "retrato",
+          "ruta": "assets/lotes_visuales/migracion_20261015/retratos/vampiro.png",
+          "sha256": "6c3d7f49b5d30f64cd0b5273272a787e87903498795c423b6ba7bafb9b5a1870",
+          "estado": "listo",
+          "personaje": "vampiro"
+        },
+        {
+          "id": "aldea",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_aldea_20261015.png",
+          "sha256": "916a77520640442383d7a24fe81f9a79582ab3d313825e418fa4e75de4c61131",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "ruinas",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_ruinas_20261015.png",
+          "sha256": "1cdcebf228c54387b472a03202fc479eca7c41b040c1e87755eee3fb01895aa3",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "fortaleza",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_fortaleza_20261015.png",
+          "sha256": "2a5f8a03041d1067115fdcbbf28ea40263a123689dda46d7981a6327ac733e2d",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "asalto",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_asalto_20261015.png",
+          "sha256": "523fa49842a171b9ed2e5fdff24c5b46bc98367b0f711a49dc173829eb8fdc91",
+          "estado": "integrado_hd"
+        },
+        {
+          "id": "umbral",
+          "tipo": "fondo",
+          "ruta": "assets/cinematicas_hd/campana_umbral_20261015.png",
+          "sha256": "4b7d63fac7725cbc064496d3fd05cf61249e73065325d801f34d9be92bd874c8",
+          "estado": "integrado_hd"
+        }
+      ]
+    },
     "lote_03": {
       "activo": true,
       "zip_sha256": "a429b5894df1c37894ad26b298b22703ec1296ead1ef153d69b26aea0355bcaf",

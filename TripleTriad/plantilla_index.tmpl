@@ -43,7 +43,12 @@ async def custom_site():
         import zipfile
         async with platform.fopen("{{cookiecutter.archive}}.apk", "rb") as archive:
             with zipfile.ZipFile(archive) as zip_ref:
-                zip_ref.extractall(appdir.as_posix())
+                entries = zip_ref.infolist()
+                for number, entry in enumerate(entries, 1):
+                    zip_ref.extract(entry, appdir.as_posix())
+                    if number % 5 == 0 or number == len(entries):
+                        platform.window.infobox.innerText = f"Preparando el juego: {number * 100 // len(entries)}%"
+                        await asyncio.sleep(.01)
     else:
         import tarfile
         async with platform.fopen("{{cookiecutter.archive}}.tar.gz", "rb") as archive:

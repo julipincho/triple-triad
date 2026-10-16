@@ -1,0 +1,5135 @@
+{
+  "state": {
+    "title": "Cartones y Mazmorras",
+    "host": "game.itch.zone:8765",
+    "canvas": true,
+    "version": "2.0",
+    "arteNuevo": true
+  },
+  "messages": [
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "Connection:"
+          },
+          {
+            "type": "string",
+            "value": "Wired"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180774.036,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 1781,
+              "columnNumber": 16
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "AUTOSTART"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/pythons.js"
+          },
+          {
+            "type": "string",
+            "value": "http://game.itch.zone:8765/?auditar=1"
+          },
+          {
+            "type": "undefined"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.308,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2260,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "Location of"
+          },
+          {
+            "type": "string",
+            "value": "pythons.js"
+          },
+          {
+            "type": "string",
+            "value": "overrides script"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/pythons.js"
+          },
+          {
+            "type": "string",
+            "value": "=>"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/pythons.js?auditar=1#"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.432,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2282,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "{\"xtermjs\":\"1\",\"_sdl2\":\"canvas\",\"user_canvas\":0,\"user_canvas_managed\":0,\"gui_divider\":2,\"ume_block\":1,\"can_close\":0,\"archive\":\"cartones-mazmorras\",\"gui_debug\":2,\"cdn\":\"https://pygame-web.github.io/cdn/0.9.3/\",\"autorun\":0,\"PYBUILD\":\"3.12\",\"fb_ar\":1.6,\"fb_width\":\"1280\",\"fb_height\":\"800\",\"pydigits\":\"312\",\"executable\":\"https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js\",\"debug\":false,\"interactive\":false,\"columns\":132,\"lines\":\"42\",\"console\":10,\"fbdev\":false,\"quiet\":false,\"features\":[\"vtx\",\"snd\",\"gui\"]}"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.555,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2391,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.xtermjs ="
+          },
+          {
+            "type": "string",
+            "value": "1"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.644,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config._sdl2 ="
+          },
+          {
+            "type": "string",
+            "value": "canvas"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.671,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.user_canvas ="
+          },
+          {
+            "type": "number",
+            "value": 0,
+            "description": "0"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.692,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.user_canvas_managed ="
+          },
+          {
+            "type": "number",
+            "value": 0,
+            "description": "0"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.717,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.gui_divider ="
+          },
+          {
+            "type": "number",
+            "value": 2,
+            "description": "2"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.734,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.ume_block ="
+          },
+          {
+            "type": "number",
+            "value": 1,
+            "description": "1"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.752,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.can_close ="
+          },
+          {
+            "type": "number",
+            "value": 0,
+            "description": "0"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.768,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.archive ="
+          },
+          {
+            "type": "string",
+            "value": "cartones-mazmorras"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.786,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.gui_debug ="
+          },
+          {
+            "type": "number",
+            "value": 2,
+            "description": "2"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.803,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.cdn ="
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.826,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.autorun ="
+          },
+          {
+            "type": "number",
+            "value": 0,
+            "description": "0"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.845,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.PYBUILD ="
+          },
+          {
+            "type": "string",
+            "value": "3.12"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.864,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.fb_ar ="
+          },
+          {
+            "type": "number",
+            "value": 1.6,
+            "description": "1.6"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.88,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.fb_width ="
+          },
+          {
+            "type": "string",
+            "value": "1280"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.905,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.fb_height ="
+          },
+          {
+            "type": "string",
+            "value": "800"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.923,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.pydigits ="
+          },
+          {
+            "type": "string",
+            "value": "312"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.942,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.executable ="
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.961,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.debug ="
+          },
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180775.98,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.interactive ="
+          },
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.001,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.columns ="
+          },
+          {
+            "type": "number",
+            "value": 132,
+            "description": "132"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.018,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.lines ="
+          },
+          {
+            "type": "string",
+            "value": "42"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.04,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.console ="
+          },
+          {
+            "type": "number",
+            "value": 10,
+            "description": "10"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.058,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.fbdev ="
+          },
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.08,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.quiet ="
+          },
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.104,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "config.features ="
+          },
+          {
+            "type": "object",
+            "subtype": "array",
+            "className": "Array",
+            "description": "Array(3)",
+            "objectId": "4340464553919755883.2.1",
+            "preview": {
+              "type": "object",
+              "subtype": "array",
+              "description": "Array(3)",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "0",
+                  "type": "string",
+                  "value": "vtx"
+                },
+                {
+                  "name": "1",
+                  "type": "string",
+                  "value": "snd"
+                },
+                {
+                  "name": "2",
+                  "type": "string",
+                  "value": "gui"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.12,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2443,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "interpreter="
+          },
+          {
+            "type": "string",
+            "value": "cpython"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.3,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2445,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "orig_argv"
+          },
+          {
+            "type": "object",
+            "subtype": "array",
+            "className": "Array",
+            "description": "Array(1)",
+            "objectId": "4340464553919755883.2.2",
+            "preview": {
+              "type": "object",
+              "subtype": "array",
+              "description": "Array(1)",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "0",
+                  "type": "string",
+                  "value": "auditar=1"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.319,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2446,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "sys.argv: "
+          },
+          {
+            "type": "object",
+            "subtype": "array",
+            "className": "Array",
+            "description": "Array(1)",
+            "objectId": "4340464553919755883.2.3",
+            "preview": {
+              "type": "object",
+              "subtype": "array",
+              "description": "Array(1)",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "0",
+                  "type": "string",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.384,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2447,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "docurl="
+          },
+          {
+            "type": "string",
+            "value": "http://game.itch.zone:8765/?auditar=1"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.449,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2448,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "srcurl="
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/pythons.js"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.472,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2449,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "data-os="
+          },
+          {
+            "type": "string",
+            "value": "vtx,snd,gui"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.495,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2451,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "data-python="
+          },
+          {
+            "type": "string",
+            "value": "python3.12"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.514,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2452,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "script: id="
+          },
+          {
+            "type": "string",
+            "value": "site"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.535,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2453,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "code : "
+          },
+          {
+            "type": "number",
+            "value": 4250,
+            "description": "4250"
+          },
+          {
+            "type": "string",
+            "value": " as site.py"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180776.554,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "auto_conf",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2454,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "auto_start",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2485,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2516,
+              "columnNumber": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "\n\n\n== FLAGS : is_mobile(false) dev=false debug_user=false debug_mobile=false ==\n\n\n\n"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123180873.767,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "onload",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2076,
+              "columnNumber": 12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "Terminal+ImageAddon importing from CDN :"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/../vt/"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181153.158,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "",
+              "scriptId": "8",
+              "url": "https://pygame-web.github.io/cdn/vtx.js",
+              "lineNumber": 18,
+              "columnNumber": 16
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "vtx font: -5%"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181931.743,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "feat_vtx",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 1022,
+              "columnNumber": 16
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "vtx font:"
+          },
+          {
+            "type": "number",
+            "value": 749,
+            "description": "749"
+          },
+          {
+            "type": "string",
+            "value": "/"
+          },
+          {
+            "type": "number",
+            "value": 52,
+            "description": "52"
+          },
+          {
+            "type": "string",
+            "value": "="
+          },
+          {
+            "type": "number",
+            "value": 10,
+            "description": "10"
+          },
+          {
+            "type": "string",
+            "value": " Cols:"
+          },
+          {
+            "type": "number",
+            "value": 132,
+            "description": "132"
+          },
+          {
+            "type": "string",
+            "value": "Cons:"
+          },
+          {
+            "type": "number",
+            "value": 10,
+            "description": "10"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181931.8,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "feat_vtx",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 1027,
+              "columnNumber": 12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "terminal"
+          },
+          {
+            "type": "number",
+            "value": 132,
+            "description": "132"
+          },
+          {
+            "type": "number",
+            "value": 52,
+            "description": "52"
+          },
+          {
+            "type": "object",
+            "className": "Object",
+            "description": "Object",
+            "objectId": "4340464553919755883.2.4",
+            "preview": {
+              "type": "object",
+              "description": "Object",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "url",
+                  "type": "string",
+                  "value": "https://pygame-web.github.io/cdn/0.9.3/xtermjsixel/xterm-addon-image-worker.js"
+                },
+                {
+                  "name": "sixelSupport",
+                  "type": "boolean",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181934.875,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "WasmTerminal",
+              "scriptId": "8",
+              "url": "https://pygame-web.github.io/cdn/vtx.js",
+              "lineNumber": 86,
+              "columnNumber": 24
+            },
+            {
+              "functionName": "feat_vtx",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 1028,
+              "columnNumber": 12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "Auto ume unlocker safari=="
+          },
+          {
+            "type": "boolean",
+            "value": false
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181953.246,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "feat_snd",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 1164,
+              "columnNumber": 20
+            },
+            {
+              "functionName": "onload",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2125,
+              "columnNumber": 12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "TODO: user defined canvas"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181953.64,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "feat_gui",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 638,
+              "columnNumber": 8
+            },
+            {
+              "functionName": "onload",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2129,
+              "columnNumber": 12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "pythons.js: "
+          },
+          {
+            "type": "string",
+            "value": "custom_onload"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181953.763,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "custom_onload",
+              "scriptId": "6",
+              "url": "http://game.itch.zone:8765/?auditar=1",
+              "lineNumber": 403,
+              "columnNumber": 16
+            },
+            {
+              "functionName": "onload",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2180,
+              "columnNumber": 15
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "Loading python interpreter from"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123181954.009,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "onload",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 2222,
+              "columnNumber": 12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "main.js: "
+          },
+          {
+            "type": "string",
+            "value": "locateData: main.data "
+          },
+          {
+            "type": "string",
+            "value": "->"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.data"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123182237.168,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "locateFile",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 480,
+              "columnNumber": 24
+            },
+            {
+              "functionName": "loadPackage",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 1579
+            },
+            {
+              "functionName": "",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 82369
+            },
+            {
+              "functionName": "",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 114199
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "main.js: "
+          },
+          {
+            "type": "string",
+            "value": "locateFile: main.wasm https://pygame-web.github.io/cdn/0.9.3/cpython312/"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123182242.815,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "locateFile",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 483,
+              "columnNumber": 24
+            },
+            {
+              "functionName": "locateFile",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 114443
+            },
+            {
+              "functionName": "findWasmBinary",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 120374
+            },
+            {
+              "functionName": "createWasm",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 122778
+            },
+            {
+              "functionName": "",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 844997
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "VM.prerun:Begin"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123183525.566,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "prerun",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 284,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "callRuntimeCallbacks",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 158174
+            },
+            {
+              "functionName": "preRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 118558
+            },
+            {
+              "functionName": "run",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849331
+            },
+            {
+              "functionName": "runCaller",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 848817
+            },
+            {
+              "functionName": "removeRunDependency",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 119916
+            },
+            {
+              "functionName": "receiveInstance",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 122376
+            },
+            {
+              "functionName": "receiveInstantiationResult",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 122516
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "VM.prerun:End"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123183529.659,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "prerun",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 382,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "callRuntimeCallbacks",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 158174
+            },
+            {
+              "functionName": "preRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 118558
+            },
+            {
+              "functionName": "run",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849331
+            },
+            {
+              "functionName": "runCaller",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 848817
+            },
+            {
+              "functionName": "removeRunDependency",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 119916
+            },
+            {
+              "functionName": "receiveInstance",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 122376
+            },
+            {
+              "functionName": "receiveInstantiationResult",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 122516
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "PyMain: running in main thread, faking onCustomMessage"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123183671.168,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "5068341",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 123919
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$__main_argc_argv",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1875381
+            },
+            {
+              "functionName": "callMain",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849183
+            },
+            {
+              "functionName": "doRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849569
+            },
+            {
+              "functionName": "",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849724
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "error",
+        "args": [
+          {
+            "type": "string",
+            "value": "PyMain: BrowserFS not found"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123183671.29,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "5068341",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 124521
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$__main_argc_argv",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1875381
+            },
+            {
+              "functionName": "callMain",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849183
+            },
+            {
+              "functionName": "doRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849569
+            },
+            {
+              "functionName": "",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849724
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "VM.postrun Begin"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123183899.766,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "postrun",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 387,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "callRuntimeCallbacks",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 158174
+            },
+            {
+              "functionName": "postRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 119122
+            },
+            {
+              "functionName": "doRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849584
+            },
+            {
+              "functionName": "",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849724
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "Maybe RC"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/0.9.3/cpythonrc.py"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123183899.947,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "postrun",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 393,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "callRuntimeCallbacks",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 158174
+            },
+            {
+              "functionName": "postRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 119122
+            },
+            {
+              "functionName": "doRun",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849584
+            },
+            {
+              "functionName": "",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 849724
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "VM.postrun End"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123184243.605,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "postrun",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 402,
+              "columnNumber": 12
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "Begin.cross_file.fetch"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/index-0.9.3-cp312.json"
+          },
+          {
+            "type": "object",
+            "className": "Object",
+            "description": "Object",
+            "objectId": "4340464553919755883.2.5",
+            "preview": {
+              "type": "object",
+              "description": "Object",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "redirect",
+                  "type": "string",
+                  "value": "follow"
+                },
+                {
+                  "name": "credentials",
+                  "type": "string",
+                  "value": "omit"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123185589.743,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "cross_file",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 199,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "5073518",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 128093
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$func244",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1881381
+            },
+            {
+              "functionName": "$func11153",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5643302
+            },
+            {
+              "functionName": "$func9934",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5080752
+            },
+            {
+              "functionName": "$PyObject_Vectorcall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791377
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5690753
+            },
+            {
+              "functionName": "$func9290",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4879542
+            },
+            {
+              "functionName": "$func9312",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4883265
+            },
+            {
+              "functionName": "$PyIter_Send",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4708666
+            },
+            {
+              "functionName": "$func12491",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274856
+            },
+            {
+              "functionName": "$func12488",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274080
+            },
+            {
+              "functionName": "$func12487",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274037
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$func11363",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5851194
+            },
+            {
+              "functionName": "$func9931",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5079847
+            },
+            {
+              "functionName": "$func8906",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791071
+            },
+            {
+              "functionName": "$_PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791850
+            },
+            {
+              "functionName": "$PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791976
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5683376
+            },
+            {
+              "functionName": "$PyEval_EvalCode",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5648573
+            },
+            {
+              "functionName": "$func11968",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117055
+            },
+            {
+              "functionName": "$PyRun_SimpleStringFlags",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117722
+            },
+            {
+              "functionName": "$func184",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1874414
+            },
+            {
+              "functionName": "callUserCallback",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 143888
+            },
+            {
+              "functionName": "runIter",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 145790
+            },
+            {
+              "functionName": "Browser_mainLoop_runner",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 142840
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "cross_file.fetch"
+          },
+          {
+            "type": "number",
+            "value": 200,
+            "description": "200"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123185767.974,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 204,
+              "columnNumber": 24
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "End.cross_file.fetch"
+          },
+          {
+            "type": "string",
+            "value": "/tmp/tmp-1-0"
+          },
+          {
+            "type": "string",
+            "value": "r/w="
+          },
+          {
+            "type": "number",
+            "value": 1451,
+            "description": "1451"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123185770.662,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "cross_file",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 229,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "5073518",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 128093
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$func244",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1881381
+            },
+            {
+              "functionName": "$func11153",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5643302
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5686399
+            },
+            {
+              "functionName": "$func9290",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4879542
+            },
+            {
+              "functionName": "$func9312",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4883265
+            },
+            {
+              "functionName": "$PyIter_Send",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4708666
+            },
+            {
+              "functionName": "$func12491",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274856
+            },
+            {
+              "functionName": "$func12488",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274080
+            },
+            {
+              "functionName": "$func12487",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274037
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$func11363",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5851194
+            },
+            {
+              "functionName": "$func9931",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5079847
+            },
+            {
+              "functionName": "$func8906",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791071
+            },
+            {
+              "functionName": "$_PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791850
+            },
+            {
+              "functionName": "$PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791976
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5683376
+            },
+            {
+              "functionName": "$PyEval_EvalCode",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5648573
+            },
+            {
+              "functionName": "$func11968",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117055
+            },
+            {
+              "functionName": "$PyRun_SimpleStringFlags",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117722
+            },
+            {
+              "functionName": "$func184",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1874414
+            },
+            {
+              "functionName": "callUserCallback",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 143888
+            },
+            {
+              "functionName": "runIter",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 145790
+            },
+            {
+              "functionName": "Browser_mainLoop_runner",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 142840
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "Begin.cross_file.fetch"
+          },
+          {
+            "type": "string",
+            "value": "cartones-mazmorras.apk"
+          },
+          {
+            "type": "object",
+            "className": "Object",
+            "description": "Object",
+            "objectId": "4340464553919755883.2.6",
+            "preview": {
+              "type": "object",
+              "description": "Object",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "redirect",
+                  "type": "string",
+                  "value": "follow"
+                },
+                {
+                  "name": "credentials",
+                  "type": "string",
+                  "value": "omit"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123185795.094,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "cross_file",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 199,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "5073518",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 128093
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$func244",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1881381
+            },
+            {
+              "functionName": "$func11153",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5643302
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5686399
+            },
+            {
+              "functionName": "$func9290",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4879542
+            },
+            {
+              "functionName": "$func9312",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4883265
+            },
+            {
+              "functionName": "$PyIter_Send",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4708666
+            },
+            {
+              "functionName": "$func12491",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274856
+            },
+            {
+              "functionName": "$func12488",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274080
+            },
+            {
+              "functionName": "$func12487",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274037
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$func11363",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5851194
+            },
+            {
+              "functionName": "$func9931",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5079847
+            },
+            {
+              "functionName": "$func8906",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791071
+            },
+            {
+              "functionName": "$_PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791850
+            },
+            {
+              "functionName": "$PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791976
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5683376
+            },
+            {
+              "functionName": "$PyEval_EvalCode",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5648573
+            },
+            {
+              "functionName": "$func11968",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117055
+            },
+            {
+              "functionName": "$PyRun_SimpleStringFlags",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117722
+            },
+            {
+              "functionName": "$func184",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1874414
+            },
+            {
+              "functionName": "callUserCallback",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 143888
+            },
+            {
+              "functionName": "runIter",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 145790
+            },
+            {
+              "functionName": "Browser_mainLoop_runner",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 142840
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "cross_file.fetch"
+          },
+          {
+            "type": "number",
+            "value": 200,
+            "description": "200"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123185798.389,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 204,
+              "columnNumber": 24
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "End.cross_file.fetch"
+          },
+          {
+            "type": "string",
+            "value": "/tmp/tmp-43-1"
+          },
+          {
+            "type": "string",
+            "value": "r/w="
+          },
+          {
+            "type": "number",
+            "value": 103882228,
+            "description": "103882228"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123186152.415,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "cross_file",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 229,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "5073518",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 128093
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$func244",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1881381
+            },
+            {
+              "functionName": "$func11153",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5643302
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5686399
+            },
+            {
+              "functionName": "$func9290",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4879542
+            },
+            {
+              "functionName": "$func9312",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4883265
+            },
+            {
+              "functionName": "$PyIter_Send",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4708666
+            },
+            {
+              "functionName": "$func12491",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274856
+            },
+            {
+              "functionName": "$func12488",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274080
+            },
+            {
+              "functionName": "$func12487",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274037
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$func11363",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5851194
+            },
+            {
+              "functionName": "$func9931",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5079847
+            },
+            {
+              "functionName": "$func8906",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791071
+            },
+            {
+              "functionName": "$_PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791850
+            },
+            {
+              "functionName": "$PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791976
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5683376
+            },
+            {
+              "functionName": "$PyEval_EvalCode",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5648573
+            },
+            {
+              "functionName": "$func11968",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117055
+            },
+            {
+              "functionName": "$PyRun_SimpleStringFlags",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117722
+            },
+            {
+              "functionName": "$func184",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1874414
+            },
+            {
+              "functionName": "callUserCallback",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 143888
+            },
+            {
+              "functionName": "runIter",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 145790
+            },
+            {
+              "functionName": "Browser_mainLoop_runner",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 142840
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "Begin.cross_file.fetch"
+          },
+          {
+            "type": "string",
+            "value": "https://pygame-web.github.io/cdn/cp312/pygame_ce-2.5.7-cp312-cp312-wasm32_bi_emscripten.whl#"
+          },
+          {
+            "type": "object",
+            "className": "Object",
+            "description": "Object",
+            "objectId": "4340464553919755883.2.7",
+            "preview": {
+              "type": "object",
+              "description": "Object",
+              "overflow": false,
+              "properties": [
+                {
+                  "name": "redirect",
+                  "type": "string",
+                  "value": "follow"
+                },
+                {
+                  "name": "credentials",
+                  "type": "string",
+                  "value": "omit"
+                }
+              ]
+            }
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123188576.607,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "cross_file",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 199,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "5073518",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 128093
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$func244",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1881381
+            },
+            {
+              "functionName": "$func11153",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5643302
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5686399
+            },
+            {
+              "functionName": "$func9290",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4879542
+            },
+            {
+              "functionName": "$func9312",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4883265
+            },
+            {
+              "functionName": "$PyIter_Send",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4708666
+            },
+            {
+              "functionName": "$func12491",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274856
+            },
+            {
+              "functionName": "$func12488",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274080
+            },
+            {
+              "functionName": "$func12487",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274037
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$func11363",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5851194
+            },
+            {
+              "functionName": "$func9931",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5079847
+            },
+            {
+              "functionName": "$func8906",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791071
+            },
+            {
+              "functionName": "$_PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791850
+            },
+            {
+              "functionName": "$PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791976
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5683376
+            },
+            {
+              "functionName": "$PyEval_EvalCode",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5648573
+            },
+            {
+              "functionName": "$func11968",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117055
+            },
+            {
+              "functionName": "$PyRun_SimpleStringFlags",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117722
+            },
+            {
+              "functionName": "$func184",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1874414
+            },
+            {
+              "functionName": "callUserCallback",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 143888
+            },
+            {
+              "functionName": "runIter",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 145790
+            },
+            {
+              "functionName": "Browser_mainLoop_runner",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 142840
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "cross_file.fetch"
+          },
+          {
+            "type": "number",
+            "value": 200,
+            "description": "200"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123188802.028,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 204,
+              "columnNumber": 24
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "End.cross_file.fetch"
+          },
+          {
+            "type": "string",
+            "value": "/tmp/tmp-544-2"
+          },
+          {
+            "type": "string",
+            "value": "r/w="
+          },
+          {
+            "type": "number",
+            "value": 1527290,
+            "description": "1527290"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123188925.803,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "cross_file",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 229,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "5073518",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 128093
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$func244",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1881381
+            },
+            {
+              "functionName": "$func11153",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5643302
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5686399
+            },
+            {
+              "functionName": "$func9290",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4879542
+            },
+            {
+              "functionName": "$func9312",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4883265
+            },
+            {
+              "functionName": "$PyIter_Send",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4708666
+            },
+            {
+              "functionName": "$func12491",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274856
+            },
+            {
+              "functionName": "$func12488",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274080
+            },
+            {
+              "functionName": "$func12487",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274037
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$func11363",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5851194
+            },
+            {
+              "functionName": "$func9931",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5079847
+            },
+            {
+              "functionName": "$func8906",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791071
+            },
+            {
+              "functionName": "$_PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791850
+            },
+            {
+              "functionName": "$PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791976
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5683376
+            },
+            {
+              "functionName": "$PyEval_EvalCode",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5648573
+            },
+            {
+              "functionName": "$func11968",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117055
+            },
+            {
+              "functionName": "$PyRun_SimpleStringFlags",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117722
+            },
+            {
+              "functionName": "$func184",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1874414
+            },
+            {
+              "functionName": "callUserCallback",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 143888
+            },
+            {
+              "functionName": "runIter",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 145790
+            },
+            {
+              "functionName": "Browser_mainLoop_runner",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 142840
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "focus set"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123192281.22,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "focus_handler",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 1099,
+              "columnNumber": 16
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "221: DISCARD : focus {'isTrusted': True}"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123192312.751,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "5073921",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 128475
+            },
+            {
+              "functionName": "runEmAsmFunction",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361275
+            },
+            {
+              "functionName": "_emscripten_asm_const_int",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 361338
+            },
+            {
+              "functionName": "$func250",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1881980
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$PyObject_Vectorcall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791359
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5690753
+            },
+            {
+              "functionName": "$func9290",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4879542
+            },
+            {
+              "functionName": "$func9312",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4883265
+            },
+            {
+              "functionName": "$PyIter_Send",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4708666
+            },
+            {
+              "functionName": "$func12491",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274856
+            },
+            {
+              "functionName": "$func12488",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274080
+            },
+            {
+              "functionName": "$func12487",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6274037
+            },
+            {
+              "functionName": "$_PyObject_MakeTpCall",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4789300
+            },
+            {
+              "functionName": "$func11363",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5851194
+            },
+            {
+              "functionName": "$func9931",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5079847
+            },
+            {
+              "functionName": "$func8906",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791071
+            },
+            {
+              "functionName": "$_PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791850
+            },
+            {
+              "functionName": "$PyObject_Call",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 4791976
+            },
+            {
+              "functionName": "$_PyEval_EvalFrameDefault",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5683376
+            },
+            {
+              "functionName": "$PyEval_EvalCode",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 5648573
+            },
+            {
+              "functionName": "$func11968",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117055
+            },
+            {
+              "functionName": "$PyRun_SimpleStringFlags",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 6117722
+            },
+            {
+              "functionName": "$func184",
+              "scriptId": "13",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.wasm",
+              "lineNumber": 0,
+              "columnNumber": 1874414
+            },
+            {
+              "functionName": "callUserCallback",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 143888
+            },
+            {
+              "functionName": "runIter",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 145790
+            },
+            {
+              "functionName": "Browser_mainLoop_runner",
+              "scriptId": "12",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/cpython312/main.js",
+              "lineNumber": 0,
+              "columnNumber": 142840
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "Unsupported device pixel ratio"
+          },
+          {
+            "type": "number",
+            "value": 1.25,
+            "description": "1.25"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123225718.445,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "window_canvas_adjust",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 697,
+              "columnNumber": 20
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "warning",
+        "args": [
+          {
+            "type": "string",
+            "value": "Unsupported device pixel ratio"
+          },
+          {
+            "type": "number",
+            "value": 2,
+            "description": "2"
+          }
+        ],
+        "executionContextId": 2,
+        "timestamp": 1792123228772.928,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "window_canvas_adjust",
+              "scriptId": "7",
+              "url": "https://pygame-web.github.io/cdn/0.9.3/pythons.js",
+              "lineNumber": 697,
+              "columnNumber": 20
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "perf": {
+    "frames": 1401,
+    "mean": 16.594860813702375,
+    "p95": 20.10000000000582,
+    "max": 115,
+    "longTasks": [
+      116,
+      60,
+      80
+    ],
+    "music": {
+      "time": 11.902601,
+      "paused": false,
+      "ready": 4,
+      "error": null
+    }
+  },
+  "musicBefore": {
+    "time": 12.364184,
+    "paused": false,
+    "ready": 4,
+    "error": null
+  },
+  "metricBefore": {
+    "metrics": [
+      {
+        "name": "Timestamp",
+        "value": 70793.700073
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 2
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 1
+      },
+      {
+        "name": "Frames",
+        "value": 2
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 82
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 22
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 328
+      },
+      {
+        "name": "Resources",
+        "value": 7
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 13
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 1
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 1
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 0
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 647
+      },
+      {
+        "name": "LayoutCount",
+        "value": 0
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 0
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.000254
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 0.016538
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0
+      },
+      {
+        "name": "TaskDuration",
+        "value": 0.01705
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.000258
+      },
+      {
+        "name": "ThreadTime",
+        "value": 0.017076
+      },
+      {
+        "name": "ProcessTime",
+        "value": 51.589824
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 29199884
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 50442240
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 70741.469101
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 70741.457
+      },
+      {
+        "name": "NavigationStart",
+        "value": 70740.867747
+      }
+    ]
+  },
+  "metricAfter": {
+    "metrics": [
+      {
+        "name": "Timestamp",
+        "value": 70816.951602
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 2
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 1
+      },
+      {
+        "name": "Frames",
+        "value": 2
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 82
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 22
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 332
+      },
+      {
+        "name": "Resources",
+        "value": 7
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 15
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 1
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 0
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 1
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 0
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 650
+      },
+      {
+        "name": "LayoutCount",
+        "value": 0
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 0
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.001166
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 22.9654
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0
+      },
+      {
+        "name": "TaskDuration",
+        "value": 23.243735
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.277169
+      },
+      {
+        "name": "ThreadTime",
+        "value": 23.192817
+      },
+      {
+        "name": "ProcessTime",
+        "value": 76.000944
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 21711912
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 52371456
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 70741.469101
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 70741.457
+      },
+      {
+        "name": "NavigationStart",
+        "value": 70740.867747
+      }
+    ]
+  },
+  "finish": {
+    "music": {
+      "time": 10.243711,
+      "paused": false,
+      "ready": 4,
+      "error": null
+    },
+    "startupLong": [
+      105,
+      350,
+      1339,
+      50,
+      90,
+      251,
+      309,
+      165,
+      613,
+      50,
+      51,
+      50,
+      55,
+      51,
+      53,
+      51,
+      52,
+      51,
+      52,
+      54,
+      53,
+      51,
+      52,
+      50,
+      54,
+      50,
+      51,
+      51,
+      51,
+      116,
+      60,
+      80,
+      50,
+      54
+    ]
+  },
+  "menuDiag": {
+    "cuadros": 2730,
+    "fps": 62.480474851608946,
+    "p95_ms": 19.300000000001205,
+    "max_ms": 20.199999999995555,
+    "periodos": [
+      16.100000999998088,
+      15.599998999995535,
+      16.40000100000094,
+      19.50000000000074,
+      16.70000000000016,
+      12.599999000002526,
+      16.100000000001558,
+      14.800000999997565,
+      16.59999900000031,
+      15.70000099999902,
+      18.599999000002754,
+      14.199999999995327,
+      18.400001000003385,
+      13.199999000001128,
+      15.999999999998238,
+      16.30000099999762,
+      16.099999000005027,
+      17.40000099999861,
+      14.699999000001185,
+      15.200000000000102,
+      15.900000999998554,
+      16.500000000000625,
+      16.19999999999777,
+      15.699998999998854,
+      15.500000000002956,
+      17.19999999999544,
+      19.000000000005457,
+      13.999999999995794,
+      15.000000000000568,
+      15.799999999998704,
+      16.70000000000016,
+      16.000000000005343,
+      16.900000999996223,
+      17.000000000003013,
+      14.199999999995327,
+      15.199999000003572,
+      15.900000000002024,
+      15.70000099999902,
+      16.59999900000031,
+      15.699999999995384,
+      17.099999999999227,
+      14.70000000000482,
+      20.199999999995555,
+      12.000000000000455,
+      15.900000999998554,
+      15.899999000005494,
+      17.100000999995757,
+      17.399998999998445,
+      14.400001000005602,
+      19.50000000000074,
+      12.999999999998124,
+      15.200000000000102,
+      16.399999000000776,
+      16.70000000000016,
+      15.200000999996632,
+      16.099998999997922,
+      15.70000000000249,
+      17.000000000003013,
+      15.49999999999585,
+      15.900000999998554,
+      15.899999000005494,
+      16.600001000000475,
+      15.099999000000253,
+      15.900000999998554,
+      15.599998999995535,
+      15.700001000006125,
+      16.299998999997456,
+      16.200001000001407,
+      15.200000000000102,
+      15.799999999998704,
+      17.69999999999783,
+      16.30000000000109,
+      15.399999000003106,
+      15.200000000000102,
+      15.999999999998238,
+      15.400000999996166,
+      15.799999000002174,
+      19.60000000000406,
+      16.399999999997306,
+      14.6000000000015,
+      14.499999999998181,
+      15.200000000000102,
+      16.40000100000094,
+      16.099998999997922,
+      15.900000999998554,
+      15.500000000002956,
+      20.099998999995705,
+      14.300000000005753,
+      14.199999999995327,
+      15.80000000000581,
+      15.899999999994918,
+      16.200001000001407,
+      15.899998999998388,
+      15.70000000000249,
+      18.700000000002603,
+      14.499999999998181,
+      15.200000999996632,
+      15.899998999998388,
+      15.80000100000234,
+      15.699998999998854,
+      16.000000000005343,
+      17.600000999998144,
+      15.799999000002174,
+      15.099999999996783,
+      15.80000100000234,
+      15.799999999998704,
+      15.699999999995384,
+      16.19999900000124,
+      19.899999999999807,
+      14.70000100000135,
+      13.89999900000305,
+      16.19999999999777,
+      15.999999999998238,
+      16.100001000005193,
+      15.899998999998388,
+      15.799999999998704,
+      17.600000999998144,
+      14.099999000002583,
+      16.19999999999777,
+      15.900000999998554,
+      16.099999000005027,
+      16.70000099999669,
+      15.099999000000253,
+      15.900000999998554,
+      18.50000000000307,
+      14.499999999998181,
+      15.299998999999787,
+      15.999999999998238,
+      16.200001000001407,
+      15.59999900000264,
+      19.50000000000074,
+      16.19999999999777,
+      13.600000000003831,
+      15.199999999992997,
+      15.80000000000581,
+      16.30000099999762,
+      17.29999999999876,
+      14.499999999998181,
+      18.50000000000307,
+      13.89999900000305,
+      15.100001000000418,
+      16.699999999993054,
+      16.500000000000625,
+      14.800000000001035,
+      16.099999000005027,
+      15.699999999995384,
+      17.29999999999876,
+      15.000000000000568,
+      16.500000000000625,
+      15.70000000000249,
+      17.200000999999077,
+      16.19999999999777,
+      19.300000000001205,
+      12.299998999999673,
+      18.99999999999835,
+      16.500000000000625,
+      15.200001000003738,
+      13.79999899999973,
+      15.70000099999902,
+      15.799999000002174,
+      19.799999999996487,
+      12.500000000002842,
+      17.900001000000998,
+      13.599999000000196,
+      15.900000999998554,
+      18.799998999995182,
+      14.200001000006068,
+      15.200000000000102,
+      19.2999999999941,
+      16.59999900000031,
+      12.400001000003158,
+      16.099998999997922,
+      15.799999999998704,
+      15.900000000002024,
+      15.59999999999917,
+      15.900000000002024,
+      16.200001000001407,
+      19.199999999997885,
+      12.899998999998274,
+      15.70000000000249
+    ],
+    "puntero": [
+      1200,
+      749
+    ],
+    "evento": {
+      "tipo": 1024,
+      "pos": [
+        1200,
+        749
+      ]
+    },
+    "ventana": [
+      1280,
+      800
+    ],
+    "superficie": [
+      1280,
+      800
+    ],
+    "contexto": "menú principal"
+  },
+  "duelDiag": {
+    "cuadros": 3495,
+    "fps": 61.68397246896391,
+    "p95_ms": 21.09999900000048,
+    "max_ms": 22.69999899999675,
+    "periodos": [
+      16.299998999997456,
+      16.60000000001105,
+      15.199999999992997,
+      16.49999999999352,
+      19.300000000001205,
+      12.90000000000191,
+      21.300000000010755,
+      12.199999999992883,
+      15.70000099999902,
+      15.899998999998388,
+      15.6000009999957,
+      15.899999000012599,
+      19.399999999990314,
+      14.700001000008456,
+      14.599998999997865,
+      14.79999999999393,
+      16.19999999999777,
+      16.70000000000016,
+      15.400001000003272,
+      22.69999899999675,
+      18.100001000007637,
+      17.200000000002547,
+      12.099999000000139,
+      15.799999999998704,
+      16.19999999999777,
+      14.79999999999393,
+      17.800000000008254,
+      17.399999999994975,
+      16.80000000000348,
+      12.79999999999859,
+      15.6000009999957,
+      16.299998999997456,
+      15.70000100001323,
+      15.499999999988745,
+      19.39999900000089,
+      19.1000009999982,
+      12.700000000009481,
+      18.399998999996114,
+      12.400001000003158,
+      16.70000000000016,
+      15.799999999998704,
+      15.999999999991132,
+      21.799999000009507,
+      17.40000099999861,
+      12.099999000000139,
+      16.000000000005343,
+      16.200000999987196,
+      15.59999900000264,
+      17.700000000004934,
+      19.40000099999395,
+      17.800000000008254,
+      13.099998999990703,
+      15.200000000007208,
+      15.70000099999902,
+      15.899998999998388,
+      15.100001000007524,
+      22.099998999991044,
+      12.10000100000741,
+      17.19999899999891,
+      15.000000000000568,
+      14.899999999997249,
+      15.500000000002956,
+      16.49999999999352,
+      15.70000099999902,
+      21.29999900000712,
+      17.600000000001614,
+      11.699999999990496,
+      16.80000000000348,
+      15.699999999995384,
+      15.400001000003272,
+      16.399999000000776,
+      18.20000000000732,
+      17.99999999998647,
+      12.600001000009797,
+      15.899998999998388,
+      15.299999999996317,
+      16.19999999999777,
+      15.500000000002956,
+      19.800000000003593,
+      13.199999999997658,
+      20.100001000002976,
+      11.699999000001071,
+      15.300000999999952,
+      17.59999899999798,
+      14.900001000000884,
+      16.399999000000776,
+      18.000000000000682,
+      14.900001000000884,
+      15.399998999996,
+      15.500000000002956,
+      16.3999999999902,
+      15.70000099999902,
+      16.000000000005343,
+      22.599999000007642,
+      18.000000000000682,
+      14.600000999990925,
+      13.69999899999641,
+      15.600001000009911,
+      15.699999999995384,
+      15.899998999998388,
+      16.900000999996223,
+      16.200000000011983,
+      21.09999900000048,
+      11.90000099998656,
+      17.000000000010118,
+      14.79999999999393,
+      16.999999999995907,
+      15.899999000012599,
+      16.999999999995907,
+      20.800000999997792,
+      12.199999000003459,
+      15.999999999991132,
+      15.80000100000234,
+      15.799999999998704,
+      16.70000000000016,
+      15.59999900000264,
+      20.700001000008683,
+      11.599998999997752,
+      16.600001000000475,
+      15.299999999996317,
+      16.799998999999843,
+      15.500000000002956,
+      15.400001000003272,
+      18.199998999989475,
+      20.000000000010232,
+      13.899999999992474,
+      13.300000000000978,
+      16.100000999998088,
+      16.199999000008347,
+      15.199999999992997,
+      21.000000000000796,
+      18.19999999999311,
+      15.70000100001323,
+      11.79999899999018,
+      17.900001000000998,
+      14.199998999998797,
+      15.600001000009911,
+      16.099998999990817,
+      21.900001000005886,
+      18.000000000000682,
+      11.699999999990496,
+      15.099999000000253,
+      16.30000000000109,
+      16.80000000000348,
+      16.19999999999777,
+      18.50000000000307,
+      13.100000999997974,
+      16.699998999996524,
+      16.50000000000773,
+      15.199999999992997,
+      15.500000000002956,
+      16.600001000000475,
+      19.500000000007844,
+      14.699998999986974,
+      12.90000000000191,
+      16.900001000010434,
+      16.199998999994136,
+      15.300000999999952,
+      16.199998999994136,
+      18.100001000007637,
+      18.699999999995498,
+      13.69999899999641,
+      14.200000000002433,
+      15.600001000009911,
+      16.799999999989268,
+      14.70000000000482,
+      16.30000000000109,
+      16.49999999999352,
+      20.799999000004732,
+      17.300000000005866,
+      12.000000000000455,
+      16.600001000000475,
+      16.099998999990817,
+      14.499999999998181,
+      16.80000000000348,
+      22.30000000000132,
+      15.699999999995384,
+      12.10000100000741,
+      15.899998999998388,
+      15.500000000002956
+    ],
+    "puntero": [
+      450,
+      303
+    ],
+    "evento": {
+      "tipo": 1026,
+      "pos": [
+        450,
+        303
+      ]
+    },
+    "ventana": [
+      1280,
+      800
+    ],
+    "superficie": [
+      1280,
+      800
+    ],
+    "contexto": "duelo rápido contra Humanos"
+  }
+}
