@@ -1,0 +1,14 @@
+{
+  "fase": "despues",
+  "base": "efaac75",
+  "casos": 540,
+  "escalas": [
+    1,
+    1.25,
+    1.6
+  ],
+  "problemas": [],
+  "imagenes_protegidas": 1221,
+  "imagenes_modificadas": [],
+  "limite": "Estados controlados; no es una campaña interactiva completa."
+}

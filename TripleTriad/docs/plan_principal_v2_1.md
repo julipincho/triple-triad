@@ -25,6 +25,8 @@ Primera pasada de los apartados 1, 2 y 3 implementada en el bloque 01, ampliada 
 
 ## Orden de trabajo
 
+El [bloque 05](informe_v2_1_bloque_05.md) continúa la legibilidad del apartado 3: resultado y pausa con texto ampliado, comprobación del último efecto del rival antes de derrota y repetición de puntero/arrastre en Chrome. La campaña completa continúa pendiente; no dar por cerrados los primeros tres apartados.
+
 Empezar por los frentes 3, 2 y 4: claridad de jugadas, ritmo inicial y personalidad de rivales. Continuar con dificultad y elecciones (5, 9, 6), después continuidad narrativa (1, 7, 8, 10, 11). Revisar redacción (12) durante cada pasada y al cierre.
 
 Antes de modificar cada frente, revisar el comportamiento o texto actual y registrar los problemas observados. Evitar cambios de balance o ritmo basados únicamente en supuestos. Comprobar los recorridos afectados y ejecutar las pruebas pertinentes.

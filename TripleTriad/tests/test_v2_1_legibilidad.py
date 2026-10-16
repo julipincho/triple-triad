@@ -177,6 +177,56 @@ class TestLecturaDeJugada(unittest.TestCase):
         self.assertEqual(game.sacudida, 0)
         self.assertEqual(game.particulas, [])
 
+    def test_resultado_ampliado_conserva_frase_y_separa_lineas(self):
+        game = self.juego()
+        game.rival = {'nombre': 'Guardián de la Fortaleza'}
+        game.comentario = 'No podía abandonar a mi gente. Si volvés a intentarlo, acá te espero.'
+        original = ui.escala_texto()
+        try:
+            for scale in (1, 1.25, 1.6):
+                ui.fijar_escala_texto(scale)
+                box, rows = game._contenido_resultado(103)
+                self.assertTrue(pygame.Rect(0, 0, 1280, 800).contains(box))
+                joined = ' '.join(row[0] for row in rows)
+                self.assertIn(game.comentario, joined)
+                previous_bottom = 0
+                for text, size, color, y in rows:
+                    rect = pygame.Rect(0, 0, ui.ancho_texto(text, size), ui.alto_texto(text, size))
+                    rect.center = (box.centerx, box.top + y)
+                    self.assertTrue(box.inflate(-16, -16).contains(rect))
+                    self.assertGreaterEqual(rect.top, previous_bottom + 4)
+                    previous_bottom = rect.bottom
+        finally:
+            ui.fijar_escala_texto(original)
+
+    def test_boton_abandonar_ampliado_coincide_con_area_de_clic(self):
+        original = ui.escala_texto()
+        try:
+            ui.fijar_escala_texto(1.6)
+            rect = partida._rect_abandonar()
+            self.assertGreater(rect.width, ui.ancho_texto('ABANDONAR DUELO', 11))
+            self.assertTrue(partida._pausa_clic(None, (rect.right - 2, rect.centery)))
+            self.assertFalse(partida._pausa_clic(None, (rect.right + 2, rect.centery)))
+        finally:
+            ui.fijar_escala_texto(original)
+
+    def test_ultimo_same_del_rival_antes_de_derrota(self):
+        game = self.juego()
+        game.board = [[Carta('Reserva', 9, 9, 9, 9, dueno=CPU, bando='orco')
+                       for _ in range(3)] for _ in range(3)]
+        game.board[1][1] = None
+        game.board[0][1] = Carta('Apoyo', 1, 5, 1, 1, dueno=CPU, bando='orco')
+        game.board[1][2] = Carta('Objetivo', 1, 1, 1, 3, dueno=USUARIO, bando='humano')
+        game.mano_u = []
+        game.mano_c = [Carta('Ataque', 5, 1, 3, 1, dueno=CPU, bando='orco')]
+        with patch.object(game, '_elegir_jugada_cpu', return_value=(0, 1, 1)), \
+             patch('partida.time.time', return_value=100):
+            game._jugar_cpu()
+        self.assertEqual(game.efecto[0], 'SAME')
+        self.assertTrue(game.fin)
+        self.assertEqual(game.ganador, CPU)
+        self.assertEqual(game.tiempo_fin, 102)
+
 
 if __name__ == '__main__':
     unittest.main()

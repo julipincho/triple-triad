@@ -1,0 +1,1819 @@
+{
+  "fase": "antes",
+  "base": "efaac75",
+  "casos": 540,
+  "escalas": [
+    1,
+    1.25,
+    1.6
+  ],
+  "problemas": [
+    {
+      "caso": "humano_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_senda_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_senda_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_senda_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_trono_T_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_trono_C_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_trono_None_1.25",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "humano_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "orco_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "goblin_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lobo_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "vampiro_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "dragon_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "elfo_nocturno_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_pantera_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_senda_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_senda_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_senda_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_trono_T_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_trono_C_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "hombre_lagarto_trono_None_1.6",
+      "problema": "fuera del panel",
+      "texto": "Capturas: 12    Cartas: 5    Cadena maxima: 4"
+    },
+    {
+      "caso": "pausa_1.6",
+      "problema": "texto fuera del boton"
+    }
+  ],
+  "imagenes_protegidas": 1221,
+  "imagenes_modificadas": [],
+  "limite": "Estados controlados; no es una campaña interactiva completa."
+}

@@ -1302,7 +1302,7 @@ class Juego:
     def _dibujar_resultado(self, screen, ahora):
         k = min(1.0, (ahora - self.tiempo_fin) / 0.5)
         screen.blit(ui._capa_negra(int(170 * k)), (0, 0))
-        caja = pygame.Rect(ANCHO // 2 - 230, ALTO // 2 - 140, 460, 280)
+        caja, filas = self._contenido_resultado(ahora)
         sombra = ui.superficie(
             ("caja_sombra", caja.w, caja.h),
             lambda: _caja_llena(caja.w, caja.h, (0, 0, 0, 150)),
@@ -1314,6 +1314,25 @@ class Juego:
         )
         screen.blit(relleno, caja.topleft)
         pygame.draw.rect(screen, DORADO, caja, 3, border_radius=10)
+        entrada = ease(min(1.0, (ahora - self.tiempo_fin) / 0.35))
+        for indice, (cadena, tam, color, y) in enumerate(filas):
+            # Reservar siempre la altura final del título evita saltos al entrar.
+            if indice == 0:
+                tam = int(16 + 8 * entrada)
+            texto(screen, cadena, tam, color, centro=(caja.centerx, caja.top + y))
+
+    def _contenido_resultado(self, ahora):
+        """Distribuye líneas completas según la fuente y la escala de lectura."""
+        ancho = max(460, min(880, round(460 * ui.escala_texto())))
+        filas, y = [], 24
+
+        def bloque(cadena, tam, color, separacion=14):
+            nonlocal y
+            for linea in envolver(cadena, tam, ancho - 48):
+                alto = alto_texto(linea, tam)
+                filas.append((linea, tam, color, y + alto // 2))
+                y += alto + 6
+            y += separacion - 6
 
         if self.ganador == USUARIO:
             titulo, color = "VICTORIA", VERDE
@@ -1321,24 +1340,30 @@ class Juego:
             titulo, color = "DERROTA", ROJO
         else:
             titulo, color = "EMPATE", DORADO
-        # entrada animada del cartel
-        entrada = ease(min(1.0, (ahora - self.tiempo_fin) / 0.35))
-        texto(screen, titulo, int(16 + 8 * entrada), color, centro=(ANCHO // 2, caja.y + 42))
+        bloque(titulo, 24, color)
         t, c = contar(self.board)
-        texto(screen, f"{t} - {c}", 26, TEXTO_ON, centro=(ANCHO // 2, caja.y + 92))
-        texto(screen,
-              f"Capturas: {self.capturas}    Cartas: {self.jugadas}    Cadena maxima: {self.cadena_max}",
-              8, TEXTO_TENUE, centro=(ANCHO // 2, caja.y + 128))
+        bloque(f"{t} - {c}", 26, TEXTO_ON)
+        bloque(f"Capturas: {self.capturas}    Cartas: {self.jugadas}    Cadena máxima: {self.cadena_max}",
+               8, TEXTO_TENUE)
         if self.rival:
-            nombre = self.rival.get("nombre", facciones.nombre(self.bando_cpu))
-            texto(screen, nombre, 9, facciones.acento(self.bando_cpu), centro=(ANCHO // 2, caja.y + 166))
+            bloque(self.rival.get("nombre", facciones.nombre(self.bando_cpu)),
+                   9, facciones.acento(self.bando_cpu), 8)
             if self.comentario:
-                texto(screen, self.comentario, 8, TEXTO, centro=(ANCHO // 2, caja.y + 190))
+                bloque(self.comentario, 8, TEXTO)
         if now_clickable(ahora, self.tiempo_fin):
-            texto(screen, "ENTER: continuar / L: ver jugadas", 8, DORADO,
-                  centro=(ANCHO // 2, caja.y + 244))
+            indicacion, color = "Clic o ENTER: continuar / L: ver jugadas", DORADO
         else:
-            texto(screen, ". . .", 9, con_alpha(DORADO, 90), centro=(ANCHO // 2, caja.y + 244))
+            indicacion, color = ". . .", con_alpha(DORADO, 90)
+        # La indicación definitiva reserva su espacio incluso durante la entrada.
+        lineas = envolver("Clic o ENTER: continuar / L: ver jugadas", 8, ancho - 48)
+        alto_indicacion = sum(alto_texto(linea, 8) + 6 for linea in lineas)
+        inicio = y
+        bloque(indicacion, 8, color, 0)
+        alto = inicio + alto_indicacion + 24
+        caja = pygame.Rect(0, 0, ancho, alto)
+        caja.center = (ANCHO // 2, ALTO // 2)
+        return caja, filas
+
 
 
 def now_clickable(ahora, t0):
@@ -1475,8 +1500,13 @@ async def partida(screen, clock, juego, test_mode=False, guia=None):
 
 def _pausa_clic(screen, pos):
     """True si se ha pulsado 'Salir' en el menu de pausa."""
-    rect = pygame.Rect(ANCHO // 2 - 130, ALTO // 2 + 30, 260, 44)
-    return rect.collidepoint(pos)
+    return _rect_abandonar().collidepoint(pos)
+
+
+def _rect_abandonar():
+    ancho = max(260, ancho_texto("ABANDONAR DUELO", 11) + 48)
+    alto = max(44, alto_texto("ABANDONAR DUELO", 11) + 24)
+    return pygame.Rect(ANCHO // 2 - ancho // 2, ALTO // 2 + 30, ancho, alto)
 
 
 def _dibujar_pausa(screen, juego):
@@ -1486,6 +1516,6 @@ def _dibujar_pausa(screen, juego):
     screen.blit(capa, (0, 0))
     texto(screen, "PAUSA", 22, DORADO, centro=(ANCHO // 2, ALTO // 2 - 60))
     texto(screen, "clic o ESC para continuar", 10, TEXTO, centro=(ANCHO // 2, ALTO // 2))
-    rect = pygame.Rect(ANCHO // 2 - 130, ALTO // 2 + 30, 260, 44)
+    rect = _rect_abandonar()
     panel(screen, rect, (24, 24, 34, 230), ROJO, radio=8)
     texto(screen, "ABANDONAR DUELO", 11, TEXTO_ON, centro=(rect.centerx, rect.centery))
