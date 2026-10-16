@@ -1,0 +1,11 @@
+{
+  "apk_sha256": "5daef0d1d16508c4a4fe4767550902f5f5f277cc0f14c21fbb6106e9aca19d86",
+  "partida_actual": true,
+  "fixture_exportada": false,
+  "tests": 1091,
+  "tests_exit": 0,
+  "web_efectos_exit": 0,
+  "web_puntero_exit": 0,
+  "fps_menu": 62.526052500164596,
+  "fps_duelo": 62.4089868724746
+}

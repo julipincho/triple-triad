@@ -1057,8 +1057,7 @@ class Juego:
         screen.blit(self.avatar_jugador, jugador)
         pygame.draw.rect(screen, ui.FOCO, jugador, 2)
         nombre_jugador = self.info.get("nombre_jugador") or "Tú"
-        for i, linea in enumerate(envolver(nombre_jugador, 8, 112)):
-            texto(screen, linea, 8, TEXTO, centro=(jugador.centerx, 760 + i * 14))
+        self._dibujar_nombre_avatar(screen, nombre_jugador, jugador.centerx, 756)
         if self.avatar is None:
             return
         x, y = ANCHO - 116, 132
@@ -1067,20 +1066,34 @@ class Juego:
         pygame.draw.rect(screen, (12, 12, 20), (x, y, 96, 96), 1)
         # nombre del rival
         nombre = self.rival.get("nombre") if self.rival else facciones.nombre(self.bando_cpu)
+        fin_nombre = y + 106
         if nombre:
-            texto(screen, nombre, 8, TEXTO, centro=(x + 48, y + 106))
-        # bocadillo: encima del avatar, para no taparlo.
+            fin_nombre = self._dibujar_nombre_avatar(screen, nombre, x + 48, y + 100)
+        # El bocadillo ocupa la columna libre debajo del nombre. Encima del
+        # retrato, las frases ampliadas podían invadir la barra del marcador.
         # Al terminar el duelo lo muestra el cartel de resultado, no aqui.
         if self.comentario and not self.fin and ahora - self.comentario_t0 < 3.6:
-            lineas = envolver(self.comentario, 8, 230)[:3]
+            lineas = envolver(self.comentario, 8, 260)
             ancho = max(70, max(ancho_texto(l, 8) for l in lineas) + 20)
-            alto = len(lineas) * 16 + 14
-            caja = pygame.Rect(min(x + 96 - ancho, ANCHO - ancho - 10), y - alto - 10, ancho, alto)
+            altos = [alto_texto(linea, 8) for linea in lineas]
+            alto = sum(altos) + 6 * (len(lineas) - 1) + 20
+            caja = pygame.Rect(ANCHO - ancho - 20, fin_nombre + 16, ancho, alto)
             panel(screen, caja, (12, 12, 20, 230), DORADO, radio=6, grosor=1)
-            ly = caja.y + 7
-            for linea in lineas:
+            ly = caja.y + 10
+            for linea, alto_linea in zip(lineas, altos):
                 texto(screen, linea, 8, TEXTO_ON, x=caja.x + 10, y=ly)
-                ly += 16
+                ly += alto_linea + 6
+
+    def _dibujar_nombre_avatar(self, screen, nombre, centro, y):
+        """Conserva el nombre completo dentro de la columna derecha."""
+        lineas = envolver(nombre, 8, 240)
+        ancho = max(ancho_texto(linea, 8) for linea in lineas)
+        centro = min(centro, ANCHO - 20 - (ancho + 1) // 2)
+        for linea in lineas:
+            alto = alto_texto(linea, 8)
+            texto(screen, linea, 8, TEXTO, centro=(centro, y + alto // 2))
+            y += alto + 6
+        return y - 6
 
     def _dibujar_mano(self, screen):
         mouse = pygame.mouse.get_pos()

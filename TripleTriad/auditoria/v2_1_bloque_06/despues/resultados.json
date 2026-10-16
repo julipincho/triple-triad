@@ -1,0 +1,17 @@
+{
+  "base": "1b22063",
+  "fase": "despues",
+  "casos": 1770,
+  "problemas": [],
+  "capturas": [
+    "tutorial_entrada_1.0.png",
+    "humano_aldea_1_asalto_entrada_1.0.png",
+    "tutorial_entrada_1.25.png",
+    "humano_aldea_1_asalto_entrada_1.25.png",
+    "tutorial_entrada_1.6.png",
+    "humano_aldea_1_asalto_entrada_1.6.png"
+  ],
+  "imagenes_protegidas": 1221,
+  "imagenes_modificadas": [],
+  "limite": "Estados de HUD controlados, no campañas completas."
+}

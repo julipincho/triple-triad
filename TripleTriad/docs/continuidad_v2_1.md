@@ -95,17 +95,25 @@ Ver [informe y auditoría](informe_v2_1_bloque_05.md). `partida.py` envuelve el 
 
 La herramienta nativa `tools/auditar_v2_1_bloque_05.py antes` sí carga automáticamente `partida.py` de `efaac75`. Los scripts web del bloque 05 usan el staging `v2_1_auditoria` actual y deben ejecutarse secuencialmente; no seleccionan automáticamente una revisión anterior. No se jugaron las campañas completas en este bloque. La captura de resultado web con nombre largo de prueba muestra además un pendiente fuera del panel: la etiqueta del avatar rival puede desbordar a la derecha. Medir nombres reales antes de corregir ese HUD.
 
-## Próximo bloque recomendado (06)
+## Bloque 06: nombres y bocadillos del duelo
+
+Ver [informe y auditoría](informe_v2_1_bloque_06.md). Se subieron primero los cinco commits pendientes hasta `1b22063` a `origin/v2.1`. `partida.py` envuelve nombres junto a los avatares con márgenes de pantalla e interlineado real. El bocadillo ocupa la columna libre debajo del nombre, calcula su altura y conserva todas las líneas. No mover el arte ni volver al recorte de tres líneas. La duración actual de 3,6 segundos se conserva: evaluar lectura en uso antes de ajustarla.
+
+Auditoría nativa: 1770 estados, 1534 incidencias anteriores frente a cero posteriores; incluye datos de tutorial, dos ramas, revancha 0/1 y minicampañas. No equivale a jugar esos recorridos. La herramienta `tools/auditar_v2_1_bloque_06.py antes` carga `partida.py` de `1b22063`. Evidencias de Chrome y suite en `auditoria/v2_1_bloque_06`; conservar las de bloques anteriores.
+
+## Próximo bloque recomendado (07)
+
+La suite del bloque 06 pasó con 1091 pruebas. Chrome verificó el HUD junto a los retratos a tres escalas y los efectos; el resultado estático se midió en 62,50 FPS. La captura del HUD usa manos por defecto de 25 cartas, no una campaña jugada. El nombre máximo de prueba expone un pendiente en otra zona: la etiqueta del jugador en la barra superior puede tocar el marcador. Medir y corregir esa barra por separado si se trabaja en ella.
 
 1. Realizar una pasada interactiva de ambas rutas de campaña, con datos temporales, y cubrir también `revancha=1`. El bloque 02 comprobó transiciones simuladas; el 04 jugó un duelo rápido y casos controlados, no la campaña completa.
 2. Leer el prólogo condensado en el flujo real y evaluar sus pausas y la transición al editor. Las capturas del bloque 03 muestran el texto completo, sin simular el tiempo de lectura.
-3. Si se modifica presentación o entrada, reconstruir `build/v2_1_auditoria` y repetir las pruebas de Chrome del bloque 04. Preservar las evidencias ya cerradas; guardar resultados nuevos en la carpeta del bloque 05.
-4. Comprobar minicampañas y el HUD de los avatares a escalas ampliadas. El último efecto del rival seguido de derrota y la pausa/resultado al 125 % y 160 % ya se comprobaron en el bloque 05. La etiqueta larga bajo el rival necesita medición de nombres reales y ajuste de envoltura/márgenes; revisar también el interlineado del bocadillo sin modificar el arte.
+3. Si se modifica presentación o entrada, reconstruir `build/v2_1_auditoria` y repetir las pruebas de Chrome del bloque 06. Preservar las evidencias ya cerradas; guardar resultados nuevos en la carpeta del bloque 07.
+4. Comprobar minicampañas en uso. El último efecto del rival seguido de derrota y la pausa/resultado ampliados se comprobaron en el bloque 05. El bloque 06 corrige nombres y bocadillos del HUD, con datos reales a tres escalas. Evaluar en el flujo jugado si los 3,6 segundos existentes permiten leer los comentarios completos; no confundir los estados controlados con esa evaluación.
 5. Antes de una entrega 2.1, preparar nuevos paquetes, validar Windows y probar la página de itch.io después de subir el ZIP autorizado. No sobrescribir ni atribuir a 2.1 los resultados de la entrega estable 2.0.
 
 Atención al empaquetar: `tools/empaquetar_release_2_0.py` selecciona el staging R2 de 2.0, no `v2_1_auditoria`. No usarlo para una entrega 2.1 sin adaptar explícitamente rutas y versionado. Los títulos del preparador, `version.py`, `version_info.txt` y el ejecutable se deben revisar al preparar esa entrega; no basta con renombrar el ZIP.
 
-Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_06.md` y enlazarlo desde aquí y desde el plan.
+Después de esa validación, avanzar al apartado 4 (personalidad de los rivales) sin mezclar cambios de balance con correcciones de lectura. Guardar el siguiente informe como `docs/informe_v2_1_bloque_07.md` y enlazarlo desde aquí y desde el plan.
 
 Para el navegador hay referencias de pruebas reales en `auditoria/web_60fps_20261016/browser_check.mjs` e `iframe_check.mjs` (Node y Chrome mediante CDP). Esos scripts apuntan al build antiguo `release_2_0_web_r2`: copiarlos para el bloque 04 y ajustar el directorio servido y la carpeta de evidencias. No usar sus resultados o su APK como prueba de esta rama. Medir los FPS del juego mediante `web_diagnostico.py` y `window.__ttDiag` con `?auditar=1`, no únicamente los de `requestAnimationFrame`. Usar un perfil temporal de Chrome y preservar las auditorías y paquetes estables anteriores.
 
