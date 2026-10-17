@@ -1,0 +1,21 @@
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+mini_nocturno elegir_faccion None
+mini_nocturno mapa_mini mini_senda
+mini_nocturno ejecutar mini_senda
+mini_nocturno partida mini_senda
+RESULTADO mini_nocturno {'nodo': 'mini_senda', 'rival': 'Vorg', 'mano_u': ['Acechante', 'Polilla Negra', 'Tinta Viva', 'Espia Umbria', 'Velo Gris'], 'mano_c': ['Colmillo Roto', 'Tambor de Guerra', 'Gruñido', 'Porton de Hierro', 'Mazo Quebrado'], 'ganador': 'T', 'marcador': [6, 3], 'jugadas': 9, 'capturas': 9}
+mini_nocturno recompensa mini_nudo
+mini_nocturno elegir_carta_para_mejorar mini_nudo
+mini_nocturno cartel mini_nudo
+mini_nocturno mapa_mini mini_nudo
+mini_nocturno ejecutar mini_nudo
+mini_nocturno partida mini_nudo
+RESULTADO mini_nocturno {'nodo': 'mini_nudo', 'rival': 'Zarkha', 'mano_u': ['Espia Umbria', 'Nido de Búhos', 'Tinta Viva', 'Beso de Sombra', 'Mirada Hueca'], 'mano_c': ['Garra Nocturna', 'Cola Sigilosa', 'Juego de Sombras', 'Saltador', 'Salto Mortal'], 'ganador': 'T', 'marcador': [5, 4], 'jugadas': 9, 'capturas': 6}
+mini_nocturno recompensa mini_trono
+mini_nocturno elegir_carta_para_mejorar mini_trono
+mini_nocturno cartel mini_trono
+mini_nocturno mapa_mini mini_trono
+mini_nocturno ejecutar mini_trono
+mini_nocturno partida mini_trono
+RESULTADO mini_nocturno {'nodo': 'mini_trono', 'rival': 'Ignarok', 'mano_u': ['Acechante', 'Susurro', 'Espia Umbria', 'Mirada Hueca', 'Paso Felpado'], 'mano_c': ['Garganta Ardiente', 'Diente Curvo', 'Corazón de Magma', 'Escama Suelta', 'Guijarro'], 'ganador': 'T', 'marcador': [6, 3], 'jugadas': 9, 'capturas': 7}

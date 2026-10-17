@@ -8,7 +8,7 @@ Pulir la jugabilidad y la narrativa existentes, sin agregar funcionalidades ni s
 
 ## Los 12 frentes
 
-Primera pasada de los apartados 1, 2 y 3 implementada en el bloque 01, ampliada con consecuencias de duelos y minicampañas en el bloque 02, ritmo del prólogo en el bloque 03 y validación/correcciones en Chrome en el bloque 04; los frentes completos siguen en curso. Ver [bloque 01](informe_v2_1_bloque_01.md), [bloque 02](informe_v2_1_bloque_02.md), [bloque 03](informe_v2_1_bloque_03.md), [bloque 04 y auditoría](informe_v2_1_bloque_04.md) y [guía de continuidad](continuidad_v2_1.md). Cada frente se cerrará con cambios concretos, comprobación y un informe de lo realizado.
+Primera pasada de los apartados 1, 2 y 3 implementada en los bloques 01–06 y cerrada con la validación automatizada de recorridos del [bloque 07](informe_v2_1_bloque_07.md): ambas rutas principales, las tres minicampañas, prólogo, reintentos y finales de equilibrio/dominio. Total: 28 duelos reales y 394 escenas completas; editor corregido y verificado alrededor de 60 FPS en Chrome local. No equivale a un playtest humano ni a jugar todas las facciones. El siguiente frente es el apartado 4. Ver [bloque 01](informe_v2_1_bloque_01.md), [bloque 02](informe_v2_1_bloque_02.md), [bloque 03](informe_v2_1_bloque_03.md), [bloque 04](informe_v2_1_bloque_04.md), [bloque 05](informe_v2_1_bloque_05.md), [bloque 06](informe_v2_1_bloque_06.md) y [guía de continuidad](continuidad_v2_1.md). El plan 2.1 completo continúa abierto.
 
 1. **Intención de cada duelo.** Revisar los diálogos previos para expresar qué quiere el rival y qué se juega el protagonista; conectar la victoria con ese conflicto.
 2. **Ritmo del comienzo.** Reducir explicaciones repetidas y presentar las reglas cuando se utilizan. Comprobar que el primer duelo sea comprensible y despierte curiosidad.
@@ -25,9 +25,9 @@ Primera pasada de los apartados 1, 2 y 3 implementada en el bloque 01, ampliada 
 
 ## Orden de trabajo
 
-El [bloque 06](informe_v2_1_bloque_06.md) corrige nombres y bocadillos del duelo a tres escalas, usando datos de tutorial, ramas, revancha y minicampañas. Continúa el apartado 3; el recorrido interactivo completo y el apartado 4 siguen pendientes.
+El [bloque 06](informe_v2_1_bloque_06.md) corrige nombres y bocadillos del duelo a tres escalas, usando datos de tutorial, ramas, revancha y minicampañas. El [bloque 07](informe_v2_1_bloque_07.md) completa los recorridos automatizados pendientes y corrige clics/rendimiento del editor. Continuar con personalidad de rivales (4).
 
-El [bloque 05](informe_v2_1_bloque_05.md) continúa la legibilidad del apartado 3: resultado y pausa con texto ampliado, comprobación del último efecto del rival antes de derrota y repetición de puntero/arrastre en Chrome. La campaña completa continúa pendiente; no dar por cerrados los primeros tres apartados.
+El [bloque 05](informe_v2_1_bloque_05.md) continúa la legibilidad del apartado 3: resultado y pausa con texto ampliado, comprobación del último efecto del rival antes de derrota y repetición de puntero/arrastre en Chrome. La validación de campañas que quedó pendiente entonces se cerró en el bloque 07.
 
 Empezar por los frentes 3, 2 y 4: claridad de jugadas, ritmo inicial y personalidad de rivales. Continuar con dificultad y elecciones (5, 9, 6), después continuidad narrativa (1, 7, 8, 10, 11). Revisar redacción (12) durante cada pasada y al cierre.
 

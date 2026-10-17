@@ -1,0 +1,587 @@
+{
+  "base": "9eddb94",
+  "metodo": "Eventos SDL en bucles reales, reloj normal, IA sin modificar",
+  "limite": "Política automatizada con ambas manos visibles; no evaluación humana de dificultad o ritmo.",
+  "recorridos": [
+    {
+      "id": "mini_pantera",
+      "pantallas": [
+        {
+          "nombre": "elegir_faccion",
+          "nodo": null,
+          "segundos": 0.09
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_senda",
+          "segundos": 0.52
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_senda",
+          "segundos": 1.27
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_senda",
+          "segundos": 8.26
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "mini_senda",
+          "segundos": 12.6
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_nudo",
+          "segundos": 28.69
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_nudo",
+          "segundos": 28.89
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_nudo",
+          "segundos": 29.38
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_nudo",
+          "segundos": 29.76
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_nudo",
+          "segundos": 30.18
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_nudo",
+          "segundos": 37.54
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "mini_nudo",
+          "segundos": 41.82
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_trono",
+          "segundos": 68.62
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_trono",
+          "segundos": 68.84
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_trono",
+          "segundos": 69.35
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_trono",
+          "segundos": 69.76
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_trono",
+          "segundos": 70.13
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_trono",
+          "segundos": 76.41
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "mini_trono",
+          "segundos": 80.77
+        }
+      ],
+      "duelos": [
+        {
+          "nodo": "mini_senda",
+          "rival": "Lyra",
+          "mano_u": [
+            "Huella Húmeda",
+            "Garra Nocturna",
+            "Rastro Fresco",
+            "Ronda Gris",
+            "Zarpazo"
+          ],
+          "mano_c": [
+            "Arco Corto",
+            "Seta Cantora",
+            "Sabio del Bosque",
+            "Arquero",
+            "Ciervo Blanco"
+          ],
+          "ganador": "C",
+          "marcador": [
+            4,
+            5
+          ],
+          "jugadas": 9,
+          "capturas": 5
+        },
+        {
+          "nodo": "mini_senda",
+          "rival": "Lyra",
+          "mano_u": [
+            "Selva Espesa",
+            "Zarpazo",
+            "Juego de Sombras",
+            "Acechador",
+            "Rastro Fresco"
+          ],
+          "mano_c": [
+            "Arco Corto",
+            "Arquero",
+            "Flautista",
+            "Refugio Verde",
+            "Broteluz"
+          ],
+          "ganador": "T",
+          "marcador": [
+            8,
+            1
+          ],
+          "jugadas": 9,
+          "capturas": 11
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Bigote",
+            "Colmillo Chico",
+            "Huella Húmeda",
+            "Zarpazo",
+            "Selva Espesa"
+          ],
+          "mano_c": [
+            "Novia de Niebla",
+            "Jardín de Espinas",
+            "Vastago",
+            "Capa Carmesí",
+            "Sangre Joven"
+          ],
+          "ganador": "C",
+          "marcador": [
+            3,
+            6
+          ],
+          "jugadas": 9,
+          "capturas": 4
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Juego de Sombras",
+            "Bigote",
+            "Zarpazo",
+            "Ronda Gris",
+            "Rastro Fresco"
+          ],
+          "mano_c": [
+            "Ataúd Reforzado",
+            "Vastago",
+            "Siervo Pálido",
+            "Esgrimidor",
+            "Capa Carmesí"
+          ],
+          "ganador": "C",
+          "marcador": [
+            3,
+            6
+          ],
+          "jugadas": 9,
+          "capturas": 2
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Colmillo Chico",
+            "Bigote",
+            "Huella Húmeda",
+            "Rastro Fresco",
+            "Selva Espesa"
+          ],
+          "mano_c": [
+            "Sangre Joven",
+            "Vals Eterno",
+            "Candil Rojo",
+            "Ataúd Reforzado",
+            "Vastago"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 9
+        },
+        {
+          "nodo": "mini_trono",
+          "rival": "Fenris",
+          "mano_u": [
+            "Bigote",
+            "Rastro Fresco",
+            "Ronda Gris",
+            "Selva Espesa",
+            "Huella Húmeda"
+          ],
+          "mano_c": [
+            "Guarida",
+            "Alfa del Bosque",
+            "Gañido",
+            "Mordedor Lunar",
+            "Manada Unida"
+          ],
+          "ganador": "C",
+          "marcador": [
+            2,
+            7
+          ],
+          "jugadas": 9,
+          "capturas": 3
+        },
+        {
+          "nodo": "mini_trono",
+          "rival": "Fenris",
+          "mano_u": [
+            "Bigote",
+            "Rastro Fresco",
+            "Garra Nocturna",
+            "Acechador",
+            "Ronda Gris"
+          ],
+          "mano_c": [
+            "Fauces Abiertas",
+            "Caza Nocturna",
+            "Manada Unida",
+            "Garras de Luna",
+            "Pata Veloz"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 7
+        }
+      ],
+      "escenas": [
+        {
+          "texto": "El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: tendrás que ganar el paso, aunque ya no seas un forastero.",
+          "hablante": null,
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 4.16
+        },
+        {
+          "texto": "Lyra, El Umbral Respira.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 6.56
+        },
+        {
+          "texto": "Que la luz guie mi mazo.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 7.81
+        },
+        {
+          "texto": "El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: tendrás que ganar el paso, aunque ya no seas un forastero.",
+          "hablante": null,
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 16.36
+        },
+        {
+          "texto": "Lyra, El Umbral Respira.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 18.75
+        },
+        {
+          "texto": "Que la luz guie mi mazo.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 20.01
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 33.6
+        },
+        {
+          "texto": "Condesa Sanguinaria, La Sombra se Cierra.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 35.82
+        },
+        {
+          "texto": "Tus cartas son mias.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 37.02
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 45.86
+        },
+        {
+          "texto": "Condesa Sanguinaria, La Sombra se Cierra.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 48.0
+        },
+        {
+          "texto": "Tus cartas son mias.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 48.85
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 57.52
+        },
+        {
+          "texto": "Condesa Sanguinaria, La Sombra se Cierra.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 59.76
+        },
+        {
+          "texto": "Tus cartas son mias.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 60.62
+        },
+        {
+          "texto": "Solo queda este duelo. Quien guarda el Umbral defiende su dominio; ganar decidirá quién permanece junto a la grieta.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 73.02
+        },
+        {
+          "texto": "Fenris, Dueño del Umbral.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 74.79
+        },
+        {
+          "texto": "Grrr... prepara tus cartas.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 76.05
+        },
+        {
+          "texto": "Solo queda este duelo. Quien guarda el Umbral defiende su dominio; ganar decidirá quién permanece junto a la grieta.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 84.27
+        },
+        {
+          "texto": "Fenris, Dueño del Umbral.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 86.04
+        },
+        {
+          "texto": "Grrr... prepara tus cartas.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 87.46
+        },
+        {
+          "texto": "LA MEJOR PRESA",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 94.5
+        },
+        {
+          "texto": "Tres duelos sin hacer ruido y el Umbral es territorio de caza.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 97.11
+        },
+        {
+          "texto": "Zarkha no deja huellas: deja precedente.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 99.07
+        },
+        {
+          "texto": "Cazar el Umbral: nadie lo había intentado. Nadie lo repetira.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 100.87
+        }
+      ],
+      "terminado": true,
+      "activo": {
+        "pantalla": "ejecutar",
+        "segundos": 100.77
+      },
+      "estado": {
+        "version": 7,
+        "faccion": "hombre_pantera",
+        "nodo": "mini_trono",
+        "ruta": [
+          "mini_senda",
+          "mini_nudo",
+          "mini_trono"
+        ],
+        "eleccion": null,
+        "cartas": [
+          {
+            "nombre": "Bigote",
+            "n": 5,
+            "s": 4,
+            "e": 8,
+            "o": 4,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Rastro Fresco",
+            "n": 4,
+            "s": 5,
+            "e": 6,
+            "o": 6,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Ronda Gris",
+            "n": 7,
+            "s": 3,
+            "e": 6,
+            "o": 5,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Colmillo Chico",
+            "n": 6,
+            "s": 5,
+            "e": 4,
+            "o": 7,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Selva Espesa",
+            "n": 4,
+            "s": 8,
+            "e": 4,
+            "o": 6,
+            "bando": "hombre_pantera",
+            "habilidad": "muro"
+          },
+          {
+            "nombre": "Juego de Sombras",
+            "n": 3,
+            "s": 6,
+            "e": 7,
+            "o": 6,
+            "bando": "hombre_pantera",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Huella Húmeda",
+            "n": 5,
+            "s": 7,
+            "e": 3,
+            "o": 7,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Zarpazo",
+            "n": 7,
+            "s": 5,
+            "e": 6,
+            "o": 5,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Garra Nocturna",
+            "n": 5,
+            "s": 6,
+            "e": 4,
+            "o": 8,
+            "bando": "hombre_pantera",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Acechador",
+            "n": 7,
+            "s": 4,
+            "e": 8,
+            "o": 5,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          }
+        ],
+        "semilla": 12556834729501992275,
+        "racha": 1,
+        "mejor_racha": 1,
+        "victorias": 3,
+        "derrotas": 4,
+        "capturas": 27,
+        "aliados": [],
+        "debilitar": 0,
+        "sigilos": 0,
+        "completada": true,
+        "final": null,
+        "creada": 1792199310.4378994,
+        "prologo_visto": false,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 0,
+        "decisiones": [],
+        "revelaciones": [],
+        "fragmentos": 0,
+        "compendio": [],
+        "mini": true,
+        "_archivo": null,
+        "mejoras": {
+          "Bigote": {
+            "s": 1,
+            "o": 1
+          }
+        },
+        "recompensas_recibidas": {
+          "mini_senda": {
+            "mensaje": "Bigote sube su S a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "mini_nudo": {
+            "mensaje": "Bigote sube su O a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          }
+        }
+      },
+      "segundos": 101.58,
+      "derrota_real": true
+    }
+  ]
+}

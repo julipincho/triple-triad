@@ -1,0 +1,28 @@
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+mini_pantera elegir_faccion None
+mini_pantera mapa_mini mini_senda
+mini_pantera ejecutar mini_senda
+mini_pantera partida mini_senda
+RESULTADO mini_pantera {'nodo': 'mini_senda', 'rival': 'Lyra', 'mano_u': ['Huella Húmeda', 'Garra Nocturna', 'Rastro Fresco', 'Ronda Gris', 'Zarpazo'], 'mano_c': ['Arco Corto', 'Seta Cantora', 'Sabio del Bosque', 'Arquero', 'Ciervo Blanco'], 'ganador': 'C', 'marcador': [4, 5], 'jugadas': 9, 'capturas': 5}
+mini_pantera derrota mini_senda
+RESULTADO mini_pantera {'nodo': 'mini_senda', 'rival': 'Lyra', 'mano_u': ['Selva Espesa', 'Zarpazo', 'Juego de Sombras', 'Acechador', 'Rastro Fresco'], 'mano_c': ['Arco Corto', 'Arquero', 'Flautista', 'Refugio Verde', 'Broteluz'], 'ganador': 'T', 'marcador': [8, 1], 'jugadas': 9, 'capturas': 11}
+mini_pantera recompensa mini_nudo
+mini_pantera elegir_carta_para_mejorar mini_nudo
+mini_pantera cartel mini_nudo
+mini_pantera mapa_mini mini_nudo
+mini_pantera ejecutar mini_nudo
+mini_pantera partida mini_nudo
+RESULTADO mini_pantera {'nodo': 'mini_nudo', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Bigote', 'Colmillo Chico', 'Huella Húmeda', 'Zarpazo', 'Selva Espesa'], 'mano_c': ['Novia de Niebla', 'Jardín de Espinas', 'Vastago', 'Capa Carmesí', 'Sangre Joven'], 'ganador': 'C', 'marcador': [3, 6], 'jugadas': 9, 'capturas': 4}
+mini_pantera derrota mini_nudo
+RESULTADO mini_pantera {'nodo': 'mini_nudo', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Juego de Sombras', 'Bigote', 'Zarpazo', 'Ronda Gris', 'Rastro Fresco'], 'mano_c': ['Ataúd Reforzado', 'Vastago', 'Siervo Pálido', 'Esgrimidor', 'Capa Carmesí'], 'ganador': 'C', 'marcador': [3, 6], 'jugadas': 9, 'capturas': 2}
+RESULTADO mini_pantera {'nodo': 'mini_nudo', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Colmillo Chico', 'Bigote', 'Huella Húmeda', 'Rastro Fresco', 'Selva Espesa'], 'mano_c': ['Sangre Joven', 'Vals Eterno', 'Candil Rojo', 'Ataúd Reforzado', 'Vastago'], 'ganador': 'T', 'marcador': [6, 3], 'jugadas': 9, 'capturas': 9}
+mini_pantera recompensa mini_trono
+mini_pantera elegir_carta_para_mejorar mini_trono
+mini_pantera cartel mini_trono
+mini_pantera mapa_mini mini_trono
+mini_pantera ejecutar mini_trono
+mini_pantera partida mini_trono
+RESULTADO mini_pantera {'nodo': 'mini_trono', 'rival': 'Fenris', 'mano_u': ['Bigote', 'Rastro Fresco', 'Ronda Gris', 'Selva Espesa', 'Huella Húmeda'], 'mano_c': ['Guarida', 'Alfa del Bosque', 'Gañido', 'Mordedor Lunar', 'Manada Unida'], 'ganador': 'C', 'marcador': [2, 7], 'jugadas': 9, 'capturas': 3}
+mini_pantera derrota mini_trono
+RESULTADO mini_pantera {'nodo': 'mini_trono', 'rival': 'Fenris', 'mano_u': ['Bigote', 'Rastro Fresco', 'Garra Nocturna', 'Acechador', 'Ronda Gris'], 'mano_c': ['Fauces Abiertas', 'Caza Nocturna', 'Manada Unida', 'Garras de Luna', 'Pata Veloz'], 'ganador': 'T', 'marcador': [6, 3], 'jugadas': 9, 'capturas': 7}

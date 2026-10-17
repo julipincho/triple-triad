@@ -1,0 +1,400 @@
+{
+  "base": "9eddb94",
+  "metodo": "Eventos SDL en bucles reales, reloj normal, IA sin modificar",
+  "limite": "Política automatizada con ambas manos visibles; no evaluación humana de dificultad o ritmo.",
+  "recorridos": [
+    {
+      "id": "mini_nocturno",
+      "pantallas": [
+        {
+          "nombre": "elegir_faccion",
+          "nodo": null,
+          "segundos": 0.09
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_senda",
+          "segundos": 0.36
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_senda",
+          "segundos": 1.09
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_senda",
+          "segundos": 8.08
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_nudo",
+          "segundos": 13.46
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_nudo",
+          "segundos": 13.66
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_nudo",
+          "segundos": 14.14
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_nudo",
+          "segundos": 14.52
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_nudo",
+          "segundos": 14.95
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_nudo",
+          "segundos": 21.92
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_trono",
+          "segundos": 30.13
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_trono",
+          "segundos": 30.35
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_trono",
+          "segundos": 30.87
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_trono",
+          "segundos": 31.28
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_trono",
+          "segundos": 31.65
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_trono",
+          "segundos": 38.05
+        }
+      ],
+      "duelos": [
+        {
+          "nodo": "mini_senda",
+          "rival": "Vorg",
+          "mano_u": [
+            "Acechante",
+            "Polilla Negra",
+            "Tinta Viva",
+            "Espia Umbria",
+            "Velo Gris"
+          ],
+          "mano_c": [
+            "Colmillo Roto",
+            "Tambor de Guerra",
+            "Gruñido",
+            "Porton de Hierro",
+            "Mazo Quebrado"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 9
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Zarkha",
+          "mano_u": [
+            "Espia Umbria",
+            "Nido de Búhos",
+            "Tinta Viva",
+            "Beso de Sombra",
+            "Mirada Hueca"
+          ],
+          "mano_c": [
+            "Garra Nocturna",
+            "Cola Sigilosa",
+            "Juego de Sombras",
+            "Saltador",
+            "Salto Mortal"
+          ],
+          "ganador": "T",
+          "marcador": [
+            5,
+            4
+          ],
+          "jugadas": 9,
+          "capturas": 6
+        },
+        {
+          "nodo": "mini_trono",
+          "rival": "Ignarok",
+          "mano_u": [
+            "Acechante",
+            "Susurro",
+            "Espia Umbria",
+            "Mirada Hueca",
+            "Paso Felpado"
+          ],
+          "mano_c": [
+            "Garganta Ardiente",
+            "Diente Curvo",
+            "Corazón de Magma",
+            "Escama Suelta",
+            "Guijarro"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 7
+        }
+      ],
+      "escenas": [
+        {
+          "texto": "El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: tendrás que ganar el paso, aunque ya no seas un forastero.",
+          "hablante": null,
+          "contexto": "mini duelo mini_senda contra Orcos",
+          "segundos": 3.98
+        },
+        {
+          "texto": "Vorg, El Umbral Respira.",
+          "hablante": "Vorg",
+          "contexto": "mini duelo mini_senda contra Orcos",
+          "segundos": 6.42
+        },
+        {
+          "texto": "NAKA! Hoy la tierra es nuestra!",
+          "hablante": "Vorg",
+          "contexto": "mini duelo mini_senda contra Orcos",
+          "segundos": 7.8
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Hombres Pantera",
+          "segundos": 18.34
+        },
+        {
+          "texto": "Zarkha, La Sombra se Cierra.",
+          "hablante": "Zarkha",
+          "contexto": "mini duelo mini_nudo contra Hombres Pantera",
+          "segundos": 20.34
+        },
+        {
+          "texto": "Shh... ya empezo la caza.",
+          "hablante": "Zarkha",
+          "contexto": "mini duelo mini_nudo contra Hombres Pantera",
+          "segundos": 21.52
+        },
+        {
+          "texto": "Solo queda este duelo. Quien guarda el Umbral defiende su dominio; ganar decidirá quién permanece junto a la grieta.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 34.53
+        },
+        {
+          "texto": "Ignarok, Dueño del Umbral.",
+          "hablante": "Ignarok",
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 36.33
+        },
+        {
+          "texto": "QUEMARE. TU MAZO ARDE.",
+          "hablante": "Ignarok",
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 37.64
+        },
+        {
+          "texto": "VIGIA DEL UMBRAL",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 44.78
+        },
+        {
+          "texto": "Tres duelos y el Umbral ya no ruge: susurra tu nombre.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 47.18
+        },
+        {
+          "texto": "Sylwen monta guardia donde la luz no llega.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 49.16
+        },
+        {
+          "texto": "La sombra, por fin, tiene quien la cuide.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 50.81
+        }
+      ],
+      "terminado": true,
+      "activo": {
+        "pantalla": "ejecutar",
+        "segundos": 50.49
+      },
+      "estado": {
+        "version": 7,
+        "faccion": "elfo_nocturno",
+        "nodo": "mini_trono",
+        "ruta": [
+          "mini_senda",
+          "mini_nudo",
+          "mini_trono"
+        ],
+        "eleccion": null,
+        "cartas": [
+          {
+            "nombre": "Polilla Negra",
+            "n": 5,
+            "s": 4,
+            "e": 8,
+            "o": 4,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Susurro",
+            "n": 4,
+            "s": 5,
+            "e": 6,
+            "o": 6,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Tinta Viva",
+            "n": 7,
+            "s": 3,
+            "e": 6,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Paso Felpado",
+            "n": 6,
+            "s": 5,
+            "e": 4,
+            "o": 7,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Beso de Sombra",
+            "n": 3,
+            "s": 6,
+            "e": 7,
+            "o": 6,
+            "bando": "elfo_nocturno",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Nido de Búhos",
+            "n": 5,
+            "s": 7,
+            "e": 3,
+            "o": 7,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Velo Gris",
+            "n": 6,
+            "s": 6,
+            "e": 5,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Mirada Hueca",
+            "n": 4,
+            "s": 8,
+            "e": 4,
+            "o": 6,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Espia Umbria",
+            "n": 6,
+            "s": 4,
+            "e": 8,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Acechante",
+            "n": 6,
+            "s": 5,
+            "e": 7,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          }
+        ],
+        "semilla": 18136728011826572883,
+        "racha": 3,
+        "mejor_racha": 3,
+        "victorias": 3,
+        "derrotas": 0,
+        "capturas": 22,
+        "aliados": [],
+        "debilitar": 0,
+        "sigilos": 0,
+        "completada": true,
+        "final": null,
+        "creada": 1792199310.2693212,
+        "prologo_visto": false,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 0,
+        "decisiones": [],
+        "revelaciones": [],
+        "fragmentos": 0,
+        "compendio": [],
+        "mini": true,
+        "_archivo": null,
+        "mejoras": {
+          "Polilla Negra": {
+            "s": 1,
+            "o": 1
+          }
+        },
+        "recompensas_recibidas": {
+          "mini_senda": {
+            "mensaje": "Polilla Negra sube su S a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "mini_nudo": {
+            "mensaje": "Polilla Negra sube su O a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          }
+        }
+      },
+      "segundos": 51.64,
+      "derrota_real": false
+    }
+  ]
+}

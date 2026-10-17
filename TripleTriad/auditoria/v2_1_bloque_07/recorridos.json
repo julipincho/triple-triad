@@ -1,0 +1,4643 @@
+{
+  "base": "9eddb94",
+  "metodo": "Eventos SDL en bucles reales, reloj normal, IA sin modificar",
+  "limite": "Política automatizada con ambas manos visibles; no evaluación humana de dificultad o ritmo.",
+  "recorridos": [
+    {
+      "id": "principal_aldea",
+      "pantallas": [
+        {
+          "nombre": "pedir_nombre",
+          "nodo": null,
+          "segundos": 0.07
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": null,
+          "segundos": 0.4
+        },
+        {
+          "nombre": "partida",
+          "nodo": null,
+          "segundos": 16.09
+        },
+        {
+          "nombre": "elegir_faccion",
+          "nodo": null,
+          "segundos": 162.5
+        },
+        {
+          "nombre": "armar_mazo",
+          "nodo": "senda",
+          "segundos": 162.81
+        },
+        {
+          "nombre": "armar_mazo",
+          "nodo": null,
+          "segundos": 0.08
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "senda",
+          "segundos": 3.78
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "senda",
+          "segundos": 23.12
+        },
+        {
+          "nombre": "decision_narrativa",
+          "nodo": "senda",
+          "segundos": 23.34
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "senda",
+          "segundos": 23.83
+        },
+        {
+          "nombre": "partida",
+          "nodo": "senda",
+          "segundos": 50.0
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "bifurcacion",
+          "segundos": 58.29
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "bifurcacion",
+          "segundos": 79.18
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "bifurcacion",
+          "segundos": 79.39
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "bifurcacion",
+          "segundos": 79.87
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "bifurcacion",
+          "segundos": 80.27
+        },
+        {
+          "nombre": "elegir_rama",
+          "nodo": "bifurcacion",
+          "segundos": 80.67
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "aldea",
+          "segundos": 81.18
+        },
+        {
+          "nombre": "partida",
+          "nodo": "aldea",
+          "segundos": 110.84
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "aldea",
+          "segundos": 128.07
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "aldea",
+          "segundos": 128.57
+        },
+        {
+          "nombre": "_preguntar_rever",
+          "nodo": "aldea",
+          "segundos": 128.78
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "fortaleza",
+          "segundos": 137.77
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "fortaleza",
+          "segundos": 158.9
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "fortaleza",
+          "segundos": 159.13
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "fortaleza",
+          "segundos": 159.71
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "fortaleza",
+          "segundos": 160.14
+        },
+        {
+          "nombre": "decision_narrativa",
+          "nodo": "fortaleza",
+          "segundos": 160.45
+        },
+        {
+          "nombre": "partida",
+          "nodo": "fortaleza",
+          "segundos": 186.47
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "asalto",
+          "segundos": 193.97
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "asalto",
+          "segundos": 212.88
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "asalto",
+          "segundos": 213.08
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "asalto",
+          "segundos": 213.57
+        },
+        {
+          "nombre": "encuentro",
+          "nodo": "asalto",
+          "segundos": 218.78
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "asalto",
+          "segundos": 219.6
+        },
+        {
+          "nombre": "partida",
+          "nodo": "asalto",
+          "segundos": 243.09
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "trono",
+          "segundos": 249.41
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "trono",
+          "segundos": 268.21
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "trono",
+          "segundos": 268.39
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "trono",
+          "segundos": 268.97
+        },
+        {
+          "nombre": "encuentro",
+          "nodo": "trono",
+          "segundos": 273.89
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "trono",
+          "segundos": 274.8
+        },
+        {
+          "nombre": "partida",
+          "nodo": "trono",
+          "segundos": 332.77
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "trono",
+          "segundos": 349.86
+        },
+        {
+          "nombre": "_preguntar_rever",
+          "nodo": "trono",
+          "segundos": 350.39
+        },
+        {
+          "nombre": "epilogo",
+          "nodo": "trono",
+          "segundos": 415.65
+        }
+      ],
+      "duelos": [
+        {
+          "nodo": "prologo",
+          "rival": "Juan Rajoy",
+          "mano_u": [
+            "Sol Naciente",
+            "Raíz del Mundo",
+            "Principe Rojo",
+            "Fin del Cielo",
+            "Desguace"
+          ],
+          "mano_c": [
+            "Estandarte Dorado",
+            "Arcabucero",
+            "Ariete del Alba",
+            "Caballero Andante",
+            "Espadachin"
+          ],
+          "ganador": "T",
+          "marcador": [
+            8,
+            1
+          ],
+          "jugadas": 9,
+          "capturas": 3
+        },
+        {
+          "nodo": "senda",
+          "rival": "Tam",
+          "mano_u": [
+            "Pica Corta",
+            "Alabardero",
+            "Hondero",
+            "Mozo de Fragua",
+            "Antorcha Viva"
+          ],
+          "mano_c": [
+            "Diente de Leche",
+            "Garras de Luna",
+            "Gañido",
+            "Guarida",
+            "Senda de Huellas"
+          ],
+          "ganador": "T",
+          "marcador": [
+            9,
+            0
+          ],
+          "jugadas": 9,
+          "capturas": 12
+        },
+        {
+          "nodo": "aldea",
+          "rival": "Grix el Mugroso",
+          "mano_u": [
+            "Mozo de Fragua",
+            "Tamborilero",
+            "Pica Corta",
+            "Antorcha Viva",
+            "Alabardero"
+          ],
+          "mano_c": [
+            "Rascaollas",
+            "Trampero",
+            "Mordedor",
+            "Robaqueso",
+            "Saqueador"
+          ],
+          "ganador": "C",
+          "marcador": [
+            4,
+            5
+          ],
+          "jugadas": 9,
+          "capturas": 7
+        },
+        {
+          "nodo": "aldea",
+          "rival": "Grix el Mugroso",
+          "mano_u": [
+            "Antorcha Viva",
+            "Alabardero",
+            "Hondero",
+            "Broquel",
+            "Mozo de Fragua"
+          ],
+          "mano_c": [
+            "Mocos",
+            "Lamecharcos",
+            "Saqueador",
+            "Rascaollas",
+            "Trampero"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 9
+        },
+        {
+          "nodo": "fortaleza",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Vigía del Muro",
+            "Escudero",
+            "Sargento Ferrum",
+            "Pica Corta",
+            "Broquel"
+          ],
+          "mano_c": [
+            "Mayordomo",
+            "Murcielago",
+            "Oraculo de Sangre",
+            "Candil Rojo",
+            "Esgrimidor"
+          ],
+          "ganador": "T",
+          "marcador": [
+            7,
+            2
+          ],
+          "jugadas": 9,
+          "capturas": 10
+        },
+        {
+          "nodo": "asalto",
+          "rival": "Tam",
+          "mano_u": [
+            "Vigía del Muro",
+            "Terror del Valle",
+            "Broquel",
+            "Brujo Verde",
+            "Sargento Ferrum"
+          ],
+          "mano_c": [
+            "Hocico",
+            "Lomo Plateado",
+            "Pelaje Sucio",
+            "Cachorro",
+            "Aullido"
+          ],
+          "ganador": "T",
+          "marcador": [
+            7,
+            2
+          ],
+          "jugadas": 9,
+          "capturas": 2
+        },
+        {
+          "nodo": "trono",
+          "rival": "Ignarok",
+          "mano_u": [
+            "Broquel",
+            "Brujo Verde",
+            "Tamborilero",
+            "Mozo de Fragua",
+            "Pica Corta"
+          ],
+          "mano_c": [
+            "Bostezo Ígneo",
+            "Garganta Ardiente",
+            "Cola Corta",
+            "Diente Curvo",
+            "Escama Suelta"
+          ],
+          "ganador": "C",
+          "marcador": [
+            3,
+            6
+          ],
+          "jugadas": 9,
+          "capturas": 4
+        },
+        {
+          "nodo": "trono",
+          "rival": "Ignarok",
+          "mano_u": [
+            "Mozo de Fragua",
+            "Sargento Ferrum",
+            "Pica Corta",
+            "Hondero",
+            "Tamborilero"
+          ],
+          "mano_c": [
+            "Charca de Lava",
+            "Vuelo en Círculo",
+            "Escama Suelta",
+            "Garganta Ardiente",
+            "Vuelo Rasante"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 7
+        }
+      ],
+      "escenas": [
+        {
+          "texto": "El salon esta lleno: mesas, banners, cronometros y gente que no levanta la vista.",
+          "hablante": null,
+          "contexto": "prólogo: sala del torneo",
+          "segundos": 2.48
+        },
+        {
+          "texto": "ÚLTIMA RONDA CLASIFICATORIA",
+          "hablante": null,
+          "contexto": "prólogo: sala del torneo",
+          "segundos": 3.64
+        },
+        {
+          "texto": "- Los ocho mejores avanzan a la Copa del Trono. Esta partida decide tu lugar.",
+          "hablante": "Presentador",
+          "contexto": "prólogo: sala del torneo",
+          "segundos": 6.56
+        },
+        {
+          "texto": "Tu nombre no importa aquí. Solo tu mazo.",
+          "hablante": null,
+          "contexto": "prólogo: sala del torneo",
+          "segundos": 8.71
+        },
+        {
+          "texto": "Sacas tus cartas: cinco legendarias, una de cada facción. Lo mejor que tienes.",
+          "hablante": null,
+          "contexto": "prólogo: sala del torneo",
+          "segundos": 11.23
+        },
+        {
+          "texto": "Juan Rajoy acomoda sus cartas frente a ti. Cinco cartas, nueve casillas. Basta con terminar con más cartas de tu color.",
+          "hablante": null,
+          "contexto": "prólogo: sala del torneo",
+          "segundos": 14.74
+        },
+        {
+          "texto": "- Otra vez esa maldita combinacion.",
+          "hablante": "Juan Rajoy",
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 22.68
+        },
+        {
+          "texto": "- Te lo dije, Auditoría. Centro libre y a correr.",
+          "hablante": "Juan Rajoy",
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 24.24
+        },
+        {
+          "texto": "Juan te mira el mazo otra vez. Esta vez con respeto.",
+          "hablante": "Juan Rajoy",
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 26.4
+        },
+        {
+          "texto": "- Buena partida, Auditoría.",
+          "hablante": "Juan Rajoy",
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 28.03
+        },
+        {
+          "texto": "Cumpliste. Ahora van a presentar la carta que trajeron.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 29.89
+        },
+        {
+          "texto": "Los organizadores suben al escenario con una caja que nadie ha visto antes.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 32.19
+        },
+        {
+          "texto": "- Una carta que no tiene facción. Ni bando. Ni edicion.",
+          "hablante": "Presentador",
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 34.42
+        },
+        {
+          "texto": "EL UMBRAL",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 35.54
+        },
+        {
+          "texto": "Una puerta enorme. Y detras... un trono vacío.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 37.62
+        },
+        {
+          "texto": "La reconoces. Los símbolos de los bordes salen en las cartas más antiguas.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 39.95
+        },
+        {
+          "texto": "Esas cartas las viste cientos de veces. Nunca las entendiste del todo.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 42.52
+        },
+        {
+          "texto": "LAS NUEVE CASILLAS",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 43.51
+        },
+        {
+          "texto": "empiezan a iluminarse.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 45.14
+        },
+        {
+          "texto": "La carta central cambia. Y durante un segundo aparece algo que no",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 47.4
+        },
+        {
+          "texto": "debería existir en ninguna edicion: una figura sin facción",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 49.62
+        },
+        {
+          "texto": "sentada en el trono. Solo un segundo.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 51.04
+        },
+        {
+          "texto": "La luz se apaga.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 51.77
+        },
+        {
+          "texto": "Y cuando vuelve, ya no estas en el salon.",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 53.81
+        },
+        {
+          "texto": "",
+          "hablante": null,
+          "contexto": "prólogo: la carta del Umbral",
+          "segundos": 54.39
+        },
+        {
+          "texto": "Bosque. Lluvia. Barro hasta los tobillos. Tu mochila está tirada y el teléfono no tiene señal.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 58.11
+        },
+        {
+          "texto": "Pero las cartas siguen ahi. Las cinco legendarias.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 60.4
+        },
+        {
+          "texto": "Entre los árboles ves una torre. La conoces: está en el fondo de una carta que viste mil veces.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 63.06
+        },
+        {
+          "texto": "- No puede ser.",
+          "hablante": "Auditoría",
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 65.11
+        },
+        {
+          "texto": "Te das vuelta. Un goblin: no una ilustración ni alguien disfrazado. Se presenta como Pik.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 68.05
+        },
+        {
+          "texto": "- No deberias tener eso.",
+          "hablante": "Pik",
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 69.63
+        },
+        {
+          "texto": "Lo dice senalando tus cartas. Y no parece una broma.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 71.49
+        },
+        {
+          "texto": "El goblin se va. Tu decides seguir. El bosque no es sitio para quedarse.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 73.99
+        },
+        {
+          "texto": "Das diez pasos y alguien más te ve. Esta vez no es un goblin: es de la aldea.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 76.93
+        },
+        {
+          "texto": "- ¿De dónde sacas esas cartas?",
+          "hablante": "Alguien Te Ha Visto",
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 79.48
+        },
+        {
+          "texto": "No es una pregunta. Es una amenaza.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 80.83
+        },
+        {
+          "texto": "Cierras el estuche antes de que pueda arrebatartelo.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 82.64
+        },
+        {
+          "texto": "Te apartas y sigues el camino. El no te sigue, pero ya te ha visto.",
+          "hablante": null,
+          "contexto": "prólogo: despertar en el bosque",
+          "segundos": 84.61
+        },
+        {
+          "texto": "Cuando logras salir, te espera una mujer con una libreta abierta y tinta en los dedos.",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 88.13
+        },
+        {
+          "texto": "- ¿Ustedes juegan Cartones y Mazmorras?",
+          "hablante": "Auditoría",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 90.24
+        },
+        {
+          "texto": "Lo sueltas antes de pensarlo. Es lo único que sale.",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 92.17
+        },
+        {
+          "texto": "- No sé qué son esos cartones. Aquí esto se llama Juicio.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 94.29
+        },
+        {
+          "texto": "Mira tus cinco legendarias con los ojos muy abiertos.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 96.66
+        },
+        {
+          "texto": "- Eso no son cartas de aquí. Esas cartas son de otro lado.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 98.63
+        },
+        {
+          "texto": "- ¿De dónde las sacaste?",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 100.44
+        },
+        {
+          "texto": "Le cuentas lo del torneo, el salon y la carta que apago las luces.",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 102.68
+        },
+        {
+          "texto": "Nara se sienta enfrente y cierra el libro. Por primera vez deja de escribir para mirarte.",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 106.09
+        },
+        {
+          "texto": "- Lo del salón fue una apertura del Umbral. Esa grieta ya estaba aquí antes de que llegaras.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 109.35
+        },
+        {
+          "texto": "- Quien ocupa el trono guarda el Umbral. Todo lo de este mundo sale de ahí, y la grieta se abre para quien tenga el trono.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 113.68
+        },
+        {
+          "texto": "- Por eso hay diez bandos peleando por la Copa del Trono. No es un torneo. Es una guerra con reglas de duelo.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 118.61
+        },
+        {
+          "texto": "Nara duda. Es la primera vez que duda.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 121.63
+        },
+        {
+          "texto": "- Todos dicen que hay que vencer al dragon. La gente lo repite, pero no es tan simple.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 124.38
+        },
+        {
+          "texto": "- Es verdad a medias. La sangre del dragon fue la que legitimo el trono. Por eso la frase quedo pegada.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 128.4
+        },
+        {
+          "texto": "- Quien guarda ahora el trono no tiene por que ser un dragon. Es quien ganó el último Juicio.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 132.48
+        },
+        {
+          "texto": "- Yo no vine a salvar nada. Solo quiero volver a casa.",
+          "hablante": "Auditoría",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 135.39
+        },
+        {
+          "texto": "- No hay vuelta, ni atajo, ni puerta de servicio. Gana el trono y el Umbral te devuelve a tu salon.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 138.91
+        },
+        {
+          "texto": "- Son cinco duelos. El último es el trono. Si se pierde, se vuelve a intentar: nadie te saca de aca por perder.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 143.42
+        },
+        {
+          "texto": "Cierra el libro. Lo vuelve a abrir. Y escribe una sola palabra:",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 146.94
+        },
+        {
+          "texto": "CASA",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 148.08
+        },
+        {
+          "texto": "- Guarda tus cinco legendarias en el estuche. Aquí aun no responden como en tu mundo. Necesitas un mazo de este lado.",
+          "hablante": "Nara",
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 151.89
+        },
+        {
+          "texto": "A partir de aquí ya no sos un invitado: sos alguien que sabe demasiado.",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 155.2
+        },
+        {
+          "texto": "ELIGE TU MAZO PRINCIPAL",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 156.57
+        },
+        {
+          "texto": "El bando no define quién sos: define tu mazo. Armá diez cartas; en cada duelo llevarás cinco. El mundo va a leer lo que juegues.",
+          "hablante": null,
+          "contexto": "prólogo: Nara explica la situación",
+          "segundos": 160.6
+        },
+        {
+          "texto": "La noche cae sobre un reino que ya no es un reino: solo ceniza y cuatro murallas.",
+          "hablante": null,
+          "contexto": "cinemática de apertura humano",
+          "segundos": 5.56
+        },
+        {
+          "texto": "El rey Aldric no tiene ejercito. Tiene una correo, dos espadas y una promesa.",
+          "hablante": "Aldric",
+          "contexto": "cinemática de apertura humano",
+          "segundos": 8.95
+        },
+        {
+          "texto": "Juegas con el mazo humano. Nadie más en este mundo juega con el.",
+          "hablante": "Aldric",
+          "contexto": "cinemática de apertura humano",
+          "segundos": 11.5
+        },
+        {
+          "texto": "- Queremos que el Umbral quede vigilado: que nadie baje más al mundo de los juegos, y que nadie salga de el.",
+          "hablante": "Aldric",
+          "contexto": "cinemática de apertura humano",
+          "segundos": 15.13
+        },
+        {
+          "texto": "- Te ayudamos porque llegaste con cartas que no son de aca. Nadie te puede usar mejor que nosotros.",
+          "hablante": "Aldric",
+          "contexto": "cinemática de apertura humano",
+          "segundos": 19.34
+        },
+        {
+          "texto": "Eres el último resto de una especie que se niega a desaparecer.",
+          "hablante": null,
+          "contexto": "cinemática de apertura humano",
+          "segundos": 22.45
+        },
+        {
+          "texto": "El camino esta sembrado de ceniza y nadie sabe de donde viene.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 25.93
+        },
+        {
+          "texto": "Un rival espera en la primera encrucijada con la guardia alta.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 28.34
+        },
+        {
+          "texto": "La senda sube entre pinos negros. En la cuneta hay un hombre que sangra y no te pide nada.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 31.18
+        },
+        {
+          "texto": "- No quiere pelear, pero el camino se decide por Juicio. Ganale sin hacerle dano y los dos podremos seguir.",
+          "hablante": "Nara",
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 35.43
+        },
+        {
+          "texto": "Tam, El Que Huia.",
+          "hablante": "Tam",
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 37.39
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 39.84
+        },
+        {
+          "texto": "Un humano. Con la corona de un rey que murio en una carta.",
+          "hablante": "Tam",
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 42.38
+        },
+        {
+          "texto": "- No quiero pelear. De verdad. No quiero.",
+          "hablante": "Tam",
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 44.7
+        },
+        {
+          "texto": "- Pero tu, Auditoría, si vienes a por el campo, hace falta.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 46.75
+        },
+        {
+          "texto": "- Si me das el centro me voy y no miro atrás.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Hombres Lobo",
+          "segundos": 48.82
+        },
+        {
+          "texto": "El rival guarda sus cartas y te deja seguir. Adelante, la senda se estrecha: el Umbral parece una puerta que nadie ha empujado.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 61.46
+        },
+        {
+          "texto": "Lo que el juego nunca dijo: el Umbral no es una puerta. Es una pregunta que alguien hizo hace mucho y sigue esperando.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 65.98
+        },
+        {
+          "texto": "- Cuando llegues al trono vas a tener que elegir.",
+          "hablante": "Nara",
+          "contexto": "escena posterior senda",
+          "segundos": 69.05
+        },
+        {
+          "texto": "- Ganaste. Ya está. Pasá antes de que alguien pida otro Juicio.",
+          "hablante": "Tam",
+          "contexto": "escena posterior senda",
+          "segundos": 71.31
+        },
+        {
+          "texto": "- Aquí nadie muere por un Juicio. Que se note.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 73.4
+        },
+        {
+          "texto": "Un humano con la corona de una carta viva. La gente te mira y no sabe si saludarte.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 76.3
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior senda",
+          "segundos": 78.85
+        },
+        {
+          "texto": "Al defender la aldea, la gente te dara lo que tiene.",
+          "hablante": null,
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 82.62
+        },
+        {
+          "texto": "La aldea vive detras de un muro de piedra y dos custodios que no preguntan nada porque ya saben la respuesta.",
+          "hablante": null,
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 86.14
+        },
+        {
+          "texto": "Uno de los dos ve el estuche de tus cartas y después te mira a ti.",
+          "hablante": null,
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 89.49
+        },
+        {
+          "texto": "- Ese estuche es del otro lado. Eso no se trae aquí.",
+          "hablante": null,
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 92.39
+        },
+        {
+          "texto": "- No quieren otro peligro cerca de la aldea. Demostra que podes ganarte el paso. Necesitas su ayuda para llegar al trono y volver a casa.",
+          "hablante": "Nara",
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 96.72
+        },
+        {
+          "texto": "Grix el Mugroso, Guardianes de la Aldea.",
+          "hablante": "Grix el Mugroso",
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 99.74
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 101.83
+        },
+        {
+          "texto": "Un humano. Bien. Los humanos aquí al menos se presentan.",
+          "hablante": "Grix el Mugroso",
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 104.38
+        },
+        {
+          "texto": "- No entres con eso. Eso no es tuyo.",
+          "hablante": "Grix el Mugroso",
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 106.03
+        },
+        {
+          "texto": "- Auditoría, si quieres pasar, tendrás que ganarte el camino.",
+          "hablante": null,
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 108.42
+        },
+        {
+          "texto": "- Aquí las cartas son Juicio, no juguete. Se nota.",
+          "hablante": null,
+          "contexto": "cartel de duelo aldea contra Goblins",
+          "segundos": 110.15
+        },
+        {
+          "texto": "El paso sigue cerrado. Recoges tus cartas: tendrás que volver a intentarlo.",
+          "hablante": null,
+          "contexto": "escena posterior aldea (derrota)",
+          "segundos": 118.26
+        },
+        {
+          "texto": "- El paso sigue cerrado. Si volvés, tendrás que ganártelo.",
+          "hablante": "Grix el Mugroso",
+          "contexto": "escena posterior aldea (derrota)",
+          "segundos": 120.34
+        },
+        {
+          "texto": "- Eso es lo único que importa aquí.",
+          "hablante": null,
+          "contexto": "escena posterior aldea (derrota)",
+          "segundos": 121.87
+        },
+        {
+          "texto": "Un humano con la corona de una carta viva. La gente te mira y no sabe si saludarte.",
+          "hablante": null,
+          "contexto": "escena posterior aldea (derrota)",
+          "segundos": 124.56
+        },
+        {
+          "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo.",
+          "hablante": "Nara",
+          "contexto": "escena posterior aldea (derrota)",
+          "segundos": 127.53
+        },
+        {
+          "texto": "El custodio abre el paso. Ganaste el Juicio, no su confianza: te sigue con la mirada hasta el arco.",
+          "hablante": null,
+          "contexto": "escena posterior aldea",
+          "segundos": 140.31
+        },
+        {
+          "texto": "Nara espera en el camino con la libreta abierta.",
+          "hablante": "Nara",
+          "contexto": "escena posterior aldea",
+          "segundos": 143.07
+        },
+        {
+          "texto": "- Tu mazo les dijo algo antes de que dijeras nada.",
+          "hablante": "Nara",
+          "contexto": "escena posterior aldea",
+          "segundos": 144.93
+        },
+        {
+          "texto": "Y por primera vez entiendes la diferencia: no es un mazo. Es una declaracion de intenciones.",
+          "hablante": null,
+          "contexto": "escena posterior aldea",
+          "segundos": 148.1
+        },
+        {
+          "texto": "- Ganaste el paso. Cumplo mi palabra; la aldea sigue bajo mi cuidado.",
+          "hablante": "Grix el Mugroso",
+          "contexto": "escena posterior aldea",
+          "segundos": 150.82
+        },
+        {
+          "texto": "- Quien te ensena a jugar así, te miente en algo.",
+          "hablante": null,
+          "contexto": "escena posterior aldea",
+          "segundos": 152.94
+        },
+        {
+          "texto": "Un humano con la corona de una carta viva. La gente te mira y no sabe si saludarte.",
+          "hablante": null,
+          "contexto": "escena posterior aldea",
+          "segundos": 155.98
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior aldea",
+          "segundos": 158.55
+        },
+        {
+          "texto": "Quien controla la fortaleza controla el mapa.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 162.64
+        },
+        {
+          "texto": "La fortaleza domina el camino al trono. Y el trono tiene el Umbral.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 164.63
+        },
+        {
+          "texto": "El capitán te espera en la puerta. Quiere impedir que abras el Umbral: teme lo que pueda cruzar de vuelta. Para seguir, tendrás que vencerlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 168.99
+        },
+        {
+          "texto": "Condesa Sanguinaria, Campeon de la Fortaleza.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 171.8
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 173.79
+        },
+        {
+          "texto": "Un humano. Con la bandera de un reino que ya no existe.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 176.25
+        },
+        {
+          "texto": "- No sigas. No por mi. Por lo que hay atrás.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 178.47
+        },
+        {
+          "texto": "- Auditoría, te lo pido por tu nombre. De verdad. No sigas.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 180.99
+        },
+        {
+          "texto": "- Cada vez que los mundos se tocan, algo pasa en los dos lados.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 183.49
+        },
+        {
+          "texto": "- Vos ya cruzaste. Preguntate que cruza de vuelta.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Vampiros",
+          "segundos": 186.04
+        },
+        {
+          "texto": "El capitán se aparta y cruzas la puerta. El duelo abrió el paso; su advertencia sobre el Umbral sigue contigo.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 196.8
+        },
+        {
+          "texto": "- Ganar no es el problema. El problema es que se abre después.",
+          "hablante": "Nara",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 199.81
+        },
+        {
+          "texto": "- Estas a dos duelos de la vuelta. No aflojes ahora.",
+          "hablante": "Nara",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 202.19
+        },
+        {
+          "texto": "- Ganaste. No voy a cerrarte la puerta. Recordá mi advertencia cuando llegues.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 205.01
+        },
+        {
+          "texto": "- Lo que hay del otro lado ya esta en camino.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 206.86
+        },
+        {
+          "texto": "Un humano con la corona de una carta viva. La gente te mira y no sabe si saludarte.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 210.0
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 212.52
+        },
+        {
+          "texto": "CARAVANA DE SOBRES",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 214.67
+        },
+        {
+          "texto": "Su mirada se detiene en las figuras de tu mazo.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 216.6
+        },
+        {
+          "texto": "- Un humano con un sobre. Suerte.",
+          "hablante": "Caravana de Sobres",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 218.34
+        },
+        {
+          "texto": "Creiste que estaba derrotado. No lo estaba.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 221.23
+        },
+        {
+          "texto": "Vuelve. Con las mismas heridas y con la misma pregunta.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 221.82
+        },
+        {
+          "texto": "- Creiste que estaba derrotado.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 224.49
+        },
+        {
+          "texto": "- No lo estaba. Quiero la revancha. Si vas al trono, primero demostra que aquella victoria no fue suerte.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 227.42
+        },
+        {
+          "texto": "Tam, El Que Vuelve.",
+          "hablante": "Tam",
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 229.32
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 231.68
+        },
+        {
+          "texto": "Un humano. La corona de un rey. Otra vez.",
+          "hablante": "Tam",
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 233.89
+        },
+        {
+          "texto": "- Otra vez.",
+          "hablante": "Tam",
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 235.05
+        },
+        {
+          "texto": "- Auditoría, siempre el mismo. Como si el nombre no te importara.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 237.46
+        },
+        {
+          "texto": "- Otra vez la misma combinacion. No se si te enorgullece o me insulta.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 240.03
+        },
+        {
+          "texto": "- Yo si me acuerdo. Yo me acuerdo de todo.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Hombres Lobo",
+          "segundos": 242.24
+        },
+        {
+          "texto": "Esta vez recoge sus cartas y deja libre el camino. La revancha terminó; el recuerdo de la primera derrota sigue ahí.",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 252.4
+        },
+        {
+          "texto": "- Las cartas de tu estuche siguen sin pertenecer a este mundo.",
+          "hablante": "Nara",
+          "contexto": "escena posterior asalto",
+          "segundos": 255.44
+        },
+        {
+          "texto": "- Lo se. Desde que llegue no duermo tranquilo.",
+          "hablante": "Auditoría",
+          "contexto": "escena posterior asalto",
+          "segundos": 257.51
+        },
+        {
+          "texto": "- Falta uno. El último. Y el último te devuelve a casa.",
+          "hablante": "Nara",
+          "contexto": "escena posterior asalto",
+          "segundos": 259.59
+        },
+        {
+          "texto": "- Perdí otra vez. No puedo detenerte; eso duele más que la derrota.",
+          "hablante": "Tam",
+          "contexto": "escena posterior asalto",
+          "segundos": 262.27
+        },
+        {
+          "texto": "Un humano con la corona de una carta viva. La gente te mira y no sabe si saludarte.",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 265.34
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior asalto",
+          "segundos": 267.86
+        },
+        {
+          "texto": "HERMANDAD DE ARMAS",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 270.05
+        },
+        {
+          "texto": "Su mirada se detiene en las figuras de tu mazo.",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 271.89
+        },
+        {
+          "texto": "- Un humano. Nos cuadra. Sumate.",
+          "hablante": "Hermandad de Armas",
+          "contexto": "escena posterior asalto",
+          "segundos": 273.69
+        },
+        {
+          "texto": "Antes del último duelo, Nara te espera en el borde del camino.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 276.84
+        },
+        {
+          "texto": "No esta escribiendo. El libro esta cerrado.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 278.84
+        },
+        {
+          "texto": "- Tengo que corregir una cosa. Y corregirme yo.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 280.32
+        },
+        {
+          "texto": "- Al principio te acompanaba porque necesitaba respuestas.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 282.49
+        },
+        {
+          "texto": "- Era verdad. Y no era todo.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 283.5
+        },
+        {
+          "texto": "- Vine a averiguar quien escribio las cartas. Ese era el motivo. Y según el motivo, vos eras un dato.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 286.56
+        },
+        {
+          "texto": "Nara abre el libro por la última vez. Esta lleno de flechas y de preguntas, y de tu nombre repetido cuantas veces pudo.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 291.05
+        },
+        {
+          "texto": "- No lo encontre. Y en el camino perdi las ganas de que me importara tanto.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 294.65
+        },
+        {
+          "texto": "Lo cierra otra vez. Esta vez no lo vuelve a abrir.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 297.34
+        },
+        {
+          "texto": "- Dejame acompañarte. No por el Umbral. No por las cartas.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 299.83
+        },
+        {
+          "texto": "- Porque quiero. Y no me da verguenza decirlo.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 301.81
+        },
+        {
+          "texto": "El camino sube hacia el trono. Esta vez lo recorren dos amigos.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 304.09
+        },
+        {
+          "texto": "Aquí termina el camino. Aquí se decide de quien es el mundo.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 306.46
+        },
+        {
+          "texto": "El trono se alza ante la grieta. Para llegar al Umbral, primero tendrás que vencer a quien lo guarda.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 309.87
+        },
+        {
+          "texto": "El guardian no se aparta: defiende el derecho a decidir sobre el Umbral. Si lo vences, la decisión de volver a casa sera tuya.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 314.25
+        },
+        {
+          "texto": "Ignarok, Soberano del Umbral.",
+          "hablante": "Ignarok",
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 316.87
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 319.04
+        },
+        {
+          "texto": "Un humano. Entonces eres parte del problema.",
+          "hablante": "Ignarok",
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 321.27
+        },
+        {
+          "texto": "- No necesitas pelear. De verdad. Eso es lo raro.",
+          "hablante": "Ignarok",
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 322.92
+        },
+        {
+          "texto": "- Auditoría, se tu nombre y ya se lo que vienes a buscar.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 325.09
+        },
+        {
+          "texto": "- Pero si ganas, vas a descubrir la verdad. Y la verdad no es lo que esperas.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 328.13
+        },
+        {
+          "texto": "- Lo prudente es no saber. Eso no lo vas a entender hasta que sea tarde.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Dragones",
+          "segundos": 331.47
+        },
+        {
+          "texto": "El paso sigue cerrado. Recoges tus cartas: tendrás que volver a intentarlo.",
+          "hablante": null,
+          "contexto": "escena posterior trono (derrota)",
+          "segundos": 339.1
+        },
+        {
+          "texto": "- El trono sigue bajo mi guardia. Tu regreso tendrá que esperar otro Juicio.",
+          "hablante": "Ignarok",
+          "contexto": "escena posterior trono (derrota)",
+          "segundos": 341.56
+        },
+        {
+          "texto": "- Eso es lo que importa. No el trono.",
+          "hablante": null,
+          "contexto": "escena posterior trono (derrota)",
+          "segundos": 343.55
+        },
+        {
+          "texto": "Un humano con la corona de una carta viva. La gente te mira y no sabe si saludarte.",
+          "hablante": null,
+          "contexto": "escena posterior trono (derrota)",
+          "segundos": 346.43
+        },
+        {
+          "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo.",
+          "hablante": "Nara",
+          "contexto": "escena posterior trono (derrota)",
+          "segundos": 349.43
+        },
+        {
+          "texto": "EL JUICIO TERMINA",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 358.97
+        },
+        {
+          "texto": "- Si abres el Umbral vas a poder volver. Eso no significa que sea buena idea.",
+          "hablante": "Nara",
+          "contexto": "escena posterior trono",
+          "segundos": 361.85
+        },
+        {
+          "texto": "- Ganaste el Juicio. El Umbral queda en tus manos; su precio, también.",
+          "hablante": "Ignarok",
+          "contexto": "escena posterior trono",
+          "segundos": 365.01
+        },
+        {
+          "texto": "- Abre el Umbral si viniste a eso. Y después no mires atrás.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 367.35
+        },
+        {
+          "texto": "Un humano con la corona de una carta viva. La gente te mira y no sabe si saludarte.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 370.61
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior trono",
+          "segundos": 373.17
+        },
+        {
+          "texto": "LA PAZ CONGELADA",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 373.9
+        },
+        {
+          "texto": "Ganaste el trono y el derecho a conservarlo: eso es justo lo que ellos querian.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 376.89
+        },
+        {
+          "texto": "El bosque respira otra vez, la manada vuelve al bosque, la noche se aquieta.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 379.87
+        },
+        {
+          "texto": "Nadie recuerda ya que hubo una guerra. Eso, en el fondo, también es una victoria.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 382.8
+        },
+        {
+          "texto": "Duelista: Auditoría",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 384.5
+        },
+        {
+          "texto": "Facción: Humanos",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 385.65
+        },
+        {
+          "texto": "Duelos ganados: 5",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 386.88
+        },
+        {
+          "texto": "Mejor racha: 3",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 388.01
+        },
+        {
+          "texto": "Capturas totales: 40",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 389.44
+        },
+        {
+          "texto": "LA ABRES LO JUSTO",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 390.34
+        },
+        {
+          "texto": "No la fuerzas. La negocias: el tiempo justo para cruzar y volver.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 392.99
+        },
+        {
+          "texto": "Alguien sostiene el otro lado. Alguien que se queda esperando.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 395.34
+        },
+        {
+          "texto": "Cruzas. El Umbral se cierra detras con un ruido pequeño, de puerta.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 397.54
+        },
+        {
+          "texto": "Para todos los de aquí, en el salon, pasaron tres segundos.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 399.82
+        },
+        {
+          "texto": "UNA EXPANSION NUEVA",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 400.79
+        },
+        {
+          "texto": "Para todos, en el salon, pasaron tres segundos. Nada más.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 403.16
+        },
+        {
+          "texto": "Buscas en internet los nombres de los que conociste. Nada cambia.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 405.38
+        },
+        {
+          "texto": "Todo esta igual. Hasta que abris Cartones y Mazmorras.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 407.42
+        },
+        {
+          "texto": "Hay una expansion nueva. Anunciada esta mañana. Nadie sabe de quien.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 409.6
+        },
+        {
+          "texto": "La portada es el rostro de alguien que te ayudo a volver. Nara.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 411.66
+        },
+        {
+          "texto": "- ¿Cómo puede estar en una carta? - Porque ya la viste. En el bosque.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 414.44
+        }
+      ],
+      "terminado": true,
+      "activo": {
+        "pantalla": "ejecutar",
+        "segundos": 413.85
+      },
+      "estado": {
+        "version": 7,
+        "faccion": "humano",
+        "nodo": "trono",
+        "ruta": [
+          "senda",
+          "aldea",
+          "fortaleza",
+          "asalto",
+          "trono"
+        ],
+        "eleccion": "aldea",
+        "cartas": [
+          {
+            "nombre": "Antorcha Viva",
+            "n": 4,
+            "s": 6,
+            "e": 5,
+            "o": 8,
+            "bando": "humano",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Broquel",
+            "n": 5,
+            "s": 5,
+            "e": 7,
+            "o": 6,
+            "bando": "humano",
+            "habilidad": null
+          },
+          {
+            "nombre": "Tamborilero",
+            "n": 6,
+            "s": 6,
+            "e": 4,
+            "o": 7,
+            "bando": "humano",
+            "habilidad": null
+          },
+          {
+            "nombre": "Vigía del Muro",
+            "n": 5,
+            "s": 7,
+            "e": 4,
+            "o": 7,
+            "bando": "humano",
+            "habilidad": null
+          },
+          {
+            "nombre": "Terror del Valle",
+            "n": 10,
+            "s": 8,
+            "e": 8,
+            "o": 8,
+            "bando": "hombre_lobo",
+            "habilidad": null
+          },
+          {
+            "nombre": "Brujo Verde",
+            "n": 3,
+            "s": 9,
+            "e": 4,
+            "o": 7,
+            "bando": "goblin",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Hondero",
+            "n": 5,
+            "s": 3,
+            "e": 8,
+            "o": 6,
+            "bando": "humano",
+            "habilidad": null
+          },
+          {
+            "nombre": "Mozo de Fragua",
+            "n": 4,
+            "s": 7,
+            "e": 5,
+            "o": 6,
+            "bando": "humano",
+            "habilidad": null
+          },
+          {
+            "nombre": "Pica Corta",
+            "n": 6,
+            "s": 4,
+            "e": 7,
+            "o": 5,
+            "bando": "humano",
+            "habilidad": null
+          },
+          {
+            "nombre": "Sargento Ferrum",
+            "n": 5,
+            "s": 7,
+            "e": 6,
+            "o": 4,
+            "bando": "humano",
+            "habilidad": "muro"
+          }
+        ],
+        "semilla": 11698639734323630911,
+        "racha": 1,
+        "mejor_racha": 3,
+        "victorias": 5,
+        "derrotas": 2,
+        "capturas": 40,
+        "aliados": [],
+        "debilitar": 0,
+        "sigilos": 0,
+        "completada": true,
+        "final": {
+          "variante": "equilibrio",
+          "titulo": "LA PAZ CONGELADA",
+          "faccion": "humano",
+          "nuevo": true
+        },
+        "creada": 1792178951.3473942,
+        "prologo_visto": true,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 5,
+        "decisiones": [
+          "senda_herido",
+          "fortaleza_umbral"
+        ],
+        "revelaciones": [
+          "senda_misericordia",
+          "fortaleza_precio",
+          "enc_caravana_sobres",
+          "enc_hermandad_pacto"
+        ],
+        "fragmentos": 0,
+        "compendio": [],
+        "ultimo_premio": {
+          "partes": [
+            [
+              "Duelo completado",
+              5
+            ],
+            [
+              "Victoria",
+              20
+            ],
+            [
+              "7 capturas x2",
+              14
+            ]
+          ],
+          "total": 39
+        },
+        "mejoras": {},
+        "recompensas_recibidas": {
+          "senda": {
+            "mensaje": "Antorcha Viva sube su N a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "aldea": {
+            "mensaje": "Antorcha Viva sube su N a 6",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "fortaleza": {
+            "mensaje": "Antorcha Viva sube su E a 6",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "asalto": {
+            "mensaje": "Antorcha Viva sube su N a 7",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          }
+        },
+        "amistad_vista": true,
+        "final_pendiente": true
+      },
+      "segundos": 416.03,
+      "derrota_real": true
+    },
+    {
+      "id": "principal_ruinas",
+      "pantallas": [
+        {
+          "nombre": "ejecutar",
+          "nodo": "senda",
+          "segundos": 0.11
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "senda",
+          "segundos": 22.4
+        },
+        {
+          "nombre": "decision_narrativa",
+          "nodo": "senda",
+          "segundos": 22.62
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "senda",
+          "segundos": 23.12
+        },
+        {
+          "nombre": "partida",
+          "nodo": "senda",
+          "segundos": 48.84
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "bifurcacion",
+          "segundos": 57.18
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "bifurcacion",
+          "segundos": 76.92
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "bifurcacion",
+          "segundos": 77.12
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "bifurcacion",
+          "segundos": 77.62
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "bifurcacion",
+          "segundos": 77.98
+        },
+        {
+          "nombre": "elegir_rama",
+          "nodo": "bifurcacion",
+          "segundos": 78.34
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "ruinas",
+          "segundos": 78.81
+        },
+        {
+          "nombre": "partida",
+          "nodo": "ruinas",
+          "segundos": 107.22
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "ruinas",
+          "segundos": 121.92
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "ruinas",
+          "segundos": 122.39
+        },
+        {
+          "nombre": "_preguntar_rever",
+          "nodo": "ruinas",
+          "segundos": 122.58
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "fortaleza",
+          "segundos": 128.84
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "fortaleza",
+          "segundos": 144.21
+        },
+        {
+          "nombre": "draft",
+          "nodo": "fortaleza",
+          "segundos": 144.4
+        },
+        {
+          "nombre": "draft_reemplazo",
+          "nodo": "fortaleza",
+          "segundos": 144.75
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "fortaleza",
+          "segundos": 145.06
+        },
+        {
+          "nombre": "encuentro",
+          "nodo": "fortaleza",
+          "segundos": 150.59
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "fortaleza",
+          "segundos": 151.39
+        },
+        {
+          "nombre": "decision_narrativa",
+          "nodo": "fortaleza",
+          "segundos": 151.74
+        },
+        {
+          "nombre": "partida",
+          "nodo": "fortaleza",
+          "segundos": 177.31
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "asalto",
+          "segundos": 182.84
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "asalto",
+          "segundos": 200.57
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "asalto",
+          "segundos": 200.77
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "asalto",
+          "segundos": 201.41
+        },
+        {
+          "nombre": "encuentro",
+          "nodo": "asalto",
+          "segundos": 207.2
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "asalto",
+          "segundos": 208.08
+        },
+        {
+          "nombre": "partida",
+          "nodo": "asalto",
+          "segundos": 231.45
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "trono",
+          "segundos": 238.0
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "trono",
+          "segundos": 255.52
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "trono",
+          "segundos": 255.73
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "trono",
+          "segundos": 256.23
+        },
+        {
+          "nombre": "encuentro",
+          "nodo": "trono",
+          "segundos": 262.01
+        },
+        {
+          "nombre": "mapa_campana",
+          "nodo": "trono",
+          "segundos": 262.9
+        },
+        {
+          "nombre": "partida",
+          "nodo": "trono",
+          "segundos": 321.44
+        },
+        {
+          "nombre": "epilogo",
+          "nodo": "trono",
+          "segundos": 382.71
+        }
+      ],
+      "duelos": [
+        {
+          "nodo": "senda",
+          "rival": "Kor",
+          "mano_u": [
+            "Muerdehuesos",
+            "Porton de Hierro",
+            "Hacha Sucia",
+            "Bruto Rasgador",
+            "Foso"
+          ],
+          "mano_c": [
+            "Bostezo Ígneo",
+            "Guijarro",
+            "Drake",
+            "Cola Corta",
+            "Escama Suelta"
+          ],
+          "ganador": "T",
+          "marcador": [
+            7,
+            2
+          ],
+          "jugadas": 9,
+          "capturas": 4
+        },
+        {
+          "nodo": "ruinas",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Mazo Quebrado",
+            "Tizón",
+            "Bruto Rasgador",
+            "Foso",
+            "Porton de Hierro"
+          ],
+          "mano_c": [
+            "Mayordomo",
+            "Cazadora de Sangre",
+            "Jardín de Espinas",
+            "Oraculo de Sangre",
+            "Doncella Palida"
+          ],
+          "ganador": "C",
+          "marcador": [
+            3,
+            6
+          ],
+          "jugadas": 9,
+          "capturas": 6
+        },
+        {
+          "nodo": "ruinas",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Muerdehuesos",
+            "Foso",
+            "Gruñido",
+            "Tizón",
+            "Porton de Hierro"
+          ],
+          "mano_c": [
+            "Jardín de Espinas",
+            "Dama Carmin",
+            "Novia de Niebla",
+            "Ataúd Reforzado",
+            "Esgrimidor"
+          ],
+          "ganador": "T",
+          "marcador": [
+            5,
+            4
+          ],
+          "jugadas": 9,
+          "capturas": 8
+        },
+        {
+          "nodo": "fortaleza",
+          "rival": "Lyra",
+          "mano_u": [
+            "Muerdehuesos",
+            "Piel Cortada",
+            "Porton de Hierro",
+            "Colmillo Roto",
+            "Gruñido"
+          ],
+          "mano_c": [
+            "Sabio del Bosque",
+            "Lechuza",
+            "Refugio Verde",
+            "Arquero",
+            "Hoja Gemela"
+          ],
+          "ganador": "T",
+          "marcador": [
+            7,
+            2
+          ],
+          "jugadas": 9,
+          "capturas": 8
+        },
+        {
+          "nodo": "asalto",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Porton de Hierro",
+            "Piel Cortada",
+            "Tizón",
+            "Dama Hoja",
+            "Espalda Ancha"
+          ],
+          "mano_c": [
+            "Ansia Nocturna",
+            "Sangre Joven",
+            "Novia de Niebla",
+            "Dama Carmin",
+            "Jardín de Espinas"
+          ],
+          "ganador": "T",
+          "marcador": [
+            8,
+            1
+          ],
+          "jugadas": 9,
+          "capturas": 9
+        },
+        {
+          "nodo": "trono",
+          "rival": "Lyra",
+          "mano_u": [
+            "Dama Hoja",
+            "Espalda Ancha",
+            "Tizón",
+            "Foso",
+            "Hacha Sucia"
+          ],
+          "mano_c": [
+            "Bosque Antiguo",
+            "Centinela",
+            "Refugio Verde",
+            "Vengador Silvano",
+            "Dama Hoja"
+          ],
+          "ganador": "T",
+          "marcador": [
+            7,
+            2
+          ],
+          "jugadas": 9,
+          "capturas": 12
+        }
+      ],
+      "escenas": [
+        {
+          "texto": "Al otro lado de la frontera hay un mundo con un muro y una sola palabra: invasores.",
+          "hablante": null,
+          "contexto": "cinemática de apertura orco",
+          "segundos": 2.29
+        },
+        {
+          "texto": "Vorg no sabe leer. Sabe contar. Y sabe que le deben siete generaciones.",
+          "hablante": "Vorg",
+          "contexto": "cinemática de apertura orco",
+          "segundos": 5.42
+        },
+        {
+          "texto": "Juegas con el mazo orco. No el que te impone el mundo: el que tu pueblo se ha ganado con los dientes.",
+          "hablante": "Vorg",
+          "contexto": "cinemática de apertura orco",
+          "segundos": 8.72
+        },
+        {
+          "texto": "- Queremos un lugar en el mundo que nos negaron otra vez. No un trono para tapar una cosa: un sitio en la mesa.",
+          "hablante": "Vorg",
+          "contexto": "cinemática de apertura orco",
+          "segundos": 13.43
+        },
+        {
+          "texto": "- Te ayudamos porque peleas bien y porque no rubs nada. Un orco prefiere a alguien util antes que a alguien educado.",
+          "hablante": "Vorg",
+          "contexto": "cinemática de apertura orco",
+          "segundos": 18.37
+        },
+        {
+          "texto": "No fight contra el mundo entero: solo contra lo que se opone.",
+          "hablante": null,
+          "contexto": "cinemática de apertura orco",
+          "segundos": 21.56
+        },
+        {
+          "texto": "El camino esta sembrado de ceniza y nadie sabe de donde viene.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 25.24
+        },
+        {
+          "texto": "Un rival espera en la primera encrucijada con la guardia alta.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 27.68
+        },
+        {
+          "texto": "La senda sube entre pinos negros. En la cuneta hay un hombre que sangra y no te pide nada.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 30.51
+        },
+        {
+          "texto": "- No quiere pelear, pero el camino se decide por Juicio. Ganale sin hacerle dano y los dos podremos seguir.",
+          "hablante": "Nara",
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 34.72
+        },
+        {
+          "texto": "Kor, Ala Que No Levanto.",
+          "hablante": "Kor",
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 36.87
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 39.12
+        },
+        {
+          "texto": "Un orco. Bueno. Peor que los humanos, no va a ser.",
+          "hablante": "Kor",
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 41.56
+        },
+        {
+          "texto": "- No quiero pelear. De verdad. No quiero.",
+          "hablante": "Kor",
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 43.55
+        },
+        {
+          "texto": "- Pero tu, Auditoría, si vienes a por el campo, hace falta.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 45.67
+        },
+        {
+          "texto": "- Si me das el centro me voy y no miro atrás.",
+          "hablante": null,
+          "contexto": "cartel de duelo senda contra Dragones",
+          "segundos": 47.67
+        },
+        {
+          "texto": "El rival guarda sus cartas y te deja seguir. Adelante, la senda se estrecha: el Umbral parece una puerta que nadie ha empujado.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 60.35
+        },
+        {
+          "texto": "Lo que el juego nunca dijo: el Umbral no es una puerta. Es una pregunta que alguien hizo hace mucho y sigue esperando.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 64.76
+        },
+        {
+          "texto": "- Cuando llegues al trono vas a tener que elegir.",
+          "hablante": "Nara",
+          "contexto": "escena posterior senda",
+          "segundos": 67.91
+        },
+        {
+          "texto": "- Ganaste. Ya está. Pasá antes de que alguien pida otro Juicio.",
+          "hablante": "Kor",
+          "contexto": "escena posterior senda",
+          "segundos": 70.27
+        },
+        {
+          "texto": "- Aquí nadie muere por un Juicio. Que se note.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 72.28
+        },
+        {
+          "texto": "Un orco en territorio humano. La conversacion se apaga mesa por mesa.",
+          "hablante": null,
+          "contexto": "escena posterior senda",
+          "segundos": 74.9
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior senda",
+          "segundos": 76.58
+        },
+        {
+          "texto": "Lo que guardan las ruinas no se lo quedo nadie, y por algo es.",
+          "hablante": null,
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 80.46
+        },
+        {
+          "texto": "Bajo la ceniza hay una ciudad entera. Las calles siguen donde estaban y las casas siguen teniendo techo.",
+          "hablante": null,
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 84.34
+        },
+        {
+          "texto": "No hay nadie. Y sin embargo, en una pared hay un cartel: el dibujo de una carta que reconoces.",
+          "hablante": null,
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 87.71
+        },
+        {
+          "texto": "Es una de las tuyas. El guardian no te deja acercarte al muro: tendrás que vencerlo para investigar por que tu carta estaba aquí antes que vos.",
+          "hablante": null,
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 92.66
+        },
+        {
+          "texto": "Condesa Sanguinaria, Lo que Desperto Bajo la Ceniza.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 96.08
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 98.08
+        },
+        {
+          "texto": "Un orco. Rompes cosas al entrar. Como todos.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 100.33
+        },
+        {
+          "texto": "- Baja despacio. Esto ya estaba roto antes de que llegaras.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 102.38
+        },
+        {
+          "texto": "- Auditoría, tu nombre lo vi en las ruinas. Preguntate por que.",
+          "hablante": null,
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 104.66
+        },
+        {
+          "texto": "- Y no, no te lo voy a explicar.",
+          "hablante": null,
+          "contexto": "cartel de duelo ruinas contra Vampiros",
+          "segundos": 106.38
+        },
+        {
+          "texto": "El paso sigue cerrado. Recoges tus cartas: tendrás que volver a intentarlo.",
+          "hablante": null,
+          "contexto": "escena posterior ruinas (derrota)",
+          "segundos": 114.64
+        },
+        {
+          "texto": "- Todavía no. Las ruinas pueden esperar a que ordenes esas cartas.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "escena posterior ruinas (derrota)",
+          "segundos": 116.85
+        },
+        {
+          "texto": "Un orco en territorio humano. La conversacion se apaga mesa por mesa.",
+          "hablante": null,
+          "contexto": "escena posterior ruinas (derrota)",
+          "segundos": 119.33
+        },
+        {
+          "texto": "- Otra vez. Dime que al menos estabas aprendiendo algo.",
+          "hablante": "Nara",
+          "contexto": "escena posterior ruinas (derrota)",
+          "segundos": 121.48
+        },
+        {
+          "texto": "El custodio te deja estudiar el dibujo. Al salir de las ruinas, Nara no pregunta por lo que viste. Escribe.",
+          "hablante": "Nara",
+          "contexto": "escena posterior ruinas",
+          "segundos": 131.63
+        },
+        {
+          "texto": "- El Umbral no invento el mundo. Lo copio. Y lo copio mal.",
+          "hablante": "Nara",
+          "contexto": "escena posterior ruinas",
+          "segundos": 134.5
+        },
+        {
+          "texto": "- Alguien escribio esas cartas antes de que fueran ciertas.",
+          "hablante": "Nara",
+          "contexto": "escena posterior ruinas",
+          "segundos": 137.17
+        },
+        {
+          "texto": "- Podés mirar el dibujo. Ganaste el paso; las reliquias se quedan aquí.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "escena posterior ruinas",
+          "segundos": 139.63
+        },
+        {
+          "texto": "Un orco en territorio humano. La conversacion se apaga mesa por mesa.",
+          "hablante": null,
+          "contexto": "escena posterior ruinas",
+          "segundos": 142.18
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior ruinas",
+          "segundos": 143.85
+        },
+        {
+          "texto": "EL ANCIANO DEL UMBRAL",
+          "hablante": null,
+          "contexto": "escena posterior ruinas",
+          "segundos": 146.19
+        },
+        {
+          "texto": "Su mirada se detiene en las figuras de tu mazo.",
+          "hablante": null,
+          "contexto": "escena posterior ruinas",
+          "segundos": 148.1
+        },
+        {
+          "texto": "- Un orco. Poca gente lee. Tu lees. Bien.",
+          "hablante": "El Anciano del Umbral",
+          "contexto": "escena posterior ruinas",
+          "segundos": 149.99
+        },
+        {
+          "texto": "Quien controla la fortaleza controla el mapa.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 153.97
+        },
+        {
+          "texto": "La fortaleza domina el camino al trono. Y el trono tiene el Umbral.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 155.93
+        },
+        {
+          "texto": "El capitán te espera en la puerta. Quiere impedir que abras el Umbral: teme lo que pueda cruzar de vuelta. Para seguir, tendrás que vencerlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 160.22
+        },
+        {
+          "texto": "Lyra, Campeon de la Fortaleza.",
+          "hablante": "Lyra",
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 162.8
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 164.92
+        },
+        {
+          "texto": "Un orco en la fortaleza. Alguien esta de mal humor.",
+          "hablante": "Lyra",
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 167.4
+        },
+        {
+          "texto": "- No sigas. No por mi. Por lo que hay atrás.",
+          "hablante": "Lyra",
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 169.27
+        },
+        {
+          "texto": "- Auditoría, te lo pido por tu nombre. De verdad. No sigas.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 171.8
+        },
+        {
+          "texto": "- Cada vez que los mundos se tocan, algo pasa en los dos lados.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 174.34
+        },
+        {
+          "texto": "- Vos ya cruzaste. Preguntate que cruza de vuelta.",
+          "hablante": null,
+          "contexto": "cartel de duelo fortaleza contra Elfos",
+          "segundos": 176.9
+        },
+        {
+          "texto": "El capitán se aparta y cruzas la puerta. El duelo abrió el paso; su advertencia sobre el Umbral sigue contigo.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 185.67
+        },
+        {
+          "texto": "- Ganar no es el problema. El problema es que se abre después.",
+          "hablante": "Nara",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 188.55
+        },
+        {
+          "texto": "- Estas a dos duelos de la vuelta. No aflojes ahora.",
+          "hablante": "Nara",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 191.01
+        },
+        {
+          "texto": "- Ganaste. No voy a cerrarte la puerta. Recordá mi advertencia cuando llegues.",
+          "hablante": "Lyra",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 193.89
+        },
+        {
+          "texto": "- Lo que hay del otro lado ya esta en camino.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 195.81
+        },
+        {
+          "texto": "Un orco en territorio humano. La conversacion se apaga mesa por mesa.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 198.57
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 200.3
+        },
+        {
+          "texto": "CARAVANA DE SOBRES",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 202.49
+        },
+        {
+          "texto": "Su mirada se detiene en las figuras de tu mazo.",
+          "hablante": null,
+          "contexto": "escena posterior fortaleza",
+          "segundos": 204.47
+        },
+        {
+          "texto": "- Un orco con un sobre. No me negateis nada.",
+          "hablante": "Caravana de Sobres",
+          "contexto": "escena posterior fortaleza",
+          "segundos": 206.42
+        },
+        {
+          "texto": "Creiste que estaba derrotado. No lo estaba.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 209.78
+        },
+        {
+          "texto": "Vuelve. Con las mismas heridas y con la misma pregunta.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 210.4
+        },
+        {
+          "texto": "- Creiste que estaba derrotado.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 213.06
+        },
+        {
+          "texto": "- No lo estaba. Quiero la revancha. Si vas al trono, primero demostra que aquella victoria no fue suerte.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 215.92
+        },
+        {
+          "texto": "Condesa Sanguinaria, El Que Vuelve.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 218.14
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 220.23
+        },
+        {
+          "texto": "Un orco. Todo bien. Todo bien. Otra vez.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 222.33
+        },
+        {
+          "texto": "- Otra vez.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 223.33
+        },
+        {
+          "texto": "- Auditoría, siempre el mismo. Como si el nombre no te importara.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 225.83
+        },
+        {
+          "texto": "- Otra vez la misma combinacion. No se si te enorgullece o me insulta.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 228.39
+        },
+        {
+          "texto": "- Yo si me acuerdo. Yo me acuerdo de todo.",
+          "hablante": null,
+          "contexto": "cartel de duelo asalto contra Vampiros",
+          "segundos": 230.6
+        },
+        {
+          "texto": "Esta vez recoge sus cartas y deja libre el camino. La revancha terminó; el recuerdo de la primera derrota sigue ahí.",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 240.97
+        },
+        {
+          "texto": "- Las cartas de tu estuche siguen sin pertenecer a este mundo.",
+          "hablante": "Nara",
+          "contexto": "escena posterior asalto",
+          "segundos": 244.0
+        },
+        {
+          "texto": "- Lo se. Desde que llegue no duermo tranquilo.",
+          "hablante": "Auditoría",
+          "contexto": "escena posterior asalto",
+          "segundos": 246.03
+        },
+        {
+          "texto": "- Falta uno. El último. Y el último te devuelve a casa.",
+          "hablante": "Nara",
+          "contexto": "escena posterior asalto",
+          "segundos": 248.04
+        },
+        {
+          "texto": "- Perdí otra vez. No puedo detenerte; eso duele más que la derrota.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "escena posterior asalto",
+          "segundos": 250.76
+        },
+        {
+          "texto": "Un orco en territorio humano. La conversacion se apaga mesa por mesa.",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 253.46
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior asalto",
+          "segundos": 255.17
+        },
+        {
+          "texto": "HERMANDAD DE ARMAS",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 257.3
+        },
+        {
+          "texto": "Su mirada se detiene en las figuras de tu mazo.",
+          "hablante": null,
+          "contexto": "escena posterior asalto",
+          "segundos": 259.28
+        },
+        {
+          "texto": "- Un orco. Bien. Uno más que no se asusta.",
+          "hablante": "Hermandad de Armas",
+          "contexto": "escena posterior asalto",
+          "segundos": 261.19
+        },
+        {
+          "texto": "Antes del último duelo, Nara te espera en el borde del camino.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 264.89
+        },
+        {
+          "texto": "No esta escribiendo. El libro esta cerrado.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 266.88
+        },
+        {
+          "texto": "- Tengo que corregir una cosa. Y corregirme yo.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 268.4
+        },
+        {
+          "texto": "- Al principio te acompanaba porque necesitaba respuestas.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 270.51
+        },
+        {
+          "texto": "- Era verdad. Y no era todo.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 271.54
+        },
+        {
+          "texto": "- Vine a averiguar quien escribio las cartas. Ese era el motivo. Y según el motivo, vos eras un dato.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 274.66
+        },
+        {
+          "texto": "Nara abre el libro por la última vez. Esta lleno de flechas y de preguntas, y de tu nombre repetido cuantas veces pudo.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 279.01
+        },
+        {
+          "texto": "- No lo encontre. Y en el camino perdi las ganas de que me importara tanto.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 282.72
+        },
+        {
+          "texto": "Lo cierra otra vez. Esta vez no lo vuelve a abrir.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 285.38
+        },
+        {
+          "texto": "- Dejame acompañarte. No por el Umbral. No por las cartas.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 287.82
+        },
+        {
+          "texto": "- Porque quiero. Y no me da verguenza decirlo.",
+          "hablante": "Nara",
+          "contexto": "campaña: Nara se queda",
+          "segundos": 289.76
+        },
+        {
+          "texto": "El camino sube hacia el trono. Esta vez lo recorren dos amigos.",
+          "hablante": null,
+          "contexto": "campaña: Nara se queda",
+          "segundos": 291.93
+        },
+        {
+          "texto": "Aquí termina el camino. Aquí se decide de quien es el mundo.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 294.36
+        },
+        {
+          "texto": "El trono se alza ante la grieta. Para llegar al Umbral, primero tendrás que vencer a quien lo guarda.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 297.77
+        },
+        {
+          "texto": "El guardian no se aparta: defiende el derecho a decidir sobre el Umbral. Si lo vences, la decisión de volver a casa sera tuya.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 302.17
+        },
+        {
+          "texto": "Lyra, Soberano del Umbral.",
+          "hablante": "Lyra",
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 304.79
+        },
+        {
+          "texto": "El rival señala la figura de tu carta. Le habla como si pudiera oirlo.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 307.0
+        },
+        {
+          "texto": "Un orco en el trono. El mundo al reves, entonces.",
+          "hablante": "Lyra",
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 309.37
+        },
+        {
+          "texto": "- No necesitas pelear. De verdad. Eso es lo raro.",
+          "hablante": "Lyra",
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 311.4
+        },
+        {
+          "texto": "- Auditoría, se tu nombre y ya se lo que vienes a buscar.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 313.63
+        },
+        {
+          "texto": "- Pero si ganas, vas a descubrir la verdad. Y la verdad no es lo que esperas.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 316.7
+        },
+        {
+          "texto": "- Lo prudente es no saber. Eso no lo vas a entender hasta que sea tarde.",
+          "hablante": null,
+          "contexto": "cartel de duelo trono contra Elfos",
+          "segundos": 320.13
+        },
+        {
+          "texto": "EL JUICIO TERMINA",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 329.22
+        },
+        {
+          "texto": "- Si abres el Umbral vas a poder volver. Eso no significa que sea buena idea.",
+          "hablante": "Nara",
+          "contexto": "escena posterior trono",
+          "segundos": 332.13
+        },
+        {
+          "texto": "- Ganaste el Juicio. El Umbral queda en tus manos; su precio, también.",
+          "hablante": "Lyra",
+          "contexto": "escena posterior trono",
+          "segundos": 335.18
+        },
+        {
+          "texto": "- Abre el Umbral si viniste a eso. Y después no mires atrás.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 337.64
+        },
+        {
+          "texto": "Un orco en territorio humano. La conversacion se apaga mesa por mesa.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 340.41
+        },
+        {
+          "texto": "- Ganaste. Eso no dice nada todavía.",
+          "hablante": "Nara",
+          "contexto": "escena posterior trono",
+          "segundos": 342.14
+        },
+        {
+          "texto": "EL TRONO DE CENIZA",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 342.89
+        },
+        {
+          "texto": "Los portones ceden y el trono del Umbral es tuyo para quien lo alcance.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 345.66
+        },
+        {
+          "texto": "El bosque envejece mil años en una sola noche.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 347.95
+        },
+        {
+          "texto": "No eres un rey: eres el primer orco que no pide permiso para existir.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 350.29
+        },
+        {
+          "texto": "Duelista: Auditoría",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 351.99
+        },
+        {
+          "texto": "Facción: Orcos",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 353.15
+        },
+        {
+          "texto": "Duelos ganados: 5",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 354.39
+        },
+        {
+          "texto": "Mejor racha: 4",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 355.55
+        },
+        {
+          "texto": "Capturas totales: 41",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 356.92
+        },
+        {
+          "texto": "FORZAS LA APERTURA",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 357.86
+        },
+        {
+          "texto": "Empujas. No es abrir una puerta: es convencer a algo que no quiere.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 360.5
+        },
+        {
+          "texto": "El Umbral cede y del otro lado esta tu salon, tus luces, tu torneo.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 363.16
+        },
+        {
+          "texto": "Y también esta la otra cosa: algo cruza contigo hacia tu mundo.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 365.86
+        },
+        {
+          "texto": "No lo ves. Todavía no. Vas a verlo más tarde, en tu propio mazo.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 368.36
+        },
+        {
+          "texto": "VOLVISTE CON ALGO",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 369.86
+        },
+        {
+          "texto": "Estas otra vez en el torneo. La misma mesa, las mismas luces.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 372.35
+        },
+        {
+          "texto": "Abres el estuche: tus cinco legendarias siguen ahi, pero sobra una carta.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 375.03
+        },
+        {
+          "texto": "Hay una que no compraste. No la viste nunca. No tiene fecha.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 377.24
+        },
+        {
+          "texto": "Es LEGENDARIA. Y el rostro en el arte... es el tuyo.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 379.55
+        },
+        {
+          "texto": "- ¿Quién sos, Auditoría? - Alguien que estuvo donde nadie debe estar.",
+          "hablante": null,
+          "contexto": "escena posterior trono",
+          "segundos": 382.13
+        }
+      ],
+      "terminado": true,
+      "activo": {
+        "pantalla": "ejecutar",
+        "segundos": 378.63
+      },
+      "estado": {
+        "version": 7,
+        "faccion": "orco",
+        "nodo": "trono",
+        "ruta": [
+          "senda",
+          "ruinas",
+          "fortaleza",
+          "asalto",
+          "trono"
+        ],
+        "eleccion": "ruinas",
+        "cartas": [
+          {
+            "nombre": "Espalda Ancha",
+            "n": 6,
+            "s": 8,
+            "e": 7,
+            "o": 6,
+            "bando": "orco",
+            "habilidad": null
+          },
+          {
+            "nombre": "Dama Hoja",
+            "n": 5,
+            "s": 8,
+            "e": 4,
+            "o": 9,
+            "bando": "elfo",
+            "habilidad": null
+          },
+          {
+            "nombre": "Gruñido",
+            "n": 5,
+            "s": 6,
+            "e": 4,
+            "o": 7,
+            "bando": "orco",
+            "habilidad": null
+          },
+          {
+            "nombre": "Piel Cortada",
+            "n": 4,
+            "s": 5,
+            "e": 8,
+            "o": 5,
+            "bando": "orco",
+            "habilidad": null
+          },
+          {
+            "nombre": "Hacha Sucia",
+            "n": 8,
+            "s": 3,
+            "e": 5,
+            "o": 6,
+            "bando": "orco",
+            "habilidad": null
+          },
+          {
+            "nombre": "Porton de Hierro",
+            "n": 4,
+            "s": 8,
+            "e": 5,
+            "o": 6,
+            "bando": "orco",
+            "habilidad": "muro"
+          },
+          {
+            "nombre": "Foso",
+            "n": 5,
+            "s": 4,
+            "e": 7,
+            "o": 7,
+            "bando": "orco",
+            "habilidad": null
+          },
+          {
+            "nombre": "Tizón",
+            "n": 3,
+            "s": 7,
+            "e": 6,
+            "o": 7,
+            "bando": "orco",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Bruto Rasgador",
+            "n": 8,
+            "s": 5,
+            "e": 7,
+            "o": 4,
+            "bando": "orco",
+            "habilidad": "furia"
+          },
+          {
+            "nombre": "Muerdehuesos",
+            "n": 7,
+            "s": 6,
+            "e": 5,
+            "o": 6,
+            "bando": "orco",
+            "habilidad": null
+          }
+        ],
+        "semilla": 15055812171451882819,
+        "racha": 4,
+        "mejor_racha": 4,
+        "victorias": 5,
+        "derrotas": 1,
+        "capturas": 41,
+        "aliados": [],
+        "debilitar": 0,
+        "sigilos": 0,
+        "completada": true,
+        "final": {
+          "variante": "dominio",
+          "titulo": "EL TRONO DE CENIZA",
+          "faccion": "orco",
+          "nuevo": true
+        },
+        "creada": 1792199384.2660234,
+        "prologo_visto": false,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 5,
+        "decisiones": [
+          "senda_herido",
+          "fortaleza_umbral"
+        ],
+        "revelaciones": [
+          "senda_misericordia",
+          "enc_anciano_origen",
+          "fortaleza_precio",
+          "enc_caravana_sobres",
+          "enc_hermandad_pacto"
+        ],
+        "fragmentos": 0,
+        "compendio": [],
+        "revancha": 1,
+        "ultimo_premio": {
+          "partes": [
+            [
+              "Duelo completado",
+              5
+            ],
+            [
+              "Victoria",
+              20
+            ],
+            [
+              "12 capturas x2",
+              24
+            ]
+          ],
+          "total": 49
+        },
+        "mejoras": {},
+        "recompensas_recibidas": {
+          "senda": {
+            "mensaje": "Mazo Quebrado sube su S a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "ruinas": {
+            "mensaje": "Espalda Ancha entra en el mazo en lugar de Mazo Quebrado",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "fortaleza": {
+            "mensaje": "Espalda Ancha sube su N a 7",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "asalto": {
+            "mensaje": "Espalda Ancha sube su O a 7",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          }
+        },
+        "amistad_vista": true,
+        "final_pendiente": true
+      },
+      "segundos": 383.1,
+      "derrota_real": true
+    },
+    {
+      "id": "mini_nocturno",
+      "pantallas": [
+        {
+          "nombre": "elegir_faccion",
+          "nodo": null,
+          "segundos": 0.09
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_senda",
+          "segundos": 0.36
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_senda",
+          "segundos": 1.09
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_senda",
+          "segundos": 8.08
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_nudo",
+          "segundos": 13.46
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_nudo",
+          "segundos": 13.66
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_nudo",
+          "segundos": 14.14
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_nudo",
+          "segundos": 14.52
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_nudo",
+          "segundos": 14.95
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_nudo",
+          "segundos": 21.92
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_trono",
+          "segundos": 30.13
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_trono",
+          "segundos": 30.35
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_trono",
+          "segundos": 30.87
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_trono",
+          "segundos": 31.28
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_trono",
+          "segundos": 31.65
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_trono",
+          "segundos": 38.05
+        }
+      ],
+      "duelos": [
+        {
+          "nodo": "mini_senda",
+          "rival": "Vorg",
+          "mano_u": [
+            "Acechante",
+            "Polilla Negra",
+            "Tinta Viva",
+            "Espia Umbria",
+            "Velo Gris"
+          ],
+          "mano_c": [
+            "Colmillo Roto",
+            "Tambor de Guerra",
+            "Gruñido",
+            "Porton de Hierro",
+            "Mazo Quebrado"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 9
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Zarkha",
+          "mano_u": [
+            "Espia Umbria",
+            "Nido de Búhos",
+            "Tinta Viva",
+            "Beso de Sombra",
+            "Mirada Hueca"
+          ],
+          "mano_c": [
+            "Garra Nocturna",
+            "Cola Sigilosa",
+            "Juego de Sombras",
+            "Saltador",
+            "Salto Mortal"
+          ],
+          "ganador": "T",
+          "marcador": [
+            5,
+            4
+          ],
+          "jugadas": 9,
+          "capturas": 6
+        },
+        {
+          "nodo": "mini_trono",
+          "rival": "Ignarok",
+          "mano_u": [
+            "Acechante",
+            "Susurro",
+            "Espia Umbria",
+            "Mirada Hueca",
+            "Paso Felpado"
+          ],
+          "mano_c": [
+            "Garganta Ardiente",
+            "Diente Curvo",
+            "Corazón de Magma",
+            "Escama Suelta",
+            "Guijarro"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 7
+        }
+      ],
+      "escenas": [
+        {
+          "texto": "El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: tendrás que ganar el paso, aunque ya no seas un forastero.",
+          "hablante": null,
+          "contexto": "mini duelo mini_senda contra Orcos",
+          "segundos": 3.98
+        },
+        {
+          "texto": "Vorg, El Umbral Respira.",
+          "hablante": "Vorg",
+          "contexto": "mini duelo mini_senda contra Orcos",
+          "segundos": 6.42
+        },
+        {
+          "texto": "NAKA! Hoy la tierra es nuestra!",
+          "hablante": "Vorg",
+          "contexto": "mini duelo mini_senda contra Orcos",
+          "segundos": 7.8
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Hombres Pantera",
+          "segundos": 18.34
+        },
+        {
+          "texto": "Zarkha, La Sombra se Cierra.",
+          "hablante": "Zarkha",
+          "contexto": "mini duelo mini_nudo contra Hombres Pantera",
+          "segundos": 20.34
+        },
+        {
+          "texto": "Shh... ya empezo la caza.",
+          "hablante": "Zarkha",
+          "contexto": "mini duelo mini_nudo contra Hombres Pantera",
+          "segundos": 21.52
+        },
+        {
+          "texto": "Solo queda este duelo. Quien guarda el Umbral defiende su dominio; ganar decidirá quién permanece junto a la grieta.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 34.53
+        },
+        {
+          "texto": "Ignarok, Dueño del Umbral.",
+          "hablante": "Ignarok",
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 36.33
+        },
+        {
+          "texto": "QUEMARE. TU MAZO ARDE.",
+          "hablante": "Ignarok",
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 37.64
+        },
+        {
+          "texto": "VIGIA DEL UMBRAL",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 44.78
+        },
+        {
+          "texto": "Tres duelos y el Umbral ya no ruge: susurra tu nombre.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 47.18
+        },
+        {
+          "texto": "Sylwen monta guardia donde la luz no llega.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 49.16
+        },
+        {
+          "texto": "La sombra, por fin, tiene quien la cuide.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Dragones",
+          "segundos": 50.81
+        }
+      ],
+      "terminado": true,
+      "activo": {
+        "pantalla": "ejecutar",
+        "segundos": 50.49
+      },
+      "estado": {
+        "version": 7,
+        "faccion": "elfo_nocturno",
+        "nodo": "mini_trono",
+        "ruta": [
+          "mini_senda",
+          "mini_nudo",
+          "mini_trono"
+        ],
+        "eleccion": null,
+        "cartas": [
+          {
+            "nombre": "Polilla Negra",
+            "n": 5,
+            "s": 4,
+            "e": 8,
+            "o": 4,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Susurro",
+            "n": 4,
+            "s": 5,
+            "e": 6,
+            "o": 6,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Tinta Viva",
+            "n": 7,
+            "s": 3,
+            "e": 6,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Paso Felpado",
+            "n": 6,
+            "s": 5,
+            "e": 4,
+            "o": 7,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Beso de Sombra",
+            "n": 3,
+            "s": 6,
+            "e": 7,
+            "o": 6,
+            "bando": "elfo_nocturno",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Nido de Búhos",
+            "n": 5,
+            "s": 7,
+            "e": 3,
+            "o": 7,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Velo Gris",
+            "n": 6,
+            "s": 6,
+            "e": 5,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Mirada Hueca",
+            "n": 4,
+            "s": 8,
+            "e": 4,
+            "o": 6,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Espia Umbria",
+            "n": 6,
+            "s": 4,
+            "e": 8,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          },
+          {
+            "nombre": "Acechante",
+            "n": 6,
+            "s": 5,
+            "e": 7,
+            "o": 5,
+            "bando": "elfo_nocturno",
+            "habilidad": null
+          }
+        ],
+        "semilla": 18136728011826572883,
+        "racha": 3,
+        "mejor_racha": 3,
+        "victorias": 3,
+        "derrotas": 0,
+        "capturas": 22,
+        "aliados": [],
+        "debilitar": 0,
+        "sigilos": 0,
+        "completada": true,
+        "final": null,
+        "creada": 1792199310.2693212,
+        "prologo_visto": false,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 0,
+        "decisiones": [],
+        "revelaciones": [],
+        "fragmentos": 0,
+        "compendio": [],
+        "mini": true,
+        "_archivo": null,
+        "mejoras": {
+          "Polilla Negra": {
+            "s": 1,
+            "o": 1
+          }
+        },
+        "recompensas_recibidas": {
+          "mini_senda": {
+            "mensaje": "Polilla Negra sube su S a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "mini_nudo": {
+            "mensaje": "Polilla Negra sube su O a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          }
+        }
+      },
+      "segundos": 51.64,
+      "derrota_real": false
+    },
+    {
+      "id": "mini_pantera",
+      "pantallas": [
+        {
+          "nombre": "elegir_faccion",
+          "nodo": null,
+          "segundos": 0.09
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_senda",
+          "segundos": 0.52
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_senda",
+          "segundos": 1.27
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_senda",
+          "segundos": 8.26
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "mini_senda",
+          "segundos": 12.6
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_nudo",
+          "segundos": 28.69
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_nudo",
+          "segundos": 28.89
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_nudo",
+          "segundos": 29.38
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_nudo",
+          "segundos": 29.76
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_nudo",
+          "segundos": 30.18
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_nudo",
+          "segundos": 37.54
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "mini_nudo",
+          "segundos": 41.82
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_trono",
+          "segundos": 68.62
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_trono",
+          "segundos": 68.84
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_trono",
+          "segundos": 69.35
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_trono",
+          "segundos": 69.76
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_trono",
+          "segundos": 70.13
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_trono",
+          "segundos": 76.41
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "mini_trono",
+          "segundos": 80.77
+        }
+      ],
+      "duelos": [
+        {
+          "nodo": "mini_senda",
+          "rival": "Lyra",
+          "mano_u": [
+            "Huella Húmeda",
+            "Garra Nocturna",
+            "Rastro Fresco",
+            "Ronda Gris",
+            "Zarpazo"
+          ],
+          "mano_c": [
+            "Arco Corto",
+            "Seta Cantora",
+            "Sabio del Bosque",
+            "Arquero",
+            "Ciervo Blanco"
+          ],
+          "ganador": "C",
+          "marcador": [
+            4,
+            5
+          ],
+          "jugadas": 9,
+          "capturas": 5
+        },
+        {
+          "nodo": "mini_senda",
+          "rival": "Lyra",
+          "mano_u": [
+            "Selva Espesa",
+            "Zarpazo",
+            "Juego de Sombras",
+            "Acechador",
+            "Rastro Fresco"
+          ],
+          "mano_c": [
+            "Arco Corto",
+            "Arquero",
+            "Flautista",
+            "Refugio Verde",
+            "Broteluz"
+          ],
+          "ganador": "T",
+          "marcador": [
+            8,
+            1
+          ],
+          "jugadas": 9,
+          "capturas": 11
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Bigote",
+            "Colmillo Chico",
+            "Huella Húmeda",
+            "Zarpazo",
+            "Selva Espesa"
+          ],
+          "mano_c": [
+            "Novia de Niebla",
+            "Jardín de Espinas",
+            "Vastago",
+            "Capa Carmesí",
+            "Sangre Joven"
+          ],
+          "ganador": "C",
+          "marcador": [
+            3,
+            6
+          ],
+          "jugadas": 9,
+          "capturas": 4
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Juego de Sombras",
+            "Bigote",
+            "Zarpazo",
+            "Ronda Gris",
+            "Rastro Fresco"
+          ],
+          "mano_c": [
+            "Ataúd Reforzado",
+            "Vastago",
+            "Siervo Pálido",
+            "Esgrimidor",
+            "Capa Carmesí"
+          ],
+          "ganador": "C",
+          "marcador": [
+            3,
+            6
+          ],
+          "jugadas": 9,
+          "capturas": 2
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Colmillo Chico",
+            "Bigote",
+            "Huella Húmeda",
+            "Rastro Fresco",
+            "Selva Espesa"
+          ],
+          "mano_c": [
+            "Sangre Joven",
+            "Vals Eterno",
+            "Candil Rojo",
+            "Ataúd Reforzado",
+            "Vastago"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 9
+        },
+        {
+          "nodo": "mini_trono",
+          "rival": "Fenris",
+          "mano_u": [
+            "Bigote",
+            "Rastro Fresco",
+            "Ronda Gris",
+            "Selva Espesa",
+            "Huella Húmeda"
+          ],
+          "mano_c": [
+            "Guarida",
+            "Alfa del Bosque",
+            "Gañido",
+            "Mordedor Lunar",
+            "Manada Unida"
+          ],
+          "ganador": "C",
+          "marcador": [
+            2,
+            7
+          ],
+          "jugadas": 9,
+          "capturas": 3
+        },
+        {
+          "nodo": "mini_trono",
+          "rival": "Fenris",
+          "mano_u": [
+            "Bigote",
+            "Rastro Fresco",
+            "Garra Nocturna",
+            "Acechador",
+            "Ronda Gris"
+          ],
+          "mano_c": [
+            "Fauces Abiertas",
+            "Caza Nocturna",
+            "Manada Unida",
+            "Garras de Luna",
+            "Pata Veloz"
+          ],
+          "ganador": "T",
+          "marcador": [
+            6,
+            3
+          ],
+          "jugadas": 9,
+          "capturas": 7
+        }
+      ],
+      "escenas": [
+        {
+          "texto": "El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: tendrás que ganar el paso, aunque ya no seas un forastero.",
+          "hablante": null,
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 4.16
+        },
+        {
+          "texto": "Lyra, El Umbral Respira.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 6.56
+        },
+        {
+          "texto": "Que la luz guie mi mazo.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 7.81
+        },
+        {
+          "texto": "El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: tendrás que ganar el paso, aunque ya no seas un forastero.",
+          "hablante": null,
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 16.36
+        },
+        {
+          "texto": "Lyra, El Umbral Respira.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 18.75
+        },
+        {
+          "texto": "Que la luz guie mi mazo.",
+          "hablante": "Lyra",
+          "contexto": "mini duelo mini_senda contra Elfos",
+          "segundos": 20.01
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 33.6
+        },
+        {
+          "texto": "Condesa Sanguinaria, La Sombra se Cierra.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 35.82
+        },
+        {
+          "texto": "Tus cartas son mias.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 37.02
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 45.86
+        },
+        {
+          "texto": "Condesa Sanguinaria, La Sombra se Cierra.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 48.0
+        },
+        {
+          "texto": "Tus cartas son mias.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 48.85
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 57.52
+        },
+        {
+          "texto": "Condesa Sanguinaria, La Sombra se Cierra.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 59.76
+        },
+        {
+          "texto": "Tus cartas son mias.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_nudo contra Vampiros",
+          "segundos": 60.62
+        },
+        {
+          "texto": "Solo queda este duelo. Quien guarda el Umbral defiende su dominio; ganar decidirá quién permanece junto a la grieta.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 73.02
+        },
+        {
+          "texto": "Fenris, Dueño del Umbral.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 74.79
+        },
+        {
+          "texto": "Grrr... prepara tus cartas.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 76.05
+        },
+        {
+          "texto": "Solo queda este duelo. Quien guarda el Umbral defiende su dominio; ganar decidirá quién permanece junto a la grieta.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 84.27
+        },
+        {
+          "texto": "Fenris, Dueño del Umbral.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 86.04
+        },
+        {
+          "texto": "Grrr... prepara tus cartas.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 87.46
+        },
+        {
+          "texto": "LA MEJOR PRESA",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 94.5
+        },
+        {
+          "texto": "Tres duelos sin hacer ruido y el Umbral es territorio de caza.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 97.11
+        },
+        {
+          "texto": "Zarkha no deja huellas: deja precedente.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 99.07
+        },
+        {
+          "texto": "Cazar el Umbral: nadie lo había intentado. Nadie lo repetira.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Hombres Lobo",
+          "segundos": 100.87
+        }
+      ],
+      "terminado": true,
+      "activo": {
+        "pantalla": "ejecutar",
+        "segundos": 100.77
+      },
+      "estado": {
+        "version": 7,
+        "faccion": "hombre_pantera",
+        "nodo": "mini_trono",
+        "ruta": [
+          "mini_senda",
+          "mini_nudo",
+          "mini_trono"
+        ],
+        "eleccion": null,
+        "cartas": [
+          {
+            "nombre": "Bigote",
+            "n": 5,
+            "s": 4,
+            "e": 8,
+            "o": 4,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Rastro Fresco",
+            "n": 4,
+            "s": 5,
+            "e": 6,
+            "o": 6,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Ronda Gris",
+            "n": 7,
+            "s": 3,
+            "e": 6,
+            "o": 5,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Colmillo Chico",
+            "n": 6,
+            "s": 5,
+            "e": 4,
+            "o": 7,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Selva Espesa",
+            "n": 4,
+            "s": 8,
+            "e": 4,
+            "o": 6,
+            "bando": "hombre_pantera",
+            "habilidad": "muro"
+          },
+          {
+            "nombre": "Juego de Sombras",
+            "n": 3,
+            "s": 6,
+            "e": 7,
+            "o": 6,
+            "bando": "hombre_pantera",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Huella Húmeda",
+            "n": 5,
+            "s": 7,
+            "e": 3,
+            "o": 7,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Zarpazo",
+            "n": 7,
+            "s": 5,
+            "e": 6,
+            "o": 5,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          },
+          {
+            "nombre": "Garra Nocturna",
+            "n": 5,
+            "s": 6,
+            "e": 4,
+            "o": 8,
+            "bando": "hombre_pantera",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Acechador",
+            "n": 7,
+            "s": 4,
+            "e": 8,
+            "o": 5,
+            "bando": "hombre_pantera",
+            "habilidad": null
+          }
+        ],
+        "semilla": 12556834729501992275,
+        "racha": 1,
+        "mejor_racha": 1,
+        "victorias": 3,
+        "derrotas": 4,
+        "capturas": 27,
+        "aliados": [],
+        "debilitar": 0,
+        "sigilos": 0,
+        "completada": true,
+        "final": null,
+        "creada": 1792199310.4378994,
+        "prologo_visto": false,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 0,
+        "decisiones": [],
+        "revelaciones": [],
+        "fragmentos": 0,
+        "compendio": [],
+        "mini": true,
+        "_archivo": null,
+        "mejoras": {
+          "Bigote": {
+            "s": 1,
+            "o": 1
+          }
+        },
+        "recompensas_recibidas": {
+          "mini_senda": {
+            "mensaje": "Bigote sube su S a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "mini_nudo": {
+            "mensaje": "Bigote sube su O a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          }
+        }
+      },
+      "segundos": 101.58,
+      "derrota_real": true
+    },
+    {
+      "id": "mini_lagarto",
+      "pantallas": [
+        {
+          "nombre": "elegir_faccion",
+          "nodo": null,
+          "segundos": 0.09
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_senda",
+          "segundos": 0.81
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_senda",
+          "segundos": 1.52
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_senda",
+          "segundos": 8.52
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_nudo",
+          "segundos": 16.05
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_nudo",
+          "segundos": 16.24
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_nudo",
+          "segundos": 16.68
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_nudo",
+          "segundos": 17.09
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_nudo",
+          "segundos": 17.5
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_nudo",
+          "segundos": 24.4
+        },
+        {
+          "nombre": "derrota",
+          "nodo": "mini_nudo",
+          "segundos": 29.94
+        },
+        {
+          "nombre": "recompensa",
+          "nodo": "mini_trono",
+          "segundos": 44.17
+        },
+        {
+          "nombre": "elegir_carta_para_mejorar",
+          "nodo": "mini_trono",
+          "segundos": 44.33
+        },
+        {
+          "nombre": "cartel",
+          "nodo": "mini_trono",
+          "segundos": 44.87
+        },
+        {
+          "nombre": "mapa_mini",
+          "nodo": "mini_trono",
+          "segundos": 45.24
+        },
+        {
+          "nombre": "ejecutar",
+          "nodo": "mini_trono",
+          "segundos": 45.57
+        },
+        {
+          "nombre": "partida",
+          "nodo": "mini_trono",
+          "segundos": 51.89
+        }
+      ],
+      "duelos": [
+        {
+          "nodo": "mini_senda",
+          "rival": "Condesa Sanguinaria",
+          "mano_u": [
+            "Dentellada",
+            "Lengua Rápida",
+            "Escamado",
+            "Barro Tibio",
+            "Nido de Barro"
+          ],
+          "mano_c": [
+            "Novia de Niebla",
+            "Dama Carmin",
+            "Candil Rojo",
+            "Siervo Pálido",
+            "Capa Carmesí"
+          ],
+          "ganador": "T",
+          "marcador": [
+            5,
+            4
+          ],
+          "jugadas": 9,
+          "capturas": 4
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Fenris",
+          "mano_u": [
+            "Cria Fangosa",
+            "Charco Hondo",
+            "Renacuajo",
+            "Barro Tibio",
+            "Nido de Barro"
+          ],
+          "mano_c": [
+            "Hocico",
+            "Aullido",
+            "Fauces Abiertas",
+            "Rastreadora",
+            "Diente de Leche"
+          ],
+          "ganador": "C",
+          "marcador": [
+            4,
+            5
+          ],
+          "jugadas": 9,
+          "capturas": 5
+        },
+        {
+          "nodo": "mini_nudo",
+          "rival": "Fenris",
+          "mano_u": [
+            "Barro Tibio",
+            "Lengua Rápida",
+            "Charco Hondo",
+            "Dentellada",
+            "Junco Verde"
+          ],
+          "mano_c": [
+            "Hocico",
+            "Mordedor Lunar",
+            "Garras de Luna",
+            "Pata Veloz",
+            "Senda de Huellas"
+          ],
+          "ganador": "T",
+          "marcador": [
+            7,
+            2
+          ],
+          "jugadas": 9,
+          "capturas": 8
+        },
+        {
+          "nodo": "mini_trono",
+          "rival": "Vorg",
+          "mano_u": [
+            "Renacuajo",
+            "Dentellada",
+            "Escamado",
+            "Charco Hondo",
+            "Junco Verde"
+          ],
+          "mano_c": [
+            "Lancero Gruano",
+            "Espalda Ancha",
+            "Hacha Sucia",
+            "Machacador",
+            "Grito de Sangre"
+          ],
+          "ganador": "T",
+          "marcador": [
+            5,
+            4
+          ],
+          "jugadas": 9,
+          "capturas": 8
+        }
+      ],
+      "escenas": [
+        {
+          "texto": "El Umbral te reconoce. Su vigilante no te dejará avanzar sin un Juicio: tendrás que ganar el paso, aunque ya no seas un forastero.",
+          "hablante": null,
+          "contexto": "mini duelo mini_senda contra Vampiros",
+          "segundos": 4.38
+        },
+        {
+          "texto": "Condesa Sanguinaria, El Umbral Respira.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_senda contra Vampiros",
+          "segundos": 7.17
+        },
+        {
+          "texto": "Tus cartas son mias.",
+          "hablante": "Condesa Sanguinaria",
+          "contexto": "mini duelo mini_senda contra Vampiros",
+          "segundos": 8.01
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Hombres Lobo",
+          "segundos": 20.89
+        },
+        {
+          "texto": "Fenris, La Sombra se Cierra.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_nudo contra Hombres Lobo",
+          "segundos": 22.8
+        },
+        {
+          "texto": "Grrr... prepara tus cartas.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_nudo contra Hombres Lobo",
+          "segundos": 24.06
+        },
+        {
+          "texto": "Los estandartes se juntan para cerrarte el camino. Su representante defiende el acceso al trono; vencerlo te dejará frente al último rival.",
+          "hablante": null,
+          "contexto": "mini duelo mini_nudo contra Hombres Lobo",
+          "segundos": 33.88
+        },
+        {
+          "texto": "Fenris, La Sombra se Cierra.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_nudo contra Hombres Lobo",
+          "segundos": 35.91
+        },
+        {
+          "texto": "Grrr... prepara tus cartas.",
+          "hablante": "Fenris",
+          "contexto": "mini duelo mini_nudo contra Hombres Lobo",
+          "segundos": 37.32
+        },
+        {
+          "texto": "Solo queda este duelo. Quien guarda el Umbral defiende su dominio; ganar decidirá quién permanece junto a la grieta.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Orcos",
+          "segundos": 48.43
+        },
+        {
+          "texto": "Vorg, Dueño del Umbral.",
+          "hablante": "Vorg",
+          "contexto": "mini duelo mini_trono contra Orcos",
+          "segundos": 50.24
+        },
+        {
+          "texto": "NAKA! Hoy la tierra es nuestra!",
+          "hablante": "Vorg",
+          "contexto": "mini duelo mini_trono contra Orcos",
+          "segundos": 51.64
+        },
+        {
+          "texto": "EL FANGO MANDA",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Orcos",
+          "segundos": 58.6
+        },
+        {
+          "texto": "Tres duelos y el pantano llega hasta el Umbral.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Orcos",
+          "segundos": 60.77
+        },
+        {
+          "texto": "Sskar espera sentado: todo lo que se hunde, vuelve a el.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Orcos",
+          "segundos": 62.81
+        },
+        {
+          "texto": "El Umbral también es fango, solo que más alto.",
+          "hablante": null,
+          "contexto": "mini duelo mini_trono contra Orcos",
+          "segundos": 64.92
+        }
+      ],
+      "terminado": true,
+      "activo": {
+        "pantalla": "cartel",
+        "segundos": 65.59
+      },
+      "estado": {
+        "version": 7,
+        "faccion": "hombre_lagarto",
+        "nodo": "mini_trono",
+        "ruta": [
+          "mini_senda",
+          "mini_nudo",
+          "mini_trono"
+        ],
+        "eleccion": null,
+        "cartas": [
+          {
+            "nombre": "Renacuajo",
+            "n": 5,
+            "s": 4,
+            "e": 8,
+            "o": 4,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Barro Tibio",
+            "n": 4,
+            "s": 5,
+            "e": 6,
+            "o": 6,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Junco Verde",
+            "n": 7,
+            "s": 3,
+            "e": 6,
+            "o": 5,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Cria Fangosa",
+            "n": 5,
+            "s": 6,
+            "e": 5,
+            "o": 6,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Charco Hondo",
+            "n": 6,
+            "s": 5,
+            "e": 4,
+            "o": 7,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Lengua Rápida",
+            "n": 3,
+            "s": 6,
+            "e": 7,
+            "o": 6,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Nido de Barro",
+            "n": 5,
+            "s": 7,
+            "e": 3,
+            "o": 7,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Piel Húmeda",
+            "n": 6,
+            "s": 6,
+            "e": 5,
+            "o": 5,
+            "bando": "hombre_lagarto",
+            "habilidad": null
+          },
+          {
+            "nombre": "Dentellada",
+            "n": 4,
+            "s": 6,
+            "e": 5,
+            "o": 8,
+            "bando": "hombre_lagarto",
+            "habilidad": "quema"
+          },
+          {
+            "nombre": "Escamado",
+            "n": 6,
+            "s": 7,
+            "e": 5,
+            "o": 6,
+            "bando": "hombre_lagarto",
+            "habilidad": "muro"
+          }
+        ],
+        "semilla": 7367232072119423891,
+        "racha": 2,
+        "mejor_racha": 2,
+        "victorias": 3,
+        "derrotas": 1,
+        "capturas": 20,
+        "aliados": [],
+        "debilitar": 0,
+        "sigilos": 0,
+        "completada": true,
+        "final": null,
+        "creada": 1792199310.7682662,
+        "prologo_visto": false,
+        "confianza_nara": 0,
+        "conocimiento_umbral": 0,
+        "decisiones": [],
+        "revelaciones": [],
+        "fragmentos": 0,
+        "compendio": [],
+        "mini": true,
+        "_archivo": null,
+        "mejoras": {
+          "Renacuajo": {
+            "s": 1,
+            "o": 1
+          }
+        },
+        "recompensas_recibidas": {
+          "mini_senda": {
+            "mensaje": "Renacuajo sube su S a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          },
+          "mini_nudo": {
+            "mensaje": "Renacuajo sube su O a 5",
+            "nuevas": [],
+            "mejoradas": [],
+            "detalles": {}
+          }
+        }
+      },
+      "segundos": 65.82,
+      "derrota_real": true
+    }
+  ],
+  "reanudacion_editor": "Prólogo y duelo completos conservados; editor reiniciado tras corregir clics antiguos.",
+  "minicampanas_en_perfiles_independientes": true
+}

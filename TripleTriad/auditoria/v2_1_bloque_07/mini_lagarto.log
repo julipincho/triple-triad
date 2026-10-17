@@ -1,0 +1,23 @@
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+mini_lagarto elegir_faccion None
+mini_lagarto mapa_mini mini_senda
+mini_lagarto ejecutar mini_senda
+mini_lagarto partida mini_senda
+RESULTADO mini_lagarto {'nodo': 'mini_senda', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Dentellada', 'Lengua Rápida', 'Escamado', 'Barro Tibio', 'Nido de Barro'], 'mano_c': ['Novia de Niebla', 'Dama Carmin', 'Candil Rojo', 'Siervo Pálido', 'Capa Carmesí'], 'ganador': 'T', 'marcador': [5, 4], 'jugadas': 9, 'capturas': 4}
+mini_lagarto recompensa mini_nudo
+mini_lagarto elegir_carta_para_mejorar mini_nudo
+mini_lagarto cartel mini_nudo
+mini_lagarto mapa_mini mini_nudo
+mini_lagarto ejecutar mini_nudo
+mini_lagarto partida mini_nudo
+RESULTADO mini_lagarto {'nodo': 'mini_nudo', 'rival': 'Fenris', 'mano_u': ['Cria Fangosa', 'Charco Hondo', 'Renacuajo', 'Barro Tibio', 'Nido de Barro'], 'mano_c': ['Hocico', 'Aullido', 'Fauces Abiertas', 'Rastreadora', 'Diente de Leche'], 'ganador': 'C', 'marcador': [4, 5], 'jugadas': 9, 'capturas': 5}
+mini_lagarto derrota mini_nudo
+RESULTADO mini_lagarto {'nodo': 'mini_nudo', 'rival': 'Fenris', 'mano_u': ['Barro Tibio', 'Lengua Rápida', 'Charco Hondo', 'Dentellada', 'Junco Verde'], 'mano_c': ['Hocico', 'Mordedor Lunar', 'Garras de Luna', 'Pata Veloz', 'Senda de Huellas'], 'ganador': 'T', 'marcador': [7, 2], 'jugadas': 9, 'capturas': 8}
+mini_lagarto recompensa mini_trono
+mini_lagarto elegir_carta_para_mejorar mini_trono
+mini_lagarto cartel mini_trono
+mini_lagarto mapa_mini mini_trono
+mini_lagarto ejecutar mini_trono
+mini_lagarto partida mini_trono
+RESULTADO mini_lagarto {'nodo': 'mini_trono', 'rival': 'Vorg', 'mano_u': ['Renacuajo', 'Dentellada', 'Escamado', 'Charco Hondo', 'Junco Verde'], 'mano_c': ['Lancero Gruano', 'Espalda Ancha', 'Hacha Sucia', 'Machacador', 'Grito de Sangre'], 'ganador': 'T', 'marcador': [5, 4], 'jugadas': 9, 'capturas': 8}

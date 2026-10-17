@@ -1,0 +1,14 @@
+{
+  "campanas_principales": 2,
+  "minicampanas": 3,
+  "duelos_reales": 28,
+  "reintentos_mismo_rival": 8,
+  "escenas_completas": 394,
+  "imagenes_protegidas": 1221,
+  "imagenes_modificadas": [],
+  "apk_sha256": "57b25d3ed284a9822c8eb99a46e95997616b027778256853b11a9343e21f5d7d",
+  "tests": 1094,
+  "fps_editor": 62.486981878775225,
+  "metodo": "Eventos SDL en bucles reales, reloj normal, IA sin modificar",
+  "limite": "Política automatizada con ambas manos visibles; no evaluación humana de dificultad o ritmo."
+}

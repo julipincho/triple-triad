@@ -1,0 +1,7 @@
+test_centro_de_segunda_carta_no_selecciona_la_tercera (test_coleccion.TestArmarMazo.test_centro_de_segunda_carta_no_selecciona_la_tercera) ... ok
+test_posicion_antigua_de_guardar_no_es_un_boton_invisible (test_coleccion.TestArmarMazo.test_posicion_antigua_de_guardar_no_es_un_boton_invisible) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.097s
+
+OK

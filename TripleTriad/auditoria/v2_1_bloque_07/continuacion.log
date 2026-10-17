@@ -1,0 +1,107 @@
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+principal_aldea armar_mazo None
+principal_aldea ejecutar senda
+principal_aldea mapa_campana senda
+principal_aldea decision_narrativa senda
+principal_aldea cartel senda
+principal_aldea partida senda
+RESULTADO principal_aldea {'nodo': 'senda', 'rival': 'Tam', 'mano_u': ['Pica Corta', 'Alabardero', 'Hondero', 'Mozo de Fragua', 'Antorcha Viva'], 'mano_c': ['Diente de Leche', 'Garras de Luna', 'Gañido', 'Guarida', 'Senda de Huellas'], 'ganador': 'T', 'marcador': [9, 0], 'jugadas': 9, 'capturas': 12}
+principal_aldea ejecutar bifurcacion
+principal_aldea recompensa bifurcacion
+principal_aldea elegir_carta_para_mejorar bifurcacion
+principal_aldea cartel bifurcacion
+principal_aldea mapa_campana bifurcacion
+principal_aldea elegir_rama bifurcacion
+principal_aldea ejecutar aldea
+principal_aldea partida aldea
+RESULTADO principal_aldea {'nodo': 'aldea', 'rival': 'Grix el Mugroso', 'mano_u': ['Mozo de Fragua', 'Tamborilero', 'Pica Corta', 'Antorcha Viva', 'Alabardero'], 'mano_c': ['Rascaollas', 'Trampero', 'Mordedor', 'Robaqueso', 'Saqueador'], 'ganador': 'C', 'marcador': [4, 5], 'jugadas': 9, 'capturas': 7}
+principal_aldea derrota aldea
+principal_aldea mapa_campana aldea
+principal_aldea _preguntar_rever aldea
+RESULTADO principal_aldea {'nodo': 'aldea', 'rival': 'Grix el Mugroso', 'mano_u': ['Antorcha Viva', 'Alabardero', 'Hondero', 'Broquel', 'Mozo de Fragua'], 'mano_c': ['Mocos', 'Lamecharcos', 'Saqueador', 'Rascaollas', 'Trampero'], 'ganador': 'T', 'marcador': [6, 3], 'jugadas': 9, 'capturas': 9}
+principal_aldea ejecutar fortaleza
+principal_aldea recompensa fortaleza
+principal_aldea elegir_carta_para_mejorar fortaleza
+principal_aldea cartel fortaleza
+principal_aldea mapa_campana fortaleza
+principal_aldea decision_narrativa fortaleza
+principal_aldea partida fortaleza
+RESULTADO principal_aldea {'nodo': 'fortaleza', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Vigía del Muro', 'Escudero', 'Sargento Ferrum', 'Pica Corta', 'Broquel'], 'mano_c': ['Mayordomo', 'Murcielago', 'Oraculo de Sangre', 'Candil Rojo', 'Esgrimidor'], 'ganador': 'T', 'marcador': [7, 2], 'jugadas': 9, 'capturas': 10}
+principal_aldea ejecutar asalto
+principal_aldea recompensa asalto
+principal_aldea elegir_carta_para_mejorar asalto
+principal_aldea cartel asalto
+principal_aldea encuentro asalto
+principal_aldea mapa_campana asalto
+principal_aldea partida asalto
+RESULTADO principal_aldea {'nodo': 'asalto', 'rival': 'Tam', 'mano_u': ['Vigía del Muro', 'Terror del Valle', 'Broquel', 'Brujo Verde', 'Sargento Ferrum'], 'mano_c': ['Hocico', 'Lomo Plateado', 'Pelaje Sucio', 'Cachorro', 'Aullido'], 'ganador': 'T', 'marcador': [7, 2], 'jugadas': 9, 'capturas': 2}
+principal_aldea ejecutar trono
+principal_aldea recompensa trono
+principal_aldea elegir_carta_para_mejorar trono
+principal_aldea cartel trono
+principal_aldea encuentro trono
+principal_aldea mapa_campana trono
+principal_aldea partida trono
+RESULTADO principal_aldea {'nodo': 'trono', 'rival': 'Ignarok', 'mano_u': ['Broquel', 'Brujo Verde', 'Tamborilero', 'Mozo de Fragua', 'Pica Corta'], 'mano_c': ['Bostezo Ígneo', 'Garganta Ardiente', 'Cola Corta', 'Diente Curvo', 'Escama Suelta'], 'ganador': 'C', 'marcador': [3, 6], 'jugadas': 9, 'capturas': 4}
+principal_aldea derrota trono
+principal_aldea _preguntar_rever trono
+RESULTADO principal_aldea {'nodo': 'trono', 'rival': 'Ignarok', 'mano_u': ['Mozo de Fragua', 'Sargento Ferrum', 'Pica Corta', 'Hondero', 'Tamborilero'], 'mano_c': ['Charca de Lava', 'Vuelo en Círculo', 'Escama Suelta', 'Garganta Ardiente', 'Vuelo Rasante'], 'ganador': 'T', 'marcador': [6, 3], 'jugadas': 9, 'capturas': 7}
+principal_aldea epilogo trono
+principal_ruinas ejecutar senda
+principal_ruinas mapa_campana senda
+principal_ruinas decision_narrativa senda
+principal_ruinas cartel senda
+principal_ruinas partida senda
+RESULTADO principal_ruinas {'nodo': 'senda', 'rival': 'Kor', 'mano_u': ['Muerdehuesos', 'Porton de Hierro', 'Hacha Sucia', 'Bruto Rasgador', 'Foso'], 'mano_c': ['Bostezo Ígneo', 'Guijarro', 'Drake', 'Cola Corta', 'Escama Suelta'], 'ganador': 'T', 'marcador': [7, 2], 'jugadas': 9, 'capturas': 4}
+principal_ruinas ejecutar bifurcacion
+principal_ruinas recompensa bifurcacion
+principal_ruinas elegir_carta_para_mejorar bifurcacion
+principal_ruinas cartel bifurcacion
+principal_ruinas mapa_campana bifurcacion
+principal_ruinas elegir_rama bifurcacion
+principal_ruinas ejecutar ruinas
+principal_ruinas partida ruinas
+RESULTADO principal_ruinas {'nodo': 'ruinas', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Mazo Quebrado', 'Tizón', 'Bruto Rasgador', 'Foso', 'Porton de Hierro'], 'mano_c': ['Mayordomo', 'Cazadora de Sangre', 'Jardín de Espinas', 'Oraculo de Sangre', 'Doncella Palida'], 'ganador': 'C', 'marcador': [3, 6], 'jugadas': 9, 'capturas': 6}
+principal_ruinas derrota ruinas
+principal_ruinas mapa_campana ruinas
+principal_ruinas _preguntar_rever ruinas
+RESULTADO principal_ruinas {'nodo': 'ruinas', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Muerdehuesos', 'Foso', 'Gruñido', 'Tizón', 'Porton de Hierro'], 'mano_c': ['Jardín de Espinas', 'Dama Carmin', 'Novia de Niebla', 'Ataúd Reforzado', 'Esgrimidor'], 'ganador': 'T', 'marcador': [5, 4], 'jugadas': 9, 'capturas': 8}
+principal_ruinas ejecutar fortaleza
+principal_ruinas recompensa fortaleza
+principal_ruinas draft fortaleza
+principal_ruinas draft_reemplazo fortaleza
+principal_ruinas cartel fortaleza
+principal_ruinas encuentro fortaleza
+principal_ruinas mapa_campana fortaleza
+principal_ruinas decision_narrativa fortaleza
+principal_ruinas partida fortaleza
+RESULTADO principal_ruinas {'nodo': 'fortaleza', 'rival': 'Lyra', 'mano_u': ['Muerdehuesos', 'Piel Cortada', 'Porton de Hierro', 'Colmillo Roto', 'Gruñido'], 'mano_c': ['Sabio del Bosque', 'Lechuza', 'Refugio Verde', 'Arquero', 'Hoja Gemela'], 'ganador': 'T', 'marcador': [7, 2], 'jugadas': 9, 'capturas': 8}
+principal_ruinas ejecutar asalto
+principal_ruinas recompensa asalto
+principal_ruinas elegir_carta_para_mejorar asalto
+principal_ruinas cartel asalto
+principal_ruinas encuentro asalto
+principal_ruinas mapa_campana asalto
+principal_ruinas partida asalto
+RESULTADO principal_ruinas {'nodo': 'asalto', 'rival': 'Condesa Sanguinaria', 'mano_u': ['Porton de Hierro', 'Piel Cortada', 'Tizón', 'Dama Hoja', 'Espalda Ancha'], 'mano_c': ['Ansia Nocturna', 'Sangre Joven', 'Novia de Niebla', 'Dama Carmin', 'Jardín de Espinas'], 'ganador': 'T', 'marcador': [8, 1], 'jugadas': 9, 'capturas': 9}
+principal_ruinas ejecutar trono
+principal_ruinas recompensa trono
+principal_ruinas elegir_carta_para_mejorar trono
+principal_ruinas cartel trono
+principal_ruinas encuentro trono
+principal_ruinas mapa_campana trono
+principal_ruinas partida trono
+RESULTADO principal_ruinas {'nodo': 'trono', 'rival': 'Lyra', 'mano_u': ['Dama Hoja', 'Espalda Ancha', 'Tizón', 'Foso', 'Hacha Sucia'], 'mano_c': ['Bosque Antiguo', 'Centinela', 'Refugio Verde', 'Vengador Silvano', 'Dama Hoja'], 'ganador': 'T', 'marcador': [7, 2], 'jugadas': 9, 'capturas': 12}
+principal_ruinas epilogo trono
+mini_nocturno elegir_faccion None
+mini_nocturno mapa_mini mini_senda
+mini_nocturno ejecutar mini_senda
+mini_nocturno partida mini_senda
+RESULTADO mini_nocturno {'nodo': 'mini_senda', 'rival': 'Vorg', 'mano_u': ['Tinta Viva', 'Polilla Negra', 'Paso Felpado', 'Mirada Hueca', 'Espia Umbria'], 'mano_c': ['Bruto Rasgador', 'Hacha Sucia', 'Colmillo Roto', 'Lancero Gruano', 'Porton de Hierro'], 'ganador': 'T', 'marcador': [6, 3], 'jugadas': 9, 'capturas': 7}
+mini_nocturno recompensa mini_nudo
+mini_nocturno elegir_carta_para_mejorar mini_nudo
+mini_nocturno cartel mini_nudo
+mini_nocturno mapa_mini mini_nudo
+mini_nocturno ejecutar mini_nudo
+mini_nocturno partida mini_nudo

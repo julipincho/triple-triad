@@ -1,0 +1,1634 @@
+ *pygbag 0.9.3*
+
+Serving python files from [E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras\build\web]
+
+with no security/performance in mind, i'm just a test tool : don't rely on me
+
+
+SUMMARY
+________________________
+
+# the app folder
+app_folder=E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras
+
+# artefacts directory
+build_dir=E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras\build\web
+
+# cache directory
+cache=E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras\build\web-cache
+
+# the window title and icon name
+app_name=cartones-mazmorras
+
+# package name, better make it unique
+package=web.pygame.cartones-mazmorras-1792199972
+
+# icons:  96x96 for desktop, 16x16 for web
+icon=favicon.png
+
+# js/wasm provider
+cdn=https://pygame-web.github.io/cdn/0.9.3/
+
+now packing application ....
+
+
+Ignored dirs: ['/tests', '/auditoria', '/recorrido', '/gravedad', '/gravedad_fg', '/build', '/dist', '/.git', '/.opencode', '/__pycache__']
+Ignored files: ['build_pygbag.log', 'build_pygbag2.log', 'build_pygbag3.log', 'build_pygbag4.log', 'crash.log', 'screenshot_fase1.png', 'test_capture.png', 'Figma_Proposal.md', 'UI_AUDIT.md', 'HANDOFF_WEB_ITCHIO.md', 'revisar_con_gemini.py', 'grabar_gameplay.py', 'grabar_gameplay_clean.py', 'grabar_gameplay_foreground.py', 'grabar_gameplay_foreground2.py', 'grabar_gameplay_forever.py', 'automatizar.py', 'asyncificar.py', 'TripleTriad.spec', 'crear_sonidos.py', 'plantilla_index.tmpl', 'place.wav', 'capture.wav', 'chain.wav', 'win.wav', 'lose.wav', 'menu.wav', 'menu_move.wav', 'menu_ok.wav', 'menu_back.wav', 'card.wav', 'drag.wav', 'invalid.wav', 'cinema.wav', 'reward.wav', 'boss.wav', 'musica_humano.wav', 'musica_orco.wav', 'musica_goblin.wav', 'musica_elfo.wav', 'musica_hombre_lobo.wav', 'musica_vampiro.wav', 'musica_dragon.wav', 'musica_duelo.wav', 'musica_explora.wav']
+Now in \
+     \arte_visual.py
+     \audio.py
+     \audio_web.py
+     \campana.py
+     \cartas.py
+     \cinematicas.py
+     \compendio.py
+     \depurar.py
+     \diagnostico.py
+     \duelistas.py
+     \encuentros.py
+     \facciones.py
+     \finales.py
+     \fragmentos.py
+     \idioma.py
+     \lotes_visuales.py
+     \main.py
+     \mazos.py
+     \narrativa.py
+     \opciones.py
+     \pantallas.py
+     \partida.py
+     \paths.py
+     \persistencia.py
+     \peticiones.py
+     \prologo.py
+     \pygbag.ini
+     \reglas.py
+     \tutorial.py
+     \ui.py
+     \version.py
+     \web_diagnostico.py
+Now in \assets
+     \assets\avatar_dara.png
+     \assets\avatar_dragon.png
+     \assets\avatar_duelista.png
+     \assets\avatar_elfo.png
+     \assets\avatar_elfo_nocturno.png
+     \assets\avatar_gobernante.png
+     \assets\avatar_goblin.png
+     \assets\avatar_hombre_lagarto.png
+     \assets\avatar_hombre_lobo.png
+     \assets\avatar_hombre_pantera.png
+     \assets\avatar_humano.png
+     \assets\avatar_jefe_arco.png
+     \assets\avatar_nara.png
+     \assets\avatar_orco.png
+     \assets\avatar_pik.png
+     \assets\avatar_presentador.png
+     \assets\avatar_rajoy.png
+     \assets\avatar_revancha.png
+     \assets\avatar_vampiro.png
+     \assets\boss.ogg
+     \assets\capture.ogg
+     \assets\card.ogg
+     \assets\chain.ogg
+     \assets\cinema.ogg
+     \assets\drag.ogg
+     \assets\faccion_confirmar_cristal.ogg
+     \assets\fondo.png
+     \assets\invalid.ogg
+     \assets\logo.png
+     \assets\lose.ogg
+     \assets\menu.ogg
+     \assets\menu_back.ogg
+     \assets\menu_move.ogg
+     \assets\menu_ok.ogg
+     \assets\place.ogg
+     \assets\plus.ogg
+     \assets\PressStart2P.ttf
+     \assets\reward.ogg
+     \assets\same.ogg
+     \assets\win.ogg
+Now in \assets\cinematicas_hd
+     \assets\cinematicas_hd\amistad_nara_camino_v2.png
+     \assets\cinematicas_hd\apertura_dragon_cielo_brasa.png
+     \assets\cinematicas_hd\apertura_elfo_bosque_silencioso.png
+     \assets\cinematicas_hd\apertura_elfo_nocturno_bosque_umbral.png
+     \assets\cinematicas_hd\apertura_goblin_puerta_bajo_foso.png
+     \assets\cinematicas_hd\apertura_hombre_lobo_ciudad_lunar.png
+     \assets\cinematicas_hd\apertura_humano_reino_en_cenizas.png
+     \assets\cinematicas_hd\apertura_lagarto_pantano_ruinas.png
+     \assets\cinematicas_hd\apertura_orco_frontera_muralla.png
+     \assets\cinematicas_hd\apertura_pantera_tejados_ciudad.png
+     \assets\cinematicas_hd\apertura_vampiro_cripta_pacto_roto.png
+     \assets\cinematicas_hd\camino_lluvioso.png
+     \assets\cinematicas_hd\campana_aldea_20261015.png
+     \assets\cinematicas_hd\campana_asalto_20261015.png
+     \assets\cinematicas_hd\campana_fortaleza_20261015.png
+     \assets\cinematicas_hd\campana_ruinas_20261015.png
+     \assets\cinematicas_hd\campana_umbral_20261015.png
+     \assets\cinematicas_hd\epilogo_caos_salon_invadio.png
+     \assets\cinematicas_hd\final_umbral_caos_mundos_mezclados.png
+     \assets\cinematicas_hd\final_umbral_dominio_forzado.png
+     \assets\cinematicas_hd\final_umbral_equilibrio_apertura.png
+     \assets\cinematicas_hd\intro_amanecer_mundo_antiguo.png
+     \assets\cinematicas_hd\intro_estandartes_siete_bandos.png
+     \assets\cinematicas_hd\intro_grieta_umbral_cielo.png
+     \assets\cinematicas_hd\portal_umbral_torneo.png
+     \assets\cinematicas_hd\prologo_apagon_salon.png
+     \assets\cinematicas_hd\prologo_campamento_nara.png
+     \assets\cinematicas_hd\prologo_escenario_presentacion.png
+     \assets\cinematicas_hd\revelacion_carta_torneo.png
+     \assets\cinematicas_hd\sala_trono.png
+     \assets\cinematicas_hd\salon_torneo.png
+     \assets\cinematicas_hd\salon_torneo_lleno.png
+Now in \assets\escenas
+     \assets\escenas\anciano.png
+     \assets\escenas\caravana.png
+     \assets\escenas\hermandad.png
+     \assets\escenas\hostil.png
+     \assets\escenas\mercader.png
+     \assets\escenas\nara.png
+Now in \assets\fondos
+     \assets\fondos\aldea.png
+     \assets\fondos\amanecer.png
+     \assets\fondos\apagon.png
+     \assets\fondos\asalto.png
+     \assets\fondos\asalto_amanecer.png
+     \assets\fondos\asalto_noche.png
+     \assets\fondos\camino.png
+     \assets\fondos\camino_amanecer.png
+     \assets\fondos\camino_lluvia.png
+     \assets\fondos\camino_nevada.png
+     \assets\fondos\camino_niebla.png
+     \assets\fondos\camino_noche.png
+     \assets\fondos\campamento.png
+     \assets\fondos\campamento_amanecer.png
+     \assets\fondos\campamento_asedio.png
+     \assets\fondos\campamento_lluvia.png
+     \assets\fondos\campamento_niebla.png
+     \assets\fondos\campamento_tormenta.png
+     \assets\fondos\ceniza.png
+     \assets\fondos\escenario.png
+     \assets\fondos\escenario_lleno.png
+     \assets\fondos\escenario_vacio.png
+     \assets\fondos\estandartes.png
+     \assets\fondos\fortaleza.png
+     \assets\fondos\publico.png
+     \assets\fondos\ruinas.png
+     \assets\fondos\ruinas_brasa.png
+     \assets\fondos\ruinas_derrumbe.png
+     \assets\fondos\ruinas_profundo.png
+     \assets\fondos\salon.png
+     \assets\fondos\trono.png
+     \assets\fondos\trono_derrumbe.png
+     \assets\fondos\trono_guardia.png
+     \assets\fondos\trono_nieve.png
+     \assets\fondos\umbral.png
+     \assets\fondos\umbral_ancho.png
+     \assets\fondos\umbral_angosto.png
+     \assets\fondos\umbral_cerrando.png
+     \assets\fondos\umbral_deslumbrante.png
+Now in \assets\lotes_visuales
+     \assets\lotes_visuales\registro.json
+Now in \assets\lotes_visuales\lote_03\fondos
+     \assets\lotes_visuales\lote_03\fondos\activacion_carta_plano_cercano.png
+     \assets\lotes_visuales\lote_03\fondos\carta_presentada_sin_activar.png
+     \assets\lotes_visuales\lote_03\fondos\escenario_carta_cubierta.png
+     \assets\lotes_visuales\lote_03\fondos\publico_reacciona_portal_alternativa.png
+     \assets\lotes_visuales\lote_03\fondos\umbral_ruptura_total_alternativa.png
+Now in \assets\lotes_visuales\lote_04\fondos
+     \assets\lotes_visuales\lote_04\fondos\apagon_torneo_anomalia.png
+     \assets\lotes_visuales\lote_04\fondos\ruptura_arena_vortice_alternativa.png
+     \assets\lotes_visuales\lote_04\fondos\transito_umbral_entre_mundos.png
+     \assets\lotes_visuales\lote_04\fondos\vision_trono_sobre_torneo.png
+Now in \assets\lotes_visuales\migracion_20261015\retratos
+     \assets\lotes_visuales\migracion_20261015\retratos\dara.png
+     \assets\lotes_visuales\migracion_20261015\retratos\dragon.png
+     \assets\lotes_visuales\migracion_20261015\retratos\duelista_gorra.png
+     \assets\lotes_visuales\migracion_20261015\retratos\elfo.png
+     \assets\lotes_visuales\migracion_20261015\retratos\elfo_nocturno.png
+     \assets\lotes_visuales\migracion_20261015\retratos\gobernante.png
+     \assets\lotes_visuales\migracion_20261015\retratos\goblin.png
+     \assets\lotes_visuales\migracion_20261015\retratos\hombre_lagarto.png
+     \assets\lotes_visuales\migracion_20261015\retratos\hombre_lobo.png
+     \assets\lotes_visuales\migracion_20261015\retratos\hombre_pantera.png
+     \assets\lotes_visuales\migracion_20261015\retratos\humano.png
+     \assets\lotes_visuales\migracion_20261015\retratos\jefe_arco.png
+     \assets\lotes_visuales\migracion_20261015\retratos\nara.png
+     \assets\lotes_visuales\migracion_20261015\retratos\orco.png
+     \assets\lotes_visuales\migracion_20261015\retratos\pik.png
+     \assets\lotes_visuales\migracion_20261015\retratos\presentador.png
+     \assets\lotes_visuales\migracion_20261015\retratos\rajoy.png
+     \assets\lotes_visuales\migracion_20261015\retratos\revancha.png
+     \assets\lotes_visuales\migracion_20261015\retratos\vampiro.png
+Now in \assets\musica
+     \assets\musica\musica_apagon.ogg
+     \assets\musica\musica_bosque.ogg
+     \assets\musica\musica_campamento.ogg
+     \assets\musica\musica_dragon.ogg
+     \assets\musica\musica_duelo.ogg
+     \assets\musica\musica_elfo.ogg
+     \assets\musica\musica_elfo_nocturno.ogg
+     \assets\musica\musica_explora.ogg
+     \assets\musica\musica_goblin.ogg
+     \assets\musica\musica_hombre_lagarto.ogg
+     \assets\musica\musica_hombre_lobo.ogg
+     \assets\musica\musica_hombre_pantera.ogg
+     \assets\musica\musica_humano.ogg
+     \assets\musica\musica_orco.ogg
+     \assets\musica\musica_torneo.ogg
+     \assets\musica\musica_umbral.ogg
+     \assets\musica\musica_vampiro.ogg
+Now in \assets\pixel_anime
+     \assets\pixel_anime\manifest.json
+Now in \assets\pixel_anime\avatares
+     \assets\pixel_anime\avatares\avatar_dara.png
+     \assets\pixel_anime\avatares\avatar_dragon.png
+     \assets\pixel_anime\avatares\avatar_duelista.png
+     \assets\pixel_anime\avatares\avatar_elfo.png
+     \assets\pixel_anime\avatares\avatar_elfo_nocturno.png
+     \assets\pixel_anime\avatares\avatar_gobernante.png
+     \assets\pixel_anime\avatares\avatar_goblin.png
+     \assets\pixel_anime\avatares\avatar_hombre_lagarto.png
+     \assets\pixel_anime\avatares\avatar_hombre_lobo.png
+     \assets\pixel_anime\avatares\avatar_hombre_pantera.png
+     \assets\pixel_anime\avatares\avatar_humano.png
+     \assets\pixel_anime\avatares\avatar_jefe_arco.png
+     \assets\pixel_anime\avatares\avatar_nara.png
+     \assets\pixel_anime\avatares\avatar_orco.png
+     \assets\pixel_anime\avatares\avatar_pik.png
+     \assets\pixel_anime\avatares\avatar_presentador.png
+     \assets\pixel_anime\avatares\avatar_rajoy.png
+     \assets\pixel_anime\avatares\avatar_revancha.png
+     \assets\pixel_anime\avatares\avatar_vampiro.png
+Now in \assets\pixel_anime\cinematicas
+     \assets\pixel_anime\cinematicas\aldea.png
+     \assets\pixel_anime\cinematicas\amanecer.png
+     \assets\pixel_anime\cinematicas\apagon.png
+     \assets\pixel_anime\cinematicas\asalto.png
+     \assets\pixel_anime\cinematicas\asalto_amanecer.png
+     \assets\pixel_anime\cinematicas\asalto_noche.png
+     \assets\pixel_anime\cinematicas\camino.png
+     \assets\pixel_anime\cinematicas\camino_amanecer.png
+     \assets\pixel_anime\cinematicas\camino_lluvia.png
+     \assets\pixel_anime\cinematicas\camino_nevada.png
+     \assets\pixel_anime\cinematicas\camino_niebla.png
+     \assets\pixel_anime\cinematicas\camino_noche.png
+     \assets\pixel_anime\cinematicas\campamento.png
+     \assets\pixel_anime\cinematicas\campamento_amanecer.png
+     \assets\pixel_anime\cinematicas\campamento_asedio.png
+     \assets\pixel_anime\cinematicas\campamento_lluvia.png
+     \assets\pixel_anime\cinematicas\campamento_niebla.png
+     \assets\pixel_anime\cinematicas\campamento_tormenta.png
+     \assets\pixel_anime\cinematicas\ceniza.png
+     \assets\pixel_anime\cinematicas\escenario.png
+     \assets\pixel_anime\cinematicas\escenario_lleno.png
+     \assets\pixel_anime\cinematicas\escenario_vacio.png
+     \assets\pixel_anime\cinematicas\estandartes.png
+     \assets\pixel_anime\cinematicas\fortaleza.png
+     \assets\pixel_anime\cinematicas\publico.png
+     \assets\pixel_anime\cinematicas\ruinas.png
+     \assets\pixel_anime\cinematicas\ruinas_brasa.png
+     \assets\pixel_anime\cinematicas\ruinas_derrumbe.png
+     \assets\pixel_anime\cinematicas\ruinas_profundo.png
+     \assets\pixel_anime\cinematicas\trono_derrumbe.png
+     \assets\pixel_anime\cinematicas\trono_nieve.png
+     \assets\pixel_anime\cinematicas\umbral.png
+     \assets\pixel_anime\cinematicas\umbral_ancho.png
+     \assets\pixel_anime\cinematicas\umbral_angosto.png
+     \assets\pixel_anime\cinematicas\umbral_cerrando.png
+     \assets\pixel_anime\cinematicas\umbral_deslumbrante.png
+Now in \assets\pixel_anime\detalles
+     \assets\pixel_anime\detalles\derrota_v2.png
+     \assets\pixel_anime\detalles\escena_vista_v2.png
+Now in \assets\pixel_anime\encuentros
+     \assets\pixel_anime\encuentros\anciano.png
+     \assets\pixel_anime\encuentros\caravana.png
+     \assets\pixel_anime\encuentros\hermandad.png
+     \assets\pixel_anime\encuentros\hostil.png
+     \assets\pixel_anime\encuentros\hostil_v2.png
+     \assets\pixel_anime\encuentros\mercader.png
+     \assets\pixel_anime\encuentros\nara.png
+Now in \assets\sfx_stable_audio3
+     \assets\sfx_stable_audio3\card_capture.ogg
+     \assets\sfx_stable_audio3\card_flip.ogg
+     \assets\sfx_stable_audio3\card_place.ogg
+     \assets\sfx_stable_audio3\combo_chain.ogg
+     \assets\sfx_stable_audio3\invalid_move.ogg
+     \assets\sfx_stable_audio3\manifest.json
+     \assets\sfx_stable_audio3\plus.ogg
+     \assets\sfx_stable_audio3\same.ogg
+     \assets\sfx_stable_audio3\ui_back.ogg
+     \assets\sfx_stable_audio3\ui_confirm.ogg
+     \assets\sfx_stable_audio3\ui_move.ogg
+     \assets\sfx_stable_audio3\ui_select.ogg
+Now in \cartas
+     \cartas\dragon_ala_rota.png
+     \cartas\dragon_bostezo_igneo.png
+     \cartas\dragon_charca_de_lava.png
+     \cartas\dragon_cola_corta.png
+     \cartas\dragon_cola_ferrea.png
+     \cartas\dragon_corazon_de_magma.png
+     \cartas\dragon_cria.png
+     \cartas\dragon_diente_curvo.png
+     \cartas\dragon_drake.png
+     \cartas\dragon_escama_suelta.png
+     \cartas\dragon_escupellamas.png
+     \cartas\dragon_fauces_del_volcan.png
+     \cartas\dragon_fin_del_cielo.png
+     \cartas\dragon_fuego.png
+     \cartas\dragon_garganta_ardiente.png
+     \cartas\dragon_guerrero_rojo.png
+     \cartas\dragon_guijarro.png
+     \cartas\dragon_nido_de_ceniza.png
+     \cartas\dragon_reina_ceniza.png
+     \cartas\dragon_rey_dragon.png
+     \cartas\dragon_segador_alado.png
+     \cartas\dragon_sombra_alada.png
+     \cartas\dragon_tormenta_de_escamas.png
+     \cartas\dragon_vuelo_en_circulo.png
+     \cartas\dragon_vuelo_rasante.png
+     \cartas\elfo_archivista.png
+     \cartas\elfo_arco_corto.png
+     \cartas\elfo_arpa_de_guerra.png
+     \cartas\elfo_arquero.png
+     \cartas\elfo_bosque_antiguo.png
+     \cartas\elfo_broteluz.png
+     \cartas\elfo_cazador_de_niebla.png
+     \cartas\elfo_centinela.png
+     \cartas\elfo_ciervo_blanco.png
+     \cartas\elfo_copa_eterna.png
+     \cartas\elfo_corazon_del_bosque.png
+     \cartas\elfo_dama_hoja.png
+     \cartas\elfo_danza_de_hojas.png
+     \cartas\elfo_elfo_real.png
+     \cartas\elfo_exploradora.png
+     \cartas\elfo_flautista.png
+     \cartas\elfo_hoja_gemela.png
+     \cartas\elfo_lechuza.png
+     \cartas\elfo_musgo_viejo.png
+     \cartas\elfo_nocturno_acechante.png
+     \cartas\elfo_nocturno_beso_de_sombra.png
+     \cartas\elfo_nocturno_canto_de_grillo.png
+     \cartas\elfo_nocturno_centinela_nocturno.png
+     \cartas\elfo_nocturno_daga_eclipse.png
+     \cartas\elfo_nocturno_eclipse_parcial.png
+     \cartas\elfo_nocturno_espia_umbria.png
+     \cartas\elfo_nocturno_hermana_umbria.png
+     \cartas\elfo_nocturno_hoja_lunar.png
+     \cartas\elfo_nocturno_lanza_penumbra.png
+     \cartas\elfo_nocturno_manto_de_estrellas.png
+     \cartas\elfo_nocturno_mirada_hueca.png
+     \cartas\elfo_nocturno_nido_de_buhos.png
+     \cartas\elfo_nocturno_noche_cerrada.png
+     \cartas\elfo_nocturno_oraculo_ciego.png
+     \cartas\elfo_nocturno_paso_felpado.png
+     \cartas\elfo_nocturno_polilla_negra.png
+     \cartas\elfo_nocturno_principe_del_eclipse.png
+     \cartas\elfo_nocturno_punal_de_niebla.png
+     \cartas\elfo_nocturno_reina_de_la_noche.png
+     \cartas\elfo_nocturno_susurro.png
+     \cartas\elfo_nocturno_tejedora_de_sombras.png
+     \cartas\elfo_nocturno_tinta_viva.png
+     \cartas\elfo_nocturno_vacio_brillante.png
+     \cartas\elfo_nocturno_velo_gris.png
+     \cartas\elfo_raiz_del_mundo.png
+     \cartas\elfo_refugio_verde.png
+     \cartas\elfo_sabio_del_bosque.png
+     \cartas\elfo_seta_cantora.png
+     \cartas\elfo_tiro_largo.png
+     \cartas\elfo_vengador_silvano.png
+     \cartas\goblin_apestoso.png
+     \cartas\goblin_brujo_verde.png
+     \cartas\goblin_chamana_gris.png
+     \cartas\goblin_chivato.png
+     \cartas\goblin_corretejas.png
+     \cartas\goblin_desguace.png
+     \cartas\goblin_granuja.png
+     \cartas\goblin_jefe_de_tropa.png
+     \cartas\goblin_lamecharcos.png
+     \cartas\goblin_lanzasalgo.png
+     \cartas\goblin_madre_rata.png
+     \cartas\goblin_mocos.png
+     \cartas\goblin_mordedor.png
+     \cartas\goblin_muerdeorejas.png
+     \cartas\goblin_pinchacubos.png
+     \cartas\goblin_piojo.png
+     \cartas\goblin_plaga_verde.png
+     \cartas\goblin_rascaollas.png
+     \cartas\goblin_revuelcabolsas.png
+     \cartas\goblin_rey_goblin.png
+     \cartas\goblin_robaqueso.png
+     \cartas\goblin_saltatechos.png
+     \cartas\goblin_saqueador.png
+     \cartas\goblin_tirachinas.png
+     \cartas\goblin_trampero.png
+     \cartas\hombre_lagarto_barro_tibio.png
+     \cartas\hombre_lagarto_chaman_del_pantano.png
+     \cartas\hombre_lagarto_charco_hondo.png
+     \cartas\hombre_lagarto_cienaga_viva.png
+     \cartas\hombre_lagarto_cocodrilo_anciano.png
+     \cartas\hombre_lagarto_cola_acorazada.png
+     \cartas\hombre_lagarto_cola_del_rio.png
+     \cartas\hombre_lagarto_cria_fangosa.png
+     \cartas\hombre_lagarto_curandero_viejo.png
+     \cartas\hombre_lagarto_dentellada.png
+     \cartas\hombre_lagarto_escamado.png
+     \cartas\hombre_lagarto_fauces_ancestrales.png
+     \cartas\hombre_lagarto_guardian_del_fango.png
+     \cartas\hombre_lagarto_junco_verde.png
+     \cartas\hombre_lagarto_lanza_juncos.png
+     \cartas\hombre_lagarto_lengua_rapida.png
+     \cartas\hombre_lagarto_mandibula.png
+     \cartas\hombre_lagarto_mordisco_fangoso.png
+     \cartas\hombre_lagarto_nido_de_barro.png
+     \cartas\hombre_lagarto_ojos_de_pantano.png
+     \cartas\hombre_lagarto_pantano_eterno.png
+     \cartas\hombre_lagarto_piel_humeda.png
+     \cartas\hombre_lagarto_renacuajo.png
+     \cartas\hombre_lagarto_senor_del_pantano.png
+     \cartas\hombre_lagarto_triturador.png
+     \cartas\hombre_lobo_alfa_del_bosque.png
+     \cartas\hombre_lobo_aullador.png
+     \cartas\hombre_lobo_aullido.png
+     \cartas\hombre_lobo_cachorro.png
+     \cartas\hombre_lobo_caza_nocturna.png
+     \cartas\hombre_lobo_colmillo_blanco.png
+     \cartas\hombre_lobo_diente_de_leche.png
+     \cartas\hombre_lobo_eclipse_de_sangre.png
+     \cartas\hombre_lobo_fauces_abiertas.png
+     \cartas\hombre_lobo_ganido.png
+     \cartas\hombre_lobo_garras_de_luna.png
+     \cartas\hombre_lobo_guarida.png
+     \cartas\hombre_lobo_hocico.png
+     \cartas\hombre_lobo_lobezno.png
+     \cartas\hombre_lobo_lomo_plateado.png
+     \cartas\hombre_lobo_luna_llena.png
+     \cartas\hombre_lobo_madre_luna.png
+     \cartas\hombre_lobo_manada_unida.png
+     \cartas\hombre_lobo_mordedor_lunar.png
+     \cartas\hombre_lobo_pata_veloz.png
+     \cartas\hombre_lobo_pelaje_sucio.png
+     \cartas\hombre_lobo_piel_gris.png
+     \cartas\hombre_lobo_rastreadora.png
+     \cartas\hombre_lobo_senda_de_huellas.png
+     \cartas\hombre_lobo_terror_del_valle.png
+     \cartas\hombre_pantera_acechador.png
+     \cartas\hombre_pantera_bigote.png
+     \cartas\hombre_pantera_brinco_letal.png
+     \cartas\hombre_pantera_cazadora_silente.png
+     \cartas\hombre_pantera_caza_del_alba.png
+     \cartas\hombre_pantera_cola_sigilosa.png
+     \cartas\hombre_pantera_colmillo_chico.png
+     \cartas\hombre_pantera_depredador.png
+     \cartas\hombre_pantera_emboscada.png
+     \cartas\hombre_pantera_garra_dividida.png
+     \cartas\hombre_pantera_garra_nocturna.png
+     \cartas\hombre_pantera_garra_veloz.png
+     \cartas\hombre_pantera_huella_humeda.png
+     \cartas\hombre_pantera_juego_de_sombras.png
+     \cartas\hombre_pantera_luna_del_jaguar.png
+     \cartas\hombre_pantera_noche_de_caza.png
+     \cartas\hombre_pantera_ojos_ambar.png
+     \cartas\hombre_pantera_pantera_alfa.png
+     \cartas\hombre_pantera_rastro_fresco.png
+     \cartas\hombre_pantera_rey_de_la_noche.png
+     \cartas\hombre_pantera_ronda_gris.png
+     \cartas\hombre_pantera_saltador.png
+     \cartas\hombre_pantera_salto_mortal.png
+     \cartas\hombre_pantera_selva_espesa.png
+     \cartas\hombre_pantera_zarpazo.png
+     \cartas\humano_alabardero.png
+     \cartas\humano_amanecer_blindado.png
+     \cartas\humano_antorcha_viva.png
+     \cartas\humano_arcabucero.png
+     \cartas\humano_ariete_del_alba.png
+     \cartas\humano_arquera_de_torre.png
+     \cartas\humano_ballestero.png
+     \cartas\humano_broquel.png
+     \cartas\humano_caballero_andante.png
+     \cartas\humano_capellan_de_batalla.png
+     \cartas\humano_clerigo_de_la_luz.png
+     \cartas\humano_escudero.png
+     \cartas\humano_espadachin.png
+     \cartas\humano_estandarte_dorado.png
+     \cartas\humano_hondero.png
+     \cartas\humano_jinete_pardo.png
+     \cartas\humano_lanza_del_alba.png
+     \cartas\humano_mozo_de_fragua.png
+     \cartas\humano_pica_corta.png
+     \cartas\humano_reina_isolde.png
+     \cartas\humano_rey_aldric.png
+     \cartas\humano_sargento_ferrum.png
+     \cartas\humano_sol_naciente.png
+     \cartas\humano_tamborilero.png
+     \cartas\humano_vigia_del_muro.png
+     \cartas\orco_aplastador.png
+     \cartas\orco_bruto_rasgador.png
+     \cartas\orco_chaman_karzh.png
+     \cartas\orco_colmillo_roto.png
+     \cartas\orco_cuernos_de_guerra.png
+     \cartas\orco_espalda_ancha.png
+     \cartas\orco_foso.png
+     \cartas\orco_grito_de_sangre.png
+     \cartas\orco_grunido.png
+     \cartas\orco_hacha_sucia.png
+     \cartas\orco_jabalina_veloz.png
+     \cartas\orco_lancero_gruano.png
+     \cartas\orco_machacador.png
+     \cartas\orco_matriarca_gra.png
+     \cartas\orco_mazo_quebrado.png
+     \cartas\orco_muerdehuesos.png
+     \cartas\orco_piel_cortada.png
+     \cartas\orco_porton_de_hierro.png
+     \cartas\orco_puno_del_crater.png
+     \cartas\orco_rey_roto.png
+     \cartas\orco_senor_de_la_guerra_vorg.png
+     \cartas\orco_tambor_de_guerra.png
+     \cartas\orco_terremoto_verde.png
+     \cartas\orco_tizon.png
+     \cartas\orco_trol_de_ceniza.png
+     \cartas\vampiro_alas_negras.png
+     \cartas\vampiro_ansia_nocturna.png
+     \cartas\vampiro_ataud_reforzado.png
+     \cartas\vampiro_beso_frio.png
+     \cartas\vampiro_candil_rojo.png
+     \cartas\vampiro_capa_carmesi.png
+     \cartas\vampiro_cazadora_de_sangre.png
+     \cartas\vampiro_conde_nocturno.png
+     \cartas\vampiro_dama_carmin.png
+     \cartas\vampiro_doncella_palida.png
+     \cartas\vampiro_esgrimidor.png
+     \cartas\vampiro_jardin_de_espinas.png
+     \cartas\vampiro_latido_final.png
+     \cartas\vampiro_mayordomo.png
+     \cartas\vampiro_medianoche_eterna.png
+     \cartas\vampiro_murcielago.png
+     \cartas\vampiro_novia_de_niebla.png
+     \cartas\vampiro_opera_sangrienta.png
+     \cartas\vampiro_oraculo_de_sangre.png
+     \cartas\vampiro_principe_rojo.png
+     \cartas\vampiro_rata_de_cripta.png
+     \cartas\vampiro_sangre_joven.png
+     \cartas\vampiro_siervo_palido.png
+     \cartas\vampiro_sombra_del_umbral.png
+     \cartas\vampiro_vals_eterno.png
+     \cartas\vampiro_vastago.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : arte_visual.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : audio.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : audio_web.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : campana.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cinematicas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : compendio.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : depurar.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : diagnostico.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : duelistas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : encuentros.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : facciones.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : finales.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : fragmentos.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : idioma.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : lotes_visuales.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : main.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : mazos.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : narrativa.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : opciones.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : pantallas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : partida.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : paths.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : persistencia.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : peticiones.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : prologo.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : pygbag.ini
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : reglas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : tutorial.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : ui.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : version.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : web_diagnostico.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_dara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_duelista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_elfo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_elfo_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_gobernante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_hombre_lagarto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_hombre_lobo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_hombre_pantera.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_humano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_jefe_arco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_orco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_pik.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_presentador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_rajoy.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_revancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_vampiro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\boss.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\capture.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\card.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\chain.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinema.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\drag.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\faccion_confirmar_cristal.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\invalid.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\logo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lose.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu_back.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu_move.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu_ok.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\place.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\plus.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\PressStart2P.ttf
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\reward.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\same.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\win.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\amistad_nara_camino_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_dragon_cielo_brasa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_elfo_bosque_silencioso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_elfo_nocturno_bosque_umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_goblin_puerta_bajo_foso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_hombre_lobo_ciudad_lunar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_humano_reino_en_cenizas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_lagarto_pantano_ruinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_orco_frontera_muralla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_pantera_tejados_ciudad.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_vampiro_cripta_pacto_roto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\camino_lluvioso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_aldea_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_asalto_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_fortaleza_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_ruinas_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_umbral_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\epilogo_caos_salon_invadio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\final_umbral_caos_mundos_mezclados.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\final_umbral_dominio_forzado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\final_umbral_equilibrio_apertura.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\intro_amanecer_mundo_antiguo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\intro_estandartes_siete_bandos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\intro_grieta_umbral_cielo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\portal_umbral_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\prologo_apagon_salon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\prologo_campamento_nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\prologo_escenario_presentacion.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\revelacion_carta_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\sala_trono.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\salon_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\salon_torneo_lleno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\anciano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\caravana.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\hermandad.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\hostil.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\mercader.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\aldea.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\apagon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\asalto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\asalto_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\asalto_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_nevada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_asedio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_tormenta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\escenario.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\escenario_lleno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\escenario_vacio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\estandartes.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\fortaleza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\publico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas_brasa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas_profundo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\salon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono_guardia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono_nieve.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_ancho.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_angosto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_cerrando.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_deslumbrante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\registro.json
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\activacion_carta_plano_cercano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\carta_presentada_sin_activar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\escenario_carta_cubierta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\publico_reacciona_portal_alternativa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\umbral_ruptura_total_alternativa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\apagon_torneo_anomalia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\ruptura_arena_vortice_alternativa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\transito_umbral_entre_mundos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\vision_trono_sobre_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\dara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\duelista_gorra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\elfo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\elfo_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\gobernante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\hombre_lagarto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\hombre_lobo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\hombre_pantera.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\humano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\jefe_arco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\orco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\pik.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\presentador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\rajoy.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\revancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\vampiro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_apagon.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_bosque.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_campamento.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_dragon.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_duelo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_elfo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_elfo_nocturno.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_explora.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_goblin.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_hombre_lagarto.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_hombre_lobo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_hombre_pantera.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_humano.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_orco.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_torneo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_umbral.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_vampiro.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\manifest.json
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_dara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_duelista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_elfo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_elfo_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_gobernante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_hombre_lagarto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_hombre_lobo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_hombre_pantera.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_humano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_jefe_arco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_orco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_pik.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_presentador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_rajoy.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_revancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_vampiro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\aldea.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\apagon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\asalto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\asalto_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\asalto_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_nevada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_asedio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_tormenta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\escenario.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\escenario_lleno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\escenario_vacio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\estandartes.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\fortaleza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\publico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas_brasa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas_profundo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\trono_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\trono_nieve.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_ancho.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_angosto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_cerrando.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_deslumbrante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\detalles\derrota_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\detalles\escena_vista_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\anciano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\caravana.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\hermandad.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\hostil.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\hostil_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\mercader.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\card_capture.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\card_flip.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\card_place.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\combo_chain.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\invalid_move.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\manifest.json
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\plus.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\same.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_back.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_confirm.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_move.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_select.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_ala_rota.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_bostezo_igneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_charca_de_lava.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_cola_corta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_cola_ferrea.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_corazon_de_magma.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_cria.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_diente_curvo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_drake.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_escama_suelta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_escupellamas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_fauces_del_volcan.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_fin_del_cielo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_fuego.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_garganta_ardiente.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_guerrero_rojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_guijarro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_nido_de_ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_reina_ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_rey_dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_segador_alado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_sombra_alada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_tormenta_de_escamas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_vuelo_en_circulo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_vuelo_rasante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_archivista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_arco_corto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_arpa_de_guerra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_arquero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_bosque_antiguo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_broteluz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_cazador_de_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_centinela.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_ciervo_blanco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_copa_eterna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_corazon_del_bosque.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_dama_hoja.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_danza_de_hojas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_elfo_real.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_exploradora.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_flautista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_hoja_gemela.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_lechuza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_musgo_viejo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_acechante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_beso_de_sombra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_canto_de_grillo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_centinela_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_daga_eclipse.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_eclipse_parcial.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_espia_umbria.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_hermana_umbria.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_hoja_lunar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_lanza_penumbra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_manto_de_estrellas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_mirada_hueca.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_nido_de_buhos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_noche_cerrada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_oraculo_ciego.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_paso_felpado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_polilla_negra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_principe_del_eclipse.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_punal_de_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_reina_de_la_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_susurro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_tejedora_de_sombras.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_tinta_viva.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_vacio_brillante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_velo_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_raiz_del_mundo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_refugio_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_sabio_del_bosque.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_seta_cantora.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_tiro_largo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_vengador_silvano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_apestoso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_brujo_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_chamana_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_chivato.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_corretejas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_desguace.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_granuja.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_jefe_de_tropa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_lamecharcos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_lanzasalgo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_madre_rata.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_mocos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_mordedor.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_muerdeorejas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_pinchacubos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_piojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_plaga_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_rascaollas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_revuelcabolsas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_rey_goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_robaqueso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_saltatechos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_saqueador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_tirachinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_trampero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_barro_tibio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_chaman_del_pantano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_charco_hondo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cienaga_viva.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cocodrilo_anciano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cola_acorazada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cola_del_rio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cria_fangosa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_curandero_viejo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_dentellada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_escamado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_fauces_ancestrales.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_guardian_del_fango.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_junco_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_lanza_juncos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_lengua_rapida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_mandibula.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_mordisco_fangoso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_nido_de_barro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_ojos_de_pantano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_pantano_eterno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_piel_humeda.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_renacuajo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_senor_del_pantano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_triturador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_alfa_del_bosque.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_aullador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_aullido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_cachorro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_caza_nocturna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_colmillo_blanco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_diente_de_leche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_eclipse_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_fauces_abiertas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_ganido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_garras_de_luna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_guarida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_hocico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_lobezno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_lomo_plateado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_luna_llena.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_madre_luna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_manada_unida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_mordedor_lunar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_pata_veloz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_pelaje_sucio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_piel_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_rastreadora.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_senda_de_huellas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_terror_del_valle.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_acechador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_bigote.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_brinco_letal.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_cazadora_silente.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_caza_del_alba.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_cola_sigilosa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_colmillo_chico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_depredador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_emboscada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_garra_dividida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_garra_nocturna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_garra_veloz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_huella_humeda.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_juego_de_sombras.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_luna_del_jaguar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_noche_de_caza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_ojos_ambar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_pantera_alfa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_rastro_fresco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_rey_de_la_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_ronda_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_saltador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_salto_mortal.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_selva_espesa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_zarpazo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_alabardero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_amanecer_blindado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_antorcha_viva.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_arcabucero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_ariete_del_alba.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_arquera_de_torre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_ballestero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_broquel.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_caballero_andante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_capellan_de_batalla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_clerigo_de_la_luz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_escudero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_espadachin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_estandarte_dorado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_hondero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_jinete_pardo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_lanza_del_alba.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_mozo_de_fragua.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_pica_corta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_reina_isolde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_rey_aldric.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_sargento_ferrum.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_sol_naciente.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_tamborilero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_vigia_del_muro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_aplastador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_bruto_rasgador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_chaman_karzh.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_colmillo_roto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_cuernos_de_guerra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_espalda_ancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_foso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_grito_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_grunido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_hacha_sucia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_jabalina_veloz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_lancero_gruano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_machacador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_matriarca_gra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_mazo_quebrado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_muerdehuesos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_piel_cortada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_porton_de_hierro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_puno_del_crater.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_rey_roto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_senor_de_la_guerra_vorg.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_tambor_de_guerra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_terremoto_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_tizon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_trol_de_ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_alas_negras.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_ansia_nocturna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_ataud_reforzado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_beso_frio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_candil_rojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_capa_carmesi.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_cazadora_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_conde_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_dama_carmin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_doncella_palida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_esgrimidor.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_jardin_de_espinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_latido_final.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_mayordomo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_medianoche_eterna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_murcielago.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_novia_de_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_opera_sangrienta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_oraculo_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_principe_rojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_rata_de_cripta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_sangre_joven.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_siervo_palido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_sombra_del_umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_vals_eterno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_vastago.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : arte_visual.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : audio.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : audio_web.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : campana.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cinematicas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : compendio.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : depurar.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : diagnostico.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : duelistas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : encuentros.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : facciones.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : finales.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : fragmentos.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : idioma.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : lotes_visuales.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : main.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : mazos.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : narrativa.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : opciones.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : pantallas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : partida.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : paths.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : persistencia.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : peticiones.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : prologo.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : pygbag.ini
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : reglas.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : tutorial.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : ui.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : version.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : web_diagnostico.py
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_dara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_duelista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_elfo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_elfo_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_gobernante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_hombre_lagarto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_hombre_lobo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_hombre_pantera.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_humano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_jefe_arco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_orco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_pik.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_presentador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_rajoy.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_revancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\avatar_vampiro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\boss.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\capture.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\card.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\chain.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinema.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\drag.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\faccion_confirmar_cristal.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\invalid.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\logo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lose.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu_back.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu_move.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\menu_ok.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\place.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\plus.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\PressStart2P.ttf
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\reward.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\same.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\win.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\amistad_nara_camino_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_dragon_cielo_brasa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_elfo_bosque_silencioso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_elfo_nocturno_bosque_umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_goblin_puerta_bajo_foso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_hombre_lobo_ciudad_lunar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_humano_reino_en_cenizas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_lagarto_pantano_ruinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_orco_frontera_muralla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_pantera_tejados_ciudad.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\apertura_vampiro_cripta_pacto_roto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\camino_lluvioso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_aldea_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_asalto_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_fortaleza_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_ruinas_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\campana_umbral_20261015.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\epilogo_caos_salon_invadio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\final_umbral_caos_mundos_mezclados.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\final_umbral_dominio_forzado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\final_umbral_equilibrio_apertura.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\intro_amanecer_mundo_antiguo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\intro_estandartes_siete_bandos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\intro_grieta_umbral_cielo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\portal_umbral_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\prologo_apagon_salon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\prologo_campamento_nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\prologo_escenario_presentacion.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\revelacion_carta_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\sala_trono.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\salon_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\cinematicas_hd\salon_torneo_lleno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\anciano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\caravana.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\hermandad.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\hostil.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\mercader.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\escenas\nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\aldea.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\apagon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\asalto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\asalto_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\asalto_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_nevada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\camino_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_asedio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\campamento_tormenta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\escenario.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\escenario_lleno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\escenario_vacio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\estandartes.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\fortaleza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\publico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas_brasa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\ruinas_profundo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\salon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono_guardia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\trono_nieve.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_ancho.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_angosto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_cerrando.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\fondos\umbral_deslumbrante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\registro.json
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\activacion_carta_plano_cercano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\carta_presentada_sin_activar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\escenario_carta_cubierta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\publico_reacciona_portal_alternativa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_03\fondos\umbral_ruptura_total_alternativa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\apagon_torneo_anomalia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\ruptura_arena_vortice_alternativa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\transito_umbral_entre_mundos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\lote_04\fondos\vision_trono_sobre_torneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\dara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\duelista_gorra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\elfo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\elfo_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\gobernante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\hombre_lagarto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\hombre_lobo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\hombre_pantera.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\humano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\jefe_arco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\orco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\pik.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\presentador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\rajoy.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\revancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\lotes_visuales\migracion_20261015\retratos\vampiro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_apagon.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_bosque.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_campamento.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_dragon.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_duelo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_elfo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_elfo_nocturno.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_explora.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_goblin.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_hombre_lagarto.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_hombre_lobo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_hombre_pantera.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_humano.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_orco.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_torneo.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_umbral.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\musica\musica_vampiro.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\manifest.json
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_dara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_duelista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_elfo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_elfo_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_gobernante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_hombre_lagarto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_hombre_lobo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_hombre_pantera.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_humano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_jefe_arco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_orco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_pik.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_presentador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_rajoy.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_revancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\avatares\avatar_vampiro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\aldea.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\apagon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\asalto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\asalto_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\asalto_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_nevada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\camino_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_amanecer.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_asedio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_lluvia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\campamento_tormenta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\escenario.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\escenario_lleno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\escenario_vacio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\estandartes.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\fortaleza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\publico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas_brasa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\ruinas_profundo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\trono_derrumbe.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\trono_nieve.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_ancho.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_angosto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_cerrando.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\cinematicas\umbral_deslumbrante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\detalles\derrota_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\detalles\escena_vista_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\anciano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\caravana.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\hermandad.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\hostil.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\hostil_v2.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\mercader.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\pixel_anime\encuentros\nara.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\card_capture.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\card_flip.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\card_place.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\combo_chain.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\invalid_move.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\manifest.json
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\plus.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\same.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_back.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_confirm.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_move.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : assets\sfx_stable_audio3\ui_select.ogg
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_ala_rota.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_bostezo_igneo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_charca_de_lava.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_cola_corta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_cola_ferrea.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_corazon_de_magma.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_cria.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_diente_curvo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_drake.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_escama_suelta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_escupellamas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_fauces_del_volcan.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_fin_del_cielo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_fuego.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_garganta_ardiente.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_guerrero_rojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_guijarro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_nido_de_ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_reina_ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_rey_dragon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_segador_alado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_sombra_alada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_tormenta_de_escamas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_vuelo_en_circulo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\dragon_vuelo_rasante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_archivista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_arco_corto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_arpa_de_guerra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_arquero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_bosque_antiguo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_broteluz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_cazador_de_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_centinela.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_ciervo_blanco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_copa_eterna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_corazon_del_bosque.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_dama_hoja.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_danza_de_hojas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_elfo_real.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_exploradora.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_flautista.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_hoja_gemela.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_lechuza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_musgo_viejo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_acechante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_beso_de_sombra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_canto_de_grillo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_centinela_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_daga_eclipse.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_eclipse_parcial.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_espia_umbria.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_hermana_umbria.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_hoja_lunar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_lanza_penumbra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_manto_de_estrellas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_mirada_hueca.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_nido_de_buhos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_noche_cerrada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_oraculo_ciego.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_paso_felpado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_polilla_negra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_principe_del_eclipse.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_punal_de_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_reina_de_la_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_susurro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_tejedora_de_sombras.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_tinta_viva.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_vacio_brillante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_nocturno_velo_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_raiz_del_mundo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_refugio_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_sabio_del_bosque.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_seta_cantora.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_tiro_largo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\elfo_vengador_silvano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_apestoso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_brujo_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_chamana_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_chivato.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_corretejas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_desguace.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_granuja.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_jefe_de_tropa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_lamecharcos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_lanzasalgo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_madre_rata.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_mocos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_mordedor.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_muerdeorejas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_pinchacubos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_piojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_plaga_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_rascaollas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_revuelcabolsas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_rey_goblin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_robaqueso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_saltatechos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_saqueador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_tirachinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\goblin_trampero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_barro_tibio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_chaman_del_pantano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_charco_hondo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cienaga_viva.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cocodrilo_anciano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cola_acorazada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cola_del_rio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_cria_fangosa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_curandero_viejo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_dentellada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_escamado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_fauces_ancestrales.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_guardian_del_fango.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_junco_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_lanza_juncos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_lengua_rapida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_mandibula.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_mordisco_fangoso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_nido_de_barro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_ojos_de_pantano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_pantano_eterno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_piel_humeda.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_renacuajo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_senor_del_pantano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lagarto_triturador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_alfa_del_bosque.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_aullador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_aullido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_cachorro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_caza_nocturna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_colmillo_blanco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_diente_de_leche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_eclipse_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_fauces_abiertas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_ganido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_garras_de_luna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_guarida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_hocico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_lobezno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_lomo_plateado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_luna_llena.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_madre_luna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_manada_unida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_mordedor_lunar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_pata_veloz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_pelaje_sucio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_piel_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_rastreadora.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_senda_de_huellas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_lobo_terror_del_valle.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_acechador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_bigote.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_brinco_letal.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_cazadora_silente.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_caza_del_alba.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_cola_sigilosa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_colmillo_chico.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_depredador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_emboscada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_garra_dividida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_garra_nocturna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_garra_veloz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_huella_humeda.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_juego_de_sombras.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_luna_del_jaguar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_noche_de_caza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_ojos_ambar.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_pantera_alfa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_rastro_fresco.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_rey_de_la_noche.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_ronda_gris.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_saltador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_salto_mortal.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_selva_espesa.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\hombre_pantera_zarpazo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_alabardero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_amanecer_blindado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_antorcha_viva.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_arcabucero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_ariete_del_alba.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_arquera_de_torre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_ballestero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_broquel.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_caballero_andante.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_capellan_de_batalla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_clerigo_de_la_luz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_escudero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_espadachin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_estandarte_dorado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_hondero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_jinete_pardo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_lanza_del_alba.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_mozo_de_fragua.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_pica_corta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_reina_isolde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_rey_aldric.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_sargento_ferrum.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_sol_naciente.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_tamborilero.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\humano_vigia_del_muro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_aplastador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_bruto_rasgador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_chaman_karzh.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_colmillo_roto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_cuernos_de_guerra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_espalda_ancha.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_foso.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_grito_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_grunido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_hacha_sucia.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_jabalina_veloz.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_lancero_gruano.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_machacador.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_matriarca_gra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_mazo_quebrado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_muerdehuesos.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_piel_cortada.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_porton_de_hierro.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_puno_del_crater.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_rey_roto.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_senor_de_la_guerra_vorg.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_tambor_de_guerra.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_terremoto_verde.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_tizon.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\orco_trol_de_ceniza.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_alas_negras.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_ansia_nocturna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_ataud_reforzado.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_beso_frio.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_candil_rojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_capa_carmesi.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_cazadora_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_conde_nocturno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_dama_carmin.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_doncella_palida.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_esgrimidor.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_jardin_de_espinas.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_latido_final.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_mayordomo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_medianoche_eterna.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_murcielago.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_novia_de_niebla.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_opera_sangrienta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_oraculo_de_sangre.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_principe_rojo.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_rata_de_cripta.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_sangre_joven.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_siervo_palido.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_sombra_del_umbral.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_vals_eterno.png
+	E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras : cartas\vampiro_vastago.png
+packing 523 files complete
+
+        building from local template E:/openCode/TripleTriad/build/v2_1_auditoria/cartones-mazmorras/plantilla_index.tmpl
+        result files will be in E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras\build\web
+
+
+    using icon from local cached file https://pygame-web.github.io/cdn/0.9.3/favicon.png
+    cached at E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras\build\web-cache\29a2a48092f8c1a6595a20019f830691.png
+
+    build only requested, not running testserver, files ready here :
+
+build_dir = E:\openCode\TripleTriad\build\v2_1_auditoria\cartones-mazmorras\build\web

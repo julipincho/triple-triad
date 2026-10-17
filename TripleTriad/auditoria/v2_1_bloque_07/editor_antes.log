@@ -1,0 +1,26 @@
+test_centro_de_segunda_carta_no_selecciona_la_tercera (test_coleccion.TestArmarMazo.test_centro_de_segunda_carta_no_selecciona_la_tercera) ... FAIL
+test_posicion_antigua_de_guardar_no_es_un_boton_invisible (test_coleccion.TestArmarMazo.test_posicion_antigua_de_guardar_no_es_un_boton_invisible) ... FAIL
+
+======================================================================
+FAIL: test_centro_de_segunda_carta_no_selecciona_la_tercera (test_coleccion.TestArmarMazo.test_centro_de_segunda_carta_no_selecciona_la_tercera)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\openCode\TripleTriad\tests\test_coleccion.py", line 317, in test_centro_de_segunda_carta_no_selecciona_la_tercera
+    self.assertEqual(mazo[-1]['nombre'], orden[1].nombre)
+AssertionError: 'Tamborilero' != 'Broquel'
+- Tamborilero
++ Broquel
+
+
+======================================================================
+FAIL: test_posicion_antigua_de_guardar_no_es_un_boton_invisible (test_coleccion.TestArmarMazo.test_posicion_antigua_de_guardar_no_es_un_boton_invisible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\openCode\TripleTriad\tests\test_coleccion.py", line 324, in test_posicion_antigua_de_guardar_no_es_un_boton_invisible
+    self.assertIsNone(mazo)
+AssertionError: [{'nombre': 'Sargento Ferrum', 'n': 5, 's': 7, 'e': 6, 'o': 4, 'bando': 'humano', 'habilidad': 'muro'}, {'nombre': 'Escudero', 'n': 5, 's': 6, 'e': 5, 'o': 6, 'bando': 'humano', 'habilidad': None}, {'nombre': 'Pica Corta', 'n': 6, 's': 4, 'e': 7, 'o': 5, 'bando': 'humano', 'habilidad': None}, {'nombre': 'Hondero', 'n': 5, 's': 3, 'e': 8, 'o': 6, 'bando': 'humano', 'habilidad': None}, {'nombre': 'Mozo de Fragua', 'n': 4, 's': 7, 'e': 5, 'o': 6, 'bando': 'humano', 'habilidad': None}, {'nombre': 'Alabardero', 'n': 7, 's': 6, 'e': 4, 'o': 5, 'bando': 'humano', 'habilidad': None}, {'nombre': 'Broquel', 'n': 5, 's': 5, 'e': 7, 'o': 6, 'bando': 'humano', 'habilidad': None}, {'nombre': 'Antorcha Viva', 'n': 4, 's': 6, 'e': 5, 'o': 8, 'bando': 'humano', 'habilidad': 'quema'}, {'nombre': 'Tamborilero', 'n': 6, 's': 6, 'e': 4, 'o': 7, 'bando': 'humano', 'habilidad': None}, {'nombre': 'Vigía del Muro', 'n': 5, 's': 7, 'e': 4, 'o': 7, 'bando': 'humano', 'habilidad': None}] is not None
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.143s
+
+FAILED (failures=2)

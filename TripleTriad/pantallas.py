@@ -1900,8 +1900,39 @@ async def recompensa(screen, clock, estado, nodo_id):
 #:   coleccion 150..500  (las cartas ocupan 170..484)
 #:   mazo      510..678  (las cartas ocupan 522..666)
 #: Los botones empiezan en y=700, asi que queda 22px de aire.
+def _dibujar_paneles_editor(screen, poseidas, pagina_items, seleccion, mouse):
+    panel(screen, PANEL_COLECCION, PANEL, BORDE, radio=10)
+    panel(screen, PANEL_MAZO, PANEL, BORDE, radio=10)
+
+    rects_coleccion = []
+    for i, nombre in enumerate(pagina_items):
+        carta, _ = poseidas[nombre]
+        x = COLECCION_ORIGEN[0] + (i % COLECCION_COLUMNAS) * COLECCION_PASO[0]
+        y = COLECCION_ORIGEN[1] + (i // COLECCION_COLUMNAS) * COLECCION_PASO[1]
+        rect = pygame.Rect(x, y, MAZO_CARTA_W, MAZO_CARTA_H)
+        rects_coleccion.append((nombre, rect))
+        if nombre in seleccion: resplandor(screen, rect, VERDE, 130, 3, 8)
+        elif rect.collidepoint(mouse): crt.resplandor_carta(screen, rect, carta, None, 110)
+        screen.blit(crt.crear(carta, None), (x, y))
+
+    rects_mazo = []
+    for i in range(MAZO_HUECOS):
+        x = MAZO_ORIGEN[0] + i * MAZO_PASO_X
+        y = MAZO_ORIGEN[1]
+        rect = pygame.Rect(x, y, MAZO_CARTA_W, MAZO_CARTA_H)
+        rects_mazo.append(rect)
+        panel(screen, rect, (12,12,18), BORDE, radio=5)
+        if i < len(seleccion):
+            c_id = seleccion[i]
+            screen.blit(crt.miniatura(poseidas[c_id][0], (104, 144)), (x, y))
+            if rect.collidepoint(mouse): crt.resplandor_carta(screen, rect, poseidas[c_id][0], None, 110)
+        else:
+            texto(screen, "VACIO", 8, TEXTO_TENUE, centro=rect.center)
+    return rects_coleccion, rects_mazo
+
+
 async def armar_mazo(screen, clock, faccion=None, nuevo=False):
-    """Editor del mazo GLOBAL: de 5 a 10 poseidas, 1 LEG y 3 RARA maximo."""
+    """Editor del mazo global: diez cartas poseídas, una LEG y tres RARA máximo."""
     from reglas import Carta
     perfil = campana.cargar_perfil()
     coleccion = campana.coleccion_de(perfil)
@@ -1919,6 +1950,8 @@ async def armar_mazo(screen, clock, faccion=None, nuevo=False):
     BANDOS = [None] + facciones.orden_facciones()
     motivo = ""
 
+    capa_editor, clave_editor = None, None
+
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
         await asyncio.sleep(0)
@@ -1934,37 +1967,38 @@ async def armar_mazo(screen, clock, faccion=None, nuevo=False):
         texto(screen, f"MAZO {len(seleccion)}/10  ·  LEG {rars.count('LEGENDARIA')}/1  ·  RARA {rars.count('RARA')}/3", 9, TEXTO, centro=(ANCHO // 2, 90))
         
         # Geometria: las constantes de arriba, que los tests importan.
-        panel(screen, PANEL_COLECCION, PANEL, BORDE, radio=10)
-        panel(screen, PANEL_MAZO, PANEL, BORDE, radio=10)
-
-        rects_coleccion = []
-        for i, nombre in enumerate(pagina_items):
-            carta, _ = poseidas[nombre]
-            x = COLECCION_ORIGEN[0] + (i % COLECCION_COLUMNAS) * COLECCION_PASO[0]
-            y = COLECCION_ORIGEN[1] + (i // COLECCION_COLUMNAS) * COLECCION_PASO[1]
-            rect = pygame.Rect(x, y, MAZO_CARTA_W, MAZO_CARTA_H)
-            rects_coleccion.append((nombre, rect))
-            if nombre in seleccion: resplandor(screen, rect, VERDE, 130, 3, 8)
-            elif rect.collidepoint(mouse): crt.resplandor_carta(screen, rect, carta, None, 110)
-            screen.blit(crt.crear(carta, None), (x, y))
-
-        rects_mazo = []
+        rects_coleccion = [(nombre, pygame.Rect(
+            COLECCION_ORIGEN[0] + (i % COLECCION_COLUMNAS) * COLECCION_PASO[0],
+            COLECCION_ORIGEN[1] + (i // COLECCION_COLUMNAS) * COLECCION_PASO[1],
+            MAZO_CARTA_W, MAZO_CARTA_H)) for i, nombre in enumerate(pagina_items)]
+        rects_mazo = [pygame.Rect(MAZO_ORIGEN[0] + i * MAZO_PASO_X,
+                                 MAZO_ORIGEN[1], MAZO_CARTA_W, MAZO_CARTA_H)
+                      for i in range(MAZO_HUECOS)]
+        hover_coleccion = next((i for i, (_, rect) in enumerate(rects_coleccion)
+                               if rect.collidepoint(mouse)), None)
+        hover_mazo = next((i for i, rect in enumerate(rects_mazo)
+                          if rect.collidepoint(mouse)), None)
+        clave = (tuple(pagina_items), tuple(seleccion), hover_coleccion, hover_mazo,
+                 ui.escala_texto(), screen.get_size())
+        # Una sola capa local y opaca para la zona de cartas. Se recompone al
+        # cambiar el contenido o el hover; el fondo exterior sigue animado.
+        # La medición visual conserva todos los registros de cada frame.
+        usar_cache = not ui.MEDIR
+        region = PANEL_COLECCION.union(PANEL_MAZO)
+        region.width += 6
+        region.height += 6
+        if usar_cache and capa_editor is not None and clave == clave_editor:
+            screen.blit(capa_editor, region.topleft)
+        else:
+            _dibujar_paneles_editor(screen, poseidas, pagina_items, seleccion, mouse)
+            if usar_cache:
+                capa_editor = screen.subsurface(region).copy().convert()
+                clave_editor = clave
         for nombre, rect in rects_coleccion:
             crt.nombre_al_pasar(screen, poseidas[nombre][0], rect)
-        for i in range(MAZO_HUECOS):
-            x = MAZO_ORIGEN[0] + i * MAZO_PASO_X
-            y = MAZO_ORIGEN[1]
-            rect = pygame.Rect(x, y, MAZO_CARTA_W, MAZO_CARTA_H)
-            rects_mazo.append(rect)
-            panel(screen, rect, (12,12,18), BORDE, radio=5)
-            if i < len(seleccion):
-                c_id = seleccion[i]
-                screen.blit(crt.miniatura(poseidas[c_id][0], (104, 144)), (x, y))
-                crt.nombre_al_pasar(screen, poseidas[c_id][0], rect)
-                if rect.collidepoint(mouse): crt.resplandor_carta(screen, rect, poseidas[c_id][0], None, 110)
-            else:
-                texto(screen, "VACIO", 8, TEXTO_TENUE, centro=rect.center)
-        
+        for i, rect in enumerate(rects_mazo[:len(seleccion)]):
+            crt.nombre_al_pasar(screen, poseidas[seleccion[i]][0], rect)
+
         b_bando = Boton(pygame.Rect(60, 700, 220, 40), f"BANDO: {(fbando or 'TODOS').upper()}", 8)
         b_prev = Boton(pygame.Rect(520, 700, 60, 40), "<", 10)
         b_next = Boton(pygame.Rect(700, 700, 60, 40), ">", 10)
@@ -1978,9 +2012,6 @@ async def armar_mazo(screen, clock, faccion=None, nuevo=False):
         if motivo: texto(screen, motivo, 8, ROJO, centro=(ANCHO // 2, 688))
         pygame.display.flip()
         
-        # Rectangulo de compatibilidad exclusivo para tests que clican en la posicion vieja
-        rect_compat_guardar = pygame.Rect(455 - 40, 717 - 20, 80, 40)
-
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT: pygame.quit(); raise SystemExit
             if ev.type == pygame.KEYDOWN:
@@ -1989,25 +2020,6 @@ async def armar_mazo(screen, clock, faccion=None, nuevo=False):
                 if ev.key == pygame.K_RIGHT: pagina += 1; audio.sfx(audio.MENU_MOVE)
                 if ev.key == pygame.K_b: fbando = BANDOS[(BANDOS.index(fbando)+1)%len(BANDOS)]; pagina=0
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
-                # El clic de compatibilidad de test tiene prioridad absoluta para no colisionar con otros botones
-                if rect_compat_guardar.collidepoint(ev.pos):
-                    elegidas = [dict(poseidas[n][1]) for n in seleccion]
-                    ok, motivo = _validar_mazo_editor(elegidas, set(coleccion))
-                    if ok: audio.sfx(audio.MENU_OK); campana.guardar_mazo_global(list(seleccion)); return elegidas
-                    audio.sfx(audio.INVALIDO, 0.5); continue
-                
-                # Mapeo de compatibilidad para clics de TestArmarMazo en cartas de la coleccion (paso 120, x0=76)
-                if abs(ev.pos[1] - 250) < 30:
-                    delta = ev.pos[0] - 76
-                    if abs(delta % 120) < 25:
-                        idx_compat = delta // 120
-                        if 0 <= idx_compat < len(pagina_items):
-                            nombre = pagina_items[idx_compat]
-                            if nombre in seleccion: seleccion.remove(nombre)
-                            elif len(seleccion) < 10: seleccion.append(nombre); motivo=""
-                            else: motivo = "Mazo lleno: quita una primero"
-                            audio.sfx(audio.CARD); continue
-
                 if b_bando.clic(ev.pos):
                     fbando = BANDOS[(BANDOS.index(fbando)+1)%len(BANDOS)]; pagina=0; audio.sfx(audio.MENU_MOVE)
                 elif b_prev.clic(ev.pos): pagina -= 1; audio.sfx(audio.MENU_MOVE)

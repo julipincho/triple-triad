@@ -1,0 +1,8 @@
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+principal_aldea pedir_nombre None
+principal_aldea ejecutar None
+principal_aldea partida None
+RESULTADO principal_aldea {'nodo': 'prologo', 'rival': 'Juan Rajoy', 'mano_u': ['Sol Naciente', 'Raíz del Mundo', 'Principe Rojo', 'Fin del Cielo', 'Desguace'], 'mano_c': ['Estandarte Dorado', 'Arcabucero', 'Ariete del Alba', 'Caballero Andante', 'Espadachin'], 'ganador': 'T', 'marcador': [8, 1], 'jugadas': 9, 'capturas': 3}
+principal_aldea elegir_faccion None
+principal_aldea armar_mazo senda

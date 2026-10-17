@@ -273,9 +273,17 @@ class TestArmarMazo(unittest.TestCase):
 
         return pygame.event.Event(pygame.MOUSEBUTTONDOWN, pos=(x, y), button=1)
 
+    def _carta_coleccion(self, indice):
+        import pantallas
+        x, y = pantallas.COLECCION_ORIGEN
+        dx, dy = pantallas.COLECCION_PASO
+        fila, columna = divmod(indice, pantallas.COLECCION_COLUMNAS)
+        return self._clic(x + columna * dx + pantallas.MAZO_CARTA_W // 2,
+                          y + fila * dy + pantallas.MAZO_CARTA_H // 2)
+
     def test_guardar_preseleccionados(self):
         starters = self._fijar_mazo("goblin")
-        mazo = self._correr("goblin", [self._clic(455, 717)])
+        mazo = self._correr("goblin", [self._clic(640, 770)])
         self.assertEqual(len(mazo), 10)
         self.assertEqual(campana.mazo_global(), starters)
 
@@ -283,19 +291,51 @@ class TestArmarMazo(unittest.TestCase):
         self._fijar_mazo("elfo")
         mazo = self._correr(
             "elfo",
-            [self._clic(76, 250), self._clic(76, 250), self._clic(455, 717)])
+            [self._carta_coleccion(0), self._carta_coleccion(0), self._clic(640, 770)])
         self.assertEqual(len(mazo), 10)
 
     def test_mazo_corto_no_guarda(self):
         import pygame
 
         self._fijar_mazo("humano")
-        clics = [self._clic(76 + i * 120, 250) for i in range(6)]
+        clics = [self._carta_coleccion(i) for i in range(6)]
         mazo = self._correr(
             "humano",
-            clics + [self._clic(455, 717),
+            clics + [self._clic(640, 770),
                      pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE)])
         self.assertIsNone(mazo)
+
+    def test_centro_de_segunda_carta_no_selecciona_la_tercera(self):
+        self._fijar_mazo('humano')
+        coleccion = campana.coleccion_de()
+        visibles = [d for d in coleccion.values() if d['bando'] == 'humano']
+        from reglas import Carta
+        orden = sorted((Carta.desde_dict(d) for d in visibles),
+                       key=lambda c: (-sum(c.valores.values()), c.nombre))
+        mazo = self._correr('humano', [self._carta_coleccion(1), self._carta_coleccion(1),
+                                      self._clic(640, 770)])
+        self.assertEqual(mazo[-1]['nombre'], orden[1].nombre)
+
+    def test_posicion_antigua_de_guardar_no_es_un_boton_invisible(self):
+        import pygame
+        self._fijar_mazo('humano')
+        mazo = self._correr('humano', [self._clic(455, 717),
+                                      pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE)])
+        self.assertIsNone(mazo)
+
+    def test_editor_reutiliza_paneles_y_recompone_al_cambiar_seleccion(self):
+        import pygame
+        import pantallas
+        from unittest.mock import patch
+        self._fijar_mazo('humano')
+        idle = pygame.event.Event(pygame.MOUSEMOTION, pos=(0, 0), rel=(0, 0), buttons=(0, 0, 0))
+        with patch('ui.MEDIR', False), patch('pygame.mouse.get_pos', return_value=(0, 0)), \
+             patch.object(pantallas, '_dibujar_paneles_editor', wraps=pantallas._dibujar_paneles_editor) as draw:
+            mazo = self._correr('humano', [idle, idle, self._carta_coleccion(1),
+                                          idle, idle, self._carta_coleccion(1), idle,
+                                          self._clic(640, 770)])
+        self.assertEqual(len(mazo), 10)
+        self.assertEqual(draw.call_count, 3)
 
     def test_volver_cancela(self):
         import pygame

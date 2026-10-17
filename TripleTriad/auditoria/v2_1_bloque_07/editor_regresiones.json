@@ -1,0 +1,12 @@
+{
+  "antes": {
+    "pruebas": 2,
+    "fallos": 2,
+    "errores": 0
+  },
+  "despues": {
+    "pruebas": 2,
+    "fallos": 0,
+    "errores": 0
+  }
+}
