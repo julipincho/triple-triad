@@ -51,40 +51,30 @@ def comprobar_recursos():
 
 
 async def _duelo_rapido(screen, clock):
-    """Partida rapida con tu mazo global contra la faccion que elijas."""
+    """Duelo con mazos prestados, independiente de la colección y campaña."""
+    _CONTEXTO[0] = "duelo rápido: eligiendo tu mazo"
+    faccion = await pantallas.elegir_faccion(screen, clock, modo="rapida")
+    if faccion is None:
+        _CONTEXTO[0] = "menú principal"
+        return
     _CONTEXTO[0] = "duelo rápido: eligiendo rival"
-    rival = await pantallas.elegir_faccion(screen, clock, modo="rapida")
+    rival = await pantallas.elegir_faccion(screen, clock, modo="rapida_rival")
     if rival is None:
         _CONTEXTO[0] = "menú principal"
         return
-    import campana as _c
-    import mazos as _m
+    import mazos_rapidos
 
-    campana.asegurar_mazo_global()
-    coleccion = campana.coleccion_de()
-    nombres = campana.mazo_global()
-    ok, _motivo = campana.validar_mazo(
-        [dict(coleccion[n]) for n in nombres if n in coleccion], set(coleccion))
-    if not ok:
-        mazo = await pantallas.armar_mazo(screen, clock)
-        if mazo is None:
-            _CONTEXTO[0] = "menú principal"
-            return
-        nombres = [d["nombre"] for d in mazo]
-        coleccion = campana.coleccion_de()
-    from reglas import Carta
-
-    mano_u = random.sample(
-        [Carta.desde_dict(dict(coleccion[n])) for n in nombres if n in coleccion], 5)
-    info = dict(_c.DUELISTAS[rival])
+    mano_u = random.sample(mazos_rapidos.mazo(faccion), 5)
+    info = dict(campana.DUELISTAS[rival])
     info.update({"bando": rival, "nombre_faccion": facciones.nombre(rival),
+                 "nombre_jugador": campana.nombre_guardado() or "Tú",
                  "dificultad": 1, "titulo": "Duelo rapido", "escena": "campamento",
                  "previa": [], "tipo": "rapida", "nodo": "rapida"})
     audio.musica(audio.musica_de_faccion(rival))
     _CONTEXTO[0] = f"duelo rápido contra {facciones.nombre(rival)}"
-    juego = Juego("humano", bando_rival=rival,
+    juego = Juego(faccion, bando_rival=rival,
                   mano_u_inicial=mano_u,
-                  mano_c_inicial=random.sample([c.copia() for c in _m.TODOS[rival]], 5),
+                  mano_c_inicial=random.sample(mazos_rapidos.mazo(rival), 5),
                   info=info, dificultad=1)
     resultado = await partida(screen, clock, juego)
     if resultado.abandonado:

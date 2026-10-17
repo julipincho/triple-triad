@@ -1,0 +1,1480 @@
+test_enter_activa_el_cambio_de_volumen (test_accesibilidad.TestAjustesPorTeclado.test_enter_activa_el_cambio_de_volumen)
+Foco en MUSICA, flecha derecha sube el volumen y lo persiste. ... ok
+test_toggle_de_texto_grande_con_el_raton (test_accesibilidad.TestAjustesPorTeclado.test_toggle_de_texto_grande_con_el_raton) ... ok
+test_el_modo_lectura_agranda_la_fuente (test_accesibilidad.TestEscalaDeTexto.test_el_modo_lectura_agranda_la_fuente) ... ok
+test_la_escala_se_acota (test_accesibilidad.TestEscalaDeTexto.test_la_escala_se_acota) ... ok
+test_cambiar_a_pantalla_completa_mantiene_el_tamano_logico (test_accesibilidad.TestEscaladoDePantalla.test_cambiar_a_pantalla_completa_mantiene_el_tamano_logico) ... ok
+test_el_modo_escala_incluye_la_bandera_de_escalado (test_accesibilidad.TestEscaladoDePantalla.test_el_modo_escala_incluye_la_bandera_de_escalado)
+`pygame.SCALED` es lo que hace que pygame escale y traduzca el raton. ... ok
+test_el_redimensionado_no_altera_la_superficie_logica (test_accesibilidad.TestEscaladoDePantalla.test_el_redimensionado_no_altera_la_superficie_logica)
+Un VIDEORESIZE no puede cambiar el lienzo logico. ... ok
+test_la_superficie_logica_no_cambia (test_accesibilidad.TestEscaladoDePantalla.test_la_superficie_logica_no_cambia) ... ok
+test_las_constantes_de_diseno_no_se_tocan (test_accesibilidad.TestEscaladoDePantalla.test_las_constantes_de_diseno_no_se_tocan)
+El juego esta disenado a 1280x800; el escalado es hacia fuera. ... ok
+test_si_el_escalado_falla_el_juego_arranca_igual (test_accesibilidad.TestEscaladoDePantalla.test_si_el_escalado_falla_el_juego_arranca_igual)
+El fallo que de verdad importa: que el juego NO arranque. ... ok
+test_el_texto_envuelto_cabe_con_texto_ampliado (test_accesibilidad.TestModoLecturaNoDesborda.test_el_texto_envuelto_cabe_con_texto_ampliado) ... ok
+test_la_escala_real_se_usa_al_envolver (test_accesibilidad.TestModoLecturaNoDesborda.test_la_escala_real_se_usa_al_envolver) ... ok
+test_modo_lectura_sobrevive_al_reinicio (test_accesibilidad.TestPersistenciaDeAjustes.test_modo_lectura_sobrevive_al_reinicio) ... ok
+test_valor_corrupto_cae_al_defecto (test_accesibilidad.TestPersistenciaDeAjustes.test_valor_corrupto_cae_al_defecto) ... ok
+test_volumen_fuera_de_rango_se_acota (test_accesibilidad.TestPersistenciaDeAjustes.test_volumen_fuera_de_rango_se_acota) ... ok
+test_volumen_y_pantalla_sobreviven_al_reinicio (test_accesibilidad.TestPersistenciaDeAjustes.test_volumen_y_pantalla_sobreviven_al_reinicio) ... ok
+test_decision_narrativa_se_elige_con_enter (test_accesibilidad.TestTecladoRecorridoPrincipal.test_decision_narrativa_se_elige_con_enter) ... ok
+test_mapa_campana_enter_camina (test_accesibilidad.TestTecladoRecorridoPrincipal.test_mapa_campana_enter_camina) ... ok
+test_recompensa_se_elige_con_enter (test_accesibilidad.TestTecladoRecorridoPrincipal.test_recompensa_se_elige_con_enter) ... ok
+test_draft_elige_con_enter (test_accesibilidad_extra.TestNavExtra.test_draft_elige_con_enter) ... ok
+test_encuentro_elige_con_enter (test_accesibilidad_extra.TestNavExtra.test_encuentro_elige_con_enter) ... ok
+test_el_draft_no_ofrece_cartas_del_mazo (test_altas_mazo.TestAltasReales.test_el_draft_no_ofrece_cartas_del_mazo) ... ok
+test_el_draft_no_ofrece_una_legendaria_que_no_cabe (test_altas_mazo.TestAltasReales.test_el_draft_no_ofrece_una_legendaria_que_no_cabe)
+Con la legendaria ya puesta, otra no puede entrar: no se ofrece. ... ok
+test_la_carta_del_sobre_todavia_se_guarda_en_la_coleccion (test_altas_mazo.TestAltasReales.test_la_carta_del_sobre_todavia_se_guarda_en_la_coleccion) ... ok
+test_la_carta_siempre_llega_a_la_coleccion (test_altas_mazo.TestAltasReales.test_la_carta_siempre_llega_a_la_coleccion)
+Aunque no entre al mazo, la carta es del jugador: no se pierde. ... ok
+test_muchos_sobres_mantienen_el_mazo_valido (test_altas_mazo.TestAltasReales.test_muchos_sobres_mantienen_el_mazo_valido)
+Estres: 15 sobres seguidos sobre un mazo reducido. ... ok
+test_recluta_no_deja_duplicados (test_altas_mazo.TestAltasReales.test_recluta_no_deja_duplicados) ... ok
+test_robo_no_deja_duplicados (test_altas_mazo.TestAltasReales.test_robo_no_deja_duplicados) ... ok
+test_sobre_con_mazo_reducido_no_rompe_las_reglas (test_altas_mazo.TestAltasReales.test_sobre_con_mazo_reducido_no_rompe_las_reglas) ... ok
+test_sobre_no_mete_la_leyenda_una_vez_detenida (test_altas_mazo.TestAltasReales.test_sobre_no_mete_la_leyenda_una_vez_detenida)
+Con una legendaria dentro, otra no puede entrar por la puerta de atrás. ... ok
+test_toda_oferta_del_draft_puede_entrar_en_el_mazo (test_altas_mazo.TestAltasReales.test_toda_oferta_del_draft_puede_entrar_en_el_mazo)
+La garantia de fondo: elegir una oferta nunca es una eleccion wasted. ... ok
+test_todo_lo_que_acepta_el_alta_lo_acepta_el_editor (test_altas_mazo.TestCoherenciaEditorAlta.test_todo_lo_que_acepta_el_alta_lo_acepta_el_editor)
+Lo invertido: si `mazo_admite` dice que si, validar_mazo tambien. ... ok
+test_el_recibo_es_idempotente (test_altas_mazo.TestElReciboDiceLaVerdad.test_el_recibo_es_idempotente) ... ok
+test_si_entra_anuncia_que_entra (test_altas_mazo.TestElReciboDiceLaVerdad.test_si_entra_anuncia_que_entra) ... ok
+test_si_no_entra_lo_dice_y_explica_por_que (test_altas_mazo.TestElReciboDiceLaVerdad.test_si_no_entra_lo_dice_y_explica_por_que) ... ok
+test_admite_una_carta_nueva (test_altas_mazo.TestMazoAdmite.test_admite_una_carta_nueva) ... ok
+test_rechaza_mas_de_tres_raras (test_altas_mazo.TestMazoAdmite.test_rechaza_mas_de_tres_raras) ... ok
+test_rechaza_una_carta_que_ya_esta (test_altas_mazo.TestMazoAdmite.test_rechaza_una_carta_que_ya_esta) ... ok
+test_rechaza_una_segunda_legendaria (test_altas_mazo.TestMazoAdmite.test_rechaza_una_segunda_legendaria) ... ok
+test_sustituir_una_carta_por_si_misma_no_es_duplicado (test_altas_mazo.TestMazoAdmite.test_sustituir_una_carta_por_si_misma_no_es_duplicado)
+`reemplazo` deja de contar, asi que no puede dar un falso positivo. ... ok
+test_el_editor_cancela_sin_tocar_nada (test_armar_mazo.TestEditarElMazoEnCampana.test_el_editor_cancela_sin_tocar_nada)
+ESC y CANCELAR devuelven None: el mazo se queda como estaba. ... ok
+test_el_mapa_tiene_boton_de_mazo (test_armar_mazo.TestEditarElMazoEnCampana.test_el_mapa_tiene_boton_de_mazo)
+La pantalla donde se entra al editor tiene que ofrecerlo. ... ok
+test_el_mazo_de_la_run_es_distinto_del_global (test_armar_mazo.TestEditarElMazoEnCampana.test_el_mazo_de_la_run_es_distinto_del_global)
+El editor tiene que tocar la run, no el perfil. ... ok
+test_el_perfil_no_se_toca_al_editar_la_run (test_armar_mazo.TestEditarElMazoEnCampana.test_el_perfil_no_se_toca_al_editar_la_run)
+Editar la run no puede tocar el mazo global ni el perfil. ... ok
+test_validar_rechaza_cartas_que_no_tienes (test_armar_mazo.TestEditarElMazoEnCampana.test_validar_rechaza_cartas_que_no_tienes) ... ok
+test_validar_rechaza_un_mazo_de_menos_de_cinco (test_armar_mazo.TestEditarElMazoEnCampana.test_validar_rechaza_un_mazo_de_menos_de_cinco) ... ok
+test_el_mazo_guardado_si_se_recupera (test_armar_mazo.TestElMazoVieneVacio.test_el_mazo_guardado_si_se_recupera)
+Guardar y volver a abrir tiene que devolver lo mismo. ... ok
+test_las_5_autocompletadas_eran_del_mismo_bando (test_armar_mazo.TestElMazoVieneVacio.test_las_5_autocompletadas_eran_del_mismo_bando)
+Por que se veia siempre el mismo bando: el sort es por bando. ... ok
+test_no_se_puede_guardar_un_mazo_vacio (test_armar_mazo.TestElMazoVieneVacio.test_no_se_puede_guardar_un_mazo_vacio)
+Vacio al entrar, pero para jugar hacen falta 5 cartas. ... ok
+test_sin_mazo_guardado_no_se_preselecciona_nada (test_armar_mazo.TestElMazoVieneVacio.test_sin_mazo_guardado_no_se_preselecciona_nada)
+El bug: se rellenaba con `nombres[:5]`, que es ordenado por bando ... ok
+test_las_constantes_vienen_de_pantallas (test_armar_mazo.TestLaGeometriaRealCoincideConLaDelTest.test_las_constantes_vienen_de_pantallas) ... ok
+test_el_mazo_muestra_la_coleccion_no_solo_el_mazo (test_armar_mazo.TestLaRejillaDelEditorCabeYSeCentra.test_el_mazo_muestra_la_coleccion_no_solo_el_mazo)
+El fallo de fondo: solo se veian las 5-10 cartas del mazo. ... ok
+test_hay_dos_filas_de_cinco (test_armar_mazo.TestLaRejillaDelEditorCabeYSeCentra.test_hay_dos_filas_de_cinco) ... ok
+test_la_rejilla_esta_centrada_en_el_panel (test_armar_mazo.TestLaRejillaDelEditorCabeYSeCentra.test_la_rejilla_esta_centrada_en_el_panel)
+El margen a la izquierda tiene que ser igual al de la derecha. ... ok
+test_las_filas_estan_centradas_verticalmente (test_armar_mazo.TestLaRejillaDelEditorCabeYSeCentra.test_las_filas_estan_centradas_verticalmente) ... ok
+test_ninguna_carta_se_sale_del_panel (test_armar_mazo.TestLaRejillaDelEditorCabeYSeCentra.test_ninguna_carta_se_sale_del_panel) ... ok
+test_el_mazo_no_se_sale_de_su_panel (test_armar_mazo.TestLasCartasCabenEnSuMarco.test_el_mazo_no_se_sale_de_su_panel)
+El bug: 144px de carta en un panel de 130. Se salian 24px. ... ok
+test_el_panel_del_mazo_tiene_alto_para_sus_cartas (test_armar_mazo.TestLasCartasCabenEnSuMarco.test_el_panel_del_mazo_tiene_alto_para_sus_cartas) ... ok
+test_la_coleccion_no_se_sale_de_su_panel (test_armar_mazo.TestLasCartasCabenEnSuMarco.test_la_coleccion_no_se_sale_de_su_panel) ... ok
+test_los_dos_paneles_no_se_solapan (test_armar_mazo.TestLasCartasCabenEnSuMarco.test_los_dos_paneles_no_se_solapan) ... ok
+test_los_paneles_no_chocan_con_los_botones (test_armar_mazo.TestLasCartasCabenEnSuMarco.test_los_paneles_no_chocan_con_los_botones)
+Los botones empiezan en y=700: el panel del mazo tiene que dejar ... ok
+test_todo_cabe_en_la_pantalla (test_armar_mazo.TestLasCartasCabenEnSuMarco.test_todo_cabe_en_la_pantalla) ... ok
+test_cartas_y_lotes_aprobados_no_se_redirigen (test_arte_pixel_anime.TestArtePixelAnime.test_cartas_y_lotes_aprobados_no_se_redirigen) ... ok
+test_manifest_y_originales_intactos (test_arte_pixel_anime.TestArtePixelAnime.test_manifest_y_originales_intactos) ... ok
+test_prioridad_del_hd_aprobado (test_arte_pixel_anime.TestArtePixelAnime.test_prioridad_del_hd_aprobado) ... ok
+test_reversion_y_archivo_ausente (test_arte_pixel_anime.TestArtePixelAnime.test_reversion_y_archivo_ausente) ... ok
+test_variantes_seleccionadas_y_retratos (test_arte_pixel_anime.TestArtePixelAnime.test_variantes_seleccionadas_y_retratos) ... ok
+test_viewport_720_sin_deformar (test_arte_pixel_anime.TestArtePixelAnime.test_viewport_720_sin_deformar) ... ok
+test_cada_carta_tiene_imagen (test_assets.TestArte.test_cada_carta_tiene_imagen) ... ok
+test_cada_faccion_tiene_avatar (test_assets.TestArte.test_cada_faccion_tiene_avatar) ... ok
+test_fondo_del_juego (test_assets.TestArte.test_fondo_del_juego) ... ok
+test_fuente (test_assets.TestArte.test_fuente) ... ok
+test_las_imagenes_se_cargan_de_verdad (test_assets.TestArte.test_las_imagenes_se_cargan_de_verdad) ... ok
+test_todos_los_fondos_de_cinematica_existen (test_assets.TestArte.test_todos_los_fondos_de_cinematica_existen) ... ok
+test_cada_cambio_de_pista_recarga_el_canal (test_assets.TestAudio.test_cada_cambio_de_pista_recarga_el_canal)
+pygame.mixer.music tiene un solo canal. ... ok
+test_crear_sonidos_no_pisa_las_pistas_de_ia (test_assets.TestAudio.test_crear_sonidos_no_pisa_las_pistas_de_ia)
+La guarda de `crear_sonidos.py` cubre las 17, con el prefijo puesto. ... ok
+test_detener_limpia_el_estado (test_assets.TestAudio.test_detener_limpia_el_estado)
+Si no, la siguiente peticion de la misma pista se ignoraba. ... ok
+test_el_bucle_de_la_musica_no_tiene_corte (test_assets.TestAudio.test_el_bucle_de_la_musica_no_tiene_corte)
+Las pistas se reproducen con play(-1). Con un fundido en los ... ok
+test_el_duelo_no_usa_la_musica_del_rival (test_assets.TestAudio.test_el_duelo_no_usa_la_musica_del_rival) ... ok
+test_la_pista_se_reproduce_sin_error (test_assets.TestAudio.test_la_pista_se_reproduce_sin_error) ... ok
+test_las_pistas_de_ia_no_vuelven_a_chiptune (test_assets.TestAudio.test_las_pistas_de_ia_no_vuelven_a_chiptune)
+Las 17 pistas de ACE-Step no pueden degradarse a chiptune. ... ok
+test_las_pistas_de_tema_existen (test_assets.TestAudio.test_las_pistas_de_tema_existen)
+El duelo tiene su propia musica: no reutiliza la del rival. ... ok
+test_las_pistas_son_wav_validos (test_assets.TestAudio.test_las_pistas_son_wav_validos) ... ok
+test_los_controles_de_volumen_no_revientan (test_assets.TestAudio.test_los_controles_de_volumen_no_revientan)
+El deslizador de Ajustes llama a esto: si falla, se cae la pantalla. ... ok
+test_los_nombres_de_tema_son_distintos_de_las_facciones (test_assets.TestAudio.test_los_nombres_de_tema_son_distintos_de_las_facciones) ... ok
+test_pedir_la_misma_pista_la_reanuda (test_assets.TestAudio.test_pedir_la_misma_pista_la_reanuda)
+El bug de la musica trabada: pausar_musica() no borra el nombre de ... ok
+test_todos_los_efectos_existen (test_assets.TestAudio.test_todos_los_efectos_existen) ... ok
+test_una_pista_por_faccion (test_assets.TestAudio.test_una_pista_por_faccion) ... ok
+test_el_informe_se_puede_imprimir (test_assets.TestDiagnostico.test_el_informe_se_puede_imprimir) ... ok
+test_no_falta_ningun_recurso (test_assets.TestDiagnostico.test_no_falta_ningun_recurso) ... ok
+test_cada_nodo_tiene_previa_y_escena (test_assets.TestReferencias.test_cada_nodo_tiene_previa_y_escena) ... ok
+test_el_selector_de_faccion_sobrevive_al_raton (test_assets.TestReferencias.test_el_selector_de_faccion_sobrevive_al_raton)
+Reproduce el crash exacto: mover el raton por las facciones. ... ok
+test_las_abilidades_usadas_estan_documentadas (test_assets.TestReferencias.test_las_abilidades_usadas_estan_documentadas) ... ok
+test_las_aperturas_existen_para_todas_las_facciones (test_assets.TestReferencias.test_las_aperturas_existen_para_todas_las_facciones) ... ok
+test_las_recompensas_cubren_las_ramas (test_assets.TestReferencias.test_las_recompensas_cubren_las_ramas) ... ok
+test_los_duelistas_de_todas_las_facciones_tienen_texto (test_assets.TestReferencias.test_los_duelistas_de_todas_las_facciones_tienen_texto) ... ok
+test_los_encuentros_tienen_efecto_conocido (test_assets.TestReferencias.test_los_encuentros_tienen_efecto_conocido) ... ok
+test_los_finales_de_todas_las_facciones (test_assets.TestReferencias.test_los_finales_de_todas_las_facciones) ... ok
+test_todo_audio_X_del_juego_existe (test_assets.TestReferencias.test_todo_audio_X_del_juego_existe)
+El bug: pantallas.py usaba audio.MENU_MOVE en 8 sitios pero ... ok
+test_ciclo_de_vida_no_reinicia_la_misma_pista (test_audio_web.TestAudioWeb.test_ciclo_de_vida_no_reinicia_la_misma_pista) ... ok
+test_reproductor_recibe_audio_y_parametros (test_audio_web.TestAudioWeb.test_reproductor_recibe_audio_y_parametros) ... ok
+test_el_juego_no_tiene_desbordes (test_auditoria.TestAuditoria.test_el_juego_no_tiene_desbordes) ... ok
+test_el_nombre_ancho_se_detecta (test_auditoria.TestAuditoria.test_el_nombre_ancho_se_detecta) ... ok
+test_el_rect_fuera_se_detecta (test_auditoria.TestAuditoria.test_el_rect_fuera_se_detecta) ... ok
+test_el_texto_corto_pasa (test_auditoria.TestAuditoria.test_el_texto_corto_pasa) ... ok
+test_el_texto_largo_se_detecta (test_auditoria.TestAuditoria.test_el_texto_largo_se_detecta) ... ok
+test_devuelve_los_cuatro_numeros (test_auditoria_reglas.TestElDesgloseExplicaLaCaptura.test_devuelve_los_cuatro_numeros) ... ok
+test_fuera_del_tablero_devuelve_none (test_auditoria_reglas.TestElDesgloseExplicaLaCaptura.test_fuera_del_tablero_devuelve_none) ... ok
+test_un_muro_devuelve_none (test_auditoria_reglas.TestElDesgloseExplicaLaCaptura.test_un_muro_devuelve_none)
+Con muro no hay comparacion, asi que no hay nada que explicar. ... ok
+test_una_carta_aliada_devuelve_none (test_auditoria_reglas.TestElDesgloseExplicaLaCaptura.test_una_carta_aliada_devuelve_none) ... ok
+test_una_carta_sin_bonificacion_coincide (test_auditoria_reglas.TestElDesgloseExplicaLaCaptura.test_una_carta_sin_bonificacion_coincide)
+Fuera del centro: efectivo == visible. ... ok
+test_captura_igual_a_la_referencia (test_auditoria_reglas.TestElMotorCumpleLasReglasDocumentadas.test_captura_igual_a_la_referencia)
+3000 tableros, comparando cartas y casillas. ... ok
+test_la_cadena_no_inventa_ni_borra_cartas (test_auditoria_reglas.TestElMotorCumpleLasReglasDocumentadas.test_la_cadena_no_inventa_ni_borra_cartas)
+Invariantes de `capturas` con cadena, sobre 500 tableros. ... ok
+test_la_cadena_solo_toca_cartas_del_rival (test_auditoria_reglas.TestElMotorCumpleLasReglasDocumentadas.test_la_cadena_solo_toca_cartas_del_rival) ... ok
+test_valor_efectivo_coincide_con_la_referencia (test_auditoria_reglas.TestElMotorCumpleLasReglasDocumentadas.test_valor_efectivo_coincide_con_la_referencia) ... ok
+test_las_bonificaciones_estan_documentadas (test_auditoria_reglas.TestElNumeroQueVesNoEsElQueDecide.test_las_bonificaciones_estan_documentadas)
+Que esten en la ayuda es lo que hace el numero verificable. ... ok
+test_mide_cuantas_veces_el_numero_visible_no_explica (test_auditoria_reglas.TestElNumeroQueVesNoEsElQueDecide.test_mide_cuantas_veces_el_numero_visible_no_explica) ... ok
+test_los_avatar_del_juego_son_rgba_y_256 (test_avatares_sellenos.TestAvataresSellenos.test_los_avatar_del_juego_son_rgba_y_256)
+La forma que espera el motor. Si un avatar se regenera a otro tamano ... ok
+test_los_dos_libres_siguen_existiendo (test_avatares_sellenos.TestAvataresSellenos.test_los_dos_libres_siguen_existiendo)
+Que sean 'libres' no significa que puedan desaparecer. ... ok
+test_los_que_ya_estan_bien_no_han_cambiado (test_avatares_sellenos.TestAvataresSellenos.test_los_que_ya_estan_bien_no_han_cambiado)
+El acuerdo, convertido en red de seguridad. ... ok
+test_todos_los_fijados_estan_en_disco (test_avatares_sellenos.TestAvataresSellenos.test_todos_los_fijados_estan_en_disco)
+Si un avatar se renombra, el hash viejo dejaria demirar solo. Aqui se ... ok
+test_curvas_sanas (test_balance.TestAuditoriaPoder.test_curvas_sanas) ... ok
+test_ninguna_comun_supera_a_una_legendaria (test_balance.TestAuditoriaPoder.test_ninguna_comun_supera_a_una_legendaria) ... ok
+test_distribucion_con_semilla_y_pity (test_balance.TestEstadisticaSobres.test_distribucion_con_semilla_y_pity) ... ok
+test_mini_usa_iniciales_aunque_haya_coleccion (test_balance.TestMinisMazosFijos.test_mini_usa_iniciales_aunque_haya_coleccion) ... ok
+test_draft_ofrece_tres_cartas_distintas (test_campana.TestCartasYRecompensas.test_draft_ofrece_tres_cartas_distintas) ... ok
+test_draft_reemplaza_en_su_lugar (test_campana.TestCartasYRecompensas.test_draft_reemplaza_en_su_lugar) ... ok
+test_el_pool_solo_ofrece_facciones_desbloqueadas (test_campana.TestCartasYRecompensas.test_el_pool_solo_ofrece_facciones_desbloqueadas) ... ok
+test_mazo_inicial_es_el_de_la_faccion (test_campana.TestCartasYRecompensas.test_mazo_inicial_es_el_de_la_faccion) ... ok
+test_mejorar_carta_no_pasa_de_diez (test_campana.TestCartasYRecompensas.test_mejorar_carta_no_pasa_de_diez) ... ok
+test_no_se_puede_pactar_con_la_propia_faccion (test_campana.TestCartasYRecompensas.test_no_se_puede_pactar_con_la_propia_faccion) ... ok
+test_recompensas_segun_el_nodo (test_campana.TestCartasYRecompensas.test_recompensas_segun_el_nodo) ... ok
+test_rival_tambien_sortea_cinco (test_campana.TestCartasYRecompensas.test_rival_tambien_sortea_cinco) ... ok
+test_sigilo_escribe_deltas_sin_tocar_base (test_campana.TestCartasYRecompensas.test_sigilo_escribe_deltas_sin_tocar_base) ... ok
+test_sorteo_da_cinco_de_la_coleccion (test_campana.TestCartasYRecompensas.test_sorteo_da_cinco_de_la_coleccion) ... ok
+test_sorteo_es_estable_al_recargar (test_campana.TestCartasYRecompensas.test_sorteo_es_estable_al_recargar) ... ok
+test_sorteo_varia_entre_campanas (test_campana.TestCartasYRecompensas.test_sorteo_varia_entre_campanas) ... ok
+test_debilitar_reduce_al_rival (test_campana.TestDificultad.test_debilitar_reduce_al_rival) ... ok
+test_debilitar_resta_refuerzo_sin_cambiar_el_sorteo (test_campana.TestDificultad.test_debilitar_resta_refuerzo_sin_cambiar_el_sorteo)
+`debilitar` NO re-sortea: el pool y las cartas sorteadas son las ... ok
+test_el_trono_es_el_mas_duro (test_campana.TestDificultad.test_el_trono_es_el_mas_duro)
+El trono debe ser el nodo mas fuerte. ... ok
+test_rival_joven_no_usa_legendarias (test_campana.TestDificultad.test_rival_joven_no_usa_legendarias)
+La version joven: en nodos tempranos el pool rival se recorta y ... ok
+test_valores_nunca_pasan_de_diez (test_campana.TestDificultad.test_valores_nunca_pasan_de_diez) ... ok
+test_cada_encuentro_tiene_dos_opciones_con_efecto (test_campana.TestEncuentros.test_cada_encuentro_tiene_dos_opciones_con_efecto) ... ok
+test_efecto_debilitar_se_acumula (test_campana.TestEncuentros.test_efecto_debilitar_se_acumula) ... ok
+test_efecto_mas_debil_mejora_una_carta (test_campana.TestEncuentros.test_efecto_mas_debil_mejora_una_carta) ... ok
+test_efecto_robo_anade_carta (test_campana.TestEncuentros.test_efecto_robo_anade_carta) ... ok
+test_encuentro_por_nodo_existe (test_campana.TestEncuentros.test_encuentro_por_nodo_existe) ... ok
+test_cada_faccion_tiene_jefe_y_final_propio (test_campana.TestFaccionDecideCampana.test_cada_faccion_tiene_jefe_y_final_propio) ... ok
+test_escalera_sin_propia_faccion (test_campana.TestFaccionDecideCampana.test_escalera_sin_propia_faccion) ... ok
+test_final_de_humanos_es_humano (test_campana.TestFaccionDecideCampana.test_final_de_humanos_es_humano)
+Pedir el final humano devuelve el final humano, no un texto generico. ... ok
+test_final_de_orcos_es_orco (test_campana.TestFaccionDecideCampana.test_final_de_orcos_es_orco) ... ok
+test_humanos_no_luchan_contra_humanos (test_campana.TestFaccionDecideCampana.test_humanos_no_luchan_contra_humanos)
+Recorrido completo de la campana humana: ningun rival es humano. ... ok
+test_no_se_puede_enfrentar_a_si_mismo (test_campana.TestFaccionDecideCampana.test_no_se_puede_enfrentar_a_si_mismo)
+Elegir Humanos significa no Payments ever-orcos... sino nunca contra humanos. ... ok
+test_orcos_no_luchan_contra_orcos (test_campana.TestFaccionDecideCampana.test_orcos_no_luchan_contra_orcos) ... ok
+test_todas_las_facciones_tienen_tablas_completas (test_campana.TestFaccionDecideCampana.test_todas_las_facciones_tienen_tablas_completas)
+Ninguna tabla puede quedarse atras al anadir una faccion. ... ok
+test_variante_segun_rendimiento (test_campana.TestFaccionDecideCampana.test_variante_segun_rendimiento) ... ok
+test_cinco_victorias_completan_la_campana (test_campana.TestGrafoDeNodos.test_cinco_victorias_completan_la_campana) ... ok
+test_derrota_rompe_la_racha (test_campana.TestGrafoDeNodos.test_derrota_rompe_la_racha) ... ok
+test_la_bifurcacion_exige_elegir (test_campana.TestGrafoDeNodos.test_la_bifurcacion_exige_elegir) ... ok
+test_las_dos_ramas_convergen (test_campana.TestGrafoDeNodos.test_las_dos_ramas_convergen) ... ok
+test_racha_y_capturas_se_registran (test_campana.TestGrafoDeNodos.test_racha_y_capturas_se_registran) ... ok
+test_ramas_tienen_dificultad_distinta (test_campana.TestGrafoDeNodos.test_ramas_tienen_dificultad_distinta) ... ok
+test_recorrido_lineal_hasta_la_bifurcacion (test_campana.TestGrafoDeNodos.test_recorrido_lineal_hasta_la_bifurcacion) ... ok
+test_datos_corruptos_no_rompen (test_campana.TestMigracionYGuardado.test_datos_corruptos_no_rompen) ... ok
+test_estado_nuevo_es_valido (test_campana.TestMigracionYGuardado.test_estado_nuevo_es_valido) ... ok
+test_los_tests_no_tocan_los_datos_del_jugador (test_campana.TestMigracionYGuardado.test_los_tests_no_tocan_los_datos_del_jugador)
+El aislamiento debe estar activo: si no, el test ensucia la partida. ... ok
+test_migra_partida_completada (test_campana.TestMigracionYGuardado.test_migra_partida_completada) ... ok
+test_migra_partida_vieja (test_campana.TestMigracionYGuardado.test_migra_partida_vieja) ... ok
+test_basica_no_inicia_combo (test_capturas_propiedad.TestContrato.test_basica_no_inicia_combo) ... ok
+test_cada_direccion_compara_solo_la_cara_opuesta (test_capturas_propiedad.TestContrato.test_cada_direccion_compara_solo_la_cara_opuesta) ... ok
+test_combo_no_repite_same_plus_ni_quema (test_capturas_propiedad.TestContrato.test_combo_no_repite_same_plus_ni_quema) ... ok
+test_furia_y_embestida_se_apagan_y_vuelven (test_capturas_propiedad.TestContrato.test_furia_y_embestida_se_apagan_y_vuelven) ... ok
+test_motivos_mixtos_no_convierten_basica_en_same (test_capturas_propiedad.TestContrato.test_motivos_mixtos_no_convierten_basica_en_same) ... ok
+test_muro_excluye_comparacion_de_same (test_capturas_propiedad.TestContrato.test_muro_excluye_comparacion_de_same) ... ok
+test_plus_con_aliado_y_enemigo_mas_fuerte (test_capturas_propiedad.TestContrato.test_plus_con_aliado_y_enemigo_mas_fuerte) ... ok
+test_reparto_nuevo_reinicia_propiedad_sin_mutar_coleccion (test_capturas_propiedad.TestContrato.test_reparto_nuevo_reinicia_propiedad_sin_mutar_coleccion) ... ok
+test_rotar_tablero_no_cambia_las_capturas_con_bonus_y_combo (test_capturas_propiedad.TestContrato.test_rotar_tablero_no_cambia_las_capturas_con_bonus_y_combo) ... ok
+test_same_aliado_inicia_combo_basico (test_capturas_propiedad.TestContrato.test_same_aliado_inicia_combo_basico) ... ok
+test_simulacion_preserva_propietario_original (test_capturas_propiedad.TestContrato.test_simulacion_preserva_propietario_original) ... ok
+test_cuando_hay_same_el_propio_no_avisa_dos_veces (test_cartel_efecto.TestAnuncioDelEfecto.test_cuando_hay_same_el_propio_no_avisa_dos_veces)
+El cartel del efecto y el banner se pisan en el mismo sitio del ... ok
+test_el_cartel_no_dura_eternamente (test_cartel_efecto.TestAnuncioDelEfecto.test_el_cartel_no_dura_eternamente)
+Un cartel que no se apaga tapa el tablero y es peor que no tenerlo. ... ok
+test_el_plus_se_anuncia_con_su_nombre (test_cartel_efecto.TestAnuncioDelEfecto.test_el_plus_se_anuncia_con_su_nombre) ... ok
+test_el_reparto_suma_lo_que_cayo_de_verdad (test_cartel_efecto.TestAnuncioDelEfecto.test_el_reparto_suma_lo_que_cayo_de_verdad) ... ok
+test_el_same_se_anuncia_con_su_nombre (test_cartel_efecto.TestAnuncioDelEfecto.test_el_same_se_anuncia_con_su_nombre) ... ok
+test_la_cadena_dice_cuantas_cartas_cayeron (test_cartel_efecto.TestAnuncioDelEfecto.test_la_cadena_dice_cuantas_cartas_cayeron) ... ok
+test_una_captura_normal_no_pone_nada (test_cartel_efecto.TestAnuncioDelEfecto.test_una_captura_normal_no_pone_nada)
+Sin same, sin plus y sin cadena no hay efecto que nombrar. Antes ... ok
+test_varias_capturas_basicas_tampoco_son_cadena (test_cartel_efecto.TestAnuncioDelEfecto.test_varias_capturas_basicas_tampoco_son_cadena) ... ok
+test_dibujar_el_cartel_no_reventa (test_cartel_efecto.TestCartelSeDibuja.test_dibujar_el_cartel_no_reventa) ... ok
+test_dos_efectos_seguidos_no_dejan_el_anterior_debajo (test_cartel_efecto.TestCartelSeDibuja.test_dos_efectos_seguidos_no_dejan_el_anterior_debajo)
+La capa de trabajo se reutiliza y el fondo del cartel es ... ok
+test_el_titulo_no_se_sale_del_cartel (test_cartel_efecto.TestCartelSeDibuja.test_el_titulo_no_se_sale_del_cartel)
+El caso que paso al principio: la caja se ajustaba al texto medido ... ok
+test_cascada_sigue_dando_las_mismas_carturas_que_capturas (test_cartel_efecto.TestDeteccionDeEfectos.test_cascada_sigue_dando_las_mismas_carturas_que_capturas)
+`capturas` es la mitad izquierda de `cascada`. Si divergen, el juego ... ok
+test_la_cadena_se_cuenta_por_el_origen (test_cartel_efecto.TestDeteccionDeEfectos.test_la_cadena_se_cuenta_por_el_origen) ... ok
+test_plus_del_tutorial_se_detecta_como_plus (test_cartel_efecto.TestDeteccionDeEfectos.test_plus_del_tutorial_se_detecta_como_plus) ... ok
+test_same_del_tutorial_se_detecta_como_same (test_cartel_efecto.TestDeteccionDeEfectos.test_same_del_tutorial_se_detecta_como_same) ... ok
+test_una_captura_suelta_no_es_una_cadena (test_cartel_efecto.TestDeteccionDeEfectos.test_una_captura_suelta_no_es_una_cadena) ... ok
+test_los_chips_de_la_portada_estan_centrados (test_centrado.TestChipsyCartasDePortada.test_los_chips_de_la_portada_estan_centrados) ... ok
+test_cero_elementos_no_revienta (test_centrado.TestFilaCentrada.test_cero_elementos_no_revienta) ... ok
+test_el_anchor_no_depende_del_ancho_del_elemento (test_centrado.TestFilaCentrada.test_el_anchor_no_depende_del_ancho_del_elemento)
+El error del patron viejo: mover el ancho movia el centro. ... ok
+test_el_bloque_queda_centrado_en_la_pantalla (test_centrado.TestFilaCentrada.test_el_bloque_queda_centrado_en_la_pantalla) ... ok
+test_la_version_con_paso_devuelve_el_mismo_anchor (test_centrado.TestFilaCentrada.test_la_version_con_paso_devuelve_el_mismo_anchor) ... ok
+test_no_se_sale_de_la_pantalla_si_cabe (test_centrado.TestFilaCentrada.test_no_se_sale_de_la_pantalla_si_cabe)
+Cuando la fila cabe, no se sale por ningun lado. ... ok
+test_si_no_cabe_devuelve_un_anchor_negativo (test_centrado.TestFilaCentrada.test_si_no_cabe_devuelve_un_anchor_negativo)
+Una fila mas ancha que la pantalla no se puede centrar. ... ok
+test_una_sola_carta_va_centrada (test_centrado.TestFilaCentrada.test_una_sola_carta_va_centrada) ... ok
+test_el_conjunto_de_centros_queda_centrado (test_centrado.TestFilaCentradaPorCentro.test_el_conjunto_de_centros_queda_centrado) ... ok
+test_las_cartas_de_la_portada_quedan_centradas (test_centrado.TestFilaCentradaPorCentro.test_las_cartas_de_la_portada_quedan_centradas) ... ok
+test_una_sola_carta_al_centro (test_centrado.TestFilaCentradaPorCentro.test_una_sola_carta_al_centro) ... ok
+test_duelos_por_campana_coincide_con_el_grafo (test_chips_portada.TestChipsDePortada.test_duelos_por_campana_coincide_con_el_grafo)
+El numero tiene que salir de recorrer NODOS, no de una cuenta mental. ... ok
+test_la_bifurcacion_no_cuenta_como_duelo (test_chips_portada.TestChipsDePortada.test_la_bifurcacion_no_cuenta_como_duelo) ... ok
+test_los_chips_caben_dentro_de_su_panel (test_chips_portada.TestChipsDePortada.test_los_chips_caben_dentro_de_su_panel)
+Cada chip tiene que quedar dentro del panel que lo dibuja. ... ok
+test_portada_pinta_los_datos_reales (test_chips_portada.TestChipsDePortada.test_portada_pinta_los_datos_reales)
+Lo que se ve en pantalla, no lo que deberia verse. ... C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_chips_xjm1_skb'>
+  _warnings.warn(warn_message, ResourceWarning)
+C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_auditoria_texto_9428ki7t'>
+  _warnings.warn(warn_message, ResourceWarning)
+C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_chips_erpslkwg'>
+  _warnings.warn(warn_message, ResourceWarning)
+C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_auditoria_texto_2ehe3i2j'>
+  _warnings.warn(warn_message, ResourceWarning)
+ok
+test_cada_apertura_usa_su_fondo_sin_fuga_a_otras_cinemas (test_cinematicas_aprobadas_20261015.TestCinematicasAprobadas.test_cada_apertura_usa_su_fondo_sin_fuga_a_otras_cinemas) ... ok
+test_intro_asigna_solo_los_tres_planos_nuevos (test_cinematicas_aprobadas_20261015.TestCinematicasAprobadas.test_intro_asigna_solo_los_tres_planos_nuevos) ... ok
+test_los_20_png_cumplen_manifest_y_se_cargan (test_cinematicas_aprobadas_20261015.TestCinematicasAprobadas.test_los_20_png_cumplen_manifest_y_se_cargan) ... ok
+test_prologo_campamento_y_mundos_no_remapean_claves_globales (test_cinematicas_aprobadas_20261015.TestCinematicasAprobadas.test_prologo_campamento_y_mundos_no_remapean_claves_globales) ... ok
+test_variantes_del_umbral_y_epilogo_caos_quedan_separados (test_cinematicas_aprobadas_20261015.TestCinematicasAprobadas.test_variantes_del_umbral_y_epilogo_caos_quedan_separados) ... ok
+test_centro_de_segunda_carta_no_selecciona_la_tercera (test_coleccion.TestArmarMazo.test_centro_de_segunda_carta_no_selecciona_la_tercera) ... ok
+test_editor_reutiliza_paneles_y_recompone_al_cambiar_seleccion (test_coleccion.TestArmarMazo.test_editor_reutiliza_paneles_y_recompone_al_cambiar_seleccion) ... ok
+test_guardar_preseleccionados (test_coleccion.TestArmarMazo.test_guardar_preseleccionados) ... ok
+test_mazo_corto_no_guarda (test_coleccion.TestArmarMazo.test_mazo_corto_no_guarda) ... ok
+test_posicion_antigua_de_guardar_no_es_un_boton_invisible (test_coleccion.TestArmarMazo.test_posicion_antigua_de_guardar_no_es_un_boton_invisible) ... ok
+test_quitar_y_volver_a_poner (test_coleccion.TestArmarMazo.test_quitar_y_volver_a_poner) ... C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_auditoria_texto_loi5e9_t'>
+  _warnings.warn(warn_message, ResourceWarning)
+C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_chips_iwsd63p5'>
+  _warnings.warn(warn_message, ResourceWarning)
+ok
+test_volver_cancela (test_coleccion.TestArmarMazo.test_volver_cancela) ... ok
+test_asegurar_es_idempotente (test_coleccion.TestColeccionPerfil.test_asegurar_es_idempotente) ... ok
+test_defecto_y_posee (test_coleccion.TestColeccionPerfil.test_defecto_y_posee) ... ok
+test_moneda_exacta (test_coleccion.TestColeccionPerfil.test_moneda_exacta) ... ok
+test_premio_duelo (test_coleccion.TestColeccionPerfil.test_premio_duelo) ... ok
+test_diez_menores_por_faccion (test_coleccion.TestMazoInicial.test_diez_menores_por_faccion) ... ok
+test_dragon_no_llega_a_diez_comunes (test_coleccion.TestMazoInicial.test_dragon_no_llega_a_diez_comunes) ... ok
+test_vista_poseidas_usa_valores_guardados_sin_alterar_catalogo (test_coleccion.TestMazoInicial.test_vista_poseidas_usa_valores_guardados_sin_alterar_catalogo) ... ok
+test_completar_limpia_mejoras (test_coleccion.TestMigracionReset.test_completar_limpia_mejoras) ... ok
+test_deltas_con_tope_en_duelo (test_coleccion.TestMigracionReset.test_deltas_con_tope_en_duelo) ... ok
+test_migra_v5_resetea_y_limpia_mejoras (test_coleccion.TestMigracionReset.test_migra_v5_resetea_y_limpia_mejoras) ... ok
+test_nueva_campana_empieza_con_iniciales (test_coleccion.TestMigracionReset.test_nueva_campana_empieza_con_iniciales) ... ok
+test_v4_conserva_nodo_y_resetea_cartas (test_coleccion.TestMigracionReset.test_v4_conserva_nodo_y_resetea_cartas) ... ok
+test_validar_mazo (test_coleccion.TestMigracionReset.test_validar_mazo) ... ok
+test_validar_mazo_cuatro_raras (test_coleccion.TestMigracionReset.test_validar_mazo_cuatro_raras) ... ok
+test_hay_una_verdad_nombrada_por_faccion (test_compendio.TestDescripcionesDuales.test_hay_una_verdad_nombrada_por_faccion) ... ok
+test_la_version_del_juego_difiere_de_la_verdad (test_compendio.TestDescripcionesDuales.test_la_version_del_juego_difiere_de_la_verdad)
+Si fueran iguales, el dual no estaria contando nada. ... ok
+test_la_version_del_juego_nombra_la_carta (test_compendio.TestDescripcionesDuales.test_la_version_del_juego_nombra_la_carta) ... ok
+test_las_diez_facciones_tienen_su_propia_mentira (test_compendio.TestDescripcionesDuales.test_las_diez_facciones_tienen_su_propia_mentira) ... ok
+test_las_rareza_marca_el_peso_de_la_historia (test_compendio.TestDescripcionesDuales.test_las_rareza_marca_el_peso_de_la_historia) ... ok
+test_las_verdades_nombradas_apuntan_a_cartas_reales (test_compendio.TestDescripcionesDuales.test_las_verdades_nombradas_apuntan_a_cartas_reales)
+Se escribieron seis claves con nombres de duelista, no de carta. ... ok
+test_toda_entrada_tiene_las_dos_versiones (test_compendio.TestDescripcionesDuales.test_toda_entrada_tiene_las_dos_versiones) ... ok
+test_diez_cartas_por_faccion (test_compendio.TestIndiceSincronizadoConElPool.test_diez_cartas_por_faccion) ... ok
+test_las_entradas_declaran_su_faccion (test_compendio.TestIndiceSincronizadoConElPool.test_las_entradas_declaran_su_faccion) ... ok
+test_las_entradas_declaran_su_rareza_real (test_compendio.TestIndiceSincronizadoConElPool.test_las_entradas_declaran_su_rareza_real) ... ok
+test_no_hay_entradas_de_carta_inexistente (test_compendio.TestIndiceSincronizadoConElPool.test_no_hay_entradas_de_carta_inexistente) ... ok
+test_todas_las_cartas_tienen_entrada (test_compendio.TestIndiceSincronizadoConElPool.test_todas_las_cartas_tienen_entrada) ... ok
+test_una_entrada_por_carta_del_juego (test_compendio.TestIndiceSincronizadoConElPool.test_una_entrada_por_carta_del_juego) ... ok
+test_carta_inexistente_no_rompe (test_compendio.TestRevelacionEnElEstado.test_carta_inexistente_no_rompe) ... ok
+test_el_conocimiento_tiene_tope (test_compendio.TestRevelacionEnElEstado.test_el_conocimiento_tiene_tope) ... ok
+test_la_partida_nueva_arranca_sin_historias (test_compendio.TestRevelacionEnElEstado.test_la_partida_nueva_arranca_sin_historias) ... ok
+test_migrar_una_partida_vieja_agrega_el_campo (test_compendio.TestRevelacionEnElEstado.test_migrar_una_partida_vieja_agrega_el_campo) ... ok
+test_no_cuenta_dos_veces (test_compendio.TestRevelacionEnElEstado.test_no_cuenta_dos_veces) ... ok
+test_revelar_agrega_una_historia (test_compendio.TestRevelacionEnElEstado.test_revelar_agrega_una_historia) ... ok
+test_revelar_dos_veces_no_sube_dos_veces (test_compendio.TestRevelacionEnElEstado.test_revelar_dos_veces_no_sube_dos_veces) ... ok
+test_revelar_sube_el_conocimiento_del_umbral (test_compendio.TestRevelacionEnElEstado.test_revelar_sube_el_conocimiento_del_umbral) ... ok
+test_compendio_no_importa_campana (test_compendio.TestSinCiclos.test_compendio_no_importa_campana) ... ok
+test_el_texto_autorado_es_ascii (test_compendio.TestTextoAscii.test_el_texto_autorado_es_ascii) ... ok
+test_los_identificadores_no_llevan_espacios_rareza (test_compendio.TestTextoAscii.test_los_identificadores_no_llevan_espacios_rareza)
+Los ids de revelacion se comparan como cadenas: no deben traer basura. ... ok
+test_derrotas_no_reproducen_consecuencias_de_victoria (test_continuidad_historia.TestContinuidad.test_derrotas_no_reproducen_consecuencias_de_victoria) ... ok
+test_revancha_conserva_nombre_y_retrato_en_ambas_ramas (test_continuidad_historia.TestContinuidad.test_revancha_conserva_nombre_y_retrato_en_ambas_ramas) ... ok
+test_el_texto_mas_degradado_esta_identificado (test_contraste.TestContrasteMedidoSobreFondoReal.test_el_texto_mas_degradado_esta_identificado)
+Un minimo sin localizar no sirve: debe decir color, sitio y texto. ... ok
+test_no_queda_el_gris_suelto_que_fallaba_el_contraste (test_contraste.TestContrasteMedidoSobreFondoReal.test_no_queda_el_gris_suelto_que_fallaba_el_contraste)
+Regresion concreta y.localizada. ... ok
+test_se_midio_al_menos_nueve_pantallas (test_contraste.TestContrasteMedidoSobreFondoReal.test_se_midio_al_menos_nueve_pantallas)
+Si el auditor deja de capturar rects, esto avisa antes de dar verde. ... ok
+test_toda_pantalla_supera_el_corte_por_media (test_contraste.TestContrasteMedidoSobreFondoReal.test_toda_pantalla_supera_el_corte_por_media) ... ok
+test_blanco_sobre_negro_es_el_maximo_de_wcag (test_contraste.TestLaMetricaEsFiel.test_blanco_sobre_negro_es_el_maximo_de_wcag) ... ok
+test_contraste_es_simetrico (test_contraste.TestLaMetricaEsFiel.test_contraste_es_simetrico) ... ok
+test_el_adorno_no_cuenta_como_texto (test_contraste.TestLaMetricaEsFiel.test_el_adorno_no_cuenta_como_texto)
+Un guion que une nodos no es texto que el jugador lea. ... ok
+test_la_luminancia_responde_al_orden_correcto (test_contraste.TestLaMetricaEsFiel.test_la_luminancia_responde_al_orden_correcto)
+Mas claro = mas luminancia. Si esto falla, la formula esta mal. ... ok
+test_un_color_contra_si_mismo_es_uno (test_contraste.TestLaMetricaEsFiel.test_un_color_contra_si_mismo_es_uno) ... ok
+test_arrastre_sigue_colocando_una_sola_carta (test_controles_duelo.TestControlesDuelo.test_arrastre_sigue_colocando_una_sola_carta) ... ok
+test_cancelar_no_consume_turno_y_las_flechas_cambian_casilla (test_controles_duelo.TestControlesDuelo.test_cancelar_no_consume_turno_y_las_flechas_cambian_casilla) ... ok
+test_clic_en_pausa_reanuda_sin_colocar (test_controles_duelo.TestControlesDuelo.test_clic_en_pausa_reanuda_sin_colocar) ... ok
+test_duelo_completo_con_clic_sin_arrastre (test_controles_duelo.TestControlesDuelo.test_duelo_completo_con_clic_sin_arrastre) ... ok
+test_duelo_completo_solo_con_teclado (test_controles_duelo.TestControlesDuelo.test_duelo_completo_solo_con_teclado) ... ok
+test_movimiento_reducido_conserva_captura_sin_flash (test_controles_duelo.TestControlesDuelo.test_movimiento_reducido_conserva_captura_sin_flash) ... ok
+test_preview_explica_muro (test_controles_duelo.TestControlesDuelo.test_preview_explica_muro) ... ok
+test_preview_same_y_cadena_coincide_con_jugada_sin_mutar_tablero (test_controles_duelo.TestControlesDuelo.test_preview_same_y_cadena_coincide_con_jugada_sin_mutar_tablero) ... ok
+test_arranca_y_queda_listo (test_coord_comfyui.TestArranque.test_arranca_y_queda_listo) ... ok
+test_bat_ausente (test_coord_comfyui.TestArranque.test_bat_ausente) ... ok
+test_dos_arranques_simultaneos_solo_lanzan_uno (test_coord_comfyui.TestArranque.test_dos_arranques_simultaneos_solo_lanzan_uno) ... ok
+test_fallo_al_adquirir_bloqueo_no_lanza (test_coord_comfyui.TestArranque.test_fallo_al_adquirir_bloqueo_no_lanza) ... ok
+test_fallo_al_lanzar_no_aborta (test_coord_comfyui.TestArranque.test_fallo_al_lanzar_no_aborta) ... ok
+test_servidor_no_responde (test_coord_comfyui.TestArranque.test_servidor_no_responde) ... ok
+test_ya_en_marcha_no_arranca_ni_bloquea (test_coord_comfyui.TestArranque.test_ya_en_marcha_no_arranca_ni_bloquea) ... ok
+test_excluye_a_un_segundo_bloqueo (test_coord_comfyui.TestBloqueoArchivo.test_excluye_a_un_segundo_bloqueo) ... ok
+test_no_queda_bloqueo_tras_cierre_inesperado (test_coord_comfyui.TestBloqueoArchivo.test_no_queda_bloqueo_tras_cierre_inesperado) ... ok
+test_desconocida_con_formas_inesperadas (test_coord_comfyui.TestClasificarCola.test_desconocida_con_formas_inesperadas) ... ok
+test_ocupada_si_hay_trabajo (test_coord_comfyui.TestClasificarCola.test_ocupada_si_hay_trabajo) ... ok
+test_ocupada_si_solo_hay_pendientes (test_coord_comfyui.TestClasificarCola.test_ocupada_si_solo_hay_pendientes) ... ok
+test_vacia_solo_con_las_dos_listas_vacias (test_coord_comfyui.TestClasificarCola.test_vacia_solo_con_las_dos_listas_vacias) ... ok
+test_cola_desconocida_se_rechaza (test_coord_comfyui.TestEvaluarParada.test_cola_desconocida_se_rechaza) ... ok
+test_cola_ocupada_se_rechaza (test_coord_comfyui.TestEvaluarParada.test_cola_ocupada_se_rechaza) ... ok
+test_cola_vacia_con_exclusion_y_orden_permite_detener (test_coord_comfyui.TestEvaluarParada.test_cola_vacia_con_exclusion_y_orden_permite_detener) ... ok
+test_cola_vacia_no_basta_por_si_sola (test_coord_comfyui.TestEvaluarParada.test_cola_vacia_no_basta_por_si_sola) ... ok
+test_proceso_desconocido_se_rechaza (test_coord_comfyui.TestEvaluarParada.test_proceso_desconocido_se_rechaza) ... ok
+test_sin_proceso_no_hay_nada_que_hacer (test_coord_comfyui.TestEvaluarParada.test_sin_proceso_no_hay_nada_que_hacer) ... ok
+test_abrir_portero_solo_afecta_a_cartas (test_coord_comfyui.TestGenerarImagen.test_abrir_portero_solo_afecta_a_cartas) ... ok
+test_activos_incluye_timeout (test_coord_comfyui.TestGenerarImagen.test_activos_incluye_timeout) ... ok
+test_carpeta_existente_terminada_en_png_sigue_siendo_carpeta (test_coord_comfyui.TestGenerarImagen.test_carpeta_existente_terminada_en_png_sigue_siendo_carpeta) ... ok
+test_carta_con_portero_apagado_genera_igual_que_v0_2 (test_coord_comfyui.TestGenerarImagen.test_carta_con_portero_apagado_genera_igual_que_v0_2) ... ok
+test_cierre_inesperado_es_desconocido (test_coord_comfyui.TestGenerarImagen.test_cierre_inesperado_es_desconocido) ... ok
+test_el_registro_no_guarda_prompts (test_coord_comfyui.TestGenerarImagen.test_el_registro_no_guarda_prompts) ... ok
+test_error_de_comfyui_es_fallido (test_coord_comfyui.TestGenerarImagen.test_error_de_comfyui_es_fallido) ... ok
+test_error_de_conexion_es_desconocido (test_coord_comfyui.TestGenerarImagen.test_error_de_conexion_es_desconocido) ... ok
+test_finalizado_escribe_el_png (test_coord_comfyui.TestGenerarImagen.test_finalizado_escribe_el_png) ... ok
+test_portero_denegado_aborta_sin_postear (test_coord_comfyui.TestGenerarImagen.test_portero_denegado_aborta_sin_postear) ... ok
+test_salida_carpeta_conserva_nombre_generado (test_coord_comfyui.TestGenerarImagen.test_salida_carpeta_conserva_nombre_generado) ... ok
+test_salida_png_es_el_archivo_exacto (test_coord_comfyui.TestGenerarImagen.test_salida_png_es_el_archivo_exacto) ... ok
+test_salida_png_existente_no_se_sobrescribe_sin_fuerza (test_coord_comfyui.TestGenerarImagen.test_salida_png_existente_no_se_sobrescribe_sin_fuerza) ... ok
+test_timeout_no_cancela_el_trabajo (test_coord_comfyui.TestGenerarImagen.test_timeout_no_cancela_el_trabajo) ... ok
+test_contiende_entre_hilos (test_coord_comfyui.TestMutexWindows.test_contiende_entre_hilos) ... ok
+test_mutex_abandonado_no_bloquea (test_coord_comfyui.TestMutexWindows.test_mutex_abandonado_no_bloquea) ... ok
+test_el_primer_nodo_no_recibe_refuerzo (test_curva_dificultad.TestElJefeNoSeQuedaIgualAlNodoPrevio.test_el_primer_nodo_no_recibe_refuerzo)
+La senda es la puerta de entrada: sin refuerzo. ... ok
+test_el_tope_permite_llegar_al_ultimo_nodo (test_curva_dificultad.TestElJefeNoSeQuedaIgualAlNodoPrevio.test_el_tope_permite_llegar_al_ultimo_nodo)
+El tope debe alcanzar el nivel del trono; si no, el tope es el jefe. ... ok
+test_el_trono_recibe_mas_refuerzo_que_el_asalto (test_curva_dificultad.TestElJefeNoSeQuedaIgualAlNodoPrevio.test_el_trono_recibe_mas_refuerzo_que_el_asalto) ... ok
+test_la_curva_no_baja_en_el_tramo_medio (test_curva_dificultad.TestElJefeNoSeQuedaIgualAlNodoPrevio.test_la_curva_no_baja_en_el_tramo_medio)
+Los nodos intermedios no pueden ser mas faciles que los tempranos. ... ok
+test_debilitar_resta_refuerzo_al_rival (test_curva_dificultad.TestElRefuerzoNoSePasaDeDiez.test_debilitar_resta_refuerzo_al_rival)
+Los encuentros que debilitan tienen que notarse de verdad. ... ok
+test_debilitar_se_sigue_notando_en_el_tercer_encuentro (test_curva_dificultad.TestElRefuerzoNoSePasaDeDiez.test_debilitar_se_sigue_notando_en_el_tercer_encuentro)
+El texto del encuentro promete un efecto: no puede saturar en silencio. ... ok
+test_ningun_lado_supera_el_diez (test_curva_dificultad.TestElRefuerzoNoSePasaDeDiez.test_ningun_lado_supera_el_diez)
+El refuerzo tiene tope por lado: un 11 no existe en este juego. ... ok
+test_dos_corridas_con_la_misma_semilla_coinciden (test_curva_dificultad.TestElSimuladorEsReproducible.test_dos_corridas_con_la_misma_semilla_coinciden) ... ok
+test_el_informe_de_g9_cubre_lo_que_dice_cubrir (test_documentacion.TestDocumentacionSana.test_el_informe_de_g9_cubre_lo_que_dice_cubrir)
+El documento tiene que seguir siendo el indice de la evidencia. ... ok
+test_la_sangria_de_las_listas_esta_intacta (test_documentacion.TestDocumentacionSana.test_la_sangria_de_las_listas_esta_intacta)
+Una linea de lista en Markdown lleva 2-4 espacios o empieza por '-'. ... ok
+test_no_hay_frases_pegadas_ni_palabras_partidas (test_documentacion.TestDocumentacionSana.test_no_hay_frases_pegadas_ni_palabras_partidas) ... ok
+test_no_hay_saltos_de_linea_en_mitad_de_una_frase (test_documentacion.TestDocumentacionSana.test_no_hay_saltos_de_linea_en_mitad_de_una_frase)
+Dos espacios al final son un `<br>`. En medio de una frase envuelta ... ok
+test_unicode_legible_en_la_documentacion (test_documentacion.TestDocumentacionSana.test_unicode_legible_en_la_documentacion)
+Español y símbolos usados en tablas, medidas y diagramas. ... ok
+test_cada_rol_declara_quien_es (test_duelistas.TestCoberturaDeRoles.test_cada_rol_declara_quien_es) ... ok
+test_los_nodos_existen_en_el_grafo (test_duelistas.TestCoberturaDeRoles.test_los_nodos_existen_en_el_grafo) ... ok
+test_los_roles_son_distintos_entre_si (test_duelistas.TestCoberturaDeRoles.test_los_roles_son_distintos_entre_si) ... ok
+test_todo_nodo_de_duelo_tiene_rol (test_duelistas.TestCoberturaDeRoles.test_todo_nodo_de_duelo_tiene_rol) ... ok
+test_el_duelista_de_senda_no_es_el_campeon (test_duelistas.TestCoherenciaRolIdentidad.test_el_duelista_de_senda_no_es_el_campeon) ... ok
+test_la_senda_no_anuncia_al_campeon (test_duelistas.TestCoherenciaRolIdentidad.test_la_senda_no_anuncia_al_campeon) ... ok
+test_los_nodos_tardios_si_conservan_el_campeon (test_duelistas.TestCoherenciaRolIdentidad.test_los_nodos_tardios_si_conservan_el_campeon)
+Fuera de la senda, el rival es el campeon de su faccion. ... ok
+test_cada_rol_tiene_los_tres_momentos (test_duelistas.TestDialogos.test_cada_rol_tiene_los_tres_momentos) ... ok
+test_el_hablante_es_el_nombre_real_del_rival (test_duelistas.TestDialogos.test_el_hablante_es_el_nombre_real_del_rival)
+Quien habla lleva el nombre del rival, no el placeholder. ... ok
+test_el_nombre_del_duelista_se_sustituye (test_duelistas.TestDialogos.test_el_nombre_del_duelista_se_sustituye)
+__NOMBRE__ se resuelve en TODOS los campos: si queda, es un bug. ... ok
+test_las_lineas_son_escenas_validas (test_duelistas.TestDialogos.test_las_lineas_son_escenas_validas) ... ok
+test_sin_nombre_no_se_rompe (test_duelistas.TestDialogos.test_sin_nombre_no_se_rompe)
+Un rival sin nombre no deja el placeholder en el cuerpo del texto. ... ok
+test_el_titulo_del_nodo_manda_sobre_el_de_faccion (test_duelistas.TestIdentidadDelRol.test_el_titulo_del_nodo_manda_sobre_el_de_faccion)
+El mapa ya sobreescribe el titulo por nodo (TITULOS_NODO). ... ok
+test_la_senda_usa_nombres_propios (test_duelistas.TestIdentidadDelRol.test_la_senda_usa_nombres_propios)
+En la senda pelea un vecino, no el campeon de la faccion. ... ok
+test_los_diez_nombres_de_senda_son_distintos (test_duelistas.TestIdentidadDelRol.test_los_diez_nombres_de_senda_son_distintos) ... ok
+test_los_otros_nodos_usan_el_campeon_de_la_faccion (test_duelistas.TestIdentidadDelRol.test_los_otros_nodos_usan_el_campeon_de_la_faccion) ... ok
+test_los_titulos_de_senda_no_son_de_campeon (test_duelistas.TestIdentidadDelRol.test_los_titulos_de_senda_no_son_de_campeon)
+Nada de "Rey Oscuro" en un nodo donde el rival no quiere pelear. ... ok
+test_pik_es_el_goblin_del_prologo (test_duelistas.TestIdentidadDelRol.test_pik_es_el_goblin_del_prologo) ... ok
+test_el_dialogo_pre_entra_en_el_cartel (test_duelistas.TestIntegracionConElFlujo.test_el_dialogo_pre_entra_en_el_cartel) ... ok
+test_el_fondo_del_posterior_es_el_del_nodo (test_duelistas.TestIntegracionConElFlujo.test_el_fondo_del_posterior_es_el_del_nodo) ... ok
+test_el_posterior_incluye_la_voz_del_rival (test_duelistas.TestIntegracionConElFlujo.test_el_posterior_incluye_la_voz_del_rival) ... ok
+test_info_duelo_expone_el_rol (test_duelistas.TestIntegracionConElFlujo.test_info_duelo_expone_el_rol) ... ok
+test_la_reaccion_del_rol_gana_a_la_generica (test_duelistas.TestIntegracionConElFlujo.test_la_reaccion_del_rol_gana_a_la_generica) ... ok
+test_los_retratos_apuntan_a_un_avatar_real (test_duelistas.TestIntegracionConElFlujo.test_los_retratos_apuntan_a_un_avatar_real) ... ok
+test_los_derrotados_no_estan_destruidos (test_duelistas.TestNingunRivalEsMalvado.test_los_derrotados_no_estan_destruidos)
+Perder un duelo no mata a nadie: es un Juicio. ... ok
+test_ningun_dialogo_amenaza_al_duelista (test_duelistas.TestNingunRivalEsMalvado.test_ningun_dialogo_amenaza_al_duelista)
+Amenazas explicitas, no palabras sueltas. ... ok
+test_ninguna_motivacion_usa_lenguaje_de_villano (test_duelistas.TestNingunRivalEsMalvado.test_ninguna_motivacion_usa_lenguaje_de_villano) ... ok
+test_algun_rival_se_dirige_al_jugador_por_su_nombre (test_duelistas.TestNombreDelJugador.test_algun_rival_se_dirige_al_jugador_por_su_nombre)
+No basta con que se sustituya: tiene que usarse de verdad. ... ok
+test_el_defecto_empieza_en_mayuscula (test_duelistas.TestNombreDelJugador.test_el_defecto_empieza_en_mayuscula)
+Va detras de un guion: "el duelista, si vienes" queda mal. ... ok
+test_el_nombre_del_jugador_se_sustituye (test_duelistas.TestNombreDelJugador.test_el_nombre_del_jugador_se_sustituye) ... ok
+test_el_nombre_propio_no_se_toca (test_duelistas.TestNombreDelJugador.test_el_nombre_propio_no_se_toca)
+Un nombre en minusculas debe seguir en minusculas. ... ok
+test_la_devolucion_es_una_copia (test_duelistas.TestNombreDelJugador.test_la_devolucion_es_una_copia) ... ok
+test_momento_desconocido_devuelve_vacio (test_duelistas.TestNombreDelJugador.test_momento_desconocido_devuelve_vacio) ... ok
+test_nodo_desconocido_devuelve_vacio (test_duelistas.TestNombreDelJugador.test_nodo_desconocido_devuelve_vacio) ... ok
+test_sin_nombre_sale_el_duelista_no_el_marcador (test_duelistas.TestNombreDelJugador.test_sin_nombre_sale_el_duelista_no_el_marcador) ... ok
+test_cada_nodo_diez_reacciones_distintas (test_duelistas.TestReaccionPorFaccion.test_cada_nodo_diez_reacciones_distintas) ... ok
+test_faccion_desconocida_no_rompe (test_duelistas.TestReaccionPorFaccion.test_faccion_desconocida_no_rompe) ... ok
+test_las_diez_facciones_reaccionan_en_cada_nodo (test_duelistas.TestReaccionPorFaccion.test_las_diez_facciones_reaccionan_en_cada_nodo) ... ok
+test_duelistas_no_importa_campana (test_duelistas.TestSinCiclos.test_duelistas_no_importa_campana) ... ok
+test_texto_de_rol_conserva_espanol_sin_caracteres_corruptos (test_duelistas.TestTextoEspanol.test_texto_de_rol_conserva_espanol_sin_caracteres_corruptos) ... ok
+test_abandonar_no_paga_nada (test_economia.TestCosteDeLoQueSeCompra.test_abandonar_no_paga_nada)
+El incentivo tramposo: cobrar por marcharse rompe la campana. ... ok
+test_ganar_paga_mas_que_perder (test_economia.TestCosteDeLoQueSeCompra.test_ganar_paga_mas_que_perder) ... ok
+test_un_duelo_completado_paga (test_economia.TestCosteDeLoQueSeCompra.test_un_duelo_completado_paga) ... ok
+test_la_garantia_acumula_entre_campanas (test_economia.TestElSobreNoEsUnMuro.test_la_garantia_acumula_entre_campanas)
+El pity vive en el PERFIL, no en la campana. ... ok
+test_la_garantia_se_acumula_realmente (test_economia.TestElSobreNoEsUnMuro.test_la_garantia_se_acumula_realmente)
+Comprar sin legendaria debe subir el contador, no dejarlo igual. ... ok
+test_tres_victorias_alcanzan_para_un_sobre (test_economia.TestElSobreNoEsUnMuro.test_tres_victorias_alcanzan_para_un_sobre)
+Si tres victorias no compran un sobre, la tienda es un adorno. ... ok
+test_el_trono_no_da_recompensa (test_economia.TestEstructuraDeRecompensas.test_el_trono_no_da_recompensa)
+Es el remate: ganar cierra la campana, no da carta. ... ok
+test_los_cinco_nodos_de_medio_si_dan_recompensa (test_economia.TestEstructuraDeRecompensas.test_los_cinco_nodos_de_medio_si_dan_recompensa) ... ok
+test_toda_recompensa_sabe_aplicarse_sin_entrada (test_economia.TestEstructuraDeRecompensas.test_toda_recompensa_sabe_aplicarse_sin_entrada)
+El simulador elige premios automaticos: deben existir sin elegir nada. ... ok
+test_el_efecto_sin_selector_no_pregunta (test_encuentro_efecto.TestEncuentroMercaderPideCarta.test_el_efecto_sin_selector_no_pregunta)
+Sustituto: 'robo' no promete eleccion, asi que no abre nada. ... ok
+test_el_mercader_es_reachable (test_encuentro_efecto.TestEncuentroMercaderPideCarta.test_el_mercader_es_reachable)
+Control previo: sin esto los de mas no probarian nada. ... ok
+test_el_texto_de_la_opcion_no_usa_jargon (test_encuentro_efecto.TestEncuentroMercaderPideCarta.test_el_texto_de_la_opcion_no_usa_jargon) ... ok
+test_elegir_la_opcion_del_mercador_abre_el_selector (test_encuentro_efecto.TestEncuentroMercaderPideCarta.test_elegir_la_opcion_del_mercador_abre_el_selector)
+'+1 a la carta que elijas' tiene que abrir una pantalla de eleccion. ... ok
+test_cada_uno_revela_y_titula (test_encuentros.TestCoberturaDeEncuentros.test_cada_uno_revela_y_titula) ... ok
+test_encuentro_desconocido_no_rompe (test_encuentros.TestCoberturaDeEncuentros.test_encuentro_desconocido_no_rompe) ... ok
+test_las_revelaciones_cubren_los_cuatro_encuentros_existentes (test_encuentros.TestCoberturaDeEncuentros.test_las_revelaciones_cubren_los_cuatro_encuentros_existentes)
+Los 4 de campana.ENCUENTROS deben tener lore. ... ok
+test_las_revelaciones_son_unicas (test_encuentros.TestCoberturaDeEncuentros.test_las_revelaciones_son_unicas) ... ok
+test_los_seis_tienen_lore (test_encuentros.TestCoberturaDeEncuentros.test_los_seis_tienen_lore) ... ok
+test_el_duelista_insiste (test_encuentros.TestElMercadorReconoceLasCartas.test_el_duelista_insiste) ... ok
+test_el_guion_tiene_turnos_alternados (test_encuentros.TestElMercadorReconoceLasCartas.test_el_guion_tiene_turnos_alternados) ... ok
+test_la_linea_de_falsificacion_existe (test_encuentros.TestElMercadorReconoceLasCartas.test_la_linea_de_falsificacion_existe) ... ok
+test_el_nodo_conserva_su_encuentro_original (test_encuentros.TestEncuentrosOpcionales.test_el_nodo_conserva_su_encuentro_original) ... ok
+test_hostil_y_nara_existen_como_encuentro (test_encuentros.TestEncuentrosOpcionales.test_hostil_y_nara_existen_como_encuentro) ... ok
+test_nara_exige_confianza (test_encuentros.TestEncuentrosOpcionales.test_nara_exige_confianza) ... ok
+test_no_entran_en_el_mapa_de_nodos (test_encuentros.TestEncuentrosOpcionales.test_no_entran_en_el_mapa_de_nodos)
+Son opcionales: no pueden replacing el encuentro de un nodo. ... ok
+test_sus_efectos_son_que_aplicar_encuentro_conoce (test_encuentros.TestEncuentrosOpcionales.test_sus_efectos_son_que_aplicar_encuentro_conoce) ... ok
+test_devuelve_escenas_validas (test_encuentros.TestEscenaAntesDelEncuentro.test_devuelve_escenas_validas) ... ok
+test_el_fondo_es_el_del_encuentro (test_encuentros.TestEscenaAntesDelEncuentro.test_el_fondo_es_el_del_encuentro) ... ok
+test_el_fondo_es_el_del_nodo_para_los_cuatro_base (test_encuentros.TestEscenaAntesDelEncuentro.test_el_fondo_es_el_del_nodo_para_los_cuatro_base)
+Los 4 de campana usan la escena declarada ahi. ... ok
+test_el_titulo_va_en_mayusculas (test_encuentros.TestEscenaAntesDelEncuentro.test_el_titulo_va_en_mayusculas) ... ok
+test_los_titulos_y_escenas_no_se_desincronizan (test_encuentros.TestEscenaAntesDelEncuentro.test_los_titulos_y_escenas_no_se_desincronizan)
+`encuentros` duplica titulo/escena para no importar campana (ciclo). ... ok
+test_cada_encuentro_diez_reacciones_distintas (test_encuentros.TestReaccionesPorFaccion.test_cada_encuentro_diez_reacciones_distintas) ... ok
+test_hombre_lobo_esta_bien_escrito (test_encuentros.TestReaccionesPorFaccion.test_hombre_lobo_esta_bien_escrito)
+Se escribio 'hombre_lubo' una vez; el id real es hombre_lobo. ... ok
+test_las_claves_son_facciones_validas (test_encuentros.TestReaccionesPorFaccion.test_las_claves_son_facciones_validas) ... ok
+test_las_diez_facciones_reaccionan_en_cada_encuentro (test_encuentros.TestReaccionesPorFaccion.test_las_diez_facciones_reaccionan_en_cada_encuentro) ... ok
+test_encuentro_sin_revelacion_no_rompe (test_encuentros.TestRevelacionEnElEstado.test_encuentro_sin_revelacion_no_rompe) ... ok
+test_la_revelacion_entrega_texto_pintable (test_encuentros.TestRevelacionEnElEstado.test_la_revelacion_entrega_texto_pintable)
+El crash: `linea` era una LISTA y `cartel` reventaba al pintarla. ... ok
+test_las_revelaciones_son_ids_de_compendio_registrables (test_encuentros.TestRevelacionEnElEstado.test_las_revelaciones_son_ids_de_compendio_registrables) ... ok
+test_no_se_revela_dos_veces (test_encuentros.TestRevelacionEnElEstado.test_no_se_revela_dos_veces) ... ok
+test_revelar_agrega_al_estado (test_encuentros.TestRevelacionEnElEstado.test_revelar_agrega_al_estado) ... ok
+test_revelar_sube_el_conocimiento_del_umbral (test_encuentros.TestRevelacionEnElEstado.test_revelar_sube_el_conocimiento_del_umbral)
+Una revelacion es un paso mas hacia entender el Umbral. ... ok
+test_todas_las_revelaciones_son_pintables (test_encuentros.TestRevelacionEnElEstado.test_todas_las_revelaciones_son_pintables)
+Ninguna revelacion del juego puede ser una lista sin juntar. ... ok
+test_encuentros_no_importa_campana_ni_pantallas (test_encuentros.TestSinCiclosNiRupturaDeLaParteFuncional.test_encuentros_no_importa_campana_ni_pantallas) ... ok
+test_los_cuatro_encuentros_base_no_cambiaron (test_encuentros.TestSinCiclosNiRupturaDeLaParteFuncional.test_los_cuatro_encuentros_base_no_cambiaron)
+La parte funcional sigue igual: mismos ids y mismos efectos. ... ok
+test_ningun_encuentro_perdio_efecto (test_encuentros.TestSinCiclosNiRupturaDeLaParteFuncional.test_ningun_encuentro_perdio_efecto) ... ok
+test_todo_el_lore_es_ascii (test_encuentros.TestTextoAscii.test_todo_el_lore_es_ascii) ... ok
+test_ancho_texto_no_cambia_al_limpiar_cache (test_estabilidad.TestCachesDeRender.test_ancho_texto_no_cambia_al_limpiar_cache) ... ok
+test_color_cache_agrupa_los_canales (test_estabilidad.TestCachesDeRender.test_color_cache_agrupa_los_canales) ... ok
+test_el_banner_apagandose_no_hace_crecer_la_cache_de_texto (test_estabilidad.TestCachesDeRender.test_el_banner_apagandose_no_hace_crecer_la_cache_de_texto)
+Un texto con alpha decreciente no se cachea (se veria a saltos), ... ok
+test_el_texto_cacheado_es_identico_al_sin_cache (test_estabilidad.TestCachesDeRender.test_el_texto_cacheado_es_identico_al_sin_cache) ... ok
+test_el_texto_con_sombra_va_dos_pixels_mas_arriba_izquierda (test_estabilidad.TestCachesDeRender.test_el_texto_con_sombra_va_dos_pixels_mas_arriba_izquierda)
+La sombra debe quedar exactamente como antes: (x+2, y+2). ... ok
+test_la_capa_reutilizable_se_recarga_en_cada_llamada (test_estabilidad.TestCachesDeRender.test_la_capa_reutilizable_se_recarga_en_cada_llamada)
+`_capa_color` devuelve la MISMA Surface siempre: si no la ... ok
+test_limpio_se_puede_llamar_ANTES_y_despues_de_cachear (test_estabilidad.TestCachesDeRender.test_limpio_se_puede_llamar_ANTES_y_despues_de_cachear)
+`limpio` cachea por el texto original: llamarlo dos veces con el ... ok
+test_panel_y_resplandor_devuelven_el_mismo_pixel (test_estabilidad.TestCachesDeRender.test_panel_y_resplandor_devuelven_el_mismo_pixel) ... ok
+test_superficie_no_recrea_la_misma_clave (test_estabilidad.TestCachesDeRender.test_superficie_no_recrea_la_misma_clave) ... ok
+test_un_hover_continuo_no_hace_crecer_las_caches (test_estabilidad.TestCachesDeRender.test_un_hover_continuo_no_hace_crecer_las_caches)
+El boton que late el hover es el peor caso para una cache: si el ... ok
+test_avanzar_devuelve_falso_en_la_ultima_escena (test_estabilidad.TestCineticasSeCierran.test_avanzar_devuelve_falso_en_la_ultima_escena) ... ok
+test_clic_completa_y_luego_cierra_la_cinematica (test_estabilidad.TestCineticasSeCierran.test_clic_completa_y_luego_cierra_la_cinematica)
+Un clic completa el texto, el siguiente avanza y el ultimo cierra. ... ok
+test_enter_tambien_avanza (test_estabilidad.TestCineticasSeCierran.test_enter_tambien_avanza) ... ok
+test_la_cinematica_termina_pulsando_escape_siempre (test_estabilidad.TestCineticasSeCierran.test_la_cinematica_termina_pulsando_escape_siempre)
+Con permitir_saltar=False (epilogo) ESC tambien tiene que cerrar. ... ok
+test_saltar_cine_evita_leer_eventos (test_estabilidad.TestCineticasSeCierran.test_saltar_cine_evita_leer_eventos)
+Con la opcion a SI, la secuencia se cierra sin molestar al jugador. ... ok
+test_el_flash_de_captura_se_limpia_al_terminar (test_estabilidad.TestContinuarTrasElDuelo.test_el_flash_de_captura_se_limpia_al_terminar)
+Con fin=True actualizar() no hacia nada y el ultimo flash se ... ok
+test_el_marcador_llega_a_su_total_aunque_el_duel_haya_acabado (test_estabilidad.TestContinuarTrasElDuelo.test_el_marcador_llega_a_su_total_aunque_el_duel_haya_acabado)
+Dos cosas a la vez: actualizar() hacia nada con fin=True, y el ... ok
+test_el_marcador_tambien_baja_cuando_el_rival_captura (test_estabilidad.TestContinuarTrasElDuelo.test_el_marcador_tambien_baja_cuando_el_rival_captura) ... ok
+test_escape_no_trapa_al_ganador (test_estabilidad.TestContinuarTrasElDuelo.test_escape_no_trapa_al_ganador)
+Con el duel ya terminado, ESC pausaba el juego y el cartel se ... ok
+test_resultado_perdido_es_verdadero_para_booleano (test_estabilidad.TestContinuarTrasElDuelo.test_resultado_perdido_es_verdadero_para_booleano)
+Documenta la trampa: por eso el bucle no puede usar `if resultado`. ... ok
+test_se_continua_tras_ganar (test_estabilidad.TestContinuarTrasElDuelo.test_se_continua_tras_ganar) ... ok
+test_se_continua_tras_perder (test_estabilidad.TestContinuarTrasElDuelo.test_se_continua_tras_perder)
+Este es el caso que se colgaba: victoria False hacia falsy el ... ok
+test_tambien_se_continua_con_intro (test_estabilidad.TestContinuarTrasElDuelo.test_tambien_se_continua_con_intro) ... ok
+test_el_contexto_de_error_se_actualiza (test_estabilidad.TestDueloRapidoYErrores.test_el_contexto_de_error_se_actualiza) ... ok
+test_el_duelo_rapido_devuelve_al_menu_si_se_cancela (test_estabilidad.TestDueloRapidoYErrores.test_el_duelo_rapido_devuelve_al_menu_si_se_cancela) ... ok
+test_el_duelo_rapido_pide_faccion_en_modo_rapida (test_estabilidad.TestDueloRapidoYErrores.test_el_duelo_rapido_pide_faccion_en_modo_rapida)
+El selector de faccion debe saber que es duelo rapido (no campana). ... ok
+test_el_pantallon_de_error_se_dibuja_y_escribe_log (test_estabilidad.TestDueloRapidoYErrores.test_el_pantallon_de_error_se_dibuja_y_escribe_log)
+Un error inesperado debe enseearse, no cerrar el juego en silencio. ... ok
+test_el_seleccionador_devuelve_la_faccion_elegida (test_estabilidad.TestDueloRapidoYErrores.test_el_seleccionador_devuelve_la_faccion_elegida)
+Con el raton: un clic elige y el siguiente confirma. ... ok
+test_el_nombre_y_el_bando_no_quedan_tapados (test_estabilidad.TestEncuadreDeCartas.test_el_nombre_y_el_bando_no_quedan_tapados)
+El orbe norte no debe caer sobre la placa del nombre ni el sur ... ok
+test_el_retrato_no_cubre_el_centro_de_la_carta (test_estabilidad.TestEncuadreDeCartas.test_el_retrato_no_cubre_el_centro_de_la_carta)
+El retrato debe seguir siendo la mayor parte visible. ... ok
+test_los_valores_estan_en_el_punto_medio_de_cada_lado (test_estabilidad.TestEncuadreDeCartas.test_los_valores_estan_en_el_punto_medio_de_cada_lado) ... ok
+test_ningun_orbe_pisa_el_retrato (test_estabilidad.TestEncuadreDeCartas.test_ningun_orbe_pisa_el_retrato)
+El requisito clave: los numeros no pueden tocar la imagen. ... ok
+test_todas_las_cartas_se_dibujan_sin_error (test_estabilidad.TestEncuadreDeCartas.test_todas_las_cartas_se_dibujan_sin_error) ... ok
+test_el_cache_de_superficies_no_crece_sin_parada (test_estabilidad.TestFpsYMemoria.test_el_cache_de_superficies_no_crece_sin_parada)
+Si una cache crece frame a frame, en la web eso es memoria ... ok
+test_el_fondo_tocado_devuelve_siempre_la_misma_superficie (test_estabilidad.TestFpsYMemoria.test_el_fondo_tocado_devuelve_siempre_la_misma_superficie) ... ok
+test_el_fondo_tocado_esta_mas_oscurecido_que_el_fondo (test_estabilidad.TestFpsYMemoria.test_el_fondo_tocado_esta_mas_oscurecido_que_el_fondo)
+Componer el velo no puede ser un no-op (bug silencioso). ... ok
+test_la_capa_de_oscurecido_tambien_se_cachea (test_estabilidad.TestFpsYMemoria.test_la_capa_de_oscurecido_tambien_se_cachea) ... ok
+test_la_constante_de_fps_existe_y_vale_60 (test_estabilidad.TestFpsYMemoria.test_la_constante_de_fps_existe_y_vale_60) ... ok
+test_los_fondos_escalados_se_cachean (test_estabilidad.TestFpsYMemoria.test_los_fondos_escalados_se_cachean)
+Escalar a pantalla completa por frame es lo que consumia memoria. ... ok
+test_ningun_bucle_llama_a_tick_con_otro_valor (test_estabilidad.TestFpsYMemoria.test_ningun_bucle_llama_a_tick_con_otro_valor)
+Ningun modulo puede pasar un limite distinto a LIMIT_FPS. ... ok
+test_todos_los_bucles_llaman_a_tick (test_estabilidad.TestFpsYMemoria.test_todos_los_bucles_llaman_a_tick)
+Cada 'while True' debe limitar los fps, directamente o delegando ... ok
+test_el_medidor_pinta_y_se_puede_desactivar (test_estabilidad.TestMedidorDeFps.test_el_medidor_pinta_y_se_puede_desactivar) ... ok
+test_arrancar_un_duelo_pone_la_musica_de_combate (test_estabilidad.TestMusicaDelDuelo.test_arrancar_un_duelo_pone_la_musica_de_combate)
+partida() debe pedir la pista de duelo, no la de la faccion rival. ... ok
+test_el_duelo_no_reutiliza_la_pista_del_rival (test_estabilidad.TestMusicaDelDuelo.test_el_duelo_no_reutiliza_la_pista_del_rival) ... ok
+test_el_duelo_tiene_musica_propia (test_estabilidad.TestMusicaDelDuelo.test_el_duelo_tiene_musica_propia) ... ok
+test_el_preview_va_encima_de_las_cartas_siguientes (test_estabilidad.TestPreviewDeLaMano.test_el_preview_va_encima_de_las_cartas_siguientes) ... ok
+test_sin_hover_no_se_pinta_preview (test_estabilidad.TestPreviewDeLaMano.test_sin_hover_no_se_pinta_preview) ... ok
+test_dibujar_tooltips_pinta_y_vacia_la_cola (test_estabilidad.TestTooltipsSePintanAlFinal.test_dibujar_tooltips_pinta_y_vacia_la_cola) ... ok
+test_el_duelo_pinta_el_tooltip_al_final_del_frame (test_estabilidad.TestTooltipsSePintanAlFinal.test_el_duelo_pinta_el_tooltip_al_final_del_frame)
+Con el raton sobre una carta de la mano, el tooltip se encola ... ok
+test_el_tooltip_siempre_cae_dentro_de_la_pantalla (test_estabilidad.TestTooltipsSePintanAlFinal.test_el_tooltip_siempre_cae_dentro_de_la_pantalla)
+Ni en las esquinas ni pegado al borde puede salirse. ... ok
+test_todo_modulo_que_encola_tiene_que_pintar (test_estabilidad.TestTooltipsSePintanAlFinal.test_todo_modulo_que_encola_tiene_que_pintar)
+Si un modulo llama a tooltip() debe llamar tambien a ... ok
+test_tooltip_no_dibuja_al_instantaneo_solo_encola (test_estabilidad.TestTooltipsSePintanAlFinal.test_tooltip_no_dibuja_al_instantaneo_solo_encola) ... ok
+test_un_tooltip_alto_tambien_cabe_en_pantalla (test_estabilidad.TestTooltipsSePintanAlFinal.test_un_tooltip_alto_tambien_cabe_en_pantalla)
+Con muchas lineas el alto crece: aun asi no puede salirse. ... ok
+test_el_duelista_no_tiene_rostro (test_estilo_escenas.TestCatalogoDeEscenas.test_el_duelista_no_tiene_rostro)
+La condicion narrativa: el protagonista es el jugador. ... ok
+test_el_salon_no_tiene_personajes_delante (test_estilo_escenas.TestCatalogoDeEscenas.test_el_salon_no_tiene_personajes_delante)
+Es un fondo: si aparece un duelista dibujado, tapa el menu. ... ok
+test_las_destinas_caen_dentro_de_assets (test_estilo_escenas.TestCatalogoDeEscenas.test_las_destinas_caen_dentro_de_assets) ... ok
+test_nara_es_reconocible_entre_avatar_y_escena (test_estilo_escenas.TestCatalogoDeEscenas.test_nara_es_reconocible_entre_avatar_y_escena)
+Es el unico acompanante: tiene que ser LA MISMA en los dos sitios. ... ok
+test_rajoy_es_un_rival_comun (test_estilo_escenas.TestCatalogoDeEscenas.test_rajoy_es_un_rival_comun)
+No es un jefe: no debe salir heroico. ... ok
+test_tiene_los_dos_fondos_del_mundo_real (test_estilo_escenas.TestCatalogoDeEscenas.test_tiene_los_dos_fondos_del_mundo_real) ... ok
+test_tiene_los_seis_encuentros (test_estilo_escenas.TestCatalogoDeEscenas.test_tiene_los_seis_encuentros) ... ok
+test_tiene_los_tres_avatares_primero (test_estilo_escenas.TestCatalogoDeEscenas.test_tiene_los_tres_avatares_primero) ... ok
+test_toda_entrada_declara_lo_que_el_juego_necesita (test_estilo_escenas.TestCatalogoDeEscenas.test_toda_entrada_declara_lo_que_el_juego_necesita) ... ok
+test_el_extra_se_concatena (test_estilo_escenas.TestElNegativoQuitaLoQueNoQueremos.test_el_extra_se_concatena) ... ok
+test_prohibe_el_suavizado (test_estilo_escenas.TestElNegativoQuitaLoQueNoQueremos.test_prohibe_el_suavizado) ... ok
+test_prohibe_lo_psx (test_estilo_escenas.TestElNegativoQuitaLoQueNoQueremos.test_prohibe_lo_psx)
+Sin scanlines, sin CRT, sin dithering: eso es el filtro de cartas. ... ok
+test_prohibe_texto_y_firmas (test_estilo_escenas.TestElNegativoQuitaLoQueNoQueremos.test_prohibe_texto_y_firmas)
+Animagine mete texto y firmas casi siempre. ... ok
+test_el_reductor_usa_vecino_mas_cercano (test_estilo_escenas.TestElPixelSaleDelDownscale.test_el_reductor_usa_vecino_mas_cercano) ... ok
+test_reduce_de_verdad (test_estilo_escenas.TestElPixelSaleDelDownscale.test_reduce_de_verdad)
+El reductor produce el tamano exacto y guarda un PNG valido. ... ok
+test_sin_redimension_si_ya_tiene_el_tamano (test_estilo_escenas.TestElPixelSaleDelDownscale.test_sin_redimension_si_ya_tiene_el_tamano) ... ok
+test_cada_encuadre_tiene_medidas (test_estilo_escenas.TestEncuadresYMedidas.test_cada_encuadre_tiene_medidas) ... ok
+test_cada_medida_tiene_encuadre (test_estilo_escenas.TestEncuadresYMedidas.test_cada_medida_tiene_encuadre) ... ok
+test_el_modulo_es_coherente (test_estilo_escenas.TestEncuadresYMedidas.test_el_modulo_es_coherente) ... ok
+test_las_medidas_son_las_que_usa_el_juego (test_estilo_escenas.TestEncuadresYMedidas.test_las_medidas_son_las_que_usa_el_juego)
+Verificadas con Pillow sobre los assets reales. ... ok
+test_se_genera_a_un_multiplo_del_destino (test_estilo_escenas.TestEncuadresYMedidas.test_se_genera_a_un_multiplo_del_destino) ... ok
+test_ipadapter_desactivado (test_estilo_escenas.TestIpAdapterApagado.test_ipadapter_desactivado) ... ok
+test_la_validacion_lo_detecta (test_estilo_escenas.TestIpAdapterApagado.test_la_validacion_lo_detecta)
+Si alguien lo activa, el modulo se queja en vez de fallar en silencio. ... ok
+test_ningun_prompt_recibe_el_ancla (test_estilo_escenas.TestIpAdapterApagado.test_ningun_prompt_recibe_el_ancla) ... ok
+test_peso_cero (test_estilo_escenas.TestIpAdapterApagado.test_peso_cero) ... ok
+test_el_checkpoint_es_el_de_pixel_art (test_estilo_escenas.TestNoTocaElPipelineDeCartas.test_el_checkpoint_es_el_de_pixel_art)
+Cambio medido: el checkpoint de pixel art es el correcto para este set. ... ok
+test_la_paleta_no_es_la_de_las_cartas (test_estilo_escenas.TestNoTocaElPipelineDeCartas.test_la_paleta_no_es_la_de_las_cartas) ... ok
+test_lo_que_se_reutiliza_es_el_modelo_no_el_postproceso (test_estilo_escenas.TestNoTocaElPipelineDeCartas.test_lo_que_se_reutiliza_es_el_modelo_no_el_postproceso)
+Compartir checkpoint es correcto; compartir el filtro CRT no. ... ok
+test_no_importa_el_generador_de_cartas_como_modulo_de_estilo (test_estilo_escenas.TestNoTocaElPipelineDeCartas.test_no_importa_el_generador_de_cartas_como_modulo_de_estilo)
+Del pipeline de cartas solo se reusa el TRANSPORTE. ... ok
+test_no_importa_el_postproceso_de_cartas (test_estilo_escenas.TestNoTocaElPipelineDeCartas.test_no_importa_el_postproceso_de_cartas)
+`postprocesar_cartas.py` mete scanlines: justo lo que no queremos. ... ok
+test_no_reutiliza_la_ficha_de_las_cartas (test_estilo_escenas.TestNoTocaElPipelineDeCartas.test_no_reutiliza_la_ficha_de_las_cartas)
+Cada set tiene su ficha: la de cartas sigue siendo la del moodboard. ... ok
+test_avisa_si_el_prompt_trae_acentos (test_estilo_escenas.TestPrompts.test_avisa_si_el_prompt_trae_acentos)
+El prompt va al modelo, que esta entrenado en ingles. Un acento ... ok
+test_el_encuadre_entra_en_el_prompt (test_estilo_escenas.TestPrompts.test_el_encuadre_entra_en_el_prompt) ... ok
+test_el_estilo_entra_en_el_prompt (test_estilo_escenas.TestPrompts.test_el_estilo_entra_en_el_prompt) ... ok
+test_el_extra_se_suma (test_estilo_escenas.TestPrompts.test_el_extra_se_suma) ... ok
+test_el_prompt_no_repite_el_encuadre (test_estilo_escenas.TestPrompts.test_el_prompt_no_repite_el_encuadre)
+El sujeto y el encuadre se complementan; no se solapan. ... ok
+test_encuadre_inesconocido_no_rompe (test_estilo_escenas.TestPrompts.test_encuadre_inesconocido_no_rompe) ... ok
+test_la_faccion_aporta_ambiente (test_estilo_escenas.TestPrompts.test_la_faccion_aporta_ambiente) ... ok
+test_los_prompts_del_catalogo_son_ascii (test_estilo_escenas.TestPrompts.test_los_prompts_del_catalogo_son_ascii)
+La garantia que importa: lo que se manda de verdad esta limpio. ... ok
+test_trae_los_tags_de_calidad_de_animagine (test_estilo_escenas.TestPrompts.test_trae_los_tags_de_calidad_de_animagine) ... ok
+test_un_prompt_limpio_no_avisa (test_estilo_escenas.TestPrompts.test_un_prompt_limpio_no_avisa) ... ok
+test_el_prompt_y_los_notas_son_ascii (test_estilo_escenas.TestTextoAscii.test_el_prompt_y_los_notas_son_ascii)
+El prompt va al modelo: cualquier caracter raro lo confunde. ... ok
+test_la_biblia_de_este_set_es_ascii (test_estilo_escenas.TestTextoAscii.test_la_biblia_de_este_set_es_ascii) ... ok
+test_hay_varias_variantes_por_imagen (test_estilo_escenas.TestVariantesParaLaHoja.test_hay_varias_variantes_por_imagen) ... ok
+test_las_variantes_cambian_el_estilo (test_estilo_escenas.TestVariantesParaLaHoja.test_las_variantes_cambian_el_estilo)
+Cada fila de la hoja tiene que ser una variable distinta. ... ok
+test_los_prompts_de_las_variantes_difieren (test_estilo_escenas.TestVariantesParaLaHoja.test_los_prompts_de_las_variantes_difieren) ... ok
+test_caos_rompe_el_umbral (test_finales.TestElGiroDeCadaFinal.test_caos_rompe_el_umbral) ... ok
+test_dominio_algo_acompana_el_regreso (test_finales.TestElGiroDeCadaFinal.test_dominio_algo_acompana_el_regreso) ... ok
+test_dominio_te_devuelve_con_algo (test_finales.TestElGiroDeCadaFinal.test_dominio_te_devuelve_con_algo) ... ok
+test_equilibrio_no_se_entera_casi_nadie (test_finales.TestElGiroDeCadaFinal.test_equilibrio_no_se_entera_casi_nadie) ... ok
+test_los_tres_finals_difieren_en_el_epilogo (test_finales.TestElGiroDeCadaFinal.test_los_tres_finals_difieren_en_el_epilogo) ... ok
+test_los_tres_finals_difieren_en_el_umbral (test_finales.TestElGiroDeCadaFinal.test_los_tres_finals_difieren_en_el_umbral) ... ok
+test_el_epilogo_ocurre_en_el_mundo_real (test_finales.TestEscenas.test_el_epilogo_ocurre_en_el_mundo_real)
+El epilogo es de vuelta en nuestro mundo: no en el trono ni el bosque. ... ok
+test_el_umbral_ocurre_en_el_fondo_umbral (test_finales.TestEscenas.test_el_umbral_ocurre_en_el_fondo_umbral) ... ok
+test_la_devolucion_es_una_copia (test_finales.TestEscenas.test_la_devolucion_es_una_copia) ... ok
+test_la_primera_escena_es_titulo (test_finales.TestEscenas.test_la_primera_escena_es_titulo) ... ok
+test_las_escenas_son_validas_para_el_reproductor (test_finales.TestEscenas.test_las_escenas_son_validas_para_el_reproductor) ... ok
+test_los_fondos_existen (test_finales.TestEscenas.test_los_fondos_existen) ... ok
+test_el_caos_deja_el_epilogo_inquieto (test_finales.TestLaMusicaDistingueLosMundos.test_el_caos_deja_el_epilogo_inquieto)
+Es el unico final del que se vuelve con algo roto. ... ok
+test_el_equilibrio_suena_igual_antes_y_despues (test_finales.TestLaMusicaDistingueLosMundos.test_el_equilibrio_suena_igual_antes_y_despues)
+A proposito: en ese final no cambio nada, ni la musica. ... ok
+test_la_apertura_del_umbral_suena_distinta_en_cada_final (test_finales.TestLaMusicaDistingueLosMundos.test_la_apertura_del_umbral_suena_distinta_en_cada_final)
+El Umbral es un momento distinto segun como se abra. ... ok
+test_la_musica_existe (test_finales.TestLaMusicaDistingueLosMundos.test_la_musica_existe)
+Las pistas viven en assets/musica/, no en la raiz de assets/. ... ok
+test_no_se_pide_un_sfx_como_si_fuera_musica (test_finales.TestLaMusicaDistingueLosMundos.test_no_se_pide_un_sfx_como_si_fuera_musica)
+`boss` y `menu` son efectos de sonido: no sirven de banda sonora. ... ok
+test_cada_faccion_sigue_teniendo_las_tres_variantes (test_finales.TestLosFinalesPorFaccionNoCambiaron.test_cada_faccion_sigue_teniendo_las_tres_variantes) ... ok
+test_cada_final_tiene_titulo_y_lineas (test_finales.TestLosFinalesPorFaccionNoCambiaron.test_cada_final_tiene_titulo_y_lineas) ... ok
+test_final_de_sigue_devolviendo_la_variante_de_faccion (test_finales.TestLosFinalesPorFaccionNoCambiaron.test_final_de_sigue_devolviendo_la_variante_de_faccion) ... ok
+test_la_variante_se_sigue_eligiendo_por_rendimiento (test_finales.TestLosFinalesPorFaccionNoCambiaron.test_la_variante_se_sigue_eligiendo_por_rendimiento) ... ok
+test_siguen_habiendo_diez_facciones (test_finales.TestLosFinalesPorFaccionNoCambiaron.test_siguen_habiendo_diez_facciones) ... ok
+test_cada_epilogo_tiene_titulo_y_lineas (test_finales.TestLosTresFinales.test_cada_epilogo_tiene_titulo_y_lineas) ... ok
+test_cada_umbral_tiene_titulo_y_lineas (test_finales.TestLosTresFinales.test_cada_umbral_tiene_titulo_y_lineas) ... ok
+test_el_modulo_es_coherente (test_finales.TestLosTresFinales.test_el_modulo_es_coherente) ... ok
+test_existen_las_tres_variantes (test_finales.TestLosTresFinales.test_existen_las_tres_variantes) ... ok
+test_los_titulos_son_distintos (test_finales.TestLosTresFinales.test_los_titulos_son_distintos) ... ok
+test_no_hay_lineas_vacias (test_finales.TestLosTresFinales.test_no_hay_lineas_vacias) ... ok
+test_umbral_y_epilogo_no_se_repiten (test_finales.TestLosTresFinales.test_umbral_y_epilogo_no_se_repiten) ... ok
+test_variante_desconocida_no_rompe (test_finales.TestLosTresFinales.test_variante_desconocida_no_rompe) ... ok
+test_el_epilogo_es_obligatorio (test_finales.TestOrdenDeLaSecuenciaFinal.test_el_epilogo_es_obligatorio)
+No se puede saltar la parte que explica el final. ... ok
+test_el_umbral_viene_despues_del_final_de_faccion (test_finales.TestOrdenDeLaSecuenciaFinal.test_el_umbral_viene_despues_del_final_de_faccion) ... ok
+test_finales_no_importa_campana (test_finales.TestSinCiclos.test_finales_no_importa_campana) ... ok
+test_todo_el_modulo_es_ascii (test_finales.TestTextoAscii.test_todo_el_modulo_es_ascii) ... ok
+test_campana_humana_llega_al_final_humano (test_flujo.TestFlujoDeCampana.test_campana_humana_llega_al_final_humano) ... ok
+test_campana_orca_llega_al_final_orco (test_flujo.TestFlujoDeCampana.test_campana_orca_llega_al_final_orco) ... ok
+test_derrotas_cambian_el_final_a_caos (test_flujo.TestFlujoDeCampana.test_derrotas_cambian_el_final_a_caos) ... ok
+test_el_jefe_final_es_el_arcoenemigo_de_cada_faccion (test_flujo.TestFlujoDeCampana.test_el_jefe_final_es_el_arcoenemigo_de_cada_faccion) ... ok
+test_ganar_sin_reintentos_da_final_de_dominio (test_flujo.TestFlujoDeCampana.test_ganar_sin_reintentos_da_final_de_dominio) ... ok
+test_la_decision_no_se_pregunta_dos_veces (test_flujo.TestFlujoDeCampana.test_la_decision_no_se_pregunta_dos_veces) ... ok
+test_la_rama_elegida_cambia_el_rival (test_flujo.TestFlujoDeCampana.test_la_rama_elegida_cambia_el_rival) ... ok
+test_las_decisiones_morales_se_disparan_durante_la_campana (test_flujo.TestFlujoDeCampana.test_las_decisiones_morales_se_disparan_durante_la_campana)
+La senda y la fortaleza piden decision; se registran en el estado. ... ok
+test_nunca_se_juega_contra_la_propia_faccion (test_flujo.TestFlujoDeCampana.test_nunca_se_juega_contra_la_propia_faccion) ... ok
+test_racha_se_rompe_al_perder (test_flujo.TestFlujoDeCampana.test_racha_se_rompe_al_perder) ... ok
+test_se_llega_al_epilogo_una_vez (test_flujo.TestFlujoDeCampana.test_se_llega_al_epilogo_una_vez) ... ok
+test_se_pide_recompensa_tras_cada_victoria (test_flujo.TestFlujoDeCampana.test_se_pide_recompensa_tras_cada_victoria) ... ok
+test_varios_duelos_por_nodo (test_flujo.TestFlujoDeCampana.test_varios_duelos_por_nodo) ... ok
+test_los_dos_fondos_de_nuestro_mundo_se_usan (test_flujo_prologo.TestElFondoSigueAlMundo.test_los_dos_fondos_de_nuestro_mundo_se_usan)
+`salon` y `apagon` existen para el torneo; no pueden quedar ... ok
+test_ninguna_escena_del_mundo_fantastico_usa_fondo_de_nuestro_mundo (test_flujo_prologo.TestElFondoSigueAlMundo.test_ninguna_escena_del_mundo_fantastico_usa_fondo_de_nuestro_mundo) ... ok
+test_ninguna_escena_del_mundo_real_usa_fondo_del_mundo_fantastico (test_flujo_prologo.TestElFondoSigueAlMundo.test_ninguna_escena_del_mundo_real_usa_fondo_del_mundo_fantastico) ... ok
+test_todo_fondo_del_prologo_existe (test_flujo_prologo.TestElFondoSigueAlMundo.test_todo_fondo_del_prologo_existe) ... ok
+test_el_prologo_no_toca_las_variables_de_nara (test_flujo_prologo.TestEstadoNarrativoTrasElPrologo.test_el_prologo_no_toca_las_variables_de_nara)
+Ver el prologue no equivale a conocer a Nara: eso pasa en la campaña. ... ok
+test_partida_nueva_con_prologo_marcado (test_flujo_prologo.TestEstadoNarrativoTrasElPrologo.test_partida_nueva_con_prologo_marcado) ... ok
+test_partida_sin_prologo_se_distingue (test_flujo_prologo.TestEstadoNarrativoTrasElPrologo.test_partida_sin_prologo_se_distingue) ... ok
+test_el_duelo_ocurre_dentro_del_prologo (test_flujo_prologo.TestFlujoDeMain.test_el_duelo_ocurre_dentro_del_prologo) ... ok
+test_el_prologo_existe_y_es_awaitable (test_flujo_prologo.TestFlujoDeMain.test_el_prologo_existe_y_es_awaitable) ... ok
+test_el_prologo_marca_el_bandera (test_flujo_prologo.TestFlujoDeMain.test_el_prologo_marca_el_bandera) ... ok
+test_el_prologue_ocurre_antes_de_elegir_faccion (test_flujo_prologo.TestFlujoDeMain.test_el_prologue_ocurre_antes_de_elegir_faccion)
+La biblia pide PROLOGO -> DESPERTAR -> APERTURA_FACCION -> CAPITULOS. ... ok
+test_la_partida_nace_con_el_mazo_debil_del_mundo_fantastico (test_flujo_prologo.TestFlujoDeMain.test_la_partida_nace_con_el_mazo_debil_del_mundo_fantastico)
+El prologue no deja las legendarias en la partida del jugador. ... ok
+test_info_tiene_la_forma_que_espera_partida (test_flujo_prologo.TestInfoDelDuelo.test_info_tiene_la_forma_que_espera_partida) ... ok
+test_no_es_un_nodo_de_campana (test_flujo_prologo.TestInfoDelDuelo.test_no_es_un_nodo_de_campana)
+El tutorial no puede aparecer en el mapa ni avanzar el progreso. ... ok
+test_el_duelo_va_entre_pre_y_post (test_flujo_prologo.TestOrdenDeLasEscenas.test_el_duelo_va_entre_pre_y_post) ... ok
+test_el_orden_es_el_del_plan (test_flujo_prologo.TestOrdenDeLasEscenas.test_el_orden_es_el_del_plan) ... ok
+test_se_reproducen_todas (test_flujo_prologo.TestOrdenDeLasEscenas.test_se_reproducen_todas) ... ok
+test_cada_pixel_original_es_un_bloque_nitido (test_fondos.TestEscaladoSinInventarPixeles.test_cada_pixel_original_es_un_bloque_nitido)
+Un unico pixel blanco: con factor 3 sale un bloque de 3x3 limpio. ... ok
+test_el_letterbox_no_se_hereda_de_una_imagen_muerta (test_fondos.TestEscaladoSinInventarPixeles.test_el_letterbox_no_se_hereda_de_una_imagen_muerta)
+La clave es la RUTA, no `id(imagen)`. ... ok
+test_el_letterbox_se_recibe_y_nunca_es_negativo (test_fondos.TestEscaladoSinInventarPixeles.test_el_letterbox_se_recibe_y_nunca_es_negativo)
+`barras_de` es lo que consulta la cinematica para no pintar dos ... ok
+test_la_imagen_entra_exacta_en_la_pantalla (test_fondos.TestEscaladoSinInventarPixeles.test_la_imagen_entra_exacta_en_la_pantalla) ... ok
+test_no_hay_pixeles_intermedios_entre_el_bloque_y_el_fondo (test_fondos.TestEscaladoSinInventarPixeles.test_no_hay_pixeles_intermedios_entre_el_bloque_y_el_fondo)
+Nada de valores intermedios: o blanco o negro, nunca gris. ... ok
+test_una_imagen_ya_a_pantalla_no_deja_letra (test_fondos.TestEscaladoSinInventarPixeles.test_una_imagen_ya_a_pantalla_no_deja_letra) ... ok
+test_el_factor_siempre_es_entero_y_al_menos_uno (test_fondos.TestFactorEntero.test_el_factor_siempre_es_entero_y_al_menos_uno) ... ok
+test_gana_el_tres_que_es_el_que_menos_desperdicia (test_fondos.TestFactorEntero.test_gana_el_tres_que_es_el_que_menos_desperdicia)
+512x256 en 1280x800: x3 da 1536x768, 32px de letra y nada de lados. ... ok
+test_nunca_deja_mas_de_un_10_de_la_pantalla_vacia (test_fondos.TestFactorEntero.test_nunca_deja_mas_de_un_10_de_la_pantalla_vacia)
+Se mide el area REAL cubierta, no la suma de bordes. ... ok
+test_escalar_por_frame_seria_una_catastrofe (test_fondos.TestFondosReales.test_escalar_por_frame_seria_una_catastrofe)
+Por que el escalado va en la cache y no en el bucle. ... ok
+test_todos_los_fondos_entran_y_avisan_de_su_letra (test_fondos.TestFondosReales.test_todos_los_fondos_entran_y_avisan_de_su_letra) ... ok
+test_cada_fragmento_responde_una_pregunta_distinta (test_fragmentos.TestCoberturaDeFragmentos.test_cada_fragmento_responde_una_pregunta_distinta)
+Si dos responden lo mismo, son el mismo fragmento con otro nombre. ... ok
+test_cada_fragmento_tiene_texto_y_autor (test_fragmentos.TestCoberturaDeFragmentos.test_cada_fragmento_tiene_texto_y_autor) ... ok
+test_el_modulo_es_coherente_consigo_mismo (test_fragmentos.TestCoberturaDeFragmentos.test_el_modulo_es_coherente_consigo_mismo) ... ok
+test_el_orden_es_una_permutacion (test_fragmentos.TestCoberturaDeFragmentos.test_el_orden_es_una_permutacion) ... ok
+test_faccion_desconocida_no_rompe (test_fragmentos.TestCoberturaDeFragmentos.test_faccion_desconocida_no_rompe) ... ok
+test_las_diez_facciones_tienen_fragmento (test_fragmentos.TestCoberturaDeFragmentos.test_las_diez_facciones_tienen_fragmento) ... ok
+test_los_ids_son_unicos (test_fragmentos.TestCoberturaDeFragmentos.test_los_ids_son_unicos) ... ok
+test_no_hay_facciones_de_mas (test_fragmentos.TestCoberturaDeFragmentos.test_no_hay_facciones_de_mas) ... ok
+test_el_duelo_secreto_es_mas_duro_en_cada_bando (test_fragmentos.TestElCartografo.test_el_duelo_secreto_es_mas_duro_en_cada_bando)
+Y no solo contra un humano: el secreto tiene que ganar en general. ... ok
+test_la_escena_de_desbloqueo_cambia_al_completar (test_fragmentos.TestElCartografo.test_la_escena_de_desbloqueo_cambia_al_completar) ... ok
+test_la_escena_incompleta_dice_cuantos_faltan (test_fragmentos.TestElCartografo.test_la_escena_incompleta_dice_cuantos_faltan) ... ok
+test_ningun_mazo_del_trono_supera_al_secreto (test_fragmentos.TestElCartografo.test_ningun_mazo_del_trono_supera_al_secreto)
+ElBehavior del死角 del trono, medido con 4000 sorteos: ... ok
+test_no_figura_entre_las_250_cartas (test_fragmentos.TestElCartografo.test_no_figura_entre_las_250_cartas)
+El requisito de la biblia: no es ninguna de las facciones. ... ok
+test_no_tiene_faccion (test_fragmentos.TestElCartografo.test_no_tiene_faccion)
+Por eso no puede salir de ninguna escalera de rivales. ... ok
+test_reacciona_a_las_diez_facciones (test_fragmentos.TestElCartografo.test_reacciona_a_las_diez_facciones) ... ok
+test_solo_se_desbloquea_con_los_diez (test_fragmentos.TestElCartografo.test_solo_se_desbloquea_con_los_diez) ... ok
+test_su_mazo_es_mas_duro_que_el_del_trono (test_fragmentos.TestElCartografo.test_su_mazo_es_mas_duro_que_el_del_trono)
+Es el duelo final: tiene que pesar mas que el nodo del trono. ... ok
+test_sus_reacciones_son_distintas (test_fragmentos.TestElCartografo.test_sus_reacciones_son_distintas) ... ok
+test_tiene_dialogo_completo (test_fragmentos.TestElCartografo.test_tiene_dialogo_completo) ... ok
+test_el_primer_final_no_revela_al_cartografo (test_fragmentos.TestElMisterioNoSeCuentaTodo.test_el_primer_final_no_revela_al_cartografo)
+Ninguno de los 30 finales puede nombrar al que escribio las cartas. ... ok
+test_los_diez_fragmentos_juntos_cuentan_el_misterio (test_fragmentos.TestElMisterioNoSeCuentaTodo.test_los_diez_fragmentos_juntos_cuentan_el_misterio)
+Cada fragmento aporta algo: ninguno es relleno. ... ok
+test_los_fragments_son_el_unico_lugar_que_lo_dice (test_fragmentos.TestElMisterioNoSeCuentaTodo.test_los_fragments_son_el_unico_lugar_que_lo_dice)
+El nombre del Cartografo solo aparece en el NG+. ... ok
+test_el_perfil_nuevo_no_tiene_fragmentos (test_fragmentos.TestPersistenciaEnElPerfil.test_el_perfil_nuevo_no_tiene_fragmentos) ... ok
+test_el_secreto_se_calcula_desde_el_perfil (test_fragmentos.TestPersistenciaEnElPerfil.test_el_secreto_se_calcula_desde_el_perfil) ... ok
+test_los_textos_salen_en_orden_de_ngplus (test_fragmentos.TestPersistenciaEnElPerfil.test_los_textos_salen_en_orden_de_ngplus) ... ok
+test_registrar_anade_el_id (test_fragmentos.TestPersistenciaEnElPerfil.test_registrar_anade_el_id) ... ok
+test_registrar_dos_veces_no_repite (test_fragmentos.TestPersistenciaEnElPerfil.test_registrar_dos_veces_no_repite) ... ok
+test_registrar_faccion_desconocida_no_rompe (test_fragmentos.TestPersistenciaEnElPerfil.test_registrar_faccion_desconocida_no_rompe) ... ok
+test_registrar_todas_da_diez (test_fragmentos.TestPersistenciaEnElPerfil.test_registrar_todas_da_diez) ... ok
+test_acepta_lista_o_dict (test_fragmentos.TestProgresoDeFragmentos.test_acepta_lista_o_dict)
+El perfil guarda una lista, pero el helper tolera dict. ... ok
+test_acepta_none (test_fragmentos.TestProgresoDeFragmentos.test_acepta_none) ... ok
+test_faltan_para_el_cartografo (test_fragmentos.TestProgresoDeFragmentos.test_faltan_para_el_cartografo) ... ok
+test_ids_desconocidos_no_cuentan (test_fragmentos.TestProgresoDeFragmentos.test_ids_desconocidos_no_cuentan) ... ok
+test_no_falta_nada_al_llegar_a_diez (test_fragmentos.TestProgresoDeFragmentos.test_no_falta_nada_al_llegar_a_diez) ... ok
+test_progreso_completo (test_fragmentos.TestProgresoDeFragmentos.test_progreso_completo) ... ok
+test_progreso_parcial (test_fragmentos.TestProgresoDeFragmentos.test_progreso_parcial) ... ok
+test_progreso_vacio (test_fragmentos.TestProgresoDeFragmentos.test_progreso_vacio) ... ok
+test_fragmentos_no_importa_campana (test_fragmentos.TestSinCiclos.test_fragmentos_no_importa_campana) ... ok
+test_todo_el_ngplus_es_ascii (test_fragmentos.TestTextoAscii.test_todo_el_ngplus_es_ascii) ... ok
+test_el_objetivo_aparece_en_varios_tramos_y_no_solo_al_final (test_guion_cierre.TestElObjetivoDeVolverACasa.test_el_objetivo_aparece_en_varios_tramos_y_no_solo_al_final)
+Si solo aparece en el ultimo nodo, el jugador llega sin saber que ... ok
+test_el_prologo_dice_que_se_vuelve_a_casa (test_guion_cierre.TestElObjetivoDeVolverACasa.test_el_prologo_dice_que_se_vuelve_a_casa)
+El prologo es donde se promete. Sin la promesa el resto no ata. ... ok
+test_la_campana_dice_que_se_vuelve_a_casa (test_guion_cierre.TestElObjetivoDeVolverACasa.test_la_campana_dice_que_se_vuelve_a_casa) ... ok
+test_los_finales_siguen_being_common_a_las_diez_facciones (test_guion_cierre.TestElObjetivoDeVolverACasa.test_los_finales_siguen_being_common_a_las_diez_facciones)
+La vuelta a casa la decide la VARIANTE, no el jefe. Este bloque no ... ok
+test_dice_como_se_vuelve_a_casa (test_guion_cierre.TestLaExplicacionInicial.test_dice_como_se_vuelve_a_casa) ... ok
+test_dice_cuantos_duelos_faltan (test_guion_cierre.TestLaExplicacionInicial.test_dice_cuantos_duelos_faltan) ... ok
+test_dice_que_la_frase_del_dragon_la_repite_la_gente (test_guion_cierre.TestLaExplicacionInicial.test_dice_que_la_frase_del_dragon_la_repite_la_gente)
+Sin esto, la mencion al dragon seria una regla y contradiria al ... ok
+test_explica_que_es_el_umbral (test_guion_cierre.TestLaExplicacionInicial.test_explica_que_es_el_umbral) ... ok
+test_explica_que_la_sangre_del_dragon_legitimo_el_trono (test_guion_cierre.TestLaExplicacionInicial.test_explica_que_la_sangre_del_dragon_legitimo_el_trono)
+Es lo que hace que 'vencer al dragon' sea la frase popular. ... ok
+test_explica_que_lo_guarda_quien_ocupa_el_trono (test_guion_cierre.TestLaExplicacionInicial.test_explica_que_lo_guarda_quien_ocupa_el_trono) ... ok
+test_la_explicacion_existe_y_no_esta_vacia (test_guion_cierre.TestLaExplicacionInicial.test_la_explicacion_existe_y_no_esta_vacia) ... ok
+test_la_explicacion_va_entre_nara_y_el_cierre (test_guion_cierre.TestLaExplicacionInicial.test_la_explicacion_va_entre_nara_y_el_cierre) ... ok
+test_no_contradice_el_rival_por_faccion (test_guion_cierre.TestLaExplicacionInicial.test_no_contradice_el_rival_por_faccion)
+La escena no puede nombrar rival: el rival sale de la escalera del ... ok
+test_caos_sigue_siendo_caos (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_caos_sigue_siendo_caos)
+Que vuelva a casa no lo vuelve un final amable. Tiene que seguir ... ok
+test_el_caos_dice_el_regreso_al_principio (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_caos_dice_el_regreso_al_principio)
+El regreso se dice de entrada, no como un afterthought al final: si ... ok
+test_el_final_de_caos_ya_no_deja_duda (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_final_de_caos_ya_no_deja_duda) ... ok
+test_el_final_lo_elige_la_variante_y_no_el_jefe (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_final_lo_elige_la_variante_y_no_el_jefe)
+Lo que decide el epilogo es como termino la campana, no que bando ... ok
+test_el_rival_del_trono_sigue_siendo_el_de_la_faccion (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_rival_del_trono_sigue_siendo_el_de_la_faccion)
+La decision cerrada: cada faccion conserva su rival_final. ... ok
+test_el_umbral_y_el_epilogo_siguen_diciendo_al_mismo_lado (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_el_umbral_y_el_epilogo_siguen_diciendo_al_mismo_lado)
+`UMBRAL[caos]` cuenta que el salon quedo del otro lado, asi que el ... ok
+test_los_tres_finales_dicen_el_regreso (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_los_tres_finales_dicen_el_regreso) ... ok
+test_los_tres_finales_siguen_siendo_distintos (test_guion_cierre.TestLosTresFinalesVuelvenACasa.test_los_tres_finales_siguen_siendo_distintos) ... ok
+test_dice_que_se_queda_por_querer_y_no_por_el_mision (test_guion_cierre.TestNaraSeVuelveAmiga.test_dice_que_se_queda_por_querer_y_no_por_el_mision) ... ok
+test_el_dialogo_alta_confianza_no_es_mas_frio (test_guion_cierre.TestNaraSeVuelveAmiga.test_el_dialogo_alta_confianza_no_es_mas_frio)
+Estaba al reves: con confianza alta Nara decia 'no te conozco'. ... ok
+test_el_momento_existe (test_guion_cierre.TestNaraSeVuelveAmiga.test_el_momento_existe) ... ok
+test_el_momento_no_depende_de_la_confianza (test_guion_cierre.TestNaraSeVuelveAmiga.test_el_momento_no_depende_de_la_confianza)
+`confianza_nara` solo sube con las dos decisiones de la campana ... ok
+test_reconoce_que_mentia_sobre_su_motivo (test_guion_cierre.TestNaraSeVuelveAmiga.test_reconoce_que_mentia_sobre_su_motivo) ... ok
+test_se_reproduce_antes_del_duelo_del_trono (test_guion_cierre.TestNaraSeVuelveAmiga.test_se_reproduce_antes_del_duelo_del_trono) ... ok
+test_elemento_central_por_faccion (test_habilidades.TestElementoYHabilidades.test_elemento_central_por_faccion) ... ok
+test_humanos_no_tienen_bonus_central (test_habilidades.TestElementoYHabilidades.test_humanos_no_tienen_bonus_central) ... ok
+test_puntaje_final (test_habilidades.TestElementoYHabilidades.test_puntaje_final) ... ok
+test_simular_respeta_habilidades (test_habilidades.TestElementoYHabilidades.test_simular_respeta_habilidades) ... ok
+test_cartas_sin_bando_no_tienen_bonus_elemental (test_habilidades.TestHabilidades.test_cartas_sin_bando_no_tienen_bonus_elemental) ... ok
+test_embestida_solo_en_el_centro (test_habilidades.TestHabilidades.test_embestida_solo_en_el_centro) ... ok
+test_furia_permite_capturar_igual (test_habilidades.TestHabilidades.test_furia_permite_capturar_igual) ... ok
+test_furia_solo_con_vecina_amiga (test_habilidades.TestHabilidades.test_furia_solo_con_vecina_amiga) ... ok
+test_muro_bloquea_el_lado_mas_alto (test_habilidades.TestHabilidades.test_muro_bloquea_el_lado_mas_alto) ... ok
+test_muro_no_bloquea_los_demas_lados (test_habilidades.TestHabilidades.test_muro_no_bloquea_los_demas_lados) ... ok
+test_muro_solo_aplica_a_valores_maximos (test_habilidades.TestHabilidades.test_muro_solo_aplica_a_valores_maximos) ... ok
+test_quema_gana_los_empates (test_habilidades.TestHabilidades.test_quema_gana_los_empates)
+Sigue siendo especial: gana tambien las comparaciones igualadas. ... ok
+test_quema_no_aporta_ningun_volteo_extra (test_habilidades.TestHabilidades.test_quema_no_aporta_ningun_volteo_extra)
+La prueba de fuego: la quema no puede girar ni una carta mas que ... ok
+test_quema_no_barre_el_tablero (test_habilidades.TestHabilidades.test_quema_no_barre_el_tablero)
+El bug: la quema daba vueltas a todo lo que la rodeaba sin ... ok
+test_quema_no_necesita_same_ni_plus (test_habilidades.TestHabilidades.test_quema_no_necesita_same_ni_plus)
+Con una sola igualdad no hay Same, y sin sumas repetidas no hay ... ok
+test_quema_no_puede_con_vecinas_de_nueve (test_habilidades.TestHabilidades.test_quema_no_puede_con_vecinas_de_nueve)
+Sin Plus ni cadena que la Newly: la quema de 5 no toca un 9. ... ok
+test_quema_no_toca_el_muro_de_la_vecina (test_habilidades.TestHabilidades.test_quema_no_toca_el_muro_de_la_vecina) ... ok
+test_quema_prende_a_las_vecinas_debiles (test_habilidades.TestHabilidades.test_quema_prende_a_las_vecinas_debiles) ... ok
+test_todas_las_habilidades_documentadas (test_habilidades.TestHabilidades.test_todas_las_habilidades_documentadas) ... ok
+test_cartas_humanas_y_orcas_son_distintas (test_habilidades.TestMazos.test_cartas_humanas_y_orcas_son_distintas) ... ok
+test_las_diez_facciones_existen (test_habilidades.TestMazos.test_las_diez_facciones_existen) ... ok
+test_los_nuevos_mazos_estan_completos (test_habilidades.TestMazos.test_los_nuevos_mazos_estan_completos) ... ok
+test_rarezas_distribuidas (test_habilidades.TestMazos.test_rarezas_distribuidas) ... ok
+test_totodas_las_cartas_tienen_bando_valido (test_habilidades.TestMazos.test_totodas_las_cartas_tienen_bando_valido) ... ok
+test_semillas_cero_no_promedian_sobre_nada (test_herramientas_medida.TestEconomiaRechazaMuestrasVacias.test_semillas_cero_no_promedian_sobre_nada) ... ok
+test_semillas_no_numericas_no_reventan (test_herramientas_medida.TestEconomiaRechazaMuestrasVacias.test_semillas_no_numericas_no_reventan) ... ok
+test_cartas_fuera_del_mazo_del_juego_se_rechazan (test_herramientas_medida.TestSimuladorRechazaLoImposible.test_cartas_fuera_del_mazo_del_juego_se_rechazan) ... ok
+test_cero_duelos_no_se_reporta_como_derrota_del_jugador (test_herramientas_medida.TestSimuladorRechazaLoImposible.test_cero_duelos_no_se_reporta_como_derrota_del_jugador) ... ok
+test_nodo_desconocido_no_se_mide_con_una_etiqueta_falsa (test_herramientas_medida.TestSimuladorRechazaLoImposible.test_nodo_desconocido_no_se_mide_con_una_etiqueta_falsa) ... ok
+test_refuerzo_negativo_se_rechaza (test_herramientas_medida.TestSimuladorRechazaLoImposible.test_refuerzo_negativo_se_rechaza) ... ok
+test_rival_cero_no_cae_al_valor_por_defecto (test_herramientas_medida.TestSimuladorRechazaLoImposible.test_rival_cero_no_cae_al_valor_por_defecto) ... ok
+test_un_nodo_valido_sigue_midiendose (test_herramientas_medida.TestSimuladorRechazaLoImposible.test_un_nodo_valido_sigue_midiendose)
+La validacion no puede cerrar la puerta a la medicion legitima. ... ok
+test_asignaciones_ausentes_desconocidas_y_protegidas_pendientes (test_importar_lote_visual.TestImportador.test_asignaciones_ausentes_desconocidas_y_protegidas_pendientes) ... ok
+test_cambio_guion_no_reasigna (test_importar_lote_visual.TestImportador.test_cambio_guion_no_reasigna) ... ok
+test_destino_integrado_protegido_incluso_revertido (test_importar_lote_visual.TestImportador.test_destino_integrado_protegido_incluso_revertido) ... ok
+test_hash_correcto_y_fallback_runtime_ante_archivo_ausente (test_importar_lote_visual.TestImportador.test_hash_correcto_y_fallback_runtime_ante_archivo_ausente) ... ok
+test_hash_declarado_incorrecto_rechaza_todo (test_importar_lote_visual.TestImportador.test_hash_declarado_incorrecto_rechaza_todo) ... ok
+test_idempotencia_y_no_sobrescritura (test_importar_lote_visual.TestImportador.test_idempotencia_y_no_sobrescritura) ... ok
+test_importar_activar_revertir_sin_tocar_originales (test_importar_lote_visual.TestImportador.test_importar_activar_revertir_sin_tocar_originales) ... ok
+test_lote_totalmente_pendiente_no_se_activa (test_importar_lote_visual.TestImportador.test_lote_totalmente_pendiente_no_se_activa) ... ok
+test_original_protegido_detectado (test_importar_lote_visual.TestImportador.test_original_protegido_detectado) ... ok
+test_preview_renderer_real_y_seleccion_sin_activar (test_importar_lote_visual.TestImportador.test_preview_renderer_real_y_seleccion_sin_activar) ... ok
+test_resolucion_y_formato (test_importar_lote_visual.TestImportador.test_resolucion_y_formato) ... ok
+test_siguiente_no_reactiva_revertido (test_importar_lote_visual.TestImportador.test_siguiente_no_reactiva_revertido) ... ok
+test_tampering_detectado (test_importar_lote_visual.TestImportador.test_tampering_detectado) ... ok
+test_zip_traversal_y_duplicados (test_importar_lote_visual.TestImportador.test_zip_traversal_y_duplicados) ... ok
+test_una_pantalla_que_peta_no_produce_frames (test_instrumentacion.TestAuditoriaNoSeCallaAnteUnaPantallaRota.test_una_pantalla_que_peta_no_produce_frames)
+Y por eso `correr_pantalla` devuelve una lista vacia: no hay nada ... ok
+test_una_pantalla_que_peta_queda_registrada (test_instrumentacion.TestAuditoriaNoSeCallaAnteUnaPantallaRota.test_una_pantalla_que_peta_queda_registrada) ... ok
+test_una_pantalla_sin_textos_no_se_declara_correcta (test_instrumentacion.TestContrasteNoDeclaraBienLoQueNoMide.test_una_pantalla_sin_textos_no_se_declara_correcta)
+Medir cero textos es un dato que falta, no un aprobado. ... ok
+test_activar_medicion_es_el_unico_enganche (test_instrumentacion.TestMedirNoSeComeLaMedicionAjena.test_activar_medicion_es_el_unico_enganche)
+El hook de `display.flip` se instala una vez y se puede reponer. ... ok
+test_el_modo_lectura_no_enciende_la_medicion (test_instrumentacion.TestMedirNoSeComeLaMedicionAjena.test_el_modo_lectura_no_enciende_la_medicion)
+`fijar_escala_texto` es un ajuste del JUEGO: no puede pagar diagnostico. ... ok
+test_los_observadores_siguen_viendo_los_frames_al_tras_reponer (test_instrumentacion.TestMedirNoSeComeLaMedicionAjena.test_los_observadores_siguen_viendo_los_frames_al_tras_reponer) ... ok
+test_abandonar_no_da_moneda_ni_registra_duelo_completado (test_integridad_progreso.TestIntegridadProgreso.test_abandonar_no_da_moneda_ni_registra_duelo_completado) ... ok
+test_buscar_en_editor_filtra_sin_perder_cartas_equipadas (test_integridad_progreso.TestIntegridadProgreso.test_buscar_en_editor_filtra_sin_perder_cartas_equipadas) ... ok
+test_cerrar_cartel_de_recompensa_no_permite_cobrarla_dos_veces (test_integridad_progreso.TestIntegridadProgreso.test_cerrar_cartel_de_recompensa_no_permite_cobrarla_dos_veces) ... ok
+test_comparacion_rechaza_reemplazo_invalido_y_permite_cancelar (test_integridad_progreso.TestIntegridadProgreso.test_comparacion_rechaza_reemplazo_invalido_y_permite_cancelar) ... ok
+test_compra_interrumpida_se_recupera_una_sola_vez (test_integridad_progreso.TestIntegridadProgreso.test_compra_interrumpida_se_recupera_una_sola_vez) ... ok
+test_fallo_al_generar_sobre_no_cobra (test_integridad_progreso.TestIntegridadProgreso.test_fallo_al_generar_sobre_no_cobra) ... ok
+test_fallo_de_escritura_se_informa_y_conserva_perfil (test_integridad_progreso.TestIntegridadProgreso.test_fallo_de_escritura_se_informa_y_conserva_perfil) ... ok
+test_final_interrumpido_sigue_disponible_en_continuar (test_integridad_progreso.TestIntegridadProgreso.test_final_interrumpido_sigue_disponible_en_continuar) ... ok
+test_guardar_editor_repetidamente_no_duplica_mejoras (test_integridad_progreso.TestIntegridadProgreso.test_guardar_editor_repetidamente_no_duplica_mejoras) ... ok
+test_pausa_devuelve_abandono_explicito (test_integridad_progreso.TestIntegridadProgreso.test_pausa_devuelve_abandono_explicito) ... ok
+test_premio_de_duelo_guarda_desglose_coherente (test_integridad_progreso.TestIntegridadProgreso.test_premio_de_duelo_guarda_desglose_coherente) ... ok
+test_reanudar_recupera_recompensa_sin_repetir_victoria (test_integridad_progreso.TestIntegridadProgreso.test_reanudar_recupera_recompensa_sin_repetir_victoria) ... ok
+test_serializacion_fallida_conserva_guardado_anterior (test_integridad_progreso.TestIntegridadProgreso.test_serializacion_fallida_conserva_guardado_anterior) ... ok
+test_sobre_describe_valores_reales_y_duplicada_al_maximo (test_integridad_progreso.TestIntegridadProgreso.test_sobre_describe_valores_reales_y_duplicada_al_maximo) ... ok
+test_estructura (test_intro.TestIntro.test_estructura) ... ok
+test_fondos_y_retratos_existen (test_intro.TestIntro.test_fondos_y_retratos_existen) ... ok
+test_se_marca_como_vista_una_sola_vez (test_intro.TestIntro.test_se_marca_como_vista_una_sola_vez) ... ok
+test_se_reproduce_entera_sin_colgarse (test_intro.TestIntro.test_se_reproduce_entera_sin_colgarse) ... ok
+test_el_inventario_recorre_de_verdad_cada_camino (test_inventario_fondos.TestInventarioDeFondos.test_el_inventario_recorre_de_verdad_cada_camino)
+Un inventario que no llega a un camino no ve sus problemas, que es ... ok
+test_los_dos_fondos_de_nuestro_mundo_se_usan (test_inventario_fondos.TestInventarioDeFondos.test_los_dos_fondos_de_nuestro_mundo_se_usan)
+`salon` (el torneo) y `apagon` (el corte) son de nuestro mundo. ... ok
+test_los_fondos_tienen_el_tamano_que_espera_el_juego (test_inventario_fondos.TestInventarioDeFondos.test_los_fondos_tienen_el_tamano_que_espera_el_juego) ... ok
+test_ningun_fondo_queda_huerfano (test_inventario_fondos.TestInventarioDeFondos.test_ningun_fondo_queda_huerfano)
+Un fondo generado que nadie pide es trabajo perdido y ademas ... ok
+test_todo_fondo_que_pide_el_codigo_existe (test_inventario_fondos.TestInventarioDeFondos.test_todo_fondo_que_pide_el_codigo_existe) ... ok
+test_perfil_nuevo_sale_del_ritual_con_diez_cartas_jugables (test_mazo_inicial_global.TestMazoInicialGlobal.test_perfil_nuevo_sale_del_ritual_con_diez_cartas_jugables) ... ok
+test_un_mazo_valido_y_el_progreso_se_conservan (test_mazo_inicial_global.TestMazoInicialGlobal.test_un_mazo_valido_y_el_progreso_se_conservan) ... ok
+test_cartas_base_sigue_dando_el_valor_de_fabrica (test_mejoras_visibles.TestMejorasSeVen.test_cartas_base_sigue_dando_el_valor_de_fabrica) ... ok
+test_cartas_duelo_no_aplica_las_mejoras_dos_veces (test_mejoras_visibles.TestMejorasSeVen.test_cartas_duelo_no_aplica_las_mejoras_dos_veces)
+`cartas_duelo` se apoya en `cartas_jugador`, que ya las aplica. Si ... ok
+test_la_carta_del_menu_es_la_misma_que_la_del_duelo (test_mejoras_visibles.TestMejorasSeVen.test_la_carta_del_menu_es_la_misma_que_la_del_duelo)
+El fallo de raiz: dos funciones, dos cartas distintas con el mismo ... ok
+test_la_mejora_cambia_el_numero_que_se_ensena (test_mejoras_visibles.TestMejorasSeVen.test_la_mejora_cambia_el_numero_que_se_ensena) ... ok
+test_sin_mejoras_nada_cambia (test_mejoras_visibles.TestMejorasSeVen.test_sin_mejoras_nada_cambia) ... ok
+test_varias_mejoras_se_acumulan (test_mejoras_visibles.TestMejorasSeVen.test_varias_mejoras_se_acumulan) ... ok
+test_una_mejora_no_se_suma_dos_veces_en_el_valor (test_mejoras_visibles.TestMensajeDeRecompensa.test_una_mejora_no_se_suma_dos_veces_en_el_valor) ... ok
+test_valor_actual_dice_la_cifra_final (test_mejoras_visibles.TestMensajeDeRecompensa.test_valor_actual_dice_la_cifra_final) ... ok
+test_valor_actual_respeta_el_tope (test_mejoras_visibles.TestMensajeDeRecompensa.test_valor_actual_respeta_el_tope) ... ok
+test_despues_del_sigilo_el_mazo_muestra_los_valores_nuevos (test_mejoras_visibles.TestSigiloSeAplicaATodas.test_despues_del_sigilo_el_mazo_muestra_los_valores_nuevos)
+El sigilo dice 'suben su lado mas bajo'. Si el mazo sigue mostrando ... ok
+test_el_sigilo_sube_el_lado_mas_bajo_de_cada_carta (test_mejoras_visibles.TestSigiloSeAplicaATodas.test_el_sigilo_sube_el_lado_mas_bajo_de_cada_carta) ... ok
+test_las_mejoras_no_tocan_la_coleccion_permanente (test_mejoras_visibles.TestSigiloSeAplicaATodas.test_las_mejoras_no_tocan_la_coleccion_permanente)
+Las mejoras son de la campana en curso. Si se colaran en el perfil, ... ok
+test_bloqueada_no_responde_y_volver_si (test_mini.TestMiniEnMenu.test_bloqueada_no_responde_y_volver_si) ... ok
+test_desbloqueada_devuelve_mini (test_mini.TestMiniEnMenu.test_desbloqueada_devuelve_mini) ... ok
+test_desbloqueo_y_final (test_mini.TestMiniEstructura.test_desbloqueo_y_final) ... ok
+test_la_mini_no_pisa_campana_json (test_mini.TestMiniEstructura.test_la_mini_no_pisa_campana_json) ... ok
+test_nueva_mini_es_corta_y_en_memoria (test_mini.TestMiniEstructura.test_nueva_mini_es_corta_y_en_memoria) ... ok
+test_rivales_mini_nunca_son_la_propia (test_mini.TestMiniEstructura.test_rivales_mini_nunca_son_la_propia) ... ok
+test_sorteo_funciona_en_mini (test_mini.TestMiniEstructura.test_sorteo_funciona_en_mini) ... ok
+test_mini_abandonada_no_registra_final (test_mini.TestMiniFlujo.test_mini_abandonada_no_registra_final) ... ok
+test_mini_completa_tres_duelos_y_final (test_mini.TestMiniFlujo.test_mini_completa_tres_duelos_y_final) ... ok
+test_fondo_de_escena_existe (test_narrativa.TestCoberturaDeNodos.test_fondo_de_escena_existe) ... ok
+test_las_devoluciones_son_copias (test_narrativa.TestCoberturaDeNodos.test_las_devoluciones_son_copias)
+Mutar la salida no puede corromper los datos del modulo. ... ok
+test_las_escenas_no_dejan_texto_vacio (test_narrativa.TestCoberturaDeNodos.test_las_escenas_no_dejan_texto_vacio) ... ok
+test_las_escenas_son_validas_para_el_reproductor (test_narrativa.TestCoberturaDeNodos.test_las_escenas_son_validas_para_el_reproductor)
+Mismas claves que cinematicas.esc: se pasan tal cual. ... ok
+test_los_nodos_de_campana_existen_en_el_grafo (test_narrativa.TestCoberturaDeNodos.test_los_nodos_de_campana_existen_en_el_grafo) ... ok
+test_todo_nodo_de_duelo_tiene_previa_y_posterior (test_narrativa.TestCoberturaDeNodos.test_todo_nodo_de_duelo_tiene_previa_y_posterior) ... ok
+test_aplicar_una_decision_mueve_el_estado (test_narrativa.TestDecisionesMorales.test_aplicar_una_decision_mueve_el_estado) ... ok
+test_cada_opcion_tiene_texto_respuesta_y_efecto (test_narrativa.TestDecisionesMorales.test_cada_opcion_tiene_texto_respuesta_y_efecto) ... ok
+test_las_decisiones_apuntan_a_nodos_validos (test_narrativa.TestDecisionesMorales.test_las_decisiones_apuntan_a_nodos_validos) ... ok
+test_los_ids_de_opcion_son_unicos_en_cada_decision (test_narrativa.TestDecisionesMorales.test_los_ids_de_opcion_son_unicos_en_cada_decision) ... ok
+test_no_toda_decision_da_recompensa_gratis (test_narrativa.TestDecisionesMorales.test_no_toda_decision_da_recompensa_gratis)
+La fortaleza cobra: una decision tiene que costar algo. ... ok
+test_una_decision_no_se_aplica_dos_veces (test_narrativa.TestDecisionesMorales.test_una_decision_no_se_aplica_dos_veces) ... ok
+test_el_dialogo_cambia_segun_confianza (test_narrativa.TestDialogoDeNara.test_el_dialogo_cambia_segun_confianza)
+Reactividad ligera: baja confianza suena distinto a alta. ... ok
+test_el_umbral_de_confianza_es_tres (test_narrativa.TestDialogoDeNara.test_el_umbral_de_confianza_es_tres)
+nara_aliada() marca a partir de 3; el dialogo debe seguirlo. ... ok
+test_momento_desconocido_devuelve_vacio (test_narrativa.TestDialogoDeNara.test_momento_desconocido_devuelve_vacio) ... ok
+test_todos_los_momentos_responden (test_narrativa.TestDialogoDeNara.test_todos_los_momentos_responden) ... ok
+test_escenas_nodo_incluye_la_previa_de_narrativa (test_narrativa.TestIntegracionConCampana.test_escenas_nodo_incluye_la_previa_de_narrativa) ... ok
+test_escenas_posterior_reacciona_a_la_confianza (test_narrativa.TestIntegracionConCampana.test_escenas_posterior_reacciona_a_la_confianza) ... ok
+test_escenas_posterior_reacciona_a_la_faccion (test_narrativa.TestIntegracionConCampana.test_escenas_posterior_reacciona_a_la_faccion) ... ok
+test_info_duelo_lleva_el_pegame_narrativo (test_narrativa.TestIntegracionConCampana.test_info_duelo_lleva_el_pegame_narrativo) ... ok
+test_posterior_de_derrota_es_distinto_de_victoria (test_narrativa.TestIntegracionConCampana.test_posterior_de_derrota_es_distinto_de_victoria) ... ok
+test_el_nodo_eleccion_no_tiene_escenas_de_duelo (test_narrativa.TestNodoDeBifurcacion.test_el_nodo_eleccion_no_tiene_escenas_de_duelo)
+`bifurcacion` es una eleccion, no un duelo: no lleva escenas. ... ok
+test_cada_reaccion_empieza_distinta (test_narrativa.TestReaccionesPorFaccion.test_cada_reaccion_empieza_distinta) ... ok
+test_faccion_desconocida_no_rompe (test_narrativa.TestReaccionesPorFaccion.test_faccion_desconocida_no_rompe) ... ok
+test_hay_una_segunda_linea_para_reactividad (test_narrativa.TestReaccionesPorFaccion.test_hay_una_segunda_linea_para_reactividad) ... ok
+test_las_diez_facciones_tienen_reaccion (test_narrativa.TestReaccionesPorFaccion.test_las_diez_facciones_tienen_reaccion) ... ok
+test_los_modulos_se_importan_juntos (test_narrativa.TestSinCiclosDeImportacion.test_los_modulos_se_importan_juntos) ... ok
+test_narrativa_no_importa_campana (test_narrativa.TestSinCiclosDeImportacion.test_narrativa_no_importa_campana)
+Si lo hiciera, campana -> narrativa -> campana seria un ciclo. ... ok
+test_el_texto_admite_espanol_sin_caracteres_corruptos (test_narrativa.TestTextoVisibleEnEspanol.test_el_texto_admite_espanol_sin_caracteres_corruptos)
+La fuente y la capa de idioma ya admiten Ñ, acentos y signos españoles. ... ok
+test_el_guion_de_modulo_conserva_el_marcador (test_nombre_jugador.TestElMarcadorSeResuelveEnTodoElGuion.test_el_guion_de_modulo_conserva_el_marcador)
+La otra mitad: el marcador debe estar en el guion, no cocido. ... ok
+test_el_nombre_aparece_en_el_guion_final (test_nombre_jugador.TestElMarcadorSeResuelveEnTodoElGuion.test_el_nombre_aparece_en_el_guion_final)
+No basta con que se sustituya: el nombre tiene que usarse. ... ok
+test_la_cinematica_no_toca_el_guion_original (test_nombre_jugador.TestElMarcadorSeResuelveEnTodoElGuion.test_la_cinematica_no_toca_el_guion_original)
+Resolver no puede mutar las listas de modulo: se play dos veces. ... ok
+test_no_queda_ningun_marcador_en_todo_el_guion (test_nombre_jugador.TestElMarcadorSeResuelveEnTodoElGuion.test_no_queda_ningun_marcador_en_todo_el_guion)
+Se mide lo que SE PINTA, o sea despues de pasar por `Cinematica`. ... ok
+test_todo_el_guion_se_resuelve_tambien_sin_nombre (test_nombre_jugador.TestElMarcadorSeResuelveEnTodoElGuion.test_todo_el_guion_se_resuelve_tambien_sin_nombre) ... ok
+test_el_hud_toma_el_nombre_del_info (test_nombre_jugador.TestElNombreSeUsa.test_el_hud_toma_el_nombre_del_info)
+`info_duelo` lleva el nombre para que el HUD lo pinte. ... ok
+test_el_nombre_mas_largo_cabe_en_la_caja_de_dialogo (test_nombre_jugador.TestElNombreSeUsa.test_el_nombre_mas_largo_cabe_en_la_caja_de_dialogo)
+El caso peor: 15 chars dentro de una linea de 4. ... ok
+test_el_nombre_no_se_relee_de_disco_por_frame (test_nombre_jugador.TestElNombreSeUsa.test_el_nombre_no_se_relee_de_disco_por_frame)
+`info_duelo` se llama POR FRAME (elegir_rama dibuja las dos ramas). ... ok
+test_invalidate_deja_releer (test_nombre_jugador.TestElNombreSeUsa.test_invalidate_deja_releer) ... ok
+test_la_cache_se_refresca_al_cambiar_el_nombre (test_nombre_jugador.TestElNombreSeUsa.test_la_cache_se_refresca_al_cambiar_el_nombre) ... ok
+test_los_rivales_se_dirigen_al_jugador_por_su_nombre (test_nombre_jugador.TestElNombreSeUsa.test_los_rivales_se_dirigen_al_jugador_por_su_nombre) ... ok
+test_no_queda_ningun_marcador_en_el_juego (test_nombre_jugador.TestElNombreSeUsa.test_no_queda_ningun_marcador_en_el_juego) ... ok
+test_sin_nombre_se_sigue_diciendo_el_duelista (test_nombre_jugador.TestElNombreSeUsa.test_sin_nombre_se_sigue_diciendo_el_duelista) ... ok
+test_el_nombre_sobrevive_al_perfil (test_nombre_jugador.TestPersistencia.test_el_nombre_sobrevive_al_perfil) ... ok
+test_el_perfil_por_defecto_no_tiene_nombre (test_nombre_jugador.TestPersistencia.test_el_perfil_por_defecto_no_tiene_nombre) ... ok
+test_el_valor_inicial_no_precarga_el_defecto (test_nombre_jugador.TestPersistencia.test_el_valor_inicial_no_precarga_el_defecto)
+`nombre_guardado` es lo que va al campo, no `nombre_jugador`. ... ok
+test_leer_sin_perfil_devuelve_el_defecto (test_nombre_jugador.TestPersistencia.test_leer_sin_perfil_devuelve_el_defecto)
+Un perfil sin la clave (viejo) no puede romper nada. ... ok
+test_sin_nombre_no_se_confunde_con_el_defecto_al_guardar (test_nombre_jugador.TestPersistencia.test_sin_nombre_no_se_confunde_con_el_defecto_al_guardar)
+El ciclo completo: vacio -> no tiene nombre -> sigue vacio. ... ok
+test_tiene_nombre_distingue_lo_propio_del_defecto (test_nombre_jugador.TestPersistencia.test_tiene_nombre_distingue_lo_propio_del_defecto) ... ok
+test_colapsa_los_espacios (test_nombre_jugador.TestSaneaNombre.test_colapsa_los_espacios) ... ok
+test_el_tope_es_el_que_cabe_en_las_cajas (test_nombre_jugador.TestSaneaNombre.test_el_tope_es_el_que_cabe_en_las_cajas)
+15 caracteres: es el ancho de la caja de dialogo de cuatro lineas. ... ok
+test_los_saltos_de_linea_no_pasan (test_nombre_jugador.TestSaneaNombre.test_los_saltos_de_linea_no_pasan)
+Un \n dentro del texto descuadra la caja de dialogo. ... ok
+test_neutraliza_lo_que_rompe_el_render (test_nombre_jugador.TestSaneaNombre.test_neutraliza_lo_que_rompe_el_render)
+`<` y `>` abren etiquetas en el motor de texto. ... ok
+test_recorta_al_tope (test_nombre_jugador.TestSaneaNombre.test_recorta_al_tope) ... ok
+test_recorta_los_extremos (test_nombre_jugador.TestSaneaNombre.test_recorta_los_extremos) ... ok
+test_sin_nombre_utilizable_devuelve_el_defecto (test_nombre_jugador.TestSaneaNombre.test_sin_nombre_utilizable_devuelve_el_defecto) ... ok
+test_campana_secreta_abre_cartel_en_victoria_y_derrota (test_nombres_no_definidos.TestLosCaminosQueCrashaabanAhoraSeEjecutan.test_campana_secreta_abre_cartel_en_victoria_y_derrota)
+Las dos ramas de la campana secreta crasheaban. ... ok
+test_el_encuentro_con_ilustracion_se_dibuja_de_verdad (test_nombres_no_definidos.TestLosCaminosQueCrashaabanAhoraSeEjecutan.test_el_encuentro_con_ilustracion_se_dibuja_de_verdad)
+Ejecuta la rama de la ilustracion, que es la que crasheaba. ... ok
+test_encuentro_con_ilustracion_no_usa_ningun_nombre_roto (test_nombres_no_definidos.TestLosCaminosQueCrashaabanAhoraSeEjecutan.test_encuentro_con_ilustracion_no_usa_ningun_nombre_roto)
+La pantalla de encuentro: `dibujo` en vez de `dibujo_enc`. ... ok
+test_ganar_fragmento_llega_al_cartel (test_nombres_no_definidos.TestLosCaminosQueCrashaabanAhoraSeEjecutan.test_ganar_fragmento_llega_al_cartel)
+El fragmento de verdad (NG+) crasheaba al pedir el fragmento. ... ok
+test_toda_llamada_a_cartel_lleva_el_prefijo (test_nombres_no_definidos.TestLosCaminosQueCrashaabanAhoraSeEjecutan.test_toda_llamada_a_cartel_lleva_el_prefijo)
+`cartel` sin `pantallas.` era un NameError en 3 sitios. ... ok
+test_detecta_el_bug_del_que_nacio_este_test (test_nombres_no_definidos.TestNoHayNombresInexistentes.test_detecta_el_bug_del_que_nacio_este_test)
+`dibujo` se usaba sin existir, siendo la variable `dibujo_enc`. ... ok
+test_ningun_modulo_usa_un_nombre_inexistente (test_nombres_no_definidos.TestNoHayNombresInexistentes.test_ningun_modulo_usa_un_nombre_inexistente) ... ok
+test_no_señala_codigo_correcto (test_nombres_no_definidos.TestNoHayNombresInexistentes.test_no_señala_codigo_correcto) ... ok
+test_borrar_el_archivo_danado_deja_el_juego_limpio (test_partida_danada.TestPartidaDanada.test_borrar_el_archivo_danado_deja_el_juego_limpio)
+El aviso dice que se puede renombrar o borrar: y debe ser verdad. ... ok
+test_el_juego_no_revienta_con_el_archivo_danado (test_partida_danada.TestPartidaDanada.test_el_juego_no_revienta_con_el_archivo_danado)
+El aviso informa; el juego debe seguir arrancando. ... ok
+test_json_corrupto_si_se_avisa (test_partida_danada.TestPartidaDanada.test_json_corrupto_si_se_avisa) ... ok
+test_json_vacio_si_se_avisa (test_partida_danada.TestPartidaDanada.test_json_vacio_si_se_avisa) ... ok
+test_partida_valida_no_hay_aviso (test_partida_danada.TestPartidaDanada.test_partida_valida_no_hay_aviso) ... ok
+test_sin_partida_no_hay_aviso (test_partida_danada.TestPartidaDanada.test_sin_partida_no_hay_aviso)
+La primera partida de un jugador nuevo no debe asustarlo con nada. ... ok
+test_texto_que_no_es_json_sino_una_lista_si_se_avisa (test_partida_danada.TestPartidaDanada.test_texto_que_no_es_json_sino_una_lista_si_se_avisa) ... ok
+test_el_apagon_avisa_antes_de_cortar (test_presentacion.TestElPrologoCuentaLaHistoriaCompleta.test_el_apagon_avisa_antes_de_cortar) ... ok
+test_el_mundo_real_aparece_antes_que_el_fantastico (test_presentacion.TestElPrologoCuentaLaHistoriaCompleta.test_el_mundo_real_aparece_antes_que_el_fantastico) ... ok
+test_el_prologo_tiene_las_ocho_escenas (test_presentacion.TestElPrologoCuentaLaHistoriaCompleta.test_el_prologo_tiene_las_ocho_escenas) ... ok
+test_el_transporte_termina_en_negro (test_presentacion.TestElPrologoCuentaLaHistoriaCompleta.test_el_transporte_termina_en_negro)
+La ultima escena del corte es un titulo vacio: pantalla negra. ... ok
+test_detecta_la_musica_que_falta (test_presentacion.TestManifiestoDeAssets.test_detecta_la_musica_que_falta)
+El mecanismo sigue detectando lo que no esta en disco. ... ok
+test_detecta_lo_que_falta_de_verdad (test_presentacion.TestManifiestoDeAssets.test_detecta_lo_que_falta_de_verdad)
+Solo falta el Cartografo. ... ok
+test_el_resumen_usa_las_cifras_reales (test_presentacion.TestManifiestoDeAssets.test_el_resumen_usa_las_cifras_reales) ... ok
+test_las_pistas_del_prologo_no_faltan (test_presentacion.TestManifiestoDeAssets.test_las_pistas_del_prologo_no_faltan)
+Las seis del prologo y del duelo estan integradas de verdad. ... ok
+test_los_fondos_usados_existen_en_disco (test_presentacion.TestManifiestoDeAssets.test_los_fondos_usados_existen_en_disco) ... ok
+test_no_declara_fondos_que_faltan (test_presentacion.TestManifiestoDeAssets.test_no_declara_fondos_que_faltan)
+Si el manifiesto dice que un fondo se usa, tiene que estar. ... ok
+test_no_declara_pistas_que_ya_existen (test_presentacion.TestManifiestoDeAssets.test_no_declara_pistas_que_ya_existen) ... ok
+test_no_declara_retratos_que_ya_existen (test_presentacion.TestManifiestoDeAssets.test_no_declara_retratos_que_ya_existen)
+Las de faccion y las nuevas ya generadas no pueden seguir faltando. ... ok
+test_todo_el_manifesto_es_ascii (test_presentacion.TestManifiestoDeAssets.test_todo_el_manifesto_es_ascii) ... ok
+test_todos_los_retratos_que_necesitan_existen_o_estan_listados (test_presentacion.TestManifiestoDeAssets.test_todos_los_retratos_que_necesitan_existen_o_estan_listados)
+Nara y el Cartografo hablan en pantalla: o hay avatar o hay lista. ... ok
+test_el_despierto_ya_es_del_mundo_fantastico (test_presentacion.TestQueEscenasSonDeQueMundo.test_el_despierto_ya_es_del_mundo_fantastico)
+En el bosque ya no estas en casa: cambia el tratamiento. ... ok
+test_el_epilogo_es_del_mundo_real (test_presentacion.TestQueEscenasSonDeQueMundo.test_el_epilogo_es_del_mundo_real)
+Aqui se vuelve a casa. Es el punto de la escena. ... ok
+test_el_guion_cruza_de_mundo_exactamente_una_vez (test_presentacion.TestQueEscenasSonDeQueMundo.test_el_guion_cruza_de_mundo_exactamente_una_vez)
+Del mundo real al fantastic: una transicion, no dos. ... ok
+test_el_torneo_es_del_mundo_real (test_presentacion.TestQueEscenasSonDeQueMundo.test_el_torneo_es_del_mundo_real)
+Del salon, del duelista y de Juan: nuestro mundo. ... ok
+test_el_umbral_es_del_mundo_fantastico (test_presentacion.TestQueEscenasSonDeQueMundo.test_el_umbral_es_del_mundo_fantastico) ... ok
+test_hd_optativo_solo_en_callsite_aprobado (test_presentacion.TestQueEscenasSonDeQueMundo.test_hd_optativo_solo_en_callsite_aprobado) ... ok
+test_los_encuentros_son_del_mundo_fantastico (test_presentacion.TestQueEscenasSonDeQueMundo.test_los_encuentros_son_del_mundo_fantastico) ... ok
+test_lote_02_ocupa_los_momentos_del_prologo_en_orden (test_presentacion.TestQueEscenasSonDeQueMundo.test_lote_02_ocupa_los_momentos_del_prologo_en_orden) ... ok
+test_el_mundo_fantastico_conserva_la_vineta (test_presentacion.TestTratamientoVisual.test_el_mundo_fantastico_conserva_la_vineta)
+La vineta es lo que le da el aire oscuro al mundo del juego. ... ok
+test_el_mundo_real_se_ve_mas_claro (test_presentacion.TestTratamientoVisual.test_el_mundo_real_se_ve_mas_claro)
+El salon del torneo tiene luz: no puede verse tan oscuro como el bosque. ... ok
+test_el_tratamiento_es_distinto (test_presentacion.TestTratamientoVisual.test_el_tratamiento_es_distinto)
+Si fueran iguales, no habria forma de saber en que lado estas. ... ok
+test_esc_acepta_el_mundo_y_por_defecto_es_el_juego (test_presentacion.TestTratamientoVisual.test_esc_acepta_el_mundo_y_por_defecto_es_el_juego) ... ok
+test_los_dos_mundos_existen (test_presentacion.TestTratamientoVisual.test_los_dos_mundos_existen) ... ok
+test_ambos_mazos_tienen_cinco_cartas (test_prologo.TestContrasteConMundoFantastico.test_ambos_mazos_tienen_cinco_cartas)
+En el 3x3 cada bando coloca 5: las manos deben ser comparables. ... ok
+test_el_duelista_parte_con_ventaja (test_prologo.TestContrasteConMundoFantastico.test_el_duelista_parte_con_ventaja)
+5 legendarias contra 5 comunes: el duelista gana si juega bien. ... ok
+test_el_duelo_del_tutorial_es_ganable (test_prologo.TestContrasteConMundoFantastico.test_el_duelo_del_tutorial_es_ganable)
+Juan no tiene legendarias: el duelo enseña mecánicas, no humilla. ... ok
+test_el_mazo_fantastico_es_mas_debil (test_prologo.TestContrasteConMundoFantastico.test_el_mazo_fantastico_es_mas_debil)
+El poder del mundo real no acompana al duelista. ... ok
+test_mazo_rajoy_es_estable (test_prologo.TestContrasteConMundoFantastico.test_mazo_rajoy_es_estable) ... ok
+test_humor_meta_del_duelista (test_prologo.TestEscenas.test_humor_meta_del_duelista)
+El contraste de conocimiento debe aparecer, no solo el drama. ... ok
+test_la_escena_negra_no_tiene_texto (test_prologo.TestEscenas.test_la_escena_negra_no_tiene_texto) ... ok
+test_las_escenas_tienen_fondo_valido (test_prologo.TestEscenas.test_las_escenas_tienen_fondo_valido) ... ok
+test_orden_del_prologo (test_prologo.TestEscenas.test_orden_del_prologo)
+El prologo va del mundo real al fantastic, y termina eligiendo mazo. ... ok
+test_retratos_validos (test_prologo.TestEscenas.test_retratos_validos)
+Facciones de bando o personajes con cara: los dos son retrato. ... ok
+test_todas_las_escenas_existen (test_prologo.TestEscenas.test_todas_las_escenas_existen) ... ok
+test_es_estable_entre_llamadas (test_prologo.TestMazoTutorial.test_es_estable_entre_llamadas) ... ok
+test_es_la_mas_fuerte_de_su_faccion (test_prologo.TestMazoTutorial.test_es_la_mas_fuerte_de_su_faccion)
+Cada una es la legendaria de mayor suma de su faccion. ... ok
+test_no_altera_el_pool_original (test_prologo.TestMazoTutorial.test_no_altera_el_pool_original)
+mazo_tutorial devuelve copias: el pool global queda intacto. ... ok
+test_son_cinco_cartas_una_por_faccion (test_prologo.TestMazoTutorial.test_son_cinco_cartas_una_por_faccion) ... ok
+test_todas_son_legendarias (test_prologo.TestMazoTutorial.test_todas_son_legendarias) ... ok
+test_es_humano_y_no_se_enfrenta_a_si_mismo (test_prologo.TestRivalJuanRajoy.test_es_humano_y_no_se_enfrenta_a_si_mismo) ... ok
+test_la_voz_es_suya_y_no_del_duelista (test_prologo.TestRivalJuanRajoy.test_la_voz_es_suya_y_no_del_duelista)
+Juan habla de 'tu' porque es el rival, no el protagonista. ... ok
+test_tiene_los_campos_que_pide_el_duelo (test_prologo.TestRivalJuanRajoy.test_tiene_los_campos_que_pide_el_duelo) ... ok
+test_debilitar_suma_y_se_guarda (test_promesas_encuentros.TestPromesasDeEncuentro.test_debilitar_suma_y_se_guarda) ... ok
+test_mejorar_respeta_la_carta_elegida (test_promesas_encuentros.TestPromesasDeEncuentro.test_mejorar_respeta_la_carta_elegida)
+La opcion promete "la que elijas": con `idx` se mejora esa y no otra. ... ok
+test_ningun_efecto_anuncia_fuerza_sin_darla (test_promesas_encuentros.TestPromesasDeEncuentro.test_ningun_efecto_anuncia_fuerza_sin_darla)
+"un punto mas de fuerza" con el mazo igual es una promesa rota. ... ok
+test_ningun_texto_de_encuentro_usa_jargon (test_promesas_encuentros.TestPromesasDeEncuentro.test_ningun_texto_de_encuentro_usa_jargon)
+G5 pidio quitar 'pool' y 'pity' de la jerga visible al jugador. ... ok
+test_robo_entrega_una_carta (test_promesas_encuentros.TestPromesasDeEncuentro.test_robo_entrega_una_carta) ... ok
+test_sigilo_sube_el_lado_mas_bajo_y_es_de_campana (test_promesas_encuentros.TestPromesasDeEncuentro.test_sigilo_sube_el_lado_mas_bajo_y_es_de_campana)
+El sigilo se anuncia "durante esta campana": no debe persistir. ... ok
+test_sobre_abre_tres_cartas (test_promesas_encuentros.TestPromesasDeEncuentro.test_sobre_abre_tres_cartas) ... ok
+test_todas_las_opciones_anuncian_una_efecto_conocido (test_promesas_encuentros.TestPromesasDeEncuentro.test_todas_las_opciones_anuncian_una_efecto_conocido) ... ok
+test_la_marca_deja_una_senal_visible (test_propiedad_forma.TestPropiedadPorForma.test_la_marca_deja_una_senal_visible)
+Ni la marca ni su ausencia pueden pasar desapercibidas. ... ok
+test_las_tres_marcas_son_distintas_en_gris (test_propiedad_forma.TestPropiedadPorForma.test_las_tres_marcas_son_distintas_en_gris)
+El criterio literal: distinguibles sin depender del color. ... ok
+test_campana_rapido_continuar_conserva_guardado_y_mejoras (test_rapidos_independientes.TestRapidosIndependientes.test_campana_rapido_continuar_conserva_guardado_y_mejoras) ... ok
+test_cancelar_cualquiera_de_las_selecciones_no_escribe_perfil (test_rapidos_independientes.TestRapidosIndependientes.test_cancelar_cualquiera_de_las_selecciones_no_escribe_perfil) ... ok
+test_presets_cubren_facciones_son_legales_y_entregan_copias (test_rapidos_independientes.TestRapidosIndependientes.test_presets_cubren_facciones_son_legales_y_entregan_copias) ... ok
+test_rapido_antes_de_campana_no_contamina_editor_ni_mazo_inicial (test_rapidos_independientes.TestRapidosIndependientes.test_rapido_antes_de_campana_no_contamina_editor_ni_mazo_inicial) ... ok
+test_varios_rapidos_nuevos_dejan_coleccion_y_mazo_vacios (test_rapidos_independientes.TestRapidosIndependientes.test_varios_rapidos_nuevos_dejan_coleccion_y_mazo_vacios) ... ok
+test_abandonar (test_recorridos_g9.TestRecorridosIntegrados.test_abandonar) ... ok
+test_compra_y_equipar (test_recorridos_g9.TestRecorridosIntegrados.test_compra_y_equipar) ... ok
+test_derrota_y_reintento (test_recorridos_g9.TestRecorridosIntegrados.test_derrota_y_reintento) ... ok
+test_hasta_el_final (test_recorridos_g9.TestRecorridosIntegrados.test_hasta_el_final) ... ok
+test_mejorar_carta (test_recorridos_g9.TestRecorridosIntegrados.test_mejorar_carta) ... ok
+test_nuevo_jugador (test_recorridos_g9.TestRecorridosIntegrados.test_nuevo_jugador) ... ok
+test_reanudacion (test_recorridos_g9.TestRecorridosIntegrados.test_reanudacion) ... ok
+test_todos_los_recorridos_siguen_declarados (test_recorridos_g9.TestRecorridosIntegrados.test_todos_los_recorridos_siguen_declarados)
+Si alguien quita un recorrido del listado, este test lo delata. ... ok
+test_captura_ambos_lados (test_reglas.TestCapturas.test_captura_ambos_lados) ... ok
+test_captura_cadena (test_reglas.TestCapturas.test_captura_cadena) ... ok
+test_captura_simple (test_reglas.TestCapturas.test_captura_simple) ... ok
+test_elemental_centro (test_reglas.TestCapturas.test_elemental_centro) ... ok
+test_no_captura_aliados (test_reglas.TestCapturas.test_no_captura_aliados) ... ok
+test_plus (test_reglas.TestCapturas.test_plus) ... ok
+test_quema (test_reglas.TestCapturas.test_quema)
+La quema gana o empata cada comparacion (y el muro protege). ... ok
+test_quema_no_captura_a_una_vecina_mas_fuerte (test_reglas.TestCapturas.test_quema_no_captura_a_una_vecina_mas_fuerte) ... ok
+test_same (test_reglas.TestCapturas.test_same) ... ok
+test_simular_no_muta (test_reglas.TestCapturas.test_simular_no_muta) ... ok
+test_sin_captura (test_reglas.TestCapturas.test_sin_captura) ... ok
+test_el_rival_siempre_tiene_color (test_render_escenas.TestNingunColorLlegaComoNone.test_el_rival_siempre_tiene_color) ... ok
+test_escena_normaliza_el_color_igual (test_render_escenas.TestNingunColorLlegaComoNone.test_escena_normaliza_el_color_igual)
+`cinematicas.Escena` es el cuello de botella: normaliza aunque el ... ok
+test_la_ui_no_revienta_con_un_color_ausente (test_render_escenas.TestNingunColorLlegaComoNone.test_la_ui_no_revienta_con_un_color_ausente) ... ok
+test_los_finales_siempre_tienen_color (test_render_escenas.TestNingunColorLlegaComoNone.test_los_finales_siempre_tienen_color) ... ok
+test_el_cartel_de_duelo_de_cada_rival (test_render_escenas.TestTodasLasEscenasSePintan.test_el_cartel_de_duelo_de_cada_rival)
+Esto es lo que revienta en juego: el cartel antes del duelo. ... ok
+test_el_cartel_previo_al_duelo_real_de_cada_nodo_y_faccion (test_render_escenas.TestTodasLasEscenasSePintan.test_el_cartel_previo_al_duelo_real_de_cada_nodo_y_faccion)
+Se arma con `campana.info_duelo`, que es lo que pasa en juego. ... ok
+test_el_prologo_entero (test_render_escenas.TestTodasLasEscenasSePintan.test_el_prologo_entero) ... ok
+test_la_narrativa_de_cada_nodo (test_render_escenas.TestTodasLasEscenasSePintan.test_la_narrativa_de_cada_nodo) ... ok
+test_los_tres_finales_completos (test_render_escenas.TestTodasLasEscenasSePintan.test_los_tres_finales_completos)
+La campana no se podia TERMINAR: el umbral y el epilogo pintaban con ... ok
+test_cada_hablante_conocido_recupera_su_avatar (test_revision_jugador.TestRevisionJugador.test_cada_hablante_conocido_recupera_su_avatar) ... ok
+test_nueva_campana_abre_editor_vacio_aunque_haya_mazo (test_revision_jugador.TestRevisionJugador.test_nueva_campana_abre_editor_vacio_aunque_haya_mazo) ... ok
+test_prologo_cambia_color_al_cambiar_propietario (test_revision_jugador.TestRevisionJugador.test_prologo_cambia_color_al_cambiar_propietario) ... ok
+test_dialogos_del_trono_no_vuelven_al_fondo_viejo (test_revision_visual_hover.TestRevisionVisual.test_dialogos_del_trono_no_vuelven_al_fondo_viejo) ... ok
+test_nombre_externo_solo_hover (test_revision_visual_hover.TestRevisionVisual.test_nombre_externo_solo_hover) ... ok
+test_nombre_no_esta_pintado_en_carta (test_revision_visual_hover.TestRevisionVisual.test_nombre_no_esta_pintado_en_carta) ... ok
+test_planos_del_prologo_reutilizan_hd_por_escenario (test_revision_visual_hover.TestRevisionVisual.test_planos_del_prologo_reutilizan_hd_por_escenario) ... ok
+test_la_escena_de_amistad_solo_sale_una_vez (test_ritmo_narrativo.TestAmistadNoSeRepite.test_la_escena_de_amistad_solo_sale_una_vez) ... ok
+test_la_decision_muestra_titulo_y_consecuencia (test_ritmo_narrativo.TestConsecuenciasVisibles.test_la_decision_muestra_titulo_y_consecuencia) ... ok
+test_los_textos_no_prometen_mecanicas_inexistentes (test_ritmo_narrativo.TestConsecuenciasVisibles.test_los_textos_no_prometen_mecanicas_inexistentes)
+El sigilo es de campana; ninguna decision promete un reloj. ... ok
+test_resumen_efecto_refleja_los_deltas (test_ritmo_narrativo.TestConsecuenciasVisibles.test_resumen_efecto_refleja_los_deltas) ... ok
+test_resumen_efecto_vacio_es_generico (test_ritmo_narrativo.TestConsecuenciasVisibles.test_resumen_efecto_vacio_es_generico) ... ok
+test_titulo_decision_nunca_es_el_id (test_ritmo_narrativo.TestConsecuenciasVisibles.test_titulo_decision_nunca_es_el_id) ... ok
+test_toda_decision_tiene_titulo_narrativo (test_ritmo_narrativo.TestConsecuenciasVisibles.test_toda_decision_tiene_titulo_narrativo) ... ok
+test_el_diario_tiene_tope (test_ritmo_narrativo.TestDiarioDeDialogos.test_el_diario_tiene_tope) ... ok
+test_filtro_por_faccion_conserva_la_narracion_comun (test_ritmo_narrativo.TestDiarioDeDialogos.test_filtro_por_faccion_conserva_la_narracion_comun) ... ok
+test_guardar_y_leer_una_linea (test_ritmo_narrativo.TestDiarioDeDialogos.test_guardar_y_leer_una_linea) ... ok
+test_lineas_vacias_se_ignoran (test_ritmo_narrativo.TestDiarioDeDialogos.test_lineas_vacias_se_ignoran) ... ok
+test_pintar_el_diario_no_revienta_y_sale_con_esc (test_ritmo_narrativo.TestDiarioDeDialogos.test_pintar_el_diario_no_revienta_y_sale_con_esc) ... ok
+test_las_escenas_cortas_no_interrumpen (test_ritmo_narrativo.TestEscenasVistas.test_las_escenas_cortas_no_interrumpen) ... ok
+test_primera_vez_no_pregunta_y_marca_visto (test_ritmo_narrativo.TestEscenasVistas.test_primera_vez_no_pregunta_y_marca_visto) ... ok
+test_segunda_vez_ofrece_saltar (test_ritmo_narrativo.TestEscenasVistas.test_segunda_vez_ofrece_saltar) ... ok
+test_segunda_vez_se_puede_releer (test_ritmo_narrativo.TestEscenasVistas.test_segunda_vez_se_puede_releer) ... ok
+test_resumen_de_campana_completa_no_revienta (test_ritmo_narrativo.TestResumenAlContinuar.test_resumen_de_campana_completa_no_revienta) ... ok
+test_resumen_de_final_pendiente_avisa (test_ritmo_narrativo.TestResumenAlContinuar.test_resumen_de_final_pendiente_avisa) ... ok
+test_resumen_menciona_recompensa_pendiente (test_ritmo_narrativo.TestResumenAlContinuar.test_resumen_menciona_recompensa_pendiente) ... ok
+test_resumen_orienta_sobre_el_siguiente_objetivo (test_ritmo_narrativo.TestResumenAlContinuar.test_resumen_orienta_sobre_el_siguiente_objetivo) ... ok
+test_sin_la_opcion_el_epilogo_no_se_puede_saltar (test_saltar_cinematica.TestLaProteccionDelFinalSigueEnPie.test_sin_la_opcion_el_epilogo_no_se_puede_saltar) ... ok
+test_con_la_opcion_a_no_la_cinematica_se_reproduce (test_saltar_cinematica.TestLaSuiteNoDependeDeTuConfiguracion.test_con_la_opcion_a_no_la_cinematica_se_reproduce) ... ok
+test_con_la_opcion_a_si_no_se_lee_ningun_evento (test_saltar_cinematica.TestLaSuiteNoDependeDeTuConfiguracion.test_con_la_opcion_a_si_no_se_lee_ningun_evento) ... ok
+test_el_contexto_restaura_el_valor_original (test_saltar_cinematica.TestLaSuiteNoDependeDeTuConfiguracion.test_el_contexto_restaura_el_valor_original) ... ok
+test_el_texto_instantaneo_tambien_es_independiente (test_saltar_cinematica.TestLaSuiteNoDependeDeTuConfiguracion.test_el_texto_instantaneo_tambien_es_independiente) ... ok
+test_alternar_invierte_y_guarda (test_saltar_cinematica.TestOpcionesPersistidas.test_alternar_invierte_y_guarda) ... ok
+test_las_dos_opciones_existen_y_valen_lo_que_dicen (test_saltar_cinematica.TestOpcionesPersistidas.test_las_dos_opciones_existen_y_valen_lo_que_dicen) ... ok
+test_no_toca_disco_si_ya_esta_cacheado (test_saltar_cinematica.TestOpcionesPersistidas.test_no_toca_disco_si_ya_esta_cacheado)
+`opciones()` puede llamarse desde un bucle: tiene que ser gratis. ... ok
+test_sobrevive_al_reinicio_del_juego (test_saltar_cinematica.TestOpcionesPersistidas.test_sobrevive_al_reinicio_del_juego) ... ok
+test_un_fichero_corrupto_no_rompe (test_saltar_cinematica.TestOpcionesPersistidas.test_un_fichero_corrupto_no_rompe) ... ok
+test_vienen_desactivadas_por_defecto (test_saltar_cinematica.TestOpcionesPersistidas.test_vienen_desactivadas_por_defecto)
+El juego de verdad no cambia: el epilogo sigue protegido. ... ok
+test_con_la_opcion_la_secuencia_se_salte_entera (test_saltar_cinematica.TestSaltarCinematica.test_con_la_opcion_la_secuencia_se_salte_entera)
+Se comprueba de verdad: `ejecutar` termina y llama a `al_terminar`. ... ok
+test_el_texto_instantaneo_muestra_la_linea_entera (test_saltar_cinematica.TestSaltarCinematica.test_el_texto_instantaneo_muestra_la_linea_entera) ... ok
+test_la_opcion_se_lee_al_construir_una_vez (test_saltar_cinematica.TestSaltarCinematica.test_la_opcion_se_lee_al_construir_una_vez)
+No se consulta por frame: se lee al construir la secuencia. ... ok
+test_la_secuencia_de_prueba_es_larga_de_verdad (test_saltar_cinematica.TestSaltarCinematica.test_la_secuencia_de_prueba_es_larga_de_verdad)
+Si esta prueba no usa una secuencia larga, no mide nada. ... ok
+test_sin_la_opcion_no_hay_salto_automatico (test_saltar_cinematica.TestSaltarCinematica.test_sin_la_opcion_no_hay_salto_automatico) ... ok
+test_editor_exige_diez_cartas (test_saneamiento_ui.TestSaneamientoUI.test_editor_exige_diez_cartas) ... ok
+test_mano_extensa_reserva_el_avatar (test_saneamiento_ui.TestSaneamientoUI.test_mano_extensa_reserva_el_avatar) ... ok
+test_nombre_del_jugador_no_se_reescribe (test_saneamiento_ui.TestSaneamientoUI.test_nombre_del_jugador_no_se_reescribe) ... ok
+test_pregunta_heredada_y_dialogo (test_saneamiento_ui.TestSaneamientoUI.test_pregunta_heredada_y_dialogo) ... ok
+test_rutas_historicas_con_acentos (test_saneamiento_ui.TestSaneamientoUI.test_rutas_historicas_con_acentos) ... ok
+test_seleccion_de_arte_recibe_el_guion_original (test_saneamiento_ui.TestSaneamientoUI.test_seleccion_de_arte_recibe_el_guion_original) ... ok
+test_unicode_y_signos_se_conservan (test_saneamiento_ui.TestSaneamientoUI.test_unicode_y_signos_se_conservan) ... ok
+test_vaciar_no_guarda_y_cancelar_conserva_ambos_mazos (test_saneamiento_ui.TestSaneamientoUI.test_vaciar_no_guarda_y_cancelar_conserva_ambos_mazos) ... ok
+test_apagado_por_defecto_no_suena (test_sfx_candidatos.TestSfxCandidatos.test_apagado_por_defecto_no_suena) ... ok
+test_cache_marca_ausente_y_no_reintenta (test_sfx_candidatos.TestSfxCandidatos.test_cache_marca_ausente_y_no_reintenta) ... ok
+test_canal_nombreado_detiene_previo (test_sfx_candidatos.TestSfxCandidatos.test_canal_nombreado_detiene_previo) ... ok
+test_evento_sin_cablear_suena_pero_queda_registrado (test_sfx_candidatos.TestSfxCandidatos.test_evento_sin_cablear_suena_pero_queda_registrado) ... ok
+test_limita_simultaneos (test_sfx_candidatos.TestSfxCandidatos.test_limita_simultaneos) ... ok
+test_manifest_y_hashes_intactos (test_sfx_candidatos.TestSfxCandidatos.test_manifest_y_hashes_intactos) ... ok
+test_reset_limpia_estado (test_sfx_candidatos.TestSfxCandidatos.test_reset_limpia_estado) ... ok
+test_rotacion_determinista_entre_variantes (test_sfx_candidatos.TestSfxCandidatos.test_rotacion_determinista_entre_variantes) ... ok
+test_volumen_aislado_de_musica_y_sfx_base (test_sfx_candidatos.TestSfxCandidatos.test_volumen_aislado_de_musica_y_sfx_base) ... ok
+test_cinematicas_y_otros_no_se_redirigen (test_sfx_stable_audio3.TestLoteStableAudio3.test_cinematicas_y_otros_no_se_redirigen) ... ok
+test_dos_hooks_nuevos_existen (test_sfx_stable_audio3.TestLoteStableAudio3.test_dos_hooks_nuevos_existen) ... ok
+test_formato_identico_al_mixer (test_sfx_stable_audio3.TestLoteStableAudio3.test_formato_identico_al_mixer) ... ok
+test_hash_roto_cae_al_original (test_sfx_stable_audio3.TestLoteStableAudio3.test_hash_roto_cae_al_original) ... ok
+test_los_doce_redirigen (test_sfx_stable_audio3.TestLoteStableAudio3.test_los_doce_redirigen) ... ok
+test_manifest_y_hashes (test_sfx_stable_audio3.TestLoteStableAudio3.test_manifest_y_hashes) ... ok
+test_musica_duelo_intacta (test_sfx_stable_audio3.TestLoteStableAudio3.test_musica_duelo_intacta) ... ok
+test_musica_no_pasa_por_el_lote (test_sfx_stable_audio3.TestLoteStableAudio3.test_musica_no_pasa_por_el_lote) ... ok
+test_reversion_por_entorno (test_sfx_stable_audio3.TestLoteStableAudio3.test_reversion_por_entorno) ... ok
+test_con_few_muestras_no_toca_el_informe_bueno (test_simulador_balance.TestElInformeSeConserva.test_con_few_muestras_no_toca_el_informe_bueno) ... ok
+test_el_fichero_muestrecha_lo_avisa_en_cabecera (test_simulador_balance.TestElInformeSeConserva.test_el_fichero_muestrecha_lo_avisa_en_cabecera) ... ok
+test_el_mismo_fichero_es_idempotente (test_simulador_balance.TestElInformeSeConserva.test_el_mismo_fichero_es_idempotente) ... ok
+test_las_conclusiones_se_conservan_al_regenerar (test_simulador_balance.TestElInformeSeConserva.test_las_conclusiones_se_conservan_al_regenerar) ... ok
+test_nada_se_escribe_en_el_repo (test_simulador_balance.TestElInformeSeConserva.test_nada_se_escribe_en_el_repo) ... ok
+test_una_conclusion_editada_a_mano_manda_sobre_la_del_codigo (test_simulador_balance.TestElInformeSeConserva.test_una_conclusion_editada_a_mano_manda_sobre_la_del_codigo)
+Lo escrito a mano se respeta: el codigo no pisa el analisis. ... ok
+test_balance_md_tiene_datos_y_conclusiones (test_simulador_balance.TestLasConclusionsNoSePierdenEnElFicheroReal.test_balance_md_tiene_datos_y_conclusiones) ... ok
+test_el_error_baja_con_las_muestras (test_simulador_balance.TestUmbralDePublicabilidad.test_el_error_baja_con_las_muestras)
+La razon de ser del umbral: el margen tiene que encogerse. ... ok
+test_el_minimo_esta_por_encima_del_punto_de_ruido (test_simulador_balance.TestUmbralDePublicabilidad.test_el_minimo_esta_por_encima_del_punto_de_ruido)
+Con 60 trials el margen es ~10 puntos y salen cruces falsos. ... ok
+test_cuando_sube_de_verdad_lo_dice (test_sobre_maximo.TestSobreNoAnunciaMasDeLoQueDa.test_cuando_sube_de_verdad_lo_dice)
+Sustituto: si una duplicada sube, el texto dice cuanto. ... ok
+test_duplicadas_al_maximo_no_anuncian_un_mas (test_sobre_maximo.TestSobreNoAnunciaMasDeLoQueDa.test_duplicadas_al_maximo_no_anuncian_un_mas)
+Con toda la coleccion al 10, ningun texto puede prometer un +1. ... ok
+test_el_detalle_guardado_y_el_texto_coinciden (test_sobre_maximo.TestSobreNoAnunciaMasDeLoQueDa.test_el_detalle_guardado_y_el_texto_coinciden)
+Lo que se enseña tiene que ser lo que el codigo calculo. ... ok
+test_el_texto_dice_que_estan_al_maximo (test_sobre_maximo.TestSobreNoAnunciaMasDeLoQueDa.test_el_texto_dice_que_estan_al_maximo) ... ok
+test_filtrar_por_habilidad_y_rareza (test_sobres.TestColeccionPaginada.test_filtrar_por_habilidad_y_rareza) ... ok
+test_navegar_filtrar_y_ficha_sin_colgarse (test_sobres.TestColeccionPaginada.test_navegar_filtrar_y_ficha_sin_colgarse) ... ok
+test_paginar_recorta_y_sujeta (test_sobres.TestColeccionPaginada.test_paginar_recorta_y_sujeta) ... ok
+test_mejorar_pagina_dos_devuelve_indice_global (test_sobres.TestMejoraPaginada.test_mejorar_pagina_dos_devuelve_indice_global) ... ok
+test_reemplazo_pagina_dos_devuelve_indice_global (test_sobres.TestMejoraPaginada.test_reemplazo_pagina_dos_devuelve_indice_global) ... ok
+test_esc_sale_antes_de_tiempo (test_sobres.TestRevelar.test_esc_sale_antes_de_tiempo) ... ok
+test_revelar_tres_y_salir (test_sobres.TestRevelar.test_revelar_tres_y_salir) ... ok
+test_sobre_vacio (test_sobres.TestRevelar.test_sobre_vacio) ... ok
+test_caravana_da_sobre (test_sobres.TestSobres.test_caravana_da_sobre) ... ok
+test_duplicada_mejora_la_base_no_el_mazo (test_sobres.TestSobres.test_duplicada_mejora_la_base_no_el_mazo) ... ok
+test_efecto_sobre_procesa_tres (test_sobres.TestSobres.test_efecto_sobre_procesa_tres) ... ok
+test_nueva_entra_en_la_coleccion (test_sobres.TestSobres.test_nueva_entra_en_la_coleccion) ... ok
+test_pesos_del_sobre (test_sobres.TestSobres.test_pesos_del_sobre) ... ok
+test_sobre_da_tres_distintas_del_pool (test_sobres.TestSobres.test_sobre_da_tres_distintas_del_pool) ... ok
+test_sobre_en_recompensas_y_texto (test_sobres.TestSobres.test_sobre_en_recompensas_y_texto) ... ok
+test_comprar_descuenta (test_sobres.TestTiendaYPity.test_comprar_descuenta) ... ok
+test_comprar_sin_moneda_no_vende (test_sobres.TestTiendaYPity.test_comprar_sin_moneda_no_vende) ... ok
+test_mapa_boton_tienda_ida_y_vuelta (test_sobres.TestTiendaYPity.test_mapa_boton_tienda_ida_y_vuelta) ... ok
+test_pity_cuenta_sin_legendaria (test_sobres.TestTiendaYPity.test_pity_cuenta_sin_legendaria) ... ok
+test_pity_garantiza_legendaria_al_decimo (test_sobres.TestTiendaYPity.test_pity_garantiza_legendaria_al_decimo) ... ok
+test_probabilidad_de_legendaria_es_coherente_y_garantiza_con_pity (test_sobres.TestTiendaYPity.test_probabilidad_de_legendaria_es_coherente_y_garantiza_con_pity) ... ok
+test_tienda_compra_y_sale (test_sobres.TestTiendaYPity.test_tienda_compra_y_sale) ... ok
+test_tienda_se_opera_con_teclado_y_muestra_probabilidad (test_sobres.TestTiendaYPity.test_tienda_se_opera_con_teclado_y_muestra_probabilidad) ... ok
+test_tienda_sin_moneda_avisa (test_sobres.TestTiendaYPity.test_tienda_sin_moneda_avisa) ... ok
+test_ajuste_texto_grande_no_rompe_ninguna_pantalla (test_texto_ampliado.TestTextoAmpliadoNoRompelaNada.test_ajuste_texto_grande_no_rompe_ninguna_pantalla) ... FAIL
+test_alto_texto_mide_la_linea_real (test_texto_ampliado.TestTextoAmpliadoNoRompelaNada.test_alto_texto_mide_la_linea_real)
+`ui.alto_texto` tiene que devolver el alto de verdad, no una guess. ... ok
+test_lineas_de_un_parrafo_no_se_pisan (test_texto_ampliado.TestTextoAmpliadoNoRompelaNada.test_lineas_de_un_parrafo_no_se_pisan)
+Con el modo lectura, dos lineas consecutivas no deben tocarse. ... ok
+test_techo_de_escala_no_rompe_ninguna_pantalla (test_texto_ampliado.TestTextoAmpliadoNoRompelaNada.test_techo_de_escala_no_rompe_ninguna_pantalla) ... C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_texto_amp_ng8d30ru'>
+  _warnings.warn(warn_message, ResourceWarning)
+C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_auditoria_texto_jvlggu8b'>
+  _warnings.warn(warn_message, ResourceWarning)
+C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_texto_amp_3o24dyuv'>
+  _warnings.warn(warn_message, ResourceWarning)
+C:\Users\julip\AppData\Local\Programs\Python\Python312\Lib\tempfile.py:940: ResourceWarning: Implicitly cleaning up <TemporaryDirectory 'C:\\Users\\julip\\AppData\\Local\\Temp\\tt_auditoria_texto_bzinwau_'>
+  _warnings.warn(warn_message, ResourceWarning)
+ok
+test_al_pasar_por_encima_del_rival_no_revienta (test_tooltip_tablero.TestHoverSobreElTablero.test_al_pasar_por_encima_del_rival_no_revienta) ... ok
+test_el_resplandor_no_se_dibuja_sin_raton_sobre_la_carta (test_tooltip_tablero.TestHoverSobreElTablero.test_el_resplandor_no_se_dibuja_sin_raton_sobre_la_carta)
+Con el raton lejos, `_dibujar_tablero` no debe encolar tooltip: se ... ok
+test_dice_de_quien_es_la_carta (test_tooltip_tablero.TestTooltipDelTablero.test_dice_de_quien_es_la_carta)
+Una carta cambia de bando cada vez que la capturan. Sin decir de ... ok
+test_enseña_la_habilidad_con_su_explicacion (test_tooltip_tablero.TestTooltipDelTablero.test_enseña_la_habilidad_con_su_explicacion) ... ok
+test_enseña_los_cuatro_lados (test_tooltip_tablero.TestTooltipDelTablero.test_enseña_los_cuatro_lados) ... ok
+test_habilidad_capturada_se_ve_inactiva_y_se_reactiva (test_tooltip_tablero.TestTooltipDelTablero.test_habilidad_capturada_se_ve_inactiva_y_se_reactiva) ... ok
+test_la_mano_y_el_tablero_ensen_lo_mismo (test_tooltip_tablero.TestTooltipDelTablero.test_la_mano_y_el_tablero_ensen_lo_mismo)
+Una sola funcion para los dos sitios. Es lo que evita que se ... ok
+test_tablero_dibuja_valores_efectivos_sin_alterar_la_mano (test_tooltip_tablero.TestTooltipDelTablero.test_tablero_dibuja_valores_efectivos_sin_alterar_la_mano) ... ok
+test_una_carta_sin_habilidad_lo_dice (test_tooltip_tablero.TestTooltipDelTablero.test_una_carta_sin_habilidad_lo_dice) ... ok
+test_boton_salir_pide_confirmar_y_abandona (test_tutorial.TestAbandonoEndToEnd.test_boton_salir_pide_confirmar_y_abandona) ... ok
+test_esc_solo_pide_confirmar_no_pausa (test_tutorial.TestAbandonoEndToEnd.test_esc_solo_pide_confirmar_no_pausa) ... ok
+test_esc_y_enter_abandonan_el_duelo_guiado (test_tutorial.TestAbandonoEndToEnd.test_esc_y_enter_abandonan_el_duelo_guiado) ... ok
+test_habilidades_citan_las_reglas_reales (test_tutorial.TestManual.test_habilidades_citan_las_reglas_reales)
+El texto de habilidades no puede quedar viejo: sale de reglas.py. ... ok
+test_las_cuatro_practicas_esperadas (test_tutorial.TestManual.test_las_cuatro_practicas_esperadas) ... ok
+test_nueve_paginas_con_que_y_sirve (test_tutorial.TestManual.test_nueve_paginas_con_que_y_sirve) ... ok
+test_flags_por_defecto_y_resumen (test_tutorial.TestPerfilTutorial.test_flags_por_defecto_y_resumen) ... ok
+test_marcar_y_leer_estado (test_tutorial.TestPerfilTutorial.test_marcar_y_leer_estado) ... ok
+test_basica_captura_el_flanco_debil (test_tutorial.TestPracticasConMotorReal.test_basica_captura_el_flanco_debil) ... ok
+test_cadena_arrastra_a_la_vecina (test_tutorial.TestPracticasConMotorReal.test_cadena_arrastra_a_la_vecina) ... ok
+test_embestida_solo_ruge_en_el_centro (test_tutorial.TestPracticasConMotorReal.test_embestida_solo_ruge_en_el_centro) ... ok
+test_furia_necesita_al_aliado (test_tutorial.TestPracticasConMotorReal.test_furia_necesita_al_aliado) ... ok
+test_muro_bloquea_hasta_un_10 (test_tutorial.TestPracticasConMotorReal.test_muro_bloquea_hasta_un_10) ... ok
+test_practicas_son_humano_contra_orco (test_tutorial.TestPracticasConMotorReal.test_practicas_son_humano_contra_orco) ... ok
+test_same_cae_dos_a_la_vez_sin_superar (test_tutorial.TestPracticasConMotorReal.test_same_cae_dos_a_la_vez_sin_superar) ... ok
+test_todos_los_pasos_y_recuperacion_con_motor_real (test_tutorial.TestPracticasConMotorReal.test_todos_los_pasos_y_recuperacion_con_motor_real) ... ok
+test_tras_colocar_avanza_y_cierra (test_tutorial.TestPracticasConMotorReal.test_tras_colocar_avanza_y_cierra) ... ok
+test_animaciones_terminan_despues_del_ultimo_movimiento (test_v2_1_legibilidad.TestLecturaDeJugada.test_animaciones_terminan_despues_del_ultimo_movimiento) ... ok
+test_boton_abandonar_ampliado_coincide_con_area_de_clic (test_v2_1_legibilidad.TestLecturaDeJugada.test_boton_abandonar_ampliado_coincide_con_area_de_clic) ... ok
+test_cartel_ampliado_separa_lineas_y_actualiza_cache (test_v2_1_legibilidad.TestLecturaDeJugada.test_cartel_ampliado_separa_lineas_y_actualiza_cache) ... ok
+test_colocacion_normal_conserva_el_ritmo (test_v2_1_legibilidad.TestLecturaDeJugada.test_colocacion_normal_conserva_el_ritmo) ... ok
+test_cpu_no_pisa_el_cartel_same (test_v2_1_legibilidad.TestLecturaDeJugada.test_cpu_no_pisa_el_cartel_same) ... ok
+test_pausa_e_historial_conservan_el_tiempo_del_efecto (test_v2_1_legibilidad.TestLecturaDeJugada.test_pausa_e_historial_conservan_el_tiempo_del_efecto) ... ok
+test_quema_se_anuncia_sin_inventar_cadena (test_v2_1_legibilidad.TestLecturaDeJugada.test_quema_se_anuncia_sin_inventar_cadena) ... ok
+test_resultado_ampliado_conserva_frase_y_separa_lineas (test_v2_1_legibilidad.TestLecturaDeJugada.test_resultado_ampliado_conserva_frase_y_separa_lineas) ... ok
+test_resultado_espera_al_efecto_de_la_ultima_jugada (test_v2_1_legibilidad.TestLecturaDeJugada.test_resultado_espera_al_efecto_de_la_ultima_jugada) ... ok
+test_resultado_estatico_se_reutiliza_y_historial_lo_invalida (test_v2_1_legibilidad.TestLecturaDeJugada.test_resultado_estatico_se_reutiliza_y_historial_lo_invalida) ... ok
+test_tecla_l_no_abre_historial_durante_pausa (test_v2_1_legibilidad.TestLecturaDeJugada.test_tecla_l_no_abre_historial_durante_pausa) ... ok
+test_tooltip_no_tapa_efecto_o_resultado (test_v2_1_legibilidad.TestLecturaDeJugada.test_tooltip_no_tapa_efecto_o_resultado) ... ok
+test_ultimo_same_del_rival_antes_de_derrota (test_v2_1_legibilidad.TestLecturaDeJugada.test_ultimo_same_del_rival_antes_de_derrota) ... ok
+test_ruta_fondo_no_toca_el_disco_por_llamada (test_variantes_fondo.TestRendimientoDeVariantes.test_ruta_fondo_no_toca_el_disco_por_llamada)
+Se llama POR FRAME desde las cinematograficas. ... ok
+test_cada_variante_aparece_al_alguna_semilla (test_variantes_fondo.TestVariantesDeFondo.test_cada_variante_aparece_al_alguna_semilla)
+Ninguna de las 24 puede quedarse sin usarse nunca. ... ok
+test_la_misma_semilla_da_los_mismos_fondos (test_variantes_fondo.TestVariantesDeFondo.test_la_misma_semilla_da_los_mismos_fondos)
+Es lo que hace que un sitio no cambie de aspecto al salir y volver. ... ok
+test_la_semilla_elige_una_variante_real (test_variantes_fondo.TestVariantesDeFondo.test_la_semilla_elige_una_variante_real) ... ok
+test_las_24_variantes_estan_en_disco (test_variantes_fondo.TestVariantesDeFondo.test_las_24_variantes_estan_en_disco) ... ok
+test_las_variantes_estan_a_512x256 (test_variantes_fondo.TestVariantesDeFondo.test_las_variantes_estan_a_512x256)
+El tamano que hace que el fondo escale con factor entero 3. ... ok
+test_ninguna_escena_base_se_declara_variante_de_si_misma (test_variantes_fondo.TestVariantesDeFondo.test_ninguna_escena_base_se_declara_variante_de_si_misma)
+`camino` no puede ser variante de `camino`: seria un bucle. ... ok
+test_semillas_distintas_dan_combinaciones_distintas (test_variantes_fondo.TestVariantesDeFondo.test_semillas_distintas_dan_combinaciones_distintas)
+Si no, las 24 variantes serian trabajo perdido. ... ok
+test_sin_fijar_semilla_sale_el_original (test_variantes_fondo.TestVariantesDeFondo.test_sin_fijar_semilla_sale_el_original)
+Sin llamada a `fijar_variantes` no se elige nada: se usa el fondo de ... ok
+test_una_escena_inexistente_no_revienta (test_variantes_fondo.TestVariantesDeFondo.test_una_escena_inexistente_no_revienta)
+Se llama con el nombre de la escena, que viene de datos narrativos. ... ok
+test_una_escena_sin_variantes_cae_en_el_original (test_variantes_fondo.TestVariantesDeFondo.test_una_escena_sin_variantes_cae_en_el_original)
+`aldea` no tiene variantes: tiene que devolver su fondo, no fallar. ... ok
+test_el_texto_visible_es_ascii (test_visual_y_bando.TestCadaFaccionDiceQuePide.test_el_texto_visible_es_ascii) ... ok
+test_la_apertura_de_cada_faccion_lo_dice_en_voz_alta (test_visual_y_bando.TestCadaFaccionDiceQuePide.test_la_apertura_de_cada_faccion_lo_dice_en_voz_alta) ... ok
+test_las_diez_dicen_que_piden_y_por_que_ayudan (test_visual_y_bando.TestCadaFaccionDiceQuePide.test_las_diez_dicen_que_piden_y_por_que_ayudan) ... ok
+test_lo_dice_el_personaje_y_no_un_narrador (test_visual_y_bando.TestCadaFaccionDiceQuePide.test_lo_dice_el_personaje_y_no_un_narrador)
+Las dos lineas nuevas son del bando: con su hablante y su retrato. ... ok
+test_no_contradice_quien_es_el_jefe (test_visual_y_bando.TestCadaFaccionDiceQuePide.test_no_contradice_quien_es_el_jefe)
+La peticion es de la faccion; el jefe lo sigue poniendo la ... ok
+test_el_info_de_campana_trae_retrato (test_visual_y_bando.TestElRetratoEsDelPersonaje.test_el_info_de_campana_trae_retrato) ... ok
+test_el_retrato_coincide_con_la_faccion_del_rival (test_visual_y_bando.TestElRetratoEsDelPersonaje.test_el_retrato_coincide_con_la_faccion_del_rival)
+El marco se tine con el color del bando, asi que el retrato tiene ... ok
+test_juan_va_con_su_retrato_en_el_tutorial (test_visual_y_bando.TestElRetratoEsDelPersonaje.test_juan_va_con_su_retrato_en_el_tutorial) ... ok
+test_la_pantalla_de_duelo_usa_el_retrato_del_personaje (test_visual_y_bando.TestElRetratoEsDelPersonaje.test_la_pantalla_de_duelo_usa_el_retrato_del_personaje)
+De punta a punta: el duelo del tutorial tiene que PINTAR a Juan. ... ok
+test_el_fondo_no_se_oscurece_demasiado (test_visual_y_bando.TestElTinteNoSeComeElArte.test_el_fondo_no_se_oscurece_demasiado)
+Un tinte tiene que SENTIRSE, no tapar. Antes era 55-60%. ... ok
+test_los_dos_mundos_siguen_distinguiendose (test_visual_y_bando.TestElTinteNoSeComeElArte.test_los_dos_mundos_siguen_distinguiendose) ... ok
+test_el_presentador_aparece_con_retrato (test_visual_y_bando.TestElTorneoNoEsUnaSolaImagen.test_el_presentador_aparece_con_retrato) ... ok
+test_el_tramo_del_torneo_usa_varios_fondos (test_visual_y_bando.TestElTorneoNoEsUnaSolaImagen.test_el_tramo_del_torneo_usa_varios_fondos) ... ok
+test_no_hay_un_tramo_largo_de_un_solo_fondo (test_visual_y_bando.TestElTorneoNoEsUnaSolaImagen.test_no_hay_un_tramo_largo_de_un_solo_fondo)
+Once seguidas era el problema: era un fondo con texto encima. ... ok
+test_todo_fondo_nuevo_existe (test_visual_y_bando.TestElTorneoNoEsUnaSolaImagen.test_todo_fondo_nuevo_existe) ... ok
+test_cada_bando_se_distingue_del_otro (test_visual_y_bando.TestLosDiezBandosTienenAvatarNuevo.test_cada_bando_se_distingue_del_otro)
+Diez bandos con el mismo dibujo serian un bug de generacion. ... ok
+test_el_presentador_tiene_avatar (test_visual_y_bando.TestLosDiezBandosTienenAvatarNuevo.test_el_presentador_tiene_avatar) ... ok
+test_los_diez_existen (test_visual_y_bando.TestLosDiezBandosTienenAvatarNuevo.test_los_diez_existen) ... ok
+test_tienen_el_modo_y_el_tamano_del_set_nuevo (test_visual_y_bando.TestLosDiezBandosTienenAvatarNuevo.test_tienen_el_modo_y_el_tamano_del_set_nuevo)
+El set viejo era RGB; el nuevo es RGBA de 256x256. ... ok
+test_el_escalado_cubre_sin_cambiar_la_proporcion (test_visual_y_bando.TestLosFondosNoSeDeforman.test_el_escalado_cubre_sin_cambiar_la_proporcion) ... ok
+test_el_fondo_de_pantalla_no_achata_la_imagen (test_visual_y_bando.TestLosFondosNoSeDeforman.test_el_fondo_de_pantalla_no_achata_la_imagen)
+`_cubrir` escala por UN lado y recorta: la escala es uniforme. ... ok
+test_fondo_pantalla_no_estira_de_verdad (test_visual_y_bando.TestLosFondosNoSeDeforman.test_fondo_pantalla_no_estira_de_verdad)
+Prueba la RUTA REAL, no `_cubrir` directo. ... ok
+test_todos_los_fondos_se_cargan_escalados (test_visual_y_bando.TestLosFondosNoSeDeforman.test_todos_los_fondos_se_cargan_escalados) ... ok
+test_con_partida_guardada_se_puede_empezar_de_cero (test_visual_y_bando.TestSiempreSePuedeEmpezarDeCero.test_con_partida_guardada_se_puede_empezar_de_cero) ... ok
+test_el_respaldo_copia_en_vez_de_borrar (test_visual_y_bando.TestSiempreSePuedeEmpezarDeCero.test_el_respaldo_copia_en_vez_de_borrar) ... ok
+test_hay_confirmacion_antes_de_pisar_la_partida (test_visual_y_bando.TestSiempreSePuedeEmpezarDeCero.test_hay_confirmacion_antes_de_pisar_la_partida) ... ok
+test_sin_partida_tambien (test_visual_y_bando.TestSiempreSePuedeEmpezarDeCero.test_sin_partida_tambien) ... ok
+test_la_lista_de_asyncificar_no_esta_obsoleta (test_web_async.TestPantallasAsync.test_la_lista_de_asyncificar_no_esta_obsoleta)
+Si el codemod nombra pantallas que ya no existen, avisa. ... ok
+test_ninguna_pantalla_dibuja_frames_de_forma_sincrona (test_web_async.TestPantallasAsync.test_ninguna_pantalla_dibuja_frames_de_forma_sincrona) ... ok
+
+======================================================================
+FAIL: test_ajuste_texto_grande_no_rompe_ninguna_pantalla (test_texto_ampliado.TestTextoAmpliadoNoRompelaNada.test_ajuste_texto_grande_no_rompe_ninguna_pantalla)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\openCode\TripleTriad\tests\test_texto_ampliado.py", line 154, in test_ajuste_texto_grande_no_rompe_ninguna_pantalla
+    self.assertEqual([], fallos, self._detalle(fallos))
+AssertionError: Lists differ: [] != [('elegir_faccion_rapida', ['[elegir_facci[214 chars]1'])]
+
+Second list contains 1 additional elements.
+First extra element 0:
+('elegir_faccion_rapida', ['[elegir_faccion_rapida] Solapamiento de textos: <rect(958, 610, 180, 9)> y <rect(1015, 603, 150, 11)> en frame 0', '[elegir_faccion_rapida] Solapamiento de textos: <rect(958, 610, 180, 9)> y <rect(1015, 603, 150, 11)> en frame 1'])
+
+- []
++ [('elegir_faccion_rapida',
++   ['[elegir_faccion_rapida] Solapamiento de textos: <rect(958, 610, 180, 9)> y '
++    '<rect(1015, 603, 150, 11)> en frame 0',
++    '[elegir_faccion_rapida] Solapamiento de textos: <rect(958, 610, 180, 9)> y '
++    '<rect(1015, 603, 150, 11)> en frame 1'])] : desbordes:
+  elegir_faccion_rapida: [elegir_faccion_rapida] Solapamiento de textos: <rect(958, 610, 180, 9)> y <rect(1015, 603, 150, 11)> en frame 0
+  elegir_faccion_rapida: [elegir_faccion_rapida] Solapamiento de textos: <rect(958, 610, 180, 9)> y <rect(1015, 603, 150, 11)> en frame 1
+
+----------------------------------------------------------------------
+Ran 1099 tests in 73.579s
+
+FAILED (failures=1)
+pygame 2.6.1 (SDL 2.28.4, Python 3.12.10)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+  error consultando el estado: <urlopen error ComfyUI se cerro>
+  error consultando el estado: <urlopen error se cerro>
+  fallo durante la ejecucion, mira la consola de ComfyUI
+  error de conexion: <urlopen error sin servidor>
+  GPU-Coordinator (portero): generacion omitida (trabajo previo)
+  ya existe: C:\Users\julip\AppData\Local\Temp\tmpl00ikh_4\protegido.png (usa --fuerza para regenerar)
+  timeout: ComfyUI no termino a tiempo (el trabajo puede seguir en ComfyUI)
+ERROR ejecutando rota: ZeroDivisionError('division by zero')
+ERROR ejecutando rota: ZeroDivisionError('division by zero')
+ERROR ejecutando rota: ZeroDivisionError('division by zero')

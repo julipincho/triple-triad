@@ -1,0 +1,342 @@
+{
+  "capturas": [
+    "rapida_1.png",
+    "rapida_rival_1.png",
+    "rapida_1.25.png",
+    "rapida_rival_1.25.png",
+    "rapida_1.6.png",
+    "rapida_rival_1.6.png"
+  ],
+  "problemas": [],
+  "mazos": {
+    "dragon": {
+      "cartas": [
+        "Cola Corta",
+        "Bostezo Ígneo",
+        "Charca de Lava",
+        "Diente Curvo",
+        "Escama Suelta",
+        "Cria",
+        "Cola Ferrea",
+        "Sombra Alada",
+        "Vuelo Rasante",
+        "Reina Ceniza"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro"
+      ]
+    },
+    "elfo": {
+      "cartas": [
+        "Broteluz",
+        "Arco Corto",
+        "Lechuza",
+        "Musgo Viejo",
+        "Refugio Verde",
+        "Centinela",
+        "Cazador de Niebla",
+        "Danza de Hojas",
+        "Elfo Real",
+        "Raíz del Mundo"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "elfo_nocturno": {
+      "cartas": [
+        "Beso de Sombra",
+        "Mirada Hueca",
+        "Nido de Búhos",
+        "Velo Gris",
+        "Espia Umbria",
+        "Daga Eclipse",
+        "Eclipse Parcial",
+        "Hermana Umbria",
+        "Lanza Penumbra",
+        "Reina de la Noche"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "goblin": {
+      "cartas": [
+        "Chivato",
+        "Lamecharcos",
+        "Trampero",
+        "Brujo Verde",
+        "Corretejas",
+        "Chamana Gris",
+        "Jefe de Tropa",
+        "Revuelcabolsas",
+        "Saltatechos",
+        "Plaga Verde"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "hombre_lagarto": {
+      "cartas": [
+        "Junco Verde",
+        "Charco Hondo",
+        "Lengua Rápida",
+        "Escamado",
+        "Lanza Juncos",
+        "Mordisco Fangoso",
+        "Chaman del Pantano",
+        "Ciénaga Viva",
+        "Cola del Río",
+        "Fauces Ancestrales"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "hombre_lobo": {
+      "cartas": [
+        "Cachorro",
+        "Guarida",
+        "Diente de Leche",
+        "Garras de Luna",
+        "Aullador",
+        "Mordedor Lunar",
+        "Aullido",
+        "Caza Nocturna",
+        "Lomo Plateado",
+        "Madre Luna"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "hombre_pantera": {
+      "cartas": [
+        "Bigote",
+        "Colmillo Chico",
+        "Huella Húmeda",
+        "Juego de Sombras",
+        "Selva Espesa",
+        "Acechador",
+        "Emboscada",
+        "Caza del Alba",
+        "Cazadora Silente",
+        "Luna del Jaguar"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "humano": {
+      "cartas": [
+        "Alabardero",
+        "Escudero",
+        "Antorcha Viva",
+        "Broquel",
+        "Tamborilero",
+        "Arquera de Torre",
+        "Ballestero",
+        "Jinete Pardo",
+        "Estandarte Dorado",
+        "Rey Aldric"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "orco": {
+      "cartas": [
+        "Colmillo Roto",
+        "Gruñido",
+        "Foso",
+        "Porton de Hierro",
+        "Tizón",
+        "Jabalina Veloz",
+        "Tambor de Guerra",
+        "Cuernos de Guerra",
+        "Grito de Sangre",
+        "Senor de la Guerra Vorg"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    },
+    "vampiro": {
+      "cartas": [
+        "Rata de Cripta",
+        "Siervo Pálido",
+        "Ataúd Reforzado",
+        "Mayordomo",
+        "Candil Rojo",
+        "Doncella Palida",
+        "Capa Carmesí",
+        "Vals Eterno",
+        "Conde Nocturno",
+        "Latido Final"
+      ],
+      "total": 250,
+      "rarezas": [
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "COMUN",
+        "RARA",
+        "RARA",
+        "RARA",
+        "LEGENDARIA"
+      ],
+      "habilidades": [
+        "embestida",
+        "furia",
+        "muro",
+        "quema"
+      ]
+    }
+  }
+}

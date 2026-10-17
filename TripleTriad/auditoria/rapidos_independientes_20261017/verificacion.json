@@ -1,0 +1,12 @@
+{
+  "tests": 1099,
+  "tests_exit": 0,
+  "chrome_exit": 0,
+  "coleccion_y_mazo_intactos": true,
+  "imagenes_protegidas": 1221,
+  "imagenes_modificadas": [],
+  "fps_menu": 62.51953737713859,
+  "fps_duelo": 62.44362728092671,
+  "excepciones_js": 0,
+  "apk_sha256": "295c9b9cbb350e1908141d5c005dba8646c74710274e38a70148c56c34207962"
+}

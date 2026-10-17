@@ -1,0 +1,60 @@
+{
+  "before": {
+    "coleccion": {},
+    "mazo": [],
+    "campana": null,
+    "juego": null
+  },
+  "started": {
+    "coleccion": {},
+    "mazo": [],
+    "campana": null,
+    "juego": {
+      "jugador": "humano",
+      "rival": "humano",
+      "mano_u": [
+        "Escudero",
+        "Jinete Pardo",
+        "Antorcha Viva",
+        "Alabardero",
+        "Arquera de Torre"
+      ],
+      "mano_c": [
+        "Arquera de Torre",
+        "Estandarte Dorado",
+        "Ballestero",
+        "Tamborilero",
+        "Escudero"
+      ],
+      "jugadas": 0
+    }
+  },
+  "dragged": {
+    "coleccion": {},
+    "mazo": [],
+    "campana": null,
+    "juego": {
+      "jugador": "humano",
+      "rival": "humano",
+      "mano_u": [
+        "Jinete Pardo",
+        "Antorcha Viva",
+        "Alabardero",
+        "Arquera de Torre"
+      ],
+      "mano_c": [
+        "Arquera de Torre",
+        "Ballestero",
+        "Tamborilero",
+        "Escudero"
+      ],
+      "jugadas": 2
+    }
+  },
+  "after": {
+    "coleccion": {},
+    "mazo": [],
+    "campana": null,
+    "juego": null
+  }
+}

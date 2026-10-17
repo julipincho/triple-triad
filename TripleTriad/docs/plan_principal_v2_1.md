@@ -25,6 +25,8 @@ Primera pasada de los apartados 1, 2 y 3 implementada en los bloques 01–06 y c
 
 ## Orden de trabajo
 
+Corrección prioritaria solicitada el 17 de octubre: [rápidos con mazos prestados](informe_duelos_rapidos_20261017.md), separados de colección y progreso de campaña. El apartado 4 sigue pendiente; los presets del modo rápido no sustituyen esa revisión de rivales de campaña.
+
 El [bloque 06](informe_v2_1_bloque_06.md) corrige nombres y bocadillos del duelo a tres escalas, usando datos de tutorial, ramas, revancha y minicampañas. El [bloque 07](informe_v2_1_bloque_07.md) completa los recorridos automatizados pendientes y corrige clics/rendimiento del editor. Continuar con personalidad de rivales (4).
 
 El [bloque 05](informe_v2_1_bloque_05.md) continúa la legibilidad del apartado 3: resultado y pausa con texto ampliado, comprobación del último efecto del rival antes de derrota y repetición de puntero/arrastre en Chrome. La validación de campañas que quedó pendiente entonces se cerró en el bloque 07.

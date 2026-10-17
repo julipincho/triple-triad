@@ -574,13 +574,17 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
     orden = facciones.orden_facciones()
     if facciones_disponibles:
         orden = [f for f in orden if f in facciones_disponibles]
-    rapida = modo == "rapida"
+    rapida = modo in ("rapida", "rapida_rival")
     mini = modo == "mini"
     fondo = Fondo("humano")
     seleccion = 0
     t0 = time.time()
     # el perfil no cambia mientras esta pantalla abierta: se lee una vez
     perfil = campana.cargar_perfil()
+    prestados = None
+    if rapida:
+        import mazos_rapidos
+        prestados = {f: mazos_rapidos.mazo(f) for f in orden}
     while True:
         dt = clock.tick(LIMIT_FPS) / 1000.0
         await asyncio.sleep(0)
@@ -591,7 +595,8 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
         texto(screen, "MINICAMPAÑA" if mini else "ELIGE TU FACCIÓN" if not rapida else "DUELO RÁPIDO", 22, DORADO,
               centro=(ANCHO // 2, 74))
         if rapida:
-            texto(screen, "Elige con quien quieres pelear", 10, TEXTO_TENUE,
+            texto(screen, "Elige tu mazo prestado" if modo == "rapida" else "Elige contra quién jugar",
+                  10, TEXTO_TENUE,
                   centro=(ANCHO // 2, 104))
         elif mini:
             texto(screen, "Elige tu personaje para tres duelos", 10, TEXTO_TENUE,
@@ -685,7 +690,10 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
         # ficha de la faccion seleccionada: rediseño para evitar desbordes.
         # Panel compacto de 300x500 que organiza lema, arco, mazo y rivales.
         faccion = orden[seleccion]
-        cartas = mazos.TODOS[faccion]
+        if rapida:
+            cartas = prestados[faccion]
+        else:
+            cartas = mazos.TODOS[faccion]
         ficha = pygame.Rect(940, 140, 300, 500)
         panel(screen, ficha, PANEL, facciones.acento(faccion), radio=10)
         tam_ficha = 14
@@ -729,7 +737,8 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
 
         # Vista del mazo (2 filas x 5 miniaturas de 48x66)
         y = max(y + 8, ficha.y + 146)
-        texto(screen, "TU MAZO", 10, DORADO, centro=(ficha.centerx, y))
+        texto(screen, "MAZO DEL RIVAL" if modo == "rapida_rival" else "TU MAZO",
+              10, DORADO, centro=(ficha.centerx, y))
         y += 16
         mostradas = cartas[:10]
         for i, carta in enumerate(mostradas):
@@ -780,20 +789,15 @@ async def elegir_faccion(screen, clock, facciones_disponibles=None, modo="campan
                 r_rect = pygame.Rect(rx, ry, 46, max(15, paso_chip - 3))
                 panel(screen, r_rect, (20,20,30), facciones.acento(r_id), radio=4, grosor=1, sombra=False)
                 texto(screen, facciones.corto(r_id), 7, facciones.acento(r_id), centro=r_rect.center)
-        aceptar = Boton(pygame.Rect(ANCHO - 330, 650, 280, 46), "ELEGIR Y EMPEZAR", 12,
+        etiqueta_aceptar = ("ELEGIR MAZO" if modo == "rapida" else
+                           "EMPEZAR DUELO" if modo == "rapida_rival" else "ELEGIR Y EMPEZAR")
+        aceptar = Boton(pygame.Rect(ANCHO - 330, 650, 280, 46), etiqueta_aceptar, 12,
                         acento=facciones.acento(faccion))
         atras = Boton(pygame.Rect(ANCHO - 330, 706, 280, 38), "VOLVER", 10)
         if rapida:
             # en duelo rapido el boton late para que quede claro como confirmar
             aceptar.pulsar()
         _botones(screen, [aceptar, atras], mouse, dt)
-        if rapida:
-            # Centrada en el boton que hay que pulsar. El texto anterior era
-            # "Pulsa ELEGIR Y EMPEZAR para confirmar": a tamano normal cabe,
-            # pero al 160% mide 468 px y se salia por la derecha de la
-            # pantalla (medido por la auditoria de texto ampliado).
-            texto(screen, "Confirma con ELEGIR Y EMPEZAR", 8, DORADO,
-                  centro=(ANCHO - 190, 608))
         texto(screen, "clic en una facción para elegirla   ENTER para confirmar", 8,
               TEXTO_TENUE, centro=(ANCHO // 2, ALTO - 26))
         pygame.display.flip()

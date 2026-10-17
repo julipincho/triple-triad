@@ -113,6 +113,10 @@ Herramientas: `tools/jugar_v2_1_bloque_07.py` para recorridos reales con datos t
 
 ## Próximo bloque recomendado (08)
 
+Corrección intermedia del 17 de octubre: [mazos rápidos independientes](informe_duelos_rapidos_20261017.md). `main._duelo_rapido` selecciona jugador y rival y usa únicamente `mazos_rapidos.mazo`; no debe llamar al reparador global, al ritual ni al editor de campaña. `pantallas.elegir_faccion` usa `rapida` para el jugador y `rapida_rival` para el rival, mostrando el preset real. Las cartas obtenidas y los perfiles antiguos se conservan. Ver pruebas `test_rapidos_independientes.py` y evidencias `auditoria/rapidos_independientes_20261017`. Esta corrección solicitada por el usuario no consume el bloque 08 de personalidad de rivales.
+
+Cierre de esa corrección: 1099 pruebas OK, rápido real completado en Chrome y colección/mazo todavía vacíos al regresar al menú. Menú 62,52 FPS y duelo 62,44; sin excepciones JavaScript; 1221 imágenes protegidas intactas. Las pruebas de transición a campaña operan el editor real, omitiendo el prólogo y sustituyendo el resultado del rápido para aislar persistencia. No atribuirles otra campaña completa jugada.
+
 1. Avanzar al apartado 4, personalidad de rivales. Medir primero la distribución de habilidades y valores de los mazos que entrega `campana.mazo_rival` y revisar las prioridades existentes en `partida.Juego._elegir_jugada_cpu`. Guardar una base por facción/nodo/semilla antes de cambiar pesos o distribución. No introducir sistemas nuevos ni afinidades.
 2. Proponer y aplicar un bloque pequeño sobre perfiles existentes, justificando cómo hace reconocible al rival sin saltos gratuitos de fuerza. Separar cambios de personalidad de la revisión de dificultad del apartado 5. No usar la política omnisciente de esta auditoría como sustituto de un jugador para balancear.
 3. El bloque 06 dejó otro caso de UI para una pasada específica: un nombre máximo puede tocar el marcador de la barra superior. Los nombres junto a los retratos sí se corrigieron. No dar por auditada toda la barra superior por las capturas de este bloque, que usan «Auditoría» como nombre.
