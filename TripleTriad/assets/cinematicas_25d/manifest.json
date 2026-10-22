@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "lote": "cinematicas_25d_20261022",
+  "lienzo": [
+    1280,
+    800
+  ],
+  "area": [
+    0,
+    40,
+    1280,
+    720
+  ],
+  "relleno": [
+    24,
+    12
+  ],
+  "modelos": {
+    "profundidad": "depth-anything/Depth-Anything-V2-Small-hf",
+    "segmentacion": "nvidia/segformer-b0-finetuned-ade-512-512"
+  },
+  "perfiles": {
+    "salon_torneo": {
+      "frente_clases": [
+        "table",
+        "chair"
+      ],
+      "frente_profundidad": 0.62,
+      "frente_extra": [
+        [
+          "plant",
+          0.7
+        ]
+      ],
+      "medio_clases": [
+        "table",
+        "chair",
+        "plant",
+        "curtain"
+      ],
+      "particulas": "polvo"
+    },
+    "camino_lluvioso": {
+      "frente_clases": [
+        "tree",
+        "plant",
+        "palm"
+      ],
+      "frente_regiones": [
+        [
+          0,
+          0,
+          700,
+          720
+        ],
+        [
+          1050,
+          0,
+          1280,
+          720
+        ]
+      ],
+      "frente_extra": [
+        [
+          "plant",
+          0.55
+        ]
+      ],
+      "medio_clases": [
+        "tree",
+        "plant",
+        "palm",
+        "road",
+        "water",
+        "river",
+        "earth"
+      ],
+      "particulas": "lluvia"
+    },
+    "sala_trono": {
+      "frente_clases": [
+        "floor"
+      ],
+      "frente_extra": [
+        [
+          "wall",
+          0.6
+        ]
+      ],
+      "medio_clases": [
+        "stairway",
+        "wall"
+      ],
+      "particulas": "brasas"
+    }
+  },
+  "escenas": {
+    "salon_torneo": {
+      "origen": "assets/cinematicas_hd/salon_torneo.png",
+      "origen_sha256": "24e67297733f054ddfcb293d1d2267447c77691d16c83bc8941268d73b51ee72",
+      "particulas": "polvo",
+      "capas": [
+        {
+          "archivo": "salon_torneo/00_fondo.png",
+          "sha256": "f801c4d6668fa68a7c7071dd360250d78ce2f71bbc85e438b61d1d1a95d5c259",
+          "opaca": true,
+          "bbox": [
+            0,
+            0,
+            1328,
+            744
+          ],
+          "dx": 12,
+          "dy": 6,
+          "periodo": 24
+        },
+        {
+          "archivo": "salon_torneo/01_medio.png",
+          "sha256": "f7eb0dacdbd2d23ed13b7082fe0b3734823e43a8d8a08e33053d446b22b4744e",
+          "opaca": false,
+          "bbox": [
+            0,
+            190,
+            1328,
+            336
+          ],
+          "dx": 5,
+          "dy": 2,
+          "periodo": 18
+        },
+        {
+          "archivo": "salon_torneo/02_frente.png",
+          "sha256": "55989ce48e0bebf56b72f204473f8331b3bcc0468934ab5b44d268423f84ae68",
+          "opaca": false,
+          "bbox": [
+            0,
+            474,
+            429,
+            270
+          ],
+          "dx": 2,
+          "dy": 1,
+          "periodo": 13
+        }
+      ]
+    },
+    "camino_lluvioso": {
+      "origen": "assets/cinematicas_hd/camino_lluvioso.png",
+      "origen_sha256": "acabb2264f68137128f73d151e615331ee794ac85d45939ea11dd44bca1c9051",
+      "particulas": "lluvia",
+      "capas": [
+        {
+          "archivo": "camino_lluvioso/00_fondo.png",
+          "sha256": "19458afcd7621a647cda7f94ba2de5f41a1e9eb4de71042f28357865f81c6498",
+          "opaca": true,
+          "bbox": [
+            0,
+            0,
+            1328,
+            744
+          ],
+          "dx": 12,
+          "dy": 6,
+          "periodo": 24
+        },
+        {
+          "archivo": "camino_lluvioso/01_medio.png",
+          "sha256": "c84380769c635648d139387fa2b2d0828f6b5b936022b56b3182744ba3823a9f",
+          "opaca": false,
+          "bbox": [
+            0,
+            407,
+            1093,
+            337
+          ],
+          "dx": 5,
+          "dy": 2,
+          "periodo": 18
+        },
+        {
+          "archivo": "camino_lluvioso/02_frente.png",
+          "sha256": "a1e490702fba5cd752bc65cf1bdf41bf499e53214eedac8127a19df41a2cd841",
+          "opaca": false,
+          "bbox": [
+            0,
+            0,
+            1328,
+            744
+          ],
+          "dx": 2,
+          "dy": 1,
+          "periodo": 13
+        }
+      ]
+    },
+    "sala_trono": {
+      "origen": "assets/cinematicas_hd/sala_trono.png",
+      "origen_sha256": "78b1264e903b9652d61d459d2048fddb983827d964ba6641337f9c154ce06aa9",
+      "particulas": "brasas",
+      "capas": [
+        {
+          "archivo": "sala_trono/00_fondo.png",
+          "sha256": "71bffce617c060cb9fa18f3fb07df1ecdd19d80392a8e5cfe08cd74bc48f41ef",
+          "opaca": true,
+          "bbox": [
+            0,
+            0,
+            1328,
+            744
+          ],
+          "dx": 12,
+          "dy": 6,
+          "periodo": 24
+        },
+        {
+          "archivo": "sala_trono/01_medio.png",
+          "sha256": "b26cd38eec4375f93e5cb2b356523e19e8d3f83347d6631b9f8e761ace4f762c",
+          "opaca": false,
+          "bbox": [
+            0,
+            0,
+            1328,
+            533
+          ],
+          "dx": 5,
+          "dy": 2,
+          "periodo": 18
+        },
+        {
+          "archivo": "sala_trono/02_frente.png",
+          "sha256": "57eb98d04e2b3fbcf9337beecadd4dbbd180c589c0d32570be0ceb53a978367d",
+          "opaca": false,
+          "bbox": [
+            0,
+            459,
+            1328,
+            285
+          ],
+          "dx": 2,
+          "dy": 1,
+          "periodo": 13
+        }
+      ]
+    }
+  }
+}

@@ -134,6 +134,22 @@ que la mano muestra valores base. Muro y Quema mantienen su comportamiento.
 - **ESC o botón SALIR en cualquier momento** (pide confirmación) y el progreso
   por paso (`tutorial_paso`) permite retomar donde se quedó.
 
+## Cinematicas 2.5D
+
+Las escenas con fondo aprobado (salón del torneo, bosque lluvioso, sala del
+trono) tienen paralaje suave: el fondo se desplaza más que el frente, con
+lluvia, brasas o polvo superpuestos. Se activa por defecto; para desactivarla:
+
+    TRIPLETRIAD_CINEMATICAS_25D=0
+
+Para regenerar las capas (herramienta de desarrollo, necesita el venv visual):
+
+    E:\AI\CartonesMazmorrasVisual\venv-sdxl\Scripts\python.exe ^
+        tools/producir_cinematicas_25d.py
+
+Las capas viven en `assets/cinematicas_25d/` y el manifiesto lleva hashes y
+bboxes. Informe: `docs/informe_cinematicas_25d.md`.
+
 ## Cinematica de intro
 
 Tras la portada y solo la primera vez, una cinematica de 5 escenas cuenta

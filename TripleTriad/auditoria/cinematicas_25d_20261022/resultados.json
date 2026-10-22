@@ -1,0 +1,32 @@
+{
+  "salon_torneo": {
+    "25d": {
+      "tiempo_medio_ms": 2.377,
+      "fps_equivalentes": 420.7
+    },
+    "clasico": {
+      "tiempo_medio_ms": 1.916,
+      "fps_equivalentes": 521.8
+    }
+  },
+  "camino_lluvioso": {
+    "25d": {
+      "tiempo_medio_ms": 3.333,
+      "fps_equivalentes": 300.0
+    },
+    "clasico": {
+      "tiempo_medio_ms": 1.875,
+      "fps_equivalentes": 533.2
+    }
+  },
+  "sala_trono": {
+    "25d": {
+      "tiempo_medio_ms": 2.612,
+      "fps_equivalentes": 382.9
+    },
+    "clasico": {
+      "tiempo_medio_ms": 1.882,
+      "fps_equivalentes": 531.3
+    }
+  }
+}

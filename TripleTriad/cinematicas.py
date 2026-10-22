@@ -15,6 +15,7 @@ import pygame
 
 import audio
 import arte_visual
+import cinematicas_25d
 import duelistas
 import ui  # `ruta_fondo`: elige la variante de fondo con la semilla de partida
 import facciones
@@ -53,6 +54,9 @@ class Escena:
         self.fondo_lote = lotes_visuales.fondo(datos)
         self.fondo = datos.get("fondo", "ceniza")
         self.fondo_hd = datos.get("fondo_hd")
+        # Conjunto 2.5D explicito; si no viene, se deduce del fondo HD o del
+        # lote visual en `cinematicas_25d.clave_de`.
+        self.fondo_25d = datos.get("fondo_25d")
         self.hablante = datos.get("hablante")
         self.texto = espanol(datos.get("texto", ""))
         self.retrato = datos.get("retrato") or retrato_hablante(self.hablante)
@@ -251,21 +255,28 @@ class Cinematica:
         # el mundo fantastic, y asi se nota en que lado estas.
         tinte, alpha, (vin_a, vin_b) = TRATAMIENTO.get(
             getattr(escena, "mundo", MUNDO_JUEGO), TRATAMIENTO[MUNDO_JUEGO])
-        fondo_hd = None
-        if FONDOS_CINEMATICOS_HD and escena.fondo_hd:
-            fondo_hd = REC.fondo_cinematico(
-                os.path.join("assets", "cinematicas_hd", escena.fondo_hd))
-        if FONDOS_CINEMATICOS_HD and not escena.fondo_hd:
-            # La variante se resuelve antes de buscar arte nuevo. Un HD
-            # explicito de los lotes aprobados siempre conserva prioridad.
-            nueva = escena.fondo_lote or arte_visual.alternativa(ui.ruta_fondo(escena.fondo), "fondo")
-            if nueva:
-                fondo_hd = REC.fondo_cinematico(nueva)
-        if fondo_hd is not None:
-            screen.blit(fondo_hd, (0, 0))
-        else:
-            screen.blit(REC.fondo_pantalla(ui.ruta_fondo(escena.fondo)), (0, 0))
+        # El 2.5D se resuelve antes del HD: sus capas salen del mismo fondo
+        # aprobado y, si falta algo, el modulo devuelve False y se sigue por
+        # el camino de siempre.
+        dibujado_25d = cinematicas_25d.dibujar_fondo(screen, escena, t)
+        if not dibujado_25d:
+            fondo_hd = None
+            if FONDOS_CINEMATICOS_HD and escena.fondo_hd:
+                fondo_hd = REC.fondo_cinematico(
+                    os.path.join("assets", "cinematicas_hd", escena.fondo_hd))
+            if FONDOS_CINEMATICOS_HD and not escena.fondo_hd:
+                # La variante se resuelve antes de buscar arte nuevo. Un HD
+                # explicito de los lotes aprobados siempre conserva prioridad.
+                nueva = escena.fondo_lote or arte_visual.alternativa(ui.ruta_fondo(escena.fondo), "fondo")
+                if nueva:
+                    fondo_hd = REC.fondo_cinematico(nueva)
+            if fondo_hd is not None:
+                screen.blit(fondo_hd, (0, 0))
+            else:
+                screen.blit(REC.fondo_pantalla(ui.ruta_fondo(escena.fondo)), (0, 0))
         screen.blit(REC.capa_oscurita((*tinte, alpha)), (0, 0))
+        if dibujado_25d:
+            cinematicas_25d.dibujar_particulas(screen, escena, t)
         if vin_a:
             screen.blit(REC.vineta(vin_a, vin_b), (0, 0))
 

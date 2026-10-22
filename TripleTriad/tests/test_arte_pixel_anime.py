@@ -60,12 +60,32 @@ class TestArtePixelAnime(unittest.TestCase):
                          pygame.image.tostring(resultado.subsurface((0, 40, 1280, 720)), "RGB"))
 
     def test_prioridad_del_hd_aprobado(self):
+        # Con el 2.5D desactivado, el HD aprobado sigue teniendo prioridad.
         datos = {"fondo": "camino", "fondo_hd": "camino_lluvioso.png", "texto": ""}
         cine = cinematicas.Cinematica([datos])
-        with patch.object(ui.REC, "fondo_cinematico", wraps=ui.REC.fondo_cinematico) as render:
+        with (
+            patch("cinematicas_25d.ACTIVO", False),
+            patch("cinematicas_25d.dibujar_fondo", return_value=False) as dibujo_25d,
+            patch.object(ui.REC, "fondo_cinematico", wraps=ui.REC.fondo_cinematico) as render,
+        ):
             cine._dibujar(self.screen, cine.escena(), 2)
+            self.assertEqual(len(dibujo_25d.call_args_list), 1)
             self.assertEqual(len(render.call_args_list), 1)
             self.assertTrue(render.call_args.args[0].endswith("camino_lluvioso.png"))
+
+    def test_prioridad_del_25d(self):
+        # Con el 2.5D activo y un conjunto disponible, las capas 2.5D tienen
+        # prioridad sobre el HD; `fondo_cinematico` no se llama.
+        datos = {"fondo": "camino", "fondo_hd": "camino_lluvioso.png", "texto": ""}
+        cine = cinematicas.Cinematica([datos])
+        with (
+            patch("cinematicas_25d.ACTIVO", True),
+            patch("cinematicas_25d.dibujar_fondo", return_value=True) as dibujo_25d,
+            patch.object(ui.REC, "fondo_cinematico", wraps=ui.REC.fondo_cinematico) as render,
+        ):
+            cine._dibujar(self.screen, cine.escena(), 2)
+            self.assertEqual(len(dibujo_25d.call_args_list), 1)
+            self.assertEqual(len(render.call_args_list), 0)
 
     def test_variantes_seleccionadas_y_retratos(self):
         for ruta, dato in arte_visual.catalogo().items():
