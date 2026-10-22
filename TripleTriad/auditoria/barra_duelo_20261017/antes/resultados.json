@@ -1,0 +1,3881 @@
+{
+  "casos": 480,
+  "problemas": [
+    {
+      "caso": "humano_fortaleza_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "humano_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "orco_ruinas_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "orco_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_aldea_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "goblin_ruinas_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "goblin_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lobo_trono_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lobo_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "vampiro_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "dragon_aldea_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "dragon_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_nocturno_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_pantera_aldea_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_pantera_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lagarto_vs_vampiro_1",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "humano_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "humano_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "humano_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "humano_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "humano_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "humano_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "orco_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "orco_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "orco_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "orco_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "elfo_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "elfo_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "goblin_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "goblin_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "goblin_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "goblin_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "goblin_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lobo_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "hombre_lobo_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lobo_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "vampiro_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "vampiro_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "vampiro_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "vampiro_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "dragon_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "dragon_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "dragon_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "dragon_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "dragon_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "elfo_nocturno_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_nocturno_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "hombre_pantera_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_pantera_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_senda_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_trono_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_humano_1.25",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "hombre_lagarto_vs_orco_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_goblin_1.25",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lobo_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_vampiro_1.25",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lagarto_vs_dragon_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_nocturno_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_pantera_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lagarto_1.25",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "humano_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "humano_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "humano_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "humano_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "humano_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "humano_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "humano_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "humano_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "humano_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "humano_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "humano_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "orco_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "orco_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "orco_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "orco_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "orco_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "orco_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "orco_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "orco_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "orco_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "elfo_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "elfo_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "elfo_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "elfo_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "elfo_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "goblin_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "goblin_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "goblin_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "goblin_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "goblin_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "goblin_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "goblin_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "goblin_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "goblin_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "goblin_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lobo_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "hombre_lobo_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lobo_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lobo vs Elfos Nocturnos",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lobo vs Elfos Nocturnos",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lobo vs Hombres Pantera",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lobo vs Hombres Pantera",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lobo vs Hombres Lagarto",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lobo vs Hombres Lagarto",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lobo_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "vampiro_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "vampiro_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "vampiro_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "vampiro_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "vampiro_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "vampiro_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "dragon_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "dragon_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "dragon_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "dragon_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "dragon_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "dragon_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "dragon_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "dragon_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "dragon_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "dragon_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "elfo_nocturno_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "elfo_nocturno_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Hombres Lobo",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Hombres Lobo",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "elfo_nocturno_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Elfos Nocturnos",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Elfos Nocturnos",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Hombres Pantera",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Hombres Pantera",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Hombres Lagarto",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Elfos Nocturnos vs Hombres Lagarto",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "elfo_nocturno_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_pantera_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "hombre_pantera_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Hombres Lobo",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Hombres Lobo",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_pantera_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Elfos Nocturnos",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Elfos Nocturnos",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Hombres Pantera",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Hombres Pantera",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Hombres Lagarto",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Pantera vs Hombres Lagarto",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_pantera_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_senda_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_senda_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_aldea_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_aldea_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_ruinas_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_fortaleza_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_asalto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_asalto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_trono_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_trono_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_humano_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_humano_1.6",
+      "problema": "sobre marcador",
+      "texto": "Capitan Aldric"
+    },
+    {
+      "caso": "hombre_lagarto_vs_orco_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_orco_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_goblin_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Grix el Mugroso"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_goblin_1.6",
+      "problema": "sobre marcador",
+      "texto": "Grix el Mugroso"
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Hombres Lobo",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Hombres Lobo",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lobo_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lobo_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_vampiro_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "Condesa Sanguinaria"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_vampiro_1.6",
+      "problema": "sobre marcador",
+      "texto": "Condesa Sanguinaria"
+    },
+    {
+      "caso": "hombre_lagarto_vs_dragon_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_dragon_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Elfos Nocturnos",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Elfos Nocturnos",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_nocturno_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_elfo_nocturno_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Hombres Pantera",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Hombres Pantera",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_pantera_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_pantera_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Hombres Lagarto",
+        "TU MANO: 5"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "Hombres Lagarto vs Hombres Lagarto",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lagarto_1.6",
+      "problema": "solapamiento",
+      "texto": [
+        "0",
+        "WWWWWWWWWWWWWWW"
+      ]
+    },
+    {
+      "caso": "hombre_lagarto_vs_hombre_lagarto_1.6",
+      "problema": "sobre marcador",
+      "texto": "WWWWWWWWWWWWWWW"
+    }
+  ],
+  "capturas": [
+    "humano_fortaleza_1.png",
+    "hombre_pantera_vs_elfo_nocturno_1.png",
+    "humano_fortaleza_1.25.png",
+    "hombre_pantera_vs_elfo_nocturno_1.25.png",
+    "humano_fortaleza_1.6.png",
+    "hombre_pantera_vs_elfo_nocturno_1.6.png"
+  ],
+  "base": "a32d189"
+}

@@ -807,6 +807,24 @@ class Juego:
             REC.imagenes[clave] = brillo
         screen.blit(brillo, (0, ALTO - 90))
 
+    @staticmethod
+    def _bloque_barra(screen, rect, grupos, centrado=True):
+        """Ajusta l?neas completas al espacio reservado del encabezado."""
+        for reduccion in range(6):
+            filas = []
+            for contenido, tamano, color in grupos:
+                tamano = max(6, tamano - reduccion)
+                filas.extend((linea, tamano, color, alto_texto(linea, tamano))
+                             for linea in envolver(contenido, tamano, rect.w))
+            alto = sum(f[3] for f in filas) + max(0, len(filas) - 1) * 4
+            if alto <= rect.h and all(ancho_texto(t, n) <= rect.w for t, n, _, _ in filas):
+                break
+        y = rect.y + (rect.h - alto) // 2
+        for linea, tamano, color, altura in filas:
+            x = rect.centerx - ancho_texto(linea, tamano) // 2 if centrado else rect.x
+            texto(screen, linea, tamano, color, x=x, y=y)
+            y += altura + 4
+
     def _dibujar_hud(self, screen, ahora):
         # barra superior: fase, marcador y manos
         s = REC.imagenes.get("hud_barra")
@@ -819,13 +837,13 @@ class Juego:
         t, c = self.marcador_mostrado
 
         if self.en_campana and self.info:
-            texto(screen, self.info.get("titulo", "DUELO").upper(), 10, DORADO, x=24, y=16)
-            texto(screen, f"{self.info.get('nombre_faccion', '')} - nivel {self.info.get('dificultad', 0)}",
-                  8, TEXTO_TENUE, x=24, y=36)
+            titulo = self.info.get("titulo", "DUELO").upper()
+            subtitulo = f"{self.info.get('nombre_faccion', '')} - nivel {self.info.get('dificultad', 0)}"
         else:
-            texto(screen, "DUELO RÁPIDO", 10, DORADO, x=24, y=16)
-            texto(screen, f"{facciones.nombre(self.bando)} vs {facciones.nombre(self.bando_cpu)}",
-                  8, TEXTO_TENUE, x=24, y=36)
+            titulo = "DUELO RÁPIDO"
+            subtitulo = f"{facciones.nombre(self.bando)} vs {facciones.nombre(self.bando_cpu)}"
+        self._bloque_barra(screen, pygame.Rect(24, 8, 298, 58),
+                           [(titulo, 10, DORADO), (subtitulo, 8, TEXTO_TENUE)], False)
 
         # marcador central con escudos del color de cada baraja
         panel(screen, pygame.Rect(ANCHO // 2 - 84, 12, 168, 48), (18, 19, 28, 230), BORDE, radio=8, grosor=1)
@@ -849,27 +867,24 @@ class Juego:
         pygame.draw.polygon(screen, TEXTO, [(cx, cy - 5), (cx + 5, cy),
                                             (cx, cy + 5), (cx - 5, cy)])
 
-        # manos a los lados del marcador. Debajo de cada mano va el nombre:
-        # el del rival siempre, y el del jugador solo si ha puesto uno.
-        texto(screen, f"TU MANO: {len(self.mano_u)}", 8, TEXTO, centro=(ANCHO // 2 - 150, 30))
-        texto(screen, f"SU MANO: {len(self.mano_c)}", 8, TEXTO, centro=(ANCHO // 2 + 150, 30))
         nombre_u = self.info.get("nombre_jugador", "") if self.info else ""
         etiqueta_u = nombre_u if (nombre_u and nombre_u != campana.NOMBRE_POR_DEFECTO) else "TÚ"
         etiqueta_c = self.info.get("nombre", "") if self.info else ""
-        texto(screen, etiqueta_u, 8, mezcla(facciones.acento(self.bando), TEXTO_ON, 0.4), centro=(ANCHO // 2 - 150, 52))
-        texto(screen, etiqueta_c or "RIVAL", 8, mezcla(facciones.acento(self.bando_cpu), TEXTO_ON, 0.4), centro=(ANCHO // 2 + 150, 52))
-
-        # racha
+        for rect, cantidad, etiqueta, bando in (
+                (pygame.Rect(334, 8, 210, 58), f"TU MANO: {len(self.mano_u)}", etiqueta_u, self.bando),
+                (pygame.Rect(736, 8, 210, 58), f"SU MANO: {len(self.mano_c)}", etiqueta_c or "RIVAL", self.bando_cpu)):
+            self._bloque_barra(screen, rect, [(cantidad, 8, TEXTO),
+                              (etiqueta, 8, mezcla(facciones.acento(bando), TEXTO_ON, 0.4))])
+        turno = "FINALIZADO" if self.fin else ("TURNO RIVAL" if self.turno_cpu else "TU TURNO")
+        estado = [(turno, 9, ui.AVISO if self.turno_cpu else ui.FOCO)]
         if self.racha >= 2:
-            texto(screen, f"RACHA x{self.racha}", 9, VERDE, centro=(ANCHO - 80, 36))
+            estado.append((f"RACHA x{self.racha}", 9, VERDE))
+        self._bloque_barra(screen, pygame.Rect(968, 8, 288, 58), estado)
 
         # mensaje
         panel(screen, pygame.Rect(ANCHO // 2 - 300, 84, 600, 44), (16, 17, 26, 200), None, radio=8)
         for i, linea in enumerate(envolver(self.mensaje, 9, 576)[:2]):
             texto(screen, linea, 9, TEXTO, centro=(ANCHO // 2, 98 + i * 16))
-        turno = "FINALIZADO" if self.fin else ("TURNO RIVAL" if self.turno_cpu else "TU TURNO")
-        texto(screen, turno, 9, ui.AVISO if self.turno_cpu else ui.FOCO,
-              x=ANCHO - 160, y=14)
         # El desglose de la captura: por que un 5 voltea a un 5, o por que un
         # 9 no voltaa a un 8. Sin esto el numero de la carta parece mentira.
         self._dibujar_desglose(screen)
